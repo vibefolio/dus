@@ -97,7 +97,7 @@
 
       <div class="form-group">
         <%= f.label :message, "프로젝트 상세 내용 *", class: "form-label" %>
-        <%= f.text_area :message, class: "form-textarea", placeholder: "프로젝트에 대해 자세히 설명해주세요...", required: true, rows: 6 %>
+        <%= f.text_area :message, class: "form-textarea", placeholder: "프로젝트에 대해 자세히 설명해주세요...", required: true, rows: 6, value: params[:template_title].present? ? "안녕하세요. \"#{params[:template_title]}\" 템플릿을 기반으로 의뢰하고 싶습니다.\n\n구체적인 요구사항:\n" : nil %>
         <p style="color: var(--color-gray-500); font-size: var(--text-sm); margin-top: var(--space-2);">
           프로젝트 목적, 주요 기능, 일정, 참고 사이트 등을 포함해주시면 더 정확한 견적을 드릴 수 있습니다.
         </p>

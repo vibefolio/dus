@@ -6,7 +6,7 @@ gem "rails", "~> 8.1.1"
 gem "propshaft"
 
 # Use the Puma web server [https://github.com/puma/puma]
-gem "puma", ">= 5.0"
+# gem "puma", ">= 5.0"
 
 # Use PostgreSQL in production
 group :production do

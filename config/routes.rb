@@ -8,11 +8,15 @@ Rails.application.routes.draw do
   post "contact", to: "pages#create_quote"
   get "pricing", to: "pages#pricing"
 
+  # 템플릿 페이지
+  resources :design_templates, only: [:index]
+
   # 어드민 페이지
   namespace :admin do
     root "dashboard#index"
     resources :portfolios
     resources :quotes, only: [ :index, :show ]
+    resources :design_templates
   end
 
   # Health check
