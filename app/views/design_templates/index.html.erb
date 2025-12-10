@@ -58,6 +58,7 @@
 
             <!-- Hidden Data for Modal -->
             <div id="template-data-<%= template.id %>" style="display: none;">
+              <div class="data-preview-url"><%= template.preview_url %></div>
               <div class="data-title"><%= template.title %></div>
               <div class="data-desc"><%= template.description %></div>
               <div class="data-category"><%= template.category %></div>
@@ -149,6 +150,10 @@
     <div style="padding: var(--space-4) var(--space-6); background: white; border-top: 1px solid var(--color-gray-200); display: flex; justify-content: space-between; align-items: center;">
       <p id="modal-desc" style="margin: 0; color: var(--color-gray-600); font-size: var(--text-sm); max-width: 60%;">Template description goes here.</p>
       
+      <a id="btn-preview" href="#" target="_blank" class="btn btn-outline btn-lg" style="margin-right: var(--space-4); display: none; align-items: center;">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-right: 8px;"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+        웹사이트 체험하기
+      </a>
       <a id="btn-pick" href="#" class="btn btn-primary btn-lg shine-effect" style="padding-left: var(--space-8); padding-right: var(--space-8);">
         PICK! 이 템플릿으로 의뢰하기
       </a>
@@ -237,6 +242,18 @@
     document.getElementById('modal-desc').innerText = desc;
     document.getElementById('modal-category').innerText = category || 'TEMPLATE';
     
+    // Set Preview URL (Live Demo)
+    const previewUrl = dataContainer.querySelector('.data-preview-url').innerText.trim();
+    const btnPreview = document.getElementById('btn-preview');
+    
+    if (previewUrl && previewUrl !== "") {
+      btnPreview.href = previewUrl;
+      btnPreview.style.display = 'inline-flex';
+    } else {
+      btnPreview.style.display = 'none';
+      btnPreview.href = "#";
+    }
+
     // Set Images
     const pcImgElem = document.getElementById('modal-img-pc');
     const pcNoImg = document.getElementById('no-img-pc');

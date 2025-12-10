@@ -26,6 +26,11 @@
   </div>
 
   <div class="form-group">
+    <%= f.label :preview_url, "미리보기 URL (예: /templates/beauty)", class: "form-label" %>
+    <%= f.text_field :preview_url, class: "form-input", placeholder: "/templates/..." %>
+  </div>
+
+  <div class="form-group">
     <%= f.label :pc_image, "PC 미리보기 이미지", class: "form-label" %>
     
     <div style="border: 2px dashed var(--color-gray-300); border-radius: var(--radius-lg); padding: var(--space-6); text-align: center; background: var(--color-gray-50); transition: all 0.2s;" id="drop-zone-pc">
