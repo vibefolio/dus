@@ -9,4 +9,16 @@ class TemplatesController < ApplicationController
   def dining
     # 다이닝 (모던 한식) 템플릿
   end
+
+  def gym
+    # 짐/요가 (아티스틱 웰니스) 템플릿
+  end
+
+  def study
+    # 스터디 (포커스 랩) 템플릿
+  end
+
+  def stay
+    # 스테이 (감성 숙소) 템플릿
+  end
 end
