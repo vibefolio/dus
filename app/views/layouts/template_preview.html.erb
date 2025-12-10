@@ -7,6 +7,26 @@
     <%= csp_meta_tag %>
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     
+    <!-- Tailwind CDN (Emergency Fix) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              primary: { DEFAULT: '#00a859', dark: '#008a47' },
+              accent: '#00d670',
+            },
+            fontFamily: {
+              sans: ['Pretendard', 'Inter', 'sans-serif'],
+              serif: ['Noto Serif KR', 'serif'],
+              cinzel: ['Cinzel', 'serif'],
+            }
+          }
+        }
+      }
+    </script>
+    
     <!-- Google Fonts for Templates -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
