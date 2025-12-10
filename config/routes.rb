@@ -6,6 +6,13 @@ Rails.application.routes.draw do
   get 'templates/gym', to: 'templates#gym'
   get 'templates/study', to: 'templates#study'
   get 'templates/stay', to: 'templates#stay'
+  get 'templates/corporate', to: 'templates#corporate'
+  get 'templates/ecommerce', to: 'templates#ecommerce'
+  get 'templates/cafe', to: 'templates#cafe'
+  get 'templates/portfolio', to: 'templates#portfolio'
+  get 'templates/medical', to: 'templates#medical'
+  get 'templates/law', to: 'templates#law'
+  get 'templates/wedding', to: 'templates#wedding'
 
   root "pages#home"
 
