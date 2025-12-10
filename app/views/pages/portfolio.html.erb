@@ -18,13 +18,81 @@
       <div class="grid grid-3">
         <% @portfolios.each do |portfolio| %>
           <div class="card">
-            <% if portfolio.image_url.present? %>
-              <%= image_tag portfolio.image_url, alt: portfolio.title, class: "card-image", style: "height: 250px;" %>
-            <% else %>
-              <div class="card-image" style="background: var(--gradient-primary); display: flex; align-items: center; justify-content: center; color: white; font-size: var(--text-3xl); font-weight: 700; height: 250px;">
-                <%= portfolio.title[0] %>
-              </div>
-            <% end %>
+            <div class="card-image-wrapper">
+              <% if portfolio.image.attached? %>
+                <%= image_tag portfolio.image, alt: portfolio.title, class: "card-image pc-ver" %>
+              <% elsif portfolio.image_url.present? %>
+                <%= image_tag portfolio.image_url, alt: portfolio.title, class: "card-image pc-ver" %>
+              <% else %>
+                <div class="card-image pc-ver" style="background: var(--gradient-primary); display: flex; align-items: center; justify-content: center; color: white; font-size: var(--text-3xl); font-weight: 700;">
+                  <%= portfolio.title[0] %>
+                </div>
+              <% end %>
+
+              <% if portfolio.mobile_image.attached? %>
+                <%= image_tag portfolio.mobile_image, alt: "#{portfolio.title} Mobile", class: "card-image mobile-ver" %>
+              <% end %>
+            </div>
+
+            <style>
+              .card-image-wrapper {
+                position: relative;
+                width: 100%;
+                height: 250px;
+                overflow: hidden;
+                border-radius: var(--radius-lg);
+                margin-bottom: var(--space-4);
+                background: #f3f4f6; /* fallback background */
+              }
+
+              .card-image {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                transition: transform 0.5s ease;
+                position: absolute;
+                top: 0;
+                left: 0;
+                display: block;
+              }
+
+              /* PC Version Default State */
+              .card-image.pc-ver {
+                z-index: 10;
+              }
+
+              /* Mobile Version Default State - Hidden below */
+              .card-image.mobile-ver {
+                z-index: 20;
+                transform: translateY(100%);
+                opacity: 0;
+                transition: transform 0.4s ease, opacity 0.4s ease;
+              }
+              
+              /* Hover Effects */
+              .card:hover .card-image.pc-ver {
+                transform: translateY(-20px) scale(0.95);
+                filter: brightness(0.9);
+              }
+
+              .card:hover .card-image.mobile-ver {
+                transform: translateY(0); /* Slide up into view */
+                opacity: 1;
+              }
+              
+              /* Optional: If we want the mobile version to be smaller and centered like a phone mock */
+              /*
+              .card-image.mobile-ver {
+                width: 80%;
+                height: auto;
+                aspect-ratio: 9/16; 
+                left: 10%;
+                top: 10%; 
+                border-radius: 10px;
+                box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+              }
+              */
+            </style>
             
             <% if portfolio.category.present? %>
               <span style="display: inline-block; padding: var(--space-1) var(--space-3); background: var(--color-accent); color: white; border-radius: var(--radius-full); font-size: var(--text-sm); font-weight: 600; margin-bottom: var(--space-3);">

@@ -52,8 +52,8 @@ gem "thruster", require: false
 gem "image_processing", "~> 1.2"
 
 # PDF generation (선택사항 - Windows에서 설치 오류 시 주석 처리)
-# gem "prawn"
-# gem "prawn-table"
+gem "prawn"
+gem "prawn-table"
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
@@ -66,7 +66,7 @@ group :development, :test do
   gem "brakeman", require: false
 
   # Omakase Ruby styling [https://github.com/rails/rubocop-rails-omakase/]
-  gem "rubocop-rails-omakase", require: false
+  # gem "rubocop-rails-omakase", require: false
 end
 
 group :development do
