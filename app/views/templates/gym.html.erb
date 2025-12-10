@@ -1,0 +1,115 @@
+<style>
+  :root {
+    --gym-bg: #000000;
+    --gym-text: #ffffff;
+    --gym-accent: #ccff00; /* 라임 */
+  }
+  .bg-gym-dark { background-color: var(--gym-bg); }
+  .text-gym-accent { color: var(--gym-accent); }
+</style>
+
+<div class="bg-black text-white min-h-screen font-sans antialiased overflow-x-hidden">
+  
+  <!-- Abstract Header -->
+  <header class="fixed top-0 left-0 w-full z-50 mix-blend-difference px-8 py-6 flex justify-between items-center">
+    <div class="text-xs font-bold tracking-[0.3em] uppercase">Sculpt & Soul</div>
+    <div class="w-8 h-8 rounded-full border border-white/30 flex items-center justify-center">
+      <div class="w-2 h-2 bg-white rounded-full animate-pulse"></div>
+    </div>
+  </header>
+
+  <!-- Hero: Video Vibes -->
+  <section class="relative h-screen flex items-center justify-center bg-zinc-900">
+    <!-- Image Placeholder for Artistic Body Profile -->
+    <img src="https://images.unsplash.com/photo-1518310383802-640c2de311b2?q=80&w=2670&auto=format&fit=crop" class="absolute inset-0 w-full h-full object-cover opacity-60 grayscale mix-blend-screen" alt="Abstract Movement">
+    
+    <div class="relative z-10 text-center">
+      <h1 class="text-[5rem] md:text-[8rem] font-black leading-none tracking-tighter mix-blend-overlay">
+        BODIES<br>DEFINE<br>ART
+      </h1>
+      <p class="mt-8 text-xs md:text-sm tracking-[0.5em] text-gray-400 uppercase">
+        Private Wellness Studio
+      </p>
+    </div>
+
+    <!-- Scroll Indicator -->
+    <div class="absolute bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2">
+      <span class="block w-[1px] h-12 bg-white/50"></span>
+      <span class="text-[10px] uppercase tracking-widest">Scroll</span>
+    </div>
+  </section>
+
+  <!-- Manifesto -->
+  <section class="py-40 px-6 bg-black relative">
+    <div class="max-w-4xl mx-auto flex flex-col md:flex-row gap-20">
+      <div class="md:w-1/2">
+        <h2 class="text-4xl md:text-5xl font-bold leading-tight mb-8">
+          우리는 단순히<br>
+          운동을 가르치지<br>
+          않습니다.
+        </h2>
+      </div>
+      <div class="md:w-1/2 flex flex-col justify-end">
+        <p class="text-gray-400 leading-relaxed text-sm md:text-base font-light">
+          신체는 가장 원초적인 예술의 형태입니다.<br>
+          호흡과 근육의 움직임 하나하나에 집중하며,<br>
+          당신만이 가진 고유의 선과 에너지를 조각합니다.<br><br>
+          오직 4명만의 프라이빗 클래스.<br>
+          고요 속의 강렬함을 만나보세요.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Program Grid -->
+  <section class="min-h-screen bg-zinc-950 py-24 px-4">
+    <div class="max-w-7xl mx-auto">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-1">
+        <!-- Card 1 -->
+        <div class="group relative aspect-[3/4] overflow-hidden bg-zinc-900">
+          <img src="https://images.unsplash.com/photo-1599058945522-28d584b6f0ff?q=80&w=1000&auto=format&fit=crop" class="w-full h-full object-cover opacity-50 group-hover:opacity-100 group-hover:scale-105 transition duration-700" alt="Yoga">
+          <div class="absolute inset-0 flex flex-col justify-between p-8">
+            <span class="text-xs border border-white/20 self-start px-3 py-1 rounded-full">01</span>
+            <div>
+              <h3 class="text-3xl font-bold mb-2">FLOW YOGA</h3>
+              <p class="text-xs text-gray-400 opacity-0 group-hover:opacity-100 transition duration-500 translate-y-4 group-hover:translate-y-0">움직임의 명상, 내면의 호흡</p>
+            </div>
+          </div>
+        </div>
+        <!-- Card 2 -->
+        <div class="group relative aspect-[3/4] overflow-hidden bg-zinc-900">
+          <img src="https://images.unsplash.com/photo-1518611012118-696072aa579a?q=80&w=1000&auto=format&fit=crop" class="w-full h-full object-cover opacity-50 group-hover:opacity-100 group-hover:scale-105 transition duration-700" alt="Pilates">
+          <div class="absolute inset-0 flex flex-col justify-between p-8">
+            <span class="text-xs border border-white/20 self-start px-3 py-1 rounded-full">02</span>
+            <div>
+              <h3 class="text-3xl font-bold mb-2">MAT PILATES</h3>
+              <p class="text-xs text-gray-400 opacity-0 group-hover:opacity-100 transition duration-500 translate-y-4 group-hover:translate-y-0">코어의 발견, 균형의 미학</p>
+            </div>
+          </div>
+        </div>
+        <!-- Card 3 -->
+        <div class="group relative aspect-[3/4] overflow-hidden bg-zinc-900">
+          <img src="https://images.unsplash.com/photo-1574680096145-d05b474e2155?q=80&w=1000&auto=format&fit=crop" class="w-full h-full object-cover opacity-50 group-hover:opacity-100 group-hover:scale-105 transition duration-700" alt="PT">
+          <div class="absolute inset-0 flex flex-col justify-between p-8">
+            <span class="text-xs border border-white/20 self-start px-3 py-1 rounded-full">03</span>
+            <div>
+              <h3 class="text-3xl font-bold mb-2">1:1 SCULPT</h3>
+              <p class="text-xs text-gray-400 opacity-0 group-hover:opacity-100 transition duration-500 translate-y-4 group-hover:translate-y-0">한계를 넘어서는 에너지</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="py-32 px-6 flex items-center justify-center bg-[#ccff00] text-black">
+    <div class="text-center">
+      <p class="mb-4 text-xs font-bold tracking-[0.2em] uppercase">Trial Session</p>
+      <a href="#" class="text-5xl md:text-8xl font-black hover:italic transition-all duration-300">
+        START NOW
+      </a>
+    </div>
+  </section>
+
+</div>

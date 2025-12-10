@@ -1,0 +1,110 @@
+<style>
+  :root {
+    --stay-bg: #fdfcf8;
+    --stay-text: #4a4a4a;
+  }
+  .font-serif-kr { font-family: 'Noto Serif KR', serif; }
+</style>
+
+<div class="bg-[#fdfcf8] text-[#4a4a4a] font-serif-kr min-h-screen">
+
+  <!-- Minimal Nav -->
+  <nav class="fixed top-0 w-full z-50 py-6 px-8 flex justify-between items-center bg-[#fdfcf8]/80 backdrop-blur-sm">
+    <div class="text-lg font-medium">서촌, 쉼</div>
+    <div class="flex gap-6 text-sm text-gray-500 font-sans tracking-tight">
+      <a href="#" class="hover:text-black">공간소개</a>
+      <a href="#" class="hover:text-black">예약하기</a>
+    </div>
+  </nav>
+
+  <!-- Hero with Horizontal Scroll -->
+  <div class="pt-32 pb-16 overflow-x-hidden">
+    <div class="flex gap-4 px-4 md:px-12 w-max animate-scroll-slow hover:pause-animation overflow-x-auto snap-x">
+      <!-- Image 1 -->
+      <div class="w-[80vw] md:w-[60vw] aspect-[16/9] bg-gray-200 snap-center relative shrink-0">
+        <img src="https://images.unsplash.com/photo-1615874959474-d609969a20ed?q=80&w=2600&auto=format&fit=crop" class="w-full h-full object-cover" alt="Bedroom">
+        <div class="absolute bottom-6 right-6 bg-white/80 py-2 px-4 text-xs font-sans rounded-full">BEDROOM</div>
+      </div>
+      <!-- Image 2 -->
+      <div class="w-[80vw] md:w-[60vw] aspect-[16/9] bg-gray-200 snap-center relative shrink-0">
+        <img src="https://images.unsplash.com/photo-1596191761271-70e77405c106?q=80&w=2600&auto=format&fit=crop" class="w-full h-full object-cover" alt="Yard">
+        <div class="absolute bottom-6 right-6 bg-white/80 py-2 px-4 text-xs font-sans rounded-full">YARD</div>
+      </div>
+      <!-- Image 3 -->
+      <div class="w-[80vw] md:w-[60vw] aspect-[16/9] bg-gray-200 snap-center relative shrink-0">
+        <img src="https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?q=80&w=2600&auto=format&fit=crop" class="w-full h-full object-cover" alt="Interior">
+        <div class="absolute bottom-6 right-6 bg-white/80 py-2 px-4 text-xs font-sans rounded-full">TEA ROOM</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Content -->
+  <section class="max-w-3xl mx-auto px-6 py-20 text-center">
+    <h1 class="text-3xl md:text-4xl mb-8 leading-normal font-light">
+      복잡한 도심 속,<br>
+      오롯이 나를 마주하는 시간
+    </h1>
+    <p class="text-sm md:text-base text-gray-500 leading-8 font-sans font-light">
+      서촌의 낡은 골목 끝, 시간이 멈춘 듯한 작은 한옥입니다.<br>
+      따뜻한 차 한 잔과 함께 고요한 하루를 선물하세요.<br>
+      오직 한 팀만을 위해 준비된 프라이빗 스테이입니다.
+    </p>
+
+    <div class="mt-20 grid grid-cols-2 gap-8 text-left font-sans text-sm">
+      <div class="border-t border-gray-200 pt-4">
+        <span class="block text-xs text-gray-400 mb-1">CHECK-IN</span>
+        <span class="text-lg">15:00</span>
+      </div>
+      <div class="border-t border-gray-200 pt-4">
+        <span class="block text-xs text-gray-400 mb-1">CHECK-OUT</span>
+        <span class="text-lg">11:00</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Calendar Widget UI -->
+  <section class="bg-white py-24 px-6 border-t border-gray-100">
+    <div class="max-w-md mx-auto">
+      <h3 class="text-center text-xl mb-12">예약 가능 날짜 확인</h3>
+      
+      <div class="border border-gray-200 rounded-2xl p-6 shadow-sm">
+        <div class="flex justify-between items-center mb-6 font-sans">
+          <span class="font-bold text-lg">2024. 12</span>
+          <div class="space-x-4 text-gray-400">
+            <button>&lt;</button>
+            <button>&gt;</button>
+          </div>
+        </div>
+        <div class="grid grid-cols-7 gap-2 text-center text-sm font-sans mb-2 text-gray-400">
+          <div>Su</div><div>Mo</div><div>Tu</div><div>We</div><div>Th</div><div>Fr</div><div>Sa</div>
+        </div>
+        <div class="grid grid-cols-7 gap-2 text-center text-sm font-sans font-medium">
+          <div class="text-gray-200">29</div>
+          <div class="text-gray-200">30</div>
+          <div>1</div>
+          <div>2</div>
+          <div>3</div>
+          <div>4</div>
+          <div class="text-blue-500">5</div>
+          <div class="text-red-500">6</div>
+          <div>7</div>
+          <div class="bg-gray-800 text-white rounded-full w-8 h-8 flex items-center justify-center mx-auto cursor-pointer">8</div>
+          <div>9</div>
+          <div>10</div>
+          <div>11</div>
+          <div>12</div>
+        </div>
+        
+        <button class="w-full mt-8 bg-[#4a4a4a] text-white py-4 rounded-xl text-sm font-bold tracking-widest hover:bg-black transition">
+          예약 진행하기
+        </button>
+      </div>
+    </div>
+  </section>
+  
+  <footer class="bg-[#fbecdd] py-12 px-6 text-center text-xs text-gray-500 font-sans">
+    <p>서촌 쉼 | 대표: 김디랩 | 사업자등록번호: 000-00-00000</p>
+    <p class="mt-2">서울 종로구 자하문로 00길</p>
+  </footer>
+
+</div>

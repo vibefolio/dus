@@ -3,6 +3,9 @@ Rails.application.routes.draw do
   # Design Template Previews
   get 'templates/beauty', to: 'templates#beauty'
   get 'templates/dining', to: 'templates#dining'
+  get 'templates/gym', to: 'templates#gym'
+  get 'templates/study', to: 'templates#study'
+  get 'templates/stay', to: 'templates#stay'
 
   root "pages#home"
 
