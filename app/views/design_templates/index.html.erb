@@ -87,19 +87,19 @@
   </div>
 </section>
 
-<!-- Template Modal -->
+<!-- Template Live Demo Modal -->
 <div id="template-modal" style="display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; z-index: var(--z-modal); opacity: 0; transition: opacity 0.3s ease;">
   <!-- Backdrop -->
-  <div onclick="closeTemplateModal()" style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.7); backdrop-filter: blur(5px);"></div>
+  <div onclick="closeTemplateModal()" style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.85); backdrop-filter: blur(5px);"></div>
   
   <!-- Modal Content -->
-  <div class="modal-content" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%) scale(0.95); width: 90%; max-width: 1200px; height: 85vh; background: white; border-radius: var(--radius-2xl); box-shadow: var(--shadow-2xl); display: flex; flex-direction: column; overflow: hidden; transition: transform 0.3s ease;">
+  <div class="modal-content" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%) scale(0.95); width: 95%; max-width: 1400px; height: 90vh; background: white; border-radius: var(--radius-xl); box-shadow: var(--shadow-2xl); display: flex; flex-direction: column; overflow: hidden; transition: transform 0.3s ease;">
     
     <!-- Modal Header -->
     <div style="padding: var(--space-4) var(--space-6); border-bottom: 1px solid var(--color-gray-200); display: flex; justify-content: space-between; align-items: center; background: white; z-index: 10;">
-      <div>
-        <span id="modal-category" style="font-size: var(--text-xs); color: var(--color-accent); font-weight: 700; text-transform: uppercase;">CATEGORY</span>
-        <h2 id="modal-title" style="font-size: var(--text-2xl); margin: 0;">Template Title</h2>
+      <div style="display: flex; align-items: center; gap: 12px;">
+        <span id="modal-category" style="font-size: var(--text-xs); color: var(--color-accent); font-weight: 700; text-transform: uppercase; background: #f0fdf4; padding: 4px 8px; border-radius: 4px;">CATEGORY</span>
+        <h2 id="modal-title" style="font-size: var(--text-xl); margin: 0; font-weight: 700;">Template Title</h2>
       </div>
       
       <div style="display: flex; align-items: center; gap: var(--space-4);">
@@ -121,39 +121,32 @@
       </div>
     </div>
 
-    <!-- Modal Body (Scrollable) -->
-    <div style="flex: 1; overflow-y: auto; background: var(--color-gray-100); position: relative; display: flex; justify-content: center; padding: var(--space-8);">
+    <!-- Modal Body (Iframe Area) -->
+    <div style="flex: 1; overflow: hidden; background: var(--color-gray-100); position: relative; display: flex; justify-content: center; align-items: center; padding: var(--space-6);">
       
       <!-- PC View Frame -->
-      <div id="view-pc" style="width: 100%; max-width: 1000px; background: white; box-shadow: var(--shadow-xl); border-radius: var(--radius-sm); transition: all 0.3s ease;">
-        <!-- Browser Bar Mockup -->
-        <div style="height: 30px; background: #e5e7eb; border-radius: var(--radius-sm) var(--radius-sm) 0 0; display: flex; align-items: center; padding: 0 12px; gap: 6px;">
-          <div style="width: 10px; height: 10px; borderRadius: 50%; background: #ef4444;"></div>
-          <div style="width: 10px; height: 10px; borderRadius: 50%; background: #f59e0b;"></div>
-          <div style="width: 10px; height: 10px; borderRadius: 50%; background: #10b981;"></div>
+      <div id="view-pc" style="width: 100%; height: 100%; background: white; box-shadow: var(--shadow-lg); border-radius: var(--radius-sm); overflow: hidden; display: flex; flex-direction: column;">
+        <div style="height: 24px; background: #e5e7eb; display: flex; align-items: center; gap: 6px; padding-left: 10px;">
+           <div style="width: 8px; height: 8px; border-radius: 50%; background: #ef4444;"></div>
+           <div style="width: 8px; height: 8px; border-radius: 50%; background: #f59e0b;"></div>
+           <div style="width: 8px; height: 8px; border-radius: 50%; background: #10b981;"></div>
         </div>
-        <img id="modal-img-pc" src="" style="width: 100%; display: block;" alt="PC Preview">
-        <div id="no-img-pc" style="padding: 100px; text-align: center; color: var(--color-gray-400); display: none;">PC 이미지가 없습니다.</div>
+        <iframe id="modal-iframe-pc" src="" style="width: 100%; height: 100%; border: none;"></iframe>
       </div>
 
       <!-- Mobile View Frame -->
-      <div id="view-mobile" style="display: none; width: 375px; background: white; border-radius: 40px; box-shadow: var(--shadow-2xl); border: 8px solid #333; overflow: hidden; position: relative;">
+      <div id="view-mobile" style="display: none; width: 375px; height: 100%; max-height: 812px; background: black; border-radius: 40px; box-shadow: var(--shadow-2xl); border: 12px solid #1a1a1a; overflow: hidden; position: relative;">
         <!-- Notch -->
-        <div style="position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 120px; height: 25px; background: #333; border-radius: 0 0 15px 15px; z-index: 10;"></div>
-        <img id="modal-img-mobile" src="" style="width: 100%; display: block;" alt="Mobile Preview">
-        <div id="no-img-mobile" style="padding: 100px; text-align: center; color: var(--color-gray-400); display: none;">모바일 이미지가 없습니다.</div>
+        <div style="position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 120px; height: 25px; background: #1a1a1a; border-radius: 0 0 15px 15px; z-index: 10;"></div>
+        <iframe id="modal-iframe-mobile" src="" style="width: 100%; height: 100%; border: none; background: white;"></iframe>
       </div>
 
     </div>
 
     <!-- Modal Footer -->
     <div style="padding: var(--space-4) var(--space-6); background: white; border-top: 1px solid var(--color-gray-200); display: flex; justify-content: space-between; align-items: center;">
-      <p id="modal-desc" style="margin: 0; color: var(--color-gray-600); font-size: var(--text-sm); max-width: 60%;">Template description goes here.</p>
+      <p id="modal-desc" style="margin: 0; color: var(--color-gray-600); font-size: var(--text-sm); max-width: 60%;">Template description...</p>
       
-      <a id="btn-preview" href="#" target="_blank" class="btn btn-outline btn-lg" style="margin-right: var(--space-4); display: none; align-items: center;">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-right: 8px;"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
-        웹사이트 체험하기
-      </a>
       <a id="btn-pick" href="#" class="btn btn-primary btn-lg shine-effect" style="padding-left: var(--space-8); padding-right: var(--space-8);">
         PICK! 이 템플릿으로 의뢰하기
       </a>
@@ -254,27 +247,19 @@
       btnPreview.href = "#";
     }
 
-    // Set Images
-    const pcImgElem = document.getElementById('modal-img-pc');
-    const pcNoImg = document.getElementById('no-img-pc');
-    if(imgPc && imgPc.trim() !== "") {
-      pcImgElem.src = imgPc;
-      pcImgElem.style.display = 'block';
-      pcNoImg.style.display = 'none';
-    } else {
-      pcImgElem.style.display = 'none';
-      pcNoImg.style.display = 'block';
-    }
+    // Set Preview URL to Iframes
+    const previewUrl = dataContainer.querySelector('.data-preview-url') ? dataContainer.querySelector('.data-preview-url').innerText.trim() : "";
+    
+    // PC Iframe
+    const pcIframe = document.getElementById('modal-iframe-pc');
+    const moIframe = document.getElementById('modal-iframe-mobile');
 
-    const moImgElem = document.getElementById('modal-img-mobile');
-    const moNoImg = document.getElementById('no-img-mobile');
-    if(imgMobile && imgMobile.trim() !== "") {
-      moImgElem.src = imgMobile;
-      moImgElem.style.display = 'block';
-      moNoImg.style.display = 'none';
+    if (previewUrl && previewUrl !== "") {
+      pcIframe.src = previewUrl;
+      moIframe.src = previewUrl;
     } else {
-      moImgElem.style.display = 'none';
-      moNoImg.style.display = 'block';
+      pcIframe.src = 'about:blank';
+      moIframe.src = 'about:blank';
     }
 
     // Set PICK Link
@@ -291,6 +276,16 @@
     }, 10);
     document.body.style.overflow = 'hidden';
   }
+  
+  // ESC Key Listener for Template Modal
+  document.addEventListener('keydown', function(event) {
+    const modal = document.getElementById('template-modal');
+    if (modal.style.display === 'block') {
+      if (event.key === "Escape") {
+        closeTemplateModal();
+      }
+    }
+  });
 
   function closeTemplateModal() {
     const modal = document.getElementById('template-modal');
