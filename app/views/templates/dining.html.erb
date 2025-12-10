@@ -1,0 +1,109 @@
+<style>
+  :root {
+    --dining-bg: #fdfbf7; /* 따뜻한 미색 */
+    --dining-text: #2c2c2c;
+  }
+  .bg-paper { background-color: var(--dining-bg); }
+  .font-serif-kr { font-family: 'Noto Serif KR', serif; }
+</style>
+
+<div class="bg-paper text-[#2c2c2c] font-serif-kr min-h-screen">
+  
+  <!-- Navigation -->
+  <nav class="fixed top-0 w-full z-50 py-8 px-8 md:px-12 flex justify-between items-center mix-blend-difference text-[#2c2c2c]">
+    <div class="text-xs tracking-[0.2em] uppercase font-sans hidden md:block">Est. 2024</div>
+    <div class="text-xl md:text-2xl font-semibold tracking-widest text-center">온 溫</div>
+    <div class="text-xs tracking-[0.2em] font-sans">
+      <a href="#" class="hover:underline">RESERVE</a>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="h-screen w-full relative">
+    <div class="absolute inset-x-0 bottom-0 top-[120px] md:top-0 md:left-[20%] md:right-[20%] flex items-center justify-center p-8">
+      <img src="https://images.unsplash.com/photo-1590301139475-23eddb51f1f2?q=80&w=2670&auto=format&fit=crop" class="w-full h-full object-cover grayscale hover:grayscale-0 transition duration-[2s] ease-in-out opacity-90" alt="Plated Dish">
+    </div>
+    <div class="absolute bottom-12 left-8 md:left-12 text-sm leading-relaxed hidden md:block opacity-70">
+      Korean Fine Dining<br>
+      Seoul, Hannam
+    </div>
+  </section>
+
+  <!-- Story -->
+  <section class="py-32 px-6 md:px-0">
+    <div class="max-w-screen-md mx-auto text-center">
+      <div class="mb-12">
+        <span class="inline-block w-[1px] h-12 bg-black/20"></span>
+      </div>
+      <p class="text-lg md:text-2xl leading-[2] md:leading-[2.2] word-keep break-keep opacity-90">
+        제철의 미학을 담아<br>
+        가장 따뜻한 온기를 전합니다.<br><br>
+        자연에서 얻은 순수한 재료와<br>
+        오랜 시간 빚어낸 정성으로<br>
+        당신의 식탁을 완성합니다.
+      </p>
+      <div class="mt-20">
+        <img src="https://images.unsplash.com/photo-1626645738196-c2a7c87a8f58?q=80&w=2670&auto=format&fit=crop" class="w-full h-[400px] object-cover" alt="Chef Cooking">
+      </div>
+    </div>
+  </section>
+
+  <!-- Menu -->
+  <section class="py-32 px-6 bg-white">
+    <div class="max-w-4xl mx-auto flex flex-col md:flex-row gap-16">
+      <div class="md:w-1/3">
+        <h3 class="text-3xl mb-4 font-light">점심 (Lunch)</h3>
+        <p class="text-sm text-gray-400 mb-8 font-sans tracking-wide">12:00 - 15:00</p>
+        <p class="leading-relaxed text-sm text-gray-600 mb-6">
+          제철 죽<br>
+          계절 샐러드<br>
+          오늘의 생선구이<br>
+          한우 떡갈비와 식사<br>
+          디저트와 차
+        </p>
+        <p class="text-lg">85,000</p>
+      </div>
+
+      <div class="md:w-1/3">
+        <h3 class="text-3xl mb-4 font-light">저녁 (Dinner)</h3>
+        <p class="text-sm text-gray-400 mb-8 font-sans tracking-wide">18:00 - 22:00</p>
+        <p class="leading-relaxed text-sm text-gray-600 mb-6">
+          주전부리<br>
+          특선 회와 해산물<br>
+          전복과 송이나물<br>
+          최상급 한우 구이<br>
+          솥밥과 탕<br>
+          다과상
+        </p>
+        <p class="text-lg">180,000</p>
+      </div>
+      
+      <div class="md:w-1/3 border-l border-gray-100 pl-8 hidden md:block">
+        <p class="text-xs text-gray-400 leading-loose">
+          * 계절과 식재료 수급 상황에 따라<br>
+          메뉴 구성이 변경될 수 있습니다.<br>
+          * 알러지가 있으신 분은<br>
+          예약 시 미리 말씀해 주세요.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Info -->
+  <section class="py-32 bg-[#1a1a1a] text-[#fdfbf7] text-center px-6">
+    <div class="max-w-xl mx-auto space-y-12">
+      <div class="text-4xl font-light">溫</div>
+      
+      <div class="space-y-2 text-sm md:text-base font-light opacity-80">
+        <p>서울 용산구 한남대로 99길 1</p>
+        <p>월 - 토 12:00 - 22:00 (일요일 휴무)</p>
+        <p class="pt-4 font-sans tracking-widest text-xs">02. 790. 0000</p>
+      </div>
+      
+      <a href="#" class="inline-block border border-[#fdfbf7]/30 px-12 py-4 text-xs tracking-[0.2em] hover:bg-[#fdfbf7] hover:text-[#1a1a1a] transition duration-500">
+        RESERVATION
+      </a>
+    </div>
+  </section>
+
+</div>

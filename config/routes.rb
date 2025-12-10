@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
   # 메인 페이지
+  # Design Template Previews
+  get 'templates/beauty', to: 'templates#beauty'
+  get 'templates/dining', to: 'templates#dining'
+
   root "pages#home"
 
   # 공개 페이지
