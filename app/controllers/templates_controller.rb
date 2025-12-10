@@ -18,7 +18,31 @@ class TemplatesController < ApplicationController
     # 스터디 (포커스 랩) 템플릿
   end
 
-  def stay
-    # 스테이 (감성 숙소) 템플릿
+  def corporate
+    # 기업 (Novus)
+  end
+
+  def ecommerce
+    # 쇼핑몰 (AETHER)
+  end
+
+  def cafe
+    # 카페 (Daily Crumb)
+  end
+
+  def portfolio
+    # 포트폴리오 (ARCHIVE)
+  end
+
+  def medical
+    # 병원 (Pure Clinic)
+  end
+
+  def law
+    # 법률 (Trust & Logic)
+  end
+
+  def wedding
+    # 웨딩 (Bliss)
   end
 end

@@ -1,0 +1,85 @@
+<div class="font-sans text-slate-600 bg-white min-h-screen">
+  <!-- Top Bar -->
+  <div class="bg-teal-500 text-white text-xs py-2 px-6 flex justify-between items-center">
+    <span>서울 강남구 테헤란로 123 퓨어타워 4F</span>
+    <div class="flex gap-4">
+      <span>Tel. 02-1234-5678</span>
+      <span>진료시간: 09:00 - 19:00</span>
+    </div>
+  </div>
+
+  <!-- Header -->
+  <header class="flex justify-between items-center px-6 py-4 border-b border-slate-100">
+    <div class="text-2xl font-bold text-teal-600 flex items-center gap-2">
+      <div class="w-8 h-8 bg-teal-100 rounded-full flex items-center justify-center text-teal-600">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path></svg>
+      </div>
+      Pure Clinic
+    </div>
+    <nav class="hidden md:flex gap-8 text-sm font-medium">
+      <a href="#" class="text-slate-900 border-b-2 border-teal-500">홈</a>
+      <a href="#" class="hover:text-teal-600">의료진 소개</a>
+      <a href="#" class="hover:text-teal-600">진료 과목</a>
+      <a href="#" class="hover:text-teal-600">치료 후기</a>
+      <a href="#" class="hover:text-teal-600">오시는 길</a>
+    </nav>
+    <button class="bg-slate-900 text-white px-5 py-2.5 rounded-md text-sm font-bold hover:bg-slate-800 transition">온라인 예약</button>
+  </header>
+
+  <!-- Hero with Form -->
+  <section class="relative bg-slate-50 py-20 px-6">
+    <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center gap-12">
+      <div class="flex-1">
+        <span class="text-teal-600 font-bold tracking-wider text-sm mb-4 block">TRUSTWORTHY MEDICAL CARE</span>
+        <h1 class="text-4xl md:text-5xl font-bold text-slate-900 leading-tight mb-6">
+          환자 중심의<br>
+          <span class="text-teal-500">정직한 진료</span>를 약속합니다.
+        </h1>
+        <p class="text-lg text-slate-500 mb-8 leading-relaxed">
+          과잉 진료 없는 양심적인 병원, 퓨어 클리닉입니다.<br>
+          최첨단 장비와 풍부한 임상 경험을 갖춘 의료진이<br>
+          당신의 건강을 책임집니다.
+        </p>
+        <div class="flex gap-4">
+          <div class="flex items-center gap-2">
+            <div class="w-10 h-10 rounded-full bg-teal-100 flex items-center justify-center text-teal-600 font-bold">1</div>
+            <span class="text-sm font-medium text-slate-900">1:1 맞춤 상담</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <div class="w-10 h-10 rounded-full bg-teal-100 flex items-center justify-center text-teal-600 font-bold">2</div>
+            <span class="text-sm font-medium text-slate-900">철저한 멸균</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <div class="w-10 h-10 rounded-full bg-teal-100 flex items-center justify-center text-teal-600 font-bold">3</div>
+            <span class="text-sm font-medium text-slate-900">책임 진료제</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Booking Form -->
+      <div class="w-full md:w-96 bg-white p-8 rounded-2xl shadow-xl shadow-slate-200">
+        <h3 class="text-xl font-bold text-slate-900 mb-6">빠른 상담 신청</h3>
+        <div class="space-y-4">
+          <div>
+            <label class="block text-xs font-bold text-slate-500 mb-1">이름</label>
+            <input type="text" class="w-full border border-slate-200 rounded-lg px-4 py-3 bg-slate-50 focus:bg-white focus:ring-2 focus:ring-teal-500 focus:outline-none transition" placeholder="홍길동">
+          </div>
+          <div>
+            <label class="block text-xs font-bold text-slate-500 mb-1">연락처</label>
+            <input type="text" class="w-full border border-slate-200 rounded-lg px-4 py-3 bg-slate-50 focus:bg-white focus:ring-2 focus:ring-teal-500 focus:outline-none transition" placeholder="010-0000-0000">
+          </div>
+          <div>
+            <label class="block text-xs font-bold text-slate-500 mb-1">진료 과목</label>
+            <select class="w-full border border-slate-200 rounded-lg px-4 py-3 bg-slate-50 focus:bg-white focus:ring-2 focus:ring-teal-500 focus:outline-none transition">
+              <option>일반 진료</option>
+              <option>충치 치료</option>
+              <option>임플란트</option>
+              <option>치아 교정</option>
+            </select>
+          </div>
+          <button class="w-full bg-teal-500 text-white font-bold py-4 rounded-lg mt-2 hover:bg-teal-600 transition">상담 신청하기</button>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
