@@ -27,19 +27,125 @@
 
   <div class="form-group">
     <%= f.label :pc_image, "PC 미리보기 이미지", class: "form-label" %>
-    <%= f.file_field :pc_image, class: "form-input" %>
-    <% if design_template.pc_image.attached? %>
-      <div style="margin-top: var(--space-2);">현재 이미지: <%= design_template.pc_image.filename %></div>
-    <% end %>
+    
+    <div style="border: 2px dashed var(--color-gray-300); border-radius: var(--radius-lg); padding: var(--space-6); text-align: center; background: var(--color-gray-50); transition: all 0.2s;" id="drop-zone-pc">
+      <%= f.file_field :pc_image, class: "form-input", style: "display: none;", accept: "image/*", onchange: "previewImage(this, 'pc')" %>
+      
+      <div id="upload-prompt-pc" style="<%= design_template.pc_image.attached? ? 'display: none;' : 'cursor: pointer;' %>" onclick="document.getElementById('design_template_pc_image').click()">
+        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="var(--color-gray-400)" stroke-width="2" style="margin-bottom: var(--space-2);">
+          <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+          <circle cx="8.5" cy="8.5" r="1.5"></circle>
+          <polyline points="21 15 16 10 5 21"></polyline>
+        </svg>
+        <p style="color: var(--color-gray-600); font-weight: 500; margin-bottom: var(--space-1);">PC 이미지 업로드</p>
+        <p style="color: var(--color-gray-400); font-size: var(--text-sm);">또는 파일을 여기로 드래그하세요</p>
+      </div>
+
+      <div id="preview-container-pc" style="<%= design_template.pc_image.attached? ? 'display: block;' : 'display: none;' %> position: relative;">
+        <% if design_template.pc_image.attached? %>
+          <%= image_tag design_template.pc_image, id: "preview-img-pc", style: "max-width: 100%; max-height: 300px; border-radius: var(--radius-md); box-shadow: var(--shadow-sm);" %>
+        <% else %>
+          <img id="preview-img-pc" src="#" alt="Preview" style="max-width: 100%; max-height: 300px; border-radius: var(--radius-md); box-shadow: var(--shadow-sm);">
+        <% end %>
+        <button type="button" onclick="removeImage('pc')" style="position: absolute; top: -10px; right: -10px; background: white; border: 1px solid var(--color-gray-200); border-radius: 50%; padding: 5px; cursor: pointer; box-shadow: var(--shadow-sm);">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--color-error)" stroke-width="2">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+    </div>
   </div>
 
   <div class="form-group">
     <%= f.label :mobile_image, "모바일 미리보기 이미지", class: "form-label" %>
-    <%= f.file_field :mobile_image, class: "form-input" %>
-    <% if design_template.mobile_image.attached? %>
-      <div style="margin-top: var(--space-2);">현재 이미지: <%= design_template.mobile_image.filename %></div>
-    <% end %>
+    
+    <div style="border: 2px dashed var(--color-gray-300); border-radius: var(--radius-lg); padding: var(--space-6); text-align: center; background: var(--color-gray-50); transition: all 0.2s;" id="drop-zone-mobile">
+      <%= f.file_field :mobile_image, class: "form-input", style: "display: none;", accept: "image/*", onchange: "previewImage(this, 'mobile')" %>
+      
+      <div id="upload-prompt-mobile" style="<%= design_template.mobile_image.attached? ? 'display: none;' : 'cursor: pointer;' %>" onclick="document.getElementById('design_template_mobile_image').click()">
+        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="var(--color-gray-400)" stroke-width="2" style="margin-bottom: var(--space-2);">
+          <rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect>
+          <line x1="12" y1="18" x2="12" y2="18"></line>
+        </svg>
+        <p style="color: var(--color-gray-600); font-weight: 500; margin-bottom: var(--space-1);">모바일 이미지 업로드</p>
+        <p style="color: var(--color-gray-400); font-size: var(--text-sm);">또는 파일을 여기로 드래그하세요</p>
+      </div>
+
+      <div id="preview-container-mobile" style="<%= design_template.mobile_image.attached? ? 'display: block;' : 'display: none;' %> position: relative;">
+        <% if design_template.mobile_image.attached? %>
+          <%= image_tag design_template.mobile_image, id: "preview-img-mobile", style: "max-width: 100%; max-height: 300px; border-radius: var(--radius-md); box-shadow: var(--shadow-sm);" %>
+        <% else %>
+          <img id="preview-img-mobile" src="#" alt="Preview" style="max-width: 100%; max-height: 300px; border-radius: var(--radius-md); box-shadow: var(--shadow-sm);">
+        <% end %>
+        <button type="button" onclick="removeImage('mobile')" style="position: absolute; top: -10px; right: -10px; background: white; border: 1px solid var(--color-gray-200); border-radius: 50%; padding: 5px; cursor: pointer; box-shadow: var(--shadow-sm);">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--color-error)" stroke-width="2">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+    </div>
   </div>
+
+  <script>
+    function previewImage(input, type) {
+      if (input.files && input.files[0]) {
+        var reader = new FileReader();
+        
+        reader.onload = function(e) {
+          document.getElementById('preview-img-' + type).src = e.target.result;
+          document.getElementById('upload-prompt-' + type).style.display = 'none';
+          document.getElementById('preview-container-' + type).style.display = 'block';
+        }
+        
+        reader.readAsDataURL(input.files[0]);
+      }
+    }
+
+    function removeImage(type) {
+      document.getElementById('design_template_' + type + '_image').value = "";
+      document.getElementById('preview-img-' + type).src = "#";
+      document.getElementById('upload-prompt-' + type).style.display = 'block';
+      document.getElementById('preview-container-' + type).style.display = 'none';
+    }
+
+    // Drag and Drop support
+    function setupDropZone(type) {
+      const zone = document.getElementById('drop-zone-' + type);
+      const inputId = 'design_template_' + type + '_image';
+      
+      if(!zone) return;
+
+      zone.addEventListener('dragover', (e) => {
+        e.preventDefault();
+        zone.style.borderColor = 'var(--color-primary)';
+        zone.style.background = 'var(--color-white)';
+      });
+
+      zone.addEventListener('dragleave', (e) => {
+        e.preventDefault();
+        zone.style.borderColor = 'var(--color-gray-300)';
+        zone.style.background = 'var(--color-gray-50)';
+      });
+
+      zone.addEventListener('drop', (e) => {
+        e.preventDefault();
+        zone.style.borderColor = 'var(--color-gray-300)';
+        zone.style.background = 'var(--color-gray-50)';
+        
+        const files = e.dataTransfer.files;
+        if (files.length > 0) {
+          const input = document.getElementById(inputId);
+          input.files = files;
+          previewImage(input, type);
+        }
+      });
+    }
+
+    setupDropZone('pc');
+    setupDropZone('mobile');
+  </script>
 
   <div style="margin-top: var(--space-8);">
     <%= f.submit "저장하기", class: "btn btn-primary btn-lg" %>
