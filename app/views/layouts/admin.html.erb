@@ -51,6 +51,14 @@
               <% end %>
             </li>
             <li style="margin-bottom: var(--space-2);">
+              <%= link_to admin_design_templates_path, style: "display: flex; align-items: center; gap: var(--space-3); padding: var(--space-3); border-radius: var(--radius-md); color: var(--color-gray-700); text-decoration: none; transition: all var(--transition-fast); #{current_page?(admin_design_templates_path) ? 'background: var(--color-primary); color: white;' : ''}" do %>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+                </svg>
+                <span>디자인 템플릿</span>
+              <% end %>
+            </li>
+            <li style="margin-bottom: var(--space-2);">
               <%= link_to admin_quotes_path, style: "display: flex; align-items: center; gap: var(--space-3); padding: var(--space-3); border-radius: var(--radius-md); color: var(--color-gray-700); text-decoration: none; transition: all var(--transition-fast); #{current_page?(admin_quotes_path) ? 'background: var(--color-primary); color: white;' : ''}" do %>
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                   <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
