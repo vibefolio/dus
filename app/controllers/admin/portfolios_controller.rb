@@ -44,6 +44,6 @@ class Admin::PortfoliosController < ApplicationController
   end
 
   def portfolio_params
-    params.require(:portfolio).permit(:title, :description, :category, :client, :project_date, :image_url)
+    params.require(:portfolio).permit(:title, :description, :category, :client, :project_date, :image_url, :image, :mobile_image)
   end
 end

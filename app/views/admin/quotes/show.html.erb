@@ -69,15 +69,25 @@
     </div>
 
     <div style="display: flex; gap: var(--space-4); margin-top: var(--space-8);">
-      <button onclick="window.print()" class="btn btn-primary btn-lg">
+      <button onclick="window.print()" class="btn btn-outline btn-lg">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-right: 8px;">
           <polyline points="6 9 6 2 18 2 18 9"/>
           <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/>
           <rect x="6" y="14" width="12" height="8"/>
         </svg>
-        견적서 출력
+        화면 출력
       </button>
-      <%= link_to "목록으로", admin_quotes_path, class: "btn btn-outline btn-lg" %>
+
+      <%= link_to admin_quote_path(@quote, format: :pdf), class: "btn btn-primary btn-lg", target: "_blank" do %>
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-right: 8px;">
+          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+          <polyline points="7 10 12 15 17 10"/>
+          <line x1="12" y1="15" x2="12" y2="3"/>
+        </svg>
+        견적서 PDF 다운로드
+      <% end %>
+
+      <%= link_to "목록으로", admin_quotes_path, class: "btn btn-outline btn-lg", style: "margin-left: auto;" %>
     </div>
 
     <!-- Print Styles -->
