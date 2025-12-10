@@ -60,7 +60,7 @@
             청담동 하이엔드 살롱 스타일. 고급스러운 세리프 폰트와 인물 중심 레이아웃.
           </p>
           <div style="display: flex; gap: 10px;">
-            <a href="/templates/beauty" target="_blank" class="btn btn-outline btn-sm" style="flex: 1; text-align: center;">체험하기</a>
+            <button onclick="openLiveDemo('/templates/beauty', 'LUMIER')" class="btn btn-outline btn-sm" style="flex: 1; text-align: center;">둘러보기</button>
             <a href="/contact?template_title=LUMIER" class="btn btn-primary btn-sm" style="flex: 1; text-align: center;">제작 의뢰</a>
           </div>
         </div>
@@ -78,7 +78,7 @@
             여백의 미를 살린 모던 오마카세 스타일. 갤러리 같은 메뉴 소개 디자인.
           </p>
           <div style="display: flex; gap: 10px;">
-            <a href="/templates/dining" target="_blank" class="btn btn-outline btn-sm" style="flex: 1; text-align: center;">체험하기</a>
+            <button onclick="openLiveDemo('/templates/dining', '溫 (ON)')" class="btn btn-outline btn-sm" style="flex: 1; text-align: center;">둘러보기</button>
             <a href="/contact?template_title=ON" class="btn btn-primary btn-sm" style="flex: 1; text-align: center;">제작 의뢰</a>
           </div>
         </div>
@@ -96,7 +96,7 @@
             아티스틱 웰니스 브랜드 스타일. 감각적인 다크 모드와 타이포그래피.
           </p>
           <div style="display: flex; gap: 10px;">
-            <a href="/templates/gym" target="_blank" class="btn btn-outline btn-sm" style="flex: 1; text-align: center;">체험하기</a>
+            <button onclick="openLiveDemo('/templates/gym', 'Sculpt & Soul')" class="btn btn-outline btn-sm" style="flex: 1; text-align: center;">둘러보기</button>
             <a href="/contact?template_title=Sculpt & Soul" class="btn btn-primary btn-sm" style="flex: 1; text-align: center;">제작 의뢰</a>
           </div>
         </div>
@@ -272,4 +272,124 @@
     </div>
   </div>
 </section>
+
+<!-- Live Demo Modal -->
+<div id="live-demo-modal" style="display: none; position: fixed; inset: 0; z-index: 9999; background: rgba(0,0,0,0.85); backdrop-filter: blur(5px);">
+  
+  <!-- Header -->
+  <div style="position: absolute; top: 0; left: 0; right: 0; height: 60px; background: #1a1a1a; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid #333; padding: 0 20px;">
+    <div style="color: white; font-weight: bold; font-size: 18px;" id="demo-title">Template Demo</div>
+    
+    <!-- View Switcher -->
+    <div style="background: #333; padding: 4px; border-radius: 99px; display: flex;">
+      <button onclick="switchDemoView('pc')" id="btn-demo-pc" class="demo-view-btn active">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
+        <span style="margin-left: 6px; font-size: 14px;">PC</span>
+      </button>
+      <button onclick="switchDemoView('mobile')" id="btn-demo-mobile" class="demo-view-btn">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect><line x1="12" y1="18" x2="12" y2="18"></line></svg>
+        <span style="margin-left: 6px; font-size: 14px;">Mobile</span>
+      </button>
+    </div>
+
+    <!-- Close Button -->
+    <button onclick="closeLiveDemo()" style="background: none; border: none; color: #999; cursor: pointer; padding: 8px;">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+      <span style="font-size: 12px; display: block; margin-top: 2px;">ESC</span>
+    </button>
+  </div>
+
+  <!-- Content Area -->
+  <div style="position: absolute; top: 60px; left: 0; right: 0; bottom: 0; overflow: hidden; display: flex; justify-content: center; align-items: center; padding: 20px;">
+    
+    <!-- PC Frame -->
+    <div id="demo-frame-pc" style="width: 100%; height: 100%; background: white; border-radius: 8px; overflow: hidden; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);">
+      <iframe id="iframe-pc" src="" style="width: 100%; height: 100%; border: none;"></iframe>
+    </div>
+
+    <!-- Mobile Frame -->
+    <div id="demo-frame-mobile" style="display: none; width: 375px; height: 80vh; background: black; border-radius: 40px; border: 12px solid #1a1a1a; overflow: hidden; position: relative; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);">
+      <!-- Notch -->
+      <div style="position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 120px; height: 25px; background: #1a1a1a; border-radius: 0 0 15px 15px; z-index: 10;"></div>
+      <iframe id="iframe-mobile" src="" style="width: 100%; height: 100%; border: none; background: white;"></iframe>
+    </div>
+
+  </div>
+</div>
+
+<style>
+  .demo-view-btn {
+    border: none;
+    background: transparent;
+    color: #888;
+    padding: 6px 16px;
+    border-radius: 99px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    transition: all 0.2s;
+  }
+  .demo-view-btn.active {
+    background: #555;
+    color: white;
+  }
+  .demo-view-btn:hover:not(.active) {
+    color: #ccc;
+  }
+</style>
+
+<script>
+  function openLiveDemo(url, title) {
+    const modal = document.getElementById('live-demo-modal');
+    document.getElementById('demo-title').innerText = title || 'Live Demo';
+    
+    // Load iframe
+    document.getElementById('iframe-pc').src = url;
+    document.getElementById('iframe-mobile').src = url;
+
+    modal.style.display = 'block';
+    document.body.style.overflow = 'hidden';
+    
+    // Reset to PC view
+    switchDemoView('pc');
+  }
+
+  function closeLiveDemo() {
+    const modal = document.getElementById('live-demo-modal');
+    modal.style.display = 'none';
+    document.body.style.overflow = '';
+    
+    // Reset iframes to stop playback/process
+    document.getElementById('iframe-pc').src = '';
+    document.getElementById('iframe-mobile').src = '';
+  }
+
+  function switchDemoView(mode) {
+    const pcFrame = document.getElementById('demo-frame-pc');
+    const moFrame = document.getElementById('demo-frame-mobile');
+    const btnPc = document.getElementById('btn-demo-pc');
+    const btnMo = document.getElementById('btn-demo-mobile');
+
+    if (mode === 'pc') {
+      pcFrame.style.display = 'block';
+      moFrame.style.display = 'none';
+      btnPc.classList.add('active');
+      btnMo.classList.remove('active');
+    } else {
+      pcFrame.style.display = 'none';
+      moFrame.style.display = 'block';
+      btnPc.classList.remove('active');
+      btnMo.classList.add('active');
+    }
+  }
+
+  // ESC Listener
+  document.addEventListener('keydown', function(event) {
+    if (document.getElementById('live-demo-modal').style.display === 'block') {
+      if (event.key === "Escape") {
+        closeLiveDemo();
+      }
+    }
+  });
+</script>
 
