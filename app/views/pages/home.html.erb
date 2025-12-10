@@ -1,0 +1,200 @@
+<% content_for :title, "디어스 - AI와 함께하는 디지털 혁신 파트너" %>
+<% content_for :description, "디어스는 AI 기술과 창의적인 디자인으로 비즈니스의 성공을 이끄는 프리미엄 개발 에이전시입니다. 혁신적인 디지털 솔루션으로 비즈니스 성장을 가속화합니다." %>
+
+<!-- Hero Section -->
+<section class="hero">
+  <div class="hero-content">
+    <h1 class="hero-title">
+      AI와 함께 디지털 혁신을<br>
+      함께 만들어갑니다
+    </h1>
+    <p class="hero-subtitle">
+      디어스는 최첨단 기술과 창의적인 디자인으로<br>
+      비즈니스의 성공을 이끄는 프리미엄 개발 에이전시입니다
+    </p>
+    <div class="hero-cta">
+      <%= link_to "프로젝트 시작하기", contact_path, class: "btn btn-accent btn-lg" %>
+      <%= link_to "포트폴리오 보기", portfolio_path, class: "btn btn-outline btn-lg", style: "color: white; border-color: white;" %>
+    </div>
+
+    <!-- Stats Grid -->
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-number">50+</div>
+        <div class="stat-label">완료 프로젝트</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">30+</div>
+        <div class="stat-label">만족한 고객사</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">15억+</div>
+        <div class="stat-label">누적 매출액</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Services Section -->
+<section class="section bg-gray-50">
+  <div class="container">
+    <div class="text-center" style="margin-bottom: 4rem;">
+      <h2 style="font-size: var(--text-5xl); margin-bottom: var(--space-4);">우리의 서비스</h2>
+      <p class="text-gray" style="font-size: var(--text-xl); max-width: 700px; margin: 0 auto;">
+        최고의 기술력과 창의성으로 고객의 비즈니스를 성공으로 이끕니다
+      </p>
+    </div>
+
+    <div class="grid grid-3">
+      <!-- Service 1: Web Development -->
+      <div class="card">
+        <div style="width: 60px; height: 60px; background: var(--gradient-primary); border-radius: var(--radius-lg); display: flex; align-items: center; justify-content: center; margin-bottom: var(--space-4);">
+          <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+            <rect x="2" y="3" width="20" height="14" rx="2"/>
+            <line x1="8" y1="21" x2="16" y2="21"/>
+            <line x1="12" y1="17" x2="12" y2="21"/>
+          </svg>
+        </div>
+        <h3 class="card-title">웹 개발</h3>
+        <p class="card-text">
+          반응형 웹사이트부터 복잡한 웹 애플리케이션까지, 최신 기술 스택을 활용한 고품질 웹 솔루션을 제공합니다.
+        </p>
+        <ul style="list-style: none; padding: 0; margin-top: var(--space-4); color: var(--color-gray-600);">
+          <li style="margin-bottom: var(--space-2);">✓ 반응형 웹사이트</li>
+          <li style="margin-bottom: var(--space-2);">✓ 웹 애플리케이션</li>
+          <li style="margin-bottom: var(--space-2);">✓ E-커머스 플랫폼</li>
+        </ul>
+      </div>
+
+      <!-- Service 2: App Development -->
+      <div class="card">
+        <div style="width: 60px; height: 60px; background: var(--gradient-accent); border-radius: var(--radius-lg); display: flex; align-items: center; justify-content: center; margin-bottom: var(--space-4);">
+          <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+            <rect x="5" y="2" width="14" height="20" rx="2"/>
+            <line x1="12" y1="18" x2="12" y2="18"/>
+          </svg>
+        </div>
+        <h3 class="card-title">앱 개발</h3>
+        <p class="card-text">
+          iOS와 Android를 아우르는 네이티브 및 크로스플랫폼 모바일 앱 개발로 모바일 시장을 선점하세요.
+        </p>
+        <ul style="list-style: none; padding: 0; margin-top: var(--space-4); color: var(--color-gray-600);">
+          <li style="margin-bottom: var(--space-2);">✓ iOS/Android 앱</li>
+          <li style="margin-bottom: var(--space-2);">✓ 크로스플랫폼 앱</li>
+          <li style="margin-bottom: var(--space-2);">✓ 앱 유지보수</li>
+        </ul>
+      </div>
+
+      <!-- Service 3: UI/UX Design -->
+      <div class="card">
+        <div style="width: 60px; height: 60px; background: var(--gradient-primary); border-radius: var(--radius-lg); display: flex; align-items: center; justify-content: center; margin-bottom: var(--space-4);">
+          <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+            <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+            <path d="M2 17l10 5 10-5"/>
+            <path d="M2 12l10 5 10-5"/>
+          </svg>
+        </div>
+        <h3 class="card-title">UI/UX 디자인</h3>
+        <p class="card-text">
+          사용자 중심의 직관적인 인터페이스와 매력적인 디자인으로 최상의 사용자 경험을 제공합니다.
+        </p>
+        <ul style="list-style: none; padding: 0; margin-top: var(--space-4); color: var(--color-gray-600);">
+          <li style="margin-bottom: var(--space-2);">✓ UI/UX 리서치</li>
+          <li style="margin-bottom: var(--space-2);">✓ 프로토타이핑</li>
+          <li style="margin-bottom: var(--space-2);">✓ 브랜드 디자인</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Why Choose Us Section -->
+<section class="section">
+  <div class="container">
+    <div class="text-center" style="margin-bottom: 4rem;">
+      <h2 style="font-size: var(--text-5xl); margin-bottom: var(--space-4);">왜 디어스인가?</h2>
+      <p class="text-gray" style="font-size: var(--text-xl); max-width: 700px; margin: 0 auto;">
+        차별화된 전문성과 경험으로 고객의 성공을 보장합니다
+      </p>
+    </div>
+
+    <div class="grid grid-2" style="gap: var(--space-8);">
+      <div style="display: flex; gap: var(--space-4); align-items: start;">
+        <div style="flex-shrink: 0; width: 50px; height: 50px; background: var(--gradient-accent); border-radius: var(--radius-full); display: flex; align-items: center; justify-content: center;">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+            <polyline points="20 6 9 17 4 12"/>
+          </svg>
+        </div>
+        <div>
+          <h4 style="font-size: var(--text-2xl); margin-bottom: var(--space-2);">검증된 전문성</h4>
+          <p class="text-gray">
+            10년 이상의 경력을 가진 시니어 개발자들이 프로젝트를 직접 관리하고 개발합니다.
+          </p>
+        </div>
+      </div>
+
+      <div style="display: flex; gap: var(--space-4); align-items: start;">
+        <div style="flex-shrink: 0; width: 50px; height: 50px; background: var(--gradient-accent); border-radius: var(--radius-full); display: flex; align-items: center; justify-content: center;">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+            <circle cx="12" cy="12" r="10"/>
+            <polyline points="12 6 12 12 16 14"/>
+          </svg>
+        </div>
+        <div>
+          <h4 style="font-size: var(--text-2xl); margin-bottom: var(--space-2);">빠른 개발 속도</h4>
+          <p class="text-gray">
+            애자일 방법론과 최신 개발 도구를 활용하여 빠르고 효율적인 개발을 진행합니다.
+          </p>
+        </div>
+      </div>
+
+      <div style="display: flex; gap: var(--space-4); align-items: start;">
+        <div style="flex-shrink: 0; width: 50px; height: 50px; background: var(--gradient-accent); border-radius: var(--radius-full); display: flex; align-items: center; justify-content: center;">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+            <circle cx="9" cy="7" r="4"/>
+            <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+            <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+          </svg>
+        </div>
+        <div>
+          <h4 style="font-size: var(--text-2xl); margin-bottom: var(--space-2);">맞춤형 솔루션</h4>
+          <p class="text-gray">
+            고객의 비즈니스 목표와 요구사항을 정확히 파악하여 최적화된 솔루션을 제공합니다.
+          </p>
+        </div>
+      </div>
+
+      <div style="display: flex; gap: var(--space-4); align-items: start;">
+        <div style="flex-shrink: 0; width: 50px; height: 50px; background: var(--gradient-accent); border-radius: var(--radius-full); display: flex; align-items: center; justify-content: center;">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+          </svg>
+        </div>
+        <div>
+          <h4 style="font-size: var(--text-2xl); margin-bottom: var(--space-2);">지속적인 지원</h4>
+          <p class="text-gray">
+            프로젝트 완료 후에도 지속적인 유지보수와 기술 지원을 제공합니다.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA Section -->
+<section class="section" style="background: var(--gradient-primary); color: white;">
+  <div class="container text-center">
+    <h2 style="font-size: var(--text-5xl); color: white; margin-bottom: var(--space-4);">
+      프로젝트를 시작할 준비가 되셨나요?
+    </h2>
+    <p style="font-size: var(--text-xl); color: rgba(255, 255, 255, 0.9); margin-bottom: var(--space-8); max-width: 700px; margin-left: auto; margin-right: auto;">
+      지금 바로 문의하시면 무료 컨설팅과 견적을 받아보실 수 있습니다
+    </p>
+    <div style="display: flex; gap: var(--space-4); justify-content: center; flex-wrap: wrap;">
+      <%= link_to "무료 상담 신청", contact_path, class: "btn btn-accent btn-lg" %>
+      <%= link_to "포트폴리오 보기", portfolio_path, class: "btn btn-outline btn-lg", style: "color: white; border-color: white;" %>
+    </div>
+  </div>
+</section>
+

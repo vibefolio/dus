@@ -1,0 +1,87 @@
+<% content_for :title, "포트폴리오 - 디어스" %>
+<% content_for :description, "디어스가 완성한 다양한 프로젝트를 확인해보세요. 웹/앱 개발, UI/UX 디자인 등 성공적인 프로젝트 사례를 소개합니다." %>
+
+<!-- Portfolio Hero -->
+<section class="hero" style="min-height: 50vh; padding-top: 120px;">
+  <div class="hero-content">
+    <h1 class="hero-title" style="font-size: var(--text-6xl);">포트폴리오</h1>
+    <p class="hero-subtitle">
+      디어스가 만들어온 성공적인 프로젝트들을 만나보세요
+    </p>
+  </div>
+</section>
+
+<!-- Portfolio Grid -->
+<section class="section">
+  <div class="container">
+    <% if @portfolios.any? %>
+      <div class="grid grid-3">
+        <% @portfolios.each do |portfolio| %>
+          <div class="card">
+            <% if portfolio.image_url.present? %>
+              <%= image_tag portfolio.image_url, alt: portfolio.title, class: "card-image", style: "height: 250px;" %>
+            <% else %>
+              <div class="card-image" style="background: var(--gradient-primary); display: flex; align-items: center; justify-content: center; color: white; font-size: var(--text-3xl); font-weight: 700; height: 250px;">
+                <%= portfolio.title[0] %>
+              </div>
+            <% end %>
+            
+            <% if portfolio.category.present? %>
+              <span style="display: inline-block; padding: var(--space-1) var(--space-3); background: var(--color-accent); color: white; border-radius: var(--radius-full); font-size: var(--text-sm); font-weight: 600; margin-bottom: var(--space-3);">
+                <%= portfolio.category %>
+              </span>
+            <% end %>
+            
+            <h3 class="card-title"><%= portfolio.title %></h3>
+            
+            <% if portfolio.client.present? %>
+              <p style="color: var(--color-gray-500); font-size: var(--text-sm); margin-bottom: var(--space-2);">
+                <strong>클라이언트:</strong> <%= portfolio.client %>
+              </p>
+            <% end %>
+            
+            <% if portfolio.description.present? %>
+              <p class="card-text"><%= truncate(portfolio.description, length: 120) %></p>
+            <% end %>
+            
+            <% if portfolio.project_date.present? %>
+              <p style="color: var(--color-gray-400); font-size: var(--text-sm); margin-top: var(--space-3);">
+                <%= portfolio.project_date.strftime("%Y년 %m월") %>
+              </p>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+    <% else %>
+      <div class="text-center" style="padding: var(--space-20) 0;">
+        <div style="width: 100px; height: 100px; background: var(--color-gray-100); border-radius: var(--radius-full); display: flex; align-items: center; justify-content: center; margin: 0 auto var(--space-6);">
+          <svg width="50" height="50" viewBox="0 0 24 24" fill="none" stroke="var(--color-gray-400)" stroke-width="2">
+            <rect x="3" y="3" width="18" height="18" rx="2"/>
+            <circle cx="8.5" cy="8.5" r="1.5"/>
+            <path d="M21 15l-5-5L5 21"/>
+          </svg>
+        </div>
+        <h3 style="font-size: var(--text-3xl); color: var(--color-gray-700); margin-bottom: var(--space-4);">
+          아직 등록된 포트폴리오가 없습니다
+        </h3>
+        <p class="text-gray" style="font-size: var(--text-lg);">
+          곧 멋진 프로젝트들을 선보일 예정입니다
+        </p>
+      </div>
+    <% end %>
+  </div>
+</section>
+
+<!-- CTA Section -->
+<section class="section" style="background: var(--color-gray-50);">
+  <div class="container text-center">
+    <h2 style="font-size: var(--text-4xl); margin-bottom: var(--space-4);">
+      다음 성공 사례의 주인공이 되어보세요
+    </h2>
+    <p class="text-gray" style="font-size: var(--text-lg); margin-bottom: var(--space-8);">
+      지금 바로 프로젝트를 시작하세요
+    </p>
+    <%= link_to "프로젝트 문의하기", contact_path, class: "btn btn-primary btn-lg" %>
+  </div>
+</section>
+

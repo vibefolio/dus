@@ -1,0 +1,32 @@
+class PagesController < ApplicationController
+  def home
+  end
+
+  def portfolio
+    @portfolios = Portfolio.order(created_at: :desc)
+  end
+
+  def contact
+    @quote = Quote.new
+  end
+
+  def pricing
+  end
+
+  def create_quote
+    @quote = Quote.new(quote_params)
+    @quote.status = "pending"
+
+    if @quote.save
+      redirect_to contact_path, notice: "문의가 성공적으로 접수되었습니다. 빠른 시일 내에 연락드리겠습니다."
+    else
+      render :contact, status: :unprocessable_entity
+    end
+  end
+
+  private
+
+  def quote_params
+    params.require(:quote).permit(:contact_name, :company_name, :email, :phone, :project_type, :budget, :message)
+  end
+end

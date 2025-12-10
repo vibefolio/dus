@@ -1,0 +1,347 @@
+<% content_for :title, "구독요금제 - 디어스" %>
+<% content_for :description, "초기 가격부담은 DOWN, 유지관리 걱정은 NO! 디어스의 합리적인 구독 요금제를 확인하세요." %>
+
+<!-- Pricing Hero -->
+<section class="hero" style="min-height: 60vh; padding-top: 120px;">
+  <div class="hero-content">
+    <h1 class="hero-title" style="font-size: var(--text-6xl);">구독요금제</h1>
+    <p class="hero-subtitle" style="font-size: var(--text-3xl); font-weight: 600; margin-bottom: var(--space-4);">
+      초기 가격부담은 DOWN<br>
+      유지관리 걱정은 NO!
+    </p>
+    <p style="font-size: var(--text-xl); color: rgba(255, 255, 255, 0.9);">
+      합리적인 초기 개발비와 월 구독료로<br>
+      지속적인 유지보수와 업데이트를 제공합니다
+    </p>
+  </div>
+</section>
+
+<!-- Pricing Cards -->
+<section class="section" style="background: var(--color-gray-50); padding-top: var(--space-24); padding-bottom: var(--space-24);">
+  <div class="container">
+    <div class="grid grid-3" style="gap: var(--space-8);">
+      
+      <!-- Basic Plan -->
+      <div class="card" style="position: relative; overflow: visible;">
+        <div style="text-align: center; margin-bottom: var(--space-6);">
+          <div style="width: 80px; height: 80px; background: linear-gradient(135deg, #00a859 0%, #00c569 100%); border-radius: var(--radius-full); display: flex; align-items: center; justify-content: center; margin: 0 auto var(--space-4);">
+            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+              <circle cx="12" cy="7" r="4"/>
+            </svg>
+          </div>
+          <h3 style="font-size: var(--text-3xl); font-weight: 800; margin-bottom: var(--space-2);">베이직 플랜</h3>
+          <p class="text-gray" style="font-size: var(--text-base);">아티스트 / 크리에이터 등 개인</p>
+        </div>
+
+        <div style="text-align: center; padding: var(--space-6) 0; border-top: 2px solid var(--color-gray-100); border-bottom: 2px solid var(--color-gray-100); margin-bottom: var(--space-6);">
+          <div style="margin-bottom: var(--space-4);">
+            <p style="font-size: var(--text-sm); color: var(--color-gray-500); margin-bottom: var(--space-2);">초기 개발비</p>
+            <p style="font-size: var(--text-4xl); font-weight: 900; color: var(--color-primary);">30만원 ~</p>
+            <p style="font-size: var(--text-xl); color: var(--color-gray-600);">100만원</p>
+          </div>
+          <div style="background: var(--color-gray-50); padding: var(--space-3); border-radius: var(--radius-lg); margin-top: var(--space-4);">
+            <p style="font-size: var(--text-sm); color: var(--color-gray-500);">월 구독료</p>
+            <p style="font-size: var(--text-3xl); font-weight: 800; color: var(--color-primary);">1만원<span style="font-size: var(--text-base); font-weight: 400; color: var(--color-gray-500);">/월</span></p>
+          </div>
+        </div>
+
+        <ul style="list-style: none; padding: 0; margin-bottom: var(--space-8);">
+          <li style="display: flex; align-items: start; gap: var(--space-3); margin-bottom: var(--space-3);">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#00a859" stroke-width="2" style="flex-shrink: 0; margin-top: 2px;">
+              <polyline points="20 6 9 17 4 12"/>
+            </svg>
+            <span>반응형 웹사이트 제작</span>
+          </li>
+          <li style="display: flex; align-items: start; gap: var(--space-3); margin-bottom: var(--space-3);">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#00a859" stroke-width="2" style="flex-shrink: 0; margin-top: 2px;">
+              <polyline points="20 6 9 17 4 12"/>
+            </svg>
+            <span>기본 SEO 최적화</span>
+          </li>
+          <li style="display: flex; align-items: start; gap: var(--space-3); margin-bottom: var(--space-3);">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#00a859" stroke-width="2" style="flex-shrink: 0; margin-top: 2px;">
+              <polyline points="20 6 9 17 4 12"/>
+            </svg>
+            <span>월 1회 콘텐츠 업데이트</span>
+          </li>
+          <li style="display: flex; align-items: start; gap: var(--space-3); margin-bottom: var(--space-3);">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#00a859" stroke-width="2" style="flex-shrink: 0; margin-top: 2px;">
+              <polyline points="20 6 9 17 4 12"/>
+            </svg>
+            <span>기술 지원 (이메일)</span>
+          </li>
+          <li style="display: flex; align-items: start; gap: var(--space-3); margin-bottom: var(--space-3);">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#00a859" stroke-width="2" style="flex-shrink: 0; margin-top: 2px;">
+              <polyline points="20 6 9 17 4 12"/>
+            </svg>
+            <span>보안 업데이트</span>
+          </li>
+        </ul>
+
+        <%= link_to "시작하기", contact_path, class: "btn btn-outline", style: "width: 100%;" %>
+      </div>
+
+      <!-- Pro Plan (Popular) -->
+      <div class="card" style="position: relative; border: 3px solid var(--color-primary); transform: scale(1.05); box-shadow: var(--shadow-2xl);">
+        <div style="position: absolute; top: -15px; left: 50%; transform: translateX(-50%); background: var(--gradient-primary); color: white; padding: var(--space-2) var(--space-6); border-radius: var(--radius-full); font-weight: 700; font-size: var(--text-sm); box-shadow: var(--shadow-lg);">
+          ⭐ 인기
+        </div>
+
+        <div style="text-align: center; margin-bottom: var(--space-6); margin-top: var(--space-4);">
+          <div style="width: 80px; height: 80px; background: linear-gradient(135deg, #00d670 0%, #33e08e 100%); border-radius: var(--radius-full); display: flex; align-items: center; justify-content: center; margin: 0 auto var(--space-4);">
+            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+              <rect x="2" y="7" width="20" height="14" rx="2"/>
+              <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/>
+            </svg>
+          </div>
+          <h3 style="font-size: var(--text-3xl); font-weight: 800; margin-bottom: var(--space-2);">프로 플랜</h3>
+          <p class="text-gray" style="font-size: var(--text-base);">소상공인 / 스타트업 / 프랜차이즈</p>
+        </div>
+
+        <div style="text-align: center; padding: var(--space-6) 0; border-top: 2px solid var(--color-gray-100); border-bottom: 2px solid var(--color-gray-100); margin-bottom: var(--space-6);">
+          <div style="margin-bottom: var(--space-4);">
+            <p style="font-size: var(--text-sm); color: var(--color-gray-500); margin-bottom: var(--space-2);">초기 개발비</p>
+            <p style="font-size: var(--text-4xl); font-weight: 900; color: var(--color-primary);">100만원 ~</p>
+            <p style="font-size: var(--text-xl); color: var(--color-gray-600);">1,000만원</p>
+          </div>
+          <div style="background: var(--gradient-primary); padding: var(--space-3); border-radius: var(--radius-lg); margin-top: var(--space-4);">
+            <p style="font-size: var(--text-sm); color: rgba(255,255,255,0.9);">월 구독료</p>
+            <p style="font-size: var(--text-3xl); font-weight: 800; color: white;">3만원<span style="font-size: var(--text-base); font-weight: 400; color: rgba(255,255,255,0.8);">/월</span></p>
+          </div>
+        </div>
+
+        <ul style="list-style: none; padding: 0; margin-bottom: var(--space-8);">
+          <li style="display: flex; align-items: start; gap: var(--space-3); margin-bottom: var(--space-3);">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#00a859" stroke-width="2" style="flex-shrink: 0; margin-top: 2px;">
+              <polyline points="20 6 9 17 4 12"/>
+            </svg>
+            <span><strong>베이직 플랜 모든 기능</strong></span>
+          </li>
+          <li style="display: flex; align-items: start; gap: var(--space-3); margin-bottom: var(--space-3);">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#00a859" stroke-width="2" style="flex-shrink: 0; margin-top: 2px;">
+              <polyline points="20 6 9 17 4 12"/>
+            </svg>
+            <span>웹 애플리케이션 개발</span>
+          </li>
+          <li style="display: flex; align-items: start; gap: var(--space-3); margin-bottom: var(--space-3);">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#00a859" stroke-width="2" style="flex-shrink: 0; margin-top: 2px;">
+              <polyline points="20 6 9 17 4 12"/>
+            </svg>
+            <span>고급 SEO 최적화</span>
+          </li>
+          <li style="display: flex; align-items: start; gap: var(--space-3); margin-bottom: var(--space-3);">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#00a859" stroke-width="2" style="flex-shrink: 0; margin-top: 2px;">
+              <polyline points="20 6 9 17 4 12"/>
+            </svg>
+            <span>주 1회 콘텐츠 업데이트</span>
+          </li>
+          <li style="display: flex; align-items: start; gap: var(--space-3); margin-bottom: var(--space-3);">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#00a859" stroke-width="2" style="flex-shrink: 0; margin-top: 2px;">
+              <polyline points="20 6 9 17 4 12"/>
+            </svg>
+            <span>우선 기술 지원 (전화/이메일)</span>
+          </li>
+          <li style="display: flex; align-items: start; gap: var(--space-3); margin-bottom: var(--space-3);">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#00a859" stroke-width="2" style="flex-shrink: 0; margin-top: 2px;">
+              <polyline points="20 6 9 17 4 12"/>
+            </svg>
+            <span>월간 분석 리포트</span>
+          </li>
+        </ul>
+
+        <%= link_to "시작하기", contact_path, class: "btn btn-primary", style: "width: 100%;" %>
+      </div>
+
+      <!-- Master Plan -->
+      <div class="card" style="position: relative; overflow: visible;">
+        <div style="text-align: center; margin-bottom: var(--space-6);">
+          <div style="width: 80px; height: 80px; background: linear-gradient(135deg, #00a859 0%, #008a47 100%); border-radius: var(--radius-full); display: flex; align-items: center; justify-content: center; margin: 0 auto var(--space-4);">
+            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+              <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+            </svg>
+          </div>
+          <h3 style="font-size: var(--text-3xl); font-weight: 800; margin-bottom: var(--space-2);">마스터 플랜</h3>
+          <p class="text-gray" style="font-size: var(--text-base);">단체 / 소기업 이상</p>
+        </div>
+
+        <div style="text-align: center; padding: var(--space-6) 0; border-top: 2px solid var(--color-gray-100); border-bottom: 2px solid var(--color-gray-100); margin-bottom: var(--space-6);">
+          <div style="margin-bottom: var(--space-4);">
+            <p style="font-size: var(--text-sm); color: var(--color-gray-500); margin-bottom: var(--space-2);">초기 개발비</p>
+            <p style="font-size: var(--text-4xl); font-weight: 900; color: var(--color-primary);">1,000만원 ~</p>
+          </div>
+          <div style="background: var(--color-gray-50); padding: var(--space-3); border-radius: var(--radius-lg); margin-top: var(--space-4);">
+            <p style="font-size: var(--text-sm); color: var(--color-gray-500);">월 구독료</p>
+            <p style="font-size: var(--text-3xl); font-weight: 800; color: var(--color-primary);">30만원<span style="font-size: var(--text-base); font-weight: 400; color: var(--color-gray-500);">/월</span></p>
+          </div>
+        </div>
+
+        <ul style="list-style: none; padding: 0; margin-bottom: var(--space-8);">
+          <li style="display: flex; align-items: start; gap: var(--space-3); margin-bottom: var(--space-3);">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#00a859" stroke-width="2" style="flex-shrink: 0; margin-top: 2px;">
+              <polyline points="20 6 9 17 4 12"/>
+            </svg>
+            <span><strong>프로 플랜 모든 기능</strong></span>
+          </li>
+          <li style="display: flex; align-items: start; gap: var(--space-3); margin-bottom: var(--space-3);">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#00a859" stroke-width="2" style="flex-shrink: 0; margin-top: 2px;">
+              <polyline points="20 6 9 17 4 12"/>
+            </svg>
+            <span>대규모 시스템 개발</span>
+          </li>
+          <li style="display: flex; align-items: start; gap: var(--space-3); margin-bottom: var(--space-3);">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#00a859" stroke-width="2" style="flex-shrink: 0; margin-top: 2px;">
+              <polyline points="20 6 9 17 4 12"/>
+            </svg>
+            <span>AI/ML 솔루션 통합</span>
+          </li>
+          <li style="display: flex; align-items: start; gap: var(--space-3); margin-bottom: var(--space-3);">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#00a859" stroke-width="2" style="flex-shrink: 0; margin-top: 2px;">
+              <polyline points="20 6 9 17 4 12"/>
+            </svg>
+            <span>무제한 콘텐츠 업데이트</span>
+          </li>
+          <li style="display: flex; align-items: start; gap: var(--space-3); margin-bottom: var(--space-3);">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#00a859" stroke-width="2" style="flex-shrink: 0; margin-top: 2px;">
+              <polyline points="20 6 9 17 4 12"/>
+            </svg>
+            <span>전담 개발팀 배정</span>
+          </li>
+          <li style="display: flex; align-items: start; gap: var(--space-3); margin-bottom: var(--space-3);">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#00a859" stroke-width="2" style="flex-shrink: 0; margin-top: 2px;">
+              <polyline points="20 6 9 17 4 12"/>
+            </svg>
+            <span>24/7 기술 지원</span>
+          </li>
+          <li style="display: flex; align-items: start; gap: var(--space-3); margin-bottom: var(--space-3);">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#00a859" stroke-width="2" style="flex-shrink: 0; margin-top: 2px;">
+              <polyline points="20 6 9 17 4 12"/>
+            </svg>
+            <span>맞춤형 컨설팅</span>
+          </li>
+        </ul>
+
+        <%= link_to "시작하기", contact_path, class: "btn btn-outline", style: "width: 100%;" %>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- Features Section -->
+<section class="section">
+  <div class="container">
+    <div class="text-center" style="margin-bottom: var(--space-12);">
+      <h2 style="font-size: var(--text-5xl); margin-bottom: var(--space-4);">모든 플랜에 포함된 혜택</h2>
+      <p class="text-gray" style="font-size: var(--text-xl);">
+        구독 기간 동안 지속적으로 제공되는 서비스
+      </p>
+    </div>
+
+    <div class="grid grid-4">
+      <div class="card text-center">
+        <div style="width: 60px; height: 60px; background: var(--gradient-accent); border-radius: var(--radius-full); display: flex; align-items: center; justify-content: center; margin: 0 auto var(--space-4);">
+          <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+          </svg>
+        </div>
+        <h4 style="font-size: var(--text-lg); font-weight: 700; margin-bottom: var(--space-2);">보안 업데이트</h4>
+        <p class="text-gray" style="font-size: var(--text-sm);">최신 보안 패치 자동 적용</p>
+      </div>
+
+      <div class="card text-center">
+        <div style="width: 60px; height: 60px; background: var(--gradient-accent); border-radius: var(--radius-full); display: flex; align-items: center; justify-content: center; margin: 0 auto var(--space-4);">
+          <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+            <circle cx="12" cy="12" r="10"/>
+            <path d="M12 6v6l4 2"/>
+          </svg>
+        </div>
+        <h4 style="font-size: var(--text-lg); font-weight: 700; margin-bottom: var(--space-2);">빠른 대응</h4>
+        <p class="text-gray" style="font-size: var(--text-sm);">긴급 이슈 신속 처리</p>
+      </div>
+
+      <div class="card text-center">
+        <div style="width: 60px; height: 60px; background: var(--gradient-accent); border-radius: var(--radius-full); display: flex; align-items: center; justify-content: center; margin: 0 auto var(--space-4);">
+          <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+            <polyline points="7 10 12 15 17 10"/>
+            <line x1="12" y1="15" x2="12" y2="3"/>
+          </svg>
+        </div>
+        <h4 style="font-size: var(--text-lg); font-weight: 700; margin-bottom: var(--space-2);">백업 서비스</h4>
+        <p class="text-gray" style="font-size: var(--text-sm);">정기 데이터 백업</p>
+      </div>
+
+      <div class="card text-center">
+        <div style="width: 60px; height: 60px; background: var(--gradient-accent); border-radius: var(--radius-full); display: flex; align-items: center; justify-content: center; margin: 0 auto var(--space-4);">
+          <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+            <line x1="12" y1="1" x2="12" y2="23"/>
+            <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+          </svg>
+        </div>
+        <h4 style="font-size: var(--text-lg); font-weight: 700; margin-bottom: var(--space-2);">투명한 비용</h4>
+        <p class="text-gray" style="font-size: var(--text-sm);">숨겨진 비용 없음</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ Section -->
+<section class="section bg-gray-50">
+  <div class="container" style="max-width: 900px;">
+    <div class="text-center" style="margin-bottom: var(--space-12);">
+      <h2 style="font-size: var(--text-5xl); margin-bottom: var(--space-4);">자주 묻는 질문</h2>
+    </div>
+
+    <div style="display: flex; flex-direction: column; gap: var(--space-4);">
+      <div class="card">
+        <h4 style="font-size: var(--text-xl); font-weight: 700; margin-bottom: var(--space-3); color: var(--color-primary);">
+          Q. 구독을 중단하면 어떻게 되나요?
+        </h4>
+        <p class="text-gray">
+          구독 중단 시 유지보수 및 업데이트 서비스가 종료됩니다. 다만 개발된 웹사이트는 계속 사용하실 수 있으며, 필요 시 언제든 구독을 재개하실 수 있습니다.
+        </p>
+      </div>
+
+      <div class="card">
+        <h4 style="font-size: var(--text-xl); font-weight: 700; margin-bottom: var(--space-3); color: var(--color-primary);">
+          Q. 플랜 변경이 가능한가요?
+        </h4>
+        <p class="text-gray">
+          네, 언제든지 플랜 업그레이드 또는 다운그레이드가 가능합니다. 차액은 다음 결제 시 정산됩니다.
+        </p>
+      </div>
+
+      <div class="card">
+        <h4 style="font-size: var(--text-xl); font-weight: 700; margin-bottom: var(--space-3); color: var(--color-primary);">
+          Q. 초기 개발 기간은 얼마나 걸리나요?
+        </h4>
+        <p class="text-gray">
+          프로젝트 규모에 따라 다르지만, 베이직 플랜은 2-4주, 프로 플랜은 4-8주, 마스터 플랜은 8주 이상 소요됩니다.
+        </p>
+      </div>
+
+      <div class="card">
+        <h4 style="font-size: var(--text-xl); font-weight: 700; margin-bottom: var(--space-3); color: var(--color-primary);">
+          Q. 도메인과 호스팅 비용은 포함되나요?
+        </h4>
+        <p class="text-gray">
+          도메인과 호스팅 비용은 별도입니다. 필요 시 추천 서비스를 안내해드리며, 설정을 도와드립니다.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA Section -->
+<section class="section" style="background: var(--gradient-primary); color: white;">
+  <div class="container text-center">
+    <h2 style="font-size: var(--text-5xl); color: white; margin-bottom: var(--space-4);">
+      지금 바로 시작하세요
+    </h2>
+    <p style="font-size: var(--text-xl); color: rgba(255, 255, 255, 0.9); margin-bottom: var(--space-8);">
+      무료 상담을 통해 최적의 플랜을 추천해드립니다
+    </p>
+    <%= link_to "무료 상담 신청", contact_path, class: "btn btn-accent btn-lg" %>
+  </div>
+</section>
