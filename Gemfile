@@ -6,11 +6,13 @@ gem "rails", "~> 8.1.1"
 gem "propshaft"
 
 # Use the Puma web server [https://github.com/puma/puma]
+# Gem "puma" is handled in production group below to avoid Windows install issues locally
 # gem "puma", ">= 5.0"
 
 # Use PostgreSQL in production
 group :production do
   gem "pg", "~> 1.1"
+  gem "puma", ">= 5.0"
 end
 
 # Use SQLite in development
