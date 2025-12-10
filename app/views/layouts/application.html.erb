@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <title><%= content_for(:title) || "디어스 - AI와 함께하는 디지털 혁신 파트너" %></title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="description" content="<%= content_for(:description) || '디어스는 AI 기술과 창의적인 디자인으로 비즈니스의 성공을 이끄는 프리미엄 개발 에이전시입니다.' %>">
+    <meta name="keywords" content="웹개발, 앱개발, AI개발, UI/UX디자인, 개발에이전시, 디어스, D.US">
+    <meta name="author" content="디어스">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="<%= content_for(:title) || '디어스 - AI와 함께하는 디지털 혁신 파트너' %>">
+    <meta property="og:description" content="<%= content_for(:description) || '디어스는 AI 기술과 창의적인 디자인으로 비즈니스의 성공을 이끄는 프리미엄 개발 에이전시입니다.' %>">
+    
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="<%= content_for(:title) || '디어스 - AI와 함께하는 디지털 혁신 파트너' %>">
+    <meta name="twitter:description" content="<%= content_for(:description) || '디어스는 AI 기술과 창의적인 디자인으로 비즈니스의 성공을 이끄는 프리미엄 개발 에이전시입니다.' %>">
+    
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="application-name" content="디어스">
+    <meta name="mobile-web-app-capable" content="yes">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= yield :head %>
+
+    <link rel="icon" href="/favicon.png" type="image/png">
+    <link rel="apple-touch-icon" href="/favicon.png">
+
+    <%# Includes all stylesheet files in app/assets/stylesheets %>
+    <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
+  </head>
+
+  <body>
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+      <div class="navbar-container">
+        <%= link_to root_path, class: "navbar-logo" do %>
+          <%= image_tag "logo.png", alt: "디어스", style: "height: 50px; width: auto;" %>
+        <% end %>
+        <ul class="navbar-menu">
+          <li><%= link_to "홈", root_path, class: "navbar-link #{current_page?(root_path) ? 'active' : ''}" %></li>
+          <li><%= link_to "포트폴리오", portfolio_path, class: "navbar-link #{current_page?(portfolio_path) ? 'active' : ''}" %></li>
+          <li><%= link_to "문의하기", contact_path, class: "navbar-link #{current_page?(contact_path) ? 'active' : ''}" %></li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main>
+      <%= yield %>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-section">
+            <h3>디어스</h3>
+            <p>AI와 함께하는<br>디지털 혁신 파트너</p>
+          </div>
+          
+          <div class="footer-section">
+            <h3>서비스</h3>
+            <ul style="list-style: none; padding: 0;">
+              <li style="margin-bottom: 0.5rem;"><a href="#" style="color: var(--color-gray-400);">웹 개발</a></li>
+              <li style="margin-bottom: 0.5rem;"><a href="#" style="color: var(--color-gray-400);">앱 개발</a></li>
+              <li style="margin-bottom: 0.5rem;"><a href="#" style="color: var(--color-gray-400);">UI/UX 디자인</a></li>
+              <li style="margin-bottom: 0.5rem;"><a href="#" style="color: var(--color-gray-400);">디지털 마케팅</a></li>
+            </ul>
+          </div>
+          
+          <div class="footer-section">
+            <h3>회사</h3>
+            <ul style="list-style: none; padding: 0;">
+              <li style="margin-bottom: 0.5rem;"><%= link_to "포트폴리오", portfolio_path, style: "color: var(--color-gray-400);" %></li>
+              <li style="margin-bottom: 0.5rem;"><%= link_to "문의하기", contact_path, style: "color: var(--color-gray-400);" %></li>
+            </ul>
+          </div>
+          
+          <div class="footer-section">
+            <h3>연락처</h3>
+            <p>이메일: contact@dlab.kr<br>
+            전화: 02-1234-5678</p>
+          </div>
+        </div>
+        
+        <div class="footer-bottom">
+          <p>&copy; <%= Time.current.year %> 디어스(D.US). All rights reserved.</p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Navbar Scroll Effect -->
+    <script>
+      window.addEventListener('scroll', function() {
+        const navbar = document.getElementById('navbar');
+        if (window.scrollY > 50) {
+          navbar.classList.add('scrolled');
+        } else {
+          navbar.classList.remove('scrolled');
+        }
+      });
+    </script>
+  </body>
+</html>

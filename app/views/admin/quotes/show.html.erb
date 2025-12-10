@@ -1,0 +1,99 @@
+<div style="max-width: 900px;">
+  <div style="margin-bottom: var(--space-8);">
+    <%= link_to "← 목록으로", admin_quotes_path, style: "color: var(--color-gray-600); text-decoration: none;" %>
+    <h1 style="font-size: var(--text-4xl); margin-top: var(--space-4); margin-bottom: var(--space-2);">문의 상세</h1>
+  </div>
+
+  <div class="card" style="padding: var(--space-8);">
+    <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: var(--space-6); padding-bottom: var(--space-6); border-bottom: 2px solid var(--color-gray-200);">
+      <div>
+        <h2 style="font-size: var(--text-3xl); margin-bottom: var(--space-2);"><%= @quote.contact_name %></h2>
+        <% if @quote.company_name.present? %>
+          <p style="color: var(--color-gray-600); font-size: var(--text-lg);"><%= @quote.company_name %></p>
+        <% end %>
+      </div>
+      <span style="display: inline-block; padding: var(--space-2) var(--space-4); background: <%= @quote.status == 'pending' ? 'var(--color-warning)' : 'var(--color-success)' %>; color: white; border-radius: var(--radius-lg); font-size: var(--text-sm); font-weight: 600;">
+        <%= @quote.status == 'pending' ? '대기중' : '처리완료' %>
+      </span>
+    </div>
+
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-8); margin-bottom: var(--space-8);">
+      <div>
+        <h3 style="font-size: var(--text-sm); font-weight: 700; color: var(--color-gray-500); text-transform: uppercase; margin-bottom: var(--space-3); letter-spacing: 0.05em;">연락처 정보</h3>
+        <div style="space-y: var(--space-3);">
+          <div style="margin-bottom: var(--space-3);">
+            <p style="font-size: var(--text-xs); color: var(--color-gray-500); margin-bottom: var(--space-1);">이메일</p>
+            <p style="font-size: var(--text-base); color: var(--color-gray-900);"><%= @quote.email %></p>
+          </div>
+          <div>
+            <p style="font-size: var(--text-xs); color: var(--color-gray-500); margin-bottom: var(--space-1);">전화번호</p>
+            <p style="font-size: var(--text-base); color: var(--color-gray-900);"><%= @quote.phone %></p>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <h3 style="font-size: var(--text-sm); font-weight: 700; color: var(--color-gray-500); text-transform: uppercase; margin-bottom: var(--space-3); letter-spacing: 0.05em;">프로젝트 정보</h3>
+        <div style="space-y: var(--space-3);">
+          <% if @quote.project_type.present? %>
+            <div style="margin-bottom: var(--space-3);">
+              <p style="font-size: var(--text-xs); color: var(--color-gray-500); margin-bottom: var(--space-1);">프로젝트 유형</p>
+              <span style="display: inline-block; padding: var(--space-1) var(--space-3); background: var(--color-accent); color: white; border-radius: var(--radius-full); font-size: var(--text-sm); font-weight: 600;">
+                <%= @quote.project_type %>
+              </span>
+            </div>
+          <% end %>
+          <% if @quote.budget.present? %>
+            <div>
+              <p style="font-size: var(--text-xs); color: var(--color-gray-500); margin-bottom: var(--space-1);">예산 범위</p>
+              <p style="font-size: var(--text-base); color: var(--color-gray-900);"><%= @quote.budget %></p>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+
+    <% if @quote.message.present? %>
+      <div style="margin-bottom: var(--space-8);">
+        <h3 style="font-size: var(--text-sm); font-weight: 700; color: var(--color-gray-500); text-transform: uppercase; margin-bottom: var(--space-3); letter-spacing: 0.05em;">문의 내용</h3>
+        <div style="background: var(--color-gray-50); padding: var(--space-6); border-radius: var(--radius-lg); border-left: 4px solid var(--color-primary);">
+          <p style="font-size: var(--text-base); color: var(--color-gray-900); line-height: 1.8; white-space: pre-wrap;"><%= @quote.message %></p>
+        </div>
+      </div>
+    <% end %>
+
+    <div style="padding-top: var(--space-6); border-top: 1px solid var(--color-gray-200);">
+      <p style="font-size: var(--text-sm); color: var(--color-gray-500);">
+        접수일시: <%= @quote.created_at.strftime("%Y년 %m월 %d일 %H:%M") %>
+      </p>
+    </div>
+
+    <div style="display: flex; gap: var(--space-4); margin-top: var(--space-8);">
+      <button onclick="window.print()" class="btn btn-primary btn-lg">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-right: 8px;">
+          <polyline points="6 9 6 2 18 2 18 9"/>
+          <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/>
+          <rect x="6" y="14" width="12" height="8"/>
+        </svg>
+        견적서 출력
+      </button>
+      <%= link_to "목록으로", admin_quotes_path, class: "btn btn-outline btn-lg" %>
+    </div>
+
+    <!-- Print Styles -->
+    <style>
+      @media print {
+        .navbar, .footer, button, .btn-outline {
+          display: none !important;
+        }
+        body {
+          background: white !important;
+        }
+        .card {
+          box-shadow: none !important;
+          border: 1px solid #ddd !important;
+        }
+      }
+    </style>
+  </div>
+</div>

@@ -1,0 +1,82 @@
+<% content_for :title, "관리자 - 디어스" %>
+
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <title><%= content_for(:title) || "관리자 - 디어스" %></title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="robots" content="noindex, nofollow">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
+  </head>
+
+  <body style="background: var(--color-gray-50);">
+    <!-- Admin Header -->
+    <header style="background: white; border-bottom: 1px solid var(--color-gray-200); position: sticky; top: 0; z-index: var(--z-sticky);">
+      <div style="max-width: 1400px; margin: 0 auto; padding: var(--space-4) var(--space-6); display: flex; justify-content: space-between; align-items: center;">
+        <div style="display: flex; align-items: center; gap: var(--space-3);">
+          <%= image_tag "logo.png", alt: "디어스", style: "height: 32px;" %>
+          <span style="color: var(--color-gray-400); font-weight: 600;">관리자</span>
+        </div>
+        <%= link_to "사이트 보기", root_path, class: "btn btn-outline btn-sm", target: "_blank" %>
+      </div>
+    </header>
+
+    <div style="display: flex; min-height: calc(100vh - 65px);">
+      <!-- Sidebar -->
+      <aside style="width: 250px; background: white; border-right: 1px solid var(--color-gray-200); padding: var(--space-6);">
+        <nav>
+          <h3 style="font-size: var(--text-sm); font-weight: 700; color: var(--color-gray-500); text-transform: uppercase; margin-bottom: var(--space-4); letter-spacing: 0.05em;">메뉴</h3>
+          <ul style="list-style: none; padding: 0;">
+            <li style="margin-bottom: var(--space-2);">
+              <%= link_to admin_root_path, style: "display: flex; align-items: center; gap: var(--space-3); padding: var(--space-3); border-radius: var(--radius-md); color: var(--color-gray-700); text-decoration: none; transition: all var(--transition-fast); #{current_page?(admin_root_path) ? 'background: var(--color-primary); color: white;' : ''}" do %>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <rect x="3" y="3" width="7" height="7"/>
+                  <rect x="14" y="3" width="7" height="7"/>
+                  <rect x="14" y="14" width="7" height="7"/>
+                  <rect x="3" y="14" width="7" height="7"/>
+                </svg>
+                <span>대시보드</span>
+              <% end %>
+            </li>
+            <li style="margin-bottom: var(--space-2);">
+              <%= link_to admin_portfolios_path, style: "display: flex; align-items: center; gap: var(--space-3); padding: var(--space-3); border-radius: var(--radius-md); color: var(--color-gray-700); text-decoration: none; transition: all var(--transition-fast); #{current_page?(admin_portfolios_path) ? 'background: var(--color-primary); color: white;' : ''}" do %>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <rect x="3" y="3" width="18" height="18" rx="2"/>
+                  <circle cx="8.5" cy="8.5" r="1.5"/>
+                  <path d="M21 15l-5-5L5 21"/>
+                </svg>
+                <span>포트폴리오</span>
+              <% end %>
+            </li>
+            <li style="margin-bottom: var(--space-2);">
+              <%= link_to admin_quotes_path, style: "display: flex; align-items: center; gap: var(--space-3); padding: var(--space-3); border-radius: var(--radius-md); color: var(--color-gray-700); text-decoration: none; transition: all var(--transition-fast); #{current_page?(admin_quotes_path) ? 'background: var(--color-primary); color: white;' : ''}" do %>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                  <polyline points="22,6 12,13 2,6"/>
+                </svg>
+                <span>문의 내역</span>
+              <% end %>
+            </li>
+          </ul>
+        </nav>
+      </aside>
+
+      <!-- Main Content -->
+      <main style="flex: 1; padding: var(--space-8);">
+        <% if notice %>
+          <div style="background: var(--color-success); color: white; padding: var(--space-4) var(--space-6); border-radius: var(--radius-lg); margin-bottom: var(--space-6); display: flex; align-items: center; gap: var(--space-3);">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+              <polyline points="22 4 12 14.01 9 11.01"/>
+            </svg>
+            <%= notice %>
+          </div>
+        <% end %>
+
+        <%= yield %>
+      </main>
+    </div>
+  </body>
+</html>
