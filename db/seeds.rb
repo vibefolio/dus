@@ -1,99 +1,68 @@
-# Clear existing data
-puts "Clearing existing data..."
-Portfolio.destroy_all
-Quote.destroy_all
+# This file should ensure the existence of records required to run the application in every environment (production,
+# development, test). The code here should be idempotent so that it can be executed at any point in every environment.
+# The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
 
-# Create sample portfolios
-puts "Creating sample portfolios..."
+# Admin User
+# User.create!(email: "admin@example.com", password: "password", password_confirmation: "password")
 
-Portfolio.create!([
-  {
-    title: "디어스 공식 웹사이트",
-    category: "웹사이트",
-    client: "디어스",
-    project_date: Date.new(2024, 12, 1),
-    description: "AI 기반 개발 에이전시 디어스의 공식 웹사이트입니다. 모던한 디자인과 반응형 레이아웃으로 구현되었습니다.",
-    image_url: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800"
-  },
-  {
-    title: "스마트 헬스케어 플랫폼",
-    category: "웹 애플리케이션",
-    client: "헬스케어 주식회사",
-    project_date: Date.new(2024, 11, 15),
-    description: "AI 기반 건강 관리 및 의료 상담 플랫폼입니다. 실시간 건강 데이터 분석 및 개인 맞춤형 건강 관리 서비스를 제공합니다.",
-    image_url: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=800"
-  },
-  {
-    title: "푸드테크 배달 앱",
-    category: "모바일 앱",
-    client: "푸드테크 스타트업",
-    project_date: Date.new(2024, 10, 20),
-    description: "AI 추천 시스템을 활용한 음식 배달 모바일 앱입니다. iOS와 Android 플랫폼을 모두 지원합니다.",
-    image_url: "https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=800"
-  },
-  {
-    title: "이커머스 쇼핑몰",
-    category: "웹 애플리케이션",
-    client: "패션 브랜드 A",
-    project_date: Date.new(2024, 9, 10),
-    description: "프리미엄 패션 브랜드를 위한 이커머스 플랫폼입니다. 결제 시스템, 재고 관리, 회원 관리 등 통합 솔루션을 제공합니다.",
-    image_url: "https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=800"
-  },
-  {
-    title: "교육 플랫폼 UI/UX 리디자인",
-    category: "UI/UX 디자인",
-    client: "에듀테크 기업",
-    project_date: Date.new(2024, 8, 5),
-    description: "온라인 교육 플랫폼의 사용자 경험을 개선하기 위한 전면 리디자인 프로젝트입니다.",
-    image_url: "https://images.unsplash.com/photo-1501504905252-473c47e087f8?w=800"
-  },
-  {
-    title: "AI 챗봇 솔루션",
-    category: "AI/ML",
-    client: "금융 서비스 기업",
-    project_date: Date.new(2024, 7, 1),
-    description: "고객 상담을 위한 AI 챗봇 시스템입니다. 자연어 처리 기술을 활용하여 24/7 고객 지원을 제공합니다.",
-    image_url: "https://images.unsplash.com/photo-1531746790731-6c087fecd65a?w=800"
-  }
-])
+# Portfolio Samples
+if Portfolio.count == 0
+  Portfolio.create!([
+    {
+      title: "Fresh Grove",
+      description: "유기농 음료 브랜드 Fresh Grove의 브랜드 웹사이트를 제작했습니다. 브랜드의 신선하고 건강한 이미지를 강조하기 위해 밝고 자연스러운 컬러 팔레트를 사용했으며, 제품 라인업을 매력적으로 보여주는 인터랙티브한 스크롤 경험을 구현했습니다. 모바일 최적화를 통해 언제 어디서나 제품 정보를 쉽게 확인할 수 있습니다.",
+      category: "쇼핑몰",
+      client: "Fresh Grove Inc.",
+      project_date: "2024-11-15",
+      image_url: "https://cdn.dribbble.com/userupload/16521743/file/original-a316235b6fc24806716075908f977c07.png?resize=1504x1128"
+    },
+    {
+      title: "WISE",
+      description: "오디오 기기 전문 브랜드 WISE의 이커머스 플랫폼입니다. 미니멀하고 세련된 디자인 언어를 적용하여 제품의 고급스러움을 강조했습니다. 사용자 리뷰, 기술 사양 비교 등 구매 결정에 필요한 정보를 직관적으로 배치하고, 간편한 결제 프로세스를 도입하여 구매 전환율을 높였습니다.",
+      category: "쇼핑몰",
+      client: "WISE Audio",
+      project_date: "2024-10-20",
+      image_url: "https://cdn.dribbble.com/userupload/15987158/file/original-6b58941031d200196881775f0a28392f.png?resize=1504x1128"
+    },
+    {
+      title: "NOBASE CLASS",
+      description: "IT 교육 플랫폼 NOBASE CLASS의 랜딩 페이지 및 수강 신청 사이트입니다. 타겟 오디언스인 입문자들에게 친근하게 다가가기 위해 부드러운 일러스트와 명확한 카피라이팅을 활용했습니다. 커리큘럼 로드맵을 시각화하여 학습 과정을 한눈에 파악할 수 있도록 디자인했습니다.",
+      category: "웹사이트",
+      client: "NOBASE Edu",
+      project_date: "2024-09-05",
+      image_url: "https://cdn.dribbble.com/userupload/14101235/file/original-b184c688c3a07804499696b9961239e3.png?resize=1200x900"
+    },
+    {
+      title: "PICK",
+      description: "인테리어 가구 큐레이션 서비스 PICK의 모바일 앱 디자인 및 개발 프로젝트입니다. 사용자의 취향을 분석하여 맞춤형 가구를 추천하는 AI 알고리즘을 탑재했습니다. 방대한 제품 이미지를 빠르게 로딩할 수 있도록 최적화했으며, '내 방에 미리보기' AR 기능을 구현하여 사용자 경험을 차별화했습니다.",
+      category: "모바일 앱",
+      client: "PICK Home",
+      project_date: "2024-08-12",
+      image_url: "https://cdn.dribbble.com/userupload/13010375/file/original-066160163351307b049968498f824e4d.png?resize=1200x900"
+    }
+  ])
+end
 
-puts "Created #{Portfolio.count} portfolios"
+# Design Template Samples (12개)
+if defined?(DesignTemplate) && DesignTemplate.count == 0
+  puts "Creating Design Templates..."
+  templates = [
+    { title: "Lumina Fashion", category: "쇼핑몰", description: "모던하고 미니멀한 패션 브랜드용 이커머스 템플릿입니다. 대형 이미지 배너와 깔끔한 그리드 레이아웃이 돋보입니다." },
+    { title: "TechStarter", category: "기업/브랜드", description: "IT 스타트업을 위한 신뢰감 있는 코퍼레이트 사이트 디자인입니다. 서비스 소개와 팀원 소개 섹션이 강조되어 있습니다." },
+    { title: "EcoLife", category: "쇼핑몰", description: "친환경 제품 판매에 최적화된 편안하고 따뜻한 느낌의 디자인입니다. 자연스러운 컬러톤과 유기적인 형태를 사용했습니다." },
+    { title: "Portfolio Pro", category: "개인용", description: "크리에이터와 프리랜서를 위한 포트폴리오 전용 템플릿입니다. 작업물을 갤러리 형태로 효과적으로 보여줍니다." },
+    { title: "Urban Cafe", category: "F&B", description: "트렌디한 카페나 레스토랑을 위한 감각적인 원페이지 사이트입니다. 메뉴 소개와 예약 기능이 포함되어 있습니다." },
+    { title: "App Landing", category: "랜딩페이지", description: "모바일 앱 홍보를 위한 강력한 랜딩페이지입니다. 앱 스토어 다운로드 유도와 주요 기능 설명에 집중했습니다." },
+    { title: "EduPlatform", category: "커뮤니티", description: "온라인 강의 및 교육 서비스를 위한 LMS 스타일 템플릿입니다. 강의 목차와 강사 소개, 수강 후기 섹션이 있습니다." },
+    { title: "Medical Care", category: "기업/브랜드", description: "병원 및 의료기관을 위한 깨끗하고 전문적인 디자인입니다. 진료 안내와 의료진 프로필, 예약 문의 폼을 제공합니다." },
+    { title: "Beauty Salon", category: "F&B", description: "뷰티 살롱, 네일샵 등을 위한 우아한 디자인입니다. 서비스 가격표와 인스타그램 연동 갤러리가 특징입니다." },
+    { title: "Real Estate", category: "기업/브랜드", description: "부동산 중개 및 분양 서비스를 위한 템플릿입니다. 매물 검색 필터와 지도 연동 기능이 디자인되어 있습니다." },
+    { title: "Travel Log", category: "블로그", description: "여행 작가나 블로거를 위한 매거진 스타일 템플릿입니다. 풍부한 사진과 텍스트를 조화롭게 배치할 수 있습니다." },
+    { title: "Crypto Hub", category: "핀테크", description: "블록체인 및 암호화폐 관련 서비스를 위한 미래지향적인 다크모드 디자인입니다. 실시간 차트와 데이터 시각화가 돋보입니다." }
+  ]
 
-# Create sample quotes
-puts "Creating sample quotes..."
-
-Quote.create!([
-  {
-    contact_name: "김철수",
-    company_name: "테크 스타트업",
-    email: "kim@techstartup.com",
-    phone: "010-1234-5678",
-    project_type: "웹 애플리케이션",
-    budget: "1,000만원 ~ 3,000만원",
-    message: "스타트업을 위한 SaaS 플랫폼 개발을 의뢰하고 싶습니다. 사용자 관리, 결제 시스템, 대시보드 등이 필요합니다.",
-    status: "pending"
-  },
-  {
-    contact_name: "이영희",
-    company_name: "패션 브랜드 B",
-    email: "lee@fashionb.com",
-    phone: "010-2345-6789",
-    project_type: "모바일 앱",
-    budget: "3,000만원 ~ 5,000만원",
-    message: "패션 브랜드를 위한 쇼핑 앱 개발을 원합니다. AR 기능을 통한 가상 피팅 기능이 포함되었으면 합니다.",
-    status: "pending"
-  },
-  {
-    contact_name: "박민수",
-    company_name: "교육 서비스",
-    email: "park@eduservice.com",
-    phone: "010-3456-7890",
-    project_type: "웹사이트 개발",
-    budget: "500만원 ~ 1,000만원",
-    message: "교육 기관 홈페이지 리뉴얼이 필요합니다. 반응형 디자인과 온라인 수강 신청 기능이 필요합니다.",
-    status: "completed"
-  }
-])
-
-puts "Created #{Quote.count} quotes"
-puts "Seed data created successfully!"
+  templates.each do |t|
+    DesignTemplate.create!(t)
+    puts "Created template: #{t[:title]}"
+  end
+end

@@ -1,0 +1,47 @@
+<%= form_with model: [:admin, design_template], class: "card", style: "padding: var(--space-8);" do |f| %>
+  <% if design_template.errors.any? %>
+    <div style="background: var(--color-error); color: white; padding: var(--space-4); border-radius: var(--radius-lg); margin-bottom: var(--space-6);">
+      <strong><%= pluralize(design_template.errors.count, "error") %> 발생:</strong>
+      <ul>
+        <% design_template.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= f.label :title, "템플릿명", class: "form-label" %>
+    <%= f.text_field :title, class: "form-input", required: true %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :category, "카테고리", class: "form-label" %>
+    <%= f.select :category, ["쇼핑몰", "기업/브랜드", "랜딩페이지", "커뮤니티", "기타"], {}, class: "form-select" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :description, "설명", class: "form-label" %>
+    <%= f.text_area :description, class: "form-textarea", rows: 4 %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :pc_image, "PC 미리보기 이미지", class: "form-label" %>
+    <%= f.file_field :pc_image, class: "form-input" %>
+    <% if design_template.pc_image.attached? %>
+      <div style="margin-top: var(--space-2);">현재 이미지: <%= design_template.pc_image.filename %></div>
+    <% end %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :mobile_image, "모바일 미리보기 이미지", class: "form-label" %>
+    <%= f.file_field :mobile_image, class: "form-input" %>
+    <% if design_template.mobile_image.attached? %>
+      <div style="margin-top: var(--space-2);">현재 이미지: <%= design_template.mobile_image.filename %></div>
+    <% end %>
+  </div>
+
+  <div style="margin-top: var(--space-8);">
+    <%= f.submit "저장하기", class: "btn btn-primary btn-lg" %>
+  </div>
+<% end %>
