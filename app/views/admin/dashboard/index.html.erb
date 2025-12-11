@@ -23,6 +23,25 @@
     </div>
   </div>
 
+  <!-- Design Templates Card -->
+  <div class="card" style="background: linear-gradient(135deg, #3B82F6 0%, #60A5FA 100%); color: white;">
+    <div style="display: flex; justify-content: space-between; align-items: start;">
+      <div>
+        <p style="font-size: var(--text-sm); color: rgba(255,255,255,0.9); margin-bottom: var(--space-2);">디자인 템플릿</p>
+        <div style="display: flex; align-items: baseline; gap: 8px;">
+          <p style="font-size: var(--text-5xl); font-weight: 900; margin-bottom: var(--space-2);"><%= @templates_count %></p>
+          <span style="font-size: var(--text-sm); opacity: 0.9;">(Main: <%= @featured_templates_count %>)</span>
+        </div>
+        <%= link_to "관리하기 →", admin_design_templates_path, style: "color: white; text-decoration: underline; font-size: var(--text-sm);" %>
+      </div>
+      <div style="width: 60px; height: 60px; background: rgba(255,255,255,0.2); border-radius: var(--radius-full); display: flex; align-items: center; justify-content: center;">
+        <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+          <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+        </svg>
+      </div>
+    </div>
+  </div>
+
   <!-- Total Quotes Card -->
   <div class="card" style="background: linear-gradient(135deg, #00d670 0%, #33e08e 100%); color: white;">
     <div style="display: flex; justify-content: space-between; align-items: start;">
