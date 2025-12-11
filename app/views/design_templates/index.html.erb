@@ -13,23 +13,23 @@
 </section>
 
 <!-- Main Content -->
-<section class="bg-gray-50 py-16 px-4">
-  <div class="max-w-7xl mx-auto">
+<section class="bg-gray-50 py-20 px-4">
+  <div class="w-full max-w-[1920px] mx-auto" style="width: 80%;">
     
     <!-- Category Filter -->
-    <div class="flex flex-wrap justify-center gap-2 mb-12">
-      <button onclick="filterTemplates('all')" class="filter-btn active px-4 py-2 rounded-full text-sm font-medium border border-gray-200 bg-white text-gray-700 hover:bg-gray-50 transition-colors data-[active=true]:bg-emerald-600 data-[active=true]:text-white data-[active=true]:border-emerald-600">전체</button>
-      <button onclick="filterTemplates('shopping')" class="filter-btn px-4 py-2 rounded-full text-sm font-medium border border-gray-200 bg-white text-gray-700 hover:bg-gray-50 transition-colors data-[active=true]:bg-emerald-600 data-[active=true]:text-white data-[active=true]:border-emerald-600">쇼핑몰</button>
-      <button onclick="filterTemplates('corporate')" class="filter-btn px-4 py-2 rounded-full text-sm font-medium border border-gray-200 bg-white text-gray-700 hover:bg-gray-50 transition-colors data-[active=true]:bg-emerald-600 data-[active=true]:text-white data-[active=true]:border-emerald-600">기업/브랜드</button>
-      <button onclick="filterTemplates('beauty')" class="filter-btn px-4 py-2 rounded-full text-sm font-medium border border-gray-200 bg-white text-gray-700 hover:bg-gray-50 transition-colors data-[active=true]:bg-emerald-600 data-[active=true]:text-white data-[active=true]:border-emerald-600">뷰티/살롱</button>
-      <button onclick="filterTemplates('dining')" class="filter-btn px-4 py-2 rounded-full text-sm font-medium border border-gray-200 bg-white text-gray-700 hover:bg-gray-50 transition-colors data-[active=true]:bg-emerald-600 data-[active=true]:text-white data-[active=true]:border-emerald-600">F&B/다이닝</button>
-      <button onclick="filterTemplates('space')" class="filter-btn px-4 py-2 rounded-full text-sm font-medium border border-gray-200 bg-white text-gray-700 hover:bg-gray-50 transition-colors data-[active=true]:bg-emerald-600 data-[active=true]:text-white data-[active=true]:border-emerald-600">공간/렌탈</button>
-      <button onclick="filterTemplates('medical')" class="filter-btn px-4 py-2 rounded-full text-sm font-medium border border-gray-200 bg-white text-gray-700 hover:bg-gray-50 transition-colors data-[active=true]:bg-emerald-600 data-[active=true]:text-white data-[active=true]:border-emerald-600">병원/의료</button>
-      <button onclick="filterTemplates('stay')" class="filter-btn px-4 py-2 rounded-full text-sm font-medium border border-gray-200 bg-white text-gray-700 hover:bg-gray-50 transition-colors data-[active=true]:bg-emerald-600 data-[active=true]:text-white data-[active=true]:border-emerald-600">숙박/스테이</button>
+    <div class="flex flex-wrap justify-center gap-2 mb-16">
+      <button onclick="filterTemplates('all')" class="filter-btn active px-5 py-2.5 rounded-full text-sm font-semibold border border-gray-200 bg-white text-gray-600 hover:bg-gray-50 transition-all data-[active=true]:bg-black data-[active=true]:text-white data-[active=true]:border-black shadow-sm">전체</button>
+      <button onclick="filterTemplates('shopping')" class="filter-btn px-5 py-2.5 rounded-full text-sm font-semibold border border-gray-200 bg-white text-gray-600 hover:bg-gray-50 transition-all data-[active=true]:bg-black data-[active=true]:text-white data-[active=true]:border-black shadow-sm">쇼핑몰</button>
+      <button onclick="filterTemplates('corporate')" class="filter-btn px-5 py-2.5 rounded-full text-sm font-semibold border border-gray-200 bg-white text-gray-600 hover:bg-gray-50 transition-all data-[active=true]:bg-black data-[active=true]:text-white data-[active=true]:border-black shadow-sm">기업/브랜드</button>
+      <button onclick="filterTemplates('beauty')" class="filter-btn px-5 py-2.5 rounded-full text-sm font-semibold border border-gray-200 bg-white text-gray-600 hover:bg-gray-50 transition-all data-[active=true]:bg-black data-[active=true]:text-white data-[active=true]:border-black shadow-sm">뷰티/살롱</button>
+      <button onclick="filterTemplates('dining')" class="filter-btn px-5 py-2.5 rounded-full text-sm font-semibold border border-gray-200 bg-white text-gray-600 hover:bg-gray-50 transition-all data-[active=true]:bg-black data-[active=true]:text-white data-[active=true]:border-black shadow-sm">F&B/다이닝</button>
+      <button onclick="filterTemplates('space')" class="filter-btn px-5 py-2.5 rounded-full text-sm font-semibold border border-gray-200 bg-white text-gray-600 hover:bg-gray-50 transition-all data-[active=true]:bg-black data-[active=true]:text-white data-[active=true]:border-black shadow-sm">공간/렌탈</button>
+      <button onclick="filterTemplates('medical')" class="filter-btn px-5 py-2.5 rounded-full text-sm font-semibold border border-gray-200 bg-white text-gray-600 hover:bg-gray-50 transition-all data-[active=true]:bg-black data-[active=true]:text-white data-[active=true]:border-black shadow-sm">병원/의료</button>
+      <button onclick="filterTemplates('stay')" class="filter-btn px-5 py-2.5 rounded-full text-sm font-semibold border border-gray-200 bg-white text-gray-600 hover:bg-gray-50 transition-all data-[active=true]:bg-black data-[active=true]:text-white data-[active=true]:border-black shadow-sm">숙박/스테이</button>
     </div>
 
     <!-- Templates Grid -->
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8 md:gap-12" id="templates-grid">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 xl:gap-10" id="templates-grid">
       <% 
         templates_source = @design_templates.presence || [
           { id: 'beauty', title: "LUMIER", desc: "청담동 하이엔드 살롱 스타일. 고급스러운 세리프 폰트와 인물 중심 레이아웃.", cat: "beauty", url: "/templates/beauty", img: "https://images.unsplash.com/photo-1595476106812-d2d7237e4585?q=80&w=800" },
