@@ -1,123 +1,84 @@
 <% content_for :title, "디자인 템플릿 - 디어스" %>
 <% content_for :description, "성공적인 비즈니스를 위한 최적의 디자인 템플릿을 만나보세요. 원하는 스타일을 선택하고 바로 개발 상담을 받아보실 수 있습니다." %>
 
-<section class="hero" style="min-height: 40vh; padding-top: 120px; background: var(--color-gray-900);">
-  <div class="hero-content">
-    <h1 class="hero-title" style="font-size: var(--text-5xl);">디자인 템플릿</h1>
-    <p class="hero-subtitle" style="font-size: var(--text-xl);">
+<!-- Hero Section -->
+<section class="bg-gray-900 pt-32 pb-20 min-h-[40vh] flex items-center justify-center text-center px-4">
+  <div class="max-w-4xl mx-auto">
+    <h1 class="text-4xl md:text-5xl font-bold text-white mb-6">디자인 템플릿</h1>
+    <p class="text-lg md:text-xl text-gray-400 max-w-2xl mx-auto leading-relaxed">
       검증된 디자인으로 빠르게 시작하세요.<br>
       비즈니스 목적에 맞는 최적의 템플릿을 제안해 드립니다.
     </p>
   </div>
 </section>
 
-<section class="section" style="background: var(--color-gray-50);">
-  <div class="container">
+<!-- Main Content -->
+<section class="bg-gray-50 py-16 px-4">
+  <div class="max-w-7xl mx-auto">
     
-    <!-- Filter (Optional) -->
-    <!-- Filter (Scrollable on mobile) -->
-    <div style="display: flex; justify-content: center; gap: 8px; margin-bottom: 40px; flex-wrap: wrap;" class="filter-container">
-      <button onclick="filterTemplates('all')" class="btn btn-primary btn-sm rounded-full filter-btn active" data-filter="all">전체</button>
-      <button onclick="filterTemplates('shopping')" class="btn btn-outline btn-sm rounded-full filter-btn" data-filter="shopping">쇼핑몰</button>
-      <button onclick="filterTemplates('corporate')" class="btn btn-outline btn-sm rounded-full filter-btn" data-filter="corporate">기업/브랜드</button>
-      <button onclick="filterTemplates('beauty')" class="btn btn-outline btn-sm rounded-full filter-btn" data-filter="beauty">뷰티/살롱</button>
-      <button onclick="filterTemplates('dining')" class="btn btn-outline btn-sm rounded-full filter-btn" data-filter="dining">F&B/다이닝</button>
-      <button onclick="filterTemplates('space')" class="btn btn-outline btn-sm rounded-full filter-btn" data-filter="space">공간/렌탈</button>
-      <button onclick="filterTemplates('medical')" class="btn btn-outline btn-sm rounded-full filter-btn" data-filter="medical">병원/의료</button>
-      <button onclick="filterTemplates('stay')" class="btn btn-outline btn-sm rounded-full filter-btn" data-filter="stay">숙박/스테이</button>
+    <!-- Category Filter -->
+    <div class="flex flex-wrap justify-center gap-2 mb-12">
+      <button onclick="filterTemplates('all')" class="filter-btn active px-4 py-2 rounded-full text-sm font-medium border border-gray-200 bg-white text-gray-700 hover:bg-gray-50 transition-colors data-[active=true]:bg-emerald-600 data-[active=true]:text-white data-[active=true]:border-emerald-600">전체</button>
+      <button onclick="filterTemplates('shopping')" class="filter-btn px-4 py-2 rounded-full text-sm font-medium border border-gray-200 bg-white text-gray-700 hover:bg-gray-50 transition-colors data-[active=true]:bg-emerald-600 data-[active=true]:text-white data-[active=true]:border-emerald-600">쇼핑몰</button>
+      <button onclick="filterTemplates('corporate')" class="filter-btn px-4 py-2 rounded-full text-sm font-medium border border-gray-200 bg-white text-gray-700 hover:bg-gray-50 transition-colors data-[active=true]:bg-emerald-600 data-[active=true]:text-white data-[active=true]:border-emerald-600">기업/브랜드</button>
+      <button onclick="filterTemplates('beauty')" class="filter-btn px-4 py-2 rounded-full text-sm font-medium border border-gray-200 bg-white text-gray-700 hover:bg-gray-50 transition-colors data-[active=true]:bg-emerald-600 data-[active=true]:text-white data-[active=true]:border-emerald-600">뷰티/살롱</button>
+      <button onclick="filterTemplates('dining')" class="filter-btn px-4 py-2 rounded-full text-sm font-medium border border-gray-200 bg-white text-gray-700 hover:bg-gray-50 transition-colors data-[active=true]:bg-emerald-600 data-[active=true]:text-white data-[active=true]:border-emerald-600">F&B/다이닝</button>
+      <button onclick="filterTemplates('space')" class="filter-btn px-4 py-2 rounded-full text-sm font-medium border border-gray-200 bg-white text-gray-700 hover:bg-gray-50 transition-colors data-[active=true]:bg-emerald-600 data-[active=true]:text-white data-[active=true]:border-emerald-600">공간/렌탈</button>
+      <button onclick="filterTemplates('medical')" class="filter-btn px-4 py-2 rounded-full text-sm font-medium border border-gray-200 bg-white text-gray-700 hover:bg-gray-50 transition-colors data-[active=true]:bg-emerald-600 data-[active=true]:text-white data-[active=true]:border-emerald-600">병원/의료</button>
+      <button onclick="filterTemplates('stay')" class="filter-btn px-4 py-2 rounded-full text-sm font-medium border border-gray-200 bg-white text-gray-700 hover:bg-gray-50 transition-colors data-[active=true]:bg-emerald-600 data-[active=true]:text-white data-[active=true]:border-emerald-600">숙박/스테이</button>
     </div>
 
-    <!-- Filter Style -->
-    <style>
-      .filter-btn {
-        background: white;
-        border-color: #e5e7eb;
-        color: #4b5563;
-        transition: all 0.2s;
-      }
-      .filter-btn:hover {
-        background: #f9fafb;
-        border-color: #d1d5db;
-      }
-      .filter-btn.active {
-        background: var(--color-primary);
-        color: white;
-        border-color: var(--color-primary);
-      }
-    </style>
-
-    <script>
-      function filterTemplates(category) {
-        // Toggle Buttons
-        document.querySelectorAll('.filter-btn').forEach(btn => {
-          btn.classList.remove('active');
-          if(btn.dataset.filter === category) {
-            btn.classList.add('active');
-          }
-        });
-
-        // Filter Grid
-        const cards = document.querySelectorAll('.template-card');
-        cards.forEach(card => {
-          if (category === 'all' || card.dataset.category === category) {
-            card.style.display = 'block';
-          } else {
-            card.style.display = 'none';
-          }
-        });
-      }
-    </script>
-
     <!-- Templates Grid -->
-    <div class="grid md:grid-cols-2 gap-8" id="templates-grid">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8 md:gap-12" id="templates-grid">
       <% 
         templates_source = @design_templates.presence || [
-          { id: 'beauty', title: "LUMIER", desc: "청담동 하이엔드 살롱 스타일. 고급스러운 세리프 폰트.", cat: "beauty", url: "/templates/beauty", img: "https://images.unsplash.com/photo-1595476106812-d2d7237e4585?q=80&w=800" },
-          { id: 'dining', title: "溫 (ON)", desc: "여백의 미를 살린 모던 오마카세 다이닝 스타일.", cat: "dining", url: "/templates/dining", img: "https://images.unsplash.com/photo-1590301139475-23eddb51f1f2?q=80&w=800" },
-          { id: 'gym', title: "Sculpt & Soul", desc: "아티스틱 웰니스 브랜드 스타일. 감각적인 다크 모드.", cat: "fitness", url: "/templates/gym", img: "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=800" },
-          { id: 'study', title: "Focus Lab", desc: "건축적인 조형미가 돋보이는 스터디 랩 스타일.", cat: "space", url: "/templates/study", img: "https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=800" },
-          { id: 'stay', title: "서촌 쉼", desc: "한옥의 정취를 담은 감성 스테이. 수평 스크롤.", cat: "stay", url: "/templates/stay", img: "https://images.unsplash.com/photo-1610641818989-c2051b5e2cfd?q=80&w=800" },
-          { id: 'corporate', title: "Novus", desc: "신뢰감을 주는 블루톤의 IT 스타트업 스타일.", cat: "corporate", url: "/templates/corporate", img: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=800" },
-          { id: 'ecommerce', title: "AETHER", desc: "이미지가 돋보이는 모던 시크 패션 브랜드.", cat: "shopping", url: "/templates/ecommerce", img: "https://images.unsplash.com/photo-1539109136881-3be0616acf4b?q=80&w=800" },
-          { id: 'cafe', title: "Daily Crumb", desc: "따뜻한 베이지톤의 감성 베이커리 스타일.", cat: "cafe", url: "/templates/cafe", img: "https://images.unsplash.com/photo-1509440159596-0249088772ff?q=80&w=800" },
-          { id: 'portfolio', title: "ARCHIVE", desc: "크리에이터를 위한 다크모드 그리드 갤러리.", cat: "portfolio", url: "/templates/portfolio", img: "https://images.unsplash.com/photo-1600607686527-6fb886090705?q=80&w=800" },
-          { id: 'medical', title: "Pure Clinic", desc: "깨끗하고 전문적인 느낌의 클리닉 스타일.", cat: "medical", url: "/templates/medical", img: "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?q=80&w=800" },
-          { id: 'law', title: "Trust & Logic", desc: "세리프 폰트와 네이비 컬러로 무게감을 준 전문직.", cat: "law", url: "/templates/law", img: "https://images.unsplash.com/photo-1589829085413-56de8ae18c73?q=80&w=800" },
-          { id: 'wedding', title: "Bliss Moment", desc: "파스텔 톤의 우아하고 로맨틱한 웨딩 페이지.", cat: "wedding", url: "/templates/wedding", img: "https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=800" }
+          { id: 'beauty', title: "LUMIER", desc: "청담동 하이엔드 살롱 스타일. 고급스러운 세리프 폰트와 인물 중심 레이아웃.", cat: "beauty", url: "/templates/beauty", img: "https://images.unsplash.com/photo-1595476106812-d2d7237e4585?q=80&w=800" },
+          { id: 'dining', title: "溫 (ON)", desc: "여백의 미를 살린 모던 오마카세 다이닝 스타일. 갤러리 같은 메뉴 소개 디자인.", cat: "dining", url: "/templates/dining", img: "https://images.unsplash.com/photo-1590301139475-23eddb51f1f2?q=80&w=800" },
+          { id: 'gym', title: "Sculpt & Soul", desc: "아티스틱 웰니스 브랜드 스타일. 감각적인 다크 모드와 타이포그래피.", cat: "fitness", url: "/templates/gym", img: "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=800" },
+          { id: 'study', title: "Focus Lab", desc: "건축적인 조형미가 돋보이는 스터디 랩 스타일. 집중력을 높이는 미니멀리즘.", cat: "space", url: "/templates/study", img: "https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=800" },
+          { id: 'stay', title: "서촌 쉼", desc: "한옥의 정취를 담은 감성 스테이. 수평 스크롤 스토리텔링.", cat: "stay", url: "/templates/stay", img: "https://images.unsplash.com/photo-1610641818989-c2051b5e2cfd?q=80&w=800" },
+          { id: 'corporate', title: "Novus", desc: "신뢰감을 주는 블루톤의 IT 스타트업 스타일. 데이터 시각화 섹션 포함.", cat: "corporate", url: "/templates/corporate", img: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=800" },
+          { id: 'ecommerce', title: "AETHER", desc: "이미지가 돋보이는 모던 시크 패션 브랜드. 상품 디테일을 살리는 레이아웃.", cat: "shopping", url: "/templates/ecommerce", img: "https://images.unsplash.com/photo-1539109136881-3be0616acf4b?q=80&w=800" },
+          { id: 'cafe', title: "Daily Crumb", desc: "따뜻한 베이지톤의 감성 베이커리 스타일. 인스타그램 피드 연동 디자인.", cat: "cafe", url: "/templates/cafe", img: "https://images.unsplash.com/photo-1509440159596-0249088772ff?q=80&w=800" },
+          { id: 'portfolio', title: "ARCHIVE", desc: "크리에이터를 위한 다크모드 그리드 갤러리. 작품에만 집중할 수 있는 디자인.", cat: "portfolio", url: "/templates/portfolio", img: "https://images.unsplash.com/photo-1600607686527-6fb886090705?q=80&w=800" },
+          { id: 'medical', title: "Pure Clinic", desc: "깨끗하고 전문적인 느낌의 클리닉 스타일. 신뢰감을 주는 의료진 소개 섹션.", cat: "medical", url: "/templates/medical", img: "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?q=80&w=800" },
+          { id: 'law', title: "Trust & Logic", desc: "세리프 폰트와 네이비 컬러로 무게감을 준 전문직. 성공 사례 중심 레이아웃.", cat: "law", url: "/templates/law", img: "https://images.unsplash.com/photo-1589829085413-56de8ae18c73?q=80&w=800" },
+          { id: 'wedding', title: "Bliss Moment", desc: "파스텔 톤의 우아하고 로맨틱한 웨딩 페이지. 초대장 연동 기능.", cat: "wedding", url: "/templates/wedding", img: "https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=800" }
         ].map { |t| t }
       %>
 
       <% templates_source.each do |template| %>
-        <div class="card template-card group" data-category="<%= template[:cat] %>" style="transition: all 0.3s ease;">
+        <div class="template-card group bg-white rounded-2xl overflow-hidden hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1" data-category="<%= template[:cat] %>">
           <!-- 1:1 Image Ratio -->
-          <div class="card-image-wrapper relative overflow-hidden rounded-xl bg-gray-100 mb-6 shadow-sm border border-gray-100" style="aspect-ratio: 1/1;">
+          <div class="relative overflow-hidden bg-gray-200 aspect-square">
              <img src="<%= template[:img] %>" 
-                  class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" 
+                  class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" 
                   alt="<%= template[:title] %>">
+             <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-20 transition-all duration-300"></div>
           </div>
           
-          <div class="px-2">
-            <div class="flex justify-between items-center mb-3">
-              <span class="text-xs font-bold text-emerald-600 uppercase tracking-wider bg-emerald-50 px-2 py-1 rounded">
+          <div class="p-8">
+            <div class="flex justify-between items-center mb-4">
+              <span class="text-xs font-bold text-emerald-600 uppercase tracking-wider bg-emerald-50 px-3 py-1.5 rounded-full">
                 <%= template[:cat].upcase %>
               </span>
             </div>
-            <h3 class="text-2xl font-bold text-gray-900 mb-2">
+            <h3 class="text-2xl font-bold text-gray-900 mb-2 group-hover:text-emerald-600 transition-colors">
               <%= template[:title] %>
             </h3>
-            <p class="text-gray-500 mb-6 text-sm leading-relaxed line-clamp-2">
+            <p class="text-gray-500 mb-8 text-sm leading-relaxed line-clamp-2 h-10">
               <%= template[:desc] %>
             </p>
 
             <!-- Action Buttons -->
-            <div class="grid grid-cols-2 gap-3">
+            <div class="grid grid-cols-2 gap-4">
               <button onclick="openTemplateModal('<%= template[:id] %>', '<%= template[:title] %>')" 
-                      class="py-3 px-4 rounded-lg border border-gray-200 text-gray-700 font-bold hover:bg-gray-50 hover:border-gray-300 transition flex items-center justify-center gap-2">
+                      class="py-3 px-4 rounded-xl border border-gray-200 text-gray-700 font-bold hover:bg-gray-50 hover:border-gray-300 transition-all flex items-center justify-center gap-2 text-sm">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
                 둘러보기
               </button>
               <a href="/contact?template_id=<%= template[:id] %>&template_title=<%= u(template[:title]) %>" 
-                 class="py-3 px-4 rounded-lg bg-emerald-500 text-white font-bold hover:bg-emerald-600 shadow-md shadow-emerald-200 transition text-center flex items-center justify-center gap-2">
+                 class="py-3 px-4 rounded-xl bg-emerald-500 text-white font-bold hover:bg-emerald-600 shadow-lg shadow-emerald-100 hover:shadow-emerald-200 transition-all text-center flex items-center justify-center gap-2 text-sm">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
                 의뢰하기
               </a>
@@ -139,137 +100,98 @@
 </section>
 
 <!-- Template Live Demo Modal -->
-<div id="template-modal" style="display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; z-index: var(--z-modal); opacity: 0; transition: opacity 0.3s ease;">
+<div id="template-modal" class="hidden fixed inset-0 z-[9999] opacity-0 transition-opacity duration-300 ease-in-out">
   <!-- Backdrop -->
-  <div onclick="closeTemplateModal()" style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.85); backdrop-filter: blur(5px);"></div>
+  <div onclick="closeTemplateModal()" class="absolute inset-0 bg-black/90 backdrop-blur-sm cursor-pointer"></div>
   
   <!-- Modal Content -->
-  <div class="modal-content" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%) scale(0.95); width: 95%; max-width: 1400px; height: 90vh; background: white; border-radius: var(--radius-xl); box-shadow: var(--shadow-2xl); display: flex; flex-direction: column; overflow: hidden; transition: transform 0.3s ease;">
+  <div class="modal-content absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 scale-95 w-[95%] max-w-[1600px] h-[90vh] bg-white rounded-2xl shadow-2xl flex flex-col overflow-hidden transition-transform duration-300">
     
     <!-- Modal Header -->
-    <div style="padding: var(--space-4) var(--space-6); border-bottom: 1px solid var(--color-gray-200); display: flex; justify-content: space-between; align-items: center; background: white; z-index: 10;">
-      <div style="display: flex; align-items: center; gap: 12px;">
-        <span id="modal-category" style="font-size: var(--text-xs); color: var(--color-accent); font-weight: 700; text-transform: uppercase; background: #f0fdf4; padding: 4px 8px; border-radius: 4px;">CATEGORY</span>
-        <h2 id="modal-title" style="font-size: var(--text-xl); margin: 0; font-weight: 700;">Template Title</h2>
+    <div class="px-6 py-4 flex justify-between items-center bg-white border-b border-gray-100 z-10 shrink-0">
+      <div class="flex items-center gap-4">
+        <span id="modal-category" class="text-xs font-bold text-emerald-600 bg-emerald-50 px-2 py-1 rounded uppercase tracking-wider">CATEGORY</span>
+        <h2 id="modal-title" class="text-xl font-bold text-gray-900">Template Title</h2>
       </div>
       
-      <div style="display: flex; align-items: center; gap: var(--space-4);">
+      <div class="flex items-center gap-4">
         <!-- View Switcher -->
-        <div style="background: var(--color-gray-100); padding: 4px; border-radius: var(--radius-full); display: flex;">
-          <button onclick="switchView('pc')" id="btn-view-pc" class="view-btn active">
+        <div class="bg-gray-100 p-1 rounded-full flex">
+          <button onclick="switchView('pc')" id="btn-view-pc" class="view-btn flex items-center px-4 py-1.5 rounded-full text-sm font-semibold text-gray-500 transition-all data-[active=true]:bg-white data-[active=true]:text-emerald-600 data-[active=true]:shadow-sm">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
-            <span style="margin-left: 4px;">PC</span>
+            <span class="ml-2">PC</span>
           </button>
-          <button onclick="switchView('mobile')" id="btn-view-mobile" class="view-btn">
+          <button onclick="switchView('mobile')" id="btn-view-mobile" class="view-btn flex items-center px-4 py-1.5 rounded-full text-sm font-semibold text-gray-500 transition-all data-[active=true]:bg-white data-[active=true]:text-emerald-600 data-[active=true]:shadow-sm">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect><line x1="12" y1="18" x2="12" y2="18"></line></svg>
-            <span style="margin-left: 4px;">Mobile</span>
+            <span class="ml-2">Mobile</span>
           </button>
         </div>
 
-        <button onclick="closeTemplateModal()" style="background: none; border: none; cursor: pointer; color: var(--color-gray-500); padding: 8px;">
+        <button onclick="closeTemplateModal()" class="p-2 text-gray-400 hover:text-gray-900 transition-colors">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
         </button>
       </div>
     </div>
 
     <!-- Modal Body (Iframe Area) -->
-    <div style="flex: 1; overflow: hidden; background: var(--color-gray-100); position: relative; display: flex; justify-content: center; align-items: center; padding: var(--space-6);">
+    <div class="flex-1 bg-gray-100 relative flex justify-center items-center p-8 overflow-hidden">
       
       <!-- PC View Frame -->
-      <div id="view-pc" style="width: 100%; height: 100%; background: white; box-shadow: var(--shadow-lg); border-radius: var(--radius-sm); overflow: hidden; display: flex; flex-direction: column;">
-        <div style="height: 24px; background: #e5e7eb; display: flex; align-items: center; gap: 6px; padding-left: 10px;">
-           <div style="width: 8px; height: 8px; border-radius: 50%; background: #ef4444;"></div>
-           <div style="width: 8px; height: 8px; border-radius: 50%; background: #f59e0b;"></div>
-           <div style="width: 8px; height: 8px; border-radius: 50%; background: #10b981;"></div>
+      <div id="view-pc" class="w-full h-full bg-white rounded-lg shadow-lg overflow-hidden flex flex-col transition-all duration-300">
+        <div class="h-8 bg-gray-100 flex items-center gap-2 px-3 border-b border-gray-200 shrink-0">
+           <div class="w-2.5 h-2.5 rounded-full bg-red-400"></div>
+           <div class="w-2.5 h-2.5 rounded-full bg-amber-400"></div>
+           <div class="w-2.5 h-2.5 rounded-full bg-emerald-400"></div>
         </div>
-        <iframe id="modal-iframe-pc" src="" style="width: 100%; height: 100%; border: none;"></iframe>
+        <iframe id="modal-iframe-pc" src="" class="flex-1 w-full h-full border-none bg-white"></iframe>
       </div>
 
       <!-- Mobile View Frame -->
-      <div id="view-mobile" style="display: none; width: 375px; height: 100%; max-height: 812px; background: black; border-radius: 40px; box-shadow: var(--shadow-2xl); border: 12px solid #1a1a1a; overflow: hidden; position: relative;">
-        <!-- Notch -->
-        <div style="position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 120px; height: 25px; background: #1a1a1a; border-radius: 0 0 15px 15px; z-index: 10;"></div>
-        <iframe id="modal-iframe-mobile" src="" style="width: 100%; height: 100%; border: none; background: white;"></iframe>
+      <div id="view-mobile" class="hidden w-[375px] h-full max-h-[812px] bg-black rounded-[40px] shadow-2xl border-[12px] border-gray-900 overflow-hidden relative">
+        <div class="absolute top-0 left-1/2 -translate-x-1/2 w-32 h-6 bg-gray-900 rounded-b-2xl z-10"></div>
+        <iframe id="modal-iframe-mobile" src="" class="w-full h-full border-none bg-white"></iframe>
       </div>
 
     </div>
 
     <!-- Modal Footer -->
-    <div style="padding: var(--space-4) var(--space-6); background: white; border-top: 1px solid var(--color-gray-200); display: flex; justify-content: space-between; align-items: center;">
-      <p id="modal-desc" style="margin: 0; color: var(--color-gray-600); font-size: var(--text-sm); max-width: 60%;">Template description...</p>
+    <div class="px-8 py-5 bg-white border-t border-gray-100 flex justify-between items-center shrink-0">
+      <p id="modal-desc" class="m-0 text-gray-500 text-sm max-w-[60%] line-clamp-2">Template description...</p>
       
-      <a id="btn-pick" href="#" class="btn btn-primary btn-lg shine-effect" style="padding-left: var(--space-8); padding-right: var(--space-8);">
-        PICK! 이 템플릿으로 의뢰하기
+      <a id="btn-pick" href="#" class="px-8 py-3 bg-emerald-600 text-white font-bold rounded-xl shadow-lg shadow-emerald-200 hover:bg-emerald-700 hover:-translate-y-0.5 transition-all text-sm flex items-center gap-2 group">
+        <span>PICK! 이 템플릿으로 의뢰하기</span>
+        <svg class="w-4 h-4 transition-transform group-hover:translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14m-7-7l7 7-7 7"/></svg>
       </a>
     </div>
 
   </div>
 </div>
 
-<style>
-  .template-overlay {
-    position: absolute;
-    top: 0; left: 0; right: 0; bottom: 0;
-    background: rgba(0,0,0,0.3);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-  }
-  
-  .template-card:hover .template-overlay {
-    opacity: 1;
-  }
-  
-  .template-card:hover .template-thumb {
-    transform: scale(1.05);
-  }
-
-  .view-btn {
-    border: none;
-    background: transparent;
-    padding: 6px 12px;
-    border-radius: var(--radius-full);
-    font-size: var(--text-sm);
-    font-weight: 600;
-    color: var(--color-gray-500);
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    transition: all 0.2s ease;
-  }
-
-  .view-btn.active {
-    background: white;
-    color: var(--color-primary);
-    box-shadow: var(--shadow-sm);
-  }
-
-  .shine-effect {
-    position: relative;
-    overflow: hidden;
-  }
-  
-  .shine-effect::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-    animation: shine 3s infinite;
-  }
-
-  @keyframes shine {
-    0% { left: -100%; }
-    20% { left: 100%; }
-    100% { left: 100%; }
-  }
-</style>
-
 <script>
+  function filterTemplates(category) {
+    // Toggle Buttons
+    const buttons = document.querySelectorAll('.filter-btn');
+    buttons.forEach(btn => {
+      // Remove data-active attribute
+      btn.removeAttribute('data-active');
+      
+      // Check if button text matches category or onclick matches category
+      if (btn.getAttribute('onclick').includes(category)) {
+        btn.setAttribute('data-active', 'true');
+      }
+    });
+
+    // Filter Grid
+    const cards = document.querySelectorAll('.template-card');
+    cards.forEach(card => {
+      if (category === 'all' || card.dataset.category === category) {
+        card.style.display = 'block';
+      } else {
+        card.style.display = 'none';
+      }
+    });
+  }
+
   function openTemplateModal(id, title) {
     const modal = document.getElementById('template-modal');
     const content = modal.querySelector('.modal-content');
@@ -278,30 +200,14 @@
     // Get Data
     const desc = dataContainer.querySelector('.data-desc').innerText;
     const category = dataContainer.querySelector('.data-category').innerText;
-    const imgPc = dataContainer.querySelector('.data-img-pc').innerText;
-    const imgMobile = dataContainer.querySelector('.data-img-mobile').innerText;
+    const previewUrl = dataContainer.querySelector('.data-preview-url').innerText.trim();
 
     // Set Data
     document.getElementById('modal-title').innerText = title;
     document.getElementById('modal-desc').innerText = desc;
     document.getElementById('modal-category').innerText = category || 'TEMPLATE';
     
-    // Set Preview URL (Live Demo)
-    const previewUrl = dataContainer.querySelector('.data-preview-url').innerText.trim();
-    const btnPreview = document.getElementById('btn-preview');
-    
-    if (previewUrl && previewUrl !== "") {
-      btnPreview.href = previewUrl;
-      btnPreview.style.display = 'inline-flex';
-    } else {
-      btnPreview.style.display = 'none';
-      btnPreview.href = "#";
-    }
-
-    // Set Preview URL to Iframes
-    const previewUrl = dataContainer.querySelector('.data-preview-url') ? dataContainer.querySelector('.data-preview-url').innerText.trim() : "";
-    
-    // PC Iframe
+    // Set Iframes
     const pcIframe = document.getElementById('modal-iframe-pc');
     const moIframe = document.getElementById('modal-iframe-mobile');
 
@@ -320,18 +226,18 @@
     switchView('pc');
 
     // Show Modal
-    modal.style.display = 'block';
+    modal.classList.remove('hidden');
+    // Small delay to allow display:block to apply before opacity transition
     setTimeout(() => {
-      modal.style.opacity = '1';
-      content.style.transform = 'translate(-50%, -50%) scale(1)';
+        modal.classList.remove('opacity-0');
     }, 10);
     document.body.style.overflow = 'hidden';
   }
   
-  // ESC Key Listener for Template Modal
+  // ESC Key Listener
   document.addEventListener('keydown', function(event) {
     const modal = document.getElementById('template-modal');
-    if (modal.style.display === 'block') {
+    if (!modal.classList.contains('hidden')) {
       if (event.key === "Escape") {
         closeTemplateModal();
       }
@@ -340,13 +246,16 @@
 
   function closeTemplateModal() {
     const modal = document.getElementById('template-modal');
-    const content = modal.querySelector('.modal-content');
     
-    modal.style.opacity = '0';
-    content.style.transform = 'translate(-50%, -50%) scale(0.95)';
+    modal.classList.add('opacity-0');
     
     setTimeout(() => {
-      modal.style.display = 'none';
+      modal.classList.add('hidden');
+      
+      // Clear iframes
+      document.getElementById('modal-iframe-pc').src = '';
+      document.getElementById('modal-iframe-mobile').src = '';
+      
       document.body.style.overflow = '';
     }, 300);
   }
@@ -358,15 +267,17 @@
     const btnMobile = document.getElementById('btn-view-mobile');
 
     if (mode === 'pc') {
-      viewPc.style.display = 'block';
-      viewMobile.style.display = 'none';
-      btnPc.classList.add('active');
-      btnMobile.classList.remove('active');
+      viewPc.classList.remove('hidden');
+      viewMobile.classList.add('hidden');
+      
+      btnPc.setAttribute('data-active', 'true');
+      btnMobile.removeAttribute('data-active');
     } else {
-      viewPc.style.display = 'none';
-      viewMobile.style.display = 'block';
-      btnPc.classList.remove('active');
-      btnMobile.classList.add('active');
+      viewPc.classList.add('hidden');
+      viewMobile.classList.remove('hidden');
+      
+      btnPc.removeAttribute('data-active');
+      btnMobile.setAttribute('data-active', 'true');
     }
   }
 </script>
