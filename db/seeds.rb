@@ -100,7 +100,7 @@ templates = [
     description: "건물위생관리업 정식 등록업체. 신뢰감을 주는 블루톤의 전문 청소업체 템플릿.", 
     category: "space", 
     preview_url: "/templates/cleaning", 
-    image_url: "https://images.unsplash.com/photo-1527515653594-e0c6e001c408?q=80&w=800&auto=format&fit=crop",
+    image_url: "https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=800",
     is_featured: true
   }
 ]

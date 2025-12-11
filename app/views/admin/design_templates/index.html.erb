@@ -5,37 +5,50 @@
   </div>
 </div>
 
-<div class="grid grid-3" style="gap: var(--space-6);">
-  <% @design_templates.each do |template| %>
-    <div class="card" style="padding: var(--space-4);">
-      <div style="height: 200px; background: #eee; border-radius: var(--radius-md); margin-bottom: var(--space-4); overflow: hidden; position: relative;">
-        <% 
-          thumb_src = if template.image_url.present?
-                        template.image_url
-                      elsif template.pc_image.attached?
-                        url_for(template.pc_image)
-                      else
-                        nil
-                      end
-        %>
-        <% if thumb_src %>
-          <img src="<%= thumb_src %>" style="width: 100%; height: 100%; object-fit: cover;">
-        <% else %>
-          <div style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; color: #999;">No Image</div>
-        <% end %>
+<% if @design_templates.any? %>
+  <div class="grid grid-3" style="gap: var(--space-6);">
+    <% @design_templates.each do |template| %>
+      <div class="card" style="padding: var(--space-4);">
+        <div style="height: 200px; background: #eee; border-radius: var(--radius-md); margin-bottom: var(--space-4); overflow: hidden; position: relative;">
+          <% 
+            thumb_src = if template.image_url.present?
+                          template.image_url
+                        elsif template.pc_image.attached?
+                          url_for(template.pc_image)
+                        else
+                          nil
+                        end
+          %>
+          <% if thumb_src %>
+            <img src="<%= thumb_src %>" style="width: 100%; height: 100%; object-fit: cover;">
+          <% else %>
+            <div style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; color: #999;">No Image</div>
+          <% end %>
+          
+          <!-- Featured Badge -->
+          <% if template.is_featured %>
+            <div style="position: absolute; top: 10px; right: 10px; background: var(--color-accent); color: white; font-size: 11px; font-weight: bold; padding: 2px 8px; border-radius: 99px;">MAIN</div>
+          <% end %>
+        </div>
+        <h3 style="font-size: var(--text-lg); margin-bottom: var(--space-2);"><%= template.title %></h3>
+        <p style="color: var(--color-gray-500); font-size: var(--text-sm);"><%= template.category %></p>
         
-        <!-- Featured Badge -->
-        <% if template.is_featured %>
-          <div style="position: absolute; top: 10px; right: 10px; background: var(--color-accent); color: white; font-size: 11px; font-weight: bold; padding: 2px 8px; border-radius: 99px;">MAIN</div>
-        <% end %>
+        <div style="display: flex; gap: var(--space-2); margin-top: var(--space-4);">
+          <%= link_to "수정", edit_admin_design_template_path(template), class: "btn btn-outline btn-sm", style: "flex: 1;" %>
+          <%= button_to "삭제", admin_design_template_path(template), method: :delete, class: "btn btn-sm", style: "background: var(--color-error); color: white; border: none; flex: 1;", title: "삭제하기", onclick: "return confirm('정말 삭제하시겠습니까?');" %>
+        </div>
       </div>
-      <h3 style="font-size: var(--text-lg); margin-bottom: var(--space-2);"><%= template.title %></h3>
-      <p style="color: var(--color-gray-500); font-size: var(--text-sm);"><%= template.category %></p>
-      
-      <div style="display: flex; gap: var(--space-2); margin-top: var(--space-4);">
-        <%= link_to "수정", edit_admin_design_template_path(template), class: "btn btn-outline btn-sm", style: "flex: 1;" %>
-        <%= button_to "삭제", admin_design_template_path(template), method: :delete, class: "btn btn-sm", style: "background: var(--color-error); color: white; border: none; flex: 1;", title: "삭제하기", onclick: "return confirm('정말 삭제하시겠습니까?');" %>
-      </div>
+    <% end %>
+  </div>
+<% else %>
+  <div style="text-align: center; padding: 60px 20px; background: white; border-radius: var(--radius-lg); border: 1px dashed var(--color-gray-300);">
+    <div style="width: 60px; height: 60px; background: var(--color-gray-100); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px;">
+      <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="var(--color-gray-400)" stroke-width="2">
+        <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+      </svg>
     </div>
-  <% end %>
-</div>
+    <h3 style="font-size: var(--text-xl); margin-bottom: var(--space-2); color: var(--color-gray-800);">등록된 템플릿이 없습니다</h3>
+    <p style="color: var(--color-gray-500); margin-bottom: var(--space-6);">새로운 디자인 템플릿을 등록하여 포트폴리오를 관리해보세요.</p>
+    <%= link_to "첫 번째 템플릿 추가하기", new_admin_design_template_path, class: "btn btn-primary" %>
+  </div>
+<% end %>
