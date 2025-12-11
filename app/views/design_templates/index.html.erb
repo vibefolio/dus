@@ -49,7 +49,7 @@
       %>
 
       <% templates_source.each do |template| %>
-        <div class="group bg-white rounded-2xl overflow-hidden border border-gray-100 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1" data-category="<%= template[:cat] %>">
+        <div class="template-card fade-in group bg-white rounded-2xl overflow-hidden border border-gray-100 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1" data-category="<%= template[:cat] %>">
           <!-- Thumbnail Image (Clickable) -->
           <div class="relative w-full aspect-[4/3] bg-gray-200 overflow-hidden cursor-pointer" onclick="openLiveDemo('<%= template[:url] %>', '<%= template[:title] %>')">
             <% if template[:img].present? %>
@@ -287,3 +287,13 @@
     }
   }
 </script>
+
+<style>
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .fade-in {
+    animation: fadeIn 0.4s ease-out forwards;
+  }
+</style>

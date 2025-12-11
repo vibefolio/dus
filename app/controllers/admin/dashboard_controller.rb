@@ -1,12 +1,14 @@
 class Admin::DashboardController < ApplicationController
   layout "admin"
-  layout "admin"
-  before_action :authenticate_admin!
+  http_basic_authenticate_with name: ENV.fetch("ADMIN_USERNAME", "admin"), password: ENV.fetch("ADMIN_PASSWORD", "password123")
 
   def index
     @portfolios_count = Portfolio.count
     @quotes_count = Quote.count
     @pending_quotes_count = Quote.where(status: "pending").count
+    @templates_count = DesignTemplate.count
+    @featured_templates_count = DesignTemplate.where(is_featured: true).count
+    
     @recent_portfolios = Portfolio.order(created_at: :desc).limit(5)
     @recent_quotes = Quote.order(created_at: :desc).limit(5)
   end

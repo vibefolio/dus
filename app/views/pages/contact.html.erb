@@ -203,63 +203,59 @@
     </script>
 
   <% else %>
-    <!-- [일반 문의 모드] 깔끔한 싱글 컨테이너 (Container) -->
-    <div class="w-full pt-20 pb-20 px-4">
-      <div class="w-full max-w-4xl mx-auto bg-white p-8 md:p-12 rounded-3xl shadow-2xl border border-gray-100">
-        <div class="text-center mb-10">
-          <h1 class="text-4xl font-bold mb-3 text-gray-900">프로젝트 문의</h1>
-          <p class="text-gray-500">
-            성공적인 프로젝트의 시작, 디어스가 함께하겠습니다.
-          </p>
+    <!-- [일반 문의 모드] 깔끔한 싱글 컨테이너 -->
+    <div class="container container-sm" style="padding-bottom: 80px;">
+      <div class="card" style="padding: var(--space-8);">
+        <div style="text-align: center; margin-bottom: var(--space-8);">
+          <h2 style="font-size: var(--text-3xl); margin-bottom: var(--space-2);">프로젝트 문의</h2>
+          <p class="text-gray">성공적인 프로젝트의 시작, 디어스가 함께하겠습니다.</p>
         </div>
 
-        <%= form_with url: contact_path, local: true, class: "space-y-6" do |f| %>
-          <div class="grid md:grid-cols-2 gap-6">
-            <div>
-              <label class="block text-sm font-bold text-gray-700 mb-2">이름 *</label>
-              <%= f.text_field :name, class: "w-full border-gray-300 rounded-lg shadow-sm focus:border-emerald-500 focus:ring-emerald-500 py-3 px-4 transition bg-gray-50", required: true, placeholder: "홍길동" %>
+        <%= form_with model: @quote, url: create_quote_path, local: true, class: "contact-form", html: { onsubmit: "return submitContactForm(this);" } do |f| %>
+          
+          <div class="form-grid">
+            <div class="form-group">
+              <%= f.label :contact_name, "담당자 성함 *", class: "form-label" %>
+              <%= f.text_field :contact_name, class: "form-input", placeholder: "홍길동", required: true %>
             </div>
-            <div>
-              <label class="block text-sm font-bold text-gray-700 mb-2">회사명</label>
-              <%= f.text_field :company, class: "w-full border-gray-300 rounded-lg shadow-sm focus:border-emerald-500 focus:ring-emerald-500 py-3 px-4 transition bg-gray-50", placeholder: "회사명" %>
-            </div>
-          </div>
-
-          <div class="grid md:grid-cols-2 gap-6">
-            <div>
-              <label class="block text-sm font-bold text-gray-700 mb-2">이메일 *</label>
-              <%= f.email_field :email, class: "w-full border-gray-300 rounded-lg shadow-sm focus:border-emerald-500 focus:ring-emerald-500 py-3 px-4 transition bg-gray-50", required: true, placeholder: "email@example.com" %>
-            </div>
-            <div>
-              <label class="block text-sm font-bold text-gray-700 mb-2">연락처 *</label>
-              <%= f.text_field :phone, class: "w-full border-gray-300 rounded-lg shadow-sm focus:border-emerald-500 focus:ring-emerald-500 py-3 px-4 transition bg-gray-50", required: true, placeholder: "010-0000-0000" %>
+            
+            <div class="form-group">
+              <%= f.label :company_name, "회사/단체명", class: "form-label" %>
+              <%= f.text_field :company_name, class: "form-input", placeholder: "(주)디어스" %>
             </div>
           </div>
 
-          <div>
-            <label class="block text-sm font-bold text-gray-700 mb-2">프로젝트 유형 *</label>
-            <%= f.select :project_type, ["웹사이트 개발", "애플리케이션 개발", "쇼핑몰 구축", "유지보수", "기타"], { prompt: "선택해주세요" }, class: "w-full border-gray-300 rounded-lg shadow-sm focus:border-emerald-500 focus:ring-emerald-500 py-3 px-4 transition bg-gray-50 cursor-pointer", required: true %>
+          <div class="form-grid">
+            <div class="form-group">
+              <%= f.label :email, "이메일 *", class: "form-label" %>
+              <%= f.email_field :email, class: "form-input", placeholder: "contact@example.com", required: true %>
+            </div>
+            
+            <div class="form-group">
+              <%= f.label :phone, "연락처 *", class: "form-label" %>
+              <%= f.text_field :phone, class: "form-input", placeholder: "010-1234-5678", required: true %>
+            </div>
           </div>
 
-          <div>
-             <label class="block text-sm font-bold text-gray-700 mb-2">예산 범위</label>
-             <div class="relative">
-                <%= f.select :budget, ["500만원 ~ 1,000만원", "1,000만원 ~ 3,000만원", "3,000만원 ~ 5,000만원", "5,000만원 이상", "미정"], { prompt: "선택해주세요" }, class: "w-full border-gray-300 rounded-lg shadow-sm focus:border-emerald-500 focus:ring-emerald-500 py-3 px-4 transition bg-gray-50 cursor-pointer appearance-none" %>
-                <div class="absolute inset-y-0 right-0 flex items-center px-4 pointer-events-none">
-                  <svg class="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
-                </div>
-             </div>
+          <div class="form-group">
+             <%= f.label :project_type, "프로젝트 유형 *", class: "form-label" %>
+             <%= f.select :project_type, ["웹사이트 제작", "쇼핑몰 제작", "앱 개발", "유지보수", "기타"], { prompt: "프로젝트 유형을 선택해주세요" }, class: "form-select", required: true %>
           </div>
 
-          <div>
-            <label class="block text-sm font-bold text-gray-700 mb-2">문의 내용 *</label>
-            <%= f.text_area :message, rows: 6, class: "w-full border-gray-300 rounded-lg shadow-sm focus:border-emerald-500 focus:ring-emerald-500 py-3 px-4 transition bg-gray-50 resize-none", required: true, placeholder: "프로젝트의 목적, 주요 기능, 일정 등을 자유롭게 적어주세요." %>
+          <div class="form-group">
+             <%= f.label :budget, "예산 범위", class: "form-label" %>
+             <%= f.select :budget, ["500만원 이하", "500만원 ~ 1,000만원", "1,000만원 ~ 3,000만원", "3,000만원 ~ 5,000만원", "5,000만원 이상", "미정"], { prompt: "예산 범위를 선택해주세요" }, class: "form-select" %>
           </div>
 
-          <div class="pt-6">
-            <button type="submit" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-4 rounded-xl shadow-lg shadow-emerald-200 transition duration-200 flex justify-center items-center gap-2 transform hover:-translate-y-0.5">
-              <span>문의하기</span>
-              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+          <div class="form-group">
+            <%= f.label :message, "프로젝트 내용 *", class: "form-label" %>
+            <%= f.text_area :message, class: "form-textarea", rows: 5, placeholder: "프로젝트의 목적, 주요 기능, 참고 사이트 등을 자유롭게 적어주세요.", required: true %>
+          </div>
+          
+          <div style="margin-top: var(--space-6);">
+            <button type="submit" class="btn btn-primary btn-lg w-full" id="submit-btn">
+              <span id="btn-text">문의하기</span>
+              <span id="btn-loader" style="display: none; margin-left: 8px;">↻</span>
             </button>
           </div>
           
@@ -270,6 +266,33 @@
       </div>
     </div>
   <% end %>
+
+  <script>
+    function submitContactForm(form) {
+      const btn = document.getElementById('submit-btn');
+      const txt = document.getElementById('btn-text');
+      const loader = document.getElementById('btn-loader');
+      
+      // Check HTML5 validity
+      if (!form.checkValidity()) {
+        form.reportValidity();
+        return false;
+      }
+      
+      btn.disabled = true;
+      btn.style.opacity = '0.8';
+      btn.style.cursor = 'not-allowed';
+      txt.innerText = '전송 중...';
+      loader.style.display = 'inline-block';
+      loader.style.animation = 'spin 1s linear infinite';
+      
+      return true;
+    }
+  </script>
+
+  <style>
+    @keyframes spin { 100% { transform: rotate(360deg); } }
+  </style>
 </section>
 
 <!-- Contact Info Section -->
