@@ -28,6 +28,29 @@
     <link rel="icon" href="/favicon.png" type="image/png">
     <link rel="apple-touch-icon" href="/favicon.png">
 
+    <!-- Tailwind CSS CDN (Failsafe) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              primary: {
+                DEFAULT: "#00a859",
+                dark: "#008a47",
+              },
+              accent: "#00d670",
+            },
+            fontFamily: {
+              sans: ["Inter", "sans-serif"],
+              serif: ["Noto Serif KR", "serif"],
+              cinzel: ["Cinzel", "serif"],
+            }
+          }
+        }
+      }
+    </script>
+
     <%# Includes all stylesheet files in app/assets/stylesheets %>
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
   </head>
