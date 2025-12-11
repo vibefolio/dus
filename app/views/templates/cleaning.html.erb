@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>클린멘토 - 건물위생관리 전문업체</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: '#f0f9ff',
+              100: '#e0f2fe',
+              500: '#0ea5e9', // Sky blue
+              600: '#0284c7',
+              900: '#0c4a6e',
+            }
+          },
+          fontFamily: {
+            sans: ['Pretendard', 'Inter', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.8/dist/web/static/pretendard.css" />
+  <style>
+    body { font-family: 'Pretendard', sans-serif; }
+  </style>
+</head>
+<body class="bg-white text-gray-800">
+
+  <!-- Navigation -->
+  <nav class="fixed w-full z-50 bg-white/90 backdrop-blur-md border-b border-gray-100">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center h-16">
+        <div class="text-2xl font-bold text-brand-600 flex items-center gap-2">
+          <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+          클린멘토
+        </div>
+        <div class="hidden md:flex space-x-8">
+          <a href="#services" class="text-gray-600 hover:text-brand-600 font-medium">서비스 안내</a>
+          <a href="#about" class="text-gray-600 hover:text-brand-600 font-medium">업체 소개</a>
+          <a href="#contact" class="px-5 py-2 bg-brand-600 text-white rounded-full hover:bg-brand-700 transition">견적 문의</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="relative pt-24 pb-20 lg:pt-32 lg:pb-28 overflow-hidden">
+    <div class="absolute inset-0 bg-brand-50 -z-10"></div>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col lg:flex-row items-center gap-12">
+      <div class="lg:w-1/2 text-center lg:text-left">
+        <div class="inline-block px-4 py-1.5 bg-white border border-brand-200 rounded-full text-brand-600 text-sm font-bold mb-6 shadow-sm">
+          🏆 건물위생관리업 정식 등록업체
+        </div>
+        <h1 class="text-4xl lg:text-5xl font-bold text-gray-900 leading-tight mb-6">
+          보이지 않는 곳까지<br>
+          <span class="text-brand-600">투명하고 깨끗하게</span> 관리합니다.
+        </h1>
+        <p class="text-lg text-gray-600 mb-8 leading-relaxed">
+          유리 내ㆍ외장 청소부터 시트지 제거, 미세촘촘방충망 교체까지.<br>
+          클린멘토만의 전문 장비와 노하우로 쾌적한 공간을 만들어드립니다.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+          <a href="#contact" class="px-8 py-4 bg-brand-600 text-white text-lg font-bold rounded-xl shadow-lg hover:bg-brand-700 hover:-translate-y-1 transition transform">
+            무료 견적 상담받기
+          </a>
+          <a href="#services" class="px-8 py-4 bg-white text-gray-700 border border-gray-200 text-lg font-bold rounded-xl hover:bg-gray-50 transition">
+            서비스 자세히 보기
+          </a>
+        </div>
+      </div>
+      <div class="lg:w-1/2">
+        <img src="https://images.unsplash.com/photo-1581578731117-104f2a417954?q=80&w=800" alt="Office Cleaning" class="rounded-3xl shadow-2xl">
+      </div>
+    </div>
+  </section>
+
+  <!-- Services Section -->
+  <section id="services" class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16">
+        <h2 class="text-3xl font-bold text-gray-900 mb-4">클린멘토 주요 서비스</h2>
+        <p class="text-gray-500">고객님의 공간에 꼭 필요한 전문 클리닝 서비스를 제공합니다.</p>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-8">
+        <!-- Service 1 -->
+        <div class="p-8 rounded-2xl bg-white border border-gray-100 shadow-xl hover:shadow-2xl transition group">
+          <div class="w-16 h-16 bg-blue-100 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-brand-600 transition">
+            <svg class="w-8 h-8 text-brand-600 group-hover:text-white transition" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"></path></svg>
+          </div>
+          <h3 class="text-xl font-bold mb-3">유리 내ㆍ외장 청소</h3>
+          <p class="text-gray-500 leading-relaxed">
+            고층 빌딩, 상가 쇼윈도, 아파트 창문 등 손닿기 힘든 곳까지 전용 세제와 장비로 투명하게 닦아드립니다.
+          </p>
+        </div>
+
+        <!-- Service 2 -->
+        <div class="p-8 rounded-2xl bg-white border border-gray-100 shadow-xl hover:shadow-2xl transition group">
+          <div class="w-16 h-16 bg-blue-100 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-brand-600 transition">
+            <svg class="w-8 h-8 text-brand-600 group-hover:text-white transition" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg>
+          </div>
+          <h3 class="text-xl font-bold mb-3">시트지 및 스티커 제거</h3>
+          <p class="text-gray-500 leading-relaxed">
+            오래되어 눌어붙은 시트지, 불법 광고물 흔적을 유리 손상 없이 깔끔하게 제거하고 원상복구 해드립니다.
+          </p>
+        </div>
+
+        <!-- Service 3 -->
+        <div class="p-8 rounded-2xl bg-white border border-gray-100 shadow-xl hover:shadow-2xl transition group">
+          <div class="w-16 h-16 bg-blue-100 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-brand-600 transition">
+            <svg class="w-8 h-8 text-brand-600 group-hover:text-white transition" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"></path></svg>
+          </div>
+          <h3 class="text-xl font-bold mb-3">미세촘촘방충망 교체</h3>
+          <p class="text-gray-500 leading-relaxed">
+            미세먼지와 작은 벌레까지 차단하는 국산 정품 미세촘촘망으로 교체하여 쾌적한 실내 공기를 지켜드립니다.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA / Contact -->
+  <section id="contact" class="py-20 bg-brand-900 text-white">
+    <div class="max-w-4xl mx-auto px-4 text-center">
+      <h2 class="text-3xl font-bold mb-6">전문가의 손길이 필요하신가요?</h2>
+      <p class="text-brand-100 text-lg mb-10">
+        현장 사진을 보내주시면 더 정확하고 빠른 견적이 가능합니다.<br>
+        클린멘토가 합리적인 가격으로 최상의 만족을 드리겠습니다.
+      </p>
+      <div class="bg-white rounded-3xl p-8 md:p-12 text-gray-800 shadow-2xl">
+        <form class="space-y-4 text-left">
+          <div class="grid md:grid-cols-2 gap-4">
+            <div>
+              <label class="block text-sm font-bold mb-2">이름 / 업체명</label>
+              <input type="text" class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-lg focus:border-brand-500 outline-none" placeholder="홍길동">
+            </div>
+            <div>
+              <label class="block text-sm font-bold mb-2">연락처</label>
+              <input type="text" class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-lg focus:border-brand-500 outline-none" placeholder="010-0000-0000">
+            </div>
+          </div>
+          <div>
+            <label class="block text-sm font-bold mb-2">청소 / 시공 내용</label>
+            <textarea rows="4" class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-lg focus:border-brand-500 outline-none" placeholder="작업이 필요한 공간의 평수, 층수, 원하는 내용을 적어주세요."></textarea>
+          </div>
+          <button type="button" class="w-full py-4 bg-brand-600 text-white font-bold rounded-xl text-lg hover:bg-brand-700 transition">
+            견적 요청하기
+          </button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-gray-50 py-10 text-center text-gray-400 text-sm">
+    <p>&copy; 2024 클린멘토 (Clean Mentor). All rights reserved.</p>
+  </footer>
+
+</body>
+</html>
