@@ -48,59 +48,53 @@
 
     <div class="grid grid-3" style="gap: var(--space-8);">
       
-      <!-- Template 1: Beauty -->
-      <div class="card" style="padding: 0; overflow: hidden; border: none; box-shadow: var(--shadow-xl);">
-        <div style="height: 240px; overflow: hidden; position: relative;">
-          <img src="https://images.unsplash.com/photo-1595476106812-d2d7237e4585?q=80&w=800&auto=format&fit=crop" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'" alt="Beauty Template">
-          <div style="position: absolute; top: 12px; left: 12px; background: white; padding: 4px 12px; border-radius: 99px; font-size: 12px; font-weight: bold; color: #1a1a1a;">뷰티/살롱</div>
-        </div>
-        <div style="padding: var(--space-6);">
-          <h3 style="font-size: var(--text-2xl); font-weight: 700; margin-bottom: var(--space-2);">LUMIER</h3>
-          <p style="color: var(--color-gray-500); font-size: var(--text-sm); margin-bottom: var(--space-4); line-height: 1.6;">
-            청담동 하이엔드 살롱 스타일. 고급스러운 세리프 폰트와 인물 중심 레이아웃.
-          </p>
-          <div style="display: flex; gap: 10px;">
-            <button onclick="openLiveDemo('/templates/beauty', 'LUMIER')" class="btn btn-outline btn-sm" style="flex: 1; text-align: center;">둘러보기</button>
-            <a href="/contact?template_title=LUMIER" class="btn btn-primary btn-sm" style="flex: 1; text-align: center;">제작 의뢰</a>
+      <% if @featured_templates.present? %>
+        <% @featured_templates.each do |template| %>
+          <div class="card" style="padding: 0; overflow: hidden; border: none; box-shadow: var(--shadow-xl);">
+            <div style="height: 240px; overflow: hidden; position: relative;">
+              <% 
+                img_src = if template.image_url.present?
+                            template.image_url
+                          elsif template.pc_image.attached?
+                            url_for(template.pc_image)
+                          else
+                            'https://via.placeholder.com/800x600?text=No+Image'
+                          end
+              %>
+              <img src="<%= img_src %>" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'" alt="<%= template.title %>">
+              <div style="position: absolute; top: 12px; left: 12px; background: white; padding: 4px 12px; border-radius: 99px; font-size: 12px; font-weight: bold; color: #1a1a1a;">
+                <% case template.category
+                   when 'beauty' then '뷰티/살롱'
+                   when 'dining' then '다이닝/F&B'
+                   when 'fitness' then '피트니스/요가'
+                   when 'stay' then '스테이/숙박'
+                   when 'shopping' then '쇼핑몰'
+                   when 'corporate' then '기업/브랜드'
+                   when 'space' then '공간/렌탈'
+                   when 'medical' then '병원/의료'
+                   else '기타'
+                   end
+                %>
+              </div>
+            </div>
+            <div style="padding: var(--space-6);">
+              <h3 style="font-size: var(--text-2xl); font-weight: 700; margin-bottom: var(--space-2);"><%= template.title %></h3>
+              <p style="color: var(--color-gray-500); font-size: var(--text-sm); margin-bottom: var(--space-4); line-height: 1.6; min-height: 44px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;">
+                <%= template.description %>
+              </p>
+              <div style="display: flex; gap: 10px;">
+                <button onclick="openLiveDemo('<%= template.preview_url %>', '<%= template.title %>')" class="btn btn-outline btn-sm" style="flex: 1; text-align: center;">둘러보기</button>
+                <a href="/contact?template_title=<%= template.title %>" class="btn btn-primary btn-sm" style="flex: 1; text-align: center;">제작 의뢰</a>
+              </div>
+            </div>
           </div>
+        <% end %>
+      <% else %>
+        <!-- Fallback if no templates are featured (Optional: Keep one hardcoded or show message) -->
+        <div class="col-span-3 text-center py-10 text-gray-500">
+          표시할 추천 템플릿이 없습니다. 관리자 페이지에서 설정해주세요.
         </div>
-      </div>
-
-      <!-- Template 2: Dining -->
-      <div class="card" style="padding: 0; overflow: hidden; border: none; box-shadow: var(--shadow-xl);">
-        <div style="height: 240px; overflow: hidden; position: relative;">
-          <img src="https://images.unsplash.com/photo-1590301139475-23eddb51f1f2?q=80&w=800&auto=format&fit=crop" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'" alt="Dining Template">
-           <div style="position: absolute; top: 12px; left: 12px; background: white; padding: 4px 12px; border-radius: 99px; font-size: 12px; font-weight: bold; color: #1a1a1a;">다이닝/F&B</div>
-        </div>
-        <div style="padding: var(--space-6);">
-          <h3 style="font-size: var(--text-2xl); font-weight: 700; margin-bottom: var(--space-2);">溫 (ON)</h3>
-          <p style="color: var(--color-gray-500); font-size: var(--text-sm); margin-bottom: var(--space-4); line-height: 1.6;">
-            여백의 미를 살린 모던 오마카세 스타일. 갤러리 같은 메뉴 소개 디자인.
-          </p>
-          <div style="display: flex; gap: 10px;">
-            <button onclick="openLiveDemo('/templates/dining', '溫 (ON)')" class="btn btn-outline btn-sm" style="flex: 1; text-align: center;">둘러보기</button>
-            <a href="/contact?template_title=ON" class="btn btn-primary btn-sm" style="flex: 1; text-align: center;">제작 의뢰</a>
-          </div>
-        </div>
-      </div>
-
-      <!-- Template 3: Gym -->
-      <div class="card" style="padding: 0; overflow: hidden; border: none; box-shadow: var(--shadow-xl);">
-        <div style="height: 240px; overflow: hidden; position: relative;">
-          <img src="https://images.unsplash.com/photo-1518310383802-640c2de311b2?q=80&w=800&auto=format&fit=crop" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'" alt="Gym Template">
-           <div style="position: absolute; top: 12px; left: 12px; background: white; padding: 4px 12px; border-radius: 99px; font-size: 12px; font-weight: bold; color: #1a1a1a;">피트니스/요가</div>
-        </div>
-        <div style="padding: var(--space-6);">
-          <h3 style="font-size: var(--text-2xl); font-weight: 700; margin-bottom: var(--space-2);">Sculpt & Soul</h3>
-          <p style="color: var(--color-gray-500); font-size: var(--text-sm); margin-bottom: var(--space-4); line-height: 1.6;">
-            아티스틱 웰니스 브랜드 스타일. 감각적인 다크 모드와 타이포그래피.
-          </p>
-          <div style="display: flex; gap: 10px;">
-            <button onclick="openLiveDemo('/templates/gym', 'Sculpt & Soul')" class="btn btn-outline btn-sm" style="flex: 1; text-align: center;">둘러보기</button>
-            <a href="/contact?template_title=Sculpt & Soul" class="btn btn-primary btn-sm" style="flex: 1; text-align: center;">제작 의뢰</a>
-          </div>
-        </div>
-      </div>
+      <% end %>
 
     </div>
     

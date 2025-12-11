@@ -25,9 +25,19 @@
     <%= f.text_area :description, class: "form-textarea", rows: 4 %>
   </div>
 
-  <div class="form-group">
     <%= f.label :preview_url, "미리보기 URL (예: /templates/beauty)", class: "form-label" %>
     <%= f.text_field :preview_url, class: "form-input", placeholder: "/templates/..." %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :image_url, "썸네일 이미지 URL (외부 링크)", class: "form-label" %>
+    <%= f.text_field :image_url, class: "form-input", placeholder: "https://images.unsplash.com/..." %>
+    <p class="text-sm text-gray-500 mt-1">※ 직접 파일 업로드 대신 외부 이미지 URL을 사용할 경우 입력하세요.</p>
+  </div>
+
+  <div class="form-group" style="display: flex; align-items: center; gap: 10px; padding: 10px 0;">
+    <%= f.check_box :is_featured, class: "form-checkbox", style: "width: 20px; height: 20px;" %>
+    <%= f.label :is_featured, "메인 페이지(Design Templates 섹션)에 노출하기", class: "form-label", style: "margin-bottom: 0;" %>
   </div>
 
   <div class="form-group">
