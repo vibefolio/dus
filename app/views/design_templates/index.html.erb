@@ -29,7 +29,7 @@
     </div>
 
     <!-- Templates Grid -->
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 xl:gap-10" id="templates-grid">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 xl:gap-8" id="templates-grid">
       <% 
         templates_source = @design_templates.presence || [
           { id: 'beauty', title: "LUMIER", desc: "청담동 하이엔드 살롱 스타일. 고급스러운 세리프 폰트와 인물 중심 레이아웃.", cat: "beauty", url: "/templates/beauty", img: "https://images.unsplash.com/photo-1560066984-138dadb4c035?q=80&w=800&auto=format&fit=crop" },
