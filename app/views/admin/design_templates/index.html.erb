@@ -8,11 +8,25 @@
 <div class="grid grid-3" style="gap: var(--space-6);">
   <% @design_templates.each do |template| %>
     <div class="card" style="padding: var(--space-4);">
-      <div style="height: 200px; background: #eee; border-radius: var(--radius-md); margin-bottom: var(--space-4); overflow: hidden;">
-        <% if template.pc_image.attached? %>
-          <%= image_tag template.pc_image, style: "width: 100%; height: 100%; object-fit: cover;" %>
+      <div style="height: 200px; background: #eee; border-radius: var(--radius-md); margin-bottom: var(--space-4); overflow: hidden; position: relative;">
+        <% 
+          thumb_src = if template.image_url.present?
+                        template.image_url
+                      elsif template.pc_image.attached?
+                        url_for(template.pc_image)
+                      else
+                        nil
+                      end
+        %>
+        <% if thumb_src %>
+          <img src="<%= thumb_src %>" style="width: 100%; height: 100%; object-fit: cover;">
         <% else %>
           <div style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; color: #999;">No Image</div>
+        <% end %>
+        
+        <!-- Featured Badge -->
+        <% if template.is_featured %>
+          <div style="position: absolute; top: 10px; right: 10px; background: var(--color-accent); color: white; font-size: 11px; font-weight: bold; padding: 2px 8px; border-radius: 99px;">MAIN</div>
         <% end %>
       </div>
       <h3 style="font-size: var(--text-lg); margin-bottom: var(--space-2);"><%= template.title %></h3>
