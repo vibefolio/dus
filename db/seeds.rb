@@ -102,6 +102,146 @@ templates = [
     preview_url: "/templates/cleaning", 
     image_url: "https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=800",
     is_featured: true
+  },
+  { 
+    title: "Urban Fit", 
+    description: "에너지 넘치는 현대적인 크로스핏/헬스장 템플릿. 강렬한 타이포그래피와 다이내믹한 레이아웃.", 
+    category: "fitness", 
+    preview_url: "/templates/gym", 
+    image_url: "https://images.unsplash.com/photo-1540497077202-7c8a3999166f?q=80&w=800"
+  },
+  { 
+    title: "Pet Palace", 
+    description: "반려동물을 위한 프리미엄 케어 서비스. 부드러운 곡선과 따뜻한 파스텔톤 컬러.", 
+    category: "shopping", 
+    preview_url: "/templates/ecommerce", 
+    image_url: "https://images.unsplash.com/photo-1548199973-03cce0bbc87b?q=80&w=800"
+  },
+  { 
+    title: "Kids Station", 
+    description: "아이들의 창의력을 자극하는 키즈카페. 알록달록한 컬러와 귀여운 일러스트 아이콘.", 
+    category: "space", 
+    preview_url: "/templates/cafe", 
+    image_url: "https://images.unsplash.com/photo-1566737236500-c8ac43014a67?q=80&w=800"
+  },
+  { 
+    title: "Camp Vibez", 
+    description: "자연 속 힐링을 위한 감성 캠핑장. 예약 시스템 UI가 최적화된 아웃도어 스타일.", 
+    category: "stay", 
+    preview_url: "/templates/stay", 
+    image_url: "https://images.unsplash.com/photo-1478131143081-80f7f84ca84d?q=80&w=800"
+  },
+  { 
+    title: "Flower & Garden", 
+    description: "우아한 플로리스트 포트폴리오. 식물의 싱그러움을 담은 내추럴&보태니컬 디자인.", 
+    category: "shopping", 
+    preview_url: "/templates/beauty", 
+    image_url: "https://images.unsplash.com/photo-1562690868-60bbe703395b?q=80&w=800"
+  },
+  { 
+    title: "Burger House", 
+    description: "힙한 수제버거 브랜드. 식욕을 자극하는 비비드한 컬러와 굵은 고딕 폰트.", 
+    category: "dining", 
+    preview_url: "/templates/dining", 
+    image_url: "https://images.unsplash.com/photo-1586190848861-99c9574548e3?q=80&w=800"
+  },
+  { 
+    title: "Wine Social", 
+    description: "어두운 조명의 분위기 있는 와인바. 고급스러운 블랙 배경과 골드 포인트.", 
+    category: "dining", 
+    preview_url: "/templates/dining", 
+    image_url: "https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?q=80&w=800"
+  },
+  { 
+    title: "Sweet Spot", 
+    description: "달콤한 디저트 카페. 여심을 저격하는 핑크빛 포인트와 부드러운 이미지.", 
+    category: "cafe", 
+    preview_url: "/templates/cafe", 
+    image_url: "https://images.unsplash.com/photo-1551024506-0bccd828d307?q=80&w=800"
+  },
+  { 
+    title: "Salad Green", 
+    description: "건강한 샐러드 & 포케. 신선함을 강조하는 그린 컬러와 깨끗한 화이트 배경.", 
+    category: "dining", 
+    preview_url: "/templates/dining", 
+    image_url: "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?q=80&w=800"
+  },
+  { 
+    title: "Code Academy", 
+    description: "미래를 여는 코딩 교육. 테크니컬한 그리드와 아이소메트릭 일러스트 활용.", 
+    category: "corporate", 
+    preview_url: "/templates/corporate", 
+    image_url: "https://images.unsplash.com/photo-1571171637578-41bc2dd41cd2?q=80&w=800"
+  },
+  { 
+    title: "Piano Class", 
+    description: "감성적인 피아노 학원. 클래식한 명조체와 우아한 분위기의 학원 소개.", 
+    category: "corporate", 
+    preview_url: "/templates/academy", 
+    image_url: "https://images.unsplash.com/photo-1552422535-c45813c61732?q=80&w=800"
+  },
+  { 
+    title: "English Kinder", 
+    description: "글로벌 리더를 위한 영어 유치원. 밝고 활기찬 분위기의 교육 기관 템플릿.", 
+    category: "corporate", 
+    preview_url: "/templates/academy", 
+    image_url: "https://images.unsplash.com/photo-1588072432836-e10032774350?q=80&w=800"
+  },
+  { 
+    title: "Interior Pro", 
+    description: "공간을 디자인하는 인테리어 시공. 시공 사례 전후 비교 슬라이더 제공.", 
+    category: "portfolio", 
+    preview_url: "/templates/portfolio", 
+    image_url: "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?q=80&w=800"
+  },
+  { 
+    title: "Rent-All", 
+    description: "쉽고 빠른 렌터카 예약. 직관적인 검색 바와 차량 상세 정보 카드.", 
+    category: "corporate", 
+    preview_url: "/templates/corporate", 
+    image_url: "https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?q=80&w=800"
+  },
+  { 
+    title: "Photo Studio", 
+    description: "순간을 기록하는 사진관. 갤러리 형태의 레이아웃으로 사진에 집중.", 
+    category: "portfolio", 
+    preview_url: "/templates/portfolio", 
+    image_url: "https://images.unsplash.com/photo-1554048612-387768052bf7?q=80&w=800"
+  },
+  { 
+    title: "Tattoo Ink", 
+    description: "개성을 새기는 타투샵. 강렬하고 힙한 분위기의 블랙&화이트 포트폴리오.", 
+    category: "portfolio", 
+    preview_url: "/templates/portfolio", 
+    image_url: "https://images.unsplash.com/photo-1598371839696-5c5bb62d4067?q=80&w=800"
+  },
+  { 
+    title: "Tax Pro", 
+    description: "신뢰받는 세무 파트너. 전문적인 느낌의 네이비 컬러와 깔끔한 아이콘.", 
+    category: "law", 
+    preview_url: "/templates/law", 
+    image_url: "https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?q=80&w=800"
+  },
+  { 
+    title: "Build Arch", 
+    description: "도시를 그리는 건축 사무소. 구조적인 레이아웃과 도면/조감도 갤러리.", 
+    category: "corporate", 
+    preview_url: "/templates/portfolio", 
+    image_url: "https://images.unsplash.com/photo-1487958449943-2429e8be8625?q=80&w=800"
+  },
+  { 
+    title: "Invest Future", 
+    description: "성공적인 자산 관리 파트너. 신뢰를 주는 차분한 블루 그레이 톤.", 
+    category: "corporate", 
+    preview_url: "/templates/corporate", 
+    image_url: "https://images.unsplash.com/photo-1579532537598-459ecdaf39cc?q=80&w=800"
+  },
+  { 
+    title: "Logistics", 
+    description: "글로벌 물류 운송 서비스. 역동적인 운송 이미지와 세계 지도 배경.", 
+    category: "corporate", 
+    preview_url: "/templates/corporate", 
+    image_url: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?q=80&w=800"
   }
 ]
 
