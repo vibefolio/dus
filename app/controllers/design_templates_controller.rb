@@ -1,6 +1,6 @@
 class DesignTemplatesController < ApplicationController
   def index
-    @design_templates = DesignTemplate.all.order(created_at: :desc)
-    # Seed 데이터가 없을 경우를 대비해 placeholder 로직은 View에서 처리하거나 Helper 사용
+    # 템플릿 목록 뷰(index.html.erb)만 렌더링하면 됨
+    # 데이터는 뷰 파일 내에 Fallback 로직으로 이미 구현되어 있음
   end
 end
