@@ -3,7 +3,7 @@ require "prawn/table"
 
 class Admin::QuotesController < ApplicationController
   layout "admin"
-  http_basic_authenticate_with name: ENV.fetch("ADMIN_USERNAME", "admin"), password: ENV.fetch("ADMIN_PASSWORD", "password123")
+  before_action :authenticate_admin!
   before_action :set_quote, only: [ :show ]
 
   def index

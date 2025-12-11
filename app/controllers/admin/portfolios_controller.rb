@@ -1,6 +1,6 @@
 class Admin::PortfoliosController < ApplicationController
   layout "admin"
-  http_basic_authenticate_with name: ENV.fetch("ADMIN_USERNAME", "admin"), password: ENV.fetch("ADMIN_PASSWORD", "password123")
+  before_action :authenticate_admin!
   before_action :set_portfolio, only: [ :edit, :update, :destroy ]
 
   def index
