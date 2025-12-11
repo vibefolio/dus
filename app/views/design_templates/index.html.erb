@@ -84,39 +84,39 @@
           { id: 'medical', title: "Pure Clinic", desc: "깨끗하고 전문적인 느낌의 클리닉 스타일.", cat: "medical", url: "/templates/medical", img: "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?q=80&w=800" },
           { id: 'law', title: "Trust & Logic", desc: "세리프 폰트와 네이비 컬러로 무게감을 준 전문직.", cat: "law", url: "/templates/law", img: "https://images.unsplash.com/photo-1589829085413-56de8ae18c73?q=80&w=800" },
           { id: 'wedding', title: "Bliss Moment", desc: "파스텔 톤의 우아하고 로맨틱한 웨딩 페이지.", cat: "wedding", url: "/templates/wedding", img: "https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=800" }
-        ].map { |t| OpenStruct.new(t) }
+        ].map { |t| t }
       %>
 
       <% templates_source.each do |template| %>
-        <div class="card template-card group" data-category="<%= template.cat %>" style="transition: all 0.3s ease;">
+        <div class="card template-card group" data-category="<%= template[:cat] %>" style="transition: all 0.3s ease;">
           <!-- 1:1 Image Ratio -->
           <div class="card-image-wrapper relative overflow-hidden rounded-xl bg-gray-100 mb-6 shadow-sm border border-gray-100" style="aspect-ratio: 1/1;">
-             <img src="<%= template.img %>" 
+             <img src="<%= template[:img] %>" 
                   class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" 
-                  alt="<%= template.title %>">
+                  alt="<%= template[:title] %>">
           </div>
           
           <div class="px-2">
             <div class="flex justify-between items-center mb-3">
               <span class="text-xs font-bold text-emerald-600 uppercase tracking-wider bg-emerald-50 px-2 py-1 rounded">
-                <%= template.cat.upcase %>
+                <%= template[:cat].upcase %>
               </span>
             </div>
             <h3 class="text-2xl font-bold text-gray-900 mb-2">
-              <%= template.title %>
+              <%= template[:title] %>
             </h3>
             <p class="text-gray-500 mb-6 text-sm leading-relaxed line-clamp-2">
-              <%= template.desc %>
+              <%= template[:desc] %>
             </p>
 
             <!-- Action Buttons -->
             <div class="grid grid-cols-2 gap-3">
-              <button onclick="openTemplateModal('<%= template.id %>', '<%= template.title %>')" 
+              <button onclick="openTemplateModal('<%= template[:id] %>', '<%= template[:title] %>')" 
                       class="py-3 px-4 rounded-lg border border-gray-200 text-gray-700 font-bold hover:bg-gray-50 hover:border-gray-300 transition flex items-center justify-center gap-2">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
                 둘러보기
               </button>
-              <a href="/contact?template_id=<%= template.id %>&template_title=<%= u(template.title) %>" 
+              <a href="/contact?template_id=<%= template[:id] %>&template_title=<%= u(template[:title]) %>" 
                  class="py-3 px-4 rounded-lg bg-emerald-500 text-white font-bold hover:bg-emerald-600 shadow-md shadow-emerald-200 transition text-center flex items-center justify-center gap-2">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
                 의뢰하기
@@ -125,12 +125,12 @@
           </div>
 
           <!-- Hidden Data for Modal -->
-          <div id="template-data-<%= template.id %>" style="display: none;">
-            <div class="data-preview-url"><%= template.url %></div>
-            <div class="data-title"><%= template.title %></div>
-            <div class="data-desc"><%= template.desc %></div>
-            <div class="data-category"><%= template.cat.upcase %></div>
-            <div class="data-img-pc"><%= template.img %></div>
+          <div id="template-data-<%= template[:id] %>" style="display: none;">
+            <div class="data-preview-url"><%= template[:url] %></div>
+            <div class="data-title"><%= template[:title] %></div>
+            <div class="data-desc"><%= template[:desc] %></div>
+            <div class="data-category"><%= template[:cat].upcase %></div>
+            <div class="data-img-pc"><%= template[:img] %></div>
           </div>
         </div>
       <% end %>
