@@ -15,62 +15,156 @@
   <div class="container">
     
     <!-- Filter (Optional) -->
-    <div style="display: flex; justify-content: center; gap: var(--space-4); margin-bottom: var(--space-12); flex-wrap: wrap;">
-      <button class="btn btn-primary btn-sm rounded-full">전체</button>
-      <button class="btn btn-outline btn-sm rounded-full" style="background: white; border-color: var(--color-gray-200); color: var(--color-gray-600);">쇼핑몰</button>
-      <button class="btn btn-outline btn-sm rounded-full" style="background: white; border-color: var(--color-gray-200); color: var(--color-gray-600);">기업/브랜드</button>
-      <button class="btn btn-outline btn-sm rounded-full" style="background: white; border-color: var(--color-gray-200); color: var(--color-gray-600);">랜딩페이지</button>
-      <button class="btn btn-outline btn-sm rounded-full" style="background: white; border-color: var(--color-gray-200); color: var(--color-gray-600);">커뮤니티</button>
+    <!-- Filter (Scrollable on mobile) -->
+    <div style="display: flex; justify-content: center; gap: 8px; margin-bottom: 40px; flex-wrap: wrap;" class="filter-container">
+      <button onclick="filterTemplates('all')" class="btn btn-primary btn-sm rounded-full filter-btn active" data-filter="all">전체</button>
+      <button onclick="filterTemplates('shopping')" class="btn btn-outline btn-sm rounded-full filter-btn" data-filter="shopping">쇼핑몰</button>
+      <button onclick="filterTemplates('corporate')" class="btn btn-outline btn-sm rounded-full filter-btn" data-filter="corporate">기업/브랜드</button>
+      <button onclick="filterTemplates('beauty')" class="btn btn-outline btn-sm rounded-full filter-btn" data-filter="beauty">뷰티/살롱</button>
+      <button onclick="filterTemplates('dining')" class="btn btn-outline btn-sm rounded-full filter-btn" data-filter="dining">F&B/다이닝</button>
+      <button onclick="filterTemplates('space')" class="btn btn-outline btn-sm rounded-full filter-btn" data-filter="space">공간/렌탈</button>
+      <button onclick="filterTemplates('medical')" class="btn btn-outline btn-sm rounded-full filter-btn" data-filter="medical">병원/의료</button>
+      <button onclick="filterTemplates('stay')" class="btn btn-outline btn-sm rounded-full filter-btn" data-filter="stay">숙박/스테이</button>
     </div>
 
-    <!-- Templates Grid -->
-    <div class="grid grid-3" style="gap: var(--space-8);">
-      <% if @design_templates.any? %>
-        <% @design_templates.each do |template| %>
-          <div class="card template-card" onclick="openTemplateModal('<%= template.id %>', '<%= template.title %>')" style="cursor: pointer; transition: transform 0.3s ease, box-shadow 0.3s ease;">
-            <div class="card-image-wrapper" style="height: 300px; overflow: hidden; border-radius: var(--radius-lg); position: relative; background: #e5e7eb;">
-              <% if template.pc_image.attached? %>
-                <%= image_tag template.pc_image, class: "template-thumb", style: "width: 100%; height: 100%; object-fit: cover; object-position: top; transition: transform 0.5s ease;" %>
-              <% else %>
-                <!-- Placeholder Image -->
-                <img src="https://picsum.photos/seed/<%= template.id %>/800/600" class="template-thumb" style="width: 100%; height: 100%; object-fit: cover; object-position: top; transition: transform 0.5s ease;" alt="Sample Template">
-              <% end %>
-              
-              <!-- Hover Overlay -->
-              <div class="template-overlay">
-                <span class="btn btn-primary btn-sm">미리보기</span>
-              </div>
-            </div>
-            
-            <div style="padding-top: var(--space-4);">
-              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--space-2);">
-                <span style="font-size: var(--text-xs); font-weight: 600; color: var(--color-accent); text-transform: uppercase; letter-spacing: 0.05em;">
-                  <%= template.category.presence || "Template" %>
-                </span>
-              </div>
-              <h3 style="font-size: var(--text-xl); font-weight: 700; margin-bottom: var(--space-2); color: var(--color-gray-900);">
-                <%= template.title %>
-              </h3>
-              <p style="font-size: var(--text-sm); color: var(--color-gray-500); line-height: 1.5; margin-bottom: 0;">
-                <%= truncate(template.description, length: 60) %>
-              </p>
-            </div>
+    <!-- Filter Style -->
+    <style>
+      .filter-btn {
+        background: white;
+        border-color: #e5e7eb;
+        color: #4b5563;
+        transition: all 0.2s;
+      }
+      .filter-btn:hover {
+        background: #f9fafb;
+        border-color: #d1d5db;
+      }
+      .filter-btn.active {
+        background: var(--color-primary);
+        color: white;
+        border-color: var(--color-primary);
+      }
+    </style>
 
-            <!-- Hidden Data for Modal -->
-            <div id="template-data-<%= template.id %>" style="display: none;">
-              <div class="data-preview-url"><%= template.preview_url %></div>
-              <div class="data-title"><%= template.title %></div>
-              <div class="data-desc"><%= template.description %></div>
-              <div class="data-category"><%= template.category %></div>
-              <div class="data-img-pc">
-                <%= template.pc_image.attached? ? url_for(template.pc_image) : "https://picsum.photos/seed/#{template.id}/1200/800" %>
-              </div>
-              <div class="data-img-mobile">
-                <%= template.mobile_image.attached? ? url_for(template.mobile_image) : "https://picsum.photos/seed/#{template.id}/375/812" %>
-              </div>
+    <script>
+      function filterTemplates(category) {
+        // Toggle Buttons
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+          btn.classList.remove('active');
+          if(btn.dataset.filter === category) {
+            btn.classList.add('active');
+          }
+        });
+
+        // Filter Grid
+        const cards = document.querySelectorAll('.template-card');
+        cards.forEach(card => {
+          if (category === 'all' || card.dataset.category === category) {
+            card.style.display = 'block';
+          } else {
+            card.style.display = 'none';
+          }
+        });
+      }
+    </script>
+
+    <!-- Templates Grid -->
+    <div class="grid grid-3" style="gap: var(--space-8);" id="templates-grid">
+      <% 
+        # DB 데이터가 있으면 사용, 없으면 하드코딩 데이터 사용 (Fail-safe)
+        templates_source = @design_templates.presence || [
+          { id: 't1', title: "LUMIER", description: "청담동 하이엔드 살롱 스타일. 고급스러운 세리프 폰트와 인물 중심 레이아웃.", category: "Beauty", preview_url: "/templates/beauty" },
+          { id: 't2', title: "溫 (ON)", description: "여백의 미를 살린 모던 오마카세 다이닝 스타일. 정갈한 레이아웃.", category: "Dining", preview_url: "/templates/dining" },
+          { id: 't3', title: "Sculpt & Soul", description: "아티스틱 웰니스 브랜드 스타일. 감각적인 다크 모드와 타이포그래피.", category: "Fitness", preview_url: "/templates/gym" },
+          { id: 't4', title: "Focus Lab", description: "건축적인 조형미가 돋보이는 스터디 랩 스타일. 벤토 그리드 레이아웃.", category: "Space", preview_url: "/templates/study" },
+          { id: 't5', title: "서촌 쉼", description: "한옥의 정취를 담은 감성 스테이 스타일. 수평 스크롤과 여유로운 공간감.", category: "Stay", preview_url: "/templates/stay" },
+          { id: 't6', title: "Novus", description: "신뢰감을 주는 블루톤의 IT 스타트업 스타일. SaaS형 구성.", category: "Corporate", preview_url: "/templates/corporate" },
+          { id: 't7', title: "AETHER", description: "이미지가 돋보이는 모던 시크 패션 브랜드 스타일. 미니멀 UI.", category: "Shopping", preview_url: "/templates/ecommerce" },
+          { id: 't8', title: "Daily Crumb", description: "따뜻한 베이지톤의 감성 베이커리 스타일. 손글씨 폰트.", category: "Cafe", preview_url: "/templates/cafe" },
+          { id: 't9', title: "ARCHIVE", description: "크리에이터를 위한 다크모드 그리드 갤러리. 과감한 배치.", category: "Portfolio", preview_url: "/templates/portfolio" },
+          { id: 't10', title: "Pure Clinic", description: "깨끗하고 전문적인 느낌의 클리닉 스타일. 신뢰감을 주는 밝은 톤.", category: "Medical", preview_url: "/templates/medical" },
+          { id: 't11', title: "Trust & Logic", description: "세리프 폰트와 네이비 컬러로 무게감을 준 전문직 스타일.", category: "Law", preview_url: "/templates/law" },
+          { id: 't12', title: "Bliss Moment", description: "파스텔 톤의 우아하고 로맨틱한 웨딩 페이지.", category: "Wedding", preview_url: "/templates/wedding" }
+        ].map { |t| OpenStruct.new(t) }
+      %>
+
+      <% templates_source.each_with_index do |template, index| %>
+        <% 
+            # 카테고리 매핑 (영문 -> 한글 필터용)
+            filter_cat = case template.category
+              when /Beauty|뷰티/ then "beauty"
+              when /Dining|식당|F&B/ then "dining"
+              when /Fitness|Health|운동|Gym/ then "fitness"
+              when /Space|Rental|Place|스터디/ then "space"
+              when /Stay|Travel|숙박/ then "stay"
+              when /Corporate|Startup|기업/ then "corporate"
+              when /Shopping|Commerce|쇼핑/ then "shopping"
+              when /Cafe|Bakery|카페/ then "cafe"
+              when /Portfolio|Creative|포트폴리오/ then "portfolio"
+              when /Medical|Hospital|병원/ then "medical"
+              when /Law|Professional|법률/ then "law"
+              when /Wedding|Event|웨딩/ then "wedding"
+              else "other"
+            end
+
+            # 이미지 URL (Unsplash 소스)
+            bg_images = [
+              "https://images.unsplash.com/photo-1595476106812-d2d7237e4585?q=80&w=800", # Beauty
+              "https://images.unsplash.com/photo-1590301139475-23eddb51f1f2?q=80&w=800", # Dining
+              "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=800", # Gym
+              "https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=800", # Study
+              "https://images.unsplash.com/photo-1610641818989-c2051b5e2cfd?q=80&w=800", # Stay
+              "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=800", # Corporate
+              "https://images.unsplash.com/photo-1539109136881-3be0616acf4b?q=80&w=800", # Shopping
+              "https://images.unsplash.com/photo-1509440159596-0249088772ff?q=80&w=800", # Cafe
+              "https://images.unsplash.com/photo-1600607686527-6fb886090705?q=80&w=800", # Portfolio
+              "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?q=80&w=800", # Medical
+              "https://images.unsplash.com/photo-1589829085413-56de8ae18c73?q=80&w=800", # Law
+              "https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=800"  # Wedding
+            ]
+            
+            # DB에 이미지가 있으면 쓰고, 없으면 위 배열에서 가져옴
+            img_url = if template.respond_to?(:pc_image) && template.pc_image.attached?
+              url_for(template.pc_image)
+            else
+              bg_images[index % bg_images.length]
+            end
+        %>
+        
+        <div class="card template-card" data-category="<%= filter_cat %>" onclick="openTemplateModal('<%= template.id %>', '<%= template.title %>')" style="cursor: pointer; transition: transform 0.3s ease, box-shadow 0.3s ease;">
+          <div class="card-image-wrapper" style="height: 240px; overflow: hidden; border-radius: var(--radius-lg); position: relative; background: #e5e7eb;">
+             <img src="<%= img_url %>" class="template-thumb" style="width: 100%; height: 100%; object-fit: cover; object-position: top; transition: transform 0.5s ease;" alt="<%= template.title %>">
+            
+            <!-- Hover Overlay -->
+            <div class="template-overlay">
+              <span class="btn btn-primary btn-sm">미리보기</span>
             </div>
           </div>
-        <% end %>
+          
+          <div style="padding-top: var(--space-4);">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--space-2);">
+              <span style="font-size: var(--text-xs); font-weight: 600; color: var(--color-accent); text-transform: uppercase; letter-spacing: 0.05em;">
+                <%= template.category.presence || "TEMPLATE" %>
+              </span>
+            </div>
+            <h3 style="font-size: var(--text-lg); font-weight: 700; margin-bottom: var(--space-2); color: var(--color-gray-900);">
+              <%= template.title %>
+            </h3>
+            <p style="font-size: var(--text-sm); color: var(--color-gray-500); line-height: 1.5; margin-bottom: 0;">
+              <%= truncate(template.description, length: 50) %>
+            </p>
+          </div>
+
+          <!-- Hidden Data for Modal -->
+          <div id="template-data-<%= template.id %>" style="display: none;">
+            <div class="data-preview-url"><%= template.preview_url %></div>
+            <div class="data-title"><%= template.title %></div>
+            <div class="data-desc"><%= template.description %></div>
+            <div class="data-category"><%= template.category %></div>
+            <div class="data-img-pc"><%= img_url %></div>
+            <div class="data-img-mobile"><%= img_url %></div> <!-- 모바일 이미지는 임시로 PC 이미지 사용 -->
+          </div>
+        </div>
       <% end %>
     </div>
   </div>
