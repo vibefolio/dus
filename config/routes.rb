@@ -24,6 +24,7 @@ Rails.application.routes.draw do
 
   # 템플릿 페이지
   resources :design_templates, only: [:index]
+  get 'templates', to: redirect('/design_templates')
 
   # 어드민 페이지
   namespace :admin do
