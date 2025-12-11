@@ -1,5 +1,6 @@
 class PagesController < ApplicationController
   def home
+    @featured_templates = DesignTemplate.where(is_featured: true).limit(3)
   end
 
   def portfolio

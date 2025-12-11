@@ -44,6 +44,6 @@ class Admin::DesignTemplatesController < ApplicationController
   end
 
   def design_template_params
-    params.require(:design_template).permit(:title, :description, :category, :pc_image, :mobile_image, :preview_url)
+    params.require(:design_template).permit(:title, :description, :category, :pc_image, :mobile_image, :preview_url, :is_featured, :image_url)
   end
 end
