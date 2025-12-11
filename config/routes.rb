@@ -28,6 +28,7 @@ Rails.application.routes.draw do
   # 어드민 페이지
   namespace :admin do
     root "dashboard#index"
+    resources :sessions, only: [:new, :create, :destroy]
     resources :portfolios
     resources :quotes, only: [ :index, :show ]
     resources :design_templates
