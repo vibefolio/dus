@@ -26,83 +26,218 @@
     <% end %>
 
     <%= form_with model: @quote, url: contact_path, method: :post, class: "card", style: "padding: var(--space-8);" do |f| %>
-      <h2 style="font-size: var(--text-3xl); margin-bottom: var(--space-6); text-align: center;">견적 문의서</h2>
+      <% content_for :title, "프로젝트 문의 - 디어스" %>
+
+<!-- 상단 네비게이션과 겹치지 않도록 여백 추가 -->
+<div style="height: 80px;"></div>
+
+<% if params[:template_id].present? %>
+  <!-- [템플릿 의뢰 모드] 와이드 분할 레이아웃 (96% Width) -->
+  <div style="width: 96%; max-width: 1920px; margin: 0 auto; padding-bottom: 80px;">
+    
+    <div style="margin-bottom: 20px;">
+      <h1 class="text-3xl font-bold">
+        <span class="text-emerald-500"><%= params[:template_title] %></span> 템플릿 의뢰하기
+      </h1>
+      <p class="text-gray-500 mt-1">선택하신 디자인을 기반으로 빠르고 정확하게 제작해 드립니다.</p>
+    </div>
+
+    <div class="grid lg:grid-cols-2 gap-8" style="min-height: 800px;">
       
-      <% if @quote.errors.any? %>
-        <div style="background: var(--color-error); color: white; padding: var(--space-4); border-radius: var(--radius-lg); margin-bottom: var(--space-6);">
-          <strong><%= pluralize(@quote.errors.count, "error") %> 발생:</strong>
-          <ul style="margin-top: var(--space-2); padding-left: var(--space-4);">
-            <% @quote.errors.full_messages.each do |message| %>
-              <li><%= message %></li>
-            <% end %>
-          </ul>
-        </div>
-      <% end %>
-
-      <div class="form-group">
-        <%= f.label :contact_name, "담당자명 *", class: "form-label" %>
-        <%= f.text_field :contact_name, class: "form-input", placeholder: "홍길동", required: true %>
-      </div>
-
-      <div class="form-group">
-        <%= f.label :company_name, "회사명", class: "form-label" %>
-        <%= f.text_field :company_name, class: "form-input", placeholder: "주식회사 디어스" %>
-      </div>
-
-      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-6);">
-        <div class="form-group">
-          <%= f.label :email, "이메일 *", class: "form-label" %>
-          <%= f.email_field :email, class: "form-input", placeholder: "contact@example.com", required: true %>
+      <!-- Left: Interactive Preview -->
+      <div class="bg-gray-100 rounded-2xl overflow-hidden border border-gray-200 flex flex-col relative" style="height: 85vh; position: sticky; top: 100px;">
+        <!-- Preview Header -->
+        <div class="bg-white border-b border-gray-200 px-4 py-3 flex justify-between items-center">
+          <div class="font-bold text-gray-700 flex items-center gap-2">
+            <span class="w-2 h-2 rounded-full bg-red-500"></span>
+            <span class="w-2 h-2 rounded-full bg-yellow-500"></span>
+            <span class="w-2 h-2 rounded-full bg-green-500"></span>
+            <span class="ml-2 text-sm">Live Preview</span>
+          </div>
+          
+          <!-- View Switcher -->
+          <div class="bg-gray-100 p-1 rounded-lg flex text-sm font-medium">
+            <button onclick="switchEmbedView('pc')" id="btn-embed-pc" class="px-3 py-1.5 rounded-md bg-white shadow-sm text-gray-900 transition-all">
+              🖥️ PC
+            </button>
+            <button onclick="switchEmbedView('mobile')" id="btn-embed-mobile" class="px-3 py-1.5 rounded-md text-gray-500 hover:text-gray-900 transition-all">
+              📱 Mobile
+            </button>
+          </div>
         </div>
 
-        <div class="form-group">
-          <%= f.label :phone, "연락처 *", class: "form-label" %>
-          <%= f.telephone_field :phone, class: "form-input", placeholder: "010-1234-5678", required: true %>
+        <!-- Preview Area -->
+        <div class="flex-1 bg-gray-50 overflow-hidden flex justify-center items-center p-4" id="embed-container">
+          <!-- Iframe will be injected here -->
+          <iframe id="embed-iframe" src="" class="w-full h-full bg-white shadow-lg rounded-lg transition-all duration-500" style="border: none;"></iframe>
         </div>
       </div>
 
-      <div class="form-group">
-        <%= f.label :project_type, "프로젝트 유형 *", class: "form-label" %>
-        <%= f.select :project_type, 
-          options_for_select([
-            ["선택해주세요", ""],
-            ["웹사이트 개발", "웹사이트 개발"],
-            ["웹 애플리케이션", "웹 애플리케이션"],
-            ["모바일 앱 (iOS/Android)", "모바일 앱"],
-            ["UI/UX 디자인", "UI/UX 디자인"],
-            ["AI/ML 솔루션", "AI/ML 솔루션"],
-            ["기타", "기타"]
-          ]), 
-          {}, 
-          { class: "form-select", required: true }
-        %>
-      </div>
+      <!-- Right: Contact Form -->
+      <div class="bg-white p-8 lg:p-12 rounded-2xl border border-gray-100 shadow-xl">
+        <h2 class="text-2xl font-bold mb-6">프로젝트 상세 정보</h2>
+        
+        <%= form_with url: contact_path, local: true, class: "space-y-6" do |f| %>
+          <div class="grid grid-cols-2 gap-6">
+            <div>
+              <label class="block text-sm font-semibold text-gray-700 mb-2">담당자명 *</label>
+              <%= f.text_field :name, class: "w-full px-4 py-3 rounded-lg bg-gray-50 border border-gray-200 focus:border-emerald-500 focus:ring-2 focus:ring-emerald-200 transition outline-none", placeholder: "홍길동" %>
+            </div>
+            <div>
+              <label class="block text-sm font-semibold text-gray-700 mb-2">회사명</label>
+              <%= f.text_field :company, class: "w-full px-4 py-3 rounded-lg bg-gray-50 border border-gray-200 focus:border-emerald-500 focus:ring-2 focus:ring-emerald-200 transition outline-none", placeholder: "주식회사 디어스" %>
+            </div>
+          </div>
 
-      <div class="form-group">
-        <%= f.label :budget, "예산 범위", class: "form-label" %>
-        <%= f.select :budget, 
-          options_for_select([
-            ["선택해주세요", ""],
-            ["500만원 미만", "500만원 미만"],
-            ["500만원 ~ 1,000만원", "500만원 ~ 1,000만원"],
-            ["1,000만원 ~ 3,000만원", "1,000만원 ~ 3,000만원"],
-            ["3,000만원 ~ 5,000만원", "3,000만원 ~ 5,000만원"],
-            ["5,000만원 이상", "5,000만원 이상"],
-            ["협의 필요", "협의 필요"]
-          ]), 
-          {}, 
-          { class: "form-select" }
-        %>
-      </div>
+          <div class="grid grid-cols-2 gap-6">
+            <div>
+              <label class="block text-sm font-semibold text-gray-700 mb-2">이메일 *</label>
+              <%= f.email_field :email, class: "w-full px-4 py-3 rounded-lg bg-gray-50 border border-gray-200 focus:border-emerald-500 focus:ring-2 focus:ring-emerald-200 transition outline-none", placeholder: "contact@example.com" %>
+            </div>
+            <div>
+              <label class="block text-sm font-semibold text-gray-700 mb-2">연락처 *</label>
+              <%= f.text_field :phone, class: "w-full px-4 py-3 rounded-lg bg-gray-50 border border-gray-200 focus:border-emerald-500 focus:ring-2 focus:ring-emerald-200 transition outline-none", placeholder: "010-1234-5678" %>
+            </div>
+          </div>
 
-      <div class="form-group">
-        <%= f.label :message, "프로젝트 상세 내용 *", class: "form-label" %>
-        <%= f.text_area :message, class: "form-textarea", placeholder: "프로젝트에 대해 자세히 설명해주세요...", required: true, rows: 6, value: params[:template_title].present? ? "안녕하세요. \"#{params[:template_title]}\" 템플릿을 기반으로 의뢰하고 싶습니다.\n\n구체적인 요구사항:\n" : nil %>
-        <p style="color: var(--color-gray-500); font-size: var(--text-sm); margin-top: var(--space-2);">
-          프로젝트 목적, 주요 기능, 일정, 참고 사이트 등을 포함해주시면 더 정확한 견적을 드릴 수 있습니다.
+          <div>
+             <label class="block text-sm font-semibold text-gray-700 mb-2">예산 범위</label>
+             <%= f.select :budget, ["500만원 ~ 1,000만원", "1,000만원 ~ 3,000만원", "3,000만원 ~ 5,000만원", "5,000만원 이상", "미정"], { prompt: "예산을 선택해주세요" }, class: "w-full px-4 py-3 rounded-lg bg-gray-50 border border-gray-200 focus:border-emerald-500 focus:ring-2 focus:ring-emerald-200 transition outline-none" %>
+          </div>
+
+          <div>
+            <label class="block text-sm font-semibold text-gray-700 mb-2">요청사항 *</label>
+            <% 
+              default_msg = if params[:template_title]
+                "안녕하세요. '#{params[:template_title]}' 템플릿을 기반으로 의뢰하고 싶습니다.\n\n구체적인 변경 요청사항:\n1. \n2. "
+              else
+                ""
+              end
+            %>
+            <%= f.text_area :message, value: default_msg, rows: 8, class: "w-full px-4 py-3 rounded-lg bg-gray-50 border border-gray-200 focus:border-emerald-500 focus:ring-2 focus:ring-emerald-200 transition outline-none font-mono text-sm leading-relaxed" %>
+          </div>
+
+          <button type="submit" class="w-full py-4 bg-emerald-500 hover:bg-emerald-600 text-white font-bold rounded-xl shadow-lg shadow-emerald-200 transition transform hover:-translate-y-0.5">
+            무료 견적 신청하기
+          </button>
+          
+          <p class="text-xs text-center text-gray-400 mt-4">
+            보내주신 내용은 24시간 이내에 담당자가 검토 후 연락드립니다.
+          </p>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Template Mapping Logic
+    const templateId = "<%= params[:template_id] %>";
+    const templateMap = {
+      'beauty': '/templates/beauty',
+      'dining': '/templates/dining',
+      'gym': '/templates/gym',
+      'study': '/templates/study',
+      'stay': '/templates/stay',
+      'corporate': '/templates/corporate',
+      'ecommerce': '/templates/ecommerce',
+      'cafe': '/templates/cafe',
+      'portfolio': '/templates/portfolio',
+      'medical': '/templates/medical',
+      'law': '/templates/law',
+      'wedding': '/templates/wedding'
+    };
+
+    const targetUrl = templateMap[templateId] || '/templates/beauty'; // Fallback
+    const iframe = document.getElementById('embed-iframe');
+    iframe.src = targetUrl;
+
+    function switchEmbedView(mode) {
+        const iframe = document.getElementById('embed-iframe');
+        const btnPc = document.getElementById('btn-embed-pc');
+        const btnMobile = document.getElementById('btn-embed-mobile');
+
+        if (mode === 'pc') {
+            iframe.style.maxWidth = '100%';
+            iframe.style.height = '100%';
+            iframe.style.borderRadius = '8px';
+            iframe.style.border = 'none';
+            btnPc.classList.add('bg-white', 'shadow-sm', 'text-gray-900');
+            btnPc.classList.remove('text-gray-500');
+            btnMobile.classList.remove('bg-white', 'shadow-sm', 'text-gray-900');
+            btnMobile.classList.add('text-gray-500');
+        } else {
+            iframe.style.maxWidth = '375px';
+            iframe.style.height = '812px'; // iPhone size
+            iframe.style.borderRadius = '40px';
+            iframe.style.border = '12px solid #333';
+            btnMobile.classList.add('bg-white', 'shadow-sm', 'text-gray-900');
+            btnMobile.classList.remove('text-gray-500');
+            btnPc.classList.remove('bg-white', 'shadow-sm', 'text-gray-900');
+            btnPc.classList.add('text-gray-500');
+        }
+    }
+  </script>
+
+<% else %>
+  <!-- [일반 문의 모드] 기존 중앙 정렬 (Container) -->
+  <div class="container pb-20">
+    <div class="max-w-3xl mx-auto bg-white p-8 md:p-12 rounded-3xl shadow-2xl border border-gray-100">
+      <div class="text-center mb-10">
+        <h1 class="text-4xl font-bold mb-3 text-gray-900">프로젝트 문의</h1>
+        <p class="text-gray-500">
+          성공적인 프로젝트의 시작, 디어스가 함께하겠습니다.
         </p>
       </div>
 
+      <%= form_with url: contact_path, local: true, class: "space-y-6" do |f| %>
+        <!-- (기존 폼 내용 유지) -->
+        <div class="grid md:grid-cols-2 gap-6">
+          <div>
+            <label class="block text-sm font-bold text-gray-700 mb-2">이름 *</label>
+            <%= f.text_field :name, class: "w-full border-gray-300 rounded-lg shadow-sm focus:border-indigo-500 focus:ring-indigo-500 py-3 px-4", required: true %>
+          </div>
+          <div>
+            <label class="block text-sm font-bold text-gray-700 mb-2">회사명</label>
+            <%= f.text_field :company, class: "w-full border-gray-300 rounded-lg shadow-sm focus:border-indigo-500 focus:ring-indigo-500 py-3 px-4" %>
+          </div>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-6">
+          <div>
+            <label class="block text-sm font-bold text-gray-700 mb-2">이메일 *</label>
+            <%= f.email_field :email, class: "w-full border-gray-300 rounded-lg shadow-sm focus:border-indigo-500 focus:ring-indigo-500 py-3 px-4", required: true %>
+          </div>
+          <div>
+            <label class="block text-sm font-bold text-gray-700 mb-2">연락처 *</label>
+            <%= f.text_field :phone, class: "w-full border-gray-300 rounded-lg shadow-sm focus:border-indigo-500 focus:ring-indigo-500 py-3 px-4", required: true %>
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-sm font-bold text-gray-700 mb-2">프로젝트 유형 *</label>
+          <%= f.select :project_type, ["웹사이트 개발", "애플리케이션 개발", "쇼핑몰 구축", "유지보수", "기타"], { prompt: "선택해주세요" }, class: "w-full border-gray-300 rounded-lg shadow-sm focus:border-indigo-500 focus:ring-indigo-500 py-3 px-4", required: true %>
+        </div>
+
+        <div>
+           <label class="block text-sm font-bold text-gray-700 mb-2">예산 범위</label>
+           <%= f.select :budget, ["500만원 ~ 1,000만원", "1,000만원 ~ 3,000만원", "3,000만원 ~ 5,000만원", "5,000만원 이상", "미정"], { prompt: "선택해주세요" }, class: "w-full border-gray-300 rounded-lg shadow-sm focus:border-indigo-500 focus:ring-indigo-500 py-3 px-4" %>
+        </div>
+
+        <div>
+          <label class="block text-sm font-bold text-gray-700 mb-2">문의 내용 *</label>
+          <%= f.text_area :message, rows: 6, class: "w-full border-gray-300 rounded-lg shadow-sm focus:border-indigo-500 focus:ring-indigo-500 py-3 px-4", required: true, placeholder: "프로젝트의 목적, 주요 기능, 일정 등을 자유롭게 적어주세요." %>
+        </div>
+
+        <div class="pt-4">
+          <button type="submit" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-4 rounded-xl shadow-lg transition duration-200 flex justify-center items-center gap-2">
+            <span>문의하기</span>
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+          </button>
+        </div>
+      <% end %>
+    </div>
+  </div>
+<% end %>
       <div style="margin-top: var(--space-8);">
         <%= f.submit "문의하기", class: "btn btn-primary btn-lg", style: "width: 100%;" %>
       </div>
