@@ -25,6 +25,25 @@ class PagesController < ApplicationController
     end
   end
 
+  def robots
+    robots_txt = <<~TEXT
+      User-agent: *
+      Allow: /
+      Disallow: /admin
+      Disallow: /templates/*
+      Sitemap: #{request.base_url}/sitemap.xml
+    TEXT
+    render plain: robots_txt
+  end
+
+  def sitemap
+    @base_url = request.base_url
+    @templates = DesignTemplate.all
+    @portfolios = Portfolio.all
+    
+    render formats: :xml
+  end
+
   private
 
   def quote_params

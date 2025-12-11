@@ -36,6 +36,10 @@ Rails.application.routes.draw do
     resources :design_templates
   end
 
+  # SEO
+  get '/robots.txt', to: 'pages#robots'
+  get '/sitemap.xml', to: 'pages#sitemap'
+
   # Health check
   get "up" => "rails/health#show", as: :rails_health_check
 end
