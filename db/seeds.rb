@@ -101,7 +101,7 @@ templates = [
     category: "space", 
     preview_url: "/templates/cleaning", 
     image_url: "https://images.unsplash.com/photo-1527515653594-e0c6e001c408?q=80&w=800&auto=format&fit=crop",
-    is_featured: false
+    is_featured: true
   }
 ]
 
