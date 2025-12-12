@@ -75,30 +75,54 @@
     <!-- Templates Grid -->
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 xl:gap-8" id="templates-grid">
       <% 
-        # 하드코딩된 템플릿 데이터 (가장 단순한 형태)
-        templates = [
-          { id: 'beauty', title: "LUMIER", desc: "청담동 하이엔드 살롱 스타일. 고급스러운 세리프 폰트와 인물 중심 레이아웃.", cat: "beauty", url: "/templates/beauty", img: "https://images.unsplash.com/photo-1560066984-138dadb4c035?q=80&w=800&auto=format&fit=crop", featured: true },
-          { id: 'dining', title: "溫 (ON)", desc: "여백의 미를 살린 모던 오마카세 다이닝 스타일. 갤러리 같은 메뉴 소개 디자인.", cat: "dining", url: "/templates/dining", img: "https://images.unsplash.com/photo-1559339352-11d035aa65de?q=80&w=800&auto=format&fit=crop", featured: true },
-          { id: 'gym', title: "Sculpt & Soul", desc: "아티스틱 웰니스 브랜드 스타일. 감각적인 다크 모드와 타이포그래피.", cat: "fitness", url: "/templates/gym", img: "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=800", featured: false },
-          { id: 'study', title: "Focus Lab", desc: "건축적인 조형미가 돋보이는 스터디 랩 스타일. 집중력을 높이는 미니멀리즘.", cat: "space", url: "/templates/study", img: "https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=800", featured: false },
-          { id: 'stay', title: "서촌 쉼", desc: "한옥의 정취를 담은 감성 스테이. 수평 스크롤 스토리텔링.", cat: "stay", url: "/templates/stay", img: "https://images.unsplash.com/photo-1610641818989-c2051b5e2cfd?q=80&w=800", featured: true },
-          { id: 'corporate', title: "Novus", desc: "신뢰감을 주는 블루톤의 IT 스타트업 스타일. 데이터 시각화 섹션 포함.", cat: "corporate", url: "/templates/corporate", img: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=800", featured: false },
-          { id: 'ecommerce', title: "AETHER", desc: "이미지가 돋보이는 모던 시크 패션 브랜드. 상품 디테일을 살리는 레이아웃.", cat: "shopping", url: "/templates/ecommerce", img: "https://images.unsplash.com/photo-1539109136881-3be0616acf4b?q=80&w=800", featured: false },
-          { id: 'cafe', title: "Daily Crumb", desc: "따뜻한 베이지톤의 감성 베이커리 스타일. 인스타그램 피드 연동 디자인.", cat: "cafe", url: "/templates/cafe", img: "https://images.unsplash.com/photo-1509440159596-0249088772ff?q=80&w=800", featured: false },
-          { id: 'portfolio', title: "ARCHIVE", desc: "크리에이터를 위한 다크모드 그리드 갤러리. 작품에만 집중할 수 있는 디자인.", cat: "portfolio", url: "/templates/portfolio", img: "https://images.unsplash.com/photo-1600607686527-6fb886090705?q=80&w=800", featured: false },
-          { id: 'medical', title: "Pure Clinic", desc: "깨끗하고 전문적인 느낌의 클리닉 스타일. 신뢰감을 주는 의료진 소개 섹션.", cat: "medical", url: "/templates/medical", img: "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?q=80&w=800", featured: false },
-          { id: 'law', title: "Trust & Logic", desc: "세리프 폰트와 네이비 컬러로 무게감을 준 전문직. 성공 사례 중심 레이아웃.", cat: "law", url: "/templates/law", img: "https://images.unsplash.com/photo-1589829085413-56de8ae18c73?q=80&w=800", featured: false },
-          { id: 'wedding', title: "Bliss", desc: "우아하고 로맨틱한 웨딩 플래너/베뉴 템플릿. 감성적인 비주얼 스토리텔링.", cat: "stay", url: "/templates/wedding", img: "https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=800", featured: false },
-          { id: 'cleaning', title: "클린 싹싹", desc: "건물위생관리업 정식 등록업체. 신뢰감을 주는 블루톤의 전문 청소업체 템플릿.", cat: "space", url: "/templates/cleaning", img: "https://images.unsplash.com/photo-1581578731548-c64695cc6952?q=80&w=800", featured: true }
-        ]
+        # DB 데이터 우선, 없으면 Fallback
+        templates = if @design_templates.respond_to?(:any?) && @design_templates.any?
+          @design_templates
+        else
+          # Fallback: 하드코딩 데이터 (DB 연동 전까지만 사용)
+          [
+            { id: 'beauty', title: "LUMIER", desc: "청담동 하이엔드 살롱 스타일. 고급스러운 세리프 폰트와 인물 중심 레이아웃.", cat: "beauty", url: "/templates/beauty", img: "https://images.unsplash.com/photo-1560066984-138dadb4c035?q=80&w=800&auto=format&fit=crop", featured: true },
+            { id: 'dining', title: "溫 (ON)", desc: "여백의 미를 살린 모던 오마카세 다이닝 스타일. 갤러리 같은 메뉴 소개 디자인.", cat: "dining", url: "/templates/dining", img: "https://images.unsplash.com/photo-1559339352-11d035aa65de?q=80&w=800&auto=format&fit=crop", featured: true },
+            { id: 'gym', title: "Sculpt & Soul", desc: "아티스틱 웰니스 브랜드 스타일. 감각적인 다크 모드와 타이포그래피.", cat: "fitness", url: "/templates/gym", img: "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=800", featured: false },
+            { id: 'study', title: "Focus Lab", desc: "건축적인 조형미가 돋보이는 스터디 랩 스타일. 집중력을 높이는 미니멀리즘.", cat: "space", url: "/templates/study", img: "https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=800", featured: false },
+            { id: 'stay', title: "서촌 쉼", desc: "한옥의 정취를 담은 감성 스테이. 수평 스크롤 스토리텔링.", cat: "stay", url: "/templates/stay", img: "https://images.unsplash.com/photo-1610641818989-c2051b5e2cfd?q=80&w=800", featured: true },
+            { id: 'corporate', title: "Novus", desc: "신뢰감을 주는 블루톤의 IT 스타트업 스타일. 데이터 시각화 섹션 포함.", cat: "corporate", url: "/templates/corporate", img: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=800", featured: false },
+            { id: 'ecommerce', title: "AETHER", desc: "이미지가 돋보이는 모던 시크 패션 브랜드. 상품 디테일을 살리는 레이아웃.", cat: "shopping", url: "/templates/ecommerce", img: "https://images.unsplash.com/photo-1539109136881-3be0616acf4b?q=80&w=800", featured: false },
+            { id: 'cafe', title: "Daily Crumb", desc: "따뜻한 베이지톤의 감성 베이커리 스타일. 인스타그램 피드 연동 디자인.", cat: "cafe", url: "/templates/cafe", img: "https://images.unsplash.com/photo-1509440159596-0249088772ff?q=80&w=800", featured: false },
+            { id: 'portfolio', title: "ARCHIVE", desc: "크리에이터를 위한 다크모드 그리드 갤러리. 작품에만 집중할 수 있는 디자인.", cat: "portfolio", url: "/templates/portfolio", img: "https://images.unsplash.com/photo-1600607686527-6fb886090705?q=80&w=800", featured: false },
+            { id: 'medical', title: "Pure Clinic", desc: "깨끗하고 전문적인 느낌의 클리닉 스타일. 신뢰감을 주는 의료진 소개 섹션.", cat: "medical", url: "/templates/medical", img: "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?q=80&w=800", featured: false },
+            { id: 'law', title: "Trust & Logic", desc: "세리프 폰트와 네이비 컬러로 무게감을 준 전문직. 성공 사례 중심 레이아웃.", cat: "law", url: "/templates/law", img: "https://images.unsplash.com/photo-1589829085413-56de8ae18c73?q=80&w=800", featured: false },
+            { id: 'wedding', title: "Bliss", desc: "우아하고 로맨틱한 웨딩 플래너/베뉴 템플릿. 감성적인 비주얼 스토리텔링.", cat: "stay", url: "/templates/wedding", img: "https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=800", featured: false },
+            { id: 'cleaning', title: "클린 싹싹", desc: "건물위생관리업 정식 등록업체. 신뢰감을 주는 블루톤의 전문 청소업체 템플릿.", cat: "space", url: "/templates/cleaning", img: "https://images.unsplash.com/photo-1581578731548-c64695cc6952?q=80&w=800", featured: true }
+          ]
+        end
       %>
 
       <% templates.each do |template| %>
-        <div class="template-card fade-in group bg-white rounded-2xl overflow-hidden border border-gray-100 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1" data-category="<%= template[:cat] %>">
+        <% 
+          # DB 객체와 Hash 모두 지원
+          t_id = template.respond_to?(:id) ? template.id : template[:id]
+          t_title = template.respond_to?(:title) ? template.title : template[:title]
+          t_desc = template.respond_to?(:description) ? template.description : template[:desc]
+          t_cat = template.respond_to?(:category) ? template.category : template[:cat]
+          t_url = template.respond_to?(:preview_url) ? template.preview_url : template[:url]
+          t_featured = template.respond_to?(:is_featured) ? template.is_featured : template[:featured]
+          
+          # 이미지 URL 처리
+          if template.respond_to?(:image_url) && template.image_url.present?
+            t_img = template.image_url
+          elsif template.respond_to?(:pc_image) && template.pc_image.attached?
+            t_img = url_for(template.pc_image)
+          else
+            t_img = template[:img]
+          end
+        %>
+        
+        <div class="template-card fade-in group bg-white rounded-2xl overflow-hidden border border-gray-100 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1" data-category="<%= t_cat %>">
           <!-- Thumbnail Image (Clickable) -->
-          <div class="relative w-full aspect-[4/3] bg-gray-200 overflow-hidden cursor-pointer" onclick="openLiveDemo('<%= template[:url] %>', '<%= template[:title] %>')">
-            <% if template[:img].present? %>
-              <img src="<%= template[:img] %>" alt="<%= template[:title] %>" loading="lazy" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+          <div class="relative w-full aspect-[4/3] bg-gray-200 overflow-hidden cursor-pointer" onclick="openLiveDemo('<%= t_url %>', '<%= t_title %>')">
+            <% if t_img.present? %>
+              <img src="<%= t_img %>" alt="<%= t_title %>" loading="lazy" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
             <% else %>
               <div class="w-full h-full flex items-center justify-center text-gray-400">
                 <span class="text-sm">No Image</span>
@@ -112,27 +136,27 @@
           <div class="p-8">
             <div class="flex justify-between items-center mb-4">
               <span class="text-xs font-bold text-emerald-600 uppercase tracking-wider bg-emerald-50 px-3 py-1.5 rounded-full">
-                <%= template[:cat].upcase %>
+                <%= t_cat.upcase %>
               </span>
-              <% if template[:featured] %>
+              <% if t_featured %>
                  <span class="text-[10px] font-bold text-white bg-emerald-500 px-2 py-0.5 rounded-full">MAIN</span>
               <% end %>
             </div>
             <h3 class="text-2xl font-bold text-gray-900 mb-2 group-hover:text-emerald-600 transition-colors">
-              <%= template[:title] %>
+              <%= t_title %>
             </h3>
             <p class="text-gray-500 mb-8 text-sm leading-relaxed line-clamp-2 h-10">
-              <%= template[:desc] %>
+              <%= t_desc %>
             </p>
 
             <!-- Action Buttons -->
             <div class="grid grid-cols-2 gap-4">
-              <button onclick="openTemplateModal('<%= template[:id] %>', '<%= template[:title] %>')" 
+              <button onclick="openTemplateModal('<%= t_id %>', '<%= t_title %>')" 
                       class="py-3 px-4 rounded-xl border border-gray-200 text-gray-700 font-bold hover:bg-gray-50 hover:border-gray-300 transition-all flex items-center justify-center gap-2 text-sm">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
                 둘러보기
               </button>
-              <a href="/contact?template_id=<%= template[:id] %>&template_title=<%= u(template[:title]) %>" 
+              <a href="/contact?template_id=<%= t_id %>&template_title=<%= u(t_title) %>" 
                  class="py-3 px-4 rounded-xl bg-emerald-500 text-white font-bold hover:bg-emerald-600 shadow-lg shadow-emerald-100 hover:shadow-emerald-200 transition-all text-center flex items-center justify-center gap-2 text-sm">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
                 의뢰하기
@@ -141,12 +165,12 @@
           </div>
 
           <!-- Hidden Data for Modal -->
-          <div id="template-data-<%= template[:id] %>" style="display: none;">
-            <div class="data-preview-url"><%= template[:url] %></div>
-            <div class="data-title"><%= template[:title] %></div>
-            <div class="data-desc"><%= template[:desc] %></div>
-            <div class="data-category"><%= template[:cat].upcase %></div>
-            <div class="data-img-pc"><%= template[:img] %></div>
+          <div id="template-data-<%= t_id %>" style="display: none;">
+            <div class="data-preview-url"><%= t_url %></div>
+            <div class="data-title"><%= t_title %></div>
+            <div class="data-desc"><%= t_desc %></div>
+            <div class="data-category"><%= t_cat.upcase %></div>
+            <div class="data-img-pc"><%= t_img %></div>
           </div>
         </div>
       <% end %>
