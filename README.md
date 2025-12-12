@@ -7,22 +7,34 @@ AI와 함께하는 디지털 혁신 파트너, 디어스의 공식 웹사이트�
 ### 공개 페이지
 
 - **메인 페이지** - 회사 소개, 서비스 안내, 주요 성과 지표
+- **디자인 템플릿** - 33종의 다양한 템플릿 쇼케이스
+  - 🔍 실시간 검색 기능
+  - 🏷️ 카테고리 필터링
+  - 📊 정렬 기능 (추천순/인기순/최신순)
+  - 📄 페이지네이션 (12개씩)
 - **포트폴리오** - 완성된 프로젝트 쇼케이스
 - **문의하기** - 프로젝트 견적 문의 폼
+  - 📧 자동 이메일 알림 (관리자 + 고객)
 
 ### 관리자 페이지
 
+- **대시보드** - 통계 및 최근 활동
 - **포트폴리오 관리** - CRUD 기능으로 프로젝트 관리
+- **템플릿 관리** - 디자인 템플릿 CRUD
 - **문의 내역 관리** - 고객 문의 확인 및 관리
 - **견적서 PDF 생성** - 프로페셔널한 견적서 자동 생성
 
 ## 🚀 기술 스택
 
 - **Backend**: Ruby on Rails 8.1
-- **Database**: SQLite3
-- **Frontend**: HTML5, CSS3 (Vanilla CSS)
+- **Database**: SQLite3 (dev), PostgreSQL (production)
+- **Frontend**: HTML5, Tailwind CSS
 - **PDF Generation**: Prawn
-- **Authentication**: HTTP Basic Auth
+- **Authentication**: Session-based
+- **Email**: ActionMailer
+- **Pagination**: Kaminari
+- **Security**: Rack Attack (Rate Limiting)
+- **Performance**: Rails Cache, Bullet (N+1 detection)
 
 ## 📦 설치 및 실행
 

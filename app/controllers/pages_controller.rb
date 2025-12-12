@@ -1,7 +1,9 @@
 class PagesController < ApplicationController
   def home
     begin
-      @featured_templates = DesignTemplate.where(is_featured: true).limit(3)
+      @featured_templates = Rails.cache.fetch("featured_templates", expires_in: 1.hour) do
+        DesignTemplate.where(is_featured: true).limit(3).to_a
+      end
     rescue => e
       Rails.logger.error "Failed to load featured templates: #{e.message}"
       @featured_templates = []
@@ -29,6 +31,14 @@ class PagesController < ApplicationController
     @quote.status = "pending"
 
     if @quote.save
+      # Send email notifications
+      begin
+        QuoteMailer.new_quote_notification(@quote).deliver_later
+        QuoteMailer.quote_confirmation(@quote).deliver_later
+      rescue => e
+        Rails.logger.error "Failed to send quote emails: #{e.message}"
+      end
+      
       redirect_to contact_path, notice: "문의가 성공적으로 접수되었습니다. 빠른 시일 내에 연락드리겠습니다."
     else
       render :contact, status: :unprocessable_entity
