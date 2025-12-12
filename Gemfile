@@ -18,6 +18,7 @@ end
 # Use SQLite in development
 group :development, :test do
   gem "sqlite3", ">= 2.1"
+  gem "webrick"  # Web server for development (Windows compatible)
 end
 # Use JavaScript with ESM import maps [https://github.com/rails/importmap-rails]
 gem "importmap-rails"
