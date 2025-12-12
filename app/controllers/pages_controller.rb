@@ -1,10 +1,20 @@
 class PagesController < ApplicationController
   def home
-    @featured_templates = DesignTemplate.where(is_featured: true).limit(3)
+    begin
+      @featured_templates = DesignTemplate.where(is_featured: true).limit(3)
+    rescue => e
+      Rails.logger.error "Failed to load featured templates: #{e.message}"
+      @featured_templates = []
+    end
   end
 
   def portfolio
-    @portfolios = Portfolio.order(created_at: :desc)
+    begin
+      @portfolios = Portfolio.order(created_at: :desc)
+    rescue => e
+      Rails.logger.error "Failed to load portfolios: #{e.message}"
+      @portfolios = []
+    end
   end
 
   def contact
@@ -38,8 +48,14 @@ class PagesController < ApplicationController
 
   def sitemap
     @base_url = request.base_url
-    @templates = DesignTemplate.all
-    @portfolios = Portfolio.all
+    begin
+      @templates = DesignTemplate.all
+      @portfolios = Portfolio.all
+    rescue => e
+      Rails.logger.error "Failed to load data for sitemap: #{e.message}"
+      @templates = []
+      @portfolios = []
+    end
     
     render formats: :xml
   end
