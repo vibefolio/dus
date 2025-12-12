@@ -162,8 +162,46 @@
     </button>
 
     <!-- Navbar & Utility Scripts -->
+    <!-- Floating Consultation Button -->
+    <a href="<%= contact_path %>" class="fixed bottom-24 right-8 z-50 bg-white text-emerald-600 p-4 rounded-full shadow-xl hover:shadow-2xl transition-all transform hover:scale-105 flex items-center justify-center group" title="실시간 문의">
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+      </svg>
+      <span class="absolute right-full mr-3 bg-gray-900 text-white text-sm py-1 px-3 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none">
+        무료 견적 문의
+      </span>
+    </a>
+
     <script>
-      // Navbar Scroll Effect
+      // 1. Scroll Animations (Intersection Observer)
+      document.addEventListener('DOMContentLoaded', () => {
+        const observerOptions = {
+          root: null,
+          rootMargin: '0px',
+          threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries, observer) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.style.animationPlayState = 'running';
+              entry.target.style.opacity = '1';
+              entry.target.style.transform = 'translateY(0)';
+              observer.unobserve(entry.target);
+            }
+          });
+        }, observerOptions);
+
+        // Apply to fade-in sections
+        document.querySelectorAll('.fade-in-section').forEach(section => {
+          section.style.opacity = '0';
+          section.style.transform = 'translateY(20px)';
+          section.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out';
+          observer.observe(section);
+        });
+      });
+
+      // 2. Navbar Scroll Effect
       window.addEventListener('scroll', function() {
         const navbar = document.getElementById('navbar');
         const scrollBtn = document.getElementById('scrollToTopBtn');
@@ -186,7 +224,7 @@
         window.scrollTo({ top: 0, behavior: 'smooth' });
       }
 
-      // Auto-hide Flash Messages (Toast)
+      // 3. Auto-hide Flash Messages (Toast)
       document.addEventListener('DOMContentLoaded', function() {
         const flashes = document.querySelectorAll('.flash-message');
         flashes.forEach(flash => {
@@ -196,8 +234,38 @@
             setTimeout(() => {
               flash.remove();
             }, 300);
-          }, 4000); // 4 seconds
+          }, 4000); 
         });
+      });
+      
+      // 4. Client-side Form Validation (Contact Form)
+      document.addEventListener('DOMContentLoaded', function() {
+        const contactForm = document.querySelector('form[action="/contact"]');
+        if (contactForm) {
+          contactForm.addEventListener('submit', function(event) {
+            let isValid = true;
+            const emailInput = contactForm.querySelector('input[type="email"]');
+            const phoneInput = contactForm.querySelector('input[name="quote[phone]"]');
+            
+            // Email Validation
+            if (emailInput && !emailInput.value.includes('@')) {
+              isValid = false;
+              alert('올바른 이메일 주소를 입력해주세요.');
+              emailInput.focus();
+              event.preventDefault();
+              return;
+            }
+             
+            // Phone Validation (Simple check)
+            if (phoneInput && phoneInput.value.length < 9) {
+              isValid = false;
+              alert('올바른 전화번호를 입력해주세요.');
+              phoneInput.focus();
+              event.preventDefault();
+              return;
+            }
+          });
+        }
       });
     </script>
   </body>

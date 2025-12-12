@@ -183,3 +183,97 @@
   </div>
 
 </div>
+</div>
+
+<!-- Analytics Chart -->
+<div class="card" style="margin-bottom: var(--space-12);">
+  <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--space-6);">
+    <h2 style="font-size: var(--text-2xl);">월별 문의 추이</h2>
+    <span style="font-size: var(--text-sm); color: var(--color-gray-500);">최근 6개월</span>
+  </div>
+  <div style="height: 350px; width: 100%;">
+    <canvas id="quotesChart"></canvas>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const ctx = document.getElementById('quotesChart').getContext('2d');
+    
+    const labels = <%= @monthly_stats.map { |s| s[:month] }.to_json.html_safe %>;
+    const data = <%= @monthly_stats.map { |s| s[:count] }.to_json.html_safe %>;
+
+    new Chart(ctx, {
+      type: 'line',
+      data: {
+        labels: labels,
+        datasets: [{
+          label: '문의 건수',
+          data: data,
+          borderColor: '#00a859',
+          backgroundColor: (context) => {
+            const ctx = context.chart.ctx;
+            const gradient = ctx.createLinearGradient(0, 0, 0, 300);
+            gradient.addColorStop(0, 'rgba(0, 168, 89, 0.2)');
+            gradient.addColorStop(1, 'rgba(0, 168, 89, 0.0)');
+            return gradient;
+          },
+          borderWidth: 3,
+          pointBackgroundColor: '#ffffff',
+          pointBorderColor: '#00a859',
+          pointBorderWidth: 2,
+          pointRadius: 6,
+          pointHoverRadius: 8,
+          fill: true,
+          tension: 0.4
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: {
+            display: false
+          },
+          tooltip: {
+            backgroundColor: 'rgba(0, 0, 0, 0.8)',
+            padding: 12,
+            titleFont: { size: 14 },
+            bodyFont: { size: 14 },
+            displayColors: false,
+            callbacks: {
+              label: function(context) {
+                return context.parsed.y + '건의 문의';
+              }
+            }
+          }
+        },
+        scales: {
+          y: {
+            beginAtZero: true,
+            grid: {
+              borderDash: [5, 5],
+              color: 'rgba(0, 0, 0, 0.05)'
+            },
+            ticks: {
+              stepSize: 1,
+              font: { family: "'Inter', sans-serif" }
+            }
+          },
+          x: {
+            grid: {
+              display: false
+            },
+            ticks: {
+              font: { family: "'Inter', sans-serif" }
+            }
+          }
+        },
+        interaction: {
+          intersect: false,
+          mode: 'index',
+        },
+      }
+    });
+  });
+</script>

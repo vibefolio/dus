@@ -11,5 +11,16 @@ class Admin::DashboardController < ApplicationController
     
     @recent_portfolios = Portfolio.order(created_at: :desc).limit(5)
     @recent_quotes = Quote.order(created_at: :desc).limit(5)
+    
+    # Monthly Stats (Last 6 months)
+    @monthly_stats = (0..5).map do |i|
+      date = i.months.ago
+      start_date = date.beginning_of_month
+      end_date = date.end_of_month
+      {
+        month: date.strftime("%-m월"),
+        count: Quote.where(created_at: start_date..end_date).count
+      }
+    end.reverse
   end
 end
