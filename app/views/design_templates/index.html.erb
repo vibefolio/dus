@@ -50,7 +50,9 @@
         display_templates = if @design_templates&.any?
           @design_templates
         else
-          TemplateStruct = Struct.new(:id, :title, :description, :category, :preview_url, :image_url, :is_featured, keyword_init: true)
+          # Define TemplateStruct only if not already defined (prevents constant redefinition warning)
+          TemplateStruct = Struct.new(:id, :title, :description, :category, :preview_url, :image_url, :is_featured, keyword_init: true) unless defined?(TemplateStruct)
+          
           [
             TemplateStruct.new(id: 1, title: "LUMIER", description: "청담동 하이엔드 살롱 스타일. 고급스러운 세리프 폰트와 인물 중심 레이아웃.", category: "beauty", preview_url: "/templates/beauty", image_url: "https://images.unsplash.com/photo-1560066984-138dadb4c035?q=80&w=800&auto=format&fit=crop", is_featured: true),
             TemplateStruct.new(id: 2, title: "溫 (ON)", description: "여백의 미를 살린 모던 오마카세 다이닝 스타일. 갤러리 같은 메뉴 소개 디자인.", category: "dining", preview_url: "/templates/dining", image_url: "https://images.unsplash.com/photo-1559339352-11d035aa65de?q=80&w=800&auto=format&fit=crop", is_featured: true),
