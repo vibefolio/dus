@@ -1,4 +1,8 @@
 class AddInitialDesignTemplates < ActiveRecord::Migration[8.1]
+  # Define a temporary model inside the migration to avoid dependency issues
+  class DesignTemplate < ActiveRecord::Base
+  end
+
   def up
     # 기존 데이터가 있다면 겹치지 않게 처리하거나 관리
     # 여기서는 확실한 생성을 위해 기존 데이터를 정리하지 않고 추가만 하거나,
