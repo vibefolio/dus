@@ -17,7 +17,19 @@
 
   <div class="form-group">
     <%= f.label :category, "카테고리", class: "form-label" %>
-    <%= f.select :category, ["쇼핑몰", "기업/브랜드", "랜딩페이지", "커뮤니티", "기타"], {}, class: "form-select" %>
+    <%= f.select :category, [
+      ['뷰티/살롱', 'beauty'],
+      ['다이닝/F&B', 'dining'],
+      ['피트니스/요가', 'fitness'],
+      ['공간/렌탈', 'space'],
+      ['스테이/숙박', 'stay'],
+      ['쇼핑몰', 'shopping'],
+      ['기업/브랜드', 'corporate'],
+      ['카페/베이커리', 'cafe'],
+      ['포트폴리오', 'portfolio'],
+      ['병원/의료', 'medical'],
+      ['법률/전문직', 'law']
+    ], {}, class: "form-select" %>
   </div>
 
   <div class="form-group">
@@ -25,6 +37,7 @@
     <%= f.text_area :description, class: "form-textarea", rows: 4 %>
   </div>
 
+  <div class="form-group">
     <%= f.label :preview_url, "미리보기 URL (예: /templates/beauty)", class: "form-label" %>
     <%= f.text_field :preview_url, class: "form-input", placeholder: "/templates/..." %>
   </div>
