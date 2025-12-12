@@ -630,6 +630,22 @@ a:hover {
   }
 }
 
+.fade-in-section {
+  opacity: 0;
+  animation: fadeInUp 0.8s ease-out forwards;
+}
+
+/* Turbo Frame Enhancements */
+turbo-frame {
+  display: block;
+  transition: opacity 0.2s ease;
+}
+
+turbo-frame[busy] {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
 /* ==========================================
    UTILITY CLASSES
    ========================================== */
