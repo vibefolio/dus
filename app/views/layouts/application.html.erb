@@ -173,8 +173,8 @@
     </a>
 
     <script>
-      // 1. Scroll Animations (Intersection Observer)
-      document.addEventListener('DOMContentLoaded', () => {
+      function initializeUI() {
+        // 1. Scroll Animations (Intersection Observer)
         const observerOptions = {
           root: null,
           rootMargin: '0px',
@@ -192,40 +192,14 @@
           });
         }, observerOptions);
 
-        // Apply to fade-in sections
         document.querySelectorAll('.fade-in-section').forEach(section => {
           section.style.opacity = '0';
           section.style.transform = 'translateY(20px)';
           section.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out';
           observer.observe(section);
         });
-      });
 
-      // 2. Navbar Scroll Effect
-      window.addEventListener('scroll', function() {
-        const navbar = document.getElementById('navbar');
-        const scrollBtn = document.getElementById('scrollToTopBtn');
-        
-        if (window.scrollY > 50) {
-          navbar.classList.add('scrolled');
-        } else {
-          navbar.classList.remove('scrolled');
-        }
-
-        // Scroll to Top Button Visibility
-        if (window.scrollY > 300) {
-          scrollBtn.classList.remove('translate-y-20', 'opacity-0');
-        } else {
-          scrollBtn.classList.add('translate-y-20', 'opacity-0');
-        }
-      });
-
-      function scrollToTop() {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-      }
-
-      // 3. Auto-hide Flash Messages (Toast)
-      document.addEventListener('DOMContentLoaded', function() {
+        // 2. Auto-hide Flash Messages (Toast)
         const flashes = document.querySelectorAll('.flash-message');
         flashes.forEach(flash => {
           setTimeout(() => {
@@ -236,18 +210,19 @@
             }, 300);
           }, 4000); 
         });
-      });
-      
-      // 4. Client-side Form Validation (Contact Form)
-      document.addEventListener('DOMContentLoaded', function() {
+
+        // 3. Client-side Form Validation
         const contactForm = document.querySelector('form[action="/contact"]');
         if (contactForm) {
-          contactForm.addEventListener('submit', function(event) {
+          // Remove existing listeners to prevent duplicates if any
+          const newForm = contactForm.cloneNode(true);
+          contactForm.parentNode.replaceChild(newForm, contactForm);
+          
+          newForm.addEventListener('submit', function(event) {
             let isValid = true;
-            const emailInput = contactForm.querySelector('input[type="email"]');
-            const phoneInput = contactForm.querySelector('input[name="quote[phone]"]');
+            const emailInput = newForm.querySelector('input[type="email"]');
+            const phoneInput = newForm.querySelector('input[name="quote[phone]"]');
             
-            // Email Validation
             if (emailInput && !emailInput.value.includes('@')) {
               isValid = false;
               alert('올바른 이메일 주소를 입력해주세요.');
@@ -256,7 +231,6 @@
               return;
             }
              
-            // Phone Validation (Simple check)
             if (phoneInput && phoneInput.value.length < 9) {
               isValid = false;
               alert('올바른 전화번호를 입력해주세요.');
@@ -266,7 +240,37 @@
             }
           });
         }
+      }
+
+      // Navbar Scroll Effect (Global Listener)
+      window.addEventListener('scroll', function() {
+        const navbar = document.getElementById('navbar');
+        const scrollBtn = document.getElementById('scrollToTopBtn');
+        
+        if (navbar) {
+          if (window.scrollY > 50) {
+            navbar.classList.add('scrolled');
+          } else {
+            navbar.classList.remove('scrolled');
+          }
+        }
+
+        if (scrollBtn) {
+          if (window.scrollY > 300) {
+            scrollBtn.classList.remove('translate-y-20', 'opacity-0');
+          } else {
+            scrollBtn.classList.add('translate-y-20', 'opacity-0');
+          }
+        }
       });
+
+      function scrollToTop() {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+
+      // Initialize on load and Turbo navigation
+      document.addEventListener('turbo:load', initializeUI);
+      document.addEventListener('DOMContentLoaded', initializeUI);
     </script>
   </body>
 </html>
