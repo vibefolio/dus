@@ -4,7 +4,13 @@ class Admin::PortfoliosController < ApplicationController
   before_action :set_portfolio, only: [ :edit, :update, :destroy ]
 
   def index
-    @portfolios = Portfolio.order(created_at: :desc)
+    begin
+      @portfolios = Portfolio.order(created_at: :desc)
+    rescue => e
+      Rails.logger.error "Failed to load portfolios: #{e.message}"
+      @portfolios = []
+      flash.now[:alert] = "포트폴리오를 불러오는 중 오류가 발생했습니다."
+    end
   end
 
   def new
@@ -14,9 +20,16 @@ class Admin::PortfoliosController < ApplicationController
   def create
     @portfolio = Portfolio.new(portfolio_params)
 
-    if @portfolio.save
-      redirect_to admin_portfolios_path, notice: "포트폴리오가 성공적으로 등록되었습니다."
-    else
+    begin
+      if @portfolio.save
+        redirect_to admin_portfolios_path, notice: "포트폴리오가 성공적으로 등록되었습니다."
+      else
+        flash.now[:alert] = "입력 정보를 확인해주세요."
+        render :new, status: :unprocessable_entity
+      end
+    rescue => e
+      Rails.logger.error "Failed to create portfolio: #{e.message}"
+      flash.now[:alert] = "포트폴리오 저장 중 오류가 발생했습니다: #{e.message}"
       render :new, status: :unprocessable_entity
     end
   end
