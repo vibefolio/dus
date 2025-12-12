@@ -63,7 +63,7 @@
               %>
               <img src="<%= img_src %>" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'" alt="<%= template.title %>">
               <div style="position: absolute; top: 12px; left: 12px; background: white; padding: 4px 12px; border-radius: 99px; font-size: 12px; font-weight: bold; color: #1a1a1a;">
-                <% case template.category
+                <%= case template.category
                    when 'beauty' then '뷰티/살롱'
                    when 'dining' then '다이닝/F&B'
                    when 'fitness' then '피트니스/요가'
@@ -72,6 +72,9 @@
                    when 'corporate' then '기업/브랜드'
                    when 'space' then '공간/렌탈'
                    when 'medical' then '병원/의료'
+                   when 'cafe' then '카페/베이커리'
+                   when 'portfolio' then '포트폴리오'
+                   when 'law' then '법률/전문직'
                    else '기타'
                    end
                 %>
