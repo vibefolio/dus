@@ -1,4 +1,4 @@
-class AddInitialDesignTemplates < ActiveRecord::Migration[8.1]
+class SeedInitialTemplates < ActiveRecord::Migration[8.1]
   # Define a temporary model inside the migration to avoid dependency issues
   class DesignTemplate < ActiveRecord::Base
   end
