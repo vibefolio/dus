@@ -15,6 +15,7 @@ class Admin::DesignTemplatesController < ApplicationController
     @design_template = DesignTemplate.new(design_template_params)
 
     if @design_template.save
+      Rails.cache.delete("featured_templates")
       redirect_to admin_design_templates_path, notice: "템플릿이 성공적으로 등록되었습니다."
     else
       render :new, status: :unprocessable_entity
@@ -26,6 +27,7 @@ class Admin::DesignTemplatesController < ApplicationController
 
   def update
     if @design_template.update(design_template_params)
+      Rails.cache.delete("featured_templates")
       redirect_to admin_design_templates_path, notice: "템플릿이 성공적으로 수정되었습니다."
     else
       render :edit, status: :unprocessable_entity
@@ -34,6 +36,7 @@ class Admin::DesignTemplatesController < ApplicationController
 
   def destroy
     @design_template.destroy
+    Rails.cache.delete("featured_templates")
     redirect_to admin_design_templates_path, notice: "템플릿이 삭제되었습니다."
   end
 
