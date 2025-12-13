@@ -1,115 +1,368 @@
-<style>
-  :root {
-    --gym-bg: #000000;
-    --gym-text: #ffffff;
-    --gym-accent: #ccff00; /* 라임 */
-  }
-  .bg-gym-dark { background-color: var(--gym-bg); }
-  .text-gym-accent { color: var(--gym-accent); }
-</style>
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Urban Fit - Crossfit & Gym</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Teko:wght@300;400;600;700&family=Inter:wght@300;400;700;900&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            display: ['Teko', 'sans-serif'],
+          },
+          colors: {
+            lime: {
+              400: '#a3e635',
+              500: '#84cc16',
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body { background-color: #0a0a0a; color: white; }
+    .text-outline {
+      -webkit-text-stroke: 1px rgba(255,255,255,0.3);
+      color: transparent;
+    }
+    .clip-path-slant {
+      clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+    }
+    .no-scrollbar::-webkit-scrollbar { display: none; }
+  </style>
+</head>
+<body class="font-sans antialiased overflow-x-hidden">
 
-<div class="bg-black text-white min-h-screen font-sans antialiased overflow-x-hidden">
-  
-  <!-- Abstract Header -->
-  <header class="fixed top-0 left-0 w-full z-50 mix-blend-difference px-8 py-6 flex justify-between items-center">
-    <div class="text-xs font-bold tracking-[0.3em] uppercase">Sculpt & Soul</div>
-    <div class="w-8 h-8 rounded-full border border-white/30 flex items-center justify-center">
-      <div class="w-2 h-2 bg-white rounded-full animate-pulse"></div>
+  <!-- 1. Navigation (Sticky & Transparent to Black) -->
+  <nav id="navbar" class="fixed w-full z-50 transition-all duration-300 py-6 px-6 md:px-12 flex justify-between items-center group">
+    <div class="text-3xl font-display font-bold italic tracking-wider text-white">
+      URBAN<span class="text-lime-400">FIT</span>
+    </div>
+    
+    <!-- Mobile Menu Button -->
+    <button onclick="toggleMenu()" class="md:hidden text-white p-2">
+      <svg width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
+    </button>
+
+    <!-- Desktop Menu -->
+    <div class="hidden md:flex items-center gap-8">
+      <a href="#program" class="text-sm font-bold hover:text-lime-400 transition tracking-widest uppercase">Program</a>
+      <a href="#coaches" class="text-sm font-bold hover:text-lime-400 transition tracking-widest uppercase">Coaches</a>
+      <a href="#schedule" class="text-sm font-bold hover:text-lime-400 transition tracking-widest uppercase">Schedule</a>
+      <a href="#pricing" class="text-sm font-bold hover:text-lime-400 transition tracking-widest uppercase">Membership</a>
+      <button onclick="toggleReservation()" class="bg-lime-400 text-black px-8 py-3 font-bold text-sm uppercase tracking-widest hover:bg-white transition transform hover:-translate-y-1 skew-x-[-10deg]">
+        <span class="skew-x-[10deg] inline-block">Join Now</span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- 2. Hero Section (Video Style Static for now, High Impact) -->
+  <header class="relative h-screen flex items-center justify-center overflow-hidden clip-path-slant">
+    <div class="absolute inset-0 z-0">
+      <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=1920" class="w-full h-full object-cover opacity-60">
+      <div class="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] via-transparent to-black/50"></div>
+    </div>
+    
+    <div class="relative z-10 text-center px-4 max-w-5xl mx-auto mt-20">
+      <p class="text-lime-400 font-bold tracking-[0.5em] mb-4 animate-pulse">EST. 2024 SEOUL</p>
+      <h1 class="text-6xl md:text-[10rem] font-display font-bold leading-none italic mb-8">
+        PUSH YOUR <br>
+        <span class="text-outline">LIMITS</span>
+      </h1>
+      <p class="text-gray-300 max-w-xl mx-auto mb-12 text-lg">
+        진정한 변화는 컴포트 존 밖에서 시작됩니다.<br>
+        최고의 코치진과 함께 당신의 한계를 뛰어넘으세요.
+      </p>
+      <div class="flex flex-col md:flex-row gap-6 justify-center">
+        <button onclick="toggleReservation()" class="bg-white text-black px-10 py-5 font-bold uppercase tracking-widest hover:bg-lime-400 transition duration-300">
+          Start Free Trial
+        </button>
+        <button class="border border-white text-white px-10 py-5 font-bold uppercase tracking-widest hover:bg-white hover:text-black transition duration-300">
+          View Class List
+        </button>
+      </div>
     </div>
   </header>
 
-  <!-- Hero: Video Vibes -->
-  <section class="relative h-screen flex items-center justify-center bg-zinc-900">
-    <!-- Image Placeholder for Artistic Body Profile -->
-    <img src="https://images.unsplash.com/photo-1518310383802-640c2de311b2?q=80&w=2670&auto=format&fit=crop" class="absolute inset-0 w-full h-full object-cover opacity-60 grayscale mix-blend-screen" alt="Abstract Movement">
-    
-    <div class="relative z-10 text-center">
-      <h1 class="text-[5rem] md:text-[8rem] font-black leading-none tracking-tighter mix-blend-overlay">
-        BODIES<br>DEFINE<br>ART
-      </h1>
-      <p class="mt-8 text-xs md:text-sm tracking-[0.5em] text-gray-400 uppercase">
-        Private Wellness Studio
-      </p>
-    </div>
-
-    <!-- Scroll Indicator -->
-    <div class="absolute bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2">
-      <span class="block w-[1px] h-12 bg-white/50"></span>
-      <span class="text-[10px] uppercase tracking-widest">Scroll</span>
-    </div>
-  </section>
-
-  <!-- Manifesto -->
-  <section class="py-40 px-6 bg-black relative">
-    <div class="max-w-4xl mx-auto flex flex-col md:flex-row gap-20">
-      <div class="md:w-1/2">
-        <h2 class="text-4xl md:text-5xl font-bold leading-tight mb-8">
-          우리는 단순히<br>
-          운동을 가르치지<br>
-          않습니다.
-        </h2>
+  <!-- 3. Stats Counter (Micro-Interaction) -->
+  <section class="py-20 border-b border-gray-900">
+    <div class="max-w-7xl mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-12 text-center">
+      <div>
+        <div class="text-5xl font-display font-bold text-white mb-2">1,200+</div>
+        <div class="text-gray-500 text-xs uppercase tracking-widest">Active Members</div>
       </div>
-      <div class="md:w-1/2 flex flex-col justify-end">
-        <p class="text-gray-400 leading-relaxed text-sm md:text-base font-light">
-          신체는 가장 원초적인 예술의 형태입니다.<br>
-          호흡과 근육의 움직임 하나하나에 집중하며,<br>
-          당신만이 가진 고유의 선과 에너지를 조각합니다.<br><br>
-          오직 4명만의 프라이빗 클래스.<br>
-          고요 속의 강렬함을 만나보세요.
-        </p>
+      <div>
+        <div class="text-5xl font-display font-bold text-white mb-2">15+</div>
+        <div class="text-gray-500 text-xs uppercase tracking-widest">Expert Coaches</div>
+      </div>
+      <div>
+        <div class="text-5xl font-display font-bold text-white mb-2">50+</div>
+        <div class="text-gray-500 text-xs uppercase tracking-widest">Daily Classes</div>
+      </div>
+      <div>
+        <div class="text-5xl font-display font-bold text-white mb-2">4.9</div>
+        <div class="text-gray-500 text-xs uppercase tracking-widest">Average Rating</div>
       </div>
     </div>
   </section>
 
-  <!-- Program Grid -->
-  <section class="min-h-screen bg-zinc-950 py-24 px-4">
+  <!-- 4. Programs (Card Grid) -->
+  <section id="program" class="py-32 px-6">
     <div class="max-w-7xl mx-auto">
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-1">
-        <!-- Card 1 -->
-        <div class="group relative aspect-[3/4] overflow-hidden bg-zinc-900">
-          <img src="https://images.unsplash.com/photo-1599058945522-28d584b6f0ff?q=80&w=1000&auto=format&fit=crop" class="w-full h-full object-cover opacity-50 group-hover:opacity-100 group-hover:scale-105 transition duration-700" alt="Yoga">
-          <div class="absolute inset-0 flex flex-col justify-between p-8">
-            <span class="text-xs border border-white/20 self-start px-3 py-1 rounded-full">01</span>
-            <div>
-              <h3 class="text-3xl font-bold mb-2">FLOW YOGA</h3>
-              <p class="text-xs text-gray-400 opacity-0 group-hover:opacity-100 transition duration-500 translate-y-4 group-hover:translate-y-0">움직임의 명상, 내면의 호흡</p>
-            </div>
+      <div class="flex justify-between items-end mb-16">
+        <h2 class="text-4xl md:text-6xl font-display font-bold italic">OUR <span class="text-lime-400">PROGRAMS</span></h2>
+        <a href="#" class="hidden md:block text-gray-400 hover:text-white transition uppercase text-sm tracking-widest">View All Programs &rarr;</a>
+      </div>
+      
+      <div class="grid md:grid-cols-3 gap-8">
+        <div class="group relative h-[500px] overflow-hidden bg-gray-900 cursor-pointer">
+          <img src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?q=80&w=800" class="w-full h-full object-cover opacity-60 group-hover:opacity-40 transition duration-500 group-hover:scale-110">
+          <div class="absolute bottom-0 left-0 p-8 w-full">
+            <h3 class="text-3xl font-display font-bold mb-2">CROSSFIT</h3>
+            <p class="text-gray-400 text-sm mb-6 translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition duration-500">고강도 기능성 운동으로 기초 체력과 근력을 동시에 향상시킵니다.</p>
+            <span class="text-lime-400 text-xs font-bold uppercase tracking-widest border-b border-lime-400 pb-1">Learn More</span>
           </div>
         </div>
-        <!-- Card 2 -->
-        <div class="group relative aspect-[3/4] overflow-hidden bg-zinc-900">
-          <img src="https://images.unsplash.com/photo-1518611012118-696072aa579a?q=80&w=1000&auto=format&fit=crop" class="w-full h-full object-cover opacity-50 group-hover:opacity-100 group-hover:scale-105 transition duration-700" alt="Pilates">
-          <div class="absolute inset-0 flex flex-col justify-between p-8">
-            <span class="text-xs border border-white/20 self-start px-3 py-1 rounded-full">02</span>
-            <div>
-              <h3 class="text-3xl font-bold mb-2">MAT PILATES</h3>
-              <p class="text-xs text-gray-400 opacity-0 group-hover:opacity-100 transition duration-500 translate-y-4 group-hover:translate-y-0">코어의 발견, 균형의 미학</p>
-            </div>
+        <div class="group relative h-[500px] overflow-hidden bg-gray-900 cursor-pointer mt-0 md:-mt-12">
+          <img src="https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?q=80&w=800" class="w-full h-full object-cover opacity-60 group-hover:opacity-40 transition duration-500 group-hover:scale-110">
+          <div class="absolute bottom-0 left-0 p-8 w-full">
+            <h3 class="text-3xl font-display font-bold mb-2">PERSONAL PT</h3>
+            <p class="text-gray-400 text-sm mb-6 translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition duration-500">개인의 목표와 체형에 맞춘 1:1 맞춤형 트레이닝을 제공합니다.</p>
+            <span class="text-lime-400 text-xs font-bold uppercase tracking-widest border-b border-lime-400 pb-1">Learn More</span>
           </div>
         </div>
-        <!-- Card 3 -->
-        <div class="group relative aspect-[3/4] overflow-hidden bg-zinc-900">
-          <img src="https://images.unsplash.com/photo-1574680096145-d05b474e2155?q=80&w=1000&auto=format&fit=crop" class="w-full h-full object-cover opacity-50 group-hover:opacity-100 group-hover:scale-105 transition duration-700" alt="PT">
-          <div class="absolute inset-0 flex flex-col justify-between p-8">
-            <span class="text-xs border border-white/20 self-start px-3 py-1 rounded-full">03</span>
-            <div>
-              <h3 class="text-3xl font-bold mb-2">1:1 SCULPT</h3>
-              <p class="text-xs text-gray-400 opacity-0 group-hover:opacity-100 transition duration-500 translate-y-4 group-hover:translate-y-0">한계를 넘어서는 에너지</p>
-            </div>
+        <div class="group relative h-[500px] overflow-hidden bg-gray-900 cursor-pointer">
+          <img src="https://images.unsplash.com/photo-1574680096141-1c5e8e125746?q=80&w=800" class="w-full h-full object-cover opacity-60 group-hover:opacity-40 transition duration-500 group-hover:scale-110">
+          <div class="absolute bottom-0 left-0 p-8 w-full">
+            <h3 class="text-3xl font-display font-bold mb-2">YOGA & PILATES</h3>
+            <p class="text-gray-400 text-sm mb-6 translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition duration-500">유연성과 코어 근육을 강화하여 신체 밸런스를 되찾아줍니다.</p>
+            <span class="text-lime-400 text-xs font-bold uppercase tracking-widest border-b border-lime-400 pb-1">Learn More</span>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- CTA -->
-  <section class="py-32 px-6 flex items-center justify-center bg-[#ccff00] text-black">
-    <div class="text-center">
-      <p class="mb-4 text-xs font-bold tracking-[0.2em] uppercase">Trial Session</p>
-      <a href="#" class="text-5xl md:text-8xl font-black hover:italic transition-all duration-300">
-        START NOW
-      </a>
+  <!-- 5. Schedule (Tab UI) -->
+  <section id="schedule" class="py-20 bg-[#111]">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="text-center mb-16">
+        <h2 class="text-3xl font-display font-bold italic mb-6">WEEKLY <span class="text-lime-400">SCHEDULE</span></h2>
+        <div class="flex justify-center gap-4 flex-wrap">
+          <button class="px-6 py-2 bg-lime-400 text-black font-bold uppercase text-sm skew-x-[-10deg]">Mon</button>
+          <button class="px-6 py-2 border border-gray-700 hover:border-lime-400 text-gray-400 hover:text-white font-bold uppercase text-sm skew-x-[-10deg] transition">Tue</button>
+          <button class="px-6 py-2 border border-gray-700 hover:border-lime-400 text-gray-400 hover:text-white font-bold uppercase text-sm skew-x-[-10deg] transition">Wed</button>
+          <button class="px-6 py-2 border border-gray-700 hover:border-lime-400 text-gray-400 hover:text-white font-bold uppercase text-sm skew-x-[-10deg] transition">Thu</button>
+          <button class="px-6 py-2 border border-gray-700 hover:border-lime-400 text-gray-400 hover:text-white font-bold uppercase text-sm skew-x-[-10deg] transition">Fri</button>
+        </div>
+      </div>
+
+      <div class="grid gap-4">
+        <!-- Class Item -->
+        <div class="flex flex-col md:flex-row items-center bg-[#1a1a1a] p-6 hover:bg-[#222] transition border-l-4 border-lime-400">
+          <div class="w-full md:w-32 font-display text-2xl font-bold">07:00</div>
+          <div class="flex-1 text-left px-4">
+            <h4 class="text-xl font-bold mb-1">Morning CrossFit</h4>
+            <p class="text-gray-500 text-xs uppercase">Beginner / Intermediate</p>
+          </div>
+          <div class="w-full md:w-auto mt-4 md:mt-0">
+            <div class="flex items-center gap-3">
+              <img src="https://randomuser.me/api/portraits/men/32.jpg" class="w-10 h-10 rounded-full border-2 border-gray-700">
+              <span class="text-sm text-gray-300 font-bold">Mike Ross</span>
+            </div>
+          </div>
+          <div class="w-full md:w-auto mt-4 md:mt-0 md:ml-8">
+            <button onclick="toggleReservation()" class="w-full px-6 py-2 bg-gray-800 hover:bg-lime-400 hover:text-black text-white text-xs font-bold uppercase transition">Book Now</button>
+          </div>
+        </div>
+        <!-- Class Item -->
+        <div class="flex flex-col md:flex-row items-center bg-[#1a1a1a] p-6 hover:bg-[#222] transition border-l-4 border-transparent hover:border-lime-400">
+          <div class="w-full md:w-32 font-display text-2xl font-bold">10:00</div>
+          <div class="flex-1 text-left px-4">
+            <h4 class="text-xl font-bold mb-1">Power Yoga</h4>
+            <p class="text-gray-500 text-xs uppercase">All Levels</p>
+          </div>
+          <div class="w-full md:w-auto mt-4 md:mt-0">
+            <div class="flex items-center gap-3">
+              <img src="https://randomuser.me/api/portraits/women/44.jpg" class="w-10 h-10 rounded-full border-2 border-gray-700">
+              <span class="text-sm text-gray-300 font-bold">Sarah Lee</span>
+            </div>
+          </div>
+          <div class="w-full md:w-auto mt-4 md:mt-0 md:ml-8">
+            <button onclick="toggleReservation()" class="w-full px-6 py-2 bg-gray-800 hover:bg-lime-400 hover:text-black text-white text-xs font-bold uppercase transition">Book Now</button>
+          </div>
+        </div>
+        <!-- Class Item -->
+        <div class="flex flex-col md:flex-row items-center bg-[#1a1a1a] p-6 hover:bg-[#222] transition border-l-4 border-transparent hover:border-lime-400">
+          <div class="w-full md:w-32 font-display text-2xl font-bold">19:00</div>
+          <div class="flex-1 text-left px-4">
+            <h4 class="text-xl font-bold mb-1">HIIT Cardio</h4>
+            <p class="text-gray-500 text-xs uppercase">Advanced</p>
+          </div>
+          <div class="w-full md:w-auto mt-4 md:mt-0">
+            <div class="flex items-center gap-3">
+              <img src="https://randomuser.me/api/portraits/men/85.jpg" class="w-10 h-10 rounded-full border-2 border-gray-700">
+              <span class="text-sm text-gray-300 font-bold">David Pax</span>
+            </div>
+          </div>
+          <div class="w-full md:w-auto mt-4 md:mt-0 md:ml-8">
+            <button onclick="toggleReservation()" class="w-full px-6 py-2 bg-gray-800 hover:bg-lime-400 hover:text-black text-white text-xs font-bold uppercase transition">Book Now</button>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 
-</div>
+  <!-- 6. Pricing (Compare Cards) -->
+  <section id="pricing" class="py-32 px-6">
+    <div class="max-w-7xl mx-auto">
+      <h2 class="text-center text-4xl md:text-6xl font-display font-bold italic mb-16">CHOOSE YOUR <span class="text-lime-400">PLAN</span></h2>
+      
+      <div class="grid md:grid-cols-3 gap-8 items-center">
+        <!-- Basic -->
+        <div class="bg-[#111] p-10 border border-gray-800 hover:border-lime-400 transition duration-300">
+          <h3 class="text-xl font-bold mb-4">BASIC</h3>
+          <div class="text-4xl font-display font-bold mb-8">₩80,000<span class="text-sm text-gray-500 font-sans font-normal">/mo</span></div>
+          <ul class="space-y-4 text-gray-400 text-sm mb-10">
+            <li class="flex items-center gap-2"><svg class="w-4 h-4 text-lime-400" fill="currentColor" viewBox="0 0 20 20"><path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/></svg> 짐 이용권</li>
+            <li class="flex items-center gap-2"><svg class="w-4 h-4 text-lime-400" fill="currentColor" viewBox="0 0 20 20"><path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/></svg> 운동복 지급</li>
+            <li class="flex items-center gap-2 opacity-50"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M6 18L18 6M6 6l12 12"/></svg> GX 프로그램 포함</li>
+          </ul>
+          <button class="w-full py-4 border border-white text-white font-bold uppercase tracking-widest hover:bg-white hover:text-black transition">Select Plan</button>
+        </div>
+
+        <!-- Pro (Featured) -->
+        <div class="bg-[#1a1a1a] p-10 border-2 border-lime-400 transform scale-105 shadow-2xl shadow-lime-900/20 relative">
+          <div class="absolute top-0 right-0 bg-lime-400 text-black text-xs font-bold px-4 py-1 uppercase tracking-widest">Best Value</div>
+          <h3 class="text-xl font-bold mb-4 text-lime-400">PRO UNLIMITED</h3>
+          <div class="text-5xl font-display font-bold mb-8">₩150,000<span class="text-sm text-gray-500 font-sans font-normal">/mo</span></div>
+          <ul class="space-y-4 text-gray-300 text-sm mb-10">
+            <li class="flex items-center gap-2"><svg class="w-4 h-4 text-lime-400" fill="currentColor" viewBox="0 0 20 20"><path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/></svg> 짐 무제한 이용</li>
+            <li class="flex items-center gap-2"><svg class="w-4 h-4 text-lime-400" fill="currentColor" viewBox="0 0 20 20"><path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/></svg> 운동복 / 락커 제공</li>
+            <li class="flex items-center gap-2"><svg class="w-4 h-4 text-lime-400" fill="currentColor" viewBox="0 0 20 20"><path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/></svg> 모든 GX / 스피닝 포함</li>
+            <li class="flex items-center gap-2"><svg class="w-4 h-4 text-lime-400" fill="currentColor" viewBox="0 0 20 20"><path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/></svg> 월 1회 PT 무료</li>
+          </ul>
+          <button class="w-full py-4 bg-lime-400 text-black font-bold uppercase tracking-widest hover:bg-white transition shadow-lg hover:shadow-lime-400/50">Select Plan</button>
+        </div>
+
+        <!-- PT -->
+        <div class="bg-[#111] p-10 border border-gray-800 hover:border-lime-400 transition duration-300">
+          <h3 class="text-xl font-bold mb-4">1:1 PERSONAL</h3>
+          <div class="text-4xl font-display font-bold mb-8">₩600,000<span class="text-sm text-gray-500 font-sans font-normal">/10 sessions</span></div>
+          <ul class="space-y-4 text-gray-400 text-sm mb-10">
+            <li class="flex items-center gap-2"><svg class="w-4 h-4 text-lime-400" fill="currentColor" viewBox="0 0 20 20"><path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/></svg> 1:1 맞춤형 코칭</li>
+            <li class="flex items-center gap-2"><svg class="w-4 h-4 text-lime-400" fill="currentColor" viewBox="0 0 20 20"><path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/></svg> 식단 관리 및 체형 분석</li>
+            <li class="flex items-center gap-2"><svg class="w-4 h-4 text-lime-400" fill="currentColor" viewBox="0 0 20 20"><path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/></svg> 24시간 피드백</li>
+          </ul>
+          <button class="w-full py-4 border border-white text-white font-bold uppercase tracking-widest hover:bg-white hover:text-black transition">Select Plan</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7. Marquee Reviews -->
+  <section class="py-20 overflow-hidden bg-lime-400 text-black">
+    <div class="whitespace-nowrap flex gap-12 animate-[marquee_20s_linear_infinite]">
+      <div class="text-3xl font-display font-bold italic">"LIFE CHANGING EXPERIENCE" - JANE D.</div>
+      <div class="text-3xl font-display font-bold italic">"BEST COACHES IN TOWN" - MARK S.</div>
+      <div class="text-3xl font-display font-bold italic">"LOST 10KG IN 3 MONTHS" - DAVID K.</div>
+      <div class="text-3xl font-display font-bold italic">"COMMUNITY IS AMAZING" - SARAH P.</div>
+      <div class="text-3xl font-display font-bold italic">"HIGH ENERGY VIBES" - TOM R.</div>
+       <div class="text-3xl font-display font-bold italic">"LIFE CHANGING EXPERIENCE" - JANE D.</div>
+      <div class="text-3xl font-display font-bold italic">"BEST COACHES IN TOWN" - MARK S.</div>
+    </div>
+  </section>
+
+  <!-- 8. Mobile Menu Overlay -->
+  <div id="gym-mobile-menu" class="fixed inset-0 bg-black z-[60] transform -translate-x-full transition duration-300 md:hidden flex flex-col pt-24 px-8">
+    <button onclick="toggleMenu()" class="absolute top-6 right-6 text-white text-3xl">&times;</button>
+    <div class="flex flex-col gap-8 text-2xl font-display font-bold italic text-white uppercase tracking-widest">
+      <a href="#program" onclick="toggleMenu()">Program</a>
+      <a href="#coaches" onclick="toggleMenu()">Coaches</a>
+      <a href="#schedule" onclick="toggleMenu()">Schedule</a>
+      <a href="#pricing" onclick="toggleMenu()">Membership</a>
+      <button onclick="toggleMenu(); toggleReservation()" class="text-lime-400 text-left">Free Trial</button>
+    </div>
+  </div>
+
+  <!-- 9. Reservation Modal (Free Trial) -->
+  <div id="gym-reservation" class="fixed inset-0 bg-black/90 z-[70] hidden opacity-0 transition-opacity duration-300 flex items-center justify-center p-4 backdrop-blur-sm">
+    <div class="bg-[#111] border border-gray-800 w-full max-w-lg p-10 relative">
+      <button onclick="toggleReservation()" class="absolute top-6 right-6 text-2xl text-gray-500 hover:text-white">&times;</button>
+      
+      <h2 class="text-3xl font-display font-bold italic mb-2 text-white">START YOUR <span class="text-lime-400">JOURNEY</span></h2>
+      <p class="text-gray-400 text-sm mb-8">Book your free 1-day pass trial now.</p>
+      
+      <form class="space-y-6" onsubmit="event.preventDefault(); alert('예약이 완료되었습니다! 짐에서 뵙겠습니다.'); toggleReservation();">
+        <div>
+          <label class="block text-xs font-bold uppercase text-gray-500 mb-2">Full Name</label>
+          <input type="text" class="w-full bg-[#1a1a1a] border border-gray-700 p-4 text-white focus:border-lime-400 focus:outline-none transition" placeholder="NAME" required>
+        </div>
+        <div>
+          <label class="block text-xs font-bold uppercase text-gray-500 mb-2">Phone</label>
+          <input type="tel" class="w-full bg-[#1a1a1a] border border-gray-700 p-4 text-white focus:border-lime-400 focus:outline-none transition" placeholder="010-0000-0000" required>
+        </div>
+        <div class="grid grid-cols-2 gap-4">
+          <div>
+            <label class="block text-xs font-bold uppercase text-gray-500 mb-2">Preferred Workout</label>
+            <select class="w-full bg-[#1a1a1a] border border-gray-700 p-4 text-white focus:border-lime-400 focus:outline-none transition h-[58px]">
+              <option>CrossFit</option>
+              <option>PT</option>
+              <option>Yoga</option>
+              <option>Gym Only</option>
+            </select>
+          </div>
+          <div>
+            <label class="block text-xs font-bold uppercase text-gray-500 mb-2">Time</label>
+            <select class="w-full bg-[#1a1a1a] border border-gray-700 p-4 text-white focus:border-lime-400 focus:outline-none transition h-[58px]">
+              <option>Morning</option>
+              <option>Afternoon</option>
+              <option>Evening</option>
+            </select>
+          </div>
+        </div>
+        <button type="submit" class="w-full bg-lime-400 text-black font-bold uppercase tracking-widest py-5 hover:bg-white transition mt-4">
+          Confirm Booking
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    // Navbar Scroll Effect
+    window.addEventListener('scroll', () => {
+      const navbar = document.getElementById('navbar');
+      if (window.scrollY > 50) {
+        navbar.classList.add('bg-black/90', 'backdrop-blur-md', 'shadow-lg');
+      } else {
+        navbar.classList.remove('bg-black/90', 'backdrop-blur-md', 'shadow-lg');
+      }
+    });
+
+    function toggleMenu() {
+      const menu = document.getElementById('gym-mobile-menu');
+      if (menu.classList.contains('-translate-x-full')) {
+        menu.classList.remove('-translate-x-full');
+      } else {
+        menu.classList.add('-translate-x-full');
+      }
+    }
+
+    function toggleReservation() {
+      const modal = document.getElementById('gym-reservation');
+      if (modal.classList.contains('hidden')) {
+        modal.classList.remove('hidden');
+        setTimeout(() => modal.classList.remove('opacity-0'), 10);
+      } else {
+        modal.classList.add('opacity-0');
+        setTimeout(() => modal.classList.add('hidden'), 300);
+      }
+    }
+  </script>
+</body>
+</html>
