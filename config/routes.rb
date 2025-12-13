@@ -16,6 +16,7 @@ Rails.application.routes.draw do
   get 'templates/cleaning', to: 'templates#cleaning'
   get 'templates/agency', to: 'templates#agency'
   get 'templates/consulting', to: 'templates#consulting'
+  get 'templates/academy', to: 'templates#academy'
 
   root "pages#home"
 
