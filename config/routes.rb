@@ -27,6 +27,9 @@ Rails.application.routes.draw do
   get 'templates/salad', to: 'templates#salad'
   get 'templates/dessert', to: 'templates#dessert'
   get 'templates/kinder', to: 'templates#kinder'
+  get 'templates/startup', to: 'templates#startup'
+  get 'templates/rental', to: 'templates#rental'
+  get 'templates/finance', to: 'templates#finance'
 
   root "pages#home"
 
