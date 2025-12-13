@@ -31,14 +31,14 @@ Goal: Apply 10 specific improvements to each template to ensure uniqueness and f
 
 ## 🍽️ Dining & Cafe (6)
 
-| ID  | Template Name   | Concept          | Status     | File Path                   | Note                       |
-| --- | --------------- | ---------------- | ---------- | --------------------------- | -------------------------- |
-| 8   | **溫 (ON)**     | Fine Dining      | ✅ Done    | `templates/dining.html.erb` | Mobile Menu, Booking Added |
-| 9   | Burger House    | Hip Burger Joint | ⬜ Pending | TBD                         | Shares `dining`            |
-| 10  | Wine Social     | Luxury Wine Bar  | ⬜ Pending | TBD                         | Shares `dining`            |
-| 11  | Salad Green     | Fresh Salad      | ⬜ Pending | TBD                         | Shares `dining`            |
-| 12  | **Daily Crumb** | Bakery Cafe      | ⚠️ Partial | `templates/cafe.html.erb`   | Mobile Menu Added          |
-| 13  | Sweet Spot      | Dessert Cafe     | ⬜ Pending | TBD                         | Shares `cafe`              |
+| ID  | Template Name    | Concept          | Status     | File Path                   | Note                         |
+| --- | ---------------- | ---------------- | ---------- | --------------------------- | ---------------------------- |
+| 8   | **溫 (ON)**      | Fine Dining      | ✅ Done    | `templates/dining.html.erb` | Mobile Menu, Booking Added   |
+| 9   | **Burger House** | Hip Burger Joint | ✅ Done    | `templates/burger.html.erb` | American Retro, Online Order |
+| 10  | **Wine Social**  | Luxury Wine Bar  | ✅ Done    | `templates/wine.html.erb`   | Dark Luxury, Parallax        |
+| 11  | **Salad Green**  | Fresh Salad      | ✅ Done    | `templates/salad.html.erb`  | Pop Colors, Custom Bowl UI   |
+| 12  | **Daily Crumb**  | Bakery Cafe      | ⚠️ Partial | `templates/cafe.html.erb`   | Mobile Menu Added            |
+| 13  | Sweet Spot       | Dessert Cafe     | ⬜ Pending | TBD                         | Shares `cafe`                |
 
 ## 🏢 Corporate & Professional (7)
 
