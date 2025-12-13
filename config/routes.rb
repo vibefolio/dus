@@ -14,6 +14,8 @@ Rails.application.routes.draw do
   get 'templates/law', to: 'templates#law'
   get 'templates/wedding', to: 'templates#wedding'
   get 'templates/cleaning', to: 'templates#cleaning'
+  get 'templates/agency', to: 'templates#agency'
+  get 'templates/consulting', to: 'templates#consulting'
 
   root "pages#home"
 

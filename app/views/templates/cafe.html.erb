@@ -2,12 +2,13 @@
   <!-- Nav -->
   <nav class="py-8 text-center sticky top-0 bg-[#fdfaf6]/95 z-50">
     <div class="font-bold text-3xl tracking-wide mb-4">Daily Crumb</div>
-    <div class="flex justify-center gap-8 text-sm font-sans tracking-wide text-[#8d7b6f] uppercase text-[11px]">
+    <div class="hidden md:flex justify-center gap-8 text-sm font-sans tracking-wide text-[#8d7b6f] uppercase text-[11px]">
       <a href="#" class="hover:text-[#4a3b32]">Our Bread</a>
       <a href="#" class="hover:text-[#4a3b32]">Menu</a>
       <a href="#" class="hover:text-[#4a3b32]">Location</a>
       <a href="#" class="hover:text-[#4a3b32]">Contact</a>
     </div>
+    <button class="md:hidden absolute top-8 right-6 text-sm text-[#8d7b6f] tracking-widest font-sans" onclick="toggleCafeMenu()">MENU</button>
   </nav>
 
   <!-- Hero -->
@@ -60,4 +61,26 @@
       </div>
     </div>
   </section>
+
+  <!-- Mobile Menu -->
+  <div id="cafe-mobile-menu" class="fixed inset-0 bg-[#fdfaf6] z-[60] flex flex-col items-center justify-center gap-8 opacity-0 pointer-events-none transition-opacity duration-300">
+    <button onclick="toggleCafeMenu()" class="absolute top-8 right-6 text-sm text-[#8d7b6f] tracking-widest font-sans">CLOSE</button>
+    <a href="#" onclick="toggleCafeMenu()" class="text-2xl font-serif-kr text-[#4a3b32]">Our Bread</a>
+    <a href="#" onclick="toggleCafeMenu()" class="text-2xl font-serif-kr text-[#4a3b32]">Menu</a>
+    <a href="#" onclick="toggleCafeMenu()" class="text-2xl font-serif-kr text-[#4a3b32]">Location</a>
+    <a href="#" onclick="toggleCafeMenu()" class="text-2xl font-serif-kr text-[#4a3b32]">Contact</a>
+  </div>
+
+  <script>
+    function toggleCafeMenu() {
+      const menu = document.getElementById('cafe-mobile-menu');
+      if(menu.classList.contains('pointer-events-none')) {
+        menu.classList.remove('opacity-0', 'pointer-events-none');
+        document.body.style.overflow = 'hidden';
+      } else {
+        menu.classList.add('opacity-0', 'pointer-events-none');
+        document.body.style.overflow = '';
+      }
+    }
+  </script>
 </div>
