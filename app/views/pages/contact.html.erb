@@ -211,7 +211,7 @@
           <p class="text-gray">성공적인 프로젝트의 시작, 디어스가 함께하겠습니다.</p>
         </div>
 
-        <%= form_with model: @quote, url: create_quote_path, local: true, class: "contact-form", html: { onsubmit: "return submitContactForm(this);" } do |f| %>
+        <%= form_with model: @quote, url: contact_path, local: true, class: "contact-form", html: { onsubmit: "return submitContactForm(this);" } do |f| %>
           
           <div class="form-grid">
             <div class="form-group">
