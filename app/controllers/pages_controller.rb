@@ -21,6 +21,28 @@ class PagesController < ApplicationController
 
   def contact
     @quote = Quote.new
+    
+    # DB 기반 템플릿 데이터 로드 (하드코딩 제거)
+    if params[:template_id].present?
+      begin
+        @target_template = DesignTemplate.find(params[:template_id])
+        @preview_url = @target_template.preview_url
+        @preview_title = @target_template.title
+      rescue ActiveRecord::RecordNotFound
+        # 혹시라도 DB에 없는 ID가 넘어오면 조용히 일반 문의 모드로
+        @target_template = nil
+      end
+    end
+
+    # 직접 URL 파라미터가 넘어오면 우선 적용 (안전 장치)
+    if params[:preview_url].present?
+      @preview_url = params[:preview_url]
+    end
+    
+    # 템플릿 제목도 파라미터가 있다면 우선 적용
+    if params[:template_title].present?
+      @preview_title = params[:template_title]
+    end
   end
 
   def pricing
