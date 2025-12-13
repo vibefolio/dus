@@ -10,11 +10,14 @@
 <div class="bg-paper text-[#2c2c2c] font-serif-kr min-h-screen">
   
   <!-- Navigation -->
-  <nav class="fixed top-0 w-full z-50 py-8 px-8 md:px-12 flex justify-between items-center mix-blend-difference text-[#2c2c2c]">
+  <nav class="fixed top-0 w-full z-50 py-8 px-8 md:px-12 flex justify-between items-center mix-blend-difference text-[#2c2c2c] transition-all duration-300 hover:bg-white/90 hover:backdrop-blur-sm">
+    <button class="md:hidden text-2xl" onclick="toggleDiningMenu()">
+       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+    </button>
     <div class="text-xs tracking-[0.2em] uppercase font-sans hidden md:block">Est. 2024</div>
-    <div class="text-xl md:text-2xl font-semibold tracking-widest text-center">온 溫</div>
+    <div class="text-xl md:text-2xl font-semibold tracking-widest text-center absolute left-1/2 -translate-x-1/2">온 溫</div>
     <div class="text-xs tracking-[0.2em] font-sans">
-      <a href="#" class="hover:underline">RESERVE</a>
+      <a href="javascript:void(0)" onclick="toggleDiningReservation()" class="hover:underline">RESERVE</a>
     </div>
   </nav>
 
@@ -30,22 +33,22 @@
   </section>
 
   <!-- Story -->
-  <section class="py-32 px-6 md:px-0">
-    <div class="max-w-screen-md mx-auto text-center">
+  <section class="relative py-40 px-6 md:px-0 text-white">
+    <div class="absolute inset-0 z-0">
+      <img src="https://images.unsplash.com/photo-1559339352-11d035aa65de?q=80&w=1920" alt="Dining Background" class="w-full h-full object-cover">
+      <div class="absolute inset-0 bg-black/50"></div>
+    </div>
+    <div class="relative z-10 max-w-screen-md mx-auto text-center">
       <div class="mb-12">
-        <span class="inline-block w-[1px] h-12 bg-black/20"></span>
+        <span class="inline-block w-[1px] h-12 bg-white/50"></span>
       </div>
-      <p class="text-lg md:text-2xl leading-[2] md:leading-[2.2] word-keep break-keep opacity-90">
+      <p class="text-lg md:text-2xl leading-[2] md:leading-[2.2] word-keep break-keep opacity-90 drop-shadow-lg">
         제철의 미학을 담아<br>
         가장 따뜻한 온기를 전합니다.<br><br>
         자연에서 얻은 순수한 재료와<br>
         오랜 시간 빚어낸 정성으로<br>
         당신의 식탁을 완성합니다.
       </p>
-    </div>
-    <div class="absolute inset-0 z-0">
-      <img src="https://images.unsplash.com/photo-1559339352-11d035aa65de?q=80&w=1920" alt="Dining Background" class="w-full h-full object-cover">
-      <div class="absolute inset-0 bg-black/40"></div>
     </div>
   </section>
 
@@ -101,10 +104,112 @@
         <p class="pt-4 font-sans tracking-widest text-xs">02. 790. 0000</p>
       </div>
       
-      <a href="#" class="inline-block border border-[#fdfbf7]/30 px-12 py-4 text-xs tracking-[0.2em] hover:bg-[#fdfbf7] hover:text-[#1a1a1a] transition duration-500">
+      <a href="javascript:void(0)" onclick="toggleDiningReservation()" class="inline-block border border-[#fdfbf7]/30 px-12 py-4 text-xs tracking-[0.2em] hover:bg-[#fdfbf7] hover:text-[#1a1a1a] transition duration-500">
         RESERVATION
       </a>
     </div>
   </section>
 
+  <!-- Mobile Menu -->
+  <div id="dining-menu" class="fixed inset-0 bg-[#fdfbf7] z-[60] flex flex-col items-center justify-center text-center opacity-0 pointer-events-none transition-opacity duration-500">
+    <button onclick="toggleDiningMenu()" class="absolute top-8 right-8 text-2xl opacity-50 hover:opacity-100">&times;</button>
+    <nav class="font-serif-kr text-2xl space-y-8 tracking-widest text-[#2c2c2c]">
+      <a href="#" class="block hover:opacity-50 transition" onclick="toggleDiningMenu()">브랜드 소개</a>
+      <a href="#" class="block hover:opacity-50 transition" onclick="toggleDiningMenu()">점심 코스</a>
+      <a href="#" class="block hover:opacity-50 transition" onclick="toggleDiningMenu()">저녁 코스</a>
+      <a href="#" class="block hover:opacity-50 transition" onclick="toggleDiningMenu()">오시는 길</a>
+      <a href="javascript:void(0)" onclick="toggleDiningMenu(); toggleDiningReservation()" class="block mt-12 text-sm font-sans tracking-[0.2em] border border-[#2c2c2c] px-8 py-3">RESERVATION</a>
+    </nav>
+  </div>
+
+  <!-- Reservation Modal -->
+  <div id="dining-reservation" class="fixed inset-0 bg-black/60 z-[70] hidden opacity-0 transition-opacity duration-500 flex items-center justify-center p-4">
+    <div class="bg-[#fdfbf7] w-full max-w-lg p-10 md:p-16 relative shadow-2xl">
+      <button onclick="toggleDiningReservation()" class="absolute top-6 right-6 text-2xl text-gray-400 hover:text-black transition">&times;</button>
+      
+      <div class="text-center mb-10">
+        <h3 class="text-2xl font-serif-kr mb-2">예약하기</h3>
+        <p class="text-xs text-gray-400 font-sans tracking-widest uppercase">Table Reservation</p>
+      </div>
+
+      <form class="space-y-6 font-serif-kr text-sm" onsubmit="event.preventDefault(); alert('예약이 접수되었습니다. 문자로 안내해 드리겠습니다.'); toggleDiningReservation();">
+        <div class="grid grid-cols-2 gap-6">
+          <div>
+             <label class="block text-gray-400 text-xs mb-2">날짜</label>
+             <input type="date" class="w-full bg-transparent border-b border-gray-300 py-2 focus:outline-none focus:border-black" required>
+          </div>
+          <div>
+             <label class="block text-gray-400 text-xs mb-2">시간</label>
+             <select class="w-full bg-transparent border-b border-gray-300 py-2 focus:outline-none focus:border-black">
+               <option>Lunch 12:00</option>
+               <option>Lunch 13:30</option>
+               <option>Dinner 18:00</option>
+               <option>Dinner 19:30</option>
+             </select>
+          </div>
+        </div>
+
+        <div>
+           <label class="block text-gray-400 text-xs mb-2">인원</label>
+           <div class="flex gap-4">
+             <label class="flex-1 border border-gray-200 py-3 text-center cursor-pointer hover:border-black has-[:checked]:bg-[#2c2c2c] has-[:checked]:text-white transition">
+               <input type="radio" name="people" class="hidden" checked> 2명
+             </label>
+             <label class="flex-1 border border-gray-200 py-3 text-center cursor-pointer hover:border-black has-[:checked]:bg-[#2c2c2c] has-[:checked]:text-white transition">
+               <input type="radio" name="people" class="hidden"> 3-4명
+             </label>
+             <label class="flex-1 border border-gray-200 py-3 text-center cursor-pointer hover:border-black has-[:checked]:bg-[#2c2c2c] has-[:checked]:text-white transition">
+               <input type="radio" name="people" class="hidden"> 5명+
+             </label>
+           </div>
+        </div>
+
+        <div>
+          <label class="block text-gray-400 text-xs mb-2">예약자 성함</label>
+          <input type="text" class="w-full bg-transparent border-b border-gray-300 py-2 focus:outline-none focus:border-black" placeholder="홍길동" required>
+        </div>
+
+        <div>
+          <label class="block text-gray-400 text-xs mb-2">연락처</label>
+          <input type="tel" class="w-full bg-transparent border-b border-gray-300 py-2 focus:outline-none focus:border-black" placeholder="010-0000-0000" required>
+        </div>
+        
+        <div class="pt-6">
+          <button type="submit" class="w-full bg-[#2c2c2c] text-white py-4 hover:bg-black transition text-xs font-sans tracking-[0.2em]">
+            CONFIRM
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    function toggleDiningMenu() {
+      const menu = document.getElementById('dining-menu');
+      if (menu.style.opacity === '1') {
+        menu.style.opacity = '0';
+        menu.style.pointerEvents = 'none';
+        document.body.style.overflow = '';
+      } else {
+        menu.style.opacity = '1';
+        menu.style.pointerEvents = 'auto';
+        document.body.style.overflow = 'hidden';
+      }
+    }
+
+    function toggleDiningReservation() {
+      const modal = document.getElementById('dining-reservation');
+      if (modal.classList.contains('hidden')) {
+        modal.classList.remove('hidden');
+        setTimeout(() => modal.classList.remove('opacity-0'), 10);
+        document.body.style.overflow = 'hidden';
+      } else {
+        modal.classList.add('opacity-0');
+        setTimeout(() => modal.classList.add('hidden'), 500);
+        if (document.getElementById('dining-menu').style.opacity !== '1') {
+           document.body.style.overflow = '';
+        }
+      }
+    }
+  </script>
 </div>

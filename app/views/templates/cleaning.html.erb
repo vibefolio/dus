@@ -27,7 +27,8 @@
   </script>
   <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.8/dist/web/static/pretendard.css" />
   <style>
-    body { font-family: 'Pretendard', sans-serif; }
+    body { font-family: 'Pretendard', sans-serif; scroll-behavior: smooth; }
+    html { scroll-behavior: smooth; }
   </style>
 </head>
 <body class="bg-white text-gray-800">
@@ -45,6 +46,9 @@
           <a href="#about" class="text-gray-600 hover:text-brand-600 font-medium">업체 소개</a>
           <a href="#contact" class="px-5 py-2 bg-brand-600 text-white rounded-full hover:bg-brand-700 transition">견적 문의</a>
         </div>
+        <button class="md:hidden text-gray-600" onclick="toggleCleaningMenu()">
+          <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+        </button>
       </div>
     </div>
   </nav>
@@ -161,6 +165,46 @@
   <footer class="bg-gray-50 py-10 text-center text-gray-400 text-sm">
     <p>&copy; 2024 클린 싹싹 (Clean Ssak Ssak). All rights reserved.</p>
   </footer>
+
+  <!-- Mobile Menu Overlay -->
+  <div id="cleaning-mobile-menu" class="fixed inset-0 bg-white z-[60] transform translate-x-full transition-transform duration-300 pointer-events-none md:hidden flex flex-col pt-24 px-8">
+    <button onclick="toggleCleaningMenu()" class="absolute top-6 right-4 text-gray-600">
+      <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+    </button>
+    <div class="flex flex-col gap-6 text-xl font-bold text-gray-800">
+      <a href="#services" onclick="toggleCleaningMenu()" class="border-b border-gray-100 pb-4">서비스 안내</a>
+      <a href="#about" onclick="toggleCleaningMenu()" class="border-b border-gray-100 pb-4">업체 소개</a>
+      <a href="#contact" onclick="toggleCleaningMenu()" class="text-brand-600">견적 문의</a>
+    </div>
+  </div>
+
+  <script>
+    function toggleCleaningMenu() {
+      const menu = document.getElementById('cleaning-mobile-menu');
+      if (menu.classList.contains('translate-x-full')) {
+        menu.classList.remove('translate-x-full');
+        menu.classList.remove('pointer-events-none');
+        document.body.style.overflow = 'hidden';
+      } else {
+        menu.classList.add('translate-x-full');
+        menu.classList.add('pointer-events-none');
+        document.body.style.overflow = '';
+      }
+    }
+    
+    // Form Submission Simulation
+    const form = document.querySelector('form');
+    if(form) {
+      form.querySelector('button').addEventListener('click', () => {
+        if(form.checkValidity()) {
+          alert('견적 요청이 성공적으로 전송되었습니다! 담당자가 곧 연락드리겠습니다.');
+          form.reset();
+        } else {
+          form.reportValidity();
+        }
+      });
+    }
+  </script>
 
 </body>
 </html>
