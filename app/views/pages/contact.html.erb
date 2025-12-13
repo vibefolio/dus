@@ -132,30 +132,15 @@
     </div>
 
     <script>
-      // Template Mapping Logic
-      const templateId = "<%= params[:template_id] %>";
-      const templateMap = {
-        'beauty': '/templates/beauty',
-        'dining': '/templates/dining',
-        'cleaning': '/templates/cleaning',
-        'gym': '/templates/gym',
-        'study': '/templates/study',
-        'stay': '/templates/stay',
-        'corporate': '/templates/corporate',
-        'ecommerce': '/templates/ecommerce',
-        'cafe': '/templates/cafe',
-        'portfolio': '/templates/portfolio',
-        'medical': '/templates/medical',
-        'law': '/templates/law',
-        'wedding': '/templates/wedding'
-      };
-
-      const targetUrl = "<%= params[:preview_url] %>" || templateMap[templateId] || '/templates/beauty'; // Fallback
+      // Load Iframe from DB data (No hardcoding)
+      const targetUrl = "<%= @preview_url %>"; 
       const iframe = document.getElementById('embed-iframe');
       
-      // Prevent 404 by ensuring correct path
-      if (targetUrl) {
+      if (iframe && targetUrl) {
           iframe.src = targetUrl;
+      } else if (iframe) {
+          // Fallback if URL is missing
+          iframe.src = '/templates/beauty';
       }
 
       function switchEmbedView(mode) {
