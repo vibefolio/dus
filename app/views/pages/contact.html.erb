@@ -150,7 +150,7 @@
         'wedding': '/templates/wedding'
       };
 
-      const targetUrl = templateMap[templateId] || '/templates/beauty'; // Fallback
+      const targetUrl = "<%= params[:preview_url] %>" || templateMap[templateId] || '/templates/beauty'; // Fallback
       const iframe = document.getElementById('embed-iframe');
       
       // Prevent 404 by ensuring correct path

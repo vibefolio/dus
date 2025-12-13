@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Edu Master - Premium Education</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;700&family=Noto+Sans+KR:wght@300;400;700&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Noto Sans KR', sans-serif; }
+    .font-serif { font-family: 'Noto Serif KR', serif; }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-800">
+
+  <!-- Nav -->
+  <nav class="bg-white border-b border-slate-200 sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-6 h-20 flex justify-between items-center">
+      <div class="text-2xl font-bold text-slate-900 flex items-center gap-2">
+        <span class="text-indigo-600">Edu</span>Master
+      </div>
+      <div class="hidden md:flex gap-8 text-sm font-medium text-slate-600">
+        <a href="#" class="hover:text-indigo-600">아카데미 소개</a>
+        <a href="#" class="hover:text-indigo-600">커리큘럼</a>
+        <a href="#" class="hover:text-indigo-600">강사진</a>
+        <a href="#" class="hover:text-indigo-600">수강후기</a>
+      </div>
+      <div class="flex gap-4">
+        <button class="hidden md:block px-6 py-2 rounded-full border border-indigo-600 text-indigo-600 text-sm font-bold hover:bg-indigo-50" onclick="toggleAcademyReservation()">상담예약</button>
+        <button class="md:hidden text-2xl" onclick="toggleAcademyMenu()">
+          <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <header class="relative bg-indigo-900 text-white py-24 lg:py-32 overflow-hidden">
+    <div class="absolute inset-0 z-0">
+      <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=1920" class="w-full h-full object-cover opacity-20">
+    </div>
+    <div class="relative z-10 max-w-7xl mx-auto px-6 text-center lg:text-left">
+      <span class="inline-block px-4 py-1.5 rounded-full bg-indigo-800 text-indigo-200 text-xs font-bold mb-6">2025년 신입생 모집 중</span>
+      <h1 class="text-4xl lg:text-6xl font-serif font-bold mb-6 leading-tight">
+        생각의 깊이가 다른<br>
+        <span class="text-indigo-400">미래 리더</span>를 키웁니다
+      </h1>
+      <p class="text-slate-300 text-lg mb-10 leading-relaxed max-w-2xl">
+        단순한 지식 전달을 넘어 스스로 생각하는 힘을 기르는 프리미엄 교육.<br>
+        1:1 맞춤형 학습 관리 시스템으로 확실한 성적 향상을 약속드립니다.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+        <button class="px-8 py-4 bg-indigo-600 text-white rounded-lg font-bold shadow-lg hover:bg-indigo-500 transition relative top-0 hover:-top-1">
+          무료 레벨테스트 신청
+        </button>
+        <button class="px-8 py-4 bg-white text-indigo-900 rounded-lg font-bold hover:bg-slate-100 transition">
+          브로셔 다운로드
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Stats -->
+  <section class="py-12 bg-white shadow-sm relative z-20 -mt-8 max-w-6xl mx-auto rounded-xl mx-6 lg:mx-auto">
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center divide-x divide-slate-100">
+      <div>
+        <div class="text-3xl font-bold text-indigo-600 mb-1">15년</div>
+        <div class="text-sm text-slate-500">교육 노하우</div>
+      </div>
+      <div>
+        <div class="text-3xl font-bold text-indigo-600 mb-1">3,000+</div>
+        <div class="text-sm text-slate-500">누적 수강생</div>
+      </div>
+      <div>
+        <div class="text-3xl font-bold text-indigo-600 mb-1">98%</div>
+        <div class="text-sm text-slate-500">목표 달성률</div>
+      </div>
+      <div>
+        <div class="text-3xl font-bold text-indigo-600 mb-1">1:6</div>
+        <div class="text-sm text-slate-500">소수 정예 수업</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Programs -->
+  <section class="py-24 px-6 max-w-7xl mx-auto">
+    <div class="text-center mb-16">
+      <h2 class="text-3xl font-bold text-slate-900 mb-4">체계적인 커리큘럼</h2>
+      <p class="text-slate-600">단계별 학습을 통해 기초부터 심화까지 완벽하게 마스터합니다.</p>
+    </div>
+    
+    <div class="grid md:grid-cols-3 gap-8">
+      <!-- Card 1 -->
+      <div class="bg-white rounded-2xl overflow-hidden shadow-lg border border-slate-100 group hover:border-indigo-200 transition">
+        <div class="h-48 overflow-hidden">
+          <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?q=80&w=800" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+        </div>
+        <div class="p-8">
+          <div class="text-indigo-600 font-bold text-xs mb-2">BEGINNER</div>
+          <h3 class="text-xl font-bold mb-3">기초 다지기 반</h3>
+          <p class="text-slate-500 text-sm leading-relaxed mb-6">
+            흥미 유발을 위한 놀이식 수업과 기초 원리 이해.<br>
+            자기주도 학습의 습관을 형성합니다.
+          </p>
+          <a href="#" class="text-indigo-600 font-bold text-sm hover:underline">자세히 보기 →</a>
+        </div>
+      </div>
+      <!-- Card 2 -->
+      <div class="bg-white rounded-2xl overflow-hidden shadow-lg border border-slate-100 group hover:border-indigo-200 transition">
+        <div class="h-48 overflow-hidden">
+          <img src="https://images.unsplash.com/photo-1427504494785-3a9ca280156c?q=80&w=800" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+        </div>
+        <div class="p-8">
+          <div class="text-indigo-600 font-bold text-xs mb-2">INTERMEDIATE</div>
+          <h3 class="text-xl font-bold mb-3">심화 응용 반</h3>
+          <p class="text-slate-500 text-sm leading-relaxed mb-6">
+            다양한 문제 해결 능력을 기르는 심화 과정.<br>
+            논리적 사고력과 창의력을 확장합니다.
+          </p>
+          <a href="#" class="text-indigo-600 font-bold text-sm hover:underline">자세히 보기 →</a>
+        </div>
+      </div>
+      <!-- Card 3 -->
+      <div class="bg-white rounded-2xl overflow-hidden shadow-lg border border-slate-100 group hover:border-indigo-200 transition">
+        <div class="h-48 overflow-hidden">
+          <img src="https://images.unsplash.com/photo-1524178232363-1fb2b075b955?q=80&w=800" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+        </div>
+        <div class="p-8">
+          <div class="text-indigo-600 font-bold text-xs mb-2">ADVANCED</div>
+          <h3 class="text-xl font-bold mb-3">실전 마스터 반</h3>
+          <p class="text-slate-500 text-sm leading-relaxed mb-6">
+            최상위권을 목표로 하는 실전 대비반.<br>
+            1:1 밀착 코칭으로 약점을 완벽 보완합니다.
+          </p>
+          <a href="#" class="text-indigo-600 font-bold text-sm hover:underline">자세히 보기 →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Mobile Menu -->
+  <div id="academy-mobile-menu" class="fixed inset-0 bg-white z-[60] flex flex-col pt-24 px-8 transform translate-x-full transition duration-300 md:hidden">
+    <button onclick="toggleAcademyMenu()" class="absolute top-6 right-6 text-2xl text-slate-400">&times;</button>
+    <div class="space-y-6 text-lg font-bold text-slate-800">
+      <a href="#" class="block border-b border-gray-100 pb-4" onclick="toggleAcademyMenu()">아카데미 소개</a>
+      <a href="#" class="block border-b border-gray-100 pb-4" onclick="toggleAcademyMenu()">커리큘럼</a>
+      <a href="#" class="block border-b border-gray-100 pb-4" onclick="toggleAcademyMenu()">강사진</a>
+      <a href="#" class="block border-b border-gray-100 pb-4" onclick="toggleAcademyMenu()">수강후기</a>
+      <a href="#" class="block text-indigo-600 pt-4" onclick="toggleAcademyMenu(); toggleAcademyReservation()">상담예약</a>
+    </div>
+  </div>
+
+  <!-- Reservation Modal -->
+  <div id="academy-reservation" class="fixed inset-0 bg-black/70 z-[70] hidden opacity-0 transition-opacity duration-300 flex items-center justify-center p-4">
+    <div class="bg-white w-full max-w-md rounded-2xl overflow-hidden shadow-2xl relative">
+      <div class="bg-indigo-600 p-6 text-white text-center">
+        <h3 class="text-xl font-bold">방문 상담 예약</h3>
+        <p class="text-indigo-200 text-sm mt-1">전문가와 1:1 상담을 통해 진로를 설계해보세요.</p>
+        <button onclick="toggleAcademyReservation()" class="absolute top-4 right-4 text-white hover:text-indigo-200 text-xl">&times;</button>
+      </div>
+      <div class="p-8">
+        <form class="space-y-4" onsubmit="event.preventDefault(); alert('상담 예약이 접수되었습니다.'); toggleAcademyReservation();">
+          <div>
+            <label class="block text-xs font-bold text-slate-500 mb-1">학생 이름</label>
+            <input type="text" class="w-full bg-slate-50 border border-slate-200 rounded-lg p-3 focus:outline-none focus:border-indigo-500" required>
+          </div>
+          <div>
+            <label class="block text-xs font-bold text-slate-500 mb-1">학부모 연락처</label>
+            <input type="tel" class="w-full bg-slate-50 border border-slate-200 rounded-lg p-3 focus:outline-none focus:border-indigo-500" placeholder="010-0000-0000" required>
+          </div>
+          <div>
+            <label class="block text-xs font-bold text-slate-500 mb-1">학년</label>
+            <select class="w-full bg-slate-50 border border-slate-200 rounded-lg p-3 focus:outline-none focus:border-indigo-500">
+              <option>초등학생</option>
+              <option>중학생</option>
+              <option>고등학생</option>
+            </select>
+          </div>
+          <div>
+            <label class="block text-xs font-bold text-slate-500 mb-1">상담 희망 내용</label>
+            <textarea rows="3" class="w-full bg-slate-50 border border-slate-200 rounded-lg p-3 focus:outline-none focus:border-indigo-500"></textarea>
+          </div>
+          <button class="w-full bg-indigo-600 text-white font-bold py-4 rounded-xl shadow-lg hover:bg-indigo-700 transition mt-4">
+            예약 신청하기
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function toggleAcademyMenu() {
+      const menu = document.getElementById('academy-mobile-menu');
+      if(menu.classList.contains('translate-x-full')) {
+        menu.classList.remove('translate-x-full');
+      } else {
+        menu.classList.add('translate-x-full');
+      }
+    }
+
+    function toggleAcademyReservation() {
+      const modal = document.getElementById('academy-reservation');
+      if(modal.classList.contains('hidden')) {
+        modal.classList.remove('hidden');
+        setTimeout(() => modal.classList.remove('opacity-0'), 10);
+      } else {
+        modal.classList.add('opacity-0');
+        setTimeout(() => modal.classList.add('hidden'), 300);
+      }
+    }
+  </script>
+</body>
+</html>

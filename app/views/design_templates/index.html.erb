@@ -220,11 +220,12 @@
     <div class="px-8 py-5 bg-white border-t border-gray-100 flex justify-between items-center shrink-0">
       <p id="modal-desc" class="m-0 text-gray-500 text-sm max-w-[60%] line-clamp-2">Template description...</p>
       
-      <a id="btn-pick" href="#" class="px-8 py-3 bg-emerald-600 text-white font-bold rounded-xl shadow-lg shadow-emerald-200 hover:bg-emerald-700 hover:-translate-y-0.5 transition-all text-sm flex items-center gap-2 group">
-        <span>PICK! 이 템플릿으로 의뢰하기</span>
-        <svg class="w-4 h-4 transition-transform group-hover:translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14m-7-7l7 7-7 7"/></svg>
-      </a>
-    </div>
+      <div class="flex items-center gap-3">
+        <%= link_to contact_path(template_id: template.id, template_title: template.title, preview_url: template.preview_url), class: "flex-1 block text-center bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-bold py-3 rounded-lg transition-colors flex items-center justify-center gap-2" do %>
+          <span>PICK! 이 템플릿으로 의뢰하기</span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14m-7-7l7 7-7 7"/></svg>
+        <% end %>
+      </div>
 
   </div>
 </div>
@@ -296,19 +297,76 @@
     document.body.style.overflow = 'hidden';
   }
   
-  // ESC Key Listener
-  document.addEventListener('keydown', function(event) {
-    const modal = document.getElementById('template-modal');
-    if (!modal.classList.contains('hidden')) {
-      if (event.key === "Escape") {
-        closeTemplateModal();
-      }
-    }
-  });
+  // Open Modal
+  function openPreviewModal(url, title, category, id) {
+    console.log('Open Modal:', url, title);
+    const modal = document.getElementById('template-modal'); // Assuming 'template-modal' is the ID for the preview modal
+    const iframePc = document.getElementById('modal-iframe-pc');
+    const iframeMobile = document.getElementById('modal-iframe-mobile');
+    const titleEl = document.getElementById('modal-title');
+    const categoryEl = document.getElementById('modal-category');
+    const pickBtn = document.getElementById('btn-pick'); // Assuming 'btn-pick' is the ID for the pick button
 
-  function closeTemplateModal() {
-    const modal = document.getElementById('template-modal');
+    if (!modal || !iframePc || !iframeMobile) return;
+
+    iframePc.src = url;
+    iframeMobile.src = url;
+    titleEl.innerText = title;
+    categoryEl.innerText = category;
+    categoryEl.className = `text-xs font-bold px-2 py-1 rounded text-${getCategoryColor(category)}-700 bg-${getCategoryColor(category)}-100 uppercase tracking-wider`;
     
+    // Update Pick Button in Modal
+    // We pass preview_url as a parameter to ensure correct preview on contact page
+    if (pickBtn) { // Check if pickBtn exists before setting href
+      pickBtn.href = `/contact?template_id=${id}&template_title=${encodeURIComponent(title)}&preview_url=${encodeURIComponent(url)}`;
+    }
+
+    modal.classList.remove('hidden');
+    // Small delay to allow display:block to apply before opacity transition
+    setTimeout(() => {
+        modal.classList.remove('opacity-0');
+    }, 10);
+    document.body.style.overflow = 'hidden';
+    
+    // Add ESC key support inside iframe
+    iframePc.onload = function() {
+      try {
+        // Accessing contentWindow might fail if cross-origin (but here it's same origin)
+        const iframeDoc = iframePc.contentDocument || iframePc.contentWindow.document;
+        iframeDoc.addEventListener('keydown', function(e) {
+          if (e.key === "Escape") {
+            closePreviewModal();
+          }
+        });
+        // Focus iframe to catch key events immediately
+        iframePc.contentWindow.focus();
+      } catch (e) {
+        console.log('Cannot access iframe content for ESC key binding (PC):', e);
+      }
+    };
+
+    iframeMobile.onload = function() {
+      try {
+        const iframeDoc = iframeMobile.contentDocument || iframeMobile.contentWindow.document;
+        iframeDoc.addEventListener('keydown', function(e) {
+          if (e.key === "Escape") {
+            closePreviewModal();
+          }
+        });
+        iframeMobile.contentWindow.focus();
+      } catch (e) {
+        console.log('Cannot access iframe content for ESC key binding (Mobile):', e);
+      }
+    };
+  }
+
+  // Close Modal
+  function closePreviewModal() {
+    const modal = document.getElementById('template-modal');
+    const iframePc = document.getElementById('modal-iframe-pc');
+    const iframeMobile = document.getElementById('modal-iframe-mobile');
+    if (!modal) return;
+
     modal.classList.add('opacity-0');
     
     setTimeout(() => {
