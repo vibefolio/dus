@@ -42,15 +42,15 @@ Goal: Apply 10 specific improvements to each template to ensure uniqueness and f
 
 ## 🏢 Corporate & Professional (7)
 
-| ID  | Template Name        | Concept           | Status     | File Path                       | Note                     |
-| --- | -------------------- | ----------------- | ---------- | ------------------------------- | ------------------------ |
-| 14  | **Marketing Agency** | Creative Gradient | ✅ Done    | `templates/agency.html.erb`     | Separated from Corporate |
-| 15  | **Consulting Hub**   | Navy & Gold Trust | ✅ Done    | `templates/consulting.html.erb` | Separated from Corporate |
-| 16  | Novus                | IT Startup        | ⬜ Pending | `templates/corporate.html.erb`  | Needs Update             |
-| 17  | **Code Academy**     | Tech Education    | ✅ Done    | `templates/academy.html.erb`    | Blue/Clean Style         |
-| 18  | **English Kinder**   | Kids Education    | ✅ Done    | `templates/kinder.html.erb`     | Primary Colors, Playful  |
-| 19  | Rent-All             | Car Rental        | ⬜ Pending | TBD                             | Shares `corporate`       |
-| 20  | Invest Future        | Asset Management  | ⬜ Pending | TBD                             | Shares `corporate`       |
+| ID  | Template Name        | Concept           | Status  | File Path                       | Note                     |
+| --- | -------------------- | ----------------- | ------- | ------------------------------- | ------------------------ |
+| 14  | **Marketing Agency** | Creative Gradient | ✅ Done | `templates/agency.html.erb`     | Separated from Corporate |
+| 15  | **Consulting Hub**   | Navy & Gold Trust | ✅ Done | `templates/consulting.html.erb` | Separated from Corporate |
+| 16  | **Novus**            | IT Startup        | ✅ Done | `templates/startup.html.erb`    | Dark Mode SaaS Style     |
+| 17  | **Code Academy**     | Tech Education    | ✅ Done | `templates/academy.html.erb`    | Blue/Clean Style         |
+| 18  | **English Kinder**   | Kids Education    | ✅ Done | `templates/kinder.html.erb`     | Primary Colors, Playful  |
+| 19  | **Rent-All**         | Car Rental        | ✅ Done | `templates/rental.html.erb`     | Blue/Red, Car Search UI  |
+| 20  | **Invest Future**    | Asset Management  | ✅ Done | `templates/finance.html.erb`    | Trust Navy, Charts       |
 
 ## 🏥 Medical & Law (5)
 
