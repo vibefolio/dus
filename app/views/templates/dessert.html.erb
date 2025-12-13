@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sweet Spot - Dessert Cafe</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300;400;600&family=Quicksand:wght@400;700&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            mint: '#6EE7B7',
+            cottonne: '#FBCFE8',
+            choco: '#5D4037',
+          },
+          fontFamily: {
+            display: ['Fredoka', 'sans-serif'],
+            body: ['Quicksand', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-gray-50 text-gray-700 font-body">
+
+  <!-- Nav -->
+  <nav class="fixed w-full z-50 px-6 py-4 flex justify-between items-center bg-white/80 backdrop-blur-md rounded-b-[2rem] shadow-sm">
+    <div class="text-2xl font-display font-bold text-pink-400">Sweet Spot 🍩</div>
+    <div class="flex gap-4">
+      <button onclick="toggleDessert()" class="bg-pink-400 text-white px-6 py-2 rounded-full font-bold shadow-lg shadow-pink-200 hover:scale-105 transition">Order Now</button>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <header class="min-h-screen pt-20 flex flex-col md:flex-row items-center justify-center gap-12 px-6 overflow-hidden bg-gradient-to-b from-pink-50 to-white">
+    <div class="text-center md:text-left space-y-6 md:w-1/2">
+      <h1 class="text-5xl md:text-7xl font-display font-bold text-gray-800 leading-tight">
+        Life is Short. <br>
+        <span class="text-pink-400">Eat Dessert First.</span>
+      </h1>
+      <p class="text-lg text-gray-400 max-w-md mx-auto md:mx-0">
+        Handcrafted donuts, fluffy cakes, and sweet treats made with love and sprinkles.
+      </p>
+      <div class="flex gap-4 justify-center md:justify-start">
+        <button onclick="toggleDessert()" class="bg-mint text-white px-8 py-4 rounded-3xl font-bold shadow-xl shadow-green-100 hover:-translate-y-1 transition text-lg">Menu</button>
+      </div>
+    </div>
+    
+    <div class="md:w-1/2 relative">
+      <div class="absolute inset-0 bg-yellow-100 rounded-full filter blur-3xl opacity-50 animate-pulse"></div>
+      <img src="https://images.unsplash.com/photo-1551024601-5629ade4792f?q=80&w=600" class="relative z-10 w-full md:w-[500px] object-cover rounded-[3rem] shadow-2xl rotate-3 hover:rotate-6 transition duration-500 hover:scale-105">
+      <!-- Floating Elements -->
+      <div class="absolute top-10 -left-4 bg-white p-4 rounded-2xl shadow-xl animate-bounce z-20">
+         <span class="text-2xl">🍬</span>
+      </div>
+      <div class="absolute bottom-10 -right-4 bg-white p-4 rounded-2xl shadow-xl animate-bounce z-20" style="animation-delay: 1s">
+         <span class="text-2xl">🧁</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- Gallery Grid -->
+  <section class="py-24 px-6 bg-white">
+    <div class="container mx-auto max-w-6xl">
+       <h2 class="text-center text-4xl font-display font-bold text-choco mb-16">Sweet Collection</h2>
+       
+       <div class="grid md:grid-cols-3 gap-8">
+         <!-- Card -->
+         <div class="bg-pink-50 rounded-[2rem] p-4 group hover:bg-pink-100 transition duration-300">
+           <img src="https://images.unsplash.com/photo-1626094309830-abbb0c99da4a?q=80&w=600" class="w-full h-64 object-cover rounded-[1.5rem] mb-6 shadow-md group-hover:scale-105 transition duration-500">
+           <div class="text-center pb-4">
+             <h3 class="text-2xl font-display font-bold text-gray-800 mb-2">Sprinkle Donut</h3>
+             <p class="text-pink-400 font-bold">$3.50</p>
+           </div>
+         </div>
+         <!-- Card -->
+         <div class="bg-blue-50 rounded-[2rem] p-4 group hover:bg-blue-100 transition duration-300 transform md:-translate-y-8">
+           <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?q=80&w=600" class="w-full h-64 object-cover rounded-[1.5rem] mb-6 shadow-md group-hover:scale-105 transition duration-500">
+           <div class="text-center pb-4">
+             <h3 class="text-2xl font-display font-bold text-gray-800 mb-2">Choco Cake</h3>
+             <p class="text-pink-400 font-bold">$6.00</p>
+           </div>
+         </div>
+         <!-- Card -->
+         <div class="bg-yellow-50 rounded-[2rem] p-4 group hover:bg-yellow-100 transition duration-300">
+           <img src="https://images.unsplash.com/photo-1559620192-032c4bc4674e?q=80&w=600" class="w-full h-64 object-cover rounded-[1.5rem] mb-6 shadow-md group-hover:scale-105 transition duration-500">
+           <div class="text-center pb-4">
+             <h3 class="text-2xl font-display font-bold text-gray-800 mb-2">Macarons</h3>
+             <p class="text-pink-400 font-bold">$12.00 (Box)</p>
+           </div>
+         </div>
+       </div>
+    </div>
+  </section>
+
+  <!-- Modal -->
+  <div id="dessert-modal" class="fixed inset-0 bg-black/30 backdrop-blur-sm z-[60] hidden flex items-center justify-center p-6">
+    <div class="bg-white w-full max-w-sm rounded-[2rem] p-8 relative shadow-2xl animate-[bounce_0.5s_ease-out]">
+      <button onclick="toggleDessert()" class="absolute top-4 right-4 bg-gray-100 rounded-full w-8 h-8 flex items-center justify-center font-bold text-gray-500 hover:bg-pink-100 hover:text-pink-500 transition">&times;</button>
+      
+      <div class="text-center mb-6">
+        <h2 class="text-2xl font-display font-bold text-choco">Treat Yourself!</h2>
+        <p class="text-sm text-gray-400">Select your sweetness</p>
+      </div>
+
+      <div class="grid grid-cols-2 gap-4 mb-6">
+        <button class="p-4 border-2 border-pink-100 rounded-2xl hover:border-pink-400 hover:bg-pink-50 transition">
+          <div class="text-2xl mb-1">🍩</div>
+          <div class="font-bold text-xs">Donuts</div>
+        </button>
+        <button class="p-4 border-2 border-pink-100 rounded-2xl hover:border-pink-400 hover:bg-pink-50 transition">
+          <div class="text-2xl mb-1">🍰</div>
+          <div class="font-bold text-xs">Cakes</div>
+        </button>
+         <button class="p-4 border-2 border-pink-100 rounded-2xl hover:border-pink-400 hover:bg-pink-50 transition">
+          <div class="text-2xl mb-1">🍪</div>
+          <div class="font-bold text-xs">Cookies</div>
+        </button>
+         <button class="p-4 border-2 border-pink-100 rounded-2xl hover:border-pink-400 hover:bg-pink-50 transition">
+          <div class="text-2xl mb-1">🥤</div>
+          <div class="font-bold text-xs">Drinks</div>
+        </button>
+      </div>
+
+      <button class="w-full bg-pink-400 text-white font-bold py-4 rounded-xl shadow-lg hover:bg-pink-500 transition">
+        Next Step
+      </button>
+    </div>
+  </div>
+
+  <script>
+    function toggleDessert() {
+      const modal = document.getElementById('dessert-modal');
+      if(modal.classList.contains('hidden')) {
+        modal.classList.remove('hidden');
+      } else {
+        modal.classList.add('hidden');
+      }
+    }
+  </script>
+</body>
+</html>

@@ -1,86 +1,183 @@
-<div class="font-serif-kr text-[#4a3b32] bg-[#fdfaf6] min-h-screen">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Daily Crumb - Artisan Bakery</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            bread: '#8b4513',
+            wheat: '#f3e5ab',
+            cream: '#fffdd0',
+            crust: '#5D4037',
+          },
+          fontFamily: {
+            serif: ['DM Serif Display', 'serif'],
+            sans: ['Jost', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-[#faf9f6] text-crust font-sans">
+
   <!-- Nav -->
-  <nav class="py-8 text-center sticky top-0 bg-[#fdfaf6]/95 z-50">
-    <div class="font-bold text-3xl tracking-wide mb-4">Daily Crumb</div>
-    <div class="hidden md:flex justify-center gap-8 text-sm font-sans tracking-wide text-[#8d7b6f] uppercase text-[11px]">
-      <a href="#" class="hover:text-[#4a3b32]">Our Bread</a>
-      <a href="#" class="hover:text-[#4a3b32]">Menu</a>
-      <a href="#" class="hover:text-[#4a3b32]">Location</a>
-      <a href="#" class="hover:text-[#4a3b32]">Contact</a>
+  <nav class="fixed w-full z-50 px-8 py-6 flex justify-between items-center transition-all bg-[#faf9f6]/90 backdrop-blur-sm shadow-sm border-b border-bread/10">
+    <div class="text-2xl font-serif italic text-bread flex items-center gap-2">
+      <span class="text-3xl">🥖</span> Daily Crumb
     </div>
-    <button class="md:hidden absolute top-8 right-6 text-sm text-[#8d7b6f] tracking-widest font-sans" onclick="toggleCafeMenu()">MENU</button>
+    <div class="hidden md:flex gap-8 text-sm font-medium tracking-wide text-gray-600">
+      <a href="#breads" class="hover:text-bread transition">Fresh Breads</a>
+      <a href="#coffee" class="hover:text-bread transition">Coffee & Tea</a>
+      <a href="#story" class="hover:text-bread transition">Our Story</a>
+    </div>
+    <button onclick="toggleCafeRes()" class="bg-bread text-white px-6 py-2 rounded-lg text-sm font-medium hover:bg-crust transition shadow-md shadow-bread/20">
+      Order Pickup
+    </button>
   </nav>
 
   <!-- Hero -->
-  <header class="relative px-6 pb-20">
-    <div class="aspect-[16/9] md:aspect-[21/9] rounded-2xl overflow-hidden relative">
-      <img src="https://images.unsplash.com/photo-1549931319-a545dcf3bc73?q=80&w=2670&auto=format&fit=crop" class="w-full h-full object-cover" alt="Bread">
-      <div class="absolute inset-0 bg-black/20 flex items-center justify-center text-center text-white">
-        <div>
-           <p class="font-sans text-xs tracking-[0.3em] uppercase mb-4 opacity-90">Artisan Bakery</p>
-           <h1 class="text-4xl md:text-6xl italic">Warmth in every bite</h1>
+  <header class="min-h-screen flex items-center justify-center pt-20 relative overflow-hidden">
+    <div class="container mx-auto px-6 grid md:grid-cols-2 gap-12 items-center">
+      <div class="space-y-6 z-10">
+        <span class="inline-block px-3 py-1 bg-orange-100 text-orange-700 rounded-full text-xs font-bold uppercase mb-2">Baked Fresh Every Morning</span>
+        <h1 class="text-5xl md:text-7xl font-serif leading-tight text-bread">
+          Warmth in <br> Every <span class="italic text-orange-400">Crumb</span>
+        </h1>
+        <p class="text-lg text-gray-500 leading-relaxed max-w-md">
+          Artisan sourdough, flaky croissants, and rich espresso. 
+          Start your day with the simple happiness of good bread.
+        </p>
+        <div class="flex gap-4 pt-4">
+          <button onclick="toggleCafeRes()" class="px-8 py-4 bg-bread text-white rounded-xl font-medium shadow-xl hover:-translate-y-1 transition">View Menu</button>
+          <button class="px-8 py-4 border border-bread text-bread rounded-xl font-medium hover:bg-bread/5 transition">Our Location</button>
         </div>
+      </div>
+      
+      <div class="relative z-10">
+        <div class="absolute inset-0 bg-wheat rounded-full filter blur-3xl opacity-50 transform scale-90 translate-y-10"></div>
+        <img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?q=80&w=800" class="relative w-full rounded-2xl shadow-2xl rotate-2 hover:rotate-0 transition duration-700 object-cover aspect-[4/3]">
+        <img src="https://images.unsplash.com/photo-1555507036-ab1f4038808a?q=80&w=600" class="absolute -bottom-10 -left-10 w-1/2 rounded-2xl shadow-xl -rotate-6 hover:rotate-0 transition duration-700 border-4 border-[#faf9f6]">
       </div>
     </div>
   </header>
 
-  <!-- Intro -->
-  <section class="max-w-2xl mx-auto text-center px-6 py-12">
-    <p class="leading-loose text-lg font-light">
-      매일 아침 6시, 갓 구운 빵의 향기로 하루를 시작합니다.<br>
-      유기농 밀가루와 천연 발효종을 사용하여<br>
-      느리지만 정직하게 빵을 만듭니다.
-    </p>
-    <img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?q=80&w=1000&auto=format&fit=crop" class="w-24 mx-auto mt-12 opacity-80" alt="Wheat">
-  </section>
-
-  <!-- Menu Grid -->
-  <section class="py-20 px-6">
-    <h2 class="text-center text-2xl mb-16 italic">Signature Menu</h2>
-    <div class="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-      <div class="text-center">
-        <div class="aspect-square rounded-full overflow-hidden mx-auto w-64 mb-6 shadow-lg border-4 border-white">
-          <img src="https://images.unsplash.com/photo-1549931319-a545dcf3bc73?q=80&w=1000&auto=format&fit=crop" class="w-full h-full object-cover">
-        </div>
-        <h3 class="text-xl font-bold mb-2">Sourdough</h3>
-        <p class="text-sm text-[#8d7b6f]">천연 발효종으로 72시간 숙성</p>
+  <!-- Breads Grid -->
+  <section id="breads" class="py-24 bg-white">
+    <div class="container mx-auto px-6">
+      <div class="text-center mb-16">
+        <h2 class="text-4xl font-serif text-bread mb-4">From the Oven</h2>
+        <p class="text-gray-500">Naturally leavened, hand-shaped.</p>
       </div>
-      <div class="text-center">
-        <div class="aspect-square rounded-full overflow-hidden mx-auto w-64 mb-6 shadow-lg border-4 border-white">
-          <img src="https://images.unsplash.com/photo-1550617931-e17a7b70dce2?q=80&w=1000&auto=format&fit=crop" class="w-full h-full object-cover">
+      
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+        <!-- Item -->
+        <div class="group cursor-pointer">
+          <div class="overflow-hidden rounded-xl mb-4">
+            <img src="https://images.unsplash.com/photo-1585476290130-9ebfd0024479?q=80&w=600" class="w-full aspect-square object-cover group-hover:scale-110 transition duration-500">
+          </div>
+          <h3 class="font-serif text-xl mb-1">Country Sourdough</h3>
+          <p class="text-sm text-gray-400">$8.00</p>
         </div>
-        <h3 class="text-xl font-bold mb-2">Croissant</h3>
-        <p class="text-sm text-[#8d7b6f]">프랑스산 고메버터의 풍미</p>
-      </div>
-      <div class="text-center">
-        <div class="aspect-square rounded-full overflow-hidden mx-auto w-64 mb-6 shadow-lg border-4 border-white">
-          <img src="https://images.unsplash.com/photo-1579306194872-64d3b7bac4c2?q=80&w=1000&auto=format&fit=crop" class="w-full h-full object-cover">
+        <!-- Item -->
+        <div class="group cursor-pointer">
+          <div class="overflow-hidden rounded-xl mb-4">
+            <img src="https://images.unsplash.com/photo-1555507036-ab1f4038808a?q=80&w=600" class="w-full aspect-square object-cover group-hover:scale-110 transition duration-500">
+          </div>
+          <h3 class="font-serif text-xl mb-1">Butter Croissant</h3>
+          <p class="text-sm text-gray-400">$4.50</p>
         </div>
-        <h3 class="text-xl font-bold mb-2">Bagel</h3>
-        <p class="text-sm text-[#8d7b6f]">쫄깃하고 담백한 뉴욕 스타일</p>
+        <!-- Item -->
+        <div class="group cursor-pointer">
+          <div class="overflow-hidden rounded-xl mb-4">
+            <img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?q=80&w=600" class="w-full aspect-square object-cover group-hover:scale-110 transition duration-500">
+          </div>
+          <h3 class="font-serif text-xl mb-1">Pain au Chocolat</h3>
+          <p class="text-sm text-gray-400">$5.00</p>
+        </div>
+        <!-- Item -->
+        <div class="group cursor-pointer">
+          <div class="overflow-hidden rounded-xl mb-4">
+            <img src="https://images.unsplash.com/photo-1565431693339-b9d9c228d706?q=80&w=600" class="w-full aspect-square object-cover group-hover:scale-110 transition duration-500">
+          </div>
+          <h3 class="font-serif text-xl mb-1">Baguette Tradition</h3>
+          <p class="text-sm text-gray-400">$3.50</p>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- Mobile Menu -->
-  <div id="cafe-mobile-menu" class="fixed inset-0 bg-[#fdfaf6] z-[60] flex flex-col items-center justify-center gap-8 opacity-0 pointer-events-none transition-opacity duration-300">
-    <button onclick="toggleCafeMenu()" class="absolute top-8 right-6 text-sm text-[#8d7b6f] tracking-widest font-sans">CLOSE</button>
-    <a href="#" onclick="toggleCafeMenu()" class="text-2xl font-serif-kr text-[#4a3b32]">Our Bread</a>
-    <a href="#" onclick="toggleCafeMenu()" class="text-2xl font-serif-kr text-[#4a3b32]">Menu</a>
-    <a href="#" onclick="toggleCafeMenu()" class="text-2xl font-serif-kr text-[#4a3b32]">Location</a>
-    <a href="#" onclick="toggleCafeMenu()" class="text-2xl font-serif-kr text-[#4a3b32]">Contact</a>
+  <!-- Story & Hours -->
+  <section id="story" class="py-24 bg-bread text-cream">
+    <div class="container mx-auto px-6 grid md:grid-cols-2 gap-16 items-center">
+      <div class="space-y-8">
+        <h2 class="text-4xl md:text-5xl font-serif">Slow Baking, <br> Simple Ingredients</h2>
+        <p class="opacity-80 leading-loose font-light">
+          We use only flour, water, salt, and time. Our dough ferments for 24 hours to develop deep flavor and distinct texture. 
+          No shortcuts, just honest baking.
+        </p>
+        <div class="pt-8 border-t border-cream/20 grid grid-cols-2 gap-8">
+           <div>
+             <div class="text-xs uppercase tracking-widest opacity-60 mb-2">Mon - Fri</div>
+             <div class="font-serif text-2xl">07:00 - 19:00</div>
+           </div>
+           <div>
+             <div class="text-xs uppercase tracking-widest opacity-60 mb-2">Sat - Sun</div>
+             <div class="font-serif text-2xl">08:00 - 18:00</div>
+           </div>
+        </div>
+      </div>
+      <div class="relative h-[500px] border border-cream/20 p-4">
+        <img src="https://images.unsplash.com/photo-1608198093002-ad4e005484ec?q=80&w=800" class="w-full h-full object-cover grayscale opacity-80 hover:grayscale-0 hover:opacity-100 transition duration-700">
+      </div>
+    </div>
+  </section>
+
+  <!-- Reservation Modal -->
+  <div id="cafe-modal" class="fixed inset-0 bg-black/60 z-[60] hidden flex items-center justify-center p-4">
+    <div class="bg-[#faf9f6] w-full max-w-md rounded-2xl p-8 relative shadow-2xl">
+      <button onclick="toggleCafeRes()" class="absolute top-4 right-4 text-gray-400 hover:text-bread">&times;</button>
+      
+      <h2 class="text-3xl font-serif text-bread mb-2">Pre-Order</h2>
+      <p class="text-sm text-gray-500 mb-8">Skip the line, pick up your favorites.</p>
+      
+      <form class="space-y-4" onsubmit="event.preventDefault(); alert('Order received! We will have it ready.'); toggleCafeRes();">
+        <input type="text" placeholder="Name" class="w-full bg-white border border-gray-200 p-3 rounded-lg focus:outline-none focus:border-bread">
+        <div class="grid grid-cols-2 gap-4">
+          <select class="bg-white border border-gray-200 p-3 rounded-lg text-gray-600 focus:outline-none focus:border-bread">
+            <option>Sourdough</option>
+            <option>Croissant Box</option>
+            <option>Coffee Only</option>
+          </select>
+          <select class="bg-white border border-gray-200 p-3 rounded-lg text-gray-600 focus:outline-none focus:border-bread">
+            <option>08:00 AM</option>
+            <option>09:00 AM</option>
+            <option>12:00 PM</option>
+          </select>
+        </div>
+        <textarea placeholder="Special Requests" class="w-full bg-white border border-gray-200 p-3 rounded-lg focus:outline-none focus:border-bread h-24"></textarea>
+        <button class="w-full bg-bread text-white py-4 rounded-xl font-medium shadow-lg hover:bg-crust transition">
+          Place Order
+        </button>
+      </form>
+    </div>
   </div>
 
   <script>
-    function toggleCafeMenu() {
-      const menu = document.getElementById('cafe-mobile-menu');
-      if(menu.classList.contains('pointer-events-none')) {
-        menu.classList.remove('opacity-0', 'pointer-events-none');
-        document.body.style.overflow = 'hidden';
+    function toggleCafeRes() {
+      const modal = document.getElementById('cafe-modal');
+      if(modal.classList.contains('hidden')) {
+        modal.classList.remove('hidden');
       } else {
-        menu.classList.add('opacity-0', 'pointer-events-none');
-        document.body.style.overflow = '';
+        modal.classList.add('hidden');
       }
     }
   </script>
-</div>
+</body>
+</html>

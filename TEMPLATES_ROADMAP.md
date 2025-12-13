@@ -31,14 +31,14 @@ Goal: Apply 10 specific improvements to each template to ensure uniqueness and f
 
 ## 🍽️ Dining & Cafe (6)
 
-| ID  | Template Name    | Concept          | Status     | File Path                   | Note                         |
-| --- | ---------------- | ---------------- | ---------- | --------------------------- | ---------------------------- |
-| 8   | **溫 (ON)**      | Fine Dining      | ✅ Done    | `templates/dining.html.erb` | Mobile Menu, Booking Added   |
-| 9   | **Burger House** | Hip Burger Joint | ✅ Done    | `templates/burger.html.erb` | American Retro, Online Order |
-| 10  | **Wine Social**  | Luxury Wine Bar  | ✅ Done    | `templates/wine.html.erb`   | Dark Luxury, Parallax        |
-| 11  | **Salad Green**  | Fresh Salad      | ✅ Done    | `templates/salad.html.erb`  | Pop Colors, Custom Bowl UI   |
-| 12  | **Daily Crumb**  | Bakery Cafe      | ⚠️ Partial | `templates/cafe.html.erb`   | Mobile Menu Added            |
-| 13  | Sweet Spot       | Dessert Cafe     | ⬜ Pending | TBD                         | Shares `cafe`                |
+| ID  | Template Name    | Concept          | Status  | File Path                    | Note                         |
+| --- | ---------------- | ---------------- | ------- | ---------------------------- | ---------------------------- |
+| 8   | **溫 (ON)**      | Fine Dining      | ✅ Done | `templates/dining.html.erb`  | Mobile Menu, Booking Added   |
+| 9   | **Burger House** | Hip Burger Joint | ✅ Done | `templates/burger.html.erb`  | American Retro, Online Order |
+| 10  | **Wine Social**  | Luxury Wine Bar  | ✅ Done | `templates/wine.html.erb`    | Dark Luxury, Parallax        |
+| 11  | **Salad Green**  | Fresh Salad      | ✅ Done | `templates/salad.html.erb`   | Pop Colors, Custom Bowl UI   |
+| 12  | **Daily Crumb**  | Bakery Cafe      | ✅ Done | `templates/cafe.html.erb`    | Warm Beige, Bread Focused    |
+| 13  | **Sweet Spot**   | Dessert Cafe     | ✅ Done | `templates/dessert.html.erb` | Pastel Colors, Donut Theme   |
 
 ## 🏢 Corporate & Professional (7)
 
@@ -47,8 +47,8 @@ Goal: Apply 10 specific improvements to each template to ensure uniqueness and f
 | 14  | **Marketing Agency** | Creative Gradient | ✅ Done    | `templates/agency.html.erb`     | Separated from Corporate |
 | 15  | **Consulting Hub**   | Navy & Gold Trust | ✅ Done    | `templates/consulting.html.erb` | Separated from Corporate |
 | 16  | Novus                | IT Startup        | ⬜ Pending | `templates/corporate.html.erb`  | Needs Update             |
-| 17  | Code Academy         | Tech Education    | ⬜ Pending | `templates/academy.html.erb`    | Shares `academy`         |
-| 18  | English Kinder       | Kids Education    | ⬜ Pending | TBD                             | Shares `academy`         |
+| 17  | **Code Academy**     | Tech Education    | ✅ Done    | `templates/academy.html.erb`    | Blue/Clean Style         |
+| 18  | **English Kinder**   | Kids Education    | ✅ Done    | `templates/kinder.html.erb`     | Primary Colors, Playful  |
 | 19  | Rent-All             | Car Rental        | ⬜ Pending | TBD                             | Shares `corporate`       |
 | 20  | Invest Future        | Asset Management  | ⬜ Pending | TBD                             | Shares `corporate`       |
 

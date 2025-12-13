@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>English Kinder - Happy Learning</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;800&family=Nunito:wght@400;700&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'kid-yellow': '#FCD34D',
+            'kid-blue': '#60A5FA',
+            'kid-red': '#F87171',
+            'paper': '#FFFBEB',
+          },
+          fontFamily: {
+            heading: ['Baloo 2', 'cursive'],
+            body: ['Nunito', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-paper text-gray-700 font-body border-t-[20px] border-kid-yellow">
+
+  <!-- Nav -->
+  <nav class="container mx-auto px-6 py-6 flex justify-between items-center">
+    <div class="flex items-center gap-3">
+      <div class="bg-kid-blue text-white p-2 rounded-xl font-heading font-extrabold text-2xl rotate-3 shadow-[4px_4px_0px_rgba(0,0,0,0.1)]">E</div>
+      <div class="bg-kid-red text-white p-2 rounded-xl font-heading font-extrabold text-2xl -rotate-3 shadow-[4px_4px_0px_rgba(0,0,0,0.1)]">K</div>
+      <span class="font-heading font-bold text-2xl ml-2 text-gray-800">English Kinder</span>
+    </div>
+    
+    <div class="hidden md:flex gap-8 font-bold text-lg text-gray-500 bg-white px-8 py-3 rounded-full shadow-sm border-2 border-gray-100">
+      <a href="#about" class="hover:text-kid-blue transition">About Us</a>
+      <a href="#programs" class="hover:text-kid-red transition">Programs</a>
+      <a href="#teachers" class="hover:text-kid-yellow transition">Teachers</a>
+    </div>
+
+    <button onclick="toggleKinder()" class="bg-kid-blue text-white px-6 py-3 rounded-2xl font-bold font-heading text-lg shadow-[0_6px_0_#2563EB] active:shadow-none active:translate-y-[6px] transition hover:bg-blue-500">
+      Enroll Now 🚀
+    </button>
+  </nav>
+
+  <!-- Hero -->
+  <header class="container mx-auto px-6 py-12 md:py-20 grid md:grid-cols-2 gap-12 items-center">
+    <div class="space-y-6">
+      <div class="inline-block bg-white text-kid-blue font-bold px-4 py-2 rounded-xl border-2 border-kid-blue border-dashed transform -rotate-2">
+        ✏️ Learning is Fun!
+      </div>
+      <h1 class="text-5xl md:text-7xl font-heading font-extrabold leading-tight text-gray-800">
+        Where <span class="text-kid-red underline decoration-wavy decoration-kid-yellow underline-offset-8">Curiosity</span> <br> Meets Play.
+      </h1>
+      <p class="text-xl text-gray-500 font-bold leading-relaxed">
+        Our immersive English program helps your child explore the world with confidence and joy.
+      </p>
+      <div class="flex gap-4 pt-4">
+        <button onclick="toggleKinder()" class="bg-kid-yellow text-gray-900 px-8 py-4 rounded-2xl font-bold text-xl shadow-[0_6px_0_#D97706] active:shadow-none active:translate-y-[6px] transition hover:bg-yellow-400">
+          Book a Tour
+        </button>
+        <button class="bg-white text-gray-600 border-2 border-gray-200 px-8 py-4 rounded-2xl font-bold text-xl hover:bg-gray-50 transition">
+          Curriculum
+        </button>
+      </div>
+    </div>
+    
+    <div class="relative">
+      <!-- Decor Blobs -->
+      <div class="absolute top-0 right-10 w-24 h-24 bg-kid-red rounded-full opacity-20 animate-bounce"></div>
+      <div class="absolute bottom-10 left-10 w-32 h-32 bg-kid-blue rounded-full opacity-20 animate-pulse"></div>
+      
+      <div class="bg-white p-4 rounded-[3rem] border-4 border-dashed border-gray-200 transform rotate-2">
+        <img src="https://images.unsplash.com/photo-1587691592099-24045740c18e?q=80&w=800" class="w-full rounded-[2.5rem] object-cover hover:scale-[1.02] transition duration-500">
+      </div>
+    </div>
+  </header>
+
+  <!-- Features Cards -->
+  <section id="programs" class="py-20 bg-white rounded-t-[4rem]">
+    <div class="container mx-auto px-6">
+      <div class="text-center mb-16">
+        <h2 class="text-4xl font-heading font-extrabold text-gray-800 mb-4">Our Magic Classes ✨</h2>
+        <p class="text-gray-500 font-bold">Designed for ages 3 to 7</p>
+      </div>
+      
+      <div class="grid md:grid-cols-3 gap-8">
+        <!-- Card 1 -->
+        <div class="bg-kid-blue/10 p-8 rounded-[2rem] hover:-translate-y-2 transition duration-300 border-2 border-transparent hover:border-kid-blue">
+          <div class="w-16 h-16 bg-kid-blue rounded-2xl flex items-center justify-center text-3xl mb-6 shadow-md text-white">🎨</div>
+          <h3 class="text-2xl font-heading font-bold mb-3 text-gray-800">Art & English</h3>
+          <p class="text-gray-500 font-medium">Express creativity while learning colors, shapes, and feelings in English.</p>
+        </div>
+        <!-- Card 2 -->
+        <div class="bg-kid-yellow/10 p-8 rounded-[2rem] hover:-translate-y-2 transition duration-300 border-2 border-transparent hover:border-kid-yellow">
+          <div class="w-16 h-16 bg-kid-yellow rounded-2xl flex items-center justify-center text-3xl mb-6 shadow-md text-white">🎵</div>
+          <h3 class="text-2xl font-heading font-bold mb-3 text-gray-800">Music & Move</h3>
+          <p class="text-gray-500 font-medium">Sing songs, dance, and learn rhythm with catchy English tunes.</p>
+        </div>
+        <!-- Card 3 -->
+        <div class="bg-kid-red/10 p-8 rounded-[2rem] hover:-translate-y-2 transition duration-300 border-2 border-transparent hover:border-kid-red">
+          <div class="w-16 h-16 bg-kid-red rounded-2xl flex items-center justify-center text-3xl mb-6 shadow-md text-white">📖</div>
+          <h3 class="text-2xl font-heading font-bold mb-3 text-gray-800">Story Time</h3>
+          <p class="text-gray-500 font-medium">Magical stories that build vocabulary and imagination every day.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Reservation Modal -->
+  <div id="kinder-modal" class="fixed inset-0 bg-white/90 backdrop-blur-md z-[60] hidden flex items-center justify-center p-4">
+    <div class="w-full max-w-lg relative bg-white border-4 border-kid-blue rounded-[3rem] p-10 shadow-2xl">
+      <button onclick="toggleKinder()" class="absolute -top-4 -right-4 bg-kid-red text-white w-12 h-12 rounded-full font-bold text-xl hover:scale-110 transition shadow-md">&times;</button>
+      
+      <div class="text-center mb-8">
+        <h2 class="text-3xl font-heading font-extrabold text-kid-blue mb-2">Join the Fun! 🎈</h2>
+        <p class="text-gray-400 font-bold">Fill this out for a free trial class.</p>
+      </div>
+
+      <form class="space-y-6" onsubmit="event.preventDefault(); alert('Welcome! We sent you an email.'); toggleKinder();">
+        <div class="space-y-2">
+           <label class="font-bold text-gray-600 ml-2">Parent's Name</label>
+           <input type="text" class="w-full bg-gray-50 border-2 border-gray-100 rounded-2xl p-4 font-bold focus:outline-none focus:border-kid-yellow focus:bg-white transition" required>
+        </div>
+        <div class="space-y-2">
+           <label class="font-bold text-gray-600 ml-2">Child's Name & Age</label>
+           <div class="grid grid-cols-2 gap-4">
+             <input type="text" placeholder="Name" class="w-full bg-gray-50 border-2 border-gray-100 rounded-2xl p-4 font-bold focus:outline-none focus:border-kid-yellow focus:bg-white transition">
+             <input type="number" placeholder="Age" class="w-full bg-gray-50 border-2 border-gray-100 rounded-2xl p-4 font-bold focus:outline-none focus:border-kid-yellow focus:bg-white transition">
+           </div>
+        </div>
+        <button class="w-full bg-kid-blue text-white py-4 rounded-2xl font-heading font-bold text-xl shadow-[0_6px_0_#2563EB] active:shadow-none active:translate-y-[6px] hover:bg-blue-500 transition mt-4">
+          Send Request
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    function toggleKinder() {
+      const modal = document.getElementById('kinder-modal');
+      if(modal.classList.contains('hidden')) {
+        modal.classList.remove('hidden');
+      } else {
+        modal.classList.add('hidden');
+      }
+    }
+  </script>
+</body>
+</html>
