@@ -19,6 +19,9 @@ Rails.application.routes.draw do
   get 'templates/academy', to: 'templates#academy'
   get 'templates/sculpt', to: 'templates#sculpt'
   get 'templates/yoga', to: 'templates#yoga'
+  get 'templates/nail', to: 'templates#nail'
+  get 'templates/barber', to: 'templates#barber'
+  get 'templates/flower', to: 'templates#flower'
 
   root "pages#home"
 

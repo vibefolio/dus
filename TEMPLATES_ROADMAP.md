@@ -22,12 +22,12 @@ Goal: Apply 10 specific improvements to each template to ensure uniqueness and f
 
 ## 💄 Beauty & Fashion (4)
 
-| ID  | Template Name   | Concept            | Status     | File Path                   | Note                                 |
-| --- | --------------- | ------------------ | ---------- | --------------------------- | ------------------------------------ |
-| 4   | **LUMIER**      | Premium Hair Salon | ✅ Done    | `templates/beauty.html.erb` | Mobile Menu, Reservation Modal Added |
-| 5   | Nail Artistry   | Trendy Nail Salon  | ⬜ Pending | TBD                         | Shares `beauty`                      |
-| 6   | Barber Classic  | Vintage Barber     | ⬜ Pending | TBD                         | Shares `beauty`                      |
-| 7   | Flower & Garden | Florist Portfolio  | ⬜ Pending | TBD                         | Shares `beauty` (Needs new category) |
+| ID  | Template Name       | Concept            | Status  | File Path                   | Note                                 |
+| --- | ------------------- | ------------------ | ------- | --------------------------- | ------------------------------------ |
+| 4   | **LUMIER**          | Premium Hair Salon | ✅ Done | `templates/beauty.html.erb` | Mobile Menu, Reservation Modal Added |
+| 5   | **Nail Artistry**   | Trendy Nail Salon  | ✅ Done | `templates/nail.html.erb`   | Pop Aesthetic, Gallery               |
+| 6   | **Barber Classic**  | Vintage Barber     | ✅ Done | `templates/barber.html.erb` | Gentleman Style, Leather Theme       |
+| 7   | **Flower & Garden** | Florist Portfolio  | ✅ Done | `templates/flower.html.erb` | Botanical, Clean Gallery             |
 
 ## 🍽️ Dining & Cafe (6)
 
