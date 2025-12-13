@@ -1,413 +1,240 @@
-<% content_for :title, "디자인 템플릿 - 디어스" %>
-<% content_for :description, "성공적인 비즈니스를 위한 최적의 디자인 템플릿을 만나보세요. 원하는 스타일을 선택하고 바로 개발 상담을 받아보실 수 있습니다." %>
+<%# 
+  PURE DB-DRIVEN DESIGN TEMPLATES PAGE 
+  No hardcoded data. What you see is what's in the DB.
+%>
 
-<!-- Hero Section -->
-<section class="bg-gray-900 pt-32 pb-20 min-h-[40vh] flex items-center justify-center text-center px-4">
-  <div class="max-w-4xl mx-auto">
-    <h1 class="text-4xl md:text-5xl font-bold text-white mb-6">디자인 템플릿</h1>
-    <p class="text-lg md:text-xl text-gray-400 max-w-2xl mx-auto leading-relaxed">
-      검증된 디자인으로 빠르게 시작하세요.<br>
-      비즈니스 목적에 맞는 최적의 템플릿을 제안해 드립니다.
-    </p>
-  </div>
-</section>
-
-<!-- Main Content -->
-<section class="bg-gray-50 py-20 px-4">
-  <div class="w-full max-w-[1920px] mx-auto" style="width: 80%;">
-    
-    <!-- Search Bar -->
-    <div class="mb-8">
-      <form action="<%= design_templates_path %>" method="get" class="max-w-2xl mx-auto">
-        <div class="relative">
-          <input 
-            type="text" 
-            name="query" 
-            value="<%= params[:query] %>"
-            placeholder="템플릿 검색 (이름, 설명, 카테고리)" 
-            class="w-full px-6 py-4 pr-32 text-lg border-2 border-gray-200 rounded-full focus:border-emerald-500 focus:outline-none transition-colors shadow-sm"
-          >
-          <button 
-            type="submit" 
-            class="absolute right-2 top-1/2 -translate-y-1/2 px-6 py-2.5 bg-emerald-600 text-white font-bold rounded-full hover:bg-emerald-700 transition-colors flex items-center gap-2"
-          >
-            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
-            </svg>
-            검색
-          </button>
+<div class="bg-slate-50 min-h-screen pb-20 font-sans">
+  
+  <!-- Header Filter Section -->
+  <div class="bg-white border-b border-gray-200 sticky top-16 z-30 shadow-sm">
+    <div class="max-w-7xl mx-auto px-4 md:px-6 py-4">
+      <form action="<%= design_templates_path %>" method="get" class="flex flex-col md:flex-row gap-4 items-center justify-between">
+        
+        <!-- Category Filter -->
+        <div class="flex gap-2 overflow-x-auto w-full md:w-auto pb-2 md:pb-0 no-scrollbar">
+          <% categories = ['all', 'beauty', 'dining', 'corporate', 'medical', 'fitness', 'shopping', 'space', 'stay', 'portfolio', 'law', 'cafe', 'academy'] %>
+          <% categories.each do |cat| %>
+            <button type="submit" name="category" value="<%= cat %>" 
+                    class="px-4 py-2 rounded-full text-sm font-bold whitespace-nowrap transition-colors
+                    <%= params[:category] == cat || (params[:category].blank? && cat == 'all') ? 'bg-slate-900 text-white' : 'bg-gray-100 text-gray-500 hover:bg-gray-200' %>">
+              <%= cat == 'all' ? 'ALL' : cat.upcase %>
+            </button>
+          <% end %>
         </div>
-        <% if params[:query].present? %>
-          <div class="mt-3 text-center">
-            <span class="text-gray-600">검색어: <strong class="text-emerald-600">"<%= params[:query] %>"</strong></span>
-            <a href="<%= design_templates_path %>" class="ml-4 text-sm text-gray-500 hover:text-gray-700 underline">검색 초기화</a>
-          </div>
-        <% end %>
+
+        <!-- Sort & Search -->
+        <div class="flex gap-2 w-full md:w-auto">
+          <select name="sort" onchange="this.form.submit()" class="bg-gray-100 border-none rounded-lg text-sm font-bold px-4 py-2 cursor-pointer focus:ring-2 focus:ring-slate-500">
+            <option value="recommend" <%= 'selected' if params[:sort] == 'recommend' %>>추천순</option>
+            <option value="latest" <%= 'selected' if params[:sort] == 'latest' %>>최신순</option>
+            <option value="popular" <%= 'selected' if params[:sort] == 'popular' %>>인기순</option>
+          </select>
+          <input type="text" name="query" value="<%= params[:query] %>" placeholder="검색..." class="bg-gray-100 border-none rounded-lg text-sm px-4 py-2 w-full md:w-48 focus:ring-2 focus:ring-slate-500">
+        </div>
       </form>
     </div>
-
-    <!-- Filter & Sort Container -->
-    <div class="flex flex-col xl:flex-row justify-between items-center mb-12 gap-6">
-      
-      <!-- Category Filter (Scrollable on mobile) -->
-      <div class="w-full xl:w-auto overflow-x-auto pb-2 xl:pb-0 hide-scrollbar">
-        <div class="flex flex-nowrap xl:flex-wrap gap-2 px-1">
-          <button onclick="filterTemplates('all')" class="filter-btn active whitespace-nowrap px-5 py-2.5 rounded-full text-sm font-semibold border border-gray-200 bg-white text-gray-600 hover:bg-gray-50 transition-all data-[active=true]:bg-black data-[active=true]:text-white data-[active=true]:border-black shadow-sm">전체</button>
-          <button onclick="filterTemplates('shopping')" class="filter-btn whitespace-nowrap px-5 py-2.5 rounded-full text-sm font-semibold border border-gray-200 bg-white text-gray-600 hover:bg-gray-50 transition-all data-[active=true]:bg-black data-[active=true]:text-white data-[active=true]:border-black shadow-sm">쇼핑몰</button>
-          <button onclick="filterTemplates('corporate')" class="filter-btn whitespace-nowrap px-5 py-2.5 rounded-full text-sm font-semibold border border-gray-200 bg-white text-gray-600 hover:bg-gray-50 transition-all data-[active=true]:bg-black data-[active=true]:text-white data-[active=true]:border-black shadow-sm">기업/브랜드</button>
-          <button onclick="filterTemplates('beauty')" class="filter-btn whitespace-nowrap px-5 py-2.5 rounded-full text-sm font-semibold border border-gray-200 bg-white text-gray-600 hover:bg-gray-50 transition-all data-[active=true]:bg-black data-[active=true]:text-white data-[active=true]:border-black shadow-sm">뷰티/살롱</button>
-          <button onclick="filterTemplates('dining')" class="filter-btn whitespace-nowrap px-5 py-2.5 rounded-full text-sm font-semibold border border-gray-200 bg-white text-gray-600 hover:bg-gray-50 transition-all data-[active=true]:bg-black data-[active=true]:text-white data-[active=true]:border-black shadow-sm">F&B/다이닝</button>
-          <button onclick="filterTemplates('space')" class="filter-btn whitespace-nowrap px-5 py-2.5 rounded-full text-sm font-semibold border border-gray-200 bg-white text-gray-600 hover:bg-gray-50 transition-all data-[active=true]:bg-black data-[active=true]:text-white data-[active=true]:border-black shadow-sm">공간/렌탈</button>
-          <button onclick="filterTemplates('medical')" class="filter-btn whitespace-nowrap px-5 py-2.5 rounded-full text-sm font-semibold border border-gray-200 bg-white text-gray-600 hover:bg-gray-50 transition-all data-[active=true]:bg-black data-[active=true]:text-white data-[active=true]:border-black shadow-sm">병원/의료</button>
-          <button onclick="filterTemplates('stay')" class="filter-btn whitespace-nowrap px-5 py-2.5 rounded-full text-sm font-semibold border border-gray-200 bg-white text-gray-600 hover:bg-gray-50 transition-all data-[active=true]:bg-black data-[active=true]:text-white data-[active=true]:border-black shadow-sm">숙박/스테이</button>
-        </div>
-      </div>
-
-      <!-- Sort Options -->
-      <div class="flex items-center gap-1 bg-white p-1 rounded-lg border border-gray-200 shadow-sm shrink-0">
-        <%= link_to "추천순", design_templates_path(sort: 'recommend'), class: "px-4 py-2 rounded-md text-sm font-medium transition-colors #{!params[:sort] || params[:sort] == 'recommend' ? 'bg-gray-900 text-white shadow-sm' : 'text-gray-500 hover:text-gray-900 hover:bg-gray-50'}" %>
-        <%= link_to "인기순", design_templates_path(sort: 'popular'), class: "px-4 py-2 rounded-md text-sm font-medium transition-colors #{params[:sort] == 'popular' ? 'bg-gray-900 text-white shadow-sm' : 'text-gray-500 hover:text-gray-900 hover:bg-gray-50'}" %>
-        <%= link_to "최신순", design_templates_path(sort: 'latest'), class: "px-4 py-2 rounded-md text-sm font-medium transition-colors #{params[:sort] == 'latest' ? 'bg-gray-900 text-white shadow-sm' : 'text-gray-500 hover:text-gray-900 hover:bg-gray-50'}" %>
-      </div>
-
-    </div>
-
-    <!-- Templates Grid -->
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 xl:gap-8" id="templates-grid">
-      <% if @design_templates.present? && @design_templates.any? %>
-        <% @design_templates.each do |template| %>
-          <% 
-            t_id = template.id
-            t_title = template.title
-            t_desc = template.description
-            t_cat = template.category
-            t_url = template.preview_url
-            t_featured = template.is_featured
-            
-            # 이미지 URL 처리
-            if template.image_url.present?
-              t_img = template.image_url
-            elsif template.pc_image.attached?
-              t_img = url_for(template.pc_image)
-            else
-              t_img = nil # 이미지가 없는 경우 처리
-            end
-          %>
-        
-        <div class="template-card fade-in group bg-white rounded-2xl overflow-hidden border border-gray-100 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1" data-category="<%= t_cat %>">
-          <!-- Thumbnail Image (Clickable) -->
-          <div class="relative w-full aspect-[4/3] bg-gray-200 overflow-hidden cursor-pointer" onclick="openLiveDemo('<%= t_url %>', '<%= t_title %>')">
-            <% if t_img.present? %>
-              <img src="<%= t_img %>" alt="<%= t_title %>" loading="lazy" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
-            <% else %>
-              <div class="w-full h-full flex items-center justify-center text-gray-400">
-                <span class="text-sm">No Image</span>
-              </div>
-            <% end %>
-            
-            <!-- Hover Overlay -->
-            <div class="absolute inset-0 bg-black/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
-          </div>
-          
-          <div class="p-8">
-            <div class="flex justify-between items-center mb-4">
-              <span class="text-xs font-bold text-emerald-600 uppercase tracking-wider bg-emerald-50 px-3 py-1.5 rounded-full">
-                <%= t_cat.upcase %>
-              </span>
-              <% if t_featured %>
-                 <span class="text-[10px] font-bold text-white bg-emerald-500 px-2 py-0.5 rounded-full">MAIN</span>
-              <% end %>
-            </div>
-            <h3 class="text-2xl font-bold text-gray-900 mb-2 group-hover:text-emerald-600 transition-colors">
-              <%= t_title %>
-            </h3>
-            <p class="text-gray-500 mb-8 text-sm leading-relaxed line-clamp-2 h-10">
-              <%= t_desc %>
-            </p>
-
-            <!-- Action Buttons -->
-            <div class="grid grid-cols-2 gap-4">
-              <button onclick="openTemplateModal('<%= t_id %>', '<%= t_title %>')" 
-                      class="py-3 px-4 rounded-xl border border-gray-200 text-gray-700 font-bold hover:bg-gray-50 hover:border-gray-300 transition-all flex items-center justify-center gap-2 text-sm">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
-                둘러보기
-              </button>
-              <a href="/contact?template_id=<%= t_id %>&template_title=<%= u(t_title) %>" 
-                 class="py-3 px-4 rounded-xl bg-emerald-500 text-white font-bold hover:bg-emerald-600 shadow-lg shadow-emerald-100 hover:shadow-emerald-200 transition-all text-center flex items-center justify-center gap-2 text-sm">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
-                의뢰하기
-              </a>
-            </div>
-          </div>
-
-          <!-- Hidden Data for Modal -->
-          <div id="template-data-<%= t_id %>" style="display: none;">
-            <div class="data-preview-url"><%= t_url %></div>
-            <div class="data-title"><%= t_title %></div>
-            <div class="data-desc"><%= t_desc %></div>
-            <div class="data-category"><%= t_cat.upcase %></div>
-            <div class="data-img-pc"><%= t_img %></div>
-          </div>
-        </div>
-      <% end %>
-    <% else %>
-      <div class="col-span-full text-center py-20">
-        <div class="text-6xl mb-4">📂</div>
-        <h3 class="text-xl font-bold text-gray-900 mb-2">등록된 템플릿이 없습니다</h3>
-        <p class="text-gray-500">새로운 디자인 템플릿이 곧 업데이트될 예정입니다.</p>
-      </div>
-    <% end %>
-    </div>
   </div>
-</section>
 
-<!-- Template Live Demo Modal -->
-<div id="template-modal" class="hidden fixed inset-0 z-[9999] opacity-0 transition-opacity duration-300 ease-in-out">
-  <!-- Backdrop -->
-  <div onclick="closeTemplateModal()" class="absolute inset-0 bg-black/90 backdrop-blur-sm cursor-pointer"></div>
-  
-  <!-- Modal Content -->
-  <div class="modal-content absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 scale-95 w-[95%] max-w-[1600px] h-[90vh] bg-white rounded-2xl shadow-2xl flex flex-col overflow-hidden transition-transform duration-300">
+  <!-- Main Grid -->
+  <div class="max-w-7xl mx-auto px-4 md:px-6 py-12">
     
-    <!-- Modal Header -->
-    <div class="px-6 py-4 flex justify-between items-center bg-white border-b border-gray-100 z-10 shrink-0">
-      <div class="flex items-center gap-4">
-        <span id="modal-category" class="text-xs font-bold text-emerald-600 bg-emerald-50 px-2 py-1 rounded uppercase tracking-wider">CATEGORY</span>
-        <h2 id="modal-title" class="text-xl font-bold text-gray-900">Template Title</h2>
+    <% if @design_templates.blank? %>
+      <div class="text-center py-20">
+        <div class="text-6xl mb-4">😢</div>
+        <h3 class="text-xl font-bold text-gray-800">조건에 맞는 템플릿이 없습니다.</h3>
+        <p class="text-gray-500 mt-2">다른 카테고리나 검색어를 이용해보세요.</p>
+        <a href="<%= design_templates_path %>" class="inline-block mt-6 px-6 py-3 bg-slate-900 text-white rounded-lg font-bold">전체 보기</a>
       </div>
-      
-      <div class="flex items-center gap-4">
-        <!-- View Switcher -->
-        <div class="bg-gray-100 p-1 rounded-full flex">
-          <button onclick="switchView('pc')" id="btn-view-pc" class="view-btn flex items-center px-4 py-1.5 rounded-full text-sm font-semibold text-gray-500 transition-all data-[active=true]:bg-white data-[active=true]:text-emerald-600 data-[active=true]:shadow-sm">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
-            <span class="ml-2">PC</span>
-          </button>
-          <button onclick="switchView('mobile')" id="btn-view-mobile" class="view-btn flex items-center px-4 py-1.5 rounded-full text-sm font-semibold text-gray-500 transition-all data-[active=true]:bg-white data-[active=true]:text-emerald-600 data-[active=true]:shadow-sm">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect><line x1="12" y1="18" x2="12" y2="18"></line></svg>
-            <span class="ml-2">Mobile</span>
-          </button>
-        </div>
+    <% else %>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <% @design_templates.each do |template| %>
+          <div class="group bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 flex flex-col h-full transform hover:-translate-y-1">
+            
+            <!-- Thumbnail (Click to Preview) -->
+            <div class="relative aspect-[4/3] bg-gray-100 cursor-pointer overflow-hidden" 
+                 onclick="openPreview('<%= template.preview_url %>', '<%= j template.title %>', '<%= template.category %>', <%= template.id %>)">
+              
+              <% if template.image_url.present? %>
+                <img src="<%= template.image_url %>" alt="<%= template.title %>" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+              <% else %>
+                <div class="w-full h-full flex items-center justify-center text-gray-300">
+                  <span>No Image</span>
+                </div>
+              <% end %>
 
-        <button onclick="closeTemplateModal()" class="p-2 text-gray-400 hover:text-gray-900 transition-colors">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
-        </button>
-      </div>
-    </div>
+              <!-- Badge -->
+              <div class="absolute top-4 left-4">
+                <span class="px-3 py-1 bg-white/90 backdrop-blur text-xs font-bold rounded-full uppercase tracking-wider shadow-sm text-slate-800">
+                  <%= template.category %>
+                </span>
+                <% if template.is_featured %>
+                  <span class="ml-1 px-3 py-1 bg-amber-400 text-white text-xs font-bold rounded-full uppercase tracking-wider shadow-sm">
+                    BEST
+                  </span>
+                <% end %>
+              </div>
+              
+              <!-- Hover Overlay -->
+              <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                <span class="px-6 py-3 bg-white text-slate-900 font-bold rounded-full transform scale-90 group-hover:scale-100 transition-transform">
+                  미리보기
+                </span>
+              </div>
+            </div>
 
-    <!-- Modal Body (Iframe Area) -->
-    <div class="flex-1 bg-gray-100 relative flex justify-center items-center p-8 overflow-hidden">
-      
-      <!-- PC View Frame -->
-      <div id="view-pc" class="w-full h-full bg-white rounded-lg shadow-lg overflow-hidden flex flex-col transition-all duration-300">
-        <div class="h-8 bg-gray-100 flex items-center gap-2 px-3 border-b border-gray-200 shrink-0">
-           <div class="w-2.5 h-2.5 rounded-full bg-red-400"></div>
-           <div class="w-2.5 h-2.5 rounded-full bg-amber-400"></div>
-           <div class="w-2.5 h-2.5 rounded-full bg-emerald-400"></div>
-        </div>
-        <iframe id="modal-iframe-pc" src="" class="flex-1 w-full h-full border-none bg-white"></iframe>
-      </div>
+            <!-- Content -->
+            <div class="p-6 flex flex-col flex-grow">
+              <h3 class="text-xl font-bold text-slate-900 mb-2 group-hover:text-indigo-600 transition-colors">
+                <%= template.title %>
+              </h3>
+              <p class="text-gray-500 text-sm leading-relaxed line-clamp-2 mb-6 flex-grow">
+                <%= template.description %>
+              </p>
+              
+              <!-- Action Buttons -->
+              <div class="flex gap-3 mt-auto">
+                <button onclick="openPreview('<%= template.preview_url %>', '<%= j template.title %>', '<%= template.category %>', <%= template.id %>)" 
+                        class="flex-1 py-3 border-2 border-slate-100 text-slate-600 font-bold rounded-xl hover:bg-slate-50 hover:border-slate-200 transition">
+                  둘러보기
+                </button>
+                <%= link_to contact_path(template_id: template.id, preview_url: template.preview_url), 
+                            class: "flex-1 py-3 bg-slate-900 text-white font-bold rounded-xl text-center hover:bg-indigo-600 transition shadow-lg shadow-slate-200 flex items-center justify-center gap-2" do %>
+                  <span>PICK</span>
+                  <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-width="2" d="M5 12h14m-7-7l7 7-7 7"/></svg>
+                <% end %>
+              </div>
+            </div>
 
-      <!-- Mobile View Frame -->
-      <div id="view-mobile" class="hidden w-[375px] h-full max-h-[812px] bg-black rounded-[40px] shadow-2xl border-[12px] border-gray-900 overflow-hidden relative">
-        <div class="absolute top-0 left-1/2 -translate-x-1/2 w-32 h-6 bg-gray-900 rounded-b-2xl z-10"></div>
-        <iframe id="modal-iframe-mobile" src="" class="w-full h-full border-none bg-white"></iframe>
-      </div>
-
-    </div>
-
-    <!-- Modal Footer -->
-    <div class="px-8 py-5 bg-white border-t border-gray-100 flex justify-between items-center shrink-0">
-      <p id="modal-desc" class="m-0 text-gray-500 text-sm max-w-[60%] line-clamp-2">Template description...</p>
-      
-      <div class="flex items-center gap-3">
-        <%= link_to contact_path(template_id: template.id, template_title: template.title, preview_url: template.preview_url), class: "flex-1 block text-center bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-bold py-3 rounded-lg transition-colors flex items-center justify-center gap-2" do %>
-          <span>PICK! 이 템플릿으로 의뢰하기</span>
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14m-7-7l7 7-7 7"/></svg>
+          </div>
         <% end %>
       </div>
 
+      <!-- Pagination -->
+      <div class="mt-16 flex justify-center">
+        <%= paginate @design_templates %>
+      </div>
+    <% end %>
   </div>
-</div>
 
-<script>
-  function filterTemplates(category) {
-    // Toggle Buttons
-    const buttons = document.querySelectorAll('.filter-btn');
-    buttons.forEach(btn => {
-      // Remove data-active attribute
-      btn.removeAttribute('data-active');
+  <!-- Preview Modal (Simple & Robust) -->
+  <div id="preview-modal" class="fixed inset-0 z-[100] hidden" role="dialog" aria-modal="true">
+    <!-- Backdrop -->
+    <div class="absolute inset-0 bg-black/80 backdrop-blur-sm transition-opacity opacity-0" id="modal-backdrop"></div>
+    
+    <!-- Modal Content -->
+    <div class="absolute inset-0 flex flex-col bg-white w-full h-full md:m-8 md:w-auto md:h-auto md:rounded-2xl overflow-hidden shadow-2xl transition-transform scale-95 opacity-0" id="modal-content">
       
-      // Check if button text matches category or onclick matches category
-      if (btn.getAttribute('onclick').includes(category)) {
-        btn.setAttribute('data-active', 'true');
-      }
+      <!-- Header -->
+      <div class="h-16 border-b border-gray-100 flex justify-between items-center px-6 bg-white shrink-0">
+        <div class="flex items-center gap-4">
+          <h2 id="modal-title" class="font-bold text-lg text-slate-900">Template Title</h2>
+          <span id="modal-category" class="px-2 py-1 bg-gray-100 text-gray-500 text-xs font-bold rounded uppercase">CAT</span>
+        </div>
+        
+        <div class="flex items-center gap-4">
+          <!-- Device Toggle (Simple) -->
+          <div class="hidden md:flex bg-gray-100 p-1 rounded-lg">
+            <button onclick="setDevice('pc')" class="p-2 rounded hover:bg-white shadow-sm transition" title="PC View">
+              <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+            </button>
+            <button onclick="setDevice('mobile')" class="p-2 rounded hover:bg-white shadow-sm transition" title="Mobile View">
+              <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"/></svg>
+            </button>
+          </div>
+
+          <a id="modal-pick-btn" href="#" class="px-6 py-2 bg-indigo-600 text-white text-sm font-bold rounded-lg hover:bg-indigo-700 transition">
+            이 템플릿으로 의뢰
+          </a>
+          
+          <button onclick="closePreview()" class="p-2 text-gray-400 hover:text-gray-600">
+            <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Iframe Container -->
+      <div class="flex-grow bg-gray-50 relative overflow-hidden flex justify-center w-full">
+        <!-- PC Frame -->
+        <iframe id="iframe-preview" class="w-full h-full bg-white transition-all duration-500 shadow-sm" src="about:blank"></iframe>
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+    const modal = document.getElementById('preview-modal');
+    const backdrop = document.getElementById('modal-backdrop');
+    const content = document.getElementById('modal-content');
+    const iframe = document.getElementById('iframe-preview');
+    const pickBtn = document.getElementById('modal-pick-btn');
+    
+    let isMobile = false;
+
+    function openPreview(url, title, category, id) {
+      console.log("Opening:", url);
+      
+      // Update Content
+      iframe.src = url;
+      document.getElementById('modal-title').innerText = title;
+      document.getElementById('modal-category').innerText = category;
+      pickBtn.href = `/contact?template_id=${id}&preview_url=${encodeURIComponent(url)}`;
+      
+      // Show Modal
+      modal.classList.remove('hidden');
+      
+      // Trigger Animations
+      setTimeout(() => {
+        backdrop.classList.remove('opacity-0');
+        content.classList.remove('scale-95', 'opacity-0');
+      }, 10);
+      
+      document.body.style.overflow = 'hidden';
+
+      // ESC Key Listener for Iframe
+      iframe.onload = () => {
+        try {
+          // Focus to capture keys
+          iframe.contentWindow.focus();
+          iframe.contentWindow.document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closePreview();
+          });
+        } catch(e) { console.warn("Cross-origin iframe access blocked"); }
+      };
+    }
+
+    function closePreview() {
+      // Trigger Exit Animations
+      backdrop.classList.add('opacity-0');
+      content.classList.add('scale-95', 'opacity-0');
+      
+      setTimeout(() => {
+        modal.classList.add('hidden');
+        iframe.src = 'about:blank'; // Stop audio/video
+        document.body.style.overflow = '';
+      }, 300);
+    }
+    
+    // Global ESC
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && !modal.classList.contains('hidden')) closePreview();
     });
 
-    // Filter Grid
-    const cards = document.querySelectorAll('.template-card');
-    cards.forEach(card => {
-      if (category === 'all' || card.dataset.category === category) {
-        card.style.display = 'block';
+    // Device Toggle
+    function setDevice(type) {
+      if (type === 'mobile') {
+         iframe.style.width = '375px';
+         iframe.style.borderRadius = '24px';
+         iframe.style.margin = '20px auto';
+         iframe.style.height = 'calc(100% - 40px)';
+         iframe.style.border = '8px solid #333';
       } else {
-        card.style.display = 'none';
+         iframe.style.width = '100%';
+         iframe.style.borderRadius = '0';
+         iframe.style.margin = '0';
+         iframe.style.height = '100%';
+         iframe.style.border = 'none';
       }
-    });
-  }
-
-  function openTemplateModal(id, title) {
-    const modal = document.getElementById('template-modal');
-    const content = modal.querySelector('.modal-content');
-    const dataContainer = document.getElementById('template-data-' + id);
-    
-    // Get Data
-    const desc = dataContainer.querySelector('.data-desc').innerText;
-    const category = dataContainer.querySelector('.data-category').innerText;
-    const previewUrl = dataContainer.querySelector('.data-preview-url').innerText.trim();
-
-    // Set Data
-    document.getElementById('modal-title').innerText = title;
-    document.getElementById('modal-desc').innerText = desc;
-    document.getElementById('modal-category').innerText = category || 'TEMPLATE';
-    
-    // Set Iframes
-    const pcIframe = document.getElementById('modal-iframe-pc');
-    const moIframe = document.getElementById('modal-iframe-mobile');
-
-    if (previewUrl && previewUrl !== "") {
-      pcIframe.src = previewUrl;
-      moIframe.src = previewUrl;
-    } else {
-      pcIframe.src = 'about:blank';
-      moIframe.src = 'about:blank';
     }
+  </script>
 
-    // Set PICK Link
-    document.getElementById('btn-pick').href = "/contact?template_id=" + id + "&template_title=" + encodeURIComponent(title);
-
-    // Reset View to PC
-    switchView('pc');
-
-    // Show Modal
-    modal.classList.remove('hidden');
-    // Small delay to allow display:block to apply before opacity transition
-    setTimeout(() => {
-        modal.classList.remove('opacity-0');
-    }, 10);
-    document.body.style.overflow = 'hidden';
-  }
-  
-  // Open Modal
-  function openPreviewModal(url, title, category, id) {
-    console.log('Open Modal:', url, title);
-    const modal = document.getElementById('template-modal'); // Assuming 'template-modal' is the ID for the preview modal
-    const iframePc = document.getElementById('modal-iframe-pc');
-    const iframeMobile = document.getElementById('modal-iframe-mobile');
-    const titleEl = document.getElementById('modal-title');
-    const categoryEl = document.getElementById('modal-category');
-    const pickBtn = document.getElementById('btn-pick'); // Assuming 'btn-pick' is the ID for the pick button
-
-    if (!modal || !iframePc || !iframeMobile) return;
-
-    iframePc.src = url;
-    iframeMobile.src = url;
-    titleEl.innerText = title;
-    categoryEl.innerText = category;
-    categoryEl.className = `text-xs font-bold px-2 py-1 rounded text-${getCategoryColor(category)}-700 bg-${getCategoryColor(category)}-100 uppercase tracking-wider`;
-    
-    // Update Pick Button in Modal
-    // We pass preview_url as a parameter to ensure correct preview on contact page
-    if (pickBtn) { // Check if pickBtn exists before setting href
-      pickBtn.href = `/contact?template_id=${id}&template_title=${encodeURIComponent(title)}&preview_url=${encodeURIComponent(url)}`;
-    }
-
-    modal.classList.remove('hidden');
-    // Small delay to allow display:block to apply before opacity transition
-    setTimeout(() => {
-        modal.classList.remove('opacity-0');
-    }, 10);
-    document.body.style.overflow = 'hidden';
-    
-    // Add ESC key support inside iframe
-    iframePc.onload = function() {
-      try {
-        // Accessing contentWindow might fail if cross-origin (but here it's same origin)
-        const iframeDoc = iframePc.contentDocument || iframePc.contentWindow.document;
-        iframeDoc.addEventListener('keydown', function(e) {
-          if (e.key === "Escape") {
-            closePreviewModal();
-          }
-        });
-        // Focus iframe to catch key events immediately
-        iframePc.contentWindow.focus();
-      } catch (e) {
-        console.log('Cannot access iframe content for ESC key binding (PC):', e);
-      }
-    };
-
-    iframeMobile.onload = function() {
-      try {
-        const iframeDoc = iframeMobile.contentDocument || iframeMobile.contentWindow.document;
-        iframeDoc.addEventListener('keydown', function(e) {
-          if (e.key === "Escape") {
-            closePreviewModal();
-          }
-        });
-        iframeMobile.contentWindow.focus();
-      } catch (e) {
-        console.log('Cannot access iframe content for ESC key binding (Mobile):', e);
-      }
-    };
-  }
-
-  // Close Modal
-  function closePreviewModal() {
-    const modal = document.getElementById('template-modal');
-    const iframePc = document.getElementById('modal-iframe-pc');
-    const iframeMobile = document.getElementById('modal-iframe-mobile');
-    if (!modal) return;
-
-    modal.classList.add('opacity-0');
-    
-    setTimeout(() => {
-      modal.classList.add('hidden');
-      
-      // Clear iframes
-      document.getElementById('modal-iframe-pc').src = '';
-      document.getElementById('modal-iframe-mobile').src = '';
-      
-      document.body.style.overflow = '';
-    }, 300);
-  }
-
-  function switchView(mode) {
-    const viewPc = document.getElementById('view-pc');
-    const viewMobile = document.getElementById('view-mobile');
-    const btnPc = document.getElementById('btn-view-pc');
-    const btnMobile = document.getElementById('btn-view-mobile');
-
-    if (mode === 'pc') {
-      viewPc.classList.remove('hidden');
-      viewMobile.classList.add('hidden');
-      
-      btnPc.setAttribute('data-active', 'true');
-      btnMobile.removeAttribute('data-active');
-    } else {
-      viewPc.classList.add('hidden');
-      viewMobile.classList.remove('hidden');
-      
-      btnPc.removeAttribute('data-active');
-      btnMobile.setAttribute('data-active', 'true');
-    }
-  }
-</script>
-
-<style>
-  @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-  .fade-in {
-    animation: fadeIn 0.4s ease-out forwards;
-  }
-</style>
+</div>
