@@ -1,4 +1,4 @@
-<%= form_with model: [:admin, design_template], class: "card", style: "padding: var(--space-8);" do |f| %>
+<%= form_with model: [:admin, design_template], local: true, multipart: true, class: "card", style: "padding: var(--space-8);" do |f| %>
   <% if design_template.errors.any? %>
     <div style="background: var(--color-error); color: white; padding: var(--space-4); border-radius: var(--radius-lg); margin-bottom: var(--space-6);">
       <strong><%= pluralize(design_template.errors.count, "error") %> 발생:</strong>
