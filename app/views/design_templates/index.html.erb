@@ -136,6 +136,24 @@
         <% end %>
       </div>
 
+      <style>
+        .pagination { display: flex; justify-content: center; align-items: center; gap: 0.5rem; list-style: none; padding: 0; }
+        .pagination li { display: inline-flex; }
+        .pagination span, .pagination a, .pagination em {
+          display: inline-flex; align-items: center; justify-content: center;
+          min-width: 2.5rem; height: 2.5rem; padding: 0 0.75rem;
+          border-radius: 9999px; font-weight: 500; font-size: 0.875rem;
+          background-color: white; border: 1px solid #e2e8f0; color: #64748b;
+          text-decoration: none; transition: all 0.2s;
+        }
+        .pagination a:hover { border-color: #cbd5e1; background-color: #f1f5f9; color: #0f172a; }
+        .pagination .current, .pagination em.current {
+          background-color: #0f172a; border-color: #0f172a; color: white; pointer-events: none;
+        }
+        .pagination .disabled, .pagination span.disabled { opacity: 0.5; cursor: not-allowed; background-color: #f8fafc; }
+        .pagination .gap { border: none; background: transparent; }
+      </style>
+
       <!-- Pagination -->
       <div class="mt-16 flex justify-center">
         <%= paginate @design_templates %>
