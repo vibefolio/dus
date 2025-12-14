@@ -1,67 +1,151 @@
-<div class="font-serif-kr text-slate-900 bg-slate-50 min-h-screen">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Trust & Logic - Legal Partners</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Merriweather:wght@300;400;700&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'law-dark': '#1C1917',
+            'law-gold': '#C2B280',
+            'law-paper': '#F5F5F4',
+          },
+          fontFamily: {
+            serif: ['Cinzel', 'serif'],
+            body: ['Merriweather', 'serif'],
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-law-paper text-law-dark font-body">
+
   <!-- Nav -->
-  <nav class="bg-slate-900 text-white py-6 px-8 flex justify-between items-center border-b border-slate-800">
-    <div class="text-2xl font-serif tracking-in-expand font-bold">TRUST & LOGIC</div>
-    <div class="hidden md:flex gap-10 text-xs tracking-widest uppercase text-slate-400">
-      <a href="#" class="hover:text-amber-500 transition">Firm Overview</a>
-      <a href="#" class="hover:text-amber-500 transition">Attorneys</a>
-      <a href="#" class="hover:text-amber-500 transition">Practice Areas</a>
-      <a href="#" class="hover:text-amber-500 transition">News</a>
-      <a href="#" class="hover:text-amber-500 transition">Contact</a>
+  <nav class="bg-law-dark text-white sticky top-0 z-50 shadow-lg">
+    <div class="container mx-auto px-6 py-5 flex justify-between items-center">
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 border-2 border-law-gold flex items-center justify-center font-serif text-law-gold text-2xl">TL</div>
+        <div class="font-serif text-xl tracking-widest">TRUST & LOGIC</div>
+      </div>
+      <div class="hidden md:flex gap-8 text-xs font-bold tracking-widest text-gray-400">
+        <a href="#expertise" class="hover:text-law-gold transition">PRACTICE AREAS</a>
+        <a href="#attorneys" class="hover:text-law-gold transition">ATTORNEYS</a>
+        <a href="#victories" class="hover:text-law-gold transition">CASE RESULTS</a>
+      </div>
+      <button onclick="toggleLaw()" class="bg-law-gold text-law-dark px-6 py-2 text-xs font-bold tracking-widest hover:bg-white transition">
+        FREE EVALUATION
+      </button>
     </div>
   </nav>
 
   <!-- Hero -->
-  <section class="bg-slate-900 text-white py-32 px-6 border-b-8 border-amber-600">
-    <div class="max-w-4xl mx-auto text-center">
-      <h1 class="text-5xl md:text-7xl font-serif mb-8 leading-tight">
-        Justice, <span class="italic text-amber-500 font-serif">Defined.</span>
+  <header class="relative py-32 md:py-48 bg-law-dark text-white flex items-center justify-center">
+    <div class="absolute inset-0 z-0">
+      <img src="https://images.unsplash.com/photo-1589829085413-56de8ae18c73?q=80&w=1920" class="w-full h-full object-cover opacity-20 filter sepia">
+      <div class="absolute inset-0 bg-gradient-to-t from-law-dark via-transparent to-transparent"></div>
+    </div>
+    
+    <div class="container mx-auto px-6 relative z-10 text-center border-y border-white/10 py-16 backdrop-blur-sm bg-black/20">
+      <h1 class="text-4xl md:text-6xl font-serif font-bold mb-6 tracking-wide text-law-gold drop-shadow-lg">
+        JUSTICE PREVAILS <br> WHEN TRUTH LEADS
       </h1>
-      <div class="w-20 h-1 bg-amber-600 mx-auto mb-10"></div>
-      <p class="text-xl text-slate-400 font-light leading-relaxed mb-12 max-w-2xl mx-auto">
-        복잡한 법적 문제, 명쾌한 논리로 해결합니다.<br>
-        20년 경력의 전문 변호인단이 당신의 권리를 지켜드립니다.
+      <p class="text-xl md:text-2xl text-gray-300 font-light italic max-w-3xl mx-auto mb-10">
+        "Defending your rights with unyielding dedication and strategic excellence."
       </p>
-      <button class="bg-transparent border border-amber-500 text-amber-500 px-10 py-4 uppercase tracking-widest text-xs font-bold hover:bg-amber-500 hover:text-slate-900 transition duration-300">
-        Free Consultation
+      <button onclick="toggleLaw()" class="uppercase border-2 border-law-gold text-law-gold px-10 py-4 text-sm tracking-[0.2em] font-bold hover:bg-law-gold hover:text-law-dark transition duration-300">
+        Consult An Attorney
       </button>
     </div>
-  </section>
+  </header>
 
-  <!-- Areas of Practice -->
-  <section class="py-24 px-6">
-    <div class="max-w-6xl mx-auto">
-      <div class="flex justify-between items-end mb-16 border-b border-slate-200 pb-6">
-        <h2 class="text-3xl font-serif text-slate-800">Practice Areas</h2>
-        <a href="#" class="text-amber-700 italic font-serif text-lg hover:underline">View All &rarr;</a>
+  <!-- Practice Areas -->
+  <section id="expertise" class="py-24">
+    <div class="container mx-auto px-6">
+      <div class="text-center mb-16">
+        <h2 class="font-serif text-3xl font-bold mb-4 border-b-2 border-law-gold inline-block pb-2">AREAS OF PRACTICE</h2>
       </div>
       
       <div class="grid md:grid-cols-3 gap-8">
-        <!-- Card 1 -->
-        <div class="bg-white p-10 shadow-sm border-t-4 border-slate-200 hover:border-amber-600 transition duration-300 group">
-          <h3 class="text-2xl font-serif mb-4 group-hover:text-amber-700 transition">Corporate Law</h3>
-          <p class="text-slate-500 leading-relaxed mb-6">
-            M&A, 기업 구조조정, 공정거래 등 기업 경영 전반에 걸친 법률 자문 서비스를 제공합니다.
-          </p>
-          <a href="#" class="text-xs uppercase tracking-widest font-bold text-slate-400 group-hover:text-amber-700">Learn More</a>
-        </div>
-        <!-- Card 2 -->
-        <div class="bg-white p-10 shadow-sm border-t-4 border-slate-200 hover:border-amber-600 transition duration-300 group">
-          <h3 class="text-2xl font-serif mb-4 group-hover:text-amber-700 transition">Real Estate</h3>
-          <p class="text-slate-500 leading-relaxed mb-6">
-            부동산 개발, 매매, 임대차 분쟁 등 부동산 관련 모든 영역에서 신속하고 정확한 해법을 제시합니다.
-          </p>
-          <a href="#" class="text-xs uppercase tracking-widest font-bold text-slate-400 group-hover:text-amber-700">Learn More</a>
-        </div>
-        <!-- Card 3 -->
-        <div class="bg-white p-10 shadow-sm border-t-4 border-slate-200 hover:border-amber-600 transition duration-300 group">
-          <h3 class="text-2xl font-serif mb-4 group-hover:text-amber-700 transition">Litigation</h3>
-          <p class="text-slate-500 leading-relaxed mb-6">
-             민사, 형사, 행정 소송 등 다양한 분쟁 상황에서 의뢰인의 이익을 위해 최선을 다해 변론합니다.
-          </p>
-          <a href="#" class="text-xs uppercase tracking-widest font-bold text-slate-400 group-hover:text-amber-700">Learn More</a>
-        </div>
+        <!-- Card -->
+         <div class="bg-white p-10 shadow-lg border-t-4 border-law-gold hover:-translate-y-2 transition duration-300">
+           <div class="text-4xl text-law-dark mb-4 filter sepia">⚖️</div>
+           <h3 class="font-serif text-xl font-bold mb-4">Corporate Litigation</h3>
+           <p class="text-sm text-gray-600 leading-relaxed">Handling complex business disputes, breach of contract, and intellectual property theft.</p>
+         </div>
+         <!-- Card -->
+         <div class="bg-white p-10 shadow-lg border-t-4 border-law-gold hover:-translate-y-2 transition duration-300">
+           <div class="text-4xl text-law-dark mb-4 filter sepia">🏛️</div>
+           <h3 class="font-serif text-xl font-bold mb-4">Criminal Defense</h3>
+           <p class="text-sm text-gray-600 leading-relaxed">Protecting your liberty against felonies, misdemeanors, and white-collar charges.</p>
+         </div>
+         <!-- Card -->
+         <div class="bg-white p-10 shadow-lg border-t-4 border-law-gold hover:-translate-y-2 transition duration-300">
+           <div class="text-4xl text-law-dark mb-4 filter sepia">🤝</div>
+           <h3 class="font-serif text-xl font-bold mb-4">Family Law</h3>
+           <p class="text-sm text-gray-600 leading-relaxed">Compassionate representation for divorce, child custody, and prenuptial agreements.</p>
+         </div>
       </div>
     </div>
   </section>
-</div>
+
+  <!-- Stats Strip -->
+  <div class="bg-law-dark text-law-gold py-16 border-y-4 border-law-gold">
+    <div class="container mx-auto px-6 flex flex-col md:flex-row justify-around text-center gap-8">
+      <div>
+        <div class="font-serif text-5xl font-bold mb-2">98%</div>
+        <div class="text-xs tracking-[0.2em] text-white">CASE SUCCESS RATE</div>
+      </div>
+      <div>
+        <div class="font-serif text-5xl font-bold mb-2">$500M+</div>
+        <div class="text-xs tracking-[0.2em] text-white">RECOVERED FOR CLIENTS</div>
+      </div>
+      <div>
+        <div class="font-serif text-5xl font-bold mb-2">25</div>
+        <div class="text-xs tracking-[0.2em] text-white">YEARS EXPERIENCE</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Contact Modal -->
+  <div id="law-modal" class="fixed inset-0 bg-black/80 z-[60] hidden flex items-center justify-center p-4">
+    <div class="bg-law-paper w-full max-w-lg shadow-2xl relative border-8 border-double border-law-dark p-8">
+      <button onclick="toggleLaw()" class="absolute top-4 right-4 text-2xl font-serif hover:text-red-800">&times;</button>
+      
+      <div class="text-center mb-8">
+        <div class="font-serif text-2xl font-bold text-law-dark mb-2">CASE EVALUATION</div>
+        <p class="text-sm text-gray-600 italic">Confidential & Complimentary</p>
+      </div>
+
+      <form class="space-y-6">
+        <div class="grid grid-cols-2 gap-4">
+          <input type="text" placeholder="Name" class="bg-white border border-gray-300 p-3 font-body text-sm focus:border-law-dark outline-none">
+          <input type="tel" placeholder="Phone" class="bg-white border border-gray-300 p-3 font-body text-sm focus:border-law-dark outline-none">
+        </div>
+        <input type="email" placeholder="Email Address" class="w-full bg-white border border-gray-300 p-3 font-body text-sm focus:border-law-dark outline-none">
+        <textarea placeholder="Briefly describe your case..." class="w-full h-32 bg-white border border-gray-300 p-3 font-body text-sm focus:border-law-dark outline-none"></textarea>
+        
+        <button type="button" onclick="alert('Our legal team will review your case.'); toggleLaw();" class="w-full bg-law-dark text-law-gold font-serif font-bold py-4 hover:bg-black transition border border-law-gold">
+          SUBMIT FOR REVIEW
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    function toggleLaw() {
+      const modal = document.getElementById('law-modal');
+      if(modal.classList.contains('hidden')) {
+        modal.classList.remove('hidden');
+      } else {
+        modal.classList.add('hidden');
+      }
+    }
+  </script>
+</body>
+</html>

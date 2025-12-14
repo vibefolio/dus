@@ -1,90 +1,152 @@
-<div class="font-sans text-slate-600 bg-white min-h-screen">
-  <!-- Top Bar -->
-  <div class="bg-teal-500 text-white text-xs py-2 px-6 flex justify-between items-center">
-    <span>서울 강남구 테헤란로 123 퓨어타워 4F</span>
-    <div class="flex gap-4">
-      <span>Tel. 02-1234-5678</span>
-      <span>진료시간: 09:00 - 19:00</span>
-    </div>
-  </div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pure Clinic - Advanced Dermatology</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            skin: '#FDF2F8',
+            pure: '#FFFFFF',
+            accent: '#DB2777',
+          },
+          fontFamily: {
+            serif: ['Cormorant Garamond', 'serif'],
+            sans: ['Montserrat', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-gray-50 font-sans text-gray-600">
 
-  <!-- Header -->
-  <header class="flex justify-between items-center px-6 py-4 border-b border-slate-100">
-    <div class="text-2xl font-bold text-teal-600 flex items-center gap-2">
-      <div class="w-8 h-8 bg-teal-100 rounded-full flex items-center justify-center text-teal-600">
-        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path></svg>
+  <!-- Nav -->
+  <nav class="fixed w-full z-50 bg-white/80 backdrop-blur-md border-b border-gray-100 transition-all duration-300">
+    <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+      <div class="font-serif text-3xl tracking-widest text-gray-800">
+        PURE <span class="text-accent font-light">CLINIC</span>
       </div>
-      Pure Clinic
+      <div class="hidden md:flex gap-10 text-xs font-medium tracking-[0.2em] uppercase text-gray-500">
+        <a href="#procedures" class="hover:text-accent transition">Procedures</a>
+        <a href="#specialists" class="hover:text-accent transition">Specialists</a>
+        <a href="#reviews" class="hover:text-accent transition">Real Stories</a>
+      </div>
+      <button onclick="toggleMedical()" class="bg-black text-white px-6 py-2 text-xs font-bold tracking-widest hover:bg-accent transition">
+        CONSULTATION
+      </button>
     </div>
-    <nav class="hidden md:flex gap-8 text-sm font-medium">
-      <a href="#" class="text-slate-900 border-b-2 border-teal-500">홈</a>
-      <a href="#" class="hover:text-teal-600">의료진 소개</a>
-      <a href="#" class="hover:text-teal-600">진료 과목</a>
-      <a href="#" class="hover:text-teal-600">치료 후기</a>
-      <a href="#" class="hover:text-teal-600">오시는 길</a>
-    </nav>
-    <button class="bg-slate-900 text-white px-5 py-2.5 rounded-md text-sm font-bold hover:bg-slate-800 transition">온라인 예약</button>
-  </header>
+  </nav>
 
-  <!-- Hero with Form -->
-  <section class="relative bg-slate-50 py-20 px-6">
-    <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center gap-12">
-      <div class="flex-1">
-        <span class="text-teal-600 font-bold tracking-wider text-sm mb-4 block">TRUSTWORTHY MEDICAL CARE</span>
-        <h1 class="text-4xl md:text-5xl font-bold text-slate-900 leading-tight mb-6">
-          환자 중심의<br>
-          <span class="text-teal-500">정직한 진료</span>를 약속합니다.
-        </h1>
-        <p class="text-lg text-slate-500 mb-8 leading-relaxed">
-          과잉 진료 없는 양심적인 병원, 퓨어 클리닉입니다.<br>
-          최첨단 장비와 풍부한 임상 경험을 갖춘 의료진이<br>
-          당신의 건강을 책임집니다.
-        </p>
-        <div class="flex gap-4">
-          <div class="flex items-center gap-2">
-            <div class="w-10 h-10 rounded-full bg-teal-100 flex items-center justify-center text-teal-600 font-bold">1</div>
-            <span class="text-sm font-medium text-slate-900">1:1 맞춤 상담</span>
-          </div>
-          <div class="flex items-center gap-2">
-            <div class="w-10 h-10 rounded-full  <section class="relative h-[85vh] flex items-center justify-center overflow-hidden">
-    <!-- Hero Background Image -->
-    <div class="absolute inset-0">
-      <img src="https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?q=80&w=1920" class="w-full h-full object-cover" alt="Medical Clinic">
-      <div class="absolute inset-0 bg-gradient-to-r from-white/90 via-white/40 to-transparent"></div>
+  <!-- Hero -->
+  <header class="h-screen flex items-center justify-center relative overflow-hidden bg-skin">
+    <div class="absolute inset-0 z-0">
+      <img src="https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?q=80&w=1920" class="w-full h-full object-cover opacity-50">
+      <div class="absolute inset-0 bg-gradient-to-r from-skin via-skin/80 to-transparent"></div>
     </div>
-            <span class="text-sm font-medium text-slate-900">철저한 멸균</span>
-          </div>
-          <div class="flex items-center gap-2">
-            <div class="w-10 h-10 rounded-full bg-teal-100 flex items-center justify-center text-teal-600 font-bold">3</div>
-            <span class="text-sm font-medium text-slate-900">책임 진료제</span>
-          </div>
+    
+    <div class="container mx-auto px-6 relative z-10 grid md:grid-cols-2">
+      <div class="space-y-8">
+        <p class="text-accent text-sm tracking-[0.3em] uppercase animate-fade-in-up">Esthetics & Dermatology</p>
+        <h1 class="text-6xl md:text-8xl font-serif font-light text-gray-900 leading-none animate-fade-in-up" style="animation-delay: 0.2s">
+          Reveal <br> Your <i class="text-accent">Glow</i>
+        </h1>
+        <p class="text-lg font-light leading-loose max-w-md animate-fade-in-up" style="animation-delay: 0.4s">
+          Personalized skin solutions merging medical science with aesthetic artistry. 
+          Experience the confidence of pure, radiant skin.
+        </p>
+        <div class="pt-8">
+           <button onclick="toggleMedical()" class="border-b border-black pb-1 text-sm tracking-[0.2em] hover:text-accent hover:border-accent transition uppercase">Discover Treatments</button>
         </div>
       </div>
+    </div>
+  </header>
 
-      <!-- Booking Form -->
-      <div class="w-full md:w-96 bg-white p-8 rounded-2xl shadow-xl shadow-slate-200">
-        <h3 class="text-xl font-bold text-slate-900 mb-6">빠른 상담 신청</h3>
-        <div class="space-y-4">
-          <div>
-            <label class="block text-xs font-bold text-slate-500 mb-1">이름</label>
-            <input type="text" class="w-full border border-slate-200 rounded-lg px-4 py-3 bg-slate-50 focus:bg-white focus:ring-2 focus:ring-teal-500 focus:outline-none transition" placeholder="홍길동">
+  <!-- Before / After (Concept) -->
+  <section id="procedures" class="py-24 bg-white">
+    <div class="container mx-auto px-6">
+      <div class="text-center mb-20">
+        <h2 class="font-serif text-4xl md:text-5xl text-gray-900 mb-6">Signature Treatments</h2>
+        <div class="w-20 h-px bg-accent mx-auto"></div>
+      </div>
+      
+      <div class="grid md:grid-cols-3 gap-12">
+        <!-- Item 1 -->
+        <div class="group cursor-pointer">
+          <div class="overflow-hidden mb-6 relative">
+            <img src="https://images.unsplash.com/photo-1596755389378-c31d21fd1273?q=80&w=600" class="w-full aspect-[3/4] object-cover transition duration-700 group-hover:scale-105">
+            <div class="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition duration-700"></div>
           </div>
-          <div>
-            <label class="block text-xs font-bold text-slate-500 mb-1">연락처</label>
-            <input type="text" class="w-full border border-slate-200 rounded-lg px-4 py-3 bg-slate-50 focus:bg-white focus:ring-2 focus:ring-teal-500 focus:outline-none transition" placeholder="010-0000-0000">
+          <h3 class="font-serif text-2xl mb-2 text-gray-900 group-hover:text-accent transition">Laser Toning</h3>
+          <p class="text-sm font-light text-gray-500 leading-relaxed">Brighten skin tone and remove pigmentation with our dual-toning laser system.</p>
+        </div>
+        <!-- Item 2 -->
+        <div class="group cursor-pointer mt-0 md:-mt-12">
+          <div class="overflow-hidden mb-6 relative">
+            <img src="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?q=80&w=600" class="w-full aspect-[3/4] object-cover transition duration-700 group-hover:scale-105">
+             <div class="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition duration-700"></div>
           </div>
-          <div>
-            <label class="block text-xs font-bold text-slate-500 mb-1">진료 과목</label>
-            <select class="w-full border border-slate-200 rounded-lg px-4 py-3 bg-slate-50 focus:bg-white focus:ring-2 focus:ring-teal-500 focus:outline-none transition">
-              <option>일반 진료</option>
-              <option>충치 치료</option>
-              <option>임플란트</option>
-              <option>치아 교정</option>
-            </select>
+          <h3 class="font-serif text-2xl mb-2 text-gray-900 group-hover:text-accent transition">Anti-Aging Filler</h3>
+          <p class="text-sm font-light text-gray-500 leading-relaxed">Restore volume and smooth out fine lines naturally. FDA approved materials only.</p>
+        </div>
+        <!-- Item 3 -->
+        <div class="group cursor-pointer">
+          <div class="overflow-hidden mb-6 relative">
+            <img src="https://images.unsplash.com/photo-1512496015851-a90fb38ba796?q=80&w=600" class="w-full aspect-[3/4] object-cover transition duration-700 group-hover:scale-105">
+             <div class="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition duration-700"></div>
           </div>
-          <button class="w-full bg-teal-500 text-white font-bold py-4 rounded-lg mt-2 hover:bg-teal-600 transition">상담 신청하기</button>
+          <h3 class="font-serif text-2xl mb-2 text-gray-900 group-hover:text-accent transition">Acne Care</h3>
+          <p class="text-sm font-light text-gray-500 leading-relaxed">Systematic 4-step program to control sebum and heal deep scars effectively.</p>
         </div>
       </div>
     </div>
   </section>
-</div>
+
+  <!-- Reservation Modal -->
+  <div id="medical-modal" class="fixed inset-0 bg-white/95 z-[60] hidden flex items-center justify-center p-6 opacity-0 transition-opacity duration-500">
+    <div class="max-w-2xl w-full text-center relative">
+      <button onclick="toggleMedical()" class="absolute -top-12 right-0 text-3xl font-light hover:text-accent">&times;</button>
+      
+      <p class="text-accent text-xs tracking-[0.3em] uppercase mb-4">Book Appointment</p>
+      <h2 class="font-serif text-5xl mb-12">Start Your Journey</h2>
+      
+      <form class="space-y-12" onsubmit="event.preventDefault(); alert('We will contact you to confirm.'); toggleMedical();">
+        <div class="grid grid-cols-2 gap-12 border-b border-gray-200 pb-4">
+           <input type="text" placeholder="Name" class="bg-transparent text-center text-xl outline-none placeholder-gray-300 font-serif">
+           <input type="tel" placeholder="Phone" class="bg-transparent text-center text-xl outline-none placeholder-gray-300 font-serif">
+        </div>
+        <div class="border-b border-gray-200 pb-4">
+           <select class="w-full bg-transparent text-center text-xl outline-none text-gray-500 font-serif">
+             <option>Consultation</option>
+             <option>Laser Treatment</option>
+             <option>Skincare (Basic)</option>
+             <option>Skincare (Premium)</option>
+           </select>
+        </div>
+        
+        <button class="bg-black text-white px-12 py-4 text-xs font-bold tracking-[0.2em] hover:bg-accent transition uppercase">
+          Request Booking
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    function toggleMedical() {
+      const modal = document.getElementById('medical-modal');
+      if(modal.classList.contains('hidden')) {
+        modal.classList.remove('hidden');
+        setTimeout(() => modal.classList.remove('opacity-0'), 10);
+      } else {
+        modal.classList.add('opacity-0');
+        setTimeout(() => modal.classList.add('hidden'), 500);
+      }
+    }
+  </script>
+</body>
+</html>

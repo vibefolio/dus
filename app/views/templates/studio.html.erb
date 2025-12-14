@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Focus Lab - Creative Space</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            concrete: '#e5e5e5',
+            neon: '#CCFF00',
+          },
+          fontFamily: {
+            sans: ['Space Grotesk', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-concrete font-sans selection:bg-neon selection:text-black">
+
+  <!-- Nav -->
+  <nav class="fixed w-full z-50 flex justify-between items-center px-8 py-6 mix-blend-difference text-white">
+    <div class="text-2xl font-bold tracking-tighter">FOCUS▪LAB</div>
+    <div class="hidden md:flex gap-12 font-medium">
+      <a href="#spaces" class="hover:underline decoration-2 underline-offset-4">SPACES</a>
+      <a href="#equipment" class="hover:underline decoration-2 underline-offset-4">EQUIPMENT</a>
+      <a href="#membership" class="hover:underline decoration-2 underline-offset-4">MEMBERSHIP</a>
+    </div>
+    <button onclick="toggleStudio()" class="border border-white px-6 py-2 hover:bg-white hover:text-black transition uppercase text-sm font-bold">
+      Book Now
+    </button>
+  </nav>
+
+  <!-- Hero -->
+  <header class="h-screen flex flex-col justify-center px-8 md:px-20 relative overflow-hidden">
+    <div class="absolute right-0 top-0 h-full w-1/3 bg-black transform skew-x-12 translate-x-32 hidden md:block"></div>
+    
+    <div class="relative z-10 max-w-4xl">
+      <h1 class="text-7xl md:text-9xl font-bold leading-[0.8] mb-8 tracking-tighter">
+        CREATE <br>
+        <span class="text-transparent stroke-text hover:text-neon transition duration-500 cursor-default" style="-webkit-text-stroke: 2px black;">WITHOUT</span> <br>
+        LIMITS.
+      </h1>
+      <p class="text-2xl font-light max-w-xl text-gray-800">
+        A curated playground for photographers, designers, and creators. 
+        High ceilings, natural light, and premium gear.
+      </p>
+      
+      <div class="mt-12 flex gap-6 items-center">
+        <button onclick="toggleStudio()" class="bg-black text-white px-8 py-4 font-bold tracking-widest hover:bg-neon hover:text-black transition">
+          VIEW AVAILABILITY
+        </button>
+        <div class="w-32 h-[1px] bg-black"></div>
+        <div class="font-bold">01 / 04</div>
+      </div>
+    </div>
+    
+    <img src="https://images.unsplash.com/photo-1596230357878-36ce487f846d?q=80&w=800" class="absolute bottom-20 right-20 w-80 md:w-96 grayscale hover:grayscale-0 transition duration-700 z-20 shadow-2xl rotate-3">
+  </header>
+
+  <!-- Spaces Marquee -->
+  <div class="bg-black text-neon py-6 overflow-hidden border-y border-neon">
+    <div class="flex gap-20 whitespace-nowrap text-4xl font-bold animate-[marquee_15s_linear_infinite]">
+      <span>PHOTO STUDIO A</span>
+      <span>•</span>
+      <span>RECORDING BOOTH</span>
+      <span>•</span>
+      <span>EDITING SUITE</span>
+      <span>•</span>
+      <span>MEETING ROOM</span>
+      <span>•</span>
+      <span>PHOTO STUDIO A</span>
+      <span>•</span>
+      <span>RECORDING BOOTH</span>
+      <span>•</span>
+      <span>EDITING SUITE</span>
+      <span>•</span>
+      <span>MEETING ROOM</span>
+    </div>
+  </div>
+
+  <!-- Gallery Grid -->
+  <section id="spaces" class="py-32 px-8">
+    <div class="grid md:grid-cols-2 gap-8 max-w-7xl mx-auto">
+      <!-- Item -->
+      <div class="relative group cursor-pointer" onclick="toggleStudio()">
+        <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=800" class="w-full h-[600px] object-cover grayscale group-hover:grayscale-0 transition duration-500 filter contrast-125">
+        <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition duration-500 flex items-center justify-center">
+           <div class="bg-neon text-black px-6 py-2 font-bold text-2xl transform -rotate-3">STUDIO A</div>
+        </div>
+        <div class="mt-4 flex justify-between font-bold text-xl border-b border-black pb-2">
+          <span>The White Cyclorama</span>
+          <span>$80/hr</span>
+        </div>
+      </div>
+       <!-- Item -->
+      <div class="relative group cursor-pointer mt-12 md:mt-32" onclick="toggleStudio()">
+        <img src="https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?q=80&w=800" class="w-full h-[600px] object-cover grayscale group-hover:grayscale-0 transition duration-500 filter contrast-125">
+        <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition duration-500 flex items-center justify-center">
+           <div class="bg-neon text-black px-6 py-2 font-bold text-2xl transform rotate-2">PODCAST ROOM</div>
+        </div>
+        <div class="mt-4 flex justify-between font-bold text-xl border-b border-black pb-2">
+          <span>Soundproof Studio</span>
+          <span>$50/hr</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Modal -->
+  <div id="studio-modal" class="fixed inset-0 bg-black/90 backdrop-blur-md z-[60] hidden flex items-center justify-center p-4">
+    <div class="bg-concrete w-full max-w-lg p-0 relative shadow-[20px_20px_0px_#ccff00]">
+      <div class="bg-black text-white p-6 flex justify-between items-center">
+         <h2 class="text-2xl font-bold tracking-tighter">BOOKING_REQUEST</h2>
+         <button onclick="toggleStudio()" class="text-white hover:text-neon text-2xl">&times;</button>
+      </div>
+      
+      <div class="p-8 space-y-6">
+        <div class="grid grid-cols-2 gap-4">
+          <div>
+             <label class="block text-xs font-bold uppercase tracking-widest mb-2">Date</label>
+             <input type="date" class="w-full bg-white border-2 border-black p-3 font-mono focus:bg-neon focus:outline-none transition">
+          </div>
+          <div>
+             <label class="block text-xs font-bold uppercase tracking-widest mb-2">Time</label>
+             <input type="time" class="w-full bg-white border-2 border-black p-3 font-mono focus:bg-neon focus:outline-none transition">
+          </div>
+        </div>
+        <div>
+           <label class="block text-xs font-bold uppercase tracking-widest mb-2">Select Space</label>
+           <select class="w-full bg-white border-2 border-black p-3 font-bold focus:bg-neon focus:outline-none transition">
+             <option>Studio A (Cyclorama)</option>
+             <option>Podcast Room</option>
+             <option>Editing Suite</option>
+           </select>
+        </div>
+        <div>
+           <label class="block text-xs font-bold uppercase tracking-widest mb-2">Email</label>
+           <input type="email" placeholder="creator@example.com" class="w-full bg-white border-2 border-black p-3 font-bold focus:bg-neon focus:outline-none transition">
+        </div>
+        
+        <button class="w-full bg-black text-white font-bold py-5 hover:bg-neon hover:text-black transition tracking-widest uppercase">
+          Confirm Schedule
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function toggleStudio() {
+      const modal = document.getElementById('studio-modal');
+      if(modal.classList.contains('hidden')) {
+        modal.classList.remove('hidden');
+      } else {
+        modal.classList.add('hidden');
+      }
+    }
+  </script>
+</body>
+</html>
