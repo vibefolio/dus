@@ -54,22 +54,22 @@ Goal: Apply 10 specific improvements to each template to ensure uniqueness and f
 
 ## 🏥 Medical & Law (5)
 
-| ID  | Template Name    | Concept           | Status     | File Path                    | Note                        |
-| --- | ---------------- | ----------------- | ---------- | ---------------------------- | --------------------------- |
-| 21  | Pure Clinic      | Clean Dermatology | ⬜ Pending | `templates/medical.html.erb` | Existing Medical Template   |
-| 22  | **Dental Care**  | Bright Dental     | ✅ Done    | `templates/dental.html.erb`  | Sky Blue, Appointment UI    |
-| 23  | **Pet Hospital** | Warm Vet Care     | ✅ Done    | `templates/vet.html.erb`     | Amber/Bone, Pet Friendly    |
-| 24  | Trust & Logic    | Law Firm          | ⬜ Pending | `templates/law.html.erb`     | Existing Law Template       |
-| 25  | **Tax Pro**      | Smart Accounting  | ✅ Done    | `templates/tax.html.erb`     | Calculator UI, Professional |
+| ID  | Template Name     | Concept           | Status  | File Path                    | Note                        |
+| --- | ----------------- | ----------------- | ------- | ---------------------------- | --------------------------- |
+| 21  | **Pure Clinic**   | Clean Dermatology | ✅ Done | `templates/medical.html.erb` | Silver/White High-End       |
+| 22  | **Dental Care**   | Bright Dental     | ✅ Done | `templates/dental.html.erb`  | Sky Blue, Appointment UI    |
+| 23  | **Pet Hospital**  | Warm Vet Care     | ✅ Done | `templates/vet.html.erb`     | Amber/Bone, Pet Friendly    |
+| 24  | **Trust & Logic** | Law Firm          | ✅ Done | `templates/law.html.erb`     | Dark Wood, Weighty Serif    |
+| 25  | **Tax Pro**       | Smart Accounting  | ✅ Done | `templates/tax.html.erb`     | Calculator UI, Professional |
 
 ## 🏠 Stay & Space (4)
 
-| ID  | Template Name | Concept          | Status     | File Path                     | Note          |
-| --- | ------------- | ---------------- | ---------- | ----------------------------- | ------------- |
-| 26  | **서촌 쉼**   | Hanok Stay       | ⬜ Pending | `templates/stay.html.erb`     | -             |
-| 27  | Camp Vibez    | Camping Site     | ⬜ Pending | TBD                           | Shares `stay` |
-| 28  | Focus Lab     | Study Cafe       | ⬜ Pending | `templates/study.html.erb`    | -             |
-| 29  | **클린 싹싹** | Cleaning Service | ✅ Done    | `templates/cleaning.html.erb` | -             |
+| ID  | Template Name  | Concept         | Status  | File Path                     | Note                      |
+| --- | -------------- | --------------- | ------- | ----------------------------- | ------------------------- |
+| 26  | **Hanok Stay** | Traditional     | ✅ Done | `templates/stay.html.erb`     | -                         |
+| 27  | **Camp Vibez** | Glamping        | ✅ Done | `templates/camping.html.erb`  | Night Sky, Bonfire Colors |
+| 28  | **Focus Lab**  | Creative Studio | ✅ Done | `templates/studio.html.erb`   | Concrete/Neon, Industrial |
+| 29  | Clean Service  | Cleaning/Maid   | ✅ Done | `templates/cleaning.html.erb` | -                         |
 
 ## 🛍️ Shopping & Portfolio (2)
 

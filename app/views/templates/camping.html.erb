@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Camp Vibez - Into the Wild</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Cabin:wght@400;700&family=Shadows+Into+Light&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            forest: '#14532d',
+            fire: '#ea580c',
+            wood: '#78350f',
+            sand: '#fef3c7',
+          },
+          fontFamily: {
+            sans: ['Cabin', 'sans-serif'],
+            hand: ['Shadows Into Light', 'cursive'],
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-forest text-sand font-sans">
+
+  <!-- Nav -->
+  <nav class="fixed w-full z-50 px-6 py-4 flex justify-between items-center bg-forest/80 backdrop-blur-sm border-b border-white/10">
+    <div class="flex items-center gap-2 text-2xl font-hand font-bold text-fire">
+      <span class="text-3xl">⛺</span> Camp Vibez
+    </div>
+    <div class="hidden md:flex gap-8 text-sm font-bold tracking-widest uppercase text-gray-300">
+      <a href="#sites" class="hover:text-fire transition">Campsites</a>
+      <a href="#activities" class="hover:text-fire transition">Activities</a>
+      <a href="#gear" class="hover:text-fire transition">Gear Rental</a>
+    </div>
+    <button onclick="toggleCamp()" class="bg-fire text-white px-6 py-2 rounded-full font-bold shadow-[0_0_15px_rgba(234,88,12,0.5)] hover:bg-orange-500 transition">
+      Book Now
+    </button>
+  </nav>
+
+  <!-- Hero -->
+  <header class="h-screen relative flex items-center justify-center overflow-hidden">
+    <!-- Starry Night Background -->
+    <div class="absolute inset-0 bg-[#0c1e15]">
+       <div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/stardust.png')] opacity-60"></div>
+       <img src="https://images.unsplash.com/photo-1478131143081-80f7f84ca84d?q=80&w=1920" class="absolute inset-0 w-full h-full object-cover opacity-60 mix-blend-overlay">
+       <div class="absolute bottom-0 inset-x-0 h-64 bg-gradient-to-t from-forest to-transparent"></div>
+    </div>
+
+    <div class="relative z-10 text-center space-y-6 px-4">
+      <div class="inline-block border border-sand/30 rounded-full px-4 py-2 font-hand text-xl bg-black/30 backdrop-blur-md mb-4 text-fire">
+        Escape the City 🌲
+      </div>
+      <h1 class="text-6xl md:text-8xl font-bold leading-tight drop-shadow-2xl">
+        Sleep Under <br> The <span class="text-sand">Stars.</span>
+      </h1>
+      <p class="text-lg md:text-xl text-gray-300 max-w-lg mx-auto leading-relaxed">
+        Reconnect with nature without sacrificing comfort. 
+        Luxury glamping sites available for this weekend.
+      </p>
+      <div class="pt-8">
+        <button onclick="toggleCamp()" class="bg-sand text-forest px-10 py-4 rounded-xl font-bold text-lg hover:scale-105 transition duration-300 shadow-xl">
+          Check Availability
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Sites Carousel -->
+  <section id="sites" class="py-24 bg-[#1a4731]">
+    <div class="container mx-auto px-6">
+      <div class="flex justify-between items-end mb-12">
+        <div>
+          <h2 class="text-4xl font-bold text-sand mb-2">Our Sites</h2>
+          <p class="text-gray-400 font-hand text-xl">Pick your perfect spot</p>
+        </div>
+        <div class="flex gap-2">
+          <button class="w-10 h-10 rounded-full border border-white/20 hover:bg-white/10 flex items-center justify-center">&larr;</button>
+          <button class="w-10 h-10 rounded-full border border-white/20 hover:bg-white/10 flex items-center justify-center">&rarr;</button>
+        </div>
+      </div>
+      
+      <div class="flex overflow-x-auto gap-6 pb-8 no-scrollbar snap-x">
+        <!-- Card -->
+        <div class="min-w-[300px] md:min-w-[400px] bg-forest rounded-3xl overflow-hidden shadow-2xl border border-white/5 snap-center group cursor-pointer" onclick="toggleCamp()">
+          <div class="h-64 overflow-hidden relative">
+            <img src="https://images.unsplash.com/photo-1523987355523-c7b5b0dd90a7?q=80&w=600" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
+            <div class="absolute top-4 right-4 bg-fire text-white px-3 py-1 rounded-lg font-bold text-sm">$120/night</div>
+          </div>
+          <div class="p-6">
+            <h3 class="text-2xl font-bold text-sand mb-2">Forest Dome</h3>
+            <p class="text-gray-400 text-sm mb-4">Geometric dome with skylight. Perfect for stargazing. Includes queen bed and heater.</p>
+            <div class="flex gap-2 text-xs font-bold text-green-300">
+              <span class="bg-white/10 px-2 py-1 rounded">2 Guests</span>
+              <span class="bg-white/10 px-2 py-1 rounded">WiFi</span>
+              <span class="bg-white/10 px-2 py-1 rounded">Firepit</span>
+            </div>
+          </div>
+        </div>
+        <!-- Card -->
+        <div class="min-w-[300px] md:min-w-[400px] bg-forest rounded-3xl overflow-hidden shadow-2xl border border-white/5 snap-center group cursor-pointer" onclick="toggleCamp()">
+          <div class="h-64 overflow-hidden relative">
+            <img src="https://images.unsplash.com/photo-1496545672479-af608149861e?q=80&w=600" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
+            <div class="absolute top-4 right-4 bg-fire text-white px-3 py-1 rounded-lg font-bold text-sm">$80/night</div>
+          </div>
+          <div class="p-6">
+            <h3 class="text-2xl font-bold text-sand mb-2">Riverside Tent</h3>
+            <p class="text-gray-400 text-sm mb-4">Classic canvas bell tent right by the flowing river. Fall asleep to nature's sound.</p>
+            <div class="flex gap-2 text-xs font-bold text-green-300">
+              <span class="bg-white/10 px-2 py-1 rounded">4 Guests</span>
+              <span class="bg-white/10 px-2 py-1 rounded">BBQ</span>
+              <span class="bg-white/10 px-2 py-1 rounded">No Power</span>
+            </div>
+          </div>
+        </div>
+        <!-- Card -->
+        <div class="min-w-[300px] md:min-w-[400px] bg-forest rounded-3xl overflow-hidden shadow-2xl border border-white/5 snap-center group cursor-pointer" onclick="toggleCamp()">
+          <div class="h-64 overflow-hidden relative">
+            <img src="https://images.unsplash.com/photo-1533630654593-b222d5d44449?q=80&w=600" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
+            <div class="absolute top-4 right-4 bg-fire text-white px-3 py-1 rounded-lg font-bold text-sm">$200/night</div>
+          </div>
+          <div class="p-6">
+            <h3 class="text-2xl font-bold text-sand mb-2">Luxury Cabin</h3>
+            <p class="text-gray-400 text-sm mb-4">Full modern cabin deeper in the woods. Private hot tub and kitchen included.</p>
+            <div class="flex gap-2 text-xs font-bold text-green-300">
+              <span class="bg-white/10 px-2 py-1 rounded">6 Guests</span>
+              <span class="bg-white/10 px-2 py-1 rounded">Kitchen</span>
+              <span class="bg-white/10 px-2 py-1 rounded">Hot Tub</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Modal -->
+  <div id="camp-modal" class="fixed inset-0 bg-forest/90 backdrop-blur-sm z-[60] hidden flex items-center justify-center p-4">
+    <div class="bg-sand text-forest w-full max-w-md rounded-xl shadow-2xl relative p-8 border-4 border-wood">
+      <button onclick="toggleCamp()" class="absolute top-4 right-4 text-wood font-bold hover:text-fire text-xl">&times;</button>
+      
+      <div class="text-center mb-8">
+        <h2 class="text-3xl font-hand font-bold text-wood">Start Your Adventure 🎒</h2>
+      </div>
+
+      <form class="space-y-4" onsubmit="event.preventDefault(); alert('Booking Request Sent! Pack your bags.'); toggleCamp();">
+        <div>
+          <label class="block font-bold text-wood text-sm mb-1 uppercase">Check-in</label>
+          <input type="date" class="w-full bg-white p-3 rounded border border-wood/20 font-bold text-forest">
+        </div>
+        <div>
+          <label class="block font-bold text-wood text-sm mb-1 uppercase">Check-out</label>
+          <input type="date" class="w-full bg-white p-3 rounded border border-wood/20 font-bold text-forest">
+        </div>
+        <div>
+          <label class="block font-bold text-wood text-sm mb-1 uppercase">Site Type</label>
+          <select class="w-full bg-white p-3 rounded border border-wood/20 font-bold text-forest">
+            <option>Forest Dome</option>
+            <option>Riverside Tent</option>
+            <option>Luxury Cabin</option>
+          </select>
+        </div>
+        
+        <button class="w-full bg-fire text-white font-bold py-4 rounded shadow-lg hover:bg-orange-600 transition mt-4 text-xl font-hand">
+          Confirm Reservation
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    function toggleCamp() {
+      const modal = document.getElementById('camp-modal');
+      if(modal.classList.contains('hidden')) {
+        modal.classList.remove('hidden');
+      } else {
+        modal.classList.add('hidden');
+      }
+    }
+  </script>
+</body>
+</html>
