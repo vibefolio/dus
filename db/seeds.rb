@@ -19,7 +19,7 @@ templates = [
     description: "여백의 미를 살린 모던 오마카세 다이닝 스타일. 갤러리 같은 메뉴 소개 디자인.", 
     category: "dining", 
     preview_url: "/templates/dining", 
-    image_url: "https://images.unsplash.com/photo-1559339352-11d035aa65de?q=80&w=800&auto=format&fit=crop",
+    image_url: "/images/templates/dining_omakase.png",
     is_featured: true 
   },
   { 
@@ -27,7 +27,7 @@ templates = [
     description: "아티스틱 웰니스 브랜드 스타일. 감각적인 다크 모드와 타이포그래피.", 
     category: "fitness", 
     preview_url: "/templates/gym", 
-    image_url: "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=800"
+    image_url: "/images/templates/fitness_gym.png"
   },
   { 
     title: "Focus Lab", 
@@ -57,7 +57,7 @@ templates = [
     description: "신뢰감을 주는 블루톤의 IT 스타트업 스타일. 데이터 시각화 섹션 포함.", 
     category: "corporate", 
     preview_url: "/templates/startup", 
-    image_url: "https://images.unsplash.com/photo-1551434678-e076c2236034?q=80&w=800"
+    image_url: "/images/templates/corporate_office.png"
   },
   { 
     title: "Daily Crumb", 
@@ -71,7 +71,7 @@ templates = [
     description: "크리에이터를 위한 다크모드 그리드 갤러리. 작품에만 집중할 수 있는 디자인.", 
     category: "portfolio", 
     preview_url: "/templates/portfolio", 
-    image_url: "https://images.unsplash.com/photo-1600607686527-6fb886090705?q=80&w=800"
+    image_url: "/images/templates/portfolio_gallery.png"
   },
   { 
     title: "Pure Clinic", 
@@ -85,14 +85,14 @@ templates = [
     description: "세리프 폰트와 네이비 컬러로 무게감을 준 전문직. 성공 사례 중심 레이아웃.", 
     category: "law", 
     preview_url: "/templates/law", 
-    image_url: "https://images.unsplash.com/photo-1589829085413-56de8ae18c73?q=80&w=800"
+    image_url: "/images/templates/law_office.png"
   },
   { 
     title: "Grand Hotel", 
     description: "우아하고 럭셔리한 5성급 호텔 스타일. 객실/다이닝 예약 최적화.", 
     category: "stay", 
     preview_url: "/templates/hotel", 
-    image_url: "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?q=80&w=800"
+    image_url: "/images/templates/hotel_luxury.png"
   },
   { 
     title: "클린 싹싹", 
@@ -121,21 +121,21 @@ templates = [
     description: "성공적인 자산 관리 파트너. 신뢰를 주는 차분한 블루 그레이 톤.", 
     category: "finance", 
     preview_url: "/templates/finance", 
-    image_url: "https://images.unsplash.com/photo-1579532537598-459ecdaf39cc?q=80&w=800"
+    image_url: "/images/templates/finance_invest.png"
   },
   { 
     title: "Code Academy", 
     description: "미래를 여는 코딩 교육. 테크니컬한 그리드와 로드맵 시각화.", 
     category: "academy", 
     preview_url: "/templates/academy", 
-    image_url: "https://images.unsplash.com/photo-1571171637578-41bc2dd41cd2?q=80&w=800"
+    image_url: "/images/templates/academy_coding.png"
   },
   { 
     title: "Little Star", 
     description: "아이들의 창의력을 자극하는 영어 유치원. 알록달록한 컬러와 귀여운 일러스트.", 
     category: "kinder", 
     preview_url: "/templates/kinder", 
-    image_url: "https://images.unsplash.com/photo-1588072432836-e10032774350?q=80&w=800"
+    image_url: "/images/templates/kinder_classroom.png"
   },
   { 
     title: "Dental Care", 
@@ -156,14 +156,14 @@ templates = [
     description: "스마트한 세무 파트너. 복잡한 세금을 쉽게 계산해주는 계산기 위젯 포함.", 
     category: "law", 
     preview_url: "/templates/tax", 
-    image_url: "https://images.unsplash.com/photo-1554224155-984063584d45?q=80&w=800"
+    image_url: "/images/templates/law_office.png"
   },
   { 
     title: "Wild Camp", 
     description: "자연 속 힐링을 위한 감성 캠핑장. 아웃도어 기어 렌탈 및 사이트 예약.", 
     category: "stay", 
     preview_url: "/templates/camping", 
-    image_url: "https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?q=80&w=800"
+    image_url: "/images/templates/camping_tent.png"
   },
   { 
     title: "Minimal Studio", 
@@ -188,9 +188,10 @@ templates = [
   }
 ]
 
-# 기존 템플릿 업데이트 또는 생성
+# 기존 데이터 모두 업데이트
 templates.each do |t|
   template = DesignTemplate.find_or_initialize_by(preview_url: t[:preview_url])
+  puts "Migrating Template: #{t[:title]}"
   template.update!(
     title: t[:title],
     description: t[:description],
