@@ -76,20 +76,50 @@
 
   <body>
     <!-- Navigation -->
+    <!-- Navigation -->
     <nav class="navbar" id="navbar">
       <div class="navbar-container">
         <%= link_to root_path, class: "navbar-logo" do %>
           <%= image_tag "logo.png", alt: "디어스", style: "height: 50px; width: auto;" %>
         <% end %>
-        <ul class="navbar-menu">
+        
+        <!-- Desktop Menu -->
+        <ul class="navbar-menu hidden md:flex">
           <li><%= link_to "홈", root_path, class: "navbar-link #{current_page?(root_path) ? 'active' : ''}" %></li>
           <li><%= link_to "디자인 템플릿", design_templates_path, class: "navbar-link #{current_page?(design_templates_path) ? 'active' : ''}" %></li>
           <%# <li><%= link_to "포트폴리오", portfolio_path, class: "navbar-link #{current_page?(portfolio_path) ? 'active' : ''}" %>
           <li><%= link_to "유지관리 구독", pricing_path, class: "navbar-link #{current_page?(pricing_path) ? 'active' : ''}" %></li>
           <li><%= link_to "문의하기", contact_path, class: "navbar-link #{current_page?(contact_path) ? 'active' : ''}" %></li>
         </ul>
+
+        <!-- Mobile Menu Button -->
+        <button id="mobile-menu-btn" class="md:hidden p-2 text-gray-600 hover:text-emerald-600 focus:outline-none">
+          <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+          </svg>
+        </button>
+      </div>
+
+      <!-- Mobile Menu Dropdown -->
+      <div id="mobile-menu" class="hidden md:hidden absolute top-full left-0 w-full bg-white shadow-lg border-t border-gray-100 flex flex-col p-4 space-y-4">
+        <%= link_to "홈", root_path, class: "block px-4 py-2 text-gray-700 font-bold hover:bg-gray-50 rounded-lg #{current_page?(root_path) ? 'text-emerald-600 bg-emerald-50' : ''}" %>
+        <%= link_to "디자인 템플릿", design_templates_path, class: "block px-4 py-2 text-gray-700 font-bold hover:bg-gray-50 rounded-lg #{current_page?(design_templates_path) ? 'text-emerald-600 bg-emerald-50' : ''}" %>
+        <%= link_to "유지관리 구독", pricing_path, class: "block px-4 py-2 text-gray-700 font-bold hover:bg-gray-50 rounded-lg #{current_page?(pricing_path) ? 'text-emerald-600 bg-emerald-50' : ''}" %>
+        <%= link_to "문의하기", contact_path, class: "block px-4 py-2 text-gray-700 font-bold hover:bg-gray-50 rounded-lg #{current_page?(contact_path) ? 'text-emerald-600 bg-emerald-50' : ''}" %>
       </div>
     </nav>
+    
+    <script>
+      // Mobile Menu Toggle
+      const mobileBtn = document.getElementById('mobile-menu-btn');
+      const mobileMenu = document.getElementById('mobile-menu');
+
+      if (mobileBtn && mobileMenu) {
+        mobileBtn.addEventListener('click', () => {
+          mobileMenu.classList.toggle('hidden');
+        });
+      }
+    </script>
 
     <!-- Flash Messages (Toast) -->
     <div class="fixed top-24 left-1/2 transform -translate-x-1/2 z-50 w-full max-w-lg px-4 space-y-2 pointer-events-none">

@@ -23,15 +23,32 @@
 
       <div style="margin-bottom: 30px;">
         <h1 class="text-3xl font-bold text-gray-900">
-          <span class="text-emerald-600"><%= params[:template_title] %></span> 템플릿 의뢰하기
+          <span class="text-emerald-600"><%= params[:template_title] || "템플릿" %></span> 의뢰하기
         </h1>
         <p class="text-gray-500 mt-2 text-lg">선택하신 디자인을 기반으로 빠르고 정확하게 제작해 드립니다.</p>
       </div>
 
+      <!-- Mobile Selected Template Summary (Visible only on Mobile) -->
+      <div class="lg:hidden mb-8 bg-white rounded-xl border border-gray-200 p-4 flex gap-4 items-center shadow-sm">
+         <div class="w-20 h-20 bg-gray-100 rounded-lg overflow-hidden flex-shrink-0">
+           <% if params[:preview_url] %>
+             <!-- Try to guess image from preview_url mapping or generic icon -->
+             <div class="w-full h-full flex items-center justify-center bg-slate-100 text-slate-400">
+                <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+             </div>
+           <% end %>
+         </div>
+         <div>
+           <div class="text-xs font-bold text-gray-500 uppercase">Selected Template</div>
+           <div class="text-lg font-bold text-gray-900"><%= params[:template_title] || "Unknown Template" %></div>
+           <a href="<%= params[:preview_url] %>" target="_blank" class="text-sm text-emerald-600 font-bold hover:underline">미리보기 새창으로 열기 &rarr;</a>
+         </div>
+      </div>
+
       <div class="flex flex-col lg:flex-row gap-10" style="min-height: 800px;">
         
-        <!-- Left: Interactive Preview (60%) -->
-        <div class="w-full lg:w-[60%] flex flex-col">
+        <!-- Left: Interactive Preview (60%) - HIDDEN ON MOBILE -->
+        <div class="hidden lg:flex w-full lg:w-[60%] flex-col">
           <div class="bg-gray-100 rounded-2xl overflow-hidden border border-gray-200 flex flex-col relative sticky top-24" style="height: 85vh; max-height: 900px;">
             <!-- Preview Header -->
             <div class="bg-white border-b border-gray-200 px-5 py-4 flex justify-between items-center shrink-0">
