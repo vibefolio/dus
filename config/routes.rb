@@ -35,6 +35,7 @@ Rails.application.routes.draw do
   get 'templates/tax', to: 'templates#tax'
   get 'templates/camping', to: 'templates#camping'
   get 'templates/studio', to: 'templates#studio'
+  get 'templates/petshop', to: 'templates#petshop'
 
   root "pages#home"
 
