@@ -30,6 +30,9 @@ Rails.application.routes.draw do
   get 'templates/startup', to: 'templates#startup'
   get 'templates/rental', to: 'templates#rental'
   get 'templates/finance', to: 'templates#finance'
+  get 'templates/dental', to: 'templates#dental'
+  get 'templates/vet', to: 'templates#vet'
+  get 'templates/tax', to: 'templates#tax'
 
   root "pages#home"
 

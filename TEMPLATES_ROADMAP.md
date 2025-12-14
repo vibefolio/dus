@@ -54,13 +54,13 @@ Goal: Apply 10 specific improvements to each template to ensure uniqueness and f
 
 ## 🏥 Medical & Law (5)
 
-| ID  | Template Name | Concept           | Status     | File Path                    | Note             |
-| --- | ------------- | ----------------- | ---------- | ---------------------------- | ---------------- |
-| 21  | Pure Clinic   | Clean Dermatology | ⬜ Pending | `templates/medical.html.erb` | -                |
-| 22  | Dental Care   | Blue Dental       | ⬜ Pending | TBD                          | Shares `medical` |
-| 23  | Pet Hospital  | Animal Care       | ⬜ Pending | TBD                          | Shares `medical` |
-| 24  | Trust & Logic | Law Firm          | ⬜ Pending | `templates/law.html.erb`     | -                |
-| 25  | Tax Pro       | Accounting/Tax    | ⬜ Pending | TBD                          | Shares `law`     |
+| ID  | Template Name    | Concept           | Status     | File Path                    | Note                        |
+| --- | ---------------- | ----------------- | ---------- | ---------------------------- | --------------------------- |
+| 21  | Pure Clinic      | Clean Dermatology | ⬜ Pending | `templates/medical.html.erb` | Existing Medical Template   |
+| 22  | **Dental Care**  | Bright Dental     | ✅ Done    | `templates/dental.html.erb`  | Sky Blue, Appointment UI    |
+| 23  | **Pet Hospital** | Warm Vet Care     | ✅ Done    | `templates/vet.html.erb`     | Amber/Bone, Pet Friendly    |
+| 24  | Trust & Logic    | Law Firm          | ⬜ Pending | `templates/law.html.erb`     | Existing Law Template       |
+| 25  | **Tax Pro**      | Smart Accounting  | ✅ Done    | `templates/tax.html.erb`     | Calculator UI, Professional |
 
 ## 🏠 Stay & Space (4)
 

@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tax Pro - Expert Accounting</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500;700&family=Work+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'money': '#10B981',
+            'slate-dark': '#1E293B',
+          },
+          fontFamily: {
+            sans: ['Work Sans', 'sans-serif'],
+            mono: ['Roboto Mono', 'monospace'],
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-slate-50 text-slate-700 font-sans">
+
+  <!-- Nav -->
+  <nav class="bg-slate-dark text-white border-b border-slate-700 sticky top-0 z-50">
+    <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+      <div class="font-mono font-bold text-xl tracking-tighter">
+        <span class="text-money">$</span> TaxPro
+      </div>
+      <div class="hidden md:flex gap-8 text-sm font-medium text-slate-300">
+        <a href="#services" class="hover:text-money transition">Services</a>
+        <a href="#calculator" class="hover:text-money transition">Tax Calculator</a>
+        <a href="#contact" class="hover:text-money transition">Contact</a>
+      </div>
+      <button onclick="toggleTax()" class="bg-money text-white px-5 py-2 rounded font-bold text-sm hover:bg-emerald-600 transition">
+        Free Consultation
+      </button>
+    </div>
+  </nav>
+
+  <!-- Hero with Calculator UI -->
+  <header class="bg-slate-dark text-white pt-20 pb-32 relative overflow-hidden">
+    <div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/graphy.png')] opacity-10"></div>
+    
+    <div class="container mx-auto px-6 grid md:grid-cols-2 gap-16 items-center relative z-10">
+      <div class="space-y-6">
+        <div class="inline-block bg-slate-800 border border-slate-700 rounded px-3 py-1 text-xs font-mono text-money">
+          Since 1998 • IRS Certified
+        </div>
+        <h1 class="text-4xl md:text-6xl font-extrabold tracking-tight leading-tight">
+          Maximize Your Refund. <br> Minimize The <span class="text-money border-b-4 border-money">Stress.</span>
+        </h1>
+        <p class="text-lg text-slate-400 max-w-lg leading-relaxed">
+          Comprehensive tax planning and accounting services for individuals and small businesses. Don't leave money on the table.
+        </p>
+        <ul class="space-y-3 pt-4 text-sm font-mono text-slate-300">
+          <li class="flex items-center gap-3">
+             <div class="w-2 h-2 bg-money rounded-full"></div> 100% Accuracy Guarantee
+          </li>
+          <li class="flex items-center gap-3">
+             <div class="w-2 h-2 bg-money rounded-full"></div> Year-Round Support
+          </li>
+          <li class="flex items-center gap-3">
+             <div class="w-2 h-2 bg-money rounded-full"></div> Audit Protection
+          </li>
+        </ul>
+      </div>
+
+      <!-- Interactive Element: Estimate Card -->
+      <div class="bg-white text-slate-800 rounded-xl shadow-2xl p-8 border-t-8 border-money max-w-sm ml-auto mr-auto md:mr-0">
+        <h3 class="font-bold text-xl mb-6 flex justify-between items-center">
+          <span>Estimated Savings</span>
+          <span class="text-xs bg-green-100 text-money px-2 py-1 rounded">PRO</span>
+        </h3>
+        
+        <div class="space-y-4 mb-8">
+          <div class="flex justify-between text-sm font-mono border-b border-slate-100 pb-2">
+             <span class="text-slate-400">Deduction Found</span>
+             <span class="font-bold text-money">+$1,240.00</span>
+          </div>
+          <div class="flex justify-between text-sm font-mono border-b border-slate-100 pb-2">
+             <span class="text-slate-400">Credit Applied</span>
+             <span class="font-bold text-money">+$500.00</span>
+          </div>
+          <div class="flex justify-between text-sm font-mono border-b border-slate-100 pb-2">
+             <span class="text-slate-400">Penalty Avoided</span>
+             <span class="font-bold text-money">+$250.00</span>
+          </div>
+          <div class="flex justify-between font-bold text-xl pt-2">
+             <span>Total Saved</span>
+             <span class="text-money">$1,990.00</span>
+          </div>
+        </div>
+        
+        <button onclick="toggleTax()" class="w-full bg-slate-800 text-white font-bold py-4 rounded hover:bg-slate-900 transition">
+          Start Your Filing
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Services Grid -->
+  <section id="services" class="py-24 bg-white -mt-10 md:-mt-20 relative z-20 rounded-t-[3rem]">
+    <div class="container mx-auto px-6">
+      <div class="text-center mb-16">
+        <h2 class="text-3xl font-bold text-slate-800">Our Services</h2>
+      </div>
+      
+      <div class="grid md:grid-cols-3 gap-8">
+        <div class="border border-slate-100 p-8 rounded-xl hover:border-money transition duration-300 group">
+          <div class="w-12 h-12 bg-slate-50 rounded-lg flex items-center justify-center text-2xl mb-6 group-hover:bg-money group-hover:text-white transition">👤</div>
+          <h3 class="text-xl font-bold mb-3">Individual Filing</h3>
+          <p class="text-sm text-slate-500 leading-relaxed">Personal income tax preparation (1040). We handle W-2s, 1099s, and investments.</p>
+        </div>
+        <div class="border border-slate-100 p-8 rounded-xl hover:border-money transition duration-300 group">
+          <div class="w-12 h-12 bg-slate-50 rounded-lg flex items-center justify-center text-2xl mb-6 group-hover:bg-money group-hover:text-white transition">🏢</div>
+          <h3 class="text-xl font-bold mb-3">Business Tax</h3>
+          <p class="text-sm text-slate-500 leading-relaxed">Corporate returns (1120/1120S), partnerships, and LLCs. Payroll & bookkeeping integration.</p>
+        </div>
+        <div class="border border-slate-100 p-8 rounded-xl hover:border-money transition duration-300 group">
+          <div class="w-12 h-12 bg-slate-50 rounded-lg flex items-center justify-center text-2xl mb-6 group-hover:bg-money group-hover:text-white transition">📊</div>
+          <h3 class="text-xl font-bold mb-3">Financial Planning</h3>
+          <p class="text-sm text-slate-500 leading-relaxed">Retirement planning (IRA/401k), estate tax, and long-term wealth strategy.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="py-20 bg-money text-white text-center">
+    <div class="container mx-auto px-6">
+      <h2 class="text-3xl md:text-5xl font-bold mb-6">Deadline Approaching?</h2>
+      <p class="text-xl opacity-90 mb-8 max-w-2xl mx-auto">Get expert help before April 15th. Avoid penalties and maximize your return.</p>
+      <button onclick="toggleTax()" class="bg-white text-money px-10 py-4 rounded-full font-bold text-lg hover:bg-slate-100 transition shadow-lg">
+        Book Appointment
+      </button>
+    </div>
+  </section>
+
+  <!-- Modal -->
+  <div id="tax-modal" class="fixed inset-0 bg-slate-900/80 backdrop-blur-sm z-[60] hidden flex items-center justify-center p-4">
+    <div class="bg-white w-full max-w-lg rounded-xl shadow-2xl relative p-8">
+      <button onclick="toggleTax()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-800 font-bold text-xl">&times;</button>
+      
+      <div class="flex items-center gap-2 mb-8 border-b border-slate-100 pb-4">
+         <span class="text-2xl">📋</span>
+         <h2 class="text-2xl font-bold text-slate-800">Inquiry Form</h2>
+      </div>
+
+      <form class="space-y-5" onsubmit="event.preventDefault(); alert('We will contact you within 24 hours.'); toggleTax();">
+        <div class="grid grid-cols-2 gap-4">
+           <div>
+             <label class="block text-xs font-bold text-slate-500 uppercase mb-1">First Name</label>
+             <input type="text" class="w-full bg-slate-50 border border-slate-200 p-3 rounded font-medium focus:border-money outline-none">
+           </div>
+           <div>
+             <label class="block text-xs font-bold text-slate-500 uppercase mb-1">Last Name</label>
+             <input type="text" class="w-full bg-slate-50 border border-slate-200 p-3 rounded font-medium focus:border-money outline-none">
+           </div>
+        </div>
+        <div>
+           <label class="block text-xs font-bold text-slate-500 uppercase mb-1">Email</label>
+           <input type="email" class="w-full bg-slate-50 border border-slate-200 p-3 rounded font-medium focus:border-money outline-none">
+        </div>
+        <div>
+           <label class="block text-xs font-bold text-slate-500 uppercase mb-1">Service Type</label>
+           <select class="w-full bg-slate-50 border border-slate-200 p-3 rounded font-medium focus:border-money outline-none text-slate-600">
+             <option>Individual Tax Return</option>
+             <option>Business Tax Return</option>
+             <option>Audit Help</option>
+             <option>Other</option>
+           </select>
+        </div>
+        
+        <button class="w-full bg-money text-white font-bold py-4 rounded hover:bg-emerald-600 transition shadow-md mt-4">
+           Submit Request
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    function toggleTax() {
+      const modal = document.getElementById('tax-modal');
+      if(modal.classList.contains('hidden')) {
+        modal.classList.remove('hidden');
+      } else {
+        modal.classList.add('hidden');
+      }
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pet Hospital - We Love Animals</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;900&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            paw: '#F59E0B',
+            bone: '#FFFBEB',
+          },
+          fontFamily: {
+            sans: ['Nunito', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-bone text-stone-600 font-sans">
+
+  <!-- Nav -->
+  <nav class="container mx-auto px-6 py-6 flex justify-between items-center">
+    <div class="flex items-center gap-2 font-black text-2xl text-stone-800">
+      <span class="text-3xl">🐾</span> PetHospital
+    </div>
+    <div class="hidden md:flex gap-8 font-bold text-stone-500">
+      <a href="#services" class="hover:text-paw transition">Medical Services</a>
+      <a href="#hotel" class="hover:text-paw transition">Pet Hotel</a>
+      <a href="#grooming" class="hover:text-paw transition">Grooming</a>
+    </div>
+    <button onclick="toggleVet()" class="bg-paw text-white px-6 py-3 rounded-2xl font-bold shadow-[0_4px_0_#D97706] hover:-translate-y-1 active:shadow-none active:translate-y-[4px] transition">
+      Emergency Call
+    </button>
+  </nav>
+
+  <!-- Hero -->
+  <header class="container mx-auto px-6 py-12 md:py-20 grid md:grid-cols-2 gap-12 items-center">
+    <div class="order-2 md:order-1 space-y-6">
+      <h1 class="text-5xl md:text-7xl font-black text-stone-800 leading-tight">
+        Trusted Care For <br> Your <span class="text-paw">Best Friend.</span>
+      </h1>
+      <p class="text-xl font-bold text-stone-400">
+         24/7 Emergency Service, Specialized Surgery, and a Luxury Hotel for your furry family members.
+      </p>
+      <div class="flex gap-4 pt-4">
+        <button onclick="toggleVet()" class="bg-stone-800 text-white px-8 py-4 rounded-2xl font-bold text-lg hover:bg-stone-700 transition">Book Appointment</button>
+        <button class="bg-white text-stone-800 border-2 border-stone-200 px-8 py-4 rounded-2xl font-bold text-lg hover:border-paw hover:text-paw transition">Health Checkup</button>
+      </div>
+    </div>
+    
+    <div class="order-1 md:order-2 relative">
+      <div class="absolute inset-0 bg-yellow-200 rounded-full filter blur-[60px] opacity-60"></div>
+      <img src="https://images.unsplash.com/photo-1576201836106-db1758fd1c97?q=80&w=800" class="relative z-10 w-full rounded-[3rem] shadow-2xl rotate-2 hover:-rotate-1 transition duration-500 border-8 border-white">
+      
+      <!-- Decor -->
+      <div class="absolute -top-6 -right-6 text-6xl animate-bounce" style="animation-duration: 2s">🐶</div>
+      <div class="absolute -bottom-6 -left-6 text-6xl animate-bounce" style="animation-duration: 2.5s">🐱</div>
+    </div>
+  </header>
+
+  <!-- Services -->
+  <section id="services" class="py-24 bg-white rounded-t-[4rem] shadow-inner">
+    <div class="container mx-auto px-6">
+      <div class="text-center mb-16">
+        <h2 class="text-4xl font-black text-stone-800 mb-4">Everything They Need</h2>
+        <p class="font-bold text-stone-400">From nose to tail, we've got them covered.</p>
+      </div>
+      
+      <div class="grid md:grid-cols-3 gap-8">
+        <div class="bg-orange-50 p-8 rounded-[2rem] hover:bg-orange-100 transition cursor-pointer group" onclick="toggleVet()">
+          <div class="text-4xl mb-4 transform group-hover:scale-110 transition">🩺</div>
+          <h3 class="text-2xl font-bold text-stone-800 mb-2">Internal Medicine</h3>
+          <p class="font-bold text-stone-400">Complete diagnostics including X-ray, Ultrasound, and blood labs.</p>
+        </div>
+        <div class="bg-blue-50 p-8 rounded-[2rem] hover:bg-blue-100 transition cursor-pointer group" onclick="toggleVet()">
+          <div class="text-4xl mb-4 transform group-hover:scale-110 transition">✂️</div>
+          <h3 class="text-2xl font-bold text-stone-800 mb-2">Beauty & Spa</h3>
+          <p class="font-bold text-stone-400">Professional grooming, medicated baths, and styling.</p>
+        </div>
+        <div class="bg-green-50 p-8 rounded-[2rem] hover:bg-green-100 transition cursor-pointer group" onclick="toggleVet()">
+          <div class="text-4xl mb-4 transform group-hover:scale-110 transition">🦷</div>
+          <h3 class="text-2xl font-bold text-stone-800 mb-2">Dental Care</h3>
+          <p class="font-bold text-stone-400">Scaling, polishing, and extractions for healthy teeth.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Team -->
+  <section class="py-24 bg-paw text-white">
+     <div class="container mx-auto px-6 text-center">
+       <h2 class="text-4xl font-black mb-12">Our Vets</h2>
+       <div class="flex justify-center gap-8 flex-wrap">
+         <div class="w-48">
+           <img src="https://randomuser.me/api/portraits/women/44.jpg" class="w-32 h-32 rounded-full border-4 border-white mx-auto mb-4 object-cover">
+           <h3 class="font-bold text-xl">Dr. Sarah</h3>
+           <p class="text-orange-200 font-bold text-sm">Surgery Specialist</p>
+         </div>
+         <div class="w-48">
+           <img src="https://randomuser.me/api/portraits/men/32.jpg" class="w-32 h-32 rounded-full border-4 border-white mx-auto mb-4 object-cover">
+           <h3 class="font-bold text-xl">Dr. James</h3>
+           <p class="text-orange-200 font-bold text-sm">Internal Medicine</p>
+         </div>
+       </div>
+     </div>
+  </section>
+
+  <!-- Modal -->
+  <div id="vet-modal" class="fixed inset-0 bg-stone-900/60 backdrop-blur-sm z-[60] hidden flex items-center justify-center p-4">
+    <div class="bg-white w-full max-w-lg rounded-[2.5rem] p-10 relative shadow-2xl">
+      <button onclick="toggleVet()" class="absolute top-6 right-6 w-10 h-10 bg-gray-100 rounded-full font-bold text-stone-400 hover:bg-paw hover:text-white transition">&times;</button>
+      
+      <div class="text-center mb-8">
+        <h2 class="text-3xl font-black text-stone-800 mb-2">Hello, Friend! 🐾</h2>
+        <p class="font-bold text-stone-400">Schedule a visit for your pet.</p>
+      </div>
+
+      <form class="space-y-4" onsubmit="event.preventDefault(); alert('We will see you soon!'); toggleVet();">
+        <div class="grid grid-cols-2 gap-4">
+          <div>
+            <label class="font-bold text-xs text-stone-400 uppercase ml-2">Pet Name</label>
+            <input type="text" class="w-full bg-bone border-2 border-orange-100 rounded-2xl p-4 font-bold text-stone-700 outline-none focus:border-paw">
+          </div>
+          <div>
+            <label class="font-bold text-xs text-stone-400 uppercase ml-2">Species</label>
+            <select class="w-full bg-bone border-2 border-orange-100 rounded-2xl p-4 font-bold text-stone-700 outline-none focus:border-paw">
+              <option>Dog</option>
+              <option>Cat</option>
+              <option>Other</option>
+            </select>
+          </div>
+        </div>
+        <div>
+           <label class="font-bold text-xs text-stone-400 uppercase ml-2">Owner Contact</label>
+           <input type="tel" class="w-full bg-bone border-2 border-orange-100 rounded-2xl p-4 font-bold text-stone-700 outline-none focus:border-paw">
+        </div>
+        <div>
+           <label class="font-bold text-xs text-stone-400 uppercase ml-2">Preferred Date</label>
+           <input type="date" class="w-full bg-bone border-2 border-orange-100 rounded-2xl p-4 font-bold text-stone-700 outline-none focus:border-paw">
+        </div>
+        
+        <button class="w-full bg-stone-800 text-white font-bold py-4 rounded-2xl text-lg hover:bg-black transition shadow-xl mt-4">
+          Confirm
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    function toggleVet() {
+      const modal = document.getElementById('vet-modal');
+      if(modal.classList.contains('hidden')) {
+        modal.classList.remove('hidden');
+      } else {
+        modal.classList.add('hidden');
+      }
+    }
+  </script>
+</body>
+</html>
