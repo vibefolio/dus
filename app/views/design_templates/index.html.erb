@@ -124,7 +124,7 @@
                         class="flex-1 py-3 border-2 border-slate-100 text-slate-600 font-bold rounded-xl hover:bg-slate-50 hover:border-slate-200 transition">
                   둘러보기
                 </button>
-                <%= link_to contact_path(template_id: template.id, preview_url: template.preview_url), 
+                <%= link_to contact_path(template_id: template.id, template_title: template.title, preview_url: template.preview_url), 
                             class: "flex-1 py-3 bg-slate-900 text-white font-bold rounded-xl text-center hover:bg-indigo-600 transition shadow-lg shadow-slate-200 flex items-center justify-center gap-2" do %>
                   <span>PICK</span>
                   <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-width="2" d="M5 12h14m-7-7l7 7-7 7"/></svg>
@@ -180,160 +180,146 @@
     <% end %>
   </div>
 
-  <!-- Preview Modal (Simple & Robust) -->
-  <div id="preview-modal" class="fixed inset-0 z-[100] hidden" role="dialog" aria-modal="true">
+  <!-- Improved Live Mockup Modal (Dark Theme like Main Page) -->
+  <div id="preview-modal" class="fixed inset-0 z-[100] hidden" role="dialog" aria-modal="true" style="display: none;">
     <!-- Backdrop -->
-    <div class="absolute inset-0 bg-black/80 backdrop-blur-sm transition-opacity opacity-0" id="modal-backdrop"></div>
+    <div class="absolute inset-0 bg-black/90 backdrop-blur-sm transition-opacity opacity-0" id="modal-backdrop"></div>
     
-    <!-- Modal Content -->
-    <div class="absolute inset-0 flex flex-col bg-white w-full h-full md:m-8 md:w-auto md:h-auto md:rounded-2xl overflow-hidden shadow-2xl transition-transform scale-95 opacity-0" id="modal-content">
+    <!-- Header -->
+    <div class="absolute top-0 left-0 right-0 h-[60px] bg-[#1a1a1a] border-b border-[#333] flex items-center justify-between px-4 sm:px-6 z-[101]">
+      <div class="flex items-center gap-3">
+        <h2 id="modal-title" class="font-bold text-white text-lg truncate max-w-[150px] sm:max-w-none">Template Title</h2>
+        <span id="modal-category" class="px-2 py-0.5 bg-[#333] text-[#888] text-xs font-bold rounded uppercase border border-[#444]">CAT</span>
+      </div>
       
-      <!-- Header -->
-      <div class="h-16 border-b border-gray-100 flex justify-between items-center px-6 bg-white shrink-0">
-        <div class="flex items-center gap-4">
-          <h2 id="modal-title" class="font-bold text-lg text-slate-900">Template Title</h2>
-          <span id="modal-category" class="px-2 py-1 bg-gray-100 text-gray-500 text-xs font-bold rounded uppercase">CAT</span>
-        </div>
+      <!-- Center Controls (PC/Mobile Toggle) -->
+      <div class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 hidden md:flex bg-[#333] p-1 rounded-full">
+        <button onclick="setDevice('pc')" id="btn-device-pc" class="px-3 py-1.5 rounded-full flex items-center gap-2 text-sm transition-all text-white bg-[#555]">
+          <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+          <span>PC</span>
+        </button>
+        <button onclick="setDevice('mobile')" id="btn-device-mobile" class="px-3 py-1.5 rounded-full flex items-center gap-2 text-sm transition-all text-[#888] hover:text-white">
+          <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"/></svg>
+          <span>Mobile</span>
+        </button>
+      </div>
+
+      <div class="flex items-center gap-4">
+        <a id="modal-pick-btn" href="#" class="hidden sm:flex px-6 py-2 bg-emerald-600 text-white text-sm font-bold rounded-full hover:bg-emerald-500 transition shadow-lg shadow-emerald-900/20 items-center gap-2">
+          <span>PICK</span>
+          <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-width="2" d="M5 12h14m-7-7l7 7-7 7"/></svg>
+        </a>
         
-        <div class="flex items-center gap-4">
-          <!-- Device Toggle (Simple) -->
-          <div class="hidden md:flex bg-gray-100 p-1 rounded-lg">
-            <button onclick="setDevice('pc')" class="p-2 rounded hover:bg-white shadow-sm transition" title="PC View">
-              <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
-            </button>
-            <button onclick="setDevice('mobile')" class="p-2 rounded hover:bg-white shadow-sm transition" title="Mobile View">
-              <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"/></svg>
-            </button>
-          </div>
+        <button onclick="closePreview()" class="p-2 text-[#666] hover:text-white transition">
+          <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+        </button>
+      </div>
+    </div>
 
-          <a id="modal-pick-btn" href="#" class="px-6 py-2 bg-indigo-600 text-white text-sm font-bold rounded-lg hover:bg-indigo-700 transition">
-            이 템플릿으로 의뢰
-          </a>
-          
-          <button onclick="closePreview()" class="p-2 text-gray-400 hover:text-gray-600">
-            <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
-          </button>
-        </div>
+    <!-- Content Area -->
+    <div class="absolute top-[60px] bottom-0 left-0 right-0 flex justify-center items-center overflow-hidden bg-[#111] p-0 md:p-8" id="modal-content">
+      
+      <!-- PC Frame -->
+      <div id="frame-container-pc" class="w-full h-full bg-white md:rounded-lg overflow-hidden shadow-2xl relative transition-all duration-300">
+        <iframe id="iframe-preview-pc" class="w-full h-full border-none" src="about:blank"></iframe>
       </div>
 
-      <!-- Iframe Container -->
-      <div class="flex-grow bg-gray-50 relative overflow-hidden flex flex-col items-center justify-center w-full">
-        <!-- PC Frame -->
-        <iframe id="iframe-preview" class="w-full h-full bg-white transition-all duration-500 shadow-sm" src="about:blank"></iframe>
+      <!-- Mobile Frame -->
+      <div id="frame-container-mobile" class="hidden w-[375px] h-[812px] max-h-[90vh] bg-black rounded-[40px] border-[12px] border-[#222] overflow-hidden shadow-2xl relative transition-all duration-300">
+        <!-- Notch -->
+        <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[120px] h-[30px] bg-[#222] rounded-b-[16px] z-20 pointer-events-none"></div>
+        <iframe id="iframe-preview-mobile" class="w-full h-full border-none bg-white" src="about:blank"></iframe>
       </div>
 
+      <!-- Mobile Pick Button (Floating at bottom for actual mobile devices) -->
+      <div class="sm:hidden absolute bottom-6 left-1/2 -translate-x-1/2 z-50 w-[90%]">
+        <a id="modal-pick-btn-mobile" href="#" class="block w-full py-4 bg-emerald-600 text-white text-center font-bold rounded-xl shadow-xl">
+          이 템플릿으로 선택하기
+        </a>
+      </div>
     </div>
   </div>
 
   <script>
     const modal = document.getElementById('preview-modal');
     const backdrop = document.getElementById('modal-backdrop');
-    const content = document.getElementById('modal-content');
-    const iframe = document.getElementById('iframe-preview');
+    const iframePC = document.getElementById('iframe-preview-pc');
+    const iframeMobile = document.getElementById('iframe-preview-mobile');
     const pickBtn = document.getElementById('modal-pick-btn');
+    const pickBtnMobile = document.getElementById('modal-pick-btn-mobile');
     
-    let isMobile = false;
+    // UI Elements
+    const framePC = document.getElementById('frame-container-pc');
+    const frameMobile = document.getElementById('frame-container-mobile');
+    const btnDevicePC = document.getElementById('btn-device-pc');
+    const btnDeviceMobile = document.getElementById('btn-device-mobile');
 
     function openPreview(url, title, category, id) {
-      console.log("Opening:", url);
-      
-      // Update Content
-      iframe.src = url;
+      // 1. Set Content
       document.getElementById('modal-title').innerText = title;
       document.getElementById('modal-category').innerText = category;
-      pickBtn.href = `/contact?template_id=${id}&preview_url=${encodeURIComponent(url)}`;
       
-      // Show Modal
+      const pickUrl = `/contact?template_id=${id}&template_title=${encodeURIComponent(title)}&preview_url=${encodeURIComponent(url)}`;
+      pickBtn.href = pickUrl;
+      pickBtnMobile.href = pickUrl;
+
+      iframePC.src = url;
+      iframeMobile.src = url;
+
+      // 2. Show Modal
+      modal.style.display = 'block';
       modal.classList.remove('hidden');
-      
-      // Trigger Animations
-      setTimeout(() => {
-        backdrop.classList.remove('opacity-0');
-        content.classList.remove('scale-95', 'opacity-0');
-      }, 10);
-      
       document.body.style.overflow = 'hidden';
 
-      // ESC Key Listener for Iframe (Sequential Closing)
-      iframe.onload = () => {
-        try {
-          const iframeDoc = iframe.contentWindow.document;
-          // Focus to capture keys
-          iframe.contentWindow.focus();
-          
-          iframeDoc.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape') {
-              // 1. Check for open inner modals inside the template
-              // Logic: Find any visible div with "modal" in its ID
-              const openInnerModals = Array.from(iframeDoc.querySelectorAll('div[id*="modal"]')).filter(el => {
-                const style = window.getComputedStyle(el);
-                return !el.classList.contains('hidden') && style.display !== 'none' && style.visibility !== 'hidden';
-              });
+      // 3. Animation
+      setTimeout(() => {
+        backdrop.classList.remove('opacity-0');
+      }, 10);
 
-              // If there's an open inner modal, close it first
-              if (openInnerModals.length > 0) {
-                e.preventDefault();
-                e.stopPropagation();
-                
-                openInnerModals.forEach(modal => {
-                  // Strategy A: Try to find a close button and click it (preserves logic)
-                  // Look for buttons with 'X', 'close' text or any button inside if simple
-                  const closeBtn = Array.from(modal.querySelectorAll('button')).find(btn => {
-                     const text = btn.innerText.trim().toLowerCase();
-                     return text === 'x' || text === 'close' || text === '닫기' || btn.getAttribute('onclick');
-                  });
-
-                  if (closeBtn) {
-                    closeBtn.click();
-                  } else {
-                    // Strategy B: Force close
-                    modal.classList.add('hidden');
-                  }
-                });
-              } else {
-                // 2. If no inner modal is open, close the main preview
-                closePreview();
-              }
-            }
-          });
-        } catch(e) { console.warn("Cross-origin iframe access blocked or handler failed"); }
-      };
+      // 4. Default to PC view
+      setDevice('pc');
     }
 
     function closePreview() {
-      // Trigger Exit Animations
+      // Animation Out
       backdrop.classList.add('opacity-0');
-      content.classList.add('scale-95', 'opacity-0');
       
       setTimeout(() => {
+        modal.style.display = 'none';
         modal.classList.add('hidden');
-        iframe.src = 'about:blank'; // Stop audio/video
         document.body.style.overflow = '';
+        iframePC.src = 'about:blank';
+        iframeMobile.src = 'about:blank';
       }, 300);
     }
-    
-    // Global ESC
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && !modal.classList.contains('hidden')) closePreview();
-    });
 
-    // Device Toggle
     function setDevice(type) {
       if (type === 'mobile') {
-         iframe.style.width = '375px';
-         iframe.style.borderRadius = '20px';
-         iframe.style.margin = '30px auto';
-         iframe.style.height = 'calc(100% - 60px)';
-         iframe.style.border = '8px solid #333';
-         iframe.style.boxSizing = 'border-box';
+        framePC.classList.add('hidden');
+        frameMobile.classList.remove('hidden');
+        
+        btnDevicePC.classList.remove('bg-[#555]', 'text-white');
+        btnDevicePC.classList.add('text-[#888]');
+        
+        btnDeviceMobile.classList.add('bg-[#555]', 'text-white');
+        btnDeviceMobile.classList.remove('text-[#888]');
       } else {
-         iframe.style.width = '100%';
-         iframe.style.borderRadius = '0';
-         iframe.style.margin = '0';
-         iframe.style.height = '100%';
-         iframe.style.border = 'none';
+        frameMobile.classList.add('hidden');
+        framePC.classList.remove('hidden');
+
+        btnDeviceMobile.classList.remove('bg-[#555]', 'text-white');
+        btnDeviceMobile.classList.add('text-[#888]');
+        
+        btnDevicePC.classList.add('bg-[#555]', 'text-white');
+        btnDevicePC.classList.remove('text-[#888]');
       }
     }
+
+    // Global ESC
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && modal.style.display === 'block') closePreview();
+    });
   </script>
 
 </div>
+
