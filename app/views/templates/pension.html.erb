@@ -27,14 +27,14 @@
 <body class="bg-cream text-check font-hand">
 
   <!-- Nav -->
-  <nav class="fixed w-full z-50 px-8 py-6 flex justify-between items-center mix-blend-multiply">
-    <div class="text-2xl font-serif font-bold">Cozy Stay</div>
-    <div class="hidden md:flex gap-8 text-lg">
-      <a href="#rooms" class="hover:text-wood transition">객실안내</a>
-      <a href="#special" class="hover:text-wood transition">스페셜</a>
-      <a href="#location" class="hover:text-wood transition">오시는길</a>
+  <nav class="sticky top-0 z-50 px-8 py-6 flex justify-between items-center bg-cream/95 backdrop-blur-sm border-b border-wood/10 shadow-sm transition-all duration-300">
+    <div class="text-2xl font-serif font-bold text-wood">Cozy Stay</div>
+    <div class="hidden md:flex gap-8 text-lg font-serif">
+      <a href="#rooms" class="text-check hover:text-wood transition">객실안내</a>
+      <a href="#special" class="text-check hover:text-wood transition">스페셜</a>
+      <a href="#location" class="text-check hover:text-wood transition">오시는길</a>
     </div>
-    <button onclick="togglePension()" class="border-b border-check hover:text-wood hover:border-wood transition pb-1">
+    <button onclick="togglePension()" class="border-b border-check text-check hover:text-wood hover:border-wood transition pb-1 font-serif">
       실시간 예약
     </button>
   </nav>
@@ -59,7 +59,7 @@
         <p class="text-sm text-gray-400 mt-2">바다가 보이는 테라스</p>
       </div>
       <div class="bg-white p-4 pb-12 shadow-lg -rotate-1 hover:rotate-0 transition duration-500 transform hover:scale-105 z-20 md:-mt-12">
-        <img src="https://images.unsplash.com/photo-1522771753035-484980f8a323?q=80&w=600" class="w-full h-64 object-cover filter sepia-[.3]">
+        <img src="/images/templates/pension_spa.png" class="w-full h-64 object-cover filter sepia-[.1]">
         <div class="mt-4 font-serif text-xl border-b border-gray-100 pb-2">Private Spa</div>
         <p class="text-sm text-gray-400 mt-2">피로를 녹이는 노천탕</p>
       </div>
