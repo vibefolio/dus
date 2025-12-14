@@ -10,6 +10,23 @@
     <%= csp_meta_tag %>
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              primary: { DEFAULT: "#00a859", dark: "#008a47" },
+              accent: "#00d670",
+            },
+            fontFamily: {
+              sans: ["Inter", "sans-serif"],
+              serif: ["Noto Serif KR", "serif"],
+            }
+          }
+        }
+      }
+    </script>
   </head>
 
   <body style="background: var(--color-gray-50);">

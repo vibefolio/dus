@@ -81,10 +81,10 @@
         <%= link_to root_path, class: "navbar-logo" do %>
           <%= image_tag "logo.png", alt: "디어스", style: "height: 50px; width: auto;" %>
         <% end %>
-        <ul class="navbar-menu">
           <li><%= link_to "홈", root_path, class: "navbar-link #{current_page?(root_path) ? 'active' : ''}" %></li>
           <li><%= link_to "디자인 템플릿", design_templates_path, class: "navbar-link #{current_page?(design_templates_path) ? 'active' : ''}" %></li>
-          <li><%= link_to "포트폴리오", portfolio_path, class: "navbar-link #{current_page?(portfolio_path) ? 'active' : ''}" %></li>
+          <%# <li><%= link_to "포트폴리오", portfolio_path, class: "navbar-link #{current_page?(portfolio_path) ? 'active' : ''}" %>
+          <li><%= link_to "유지관리 구독", pricing_path, class: "navbar-link #{current_page?(pricing_path) ? 'active' : ''}" %></li>
           <li><%= link_to "문의하기", contact_path, class: "navbar-link #{current_page?(contact_path) ? 'active' : ''}" %></li>
         </ul>
       </div>
@@ -136,7 +136,8 @@
           <div class="footer-section">
             <h3>회사</h3>
             <ul style="list-style: none; padding: 0;">
-              <li style="margin-bottom: 0.5rem;"><%= link_to "포트폴리오", portfolio_path, style: "color: var(--color-gray-400);" %></li>
+              <%# <li style="margin-bottom: 0.5rem;"><%= link_to "포트폴리오", portfolio_path, style: "color: var(--color-gray-400);" %> 
+              <li style="margin-bottom: 0.5rem;"><%= link_to "유지관리 구독", pricing_path, style: "color: var(--color-gray-400);" %></li>
               <li style="margin-bottom: 0.5rem;"><%= link_to "문의하기", contact_path, style: "color: var(--color-gray-400);" %></li>
             </ul>
           </div>
