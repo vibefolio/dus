@@ -73,10 +73,10 @@ Goal: Apply 10 specific improvements to each template to ensure uniqueness and f
 
 ## 🛍️ Shopping & Portfolio (2)
 
-| ID  | Template Name | Concept           | Status     | File Path                      | Note                     |
-| --- | ------------- | ----------------- | ---------- | ------------------------------ | ------------------------ |
-| 30  | **AETHER**    | Minimal Ecommerce | ✅ Done    | `templates/ecommerce.html.erb` | Cart Functionality Added |
-| 31  | Pet Palace    | Pet Shop          | ⬜ Pending | TBD                            | Shares `ecommerce`       |
+| ID  | Template Name  | Concept           | Status  | File Path                    | Note                |
+| --- | -------------- | ----------------- | ------- | ---------------------------- | ------------------- |
+| 30  | **AETHER**     | Minimal Grid Shop | ✅ Done | `templates/shop.html.erb`    | -                   |
+| 31  | **Pet Palace** | Cute Pet Shop     | ✅ Done | `templates/petshop.html.erb` | Coral/Mint, Cart UI |
 
 ---
 
