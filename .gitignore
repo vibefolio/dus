@@ -29,3 +29,10 @@
 !/tmp/storage/.keep
 
 /public/assets
+
+# Ignore SQLite databases
+/db/*.sqlite3
+/db/*.sqlite3-journal
+
+# Ignore local scripts
+/db/standalone_update.rb

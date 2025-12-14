@@ -71,8 +71,18 @@
             <div class="relative aspect-[4/3] bg-gray-100 cursor-pointer overflow-hidden" 
                  onclick="openPreview('<%= template.preview_url %>', '<%= j template.title %>', '<%= template.category %>', <%= template.id %>)">
               
-              <% if template.image_url.present? %>
-                <img src="<%= template.image_url %>" alt="<%= template.title %>" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+              <% 
+                thumb_src = if template.image_url.present?
+                              template.image_url
+                            elsif template.pc_image.attached?
+                              url_for(template.pc_image)
+                            else
+                              nil
+                            end
+              %>
+              
+              <% if thumb_src %>
+                <img src="<%= thumb_src %>" alt="<%= template.title %>" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
               <% else %>
                 <div class="w-full h-full flex items-center justify-center text-gray-300">
                   <span>No Image</span>
@@ -170,7 +180,7 @@
       </div>
 
       <!-- Iframe Container -->
-      <div class="flex-grow bg-gray-50 relative overflow-hidden flex justify-center w-full">
+      <div class="flex-grow bg-gray-50 relative overflow-hidden flex flex-col items-center justify-center w-full">
         <!-- PC Frame -->
         <iframe id="iframe-preview" class="w-full h-full bg-white transition-all duration-500 shadow-sm" src="about:blank"></iframe>
       </div>
@@ -207,15 +217,49 @@
       
       document.body.style.overflow = 'hidden';
 
-      // ESC Key Listener for Iframe
+      // ESC Key Listener for Iframe (Sequential Closing)
       iframe.onload = () => {
         try {
+          const iframeDoc = iframe.contentWindow.document;
           // Focus to capture keys
           iframe.contentWindow.focus();
-          iframe.contentWindow.document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape') closePreview();
+          
+          iframeDoc.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+              // 1. Check for open inner modals inside the template
+              // Logic: Find any visible div with "modal" in its ID
+              const openInnerModals = Array.from(iframeDoc.querySelectorAll('div[id*="modal"]')).filter(el => {
+                const style = window.getComputedStyle(el);
+                return !el.classList.contains('hidden') && style.display !== 'none' && style.visibility !== 'hidden';
+              });
+
+              // If there's an open inner modal, close it first
+              if (openInnerModals.length > 0) {
+                e.preventDefault();
+                e.stopPropagation();
+                
+                openInnerModals.forEach(modal => {
+                  // Strategy A: Try to find a close button and click it (preserves logic)
+                  // Look for buttons with 'X', 'close' text or any button inside if simple
+                  const closeBtn = Array.from(modal.querySelectorAll('button')).find(btn => {
+                     const text = btn.innerText.trim().toLowerCase();
+                     return text === 'x' || text === 'close' || text === '닫기' || btn.getAttribute('onclick');
+                  });
+
+                  if (closeBtn) {
+                    closeBtn.click();
+                  } else {
+                    // Strategy B: Force close
+                    modal.classList.add('hidden');
+                  }
+                });
+              } else {
+                // 2. If no inner modal is open, close the main preview
+                closePreview();
+              }
+            }
           });
-        } catch(e) { console.warn("Cross-origin iframe access blocked"); }
+        } catch(e) { console.warn("Cross-origin iframe access blocked or handler failed"); }
       };
     }
 
@@ -240,10 +284,11 @@
     function setDevice(type) {
       if (type === 'mobile') {
          iframe.style.width = '375px';
-         iframe.style.borderRadius = '24px';
-         iframe.style.margin = '20px auto';
-         iframe.style.height = 'calc(100% - 40px)';
+         iframe.style.borderRadius = '20px';
+         iframe.style.margin = '30px auto';
+         iframe.style.height = 'calc(100% - 60px)';
          iframe.style.border = '8px solid #333';
+         iframe.style.boxSizing = 'border-box';
       } else {
          iframe.style.width = '100%';
          iframe.style.borderRadius = '0';
