@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>미니멀 스튜디오 - 심플의 미학</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500&family=Noto+Sans+KR:wght@300;400;500&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            stone: '#a8a29e',
+            ash: '#2b2b2b',
+            raw: '#f5f5f4',
+          },
+          fontFamily: {
+            sans: ['Jost', 'Noto Sans KR', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-white text-ash font-sans">
+
+  <!-- Nav -->
+  <nav class="fixed w-full z-50 px-10 py-8 bg-white/90 backdrop-blur-sm flex justify-between items-center">
+    <div class="text-xl tracking-[0.2em] font-light">MINIMAL</div>
+    <div class="hidden md:flex gap-12 text-xs tracking-widest font-medium text-gray-400">
+      <a href="#new" class="hover:text-black transition">NEW ARRIVALS</a>
+      <a href="#collection" class="hover:text-black transition">COLLECTION</a>
+      <a href="#about" class="hover:text-black transition">ABOUT</a>
+    </div>
+    <div class="flex gap-6 text-xs tracking-widest font-medium">
+      <button onclick="toggleCloth()">SEARCH</button>
+      <button onclick="toggleCloth()">CART (0)</button>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <header class="h-screen flex items-center justify-center px-6 relative">
+    <div class="grid md:grid-cols-2 gap-12 items-center max-w-6xl mx-auto w-full">
+      <div class="space-y-8 order-2 md:order-1 animate-fade-in">
+        <span class="text-xs uppercase tracking-[0.3em] text-gray-400 border-b border-gray-200 pb-2">Spring / Summer 2025</span>
+        <h1 class="text-5xl md:text-7xl font-light leading-tight">
+          LESS IS <br> <span class="font-medium">MORE.</span>
+        </h1>
+        <p class="text-sm text-gray-500 leading-loose max-w-sm font-light">
+          불필요한 것은 덜어내고 본질에 집중합니다. <br>
+          지속 가능한 소재와 타임리스 디자인의 가치.
+        </p>
+        <div class="pt-8">
+          <button onclick="toggleCloth()" class="bg-ash text-white px-10 py-4 text-xs tracking-[0.2em] hover:bg-black transition">
+            SHOP NOW
+          </button>
+        </div>
+      </div>
+      <div class="order-1 md:order-2 h-[600px] overflow-hidden relative">
+         <img src="https://images.unsplash.com/photo-1434389677669-e08b4cac3105?q=80&w=800" class="w-full h-full object-cover">
+         <div class="absolute bottom-6 right-6 bg-white/80 backdrop-blur px-6 py-4 text-center">
+           <p class="text-xs uppercase tracking-widest mb-1">Look 01</p>
+           <p class="font-medium">Linen Jacket</p>
+         </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Product Showcase -->
+  <section id="collection" class="py-32 px-10">
+    <div class="container mx-auto">
+      <div class="flex justify-between items-end mb-16">
+        <h2 class="text-3xl font-light">Essential Items</h2>
+        <a href="#" class="text-xs tracking-widest border-b border-gray-300 pb-1 hover:border-black transition">VIEW ALL</a>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-x-8 gap-y-16">
+        <!-- Item -->
+        <div class="group cursor-pointer" onclick="toggleCloth()">
+          <div class="relative overflow-hidden mb-6 bg-raw h-[500px]">
+            <img src="https://images.unsplash.com/photo-1576566588028-4147f3842f27?q=80&w=600" class="w-full h-full object-cover group-hover:scale-105 transition duration-700">
+            <button class="absolute bottom-0 w-full bg-white py-4 text-xs tracking-widest uppercase translate-y-full group-hover:translate-y-0 transition duration-300 hover:bg-ash hover:text-white">
+              Add to Cart
+            </button>
+          </div>
+          <div class="flex justify-between items-start">
+            <div>
+              <h3 class="font-medium text-lg mb-1">Oversized Cotton Shirt</h3>
+              <p class="text-xs text-gray-400">Organic Cotton 100%</p>
+            </div>
+            <span class="text-sm">₩ 89,000</span>
+          </div>
+        </div>
+        <!-- Item -->
+        <div class="group cursor-pointer md:mt-20" onclick="toggleCloth()">
+          <div class="relative overflow-hidden mb-6 bg-raw h-[500px]">
+            <img src="https://images.unsplash.com/photo-1591047139829-d91aecb6caea?q=80&w=600" class="w-full h-full object-cover group-hover:scale-105 transition duration-700">
+            <button class="absolute bottom-0 w-full bg-white py-4 text-xs tracking-widest uppercase translate-y-full group-hover:translate-y-0 transition duration-300 hover:bg-ash hover:text-white">
+              Add to Cart
+            </button>
+          </div>
+          <div class="flex justify-between items-start">
+            <div>
+              <h3 class="font-medium text-lg mb-1">Wide Wool Trousers</h3>
+              <p class="text-xs text-gray-400">Merino Wool Blend</p>
+            </div>
+            <span class="text-sm">₩ 128,000</span>
+          </div>
+        </div>
+        <!-- Item -->
+        <div class="group cursor-pointer" onclick="toggleCloth()">
+          <div class="relative overflow-hidden mb-6 bg-raw h-[500px]">
+            <img src="https://images.unsplash.com/photo-1596755094514-f87e34085b2c?q=80&w=600" class="w-full h-full object-cover group-hover:scale-105 transition duration-700">
+             <button class="absolute bottom-0 w-full bg-white py-4 text-xs tracking-widest uppercase translate-y-full group-hover:translate-y-0 transition duration-300 hover:bg-ash hover:text-white">
+              Add to Cart
+            </button>
+          </div>
+          <div class="flex justify-between items-start">
+            <div>
+              <h3 class="font-medium text-lg mb-1">Classic Trench Coat</h3>
+              <p class="text-xs text-gray-400">Water Repellent</p>
+            </div>
+            <span class="text-sm">₩ 245,000</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide-over Cart (Simulated) -->
+  <div id="cloth-modal" class="fixed inset-0 bg-black/50 z-[60] hidden flex justify-end">
+    <div class="bg-white w-full max-w-sm h-full p-8 flex flex-col animate-slide-in-right">
+      <div class="flex justify-between items-center mb-8">
+        <h2 class="text-xl tracking-widest font-light">SHOPPING CART</h2>
+        <button onclick="toggleCloth()" class="text-gray-400 hover:text-black">&times;</button>
+      </div>
+
+      <div class="flex-1 flex flex-col justify-center items-center text-gray-400 space-y-4">
+        <span class="text-4xl font-thin">Empty</span>
+        <p class="text-xs tracking-widest uppercase">장바구니가 비어있습니다.</p>
+        <button onclick="toggleCloth()" class="mt-4 border-b border-black text-black text-xs pb-1 hover:text-stone transition">
+          쇼핑 계속하기
+        </button>
+      </div>
+      
+      <div class="border-t border-gray-100 pt-6 space-y-4">
+        <div class="flex justify-between items-center font-medium">
+          <span>Subtotal</span>
+          <span>₩ 0</span>
+        </div>
+        <button class="w-full bg-ash text-white py-4 text-xs tracking-[0.2em] hover:bg-black transition">
+          CHECKOUT
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <style>
+    .animate-slide-in-right { animation: slideRight 0.3s ease-out; }
+    @keyframes slideRight { from { transform: translateX(100%); } to { transform: translateX(0); } }
+  </style>
+
+  <script>
+    function toggleCloth() {
+      const modal = document.getElementById('cloth-modal');
+      if(modal.classList.contains('hidden')) {
+        modal.classList.remove('hidden');
+      } else {
+        modal.classList.add('hidden');
+      }
+    }
+  </script>
+</body>
+</html>

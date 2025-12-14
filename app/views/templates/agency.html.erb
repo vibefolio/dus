@@ -3,168 +3,182 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CREATIVE AGENCY</title>
+  <title>크리에이티브 에이전시 - 디지털의 미래</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
-  <style>
-    body { font-family: 'Montserrat', sans-serif; background-color: #000; color: #fff; cursor: none; }
-    
-    /* Custom Cursor */
-    .cursor {
-      width: 20px; height: 20px;
-      border: 2px solid #fff;
-      border-radius: 50%;
-      position: fixed; pointer-events: none; z-index: 9999;
-      transform: translate(-50%, -50%);
-      transition: width 0.3s, height 0.3s, background-color 0.3s;
-      mix-blend-mode: difference;
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&family=Noto+Sans+KR:wght@300;500;700&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            display: ['Space Grotesk', 'sans-serif'],
+            sans: ['Noto Sans KR', 'sans-serif'],
+          },
+          backgroundImage: {
+            'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+          }
+        }
+      }
     }
-    .cursor.hovered { width: 50px; height: 50px; background-color: #fff; border-color: transparent; mix-blend-mode: difference; }
-
-    /* Marquee */
-    .marquee-container { overflow: hidden; white-space: nowrap; }
-    .marquee-content { display: inline-block; animation: marquee 20s linear infinite; }
-    @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
-    
-    /* Gradient Text */
-    .text-gradient {
-      background: linear-gradient(to right, #ec4899, #8b5cf6, #3b82f6);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-  </style>
+  </script>
 </head>
-<body>
-  <div class="cursor" id="cursor"></div>
+<body class="bg-black text-white font-sans selection:bg-purple-500 selection:text-white">
+
+  <!-- Noise Overlay -->
+  <div class="fixed inset-0 opacity-[0.03] pointer-events-none z-50 mix-blend-overlay" style="background-image: url('https://grainy-gradients.vercel.app/noise.svg')"></div>
 
   <!-- Nav -->
-  <nav class="fixed top-0 w-full z-50 p-6 flex justify-between items-center mix-blend-difference">
-    <div class="text-2xl font-black tracking-tighter">AGENCY®</div>
-    <div class="hidden md:flex gap-8 font-bold text-sm">
-      <a href="#" class="hover-trigger">WORK</a>
-      <a href="#" class="hover-trigger">ABOUT</a>
-      <a href="#" class="hover-trigger">NEWS</a>
+  <nav class="fixed w-full z-40 px-6 py-6 flex justify-between items-center bg-black/50 backdrop-blur-md border-b border-white/10">
+    <div class="text-2xl font-display font-bold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-pink-600">
+      AGENCY_X
     </div>
-    <button class="md:hidden hover-trigger" onclick="toggleMenu()">
-      <svg width="24" height="24" fill="none" stroke="white" viewBox="0 0 24 24"><path stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+    <div class="hidden md:flex gap-8 text-sm font-medium text-gray-400">
+      <a href="#work" class="hover:text-white transition">포트폴리오</a>
+      <a href="#services" class="hover:text-white transition">서비스</a>
+      <a href="#about" class="hover:text-white transition">팀 소개</a>
+      <a href="#contact" class="hover:text-white transition">문의하기</a>
+    </div>
+    <button onclick="toggleAgency()" class="bg-white text-black px-6 py-2 rounded-full font-bold text-sm hover:scale-105 transition">
+      프로젝트 시작
     </button>
   </nav>
 
   <!-- Hero -->
-  <section class="min-h-screen flex items-center justify-center relative overflow-hidden">
-    <div class="absolute inset-0 bg-gradient-to-br from-purple-900/20 to-blue-900/20 z-0"></div>
-    <div class="text-center z-10 px-4">
-      <h1 class="text-6xl md:text-9xl font-black mb-4 leading-tight">
-        WE CREATE<br>
-        <span class="text-gradient">IMPACT.</span>
+  <header class="h-screen flex items-center justify-center relative overflow-hidden">
+    <!-- Gradient Blobs -->
+    <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-purple-600 rounded-full mix-blend-screen filter blur-[100px] opacity-50 animate-pulse"></div>
+    <div class="absolute bottom-1/4 right-1/4 w-96 h-96 bg-blue-600 rounded-full mix-blend-screen filter blur-[100px] opacity-50 animate-pulse" style="animation-delay: 2s"></div>
+
+    <div class="relative z-10 text-center px-4 max-w-5xl">
+      <h1 class="text-6xl md:text-9xl font-display font-bold leading-none tracking-tighter mb-8 bg-clip-text text-transparent bg-gradient-to-b from-white to-gray-500">
+        We Design <br> The Future.
       </h1>
-      <p class="text-xl md:text-2xl font-light text-gray-300 max-w-2xl mx-auto mt-8">
-        Digital experiences that people love to use.
+      <p class="text-gray-400 text-lg md:text-xl max-w-2xl mx-auto leading-relaxed mb-12">
+        브랜드의 잠재력을 깨우는 크리에이티브 솔루션. <br>
+        데이터 기반의 전략과 감각적인 디자인으로 비즈니스를 성장시킵니다.
       </p>
+      
+      <div class="flex flex-col md:flex-row gap-6 justify-center items-center">
+        <button onclick="toggleAgency()" class="group relative px-8 py-4 bg-transparent overflow-hidden rounded-full border border-white/30 text-white font-bold transition-all hover:border-white">
+          <div class="absolute inset-0 w-0 bg-white transition-all duration-[250ms] ease-out group-hover:w-full opacity-10"></div>
+          <span class="relative">Showreel 보기</span>
+        </button>
+        <div class="flex -space-x-4">
+          <img class="w-12 h-12 rounded-full border-2 border-black" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=100">
+          <img class="w-12 h-12 rounded-full border-2 border-black" src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=100">
+          <img class="w-12 h-12 rounded-full border-2 border-black" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=100">
+          <div class="w-12 h-12 rounded-full border-2 border-black bg-gray-800 flex items-center justify-center text-xs font-bold">+20</div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Featured Work -->
+  <section id="work" class="py-24 px-6 bg-neutral-900 border-t border-white/5">
+    <div class="container mx-auto">
+      <div class="flex justify-between items-end mb-16">
+        <h2 class="text-4xl md:text-5xl font-display font-bold">Selected Works</h2>
+        <a href="#" class="text-gray-400 hover:text-white transition border-b border-gray-600 hover:border-white pb-1">전체 보기</a>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-8 md:gap-16">
+        <!-- Project 1 -->
+        <div class="group cursor-pointer" onclick="toggleAgency()">
+          <div class="overflow-hidden rounded-2xl mb-6 relative">
+            <img src="https://images.unsplash.com/photo-1600607686527-6fb886090705?q=80&w=800" class="w-full aspect-[4/3] object-cover transition duration-700 group-hover:scale-105">
+            <div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition duration-300 flex items-center justify-center">
+              <span class="border border-white/30 bg-white/10 backdrop-blur px-6 py-2 rounded-full text-sm font-bold">View Case Study</span>
+            </div>
+          </div>
+          <h3 class="text-2xl font-bold mb-2 group-hover:text-purple-400 transition">Neo Bank Rebranding</h3>
+          <p class="text-gray-500 text-sm">Fintech • UI/UX Design</p>
+        </div>
+        <!-- Project 2 -->
+        <div class="group cursor-pointer md:mt-24" onclick="toggleAgency()">
+          <div class="overflow-hidden rounded-2xl mb-6 relative">
+            <img src="https://images.unsplash.com/photo-1611162617474-5b21e879e113?q=80&w=800" class="w-full aspect-[4/3] object-cover transition duration-700 group-hover:scale-105">
+            <div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition duration-300 flex items-center justify-center">
+              <span class="border border-white/30 bg-white/10 backdrop-blur px-6 py-2 rounded-full text-sm font-bold">View Case Study</span>
+            </div>
+          </div>
+          <h3 class="text-2xl font-bold mb-2 group-hover:text-pink-500 transition">Meta Verse Platform</h3>
+          <p class="text-gray-500 text-sm">Web 3.0 • 3D Interaction</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services Marquee -->
+  <section id="services" class="py-24 bg-black overflow-hidden border-t border-white/5">
+    <div class="container mx-auto px-6 mb-12">
+      <h2 class="text-sm font-bold text-gray-500 uppercase tracking-widest">Our Expertise</h2>
     </div>
     
-    <!-- Scroll Down -->
-    <div class="absolute bottom-10 left-1/2 -translate-x-1/2 text-sm font-bold animate-bounce">
-      SCROLL
-    </div>
-  </section>
-
-  <!-- Marquee -->
-  <section class="py-20 bg-white text-black rotate-[-2deg] scale-110 border-y-4 border-black">
-    <div class="marquee-container">
-      <div class="marquee-content text-6xl md:text-8xl font-black uppercase">
-        Strategy • Branding • Web Design • Development • Marketing • Strategy • Branding • Web Design • Development • Marketing •
+    <div class="relative flex overflow-x-hidden group">
+      <div class="animate-marquee whitespace-nowrap flex gap-4 text-7xl md:text-9xl font-display font-bold text-transparent" style="-webkit-text-stroke: 1px rgba(255,255,255,0.2);">
+        <span>BRANDING</span>
+        <span class="text-white">UX/UI</span>
+        <span>DEVELOPMENT</span>
+        <span>MARKETING</span>
+        <span class="text-purple-500">MOTION</span>
+        <span>BRANDING</span>
+        <span class="text-white">UX/UI</span>
+        <span>DEVELOPMENT</span>
       </div>
     </div>
   </section>
 
-  <!-- Work Grid -->
-  <section class="py-32 px-6 max-w-7xl mx-auto">
-    <h2 class="text-4xl font-bold mb-16">Selected Work</h2>
-    <div class="grid md:grid-cols-2 gap-8">
-      <!-- Item 1 -->
-      <div class="group relative aspect-[4/3] bg-gray-900 overflow-hidden hover-trigger">
-        <img src="https://images.unsplash.com/photo-1600607686527-6fb886090705?w=800&q=80" class="w-full h-full object-cover opacity-60 group-hover:opacity-100 group-hover:scale-110 transition duration-700">
-        <div class="absolute inset-0 p-8 flex flex-col justify-end">
-          <h3 class="text-3xl font-bold translate-y-full group-hover:translate-y-0 transition duration-500">Nike Campaign</h3>
-          <p class="text-sm text-gray-400 translate-y-full group-hover:translate-y-0 transition duration-500 delay-100">Art Direction</p>
+  <!-- Modal -->
+  <div id="agency-modal" class="fixed inset-0 bg-black/80 backdrop-blur-md z-[60] hidden flex items-center justify-center p-4">
+    <div class="bg-[#111] border border-white/10 w-full max-w-lg p-10 rounded-3xl relative">
+      <button onclick="toggleAgency()" class="absolute top-6 right-6 text-gray-500 hover:text-white text-xl">&times;</button>
+      
+      <div class="text-center mb-10">
+        <h2 class="font-display text-3xl font-bold mb-2 bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-pink-600">Let's Talk</h2>
+        <p class="text-gray-500 text-sm">함께 만들고 싶은 것이 있나요?</p>
+      </div>
+
+      <form class="space-y-6" onsubmit="event.preventDefault(); alert('문의가 발송되었습니다. 확인 후 연락드리겠습니다.'); toggleAgency();">
+        <div class="space-y-1">
+          <label class="text-xs font-bold text-gray-600 uppercase ml-1">이메일</label>
+          <input type="email" placeholder="example@company.com" class="w-full bg-[#222] border border-transparent focus:border-purple-500 rounded-xl p-4 text-white outline-none transition">
         </div>
-      </div>
-      <!-- Item 2 -->
-      <div class="group relative aspect-[4/3] bg-gray-900 overflow-hidden hover-trigger md:mt-24">
-        <img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=800&q=80" class="w-full h-full object-cover opacity-60 group-hover:opacity-100 group-hover:scale-110 transition duration-700">
-        <div class="absolute inset-0 p-8 flex flex-col justify-end">
-          <h3 class="text-3xl font-bold translate-y-full group-hover:translate-y-0 transition duration-500">Tech Future</h3>
-          <p class="text-sm text-gray-400 translate-y-full group-hover:translate-y-0 transition duration-500 delay-100">Web Design</p>
+        <div class="space-y-1">
+          <label class="text-xs font-bold text-gray-600 uppercase ml-1">프로젝트 예산</label>
+          <select class="w-full bg-[#222] border border-transparent focus:border-purple-500 rounded-xl p-4 text-white outline-none transition">
+            <option>₩ 1,000만원 - 3,000만원</option>
+            <option>₩ 3,000만원 - 5,000만원</option>
+            <option>₩ 5,000만원 - 1억원</option>
+            <option>₩ 1억원 이상</option>
+          </select>
         </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Contact CTA -->
-  <section class="py-32 px-6 text-center">
-    <h2 class="text-4xl md:text-7xl font-black mb-12">HAVE A PROJECT?</h2>
-    <button onclick="toggleModal()" class="hover-trigger relative inline-block text-2xl md:text-4xl font-bold border-2 border-white px-12 py-6 rounded-full overflow-hidden group">
-      <span class="relative z-10 group-hover:text-black transition duration-300">LET'S TALK</span>
-      <div class="absolute inset-0 bg-white transform translate-y-full group-hover:translate-y-0 transition duration-300 ease-in-out"></div>
-    </button>
-  </section>
-
-  <!-- Mobile Menu -->
-  <div id="mobile-menu" class="fixed inset-0 bg-black z-40 transform translate-x-full transition duration-300 flex flex-col justify-center items-center text-4xl font-black gap-8">
-    <button onclick="toggleMenu()" class="absolute top-6 right-6 text-white text-2xl hover-trigger">&times;</button>
-    <a href="#" onclick="toggleMenu()" class="hover-trigger text-transparent bg-clip-text bg-gradient-to-r from-pink-500 to-violet-500">WORK</a>
-    <a href="#" onclick="toggleMenu()" class="hover-trigger hover:text-gray-400">ABOUT</a>
-    <a href="#" onclick="toggleMenu()" class="hover-trigger hover:text-gray-400">CONTACT</a>
-  </div>
-
-  <!-- Contact Modal -->
-  <div id="contact-modal" class="fixed inset-0 z-[100] hidden opacity-0 transition-opacity duration-300 bg-black/90 flex items-center justify-center p-4 backdrop-blur-md">
-    <div class="max-w-xl w-full bg-[#111] p-8 md:p-12 border border-gray-800 relative">
-      <button onclick="toggleModal()" class="absolute top-6 right-6 text-2xl hover:text-gray-400">&times;</button>
-      <h2 class="text-3xl font-black mb-8 text-gradient">START A PROJECT</h2>
-      <form class="space-y-6" onsubmit="event.preventDefault(); alert('We will reach out soon!'); toggleModal();">
-        <input type="text" placeholder="Your Name" class="w-full bg-transparent border-b border-gray-700 py-4 text-xl focus:border-white focus:outline-none placeholder-gray-600 hover-trigger">
-        <input type="email" placeholder="Email Address" class="w-full bg-transparent border-b border-gray-700 py-4 text-xl focus:border-white focus:outline-none placeholder-gray-600 hover-trigger">
-        <textarea placeholder="Tell us about your project" rows="3" class="w-full bg-transparent border-b border-gray-700 py-4 text-xl focus:border-white focus:outline-none placeholder-gray-600 hover-trigger resize-none"></textarea>
-        <button type="submit" class="w-full bg-white text-black font-bold py-4 mt-8 hover:bg-gray-200 transition hover-trigger">SEND MESSAGE</button>
+        <div class="space-y-1">
+          <label class="text-xs font-bold text-gray-600 uppercase ml-1">내용</label>
+          <textarea rows="3" placeholder="프로젝트에 대해 간략히 설명해주세요." class="w-full bg-[#222] border border-transparent focus:border-purple-500 rounded-xl p-4 text-white outline-none transition resize-none"></textarea>
+        </div>
+        
+        <button class="w-full bg-white text-black font-bold py-4 rounded-xl hover:bg-gray-200 transition mt-2">
+          문의 보내기
+        </button>
       </form>
     </div>
   </div>
 
-  <script>
-    // Custom Cursor
-    const cursor = document.getElementById('cursor');
-    const triggers = document.querySelectorAll('.hover-trigger');
-
-    document.addEventListener('mousemove', (e) => {
-      cursor.style.left = e.clientX + 'px';
-      cursor.style.top = e.clientY + 'px';
-    });
-
-    triggers.forEach(trigger => {
-      trigger.addEventListener('mouseenter', () => cursor.classList.add('hovered'));
-      trigger.addEventListener('mouseleave', () => cursor.classList.remove('hovered'));
-    });
-
-    // Toggle Functions
-    function toggleMenu() {
-      const menu = document.getElementById('mobile-menu');
-      if(menu.classList.contains('translate-x-full')) {
-        menu.classList.remove('translate-x-full');
-      } else {
-        menu.classList.add('translate-x-full');
-      }
+  <style>
+    .animate-marquee { animation: marquee 20s linear infinite; }
+    @keyframes marquee {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
     }
+  </style>
 
-    function toggleModal() {
-      const modal = document.getElementById('contact-modal');
+  <script>
+    function toggleAgency() {
+      const modal = document.getElementById('agency-modal');
       if(modal.classList.contains('hidden')) {
         modal.classList.remove('hidden');
-        setTimeout(() => modal.classList.remove('opacity-0'), 10);
       } else {
-        modal.classList.add('opacity-0');
-        setTimeout(() => modal.classList.add('hidden'), 300);
+        modal.classList.add('hidden');
       }
     }
   </script>

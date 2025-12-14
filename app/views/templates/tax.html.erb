@@ -1,183 +1,166 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Tax Pro - Expert Accounting</title>
+  <title>택스 파트너 - 절세의 정석</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500;700&family=Work+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500;700&family=Noto+Sans+KR:wght@300;400;700&display=swap" rel="stylesheet">
   <script>
     tailwind.config = {
       theme: {
         extend: {
           colors: {
-            'money': '#10B981',
-            'slate-dark': '#1E293B',
+            calc: '#2C3E50',
+            paper: '#ECF0F1',
+            pen: '#E74C3C',
           },
           fontFamily: {
-            sans: ['Work Sans', 'sans-serif'],
             mono: ['Roboto Mono', 'monospace'],
+            sans: ['Noto Sans KR', 'sans-serif'],
           }
         }
       }
     }
   </script>
 </head>
-<body class="bg-slate-50 text-slate-700 font-sans">
+<body class="bg-paper text-calc font-sans border-t-8 border-calc">
 
   <!-- Nav -->
-  <nav class="bg-slate-dark text-white border-b border-slate-700 sticky top-0 z-50">
-    <div class="container mx-auto px-6 py-4 flex justify-between items-center">
-      <div class="font-mono font-bold text-xl tracking-tighter">
-        <span class="text-money">$</span> TaxPro
-      </div>
-      <div class="hidden md:flex gap-8 text-sm font-medium text-slate-300">
-        <a href="#services" class="hover:text-money transition">Services</a>
-        <a href="#calculator" class="hover:text-money transition">Tax Calculator</a>
-        <a href="#contact" class="hover:text-money transition">Contact</a>
-      </div>
-      <button onclick="toggleTax()" class="bg-money text-white px-5 py-2 rounded font-bold text-sm hover:bg-emerald-600 transition">
-        Free Consultation
-      </button>
+  <nav class="container mx-auto px-8 py-6 flex justify-between items-center">
+    <div class="text-2xl font-bold tracking-tighter flex items-center gap-2">
+      <span class="text-pen text-3xl">TAX</span> PARTNER
+    </div>
+    <div class="hidden md:flex gap-10 font-mono text-sm font-bold text-gray-500">
+      <a href="#service" class="hover:text-calc transition">SERVICES</a>
+      <a href="#calculator" class="hover:text-calc transition">CALCULATOR</a>
+      <a href="#contact" class="hover:text-calc transition">CONTACT</a>
     </div>
   </nav>
 
-  <!-- Hero with Calculator UI -->
-  <header class="bg-slate-dark text-white pt-20 pb-32 relative overflow-hidden">
-    <div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/graphy.png')] opacity-10"></div>
-    
-    <div class="container mx-auto px-6 grid md:grid-cols-2 gap-16 items-center relative z-10">
-      <div class="space-y-6">
-        <div class="inline-block bg-slate-800 border border-slate-700 rounded px-3 py-1 text-xs font-mono text-money">
-          Since 1998 • IRS Certified
-        </div>
-        <h1 class="text-4xl md:text-6xl font-extrabold tracking-tight leading-tight">
-          Maximize Your Refund. <br> Minimize The <span class="text-money border-b-4 border-money">Stress.</span>
-        </h1>
-        <p class="text-lg text-slate-400 max-w-lg leading-relaxed">
-          Comprehensive tax planning and accounting services for individuals and small businesses. Don't leave money on the table.
-        </p>
-        <ul class="space-y-3 pt-4 text-sm font-mono text-slate-300">
-          <li class="flex items-center gap-3">
-             <div class="w-2 h-2 bg-money rounded-full"></div> 100% Accuracy Guarantee
-          </li>
-          <li class="flex items-center gap-3">
-             <div class="w-2 h-2 bg-money rounded-full"></div> Year-Round Support
-          </li>
-          <li class="flex items-center gap-3">
-             <div class="w-2 h-2 bg-money rounded-full"></div> Audit Protection
-          </li>
-        </ul>
-      </div>
-
-      <!-- Interactive Element: Estimate Card -->
-      <div class="bg-white text-slate-800 rounded-xl shadow-2xl p-8 border-t-8 border-money max-w-sm ml-auto mr-auto md:mr-0">
-        <h3 class="font-bold text-xl mb-6 flex justify-between items-center">
-          <span>Estimated Savings</span>
-          <span class="text-xs bg-green-100 text-money px-2 py-1 rounded">PRO</span>
-        </h3>
-        
-        <div class="space-y-4 mb-8">
-          <div class="flex justify-between text-sm font-mono border-b border-slate-100 pb-2">
-             <span class="text-slate-400">Deduction Found</span>
-             <span class="font-bold text-money">+$1,240.00</span>
-          </div>
-          <div class="flex justify-between text-sm font-mono border-b border-slate-100 pb-2">
-             <span class="text-slate-400">Credit Applied</span>
-             <span class="font-bold text-money">+$500.00</span>
-          </div>
-          <div class="flex justify-between text-sm font-mono border-b border-slate-100 pb-2">
-             <span class="text-slate-400">Penalty Avoided</span>
-             <span class="font-bold text-money">+$250.00</span>
-          </div>
-          <div class="flex justify-between font-bold text-xl pt-2">
-             <span>Total Saved</span>
-             <span class="text-money">$1,990.00</span>
-          </div>
-        </div>
-        
-        <button onclick="toggleTax()" class="w-full bg-slate-800 text-white font-bold py-4 rounded hover:bg-slate-900 transition">
-          Start Your Filing
+  <!-- Hero -->
+  <header class="py-24 px-8 container mx-auto grid md:grid-cols-2 gap-16 items-center">
+    <div class="space-y-8 animate-fade-in">
+      <h1 class="text-6xl md:text-7xl font-bold leading-tight tracking-tight">
+        Save More, <br>
+        <span class="text-pen">Worry Less.</span>
+      </h1>
+      <p class="text-xl text-gray-600 font-light leading-relaxed">
+        복잡한 세금, 전문가에게 맡기세요. <br>
+        합법적인 절세 전략으로 당신의 소중한 자산을 지켜드립니다.
+      </p>
+      
+      <div class="bg-white p-8 border-l-4 border-pen shadow-lg max-w-md">
+        <h3 class="font-bold text-lg mb-4">무료 세금 진단</h3>
+        <p class="text-sm text-gray-500 mb-6">간단한 정보 입력으로 예상 환급액을 확인해보세요.</p>
+        <button onclick="toggleTax()" class="bg-calc text-white w-full py-4 font-bold hover:bg-black transition">
+          진단 시작하기 &rarr;
         </button>
+      </div>
+    </div>
+
+    <!-- Calculator Graphic -->
+    <div class="relative bg-white p-8 rounded-xl shadow-2xl border border-gray-200 transform rotate-2 hover:rotate-0 transition duration-500">
+      <div class="font-mono text-right text-4xl text-gray-400 mb-8 p-4 bg-gray-50 rounded">
+        ₩ 15,240,000
+      </div>
+      <div class="grid grid-cols-4 gap-4 font-mono font-bold text-xl text-gray-600">
+        <div class="bg-gray-100 p-4 rounded text-center hover:bg-gray-200">AC</div>
+        <div class="bg-gray-100 p-4 rounded text-center hover:bg-gray-200">+/-</div>
+        <div class="bg-gray-100 p-4 rounded text-center hover:bg-gray-200">%</div>
+        <div class="bg-pen text-white p-4 rounded text-center">÷</div>
+        
+        <div class="bg-white border border-gray-200 p-4 rounded text-center hover:bg-gray-50">7</div>
+        <div class="bg-white border border-gray-200 p-4 rounded text-center hover:bg-gray-50">8</div>
+        <div class="bg-white border border-gray-200 p-4 rounded text-center hover:bg-gray-50">9</div>
+        <div class="bg-calc text-white p-4 rounded text-center">×</div>
+
+        <div class="bg-white border border-gray-200 p-4 rounded text-center hover:bg-gray-50">4</div>
+        <div class="bg-white border border-gray-200 p-4 rounded text-center hover:bg-gray-50">5</div>
+        <div class="bg-white border border-gray-200 p-4 rounded text-center hover:bg-gray-50">6</div>
+        <div class="bg-calc text-white p-4 rounded text-center">-</div>
+        
+        <div class="bg-white border border-gray-200 p-4 rounded text-center hover:bg-gray-50">1</div>
+        <div class="bg-white border border-gray-200 p-4 rounded text-center hover:bg-gray-50">2</div>
+        <div class="bg-white border border-gray-200 p-4 rounded text-center hover:bg-gray-50">3</div>
+        <div class="bg-calc text-white p-4 rounded text-center">+</div>
+        
+        <div class="col-span-2 bg-white border border-gray-200 p-4 rounded text-center hover:bg-gray-50">0</div>
+        <div class="bg-white border border-gray-200 p-4 rounded text-center hover:bg-gray-50">.</div>
+        <div class="bg-pen text-white p-4 rounded text-center">=</div>
       </div>
     </div>
   </header>
 
-  <!-- Services Grid -->
-  <section id="services" class="py-24 bg-white -mt-10 md:-mt-20 relative z-20 rounded-t-[3rem]">
-    <div class="container mx-auto px-6">
-      <div class="text-center mb-16">
-        <h2 class="text-3xl font-bold text-slate-800">Our Services</h2>
+  <!-- Services List -->
+  <section id="service" class="py-24 bg-white">
+    <div class="container mx-auto px-8">
+      <div class="grid md:grid-cols-2 gap-16">
+        <div>
+          <h2 class="text-4xl font-bold mb-8 relative inline-block">
+            Our Solutions
+            <div class="absolute -bottom-2 left-0 w-1/3 h-1 bg-pen"></div>
+          </h2>
+          <p class="text-gray-500 leading-loose">
+            개인 사업자부터 법인까지, <br>
+            각 단계에 맞는 최적의 세무 솔루션을 제공합니다. <br>
+            기장 대리, 신고 대행, 세무 조사 대응 등 <br>
+            모든 세무 업무를 원스톱으로 처리해 드립니다.
+          </p>
+        </div>
+        <div class="space-y-6">
+          <!-- Item -->
+          <div class="flex items-start gap-4 p-4 border border-gray-100 hover:border-calc transition cursor-pointer" onclick="toggleTax()">
+            <div class="bg-paper p-3 rounded text-2xl">📋</div>
+            <div>
+              <h3 class="font-bold text-lg mb-1">기장 대리</h3>
+              <p class="text-sm text-gray-500">체계적인 장부 관리로 절세의 기초를 다집니다.</p>
+            </div>
+          </div>
+          <!-- Item -->
+          <div class="flex items-start gap-4 p-4 border border-gray-100 hover:border-calc transition cursor-pointer" onclick="toggleTax()">
+            <div class="bg-paper p-3 rounded text-2xl">💰</div>
+            <div>
+              <h3 class="font-bold text-lg mb-1">양도 / 상속 / 증여</h3>
+              <p class="text-sm text-gray-500">자산 이전 시 발생하는 세금을 최소화합니다.</p>
+            </div>
+          </div>
+          <!-- Item -->
+          <div class="flex items-start gap-4 p-4 border border-gray-100 hover:border-calc transition cursor-pointer" onclick="toggleTax()">
+            <div class="bg-paper p-3 rounded text-2xl">🏢</div>
+            <div>
+              <h3 class="font-bold text-lg mb-1">법인 설립 / 전환</h3>
+              <p class="text-sm text-gray-500">사업 확장을 위한 최적의 구조를 설계합니다.</p>
+            </div>
+          </div>
+        </div>
       </div>
-      
-      <div class="grid md:grid-cols-3 gap-8">
-        <div class="border border-slate-100 p-8 rounded-xl hover:border-money transition duration-300 group">
-          <div class="w-12 h-12 bg-slate-50 rounded-lg flex items-center justify-center text-2xl mb-6 group-hover:bg-money group-hover:text-white transition">👤</div>
-          <h3 class="text-xl font-bold mb-3">Individual Filing</h3>
-          <p class="text-sm text-slate-500 leading-relaxed">Personal income tax preparation (1040). We handle W-2s, 1099s, and investments.</p>
-        </div>
-        <div class="border border-slate-100 p-8 rounded-xl hover:border-money transition duration-300 group">
-          <div class="w-12 h-12 bg-slate-50 rounded-lg flex items-center justify-center text-2xl mb-6 group-hover:bg-money group-hover:text-white transition">🏢</div>
-          <h3 class="text-xl font-bold mb-3">Business Tax</h3>
-          <p class="text-sm text-slate-500 leading-relaxed">Corporate returns (1120/1120S), partnerships, and LLCs. Payroll & bookkeeping integration.</p>
-        </div>
-        <div class="border border-slate-100 p-8 rounded-xl hover:border-money transition duration-300 group">
-          <div class="w-12 h-12 bg-slate-50 rounded-lg flex items-center justify-center text-2xl mb-6 group-hover:bg-money group-hover:text-white transition">📊</div>
-          <h3 class="text-xl font-bold mb-3">Financial Planning</h3>
-          <p class="text-sm text-slate-500 leading-relaxed">Retirement planning (IRA/401k), estate tax, and long-term wealth strategy.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- CTA -->
-  <section class="py-20 bg-money text-white text-center">
-    <div class="container mx-auto px-6">
-      <h2 class="text-3xl md:text-5xl font-bold mb-6">Deadline Approaching?</h2>
-      <p class="text-xl opacity-90 mb-8 max-w-2xl mx-auto">Get expert help before April 15th. Avoid penalties and maximize your return.</p>
-      <button onclick="toggleTax()" class="bg-white text-money px-10 py-4 rounded-full font-bold text-lg hover:bg-slate-100 transition shadow-lg">
-        Book Appointment
-      </button>
     </div>
   </section>
 
   <!-- Modal -->
-  <div id="tax-modal" class="fixed inset-0 bg-slate-900/80 backdrop-blur-sm z-[60] hidden flex items-center justify-center p-4">
-    <div class="bg-white w-full max-w-lg rounded-xl shadow-2xl relative p-8">
-      <button onclick="toggleTax()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-800 font-bold text-xl">&times;</button>
+  <div id="tax-modal" class="fixed inset-0 bg-calc/90 z-[60] hidden flex items-center justify-center p-4">
+    <div class="bg-white w-full max-w-md p-8 relative shadow-2xl border-t-8 border-pen">
+      <button onclick="toggleTax()" class="absolute top-4 right-4 text-gray-400 hover:text-calc text-2xl">&times;</button>
       
-      <div class="flex items-center gap-2 mb-8 border-b border-slate-100 pb-4">
-         <span class="text-2xl">📋</span>
-         <h2 class="text-2xl font-bold text-slate-800">Inquiry Form</h2>
+      <div class="text-center mb-8">
+        <h2 class="text-2xl font-bold mb-2">무료 상담 신청</h2>
+        <p class="text-sm text-gray-500">복잡한 세금 고민, 지금 바로 해결하세요.</p>
       </div>
 
-      <form class="space-y-5" onsubmit="event.preventDefault(); alert('We will contact you within 24 hours.'); toggleTax();">
-        <div class="grid grid-cols-2 gap-4">
-           <div>
-             <label class="block text-xs font-bold text-slate-500 uppercase mb-1">First Name</label>
-             <input type="text" class="w-full bg-slate-50 border border-slate-200 p-3 rounded font-medium focus:border-money outline-none">
-           </div>
-           <div>
-             <label class="block text-xs font-bold text-slate-500 uppercase mb-1">Last Name</label>
-             <input type="text" class="w-full bg-slate-50 border border-slate-200 p-3 rounded font-medium focus:border-money outline-none">
-           </div>
-        </div>
-        <div>
-           <label class="block text-xs font-bold text-slate-500 uppercase mb-1">Email</label>
-           <input type="email" class="w-full bg-slate-50 border border-slate-200 p-3 rounded font-medium focus:border-money outline-none">
-        </div>
-        <div>
-           <label class="block text-xs font-bold text-slate-500 uppercase mb-1">Service Type</label>
-           <select class="w-full bg-slate-50 border border-slate-200 p-3 rounded font-medium focus:border-money outline-none text-slate-600">
-             <option>Individual Tax Return</option>
-             <option>Business Tax Return</option>
-             <option>Audit Help</option>
-             <option>Other</option>
-           </select>
-        </div>
+      <form class="space-y-4" onsubmit="event.preventDefault(); alert('상담 신청이 완료되었습니다.'); toggleTax();">
+        <input type="text" placeholder="사업장명 / 성함" class="w-full bg-paper p-4 font-bold outline-none border-2 border-transparent focus:border-calc">
+        <input type="tel" placeholder="연락처" class="w-full bg-paper p-4 font-bold outline-none border-2 border-transparent focus:border-calc">
+        <select class="w-full bg-paper p-4 font-bold outline-none border-2 border-transparent focus:border-calc text-gray-600">
+           <option>관심 분야 선택</option>
+           <option>기장 대리 문의</option>
+           <option>양도세 상담</option>
+           <option>상속/증여세 상담</option>
+           <option>법인 설립/전환</option>
+        </select>
         
-        <button class="w-full bg-money text-white font-bold py-4 rounded hover:bg-emerald-600 transition shadow-md mt-4">
-           Submit Request
+        <button class="w-full bg-pen text-white py-4 font-bold text-lg hover:bg-red-600 transition shadow-lg mt-2">
+          상담 신청하기
         </button>
       </form>
     </div>

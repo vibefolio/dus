@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>그랜드 호텔 - 품격 있는 휴식</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Noto+Serif+KR:wght@300;400;600&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            royal: '#1B263B',
+            gold: '#C5A059',
+            sand: '#F3E5AB',
+          },
+          fontFamily: {
+            serif: ['Cinzel', 'serif'],
+            kr: ['Noto Serif KR', 'serif'],
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-royal text-white font-kr">
+
+  <!-- Nav -->
+  <nav class="fixed w-full z-50 transition-all duration-300 px-10 py-6 flex justify-between items-center bg-gradient-to-b from-black/80 to-transparent">
+    <div class="text-2xl font-serif text-white tracking-widest">
+      GRAND HOTEL
+    </div>
+    <div class="hidden md:flex gap-12 font-serif text-sm tracking-widest text-gray-300">
+      <a href="#rooms" class="hover:text-gold transition">Suites</a>
+      <a href="#dining" class="hover:text-gold transition">Dining</a>
+      <a href="#offers" class="hover:text-gold transition">Offers</a>
+    </div>
+    <button onclick="toggleHotel()" class="border border-white/30 px-8 py-3 text-xs tracking-[0.2em] hover:bg-gold hover:border-gold hover:text-royal transition uppercase">
+      Book Now
+    </button>
+  </nav>
+
+  <!-- Hero -->
+  <header class="h-screen relative overflow-hidden flex flex-col justify-center items-center text-center">
+    <div class="absolute inset-0 z-0">
+      <img src="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?q=80&w=1920" class="w-full h-full object-cover opacity-60 animate-kenburns">
+    </div>
+    
+    <div class="relative z-10 space-y-8 animate-fade-in-up">
+      <div class="flex items-center justify-center gap-4 text-gold mb-4">
+        <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+      </div>
+      <h1 class="text-6xl md:text-8xl font-serif leading-tight drop-shadow-2xl">
+        A Sanctuary <br> <span class="italic text-sand">of Elegance</span>
+      </h1>
+      <p class="text-lg md:text-xl text-gray-200 tracking-wide font-light max-w-2xl mx-auto leading-relaxed">
+        도심 속 완벽한 휴식처, 그랜드 호텔. <br>
+        시간이 멈춘 듯한 평온함 속에서 잊지 못할 추억을 선사합니다.
+      </p>
+    </div>
+
+    <!-- Booking Bar -->
+    <div class="absolute bottom-0 w-full bg-black/40 backdrop-blur-md border-t border-white/10 p-6 md:p-10 z-20">
+      <div class="container mx-auto grid md:grid-cols-4 gap-6 items-center">
+        <div class="border-b border-white/30 pb-2">
+          <label class="block text-xs text-gold uppercase tracking-widest mb-1">Check In</label>
+          <input type="date" class="bg-transparent w-full text-white text-sm outline-none font-serif">
+        </div>
+        <div class="border-b border-white/30 pb-2">
+          <label class="block text-xs text-gold uppercase tracking-widest mb-1">Check Out</label>
+          <input type="date" class="bg-transparent w-full text-white text-sm outline-none font-serif">
+        </div>
+        <div class="border-b border-white/30 pb-2">
+          <label class="block text-xs text-gold uppercase tracking-widest mb-1">Guests</label>
+          <select class="bg-transparent w-full text-white text-sm outline-none font-serif bg-royal">
+            <option>2 Adults</option>
+            <option>1 Adult</option>
+            <option>Family</option>
+          </select>
+        </div>
+        <button onclick="toggleHotel()" class="bg-gold text-royal h-full py-4 uppercase tracking-widest font-serif hover:bg-white transition">
+          Search
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Rooms Showcase -->
+  <section id="rooms" class="py-32 px-10 bg-white text-royal">
+    <div class="container mx-auto">
+      <div class="text-center mb-24">
+        <span class="text-gold uppercase tracking-[0.3em] text-xs block mb-4">Accommodation</span>
+        <h2 class="text-5xl font-serif">Exquisite Suites</h2>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-20 items-center mb-32">
+        <div class="order-2 md:order-1 space-y-8">
+          <h3 class="text-4xl font-serif italic">The Royal Suite</h3>
+          <p class="text-gray-500 leading-loose border-l-2 border-gold pl-6">
+             파노라마 오션뷰와 함께하는 럭셔리한 휴식. <br>
+             최고급 침구와 전용 어메니티로 최상의 편안함을 제공합니다.
+          </p>
+          <div class="flex gap-8 text-sm uppercase tracking-widest text-gray-400">
+             <span>70m²</span>
+             <span>Ocean View</span>
+             <span>King Bed</span>
+          </div>
+          <p class="text-2xl font-serif text-gold">₩ 850,000 <span class="text-xs text-gray-400">/ Night</span></p>
+          <button onclick="toggleHotel()" class="border-b border-royal pb-1 hover:text-gold hover:border-gold transition">View Details</button>
+        </div>
+        <div class="order-1 md:order-2 relative h-[600px] overflow-hidden group cursor-pointer" onclick="toggleHotel()">
+          <img src="https://images.unsplash.com/photo-1578683010236-d716f9a3f461?q=80&w=800" class="w-full h-full object-cover transition duration-1000 group-hover:scale-110">
+        </div>
+      </div>
+
+       <div class="grid md:grid-cols-2 gap-20 items-center">
+        <div class="relative h-[600px] overflow-hidden group cursor-pointer" onclick="toggleHotel()">
+          <img src="https://images.unsplash.com/photo-1590490360182-c33d57733427?q=80&w=800" class="w-full h-full object-cover transition duration-1000 group-hover:scale-110">
+        </div>
+        <div class="space-y-8">
+          <h3 class="text-4xl font-serif italic">Premier Deluxe</h3>
+          <p class="text-gray-500 leading-loose border-l-2 border-gold pl-6">
+             모던한 감각과 클래식한 품격이 조화를 이루는 공간. <br>
+             비즈니스 고객과 레저 여행객 모두에게 완벽한 선택입니다.
+          </p>
+          <div class="flex gap-8 text-sm uppercase tracking-widest text-gray-400">
+             <span>45m²</span>
+             <span>City View</span>
+             <span>Queen Bed</span>
+          </div>
+          <p class="text-2xl font-serif text-gold">₩ 450,000 <span class="text-xs text-gray-400">/ Night</span></p>
+          <button onclick="toggleHotel()" class="border-b border-royal pb-1 hover:text-gold hover:border-gold transition">View Details</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Modal -->
+  <div id="hotel-modal" class="fixed inset-0 bg-black/90 z-[60] hidden flex items-center justify-center p-4">
+    <div class="bg-royal border border-white/20 w-full max-w-lg p-12 relative shadow-2xl">
+      <button onclick="toggleHotel()" class="absolute top-6 right-6 text-gray-500 hover:text-white text-xl">&times;</button>
+      
+      <div class="text-center mb-12">
+        <h2 class="font-serif text-3xl text-white mb-2 italic">Your Stay</h2>
+        <p class="text-xs text-gold uppercase tracking-[0.2em] font-sans">Reservation Details</p>
+      </div>
+
+      <div class="bg-black/30 p-6 mb-8 text-center border border-white/10">
+        <div class="text-gold font-serif text-xl mb-1">The Royal Suite</div>
+        <div class="text-gray-400 text-xs">2024.12.24 - 2024.12.25 (1 Night)</div>
+      </div>
+
+      <form class="space-y-6" onsubmit="event.preventDefault(); alert('예약 요청이 접수되었습니다. 컨시어지에서 연락드리겠습니다.'); toggleHotel();">
+        <div class="grid grid-cols-2 gap-6">
+           <input type="text" placeholder="First Name" class="bg-transparent border-b border-white/20 py-2 text-white outline-none focus:border-gold placeholder:text-gray-600 font-serif">
+           <input type="text" placeholder="Last Name" class="bg-transparent border-b border-white/20 py-2 text-white outline-none focus:border-gold placeholder:text-gray-600 font-serif">
+        </div>
+        <input type="email" placeholder="Email Address" class="w-full bg-transparent border-b border-white/20 py-2 text-white outline-none focus:border-gold placeholder:text-gray-600 font-serif">
+        <input type="tel" placeholder="Phone Number" class="w-full bg-transparent border-b border-white/20 py-2 text-white outline-none focus:border-gold placeholder:text-gray-600 font-serif">
+        
+        <button class="w-full bg-gold text-royal py-4 uppercase tracking-[0.2em] font-serif hover:bg-white transition mt-4">
+          Confirm Booking
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <style>
+    .animate-kenburns { animation: kenburns 30s infinite alternate; }
+    @keyframes kenburns { from { transform: scale(1); } to { transform: scale(1.15); } }
+  </style>
+
+  <script>
+    function toggleHotel() {
+      const modal = document.getElementById('hotel-modal');
+      if(modal.classList.contains('hidden')) {
+        modal.classList.remove('hidden');
+      } else {
+        modal.classList.add('hidden');
+      }
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>코지 스테이 - 감성 펜션</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&family=Nanum+Myeongjo:wght@400;700&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            wood: '#8D6E63',
+            cream: '#FFF8E1',
+            check: '#5D4037',
+          },
+          fontFamily: {
+            hand: ['Gowun Dodum', 'sans-serif'],
+            serif: ['Nanum Myeongjo', 'serif'],
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-cream text-check font-hand">
+
+  <!-- Nav -->
+  <nav class="fixed w-full z-50 px-8 py-6 flex justify-between items-center mix-blend-multiply">
+    <div class="text-2xl font-serif font-bold">Cozy Stay</div>
+    <div class="hidden md:flex gap-8 text-lg">
+      <a href="#rooms" class="hover:text-wood transition">객실안내</a>
+      <a href="#special" class="hover:text-wood transition">스페셜</a>
+      <a href="#location" class="hover:text-wood transition">오시는길</a>
+    </div>
+    <button onclick="togglePension()" class="border-b border-check hover:text-wood hover:border-wood transition pb-1">
+      실시간 예약
+    </button>
+  </nav>
+
+  <!-- Hero with Polaroid Style -->
+  <header class="pt-32 pb-20 px-6 container mx-auto text-center">
+    <div class="max-w-3xl mx-auto mb-16 space-y-6 animate-fade-in-up">
+      <p class="text-wood tracking-widest text-sm bg-white inline-block px-3 py-1 rounded-full shadow-sm">제주의 숨은 보석</p>
+      <h1 class="text-5xl md:text-6xl font-serif leading-tight">
+        바람이 머물고, <br> 마음이 쉬어가는 곳
+      </h1>
+      <p class="text-lg text-gray-600 leading-relaxed font-serif">
+        창문 너머 들려오는 파도 소리와 따뜻한 햇살. <br>
+        소중한 사람과 함께하는 느린 여행을 선물합니다.
+      </p>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+      <div class="bg-white p-4 pb-12 shadow-lg rotate-2 hover:rotate-0 transition duration-500 transform hover:scale-105 z-10">
+        <img src="https://images.unsplash.com/photo-1499793983690-e29da59ef1c2?q=80&w=600" class="w-full h-64 object-cover filter sepia-[.3]">
+        <div class="mt-4 font-serif text-xl border-b border-gray-100 pb-2">Room 101</div>
+        <p class="text-sm text-gray-400 mt-2">바다가 보이는 테라스</p>
+      </div>
+      <div class="bg-white p-4 pb-12 shadow-lg -rotate-1 hover:rotate-0 transition duration-500 transform hover:scale-105 z-20 md:-mt-12">
+        <img src="https://images.unsplash.com/photo-1522771753035-484980f8a323?q=80&w=600" class="w-full h-64 object-cover filter sepia-[.3]">
+        <div class="mt-4 font-serif text-xl border-b border-gray-100 pb-2">Private Spa</div>
+        <p class="text-sm text-gray-400 mt-2">피로를 녹이는 노천탕</p>
+      </div>
+      <div class="bg-white p-4 pb-12 shadow-lg rotate-3 hover:rotate-0 transition duration-500 transform hover:scale-105 z-10">
+        <img src="https://images.unsplash.com/photo-1540518614846-7eded433c457?q=80&w=600" class="w-full h-64 object-cover filter sepia-[.3]">
+        <div class="mt-4 font-serif text-xl border-b border-gray-100 pb-2">Cozy Night</div>
+        <p class="text-sm text-gray-400 mt-2">아늑한 다락방 침실</p>
+      </div>
+    </div>
+  </header>
+
+  <!-- Rooms List -->
+  <section id="rooms" class="py-24 bg-white">
+    <div class="container mx-auto px-6 max-w-4xl">
+      <h2 class="text-3xl font-serif text-center mb-16">머무시는 공간</h2>
+      
+      <div class="space-y-20">
+        <!-- Room A -->
+        <div class="flex flex-col md:flex-row gap-12 items-center group cursor-pointer" onclick="togglePension()">
+           <div class="w-full md:w-1/2 overflow-hidden rounded-lg">
+             <img src="https://images.unsplash.com/photo-1590490360182-c33d57733427?q=80&w=600" class="w-full h-64 object-cover hover:scale-110 transition duration-700">
+           </div>
+           <div class="w-full md:w-1/2 text-center md:text-left space-y-4">
+             <span class="text-wood font-bold">Standard</span>
+             <h3 class="text-3xl font-serif">안거 (安居)</h3>
+             <p class="text-gray-500 leading-relaxed text-sm">
+               2인 기준 / 최대 3인 <br>
+               퀸 사이즈 침대, 개별 욕실, 미니 주방
+             </p>
+             <div class="text-xl font-serif border-t border-gray-100 pt-4 inline-block w-full">
+               ₩ 180,000 <span class="text-xs text-gray-400">~ (비수기 주중)</span>
+             </div>
+           </div>
+        </div>
+        <!-- Room B -->
+        <div class="flex flex-col md:flex-row-reverse gap-12 items-center group cursor-pointer" onclick="togglePension()">
+           <div class="w-full md:w-1/2 overflow-hidden rounded-lg">
+             <img src="https://images.unsplash.com/photo-1560185007-c5ca9d2c014d?q=80&w=600" class="w-full h-64 object-cover hover:scale-110 transition duration-700">
+           </div>
+           <div class="w-full md:w-1/2 text-center md:text-right space-y-4">
+             <span class="text-wood font-bold">Suite</span>
+             <h3 class="text-3xl font-serif">연화 (蓮花)</h3>
+             <p class="text-gray-500 leading-relaxed text-sm">
+               2인 기준 / 최대 4인 <br>
+               복층 구조, 야외 자쿠지, 빔프로젝터
+             </p>
+             <div class="text-xl font-serif border-t border-gray-100 pt-4 inline-block w-full">
+               ₩ 280,000 <span class="text-xs text-gray-400">~ (비수기 주중)</span>
+             </div>
+           </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Modal -->
+  <div id="pension-modal" class="fixed inset-0 bg-wood/50 backdrop-blur-sm z-[60] hidden flex items-center justify-center p-4">
+    <div class="bg-cream w-full max-w-md p-10 relative shadow-2xl border-8 border-white rounded-lg">
+      <button onclick="togglePension()" class="absolute top-4 right-4 text-gray-400 hover:text-wood text-2xl">&times;</button>
+      
+      <div class="text-center mb-8 border-b border-wood/20 pb-4">
+        <h2 class="font-serif text-2xl text-check">Reservation</h2>
+        <p class="text-sm text-wood mt-2">편안한 휴식을 준비해드릴게요</p>
+      </div>
+
+      <form class="space-y-4" onsubmit="event.preventDefault(); alert('예약 가능 여부를 확인 중입니다...'); togglePension();">
+        <input type="date" class="w-full bg-white p-3 border border-wood/20 text-gray-600 outline-none focus:border-wood">
+        <select class="w-full bg-white p-3 border border-wood/20 text-gray-600 outline-none focus:border-wood">
+          <option>객실 선택</option>
+          <option>안거 (Standard)</option>
+          <option>연화 (Suite)</option>
+        </select>
+        <div class="flex gap-2">
+            <input type="text" placeholder="예약자명" class="w-1/2 bg-white p-3 border border-wood/20 outline-none focus:border-wood">
+            <input type="tel" placeholder="연락처" class="w-1/2 bg-white p-3 border border-wood/20 outline-none focus:border-wood">
+        </div>
+        
+        <button class="w-full bg-wood text-white py-4 font-serif text-lg hover:bg-check transition shadow-md mt-4">
+          예약하기
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    function togglePension() {
+      const modal = document.getElementById('pension-modal');
+      if(modal.classList.contains('hidden')) {
+        modal.classList.remove('hidden');
+      } else {
+        modal.classList.add('hidden');
+      }
+    }
+  </script>
+</body>
+</html>

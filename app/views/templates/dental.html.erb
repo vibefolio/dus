@@ -1,168 +1,162 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Dental Care - Bright Smiles</title>
+  <title>젠틀 덴탈 - 편안한 미소</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
   <script>
     tailwind.config = {
       theme: {
         extend: {
           colors: {
-            'dental-blue': '#0EA5E9',
-            'dental-light': '#E0F2FE',
+            teal: '#2DD4BF',
+            sky: '#E0F2FE',
+            blueGray: '#334155',
           },
           fontFamily: {
-            sans: ['Plus Jakarta Sans', 'sans-serif'],
+            display: ['DM Sans', 'sans-serif'],
+            sans: ['Noto Sans KR', 'sans-serif'],
           }
         }
       }
     }
   </script>
 </head>
-<body class="bg-white text-slate-600 font-sans">
-
-  <!-- Top Bar -->
-  <div class="bg-dental-blue text-white py-2 text-center text-sm font-medium">
-    Emergency? Call us 24/7: 02-123-4567
-  </div>
+<body class="bg-white text-blueGray font-sans">
 
   <!-- Nav -->
-  <nav class="sticky top-0 z-50 bg-white/95 backdrop-blur-sm border-b border-slate-100">
+  <nav class="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-gray-100">
     <div class="container mx-auto px-6 py-4 flex justify-between items-center">
-      <div class="flex items-center gap-2 text-2xl font-bold text-slate-800">
-        <svg class="w-8 h-8 text-dental-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-        Dental Care
+      <div class="text-2xl font-display font-bold text-teal flex items-center gap-2">
+        <span class="text-3xl">🦷</span> GentleDental
       </div>
-      <div class="hidden md:flex gap-8 font-semibold">
-        <a href="#services" class="hover:text-dental-blue">Treatments</a>
-        <a href="#team" class="hover:text-dental-blue">Our Team</a>
-        <a href="#reviews" class="hover:text-dental-blue">Reviews</a>
+      <div class="hidden md:flex gap-8 font-medium text-sm text-gray-400">
+        <a href="#about" class="hover:text-teal transition">병원 소개</a>
+        <a href="#services" class="hover:text-teal transition">진료 과목</a>
+        <a href="#reviews" class="hover:text-teal transition">치료 후기</a>
       </div>
-      <button onclick="toggleDental()" class="bg-dental-blue text-white px-6 py-2.5 rounded-full font-bold hover:bg-blue-600 transition shadow-lg shadow-blue-200">
-        Book Visit
+      <button onclick="toggleDental()" class="bg-teal/10 text-teal px-5 py-2 rounded-lg font-bold hover:bg-teal hover:text-white transition">
+        빠른 예약 (02-1234-5678)
       </button>
     </div>
   </nav>
 
-  <!-- Hero with Split -->
-  <header class="container mx-auto px-6 py-16 md:py-24 grid md:grid-cols-2 gap-12 items-center">
-    <div class="space-y-6">
-      <div class="inline-block px-4 py-1 bg-dental-light text-dental-blue rounded-full text-sm font-bold">
-        New Patient Special: $99 Exam & X-Ray
-      </div>
-      <h1 class="text-5xl md:text-6xl font-bold text-slate-900 leading-tight">
-        A Better Life Starts <br> With A <span class="text-dental-blue">Beautiful Smile.</span>
-      </h1>
-      <p class="text-lg leading-relaxed max-w-md">
-        State-of-the-art technology met with gentle, personalized care. 
-        Experience painless dentistry today.
-      </p>
-      <div class="flex gap-4 pt-4">
-        <button onclick="toggleDental()" class="bg-slate-900 text-white px-8 py-4 rounded-xl font-bold hover:bg-slate-800 transition">Get Started</button>
-        <button class="flex items-center gap-2 px-8 py-4 text-slate-600 font-bold hover:text-dental-blue">
-          <svg class="w-5 h-5 bg-dental-blue text-white rounded-full p-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-          Watch Video
-        </button>
-      </div>
-      <div class="pt-8 flex items-center gap-4 text-sm font-bold text-slate-400">
-        <div class="flex -space-x-2">
-           <div class="w-10 h-10 rounded-full bg-gray-200 border-2 border-white"></div>
-           <div class="w-10 h-10 rounded-full bg-gray-300 border-2 border-white"></div>
-           <div class="w-10 h-10 rounded-full bg-gray-400 border-2 border-white flex items-center justify-center text-white text-xs">+2k</div>
+  <!-- Hero with Split Layout -->
+  <header class="grid md:grid-cols-2 min-h-screen">
+    <div class="bg-teal flex items-center justify-center p-12 text-white relative overflow-hidden">
+      <!-- Background Circles -->
+      <div class="absolute top-0 left-0 w-64 h-64 bg-white/10 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2"></div>
+      <div class="absolute bottom-0 right-0 w-96 h-96 bg-white/10 rounded-full blur-3xl translate-x-1/4 translate-y-1/4"></div>
+      
+      <div class="relative z-10 max-w-md space-y-6">
+        <h1 class="text-5xl md:text-6xl font-display font-bold leading-tight">
+          아프지 않은 치료, <br> 건강한 미소.
+        </h1>
+        <p class="text-teal-50 text-lg leading-relaxed">
+          과잉 진료 없는 정직한 치과. <br>
+          통증 최소화 시스템으로 편안한 진료를 약속합니다.
+        </p>
+        <div class="flex gap-4 pt-4">
+          <button onclick="toggleDental()" class="bg-white text-teal px-8 py-4 rounded-xl font-bold shadow-lg hover:bg-gray-50 transition transform hover:-translate-y-1">
+            진료 예약하기
+          </button>
         </div>
-        <div>Happy Patients</div>
       </div>
     </div>
-    <div class="relative">
-      <div class="absolute -inset-4 bg-dental-light rounded-[3rem] -z-10 transform rotate-3"></div>
-      <img src="https://images.unsplash.com/photo-1606811971618-4486d14f3f72?q=80&w=800" class="w-full rounded-[2.5rem] shadow-2xl object-cover">
-      <!-- Floating Badge -->
-      <div class="absolute bottom-10 -left-6 bg-white p-6 rounded-2xl shadow-xl flex items-center gap-4 animate-bounce" style="animation-duration: 3s">
-        <div class="bg-dental-light p-3 rounded-full text-dental-blue">
-          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </div>
-        <div>
-          <div class="text-xs font-bold text-slate-400 uppercase">Success Rate</div>
-          <div class="text-xl font-bold text-slate-900">99.8%</div>
-        </div>
-      </div>
+    <div class="relative h-96 md:h-auto">
+      <img src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?q=80&w=1200" class="w-full h-full object-cover">
+      <div class="absolute inset-0 bg-gradient-to-t from-white/50 to-transparent md:hidden"></div>
     </div>
   </header>
 
   <!-- Services Grid -->
-  <section id="services" class="py-24 bg-slate-50">
-    <div class="container mx-auto px-6">
-      <div class="text-center max-w-2xl mx-auto mb-16">
-        <span class="text-dental-blue font-bold tracking-wider uppercase text-sm">Our Expertise</span>
-        <h2 class="text-3xl md:text-4xl font-bold text-slate-900 mt-2">Comprehensive Dental Solutions</h2>
+  <section id="services" class="py-24 px-6 container mx-auto">
+    <div class="text-center mb-16">
+      <h2 class="text-3xl font-bold text-gray-800 mb-4">소중한 치아를 지켜드립니다</h2>
+      <p class="text-gray-400">첨단 장비와 숙련된 의료진의 정밀한 진료</p>
+    </div>
+
+    <div class="grid md:grid-cols-4 gap-6">
+      <!-- Card -->
+      <div class="bg-sky/30 p-8 rounded-2xl hover:bg-sky/50 transition duration-300 group cursor-pointer" onclick="toggleDental()">
+        <div class="bg-white w-14 h-14 rounded-xl flex items-center justify-center text-3xl mb-6 shadow-sm">🦷</div>
+        <h3 class="text-xl font-bold mb-2">충치 치료</h3>
+        <p class="text-sm text-gray-500 leading-relaxed">
+          초기 진단부터 신경치료까지, 자연 치아를 최대한 보존합니다.
+        </p>
       </div>
-      
-      <div class="grid md:grid-cols-3 gap-8">
-        <!-- Card -->
-        <div class="bg-white p-8 rounded-3xl shadow-sm hover:shadow-xl hover:-translate-y-1 transition duration-300 cursor-pointer" onclick="toggleDental()">
-          <div class="w-14 h-14 bg-blue-100 rounded-2xl flex items-center justify-center text-blue-600 mb-6 text-2xl">🦷</div>
-          <h3 class="text-xl font-bold text-slate-900 mb-3">Implants</h3>
-          <p class="text-slate-500 leading-relaxed">Restore your smile with permanent, natural-looking tooth replacements.</p>
-        </div>
-        <!-- Card -->
-        <div class="bg-white p-8 rounded-3xl shadow-sm hover:shadow-xl hover:-translate-y-1 transition duration-300 cursor-pointer" onclick="toggleDental()">
-          <div class="w-14 h-14 bg-teal-100 rounded-2xl flex items-center justify-center text-teal-600 mb-6 text-2xl">✨</div>
-          <h3 class="text-xl font-bold text-slate-900 mb-3">Whitening</h3>
-          <p class="text-slate-500 leading-relaxed">Brighten your teeth up to 8 shades in a single visiting session.</p>
-        </div>
-        <!-- Card -->
-        <div class="bg-white p-8 rounded-3xl shadow-sm hover:shadow-xl hover:-translate-y-1 transition duration-300 cursor-pointer" onclick="toggleDental()">
-          <div class="w-14 h-14 bg-purple-100 rounded-2xl flex items-center justify-center text-purple-600 mb-6 text-2xl">🛡️</div>
-          <h3 class="text-xl font-bold text-slate-900 mb-3">Checkups</h3>
-          <p class="text-slate-500 leading-relaxed">Routine examinations and cleaning to prevent future issues.</p>
-        </div>
+      <!-- Card -->
+      <div class="bg-sky/30 p-8 rounded-2xl hover:bg-sky/50 transition duration-300 group cursor-pointer" onclick="toggleDental()">
+        <div class="bg-white w-14 h-14 rounded-xl flex items-center justify-center text-3xl mb-6 shadow-sm">✨</div>
+        <h3 class="text-xl font-bold mb-2">심미 보철</h3>
+        <p class="text-sm text-gray-500 leading-relaxed">
+          라미네이트, 올세라믹 등 티 나지 않는 자연스러운 아름다움.
+        </p>
+      </div>
+      <!-- Card -->
+      <div class="bg-sky/30 p-8 rounded-2xl hover:bg-sky/50 transition duration-300 group cursor-pointer" onclick="toggleDental()">
+        <div class="bg-white w-14 h-14 rounded-xl flex items-center justify-center text-3xl mb-6 shadow-sm">🔩</div>
+        <h3 class="text-xl font-bold mb-2">임플란트</h3>
+        <p class="text-sm text-gray-500 leading-relaxed">
+          3D CT 분석을 통한 안전하고 튼튼한 맞춤형 임플란트 식립.
+        </p>
+      </div>
+      <!-- Card -->
+      <div class="bg-sky/30 p-8 rounded-2xl hover:bg-sky/50 transition duration-300 group cursor-pointer" onclick="toggleDental()">
+        <div class="bg-white w-14 h-14 rounded-xl flex items-center justify-center text-3xl mb-6 shadow-sm">😬</div>
+        <h3 class="text-xl font-bold mb-2">치아 교정</h3>
+        <p class="text-sm text-gray-500 leading-relaxed">
+          소아 교정부터 성인 투명 교정까지, 가지런한 치열을 만듭니다.
+        </p>
       </div>
     </div>
   </section>
 
-  <!-- Reservation Modal -->
-  <div id="dental-modal" class="fixed inset-0 bg-slate-900/50 backdrop-blur-sm z-[60] hidden flex items-center justify-center p-4">
-    <div class="bg-white w-full max-w-md rounded-2xl shadow-2xl relative overflow-hidden">
-      <div class="bg-dental-blue p-6 text-center">
-        <h2 class="text-2xl font-bold text-white">Book Appointment</h2>
-        <p class="text-blue-100 text-sm">We'll confirm your time shortly.</p>
+  <!-- Review/Stats -->
+  <section class="py-20 bg-gray-50">
+    <div class="container mx-auto px-6 grid md:grid-cols-3 gap-12 text-center">
+      <div>
+        <div class="text-4xl font-bold text-teal mb-2">15,000+</div>
+        <div class="text-gray-500 font-medium">누적 진료 환자</div>
       </div>
-      <button onclick="toggleDental()" class="absolute top-4 right-4 text-white/70 hover:text-white">&times;</button>
+      <div>
+        <div class="text-4xl font-bold text-teal mb-2">10년</div>
+        <div class="text-gray-500 font-medium">한 자리에서 지켜온 신뢰</div>
+      </div>
+      <div>
+         <div class="text-4xl font-bold text-teal mb-2">98%</div>
+        <div class="text-gray-500 font-medium">환자 만족도</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Modal -->
+  <div id="dental-modal" class="fixed inset-0 bg-blueGray/50 backdrop-blur-sm z-[60] hidden flex items-center justify-center p-4">
+    <div class="bg-white w-full max-w-md p-8 rounded-2xl shadow-2xl relative">
+      <button onclick="toggleDental()" class="absolute top-4 right-4 text-gray-400 hover:text-teal text-xl">&times;</button>
       
-      <div class="p-8">
-        <form class="space-y-4" onsubmit="event.preventDefault(); alert('Booking Request Sent!'); toggleDental();">
-          <div>
-            <label class="font-bold text-xs text-slate-400 uppercase">Full Name</label>
-            <input type="text" class="w-full border-2 border-slate-100 rounded-xl p-3 mt-1 focus:border-dental-blue outline-none transition font-bold text-slate-700">
-          </div>
-          <div>
-            <label class="font-bold text-xs text-slate-400 uppercase">Reason for Visit</label>
-            <select class="w-full border-2 border-slate-100 rounded-xl p-3 mt-1 focus:border-dental-blue outline-none transition font-bold text-slate-700">
-              <option>General Checkup</option>
-              <option>Tooth Pain</option>
-              <option>Cleaning</option>
-              <option>Whitening</option>
-            </select>
-          </div>
-          <div class="grid grid-cols-2 gap-4">
-             <div>
-              <label class="font-bold text-xs text-slate-400 uppercase">Date</label>
-              <input type="date" class="w-full border-2 border-slate-100 rounded-xl p-3 mt-1 focus:border-dental-blue outline-none transition font-bold text-slate-700">
-            </div>
-             <div>
-              <label class="font-bold text-xs text-slate-400 uppercase">Phone</label>
-              <input type="tel" class="w-full border-2 border-slate-100 rounded-xl p-3 mt-1 focus:border-dental-blue outline-none transition font-bold text-slate-700">
-            </div>
-          </div>
-          
-          <button class="w-full bg-slate-900 text-white font-bold py-4 rounded-xl mt-4 hover:bg-slate-800 transition shadow-lg">
-            Confirm Booking
-          </button>
-        </form>
+      <div class="text-center mb-8">
+        <h2 class="text-2xl font-bold text-gray-800 mb-1">진료 예약</h2>
+        <p class="text-xs text-gray-400">대기 시간 없이 편안하게 진료받으세요.</p>
       </div>
+
+      <form class="space-y-4" onsubmit="event.preventDefault(); alert('예약 접수가 완료되었습니다.'); toggleDental();">
+        <input type="text" placeholder="성함" class="w-full bg-gray-50 border border-gray-100 p-4 rounded-xl outline-none focus:border-teal transition text-sm font-bold">
+        <input type="tel" placeholder="연락처" class="w-full bg-gray-50 border border-gray-100 p-4 rounded-xl outline-none focus:border-teal transition text-sm font-bold">
+        
+        <div class="grid grid-cols-2 gap-4">
+          <input type="date" class="bg-gray-50 border border-gray-100 p-4 rounded-xl outline-none focus:border-teal transition text-sm text-gray-500">
+          <input type="time" class="bg-gray-50 border border-gray-100 p-4 rounded-xl outline-none focus:border-teal transition text-sm text-gray-500">
+        </div>
+        
+        <textarea rows="3" placeholder="불편하신 증상을 간단히 적어주세요." class="w-full bg-gray-50 border border-gray-100 p-4 rounded-xl outline-none focus:border-teal transition text-sm font-bold resize-none"></textarea>
+
+        <button class="w-full bg-teal text-white py-4 rounded-xl font-bold shadow-lg hover:bg-teal-600 transition mt-2">
+          예약 확정
+        </button>
+      </form>
     </div>
   </div>
 

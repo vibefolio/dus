@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>아틀리에 백 - 장인의 숨결</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Noto+Sans+KR:wght@300;400;500&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            leather: '#8B4513',
+            cream: '#FDFBF7',
+            stitch: '#D2691E',
+          },
+          fontFamily: {
+            serif: ['Playfair Display', 'serif'],
+            sans: ['Noto Sans KR', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-cream text-gray-800 font-sans">
+
+  <!-- Nav -->
+  <nav class="fixed w-full z-50 px-10 py-6 bg-cream/90 backdrop-blur-sm flex justify-between items-center border-b border-gray-200">
+    <div class="text-2xl font-serif italic text-leather tracking-wide">
+      L'Atelier
+    </div>
+    <div class="hidden md:flex gap-12 text-sm tracking-widest font-light text-gray-500">
+      <a href="#collection" class="hover:text-leather transition">HANDBAGS</a>
+      <a href="#limited" class="hover:text-leather transition">LIMITED</a>
+      <a href="#about" class="hover:text-leather transition">CRAFTSMANSHIP</a>
+    </div>
+    <div class="flex gap-6 text-sm">
+      <button onclick="toggleBag()" class="hover:text-leather transition">My Account</button>
+      <button onclick="toggleBag()" class="hover:text-leather transition">Bag (0)</button>
+    </div>
+  </nav>
+
+  <!-- Hero Slider -->
+  <header class="h-screen relative overflow-hidden flex items-center justify-center">
+    <div class="absolute inset-0 z-0">
+      <div class="w-full h-full bg-[url('https://images.unsplash.com/photo-1584917865442-de89df76afd3?q=80&w=1920')] bg-cover bg-center opacity-90 scale-105 animate-slow-pan"></div>
+    </div>
+    
+    <div class="relative z-10 text-center bg-cream/80 p-12 md:p-16 max-w-2xl mx-auto shadow-2xl backdrop-blur-sm border 2 border-white/50">
+      <span class="text-xs tracking-[0.4em] text-leather uppercase mb-4 block">Handcrafted in Seoul</span>
+      <h1 class="text-5xl md:text-7xl font-serif italic mb-6 leading-tight text-gray-900">
+        The Art of <br> Leather.
+      </h1>
+      <p class="text-gray-600 font-light leading-relaxed mb-10 mx-auto max-w-md">
+        최상급 이탈리아 가죽과 장인의 손길로 완성된 불변의 가치. <br>
+        시간이 흐를수록 깊어지는 아름다움을 경험하세요.
+      </p>
+      <button onclick="toggleBag()" class="bg-leather text-white px-10 py-4 text-xs tracking-[0.2em] hover:bg-gray-900 transition uppercase">
+        Discover Collection
+      </button>
+    </div>
+  </header>
+
+  <!-- Product Showcase -->
+  <section id="collection" class="py-24 px-10">
+    <div class="container mx-auto">
+      <div class="text-center mb-20">
+        <h2 class="text-4xl font-serif italic text-gray-800 mb-4">Signature Collection</h2>
+        <div class="w-24 h-px bg-leather mx-auto"></div>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-12">
+        <!-- Item -->
+        <div class="group cursor-pointer" onclick="toggleBag()">
+          <div class="bg-white p-12 mb-6 shadow-sm hover:shadow-xl transition duration-500 relative aspect-[4/5] flex items-center justify-center">
+             <img src="https://images.unsplash.com/photo-1590874103328-36070227f849?q=80&w=600" class="w-full h-full object-contain group-hover:scale-110 transition duration-700">
+             <div class="absolute inset-0 border border-transparent group-hover:border-leather/20 transition duration-500 m-4"></div>
+          </div>
+          <div class="text-center">
+            <h3 class="text-xl font-serif italic mb-1">Classic Tote</h3>
+            <p class="text-xs text-gray-400 uppercase tracking-widest mb-3">Vegetable Tanned Leather</p>
+            <p class="text-leather font-medium">₩ 450,000</p>
+          </div>
+        </div>
+        <!-- Item -->
+        <div class="group cursor-pointer md:-mt-12" onclick="toggleBag()">
+          <div class="bg-white p-12 mb-6 shadow-sm hover:shadow-xl transition duration-500 relative aspect-[4/5] flex items-center justify-center">
+             <img src="https://images.unsplash.com/photo-1591561954557-26941169b49e?q=80&w=600" class="w-full h-full object-contain group-hover:scale-110 transition duration-700">
+             <div class="absolute inset-0 border border-transparent group-hover:border-leather/20 transition duration-500 m-4"></div>
+          </div>
+          <div class="text-center">
+            <h3 class="text-xl font-serif italic mb-1">Mini Saddle</h3>
+            <p class="text-xs text-gray-400 uppercase tracking-widest mb-3">Smooth Calfskin</p>
+            <p class="text-leather font-medium">₩ 380,000</p>
+          </div>
+        </div>
+        <!-- Item -->
+        <div class="group cursor-pointer" onclick="toggleBag()">
+          <div class="bg-white p-12 mb-6 shadow-sm hover:shadow-xl transition duration-500 relative aspect-[4/5] flex items-center justify-center">
+             <img src="https://images.unsplash.com/photo-1566150905458-1bf1fc113f0d?q=80&w=600" class="w-full h-full object-contain group-hover:scale-110 transition duration-700">
+             <div class="absolute inset-0 border border-transparent group-hover:border-leather/20 transition duration-500 m-4"></div>
+          </div>
+          <div class="text-center">
+            <h3 class="text-xl font-serif italic mb-1">Canvas Bucket</h3>
+            <p class="text-xs text-gray-400 uppercase tracking-widest mb-3">Canvas & Leather</p>
+            <p class="text-leather font-medium">₩ 320,000</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Crafts -->
+  <section id="about" class="py-24 bg-leather text-cream">
+    <div class="container mx-auto px-10 grid md:grid-cols-2 gap-16 items-center">
+      <div class="space-y-8">
+        <h2 class="text-4xl font-serif italic leading-tight">
+          Details create <br> the big picture.
+        </h2>
+        <p class="font-light leading-loose text-cream/80 max-w-md">
+          한 땀 한 땀, 새들 스티치로 완성되는 견고함. <br>
+          아틀리에의 장인 정신은 보이지 않는 곳에서 더욱 빛을 발합니다. <br>
+          우리는 가방 그 이상의 예술 작품을 만듭니다.
+        </p>
+        <button class="border-b border-cream pb-1 hover:text-white transition">Read Our Story</button>
+      </div>
+      <div class="grid grid-cols-2 gap-4">
+        <img src="https://images.unsplash.com/photo-1598532163257-ae3c6b2524b6?q=80&w=400" class="w-full aspect-square object-cover grayscale opacity-80 hover:opacity-100 transition duration-500">
+        <img src="https://images.unsplash.com/photo-1537204696486-967f1b7198c8?q=80&w=400" class="w-full aspect-square object-cover grayscale opacity-80 hover:opacity-100 transition duration-500 mt-8">
+      </div>
+    </div>
+  </section>
+
+  <!-- Modal -->
+  <div id="bag-modal" class="fixed inset-0 bg-leather/40 backdrop-blur-sm z-[60] hidden flex items-center justify-center p-4">
+    <div class="bg-cream w-full max-w-4xl h-[500px] flex shadow-2xl relative">
+      <button onclick="toggleBag()" class="absolute top-4 right-4 text-gray-400 hover:text-leather text-2xl z-20">&times;</button>
+      
+      <!-- Left: Image -->
+      <div class="w-1/2 bg-gray-100 hidden md:block">
+        <img src="https://images.unsplash.com/photo-1590874103328-36070227f849?q=80&w=600" class="w-full h-full object-cover">
+      </div>
+      
+      <!-- Right: Details -->
+      <div class="w-full md:w-1/2 p-12 flex flex-col justify-center">
+        <span class="text-xs uppercase tracking-widest text-gray-400 mb-2">Best Seller</span>
+        <h2 class="text-3xl font-serif italic text-gray-900 mb-4">Classic Tote Bag</h2>
+        <p class="text-gray-500 font-light text-sm leading-relaxed mb-6">
+          이탈리아 베라펠레 협회 인증 베지터블 가죽. <br>
+          넉넉한 수납공간과 가벼운 무게로 데일리 백으로 제격입니다.
+        </p>
+        
+        <div class="flex gap-4 mb-8">
+           <div class="w-8 h-8 rounded-full bg-[#8B4513] border-2 border-gray-300 cursor-pointer hover:scale-110 transition"></div>
+           <div class="w-8 h-8 rounded-full bg-black border-2 border-transparent cursor-pointer hover:scale-110 transition"></div>
+           <div class="w-8 h-8 rounded-full bg-[#D2691E] border-2 border-transparent cursor-pointer hover:scale-110 transition"></div>
+        </div>
+        
+        <div class="flex justify-between items-center border-t border-gray-200 pt-8">
+           <span class="text-2xl font-serif text-leather">₩ 450,000</span>
+           <button class="bg-gray-900 text-white px-8 py-3 text-xs tracking-[0.2em] uppercase hover:bg-leather transition" onclick="alert('Added to Bag'); toggleBag();">
+             Add to Bag
+           </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <style>
+    .animate-slow-pan { animation: pan 30s infinite alternate linear; }
+    @keyframes pan { from { transform: scale(1.1); } to { transform: scale(1.0); } }
+  </style>
+
+  <script>
+    function toggleBag() {
+      const modal = document.getElementById('bag-modal');
+      if(modal.classList.contains('hidden')) {
+        modal.classList.remove('hidden');
+      } else {
+        modal.classList.add('hidden');
+      }
+    }
+  </script>
+</body>
+</html>

@@ -1,167 +1,180 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Invest Future - Wealth Management</title>
+  <title>인베스트 퓨처 - 자산 관리 파트너</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;600;800&family=Playfair+Display:ital@0;1&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;600;800&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
   <script>
     tailwind.config = {
       theme: {
         extend: {
           colors: {
-            ivy: '#0f172a',
-            gold: '#d4af37',
+            deepSea: '#0F172A',
+            emerald: '#10B981',
+            slate: '#64748B',
           },
           fontFamily: {
-            sans: ['Manrope', 'sans-serif'],
-            serif: ['Playfair Display', 'serif'],
+            display: ['Manrope', 'sans-serif'],
+            sans: ['Noto Sans KR', 'sans-serif'],
           }
         }
       }
     }
   </script>
 </head>
-<body class="bg-gray-50 text-gray-800 font-sans">
-
-  <!-- Ticker (Top Bar) -->
-  <div class="bg-ivy text-xs text-gray-400 py-2 overflow-hidden whitespace-nowrap border-b border-gray-800">
-    <div class="inline-flex gap-8 animate-[marquee_20s_linear_infinite]">
-      <span>S&P 500 <span class="text-green-500">▲ 1.2%</span></span>
-      <span>NASDAQ <span class="text-green-500">▲ 0.8%</span></span>
-      <span>DOW JONE <span class="text-red-500">▼ 0.3%</span></span>
-      <span>GOLD <span class="text-green-500">▲ 0.5%</span></span>
-       <span>S&P 500 <span class="text-green-500">▲ 1.2%</span></span>
-      <span>NASDAQ <span class="text-green-500">▲ 0.8%</span></span>
-      <span>DOW JONE <span class="text-red-500">▼ 0.3%</span></span>
-      <span>GOLD <span class="text-green-500">▲ 0.5%</span></span>
-    </div>
-  </div>
+<body class="bg-gray-50 text-deepSea font-sans">
 
   <!-- Nav -->
-  <nav class="bg-white border-b border-gray-200 sticky top-0 z-50">
+  <nav class="bg-white border-b border-gray-100">
     <div class="container mx-auto px-6 py-4 flex justify-between items-center">
-      <div class="font-serif font-bold text-2xl text-ivy">Invest<span class="text-gold italic">Future</span></div>
-      <div class="hidden md:flex gap-8 text-sm font-semibold text-gray-600">
-         <a href="#" class="hover:text-ivy transition">Private Wealth</a>
-         <a href="#" class="hover:text-ivy transition">Corporate</a>
-         <a href="#" class="hover:text-ivy transition">Insights</a>
+      <div class="text-2xl font-display font-extrabold flex items-center gap-2 tracking-tight">
+        <svg class="w-8 h-8 text-emerald" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path></svg>
+        InvestFuture
       </div>
-      <button onclick="toggleFinance()" class="border border-ivy text-ivy px-6 py-2 text-sm font-bold hover:bg-ivy hover:text-white transition">
-        Client Login
-      </button>
+      <div class="hidden md:flex gap-8 text-sm font-medium text-slate">
+        <a href="#services" class="hover:text-emerald transition">상품 안내</a>
+        <a href="#market" class="hover:text-emerald transition">시장 전망</a>
+        <a href="#about" class="hover:text-emerald transition">회사 소개</a>
+      </div>
+      <div class="flex gap-3">
+        <button class="text-sm font-bold text-slate hover:text-deepSea">로그인</button>
+        <button onclick="toggleFinance()" class="bg-deepSea text-white px-5 py-2 rounded-lg text-sm font-bold hover:bg-slate-800 transition">상담 신청</button>
+      </div>
     </div>
   </nav>
 
-  <!-- Hero -->
-  <header class="relative bg-ivy text-white py-24 md:py-32 overflow-hidden">
-    <div class="absolute inset-0 z-0">
-       <div class="absolute right-0 top-0 w-1/2 h-full bg-gradient-to-l from-gray-800 to-transparent opacity-30"></div>
-       <!-- Grid Lines -->
-       <div class="absolute inset-0" style="background-image: linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px); background-size: 50px 50px;"></div>
-    </div>
-
-    <div class="container mx-auto px-6 relative z-10 grid md:grid-cols-2 gap-16 items-center">
-      <div class="space-y-8">
-        <h1 class="text-5xl md:text-6xl font-serif leading-tight">
-          Preserving Wealth for <br> <span class="text-gold italic">Generations.</span>
+  <!-- Hero with Chart Graphic -->
+  <header class="py-20 px-6 container mx-auto">
+    <div class="bg-deepSea text-white rounded-3xl p-12 md:p-20 relative overflow-hidden grid md:grid-cols-2 gap-12 items-center">
+      <!-- Background Grid -->
+      <div class="absolute inset-0 opacity-10" style="background-image: linear-gradient(#334155 1px, transparent 1px), linear-gradient(to right, #334155 1px, transparent 1px); background-size: 40px 40px;"></div>
+      
+      <div class="relative z-10 space-y-6">
+        <span class="text-emerald font-bold tracking-widest uppercase text-xs">Smart Asset Management</span>
+        <h1 class="text-5xl md:text-6xl font-display font-extrabold leading-tight">
+          Grow Your Wealth <br> with <span class="text-emerald">Confidence.</span>
         </h1>
-        <p class="text-gray-400 text-lg leading-relaxed max-w-lg">
-          We provide bespoke investment strategies tailored to your unique financial landscape. 
-          Navigate volatility with confidence.
+        <p class="text-slate-300 text-lg leading-relaxed max-w-md">
+          변동성이 큰 시장에서도 안정적인 수익을 추구합니다. <br>
+          AI 기반의 데이터 분석과 전문가의 통찰력으로 당신의 자산을 지킵니다.
         </p>
-        <div class="flex gap-4">
-          <button onclick="toggleFinance()" class="bg-gold text-ivy px-8 py-4 font-bold hover:bg-white transition">Get Consultation</button>
-          <button class="text-white border-b border-gray-600 pb-1 hover:text-gold hover:border-gold transition">Our Philosophy &rarr;</button>
+        <div class="flex gap-4 pt-4">
+          <button onclick="toggleFinance()" class="bg-emerald text-white px-8 py-4 rounded-xl font-bold hover:bg-emerald/90 transition shadow-lg shadow-emerald/20">
+            포트폴리오 진단받기
+          </button>
         </div>
       </div>
-      
-      <!-- Chart Graphic -->
-      <div class="relative bg-gray-800/50 backdrop-blur border border-white/10 p-6 rounded-xl shadow-2xl">
-         <div class="flex justify-between items-center mb-8">
-           <div>
-             <div class="text-xs text-gray-400 uppercase">Total Assets managed</div>
-             <div class="text-3xl font-bold text-white">$4.2 Billion</div>
-           </div>
-           <div class="text-green-500 font-bold bg-green-500/10 px-2 py-1 rounded text-xs">+12.5% YTD</div>
-         </div>
-         <!-- Fake Chart -->
-         <div class="h-48 flex items-end gap-2">
-            <div class="w-1/6 bg-gray-600 h-[40%] rounded-t opacity-50"></div>
-            <div class="w-1/6 bg-gray-600 h-[55%] rounded-t opacity-50"></div>
-            <div class="w-1/6 bg-gray-600 h-[45%] rounded-t opacity-50"></div>
-            <div class="w-1/6 bg-gold h-[70%] rounded-t shadow-[0_0_15px_rgba(212,175,55,0.5)]"></div>
-            <div class="w-1/6 bg-gold h-[85%] rounded-t shadow-[0_0_15px_rgba(212,175,55,0.5)]"></div>
-            <div class="w-1/6 bg-gold h-[100%] rounded-t shadow-[0_0_15px_rgba(212,175,55,0.5)]"></div>
-         </div>
-         <div class="mt-4 flex justify-between text-xs text-gray-500 border-t border-gray-700 pt-2">
-           <span>Q1</span><span>Q2</span><span>Q3</span><span>Q4 Expected</span>
-         </div>
+
+      <!-- Live Chart Mockup -->
+      <div class="relative z-10 bg-white/10 backdrop-blur border border-white/20 rounded-2xl p-6 shadow-2xl">
+        <div class="flex justify-between items-center mb-6 border-b border-white/10 pb-4">
+          <div>
+            <div class="text-xs text-slate-300">Total Assets</div>
+            <div class="text-2xl font-bold font-display">₩ 1,245,000,000</div>
+          </div>
+          <div class="text-right">
+            <div class="text-xs text-slate-300">Return</div>
+            <div class="text-Emerald-400 font-bold text-emerald">+12.5% ↗</div>
+          </div>
+        </div>
+        <!-- Bars -->
+        <div class="flex justify-between items-end h-40 gap-2">
+          <div class="w-full bg-emerald/20 rounded-t h-[40%]"></div>
+          <div class="w-full bg-emerald/30 rounded-t h-[30%]"></div>
+          <div class="w-full bg-emerald/40 rounded-t h-[50%]"></div>
+          <div class="w-full bg-emerald/50 rounded-t h-[45%]"></div>
+          <div class="w-full bg-emerald/60 rounded-t h-[60%]"></div>
+          <div class="w-full bg-emerald/80 rounded-t h-[75%]"></div>
+          <div class="w-full bg-emerald rounded-t h-[85%] relative group">
+            <div class="absolute -top-8 left-1/2 -translate-x-1/2 bg-white text-deepSea text-xs font-bold px-2 py-1 rounded shadow opacity-0 group-hover:opacity-100 transition">Today</div>
+          </div>
+        </div>
       </div>
     </div>
   </header>
 
-  <!-- Stats -->
-  <section class="bg-white py-16 border-b border-gray-100">
-    <div class="container mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-8 text-center divide-x divide-gray-100">
-      <div>
-        <div class="text-4xl font-serif font-bold text-ivy mb-2">35+</div>
-        <div class="text-xs font-bold text-gray-400 uppercase">Years Experience</div>
+  <!-- Products -->
+  <section id="services" class="py-20 px-6 container mx-auto">
+    <div class="mb-12">
+      <h2 class="text-3xl font-display font-bold mb-4">투자 상품</h2>
+      <p class="text-slate">고객의 성향에 맞춘 최적의 포트폴리오를 제안합니다.</p>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-8">
+      <!-- Card 1 -->
+      <div class="bg-white p-8 rounded-2xl border border-gray-100 shadow-sm hover:shadow-xl hover:border-emerald transition duration-300 group cursor-pointer" onclick="toggleFinance()">
+        <div class="w-12 h-12 bg-blue-50 text-blue-600 rounded-xl flex items-center justify-center mb-6">🛡️</div>
+        <h3 class="text-xl font-bold mb-2 text-deepSea">안정형 펀드</h3>
+        <p class="text-sm text-slate leading-relaxed mb-6">
+          채권 및 국공채 위주의 포트폴리오로 원금 손실 위험을 최소화합니다.
+        </p>
+        <div class="text-2xl font-bold text-blue-600 mb-1">연 4.5%</div>
+        <div class="text-xs text-slate">예상 수익률</div>
       </div>
-      <div>
-        <div class="text-4xl font-serif font-bold text-ivy mb-2">250</div>
-        <div class="text-xs font-bold text-gray-400 uppercase">Family Offices</div>
+      <!-- Card 2 -->
+      <div class="bg-white p-8 rounded-2xl border border-gray-100 shadow-sm hover:shadow-xl hover:border-emerald transition duration-300 group cursor-pointer" onclick="toggleFinance()">
+        <div class="w-12 h-12 bg-emerald-50 text-emerald rounded-xl flex items-center justify-center mb-6">📈</div>
+        <h3 class="text-xl font-bold mb-2 text-deepSea">밸런스 펀드</h3>
+        <p class="text-sm text-slate leading-relaxed mb-6">
+          주식과 채권의 적절한 배분을 통해 안정성과 수익성을 동시에 추구합니다.
+        </p>
+        <div class="text-2xl font-bold text-emerald mb-1">연 8.2%</div>
+        <div class="text-xs text-slate">예상 수익률</div>
       </div>
-      <div>
-        <div class="text-4xl font-serif font-bold text-ivy mb-2">12</div>
-        <div class="text-xs font-bold text-gray-400 uppercase">Global Offices</div>
-      </div>
-       <div>
-        <div class="text-4xl font-serif font-bold text-ivy mb-2">0%</div>
-        <div class="text-xs font-bold text-gray-400 uppercase">Conflict of Interest</div>
+      <!-- Card 3 -->
+      <div class="bg-white p-8 rounded-2xl border border-gray-100 shadow-sm hover:shadow-xl hover:border-emerald transition duration-300 group cursor-pointer" onclick="toggleFinance()">
+        <div class="w-12 h-12 bg-purple-50 text-purple-600 rounded-xl flex items-center justify-center mb-6">🚀</div>
+        <h3 class="text-xl font-bold mb-2 text-deepSea">성장형 펀드</h3>
+        <p class="text-sm text-slate leading-relaxed mb-6">
+          미래 유망 산업과 기술주에 집중 투자하여 높은 수익을 목표로 합니다.
+        </p>
+        <div class="text-2xl font-bold text-purple-600 mb-1">연 15.0%+</div>
+        <div class="text-xs text-slate">예상 수익률</div>
       </div>
     </div>
   </section>
 
+  <!-- CTA -->
+  <section class="py-20 bg-gray-100">
+    <div class="container mx-auto px-6 text-center">
+      <h2 class="text-3xl font-display font-bold mb-6">투자의 시작, 전문가와 함께하세요</h2>
+      <button onclick="toggleFinance()" class="bg-white text-deepSea px-8 py-4 rounded-xl font-bold border border-gray-200 hover:border-emerald hover:text-emerald transition shadow-sm">
+        무료 투자 성향 분석
+      </button>
+    </div>
+  </section>
+
   <!-- Modal -->
-  <div id="finance-modal" class="fixed inset-0 bg-ivy/80 backdrop-blur-sm z-[60] hidden flex items-center justify-center p-4">
-    <div class="bg-white w-full max-w-lg shadow-2xl relative p-0 overflow-hidden">
-      <div class="bg-ivy p-6 flex justify-between items-center text-white">
-        <h2 class="font-serif text-xl">Request Consultation</h2>
-        <button onclick="toggleFinance()" class="hover:text-gold">&times;</button>
-      </div>
+  <div id="finance-modal" class="fixed inset-0 bg-deepSea/80 z-[60] hidden flex items-center justify-center p-4">
+    <div class="bg-white w-full max-w-lg rounded-2xl p-10 relative shadow-2xl">
+      <button onclick="toggleFinance()" class="absolute top-4 right-4 text-gray-400 hover:text-deepSea">&times;</button>
       
-      <div class="p-8">
-        <form class="space-y-6" onsubmit="event.preventDefault(); alert('Request Submitted.'); toggleFinance();">
-          <div class="grid grid-cols-2 gap-6">
-            <div>
-              <label class="block text-xs font-bold text-gray-400 mb-1">FIRST NAME</label>
-              <input type="text" class="w-full border-b border-gray-300 py-2 focus:outline-none focus:border-ivy transition">
-            </div>
-            <div>
-              <label class="block text-xs font-bold text-gray-400 mb-1">LAST NAME</label>
-              <input type="text" class="w-full border-b border-gray-300 py-2 focus:outline-none focus:border-ivy transition">
-            </div>
-          </div>
-          <div>
-              <label class="block text-xs font-bold text-gray-400 mb-1">EMAIL</label>
-              <input type="email" class="w-full border-b border-gray-300 py-2 focus:outline-none focus:border-ivy transition">
-          </div>
-          <div>
-              <label class="block text-xs font-bold text-gray-400 mb-1">INVESTMENT AMOUNT</label>
-              <select class="w-full border-b border-gray-300 py-2 focus:outline-none focus:border-ivy bg-transparent text-gray-600">
-                <option>$500k - $1M</option>
-                <option>$1M - $5M</option>
-                <option>$5M+</option>
-              </select>
-          </div>
-          
-          <button class="w-full bg-ivy text-white font-bold py-4 hover:bg-gray-800 transition mt-6">
-            Secure Submission
-          </button>
-        </form>
+      <div class="text-center mb-8">
+        <h2 class="text-2xl font-bold text-deepSea mb-2">Consultation Request</h2>
+        <p class="text-sm text-slate">전문 PB가 1:1 맞춤 상담을 도와드립니다.</p>
       </div>
+
+      <form class="space-y-4" onsubmit="event.preventDefault(); alert('상담 신청이 완료되었습니다. 24시간 내로 연락드리겠습니다.'); toggleFinance();">
+        <div class="grid grid-cols-2 gap-4">
+           <input type="text" placeholder="성함" class="w-full bg-gray-50 border border-gray-200 p-3 rounded-lg outline-none focus:border-emerald text-sm text-deepSea">
+           <input type="tel" placeholder="연락처" class="w-full bg-gray-50 border border-gray-200 p-3 rounded-lg outline-none focus:border-emerald text-sm text-deepSea">
+        </div>
+        <input type="text" placeholder="투자 가능 금액 (예: 1억원)" class="w-full bg-gray-50 border border-gray-200 p-3 rounded-lg outline-none focus:border-emerald text-sm text-deepSea">
+        <select class="w-full bg-gray-50 border border-gray-200 p-3 rounded-lg outline-none focus:border-emerald text-sm text-slate">
+          <option>투자 목표 선택</option>
+          <option>노후 자금 마련</option>
+          <option>주택 마련</option>
+          <option>자녀 학자금</option>
+          <option>단기 자금 운용</option>
+        </select>
+        <textarea rows="3" placeholder="기타 문의사항" class="w-full bg-gray-50 border border-gray-200 p-3 rounded-lg outline-none focus:border-emerald text-sm text-deepSea resize-none"></textarea>
+        
+        <button class="w-full bg-emerald text-white font-bold py-4 rounded-lg hover:bg-emerald/90 transition shadow-lg mt-2">
+          신청하기
+        </button>
+      </form>
     </div>
   </div>
 

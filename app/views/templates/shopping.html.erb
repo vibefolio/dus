@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>더 에비뉴 - 프리미엄 편집샵</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Italiana&family=Noto+Sans+KR:wght@300;400;500&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            noir: '#222222',
+            taupe: '#8C857B',
+          },
+          fontFamily: {
+            serif: ['Italiana', 'serif'],
+            sans: ['Noto Sans KR', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-white text-noir font-sans">
+
+  <!-- Promo Bar -->
+  <div class="bg-black text-white text-xs text-center py-2 tracking-widest">
+    FREE SHIPPING ON ORDERS OVER ₩200,000
+  </div>
+
+  <!-- Nav -->
+  <nav class="sticky top-0 z-50 bg-white border-b border-gray-100">
+    <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+      <div class="hidden md:flex gap-6 text-sm font-medium text-gray-500">
+        <a href="#" class="hover:text-black transition">WOMEN</a>
+        <a href="#" class="hover:text-black transition">MEN</a>
+        <a href="#" class="hover:text-black transition">KIDS</a>
+      </div>
+      <div class="text-3xl font-serif text-center md:flex-1">
+        THE AVENUE
+      </div>
+      <div class="flex gap-4 text-sm font-medium text-gray-500">
+        <button class="hover:text-black transition">SEARCH</button>
+        <button class="hover:text-black transition" onclick="toggleShop()">CART (2)</button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Grid -->
+  <header class="grid md:grid-cols-2 h-[80vh]">
+    <div class="relative bg-[#f5f5f5] flex items-center justify-center group overflow-hidden cursor-pointer">
+      <img src="https://images.unsplash.com/photo-1483985988355-763728e1935b?q=80&w=1000" class="absolute inset-0 w-full h-full object-cover opacity-90 transition duration-700 group-hover:scale-105">
+      <div class="relative z-10 text-center bg-white/80 p-8 backdrop-blur-sm opacity-0 group-hover:opacity-100 transition duration-500 transform translate-y-4 group-hover:translate-y-0">
+        <h2 class="text-3xl font-serif mb-2">Winter Collection</h2>
+        <button class="text-xs border-b border-black pb-1 uppercase tracking-widest">Shop Women</button>
+      </div>
+    </div>
+    <div class="relative bg-[#f5f5f5] flex items-center justify-center group overflow-hidden cursor-pointer">
+      <img src="https://images.unsplash.com/photo-1490578474871-5234123ed10f?q=80&w=1000" class="absolute inset-0 w-full h-full object-cover opacity-90 transition duration-700 group-hover:scale-105">
+      <div class="relative z-10 text-center bg-white/80 p-8 backdrop-blur-sm opacity-0 group-hover:opacity-100 transition duration-500 transform translate-y-4 group-hover:translate-y-0">
+        <h2 class="text-3xl font-serif mb-2">New Arrivals</h2>
+        <button class="text-xs border-b border-black pb-1 uppercase tracking-widest">Shop Men</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Featured Products -->
+  <section class="py-24 px-6 container mx-auto">
+    <div class="text-center mb-16">
+      <h2 class="text-3xl font-serif mb-4">Curated for You</h2>
+      <div class="flex justify-center gap-8 text-sm text-gray-500 uppercase tracking-widest">
+        <button class="text-black font-bold border-b border-black pb-1">All</button>
+        <button class="hover:text-black transition">Clothing</button>
+        <button class="hover:text-black transition">Accessories</button>
+        <button class="hover:text-black transition">Shoes</button>
+      </div>
+    </div>
+
+    <div class="grid md:grid-cols-4 gap-8">
+      <!-- Product 1 -->
+      <div class="group cursor-pointer" onclick="toggleShop()">
+        <div class="relative overflow-hidden mb-4">
+          <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?q=80&w=600" class="w-full aspect-[3/4] object-cover">
+          <button class="absolute bottom-0 w-full bg-black text-white py-3 text-xs uppercase tracking-widest translate-y-full group-hover:translate-y-0 transition duration-300">Quick Add</button>
+        </div>
+        <h3 class="font-serif text-lg mb-1">Floral Silk Blouse</h3>
+        <p class="text-gray-500 text-sm">₩ 128,000</p>
+      </div>
+      <!-- Product 2 -->
+      <div class="group cursor-pointer" onclick="toggleShop()">
+        <div class="relative overflow-hidden mb-4">
+          <img src="https://images.unsplash.com/photo-1539109136881-3be0616acf4b?q=80&w=600" class="w-full aspect-[3/4] object-cover">
+           <span class="absolute top-2 left-2 bg-taupe text-white text-[10px] px-2 py-1 uppercase tracking-wide">New</span>
+          <button class="absolute bottom-0 w-full bg-black text-white py-3 text-xs uppercase tracking-widest translate-y-full group-hover:translate-y-0 transition duration-300">Quick Add</button>
+        </div>
+        <h3 class="font-serif text-lg mb-1">Wool Blend Coat</h3>
+        <p class="text-gray-500 text-sm">₩ 345,000</p>
+      </div>
+      <!-- Product 3 -->
+      <div class="group cursor-pointer" onclick="toggleShop()">
+        <div class="relative overflow-hidden mb-4">
+          <img src="https://images.unsplash.com/photo-1543163521-1bf539c55dd2?q=80&w=600" class="w-full aspect-[3/4] object-cover">
+          <button class="absolute bottom-0 w-full bg-black text-white py-3 text-xs uppercase tracking-widest translate-y-full group-hover:translate-y-0 transition duration-300">Quick Add</button>
+        </div>
+        <h3 class="font-serif text-lg mb-1">High-Rise Denim</h3>
+        <p class="text-gray-500 text-sm">₩ 89,000</p>
+         <div class="flex gap-1 mt-1">
+            <span class="w-3 h-3 bg-blue-800 rounded-full border border-gray-200"></span>
+            <span class="w-3 h-3 bg-black rounded-full border border-gray-200"></span>
+         </div>
+      </div>
+      <!-- Product 4 -->
+      <div class="group cursor-pointer" onclick="toggleShop()">
+        <div class="relative overflow-hidden mb-4">
+          <img src="https://images.unsplash.com/photo-1548036328-c9fa89d128fa?q=80&w=600" class="w-full aspect-[3/4] object-cover">
+          <button class="absolute bottom-0 w-full bg-black text-white py-3 text-xs uppercase tracking-widest translate-y-full group-hover:translate-y-0 transition duration-300">Quick Add</button>
+        </div>
+        <h3 class="font-serif text-lg mb-1">Cashmere Sweater</h3>
+        <p class="text-gray-500 text-sm">₩ 159,000</p>
+         <div class="flex gap-1 mt-1">
+            <span class="w-3 h-3 bg-[#f5f5dc] rounded-full border border-gray-200"></span>
+            <span class="w-3 h-3 bg-gray-400 rounded-full border border-gray-200"></span>
+         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Lookbook -->
+  <section class="py-20 bg-[#Fdfdfd]">
+    <div class="container mx-auto px-6 grid md:grid-cols-2 items-center gap-16">
+      <div class="relative p-8">
+        <div class="absolute top-0 left-0 w-32 h-32 border-t-2 border-l-2 border-taupe"></div>
+        <div class="absolute bottom-0 right-0 w-32 h-32 border-b-2 border-r-2 border-taupe"></div>
+        <img src="https://images.unsplash.com/photo-1469334031218-e382a71b716b?q=80&w=800" class="w-full grayscale hover:grayscale-0 transition duration-700">
+      </div>
+      <div class="space-y-6">
+        <span class="text-taupe uppercase tracking-widest text-sm">Editorial</span>
+        <h2 class="text-5xl font-serif leading-tight">
+          Effortless <br> Chic.
+        </h2>
+        <p class="text-gray-500 font-light leading-loose max-w-md">
+          꾸미지 않은 듯한 자연스러움. <br>
+          당신의 일상에 스며드는 감각적인 스타일링을 제안합니다. <br>
+          가장 편안한 순간에도 당신은 빛나야 하니까요.
+        </p>
+        <button class="bg-black text-white px-8 py-4 text-xs tracking-widest hover:bg-taupe transition">
+          VIEW LOOKBOOK
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Cart Drawer -->
+  <div id="shop-drawer" class="fixed inset-0 bg-black/50 z-[60] hidden flex justify-end">
+    <div class="bg-white w-full max-w-sm h-full flex flex-col animate-slide-in">
+      <div class="p-6 border-b border-gray-100 flex justify-between items-center bg-gray-50">
+        <h2 class="font-serif text-xl">Shopping Bag (2)</h2>
+        <button onclick="toggleShop()" class="text-gray-400 hover:text-black">&times;</button>
+      </div>
+      
+      <div class="flex-1 overflow-y-auto p-6 space-y-6">
+        <!-- Cart Item -->
+        <div class="flex gap-4">
+          <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?q=80&w=200" class="w-20 h-28 object-cover">
+          <div>
+            <h3 class="font-serif mb-1">Floral Silk Blouse</h3>
+            <p class="text-xs text-gray-500 mb-2">Size: S / Color: White</p>
+            <div class="flex justify-between items-center w-32">
+              <span class="text-sm font-medium">₩ 128,000</span>
+              <button class="text-xs text-gray-400 hover:text-red-500">Remove</button>
+            </div>
+          </div>
+        </div>
+         <!-- Cart Item -->
+        <div class="flex gap-4">
+          <img src="https://images.unsplash.com/photo-1543163521-1bf539c55dd2?q=80&w=200" class="w-20 h-28 object-cover">
+          <div>
+            <h3 class="font-serif mb-1">High-Rise Denim</h3>
+            <p class="text-xs text-gray-500 mb-2">Size: 26 / Color: Blue</p>
+            <div class="flex justify-between items-center w-32">
+              <span class="text-sm font-medium">₩ 89,000</span>
+              <button class="text-xs text-gray-400 hover:text-red-500">Remove</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="p-6 border-t border-gray-100 bg-gray-50">
+        <div class="flex justify-between mb-4 text-sm">
+          <span>Subtotal</span>
+          <span class="font-bold">₩ 217,000</span>
+        </div>
+        <p class="text-xs text-gray-400 mb-6 text-center">Shipping & taxes calculated at checkout</p>
+        <button class="w-full bg-black text-white py-4 uppercase tracking-widest text-xs hover:bg-taupe transition">
+          Checkout
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <style>
+    .animate-slide-in { animation: slideIn 0.3s ease-out; }
+    @keyframes slideIn { from { transform: translateX(100%); } to { transform: translateX(0); } }
+  </style>
+
+  <script>
+    function toggleShop() {
+      const drawer = document.getElementById('shop-drawer');
+      if(drawer.classList.contains('hidden')) {
+        drawer.classList.remove('hidden');
+      } else {
+        drawer.classList.add('hidden');
+      }
+    }
+  </script>
+</body>
+</html>

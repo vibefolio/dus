@@ -1,215 +1,164 @@
-<style>
-  :root {
-    --dining-bg: #fdfbf7; /* 따뜻한 미색 */
-    --dining-text: #2c2c2c;
-  }
-  .bg-paper { background-color: var(--dining-bg); }
-  .font-serif-kr { font-family: 'Noto Serif KR', serif; }
-</style>
-
-<div class="bg-paper text-[#2c2c2c] font-serif-kr min-h-screen">
-  
-  <!-- Navigation -->
-  <nav class="fixed top-0 w-full z-50 py-8 px-8 md:px-12 flex justify-between items-center mix-blend-difference text-[#2c2c2c] transition-all duration-300 hover:bg-white/90 hover:backdrop-blur-sm">
-    <button class="md:hidden text-2xl" onclick="toggleDiningMenu()">
-       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
-    </button>
-    <div class="text-xs tracking-[0.2em] uppercase font-sans hidden md:block">Est. 2024</div>
-    <div class="text-xl md:text-2xl font-semibold tracking-widest text-center absolute left-1/2 -translate-x-1/2">온 溫</div>
-    <div class="text-xs tracking-[0.2em] font-sans">
-      <a href="javascript:void(0)" onclick="toggleDiningReservation()" class="hover:underline">RESERVE</a>
-    </div>
-  </nav>
-
-  <!-- Hero -->
-  <section class="h-screen w-full relative">
-    <div class="absolute inset-x-0 bottom-0 top-[120px] md:top-0 md:left-[20%] md:right-[20%] flex items-center justify-center p-8">
-      <img src="https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?q=80&w=1920&auto=format&fit=crop" class="w-full h-full object-cover grayscale hover:grayscale-0 transition duration-[2s] ease-in-out opacity-90" alt="Fine Dining Plate">
-    </div>
-    <div class="absolute bottom-12 left-8 md:left-12 text-sm leading-relaxed hidden md:block opacity-70">
-      Korean Fine Dining<br>
-      Seoul, Hannam
-    </div>
-  </section>
-
-  <!-- Story -->
-  <section class="relative py-40 px-6 md:px-0 text-white">
-    <div class="absolute inset-0 z-0">
-      <img src="https://images.unsplash.com/photo-1559339352-11d035aa65de?q=80&w=1920" alt="Dining Background" class="w-full h-full object-cover">
-      <div class="absolute inset-0 bg-black/50"></div>
-    </div>
-    <div class="relative z-10 max-w-screen-md mx-auto text-center">
-      <div class="mb-12">
-        <span class="inline-block w-[1px] h-12 bg-white/50"></span>
-      </div>
-      <p class="text-lg md:text-2xl leading-[2] md:leading-[2.2] word-keep break-keep opacity-90 drop-shadow-lg">
-        제철의 미학을 담아<br>
-        가장 따뜻한 온기를 전합니다.<br><br>
-        자연에서 얻은 순수한 재료와<br>
-        오랜 시간 빚어낸 정성으로<br>
-        당신의 식탁을 완성합니다.
-      </p>
-    </div>
-  </section>
-
-  <!-- Menu -->
-  <section class="py-32 px-6 bg-white">
-    <div class="max-w-4xl mx-auto flex flex-col md:flex-row gap-16">
-      <div class="md:w-1/3">
-        <h3 class="text-3xl mb-4 font-light">점심 (Lunch)</h3>
-        <p class="text-sm text-gray-400 mb-8 font-sans tracking-wide">12:00 - 15:00</p>
-        <p class="leading-relaxed text-sm text-gray-600 mb-6">
-          제철 죽<br>
-          계절 샐러드<br>
-          오늘의 생선구이<br>
-          한우 떡갈비와 식사<br>
-          디저트와 차
-        </p>
-        <p class="text-lg">85,000</p>
-      </div>
-
-      <div class="md:w-1/3">
-        <h3 class="text-3xl mb-4 font-light">저녁 (Dinner)</h3>
-        <p class="text-sm text-gray-400 mb-8 font-sans tracking-wide">18:00 - 22:00</p>
-        <p class="leading-relaxed text-sm text-gray-600 mb-6">
-          주전부리<br>
-          특선 회와 해산물<br>
-          전복과 송이나물<br>
-          최상급 한우 구이<br>
-          솥밥과 탕<br>
-          다과상
-        </p>
-        <p class="text-lg">180,000</p>
-      </div>
-      
-      <div class="md:w-1/3 border-l border-gray-100 pl-8 hidden md:block">
-        <p class="text-xs text-gray-400 leading-loose">
-          * 계절과 식재료 수급 상황에 따라<br>
-          메뉴 구성이 변경될 수 있습니다.<br>
-          * 알러지가 있으신 분은<br>
-          예약 시 미리 말씀해 주세요.
-        </p>
-      </div>
-    </div>
-  </section>
-
-  <!-- Info -->
-  <section class="py-32 bg-[#1a1a1a] text-[#fdfbf7] text-center px-6">
-    <div class="max-w-xl mx-auto space-y-12">
-      <div class="text-4xl font-light">溫</div>
-      
-      <div class="space-y-2 text-sm md:text-base font-light opacity-80">
-        <p>서울 용산구 한남대로 99길 1</p>
-        <p>월 - 토 12:00 - 22:00 (일요일 휴무)</p>
-        <p class="pt-4 font-sans tracking-widest text-xs">02. 790. 0000</p>
-      </div>
-      
-      <a href="javascript:void(0)" onclick="toggleDiningReservation()" class="inline-block border border-[#fdfbf7]/30 px-12 py-4 text-xs tracking-[0.2em] hover:bg-[#fdfbf7] hover:text-[#1a1a1a] transition duration-500">
-        RESERVATION
-      </a>
-    </div>
-  </section>
-
-  <!-- Mobile Menu -->
-  <div id="dining-menu" class="fixed inset-0 bg-[#fdfbf7] z-[60] flex flex-col items-center justify-center text-center opacity-0 pointer-events-none transition-opacity duration-500">
-    <button onclick="toggleDiningMenu()" class="absolute top-8 right-8 text-2xl opacity-50 hover:opacity-100">&times;</button>
-    <nav class="font-serif-kr text-2xl space-y-8 tracking-widest text-[#2c2c2c]">
-      <a href="#" class="block hover:opacity-50 transition" onclick="toggleDiningMenu()">브랜드 소개</a>
-      <a href="#" class="block hover:opacity-50 transition" onclick="toggleDiningMenu()">점심 코스</a>
-      <a href="#" class="block hover:opacity-50 transition" onclick="toggleDiningMenu()">저녁 코스</a>
-      <a href="#" class="block hover:opacity-50 transition" onclick="toggleDiningMenu()">오시는 길</a>
-      <a href="javascript:void(0)" onclick="toggleDiningMenu(); toggleDiningReservation()" class="block mt-12 text-sm font-sans tracking-[0.2em] border border-[#2c2c2c] px-8 py-3">RESERVATION</a>
-    </nav>
-  </div>
-
-  <!-- Reservation Modal -->
-  <div id="dining-reservation" class="fixed inset-0 bg-black/60 z-[70] hidden opacity-0 transition-opacity duration-500 flex items-center justify-center p-4">
-    <div class="bg-[#fdfbf7] w-full max-w-lg p-10 md:p-16 relative shadow-2xl">
-      <button onclick="toggleDiningReservation()" class="absolute top-6 right-6 text-2xl text-gray-400 hover:text-black transition">&times;</button>
-      
-      <div class="text-center mb-10">
-        <h3 class="text-2xl font-serif-kr mb-2">예약하기</h3>
-        <p class="text-xs text-gray-400 font-sans tracking-widest uppercase">Table Reservation</p>
-      </div>
-
-      <form class="space-y-6 font-serif-kr text-sm" onsubmit="event.preventDefault(); alert('예약이 접수되었습니다. 문자로 안내해 드리겠습니다.'); toggleDiningReservation();">
-        <div class="grid grid-cols-2 gap-6">
-          <div>
-             <label class="block text-gray-400 text-xs mb-2">날짜</label>
-             <input type="date" class="w-full bg-transparent border-b border-gray-300 py-2 focus:outline-none focus:border-black" required>
-          </div>
-          <div>
-             <label class="block text-gray-400 text-xs mb-2">시간</label>
-             <select class="w-full bg-transparent border-b border-gray-300 py-2 focus:outline-none focus:border-black">
-               <option>Lunch 12:00</option>
-               <option>Lunch 13:30</option>
-               <option>Dinner 18:00</option>
-               <option>Dinner 19:30</option>
-             </select>
-          </div>
-        </div>
-
-        <div>
-           <label class="block text-gray-400 text-xs mb-2">인원</label>
-           <div class="flex gap-4">
-             <label class="flex-1 border border-gray-200 py-3 text-center cursor-pointer hover:border-black has-[:checked]:bg-[#2c2c2c] has-[:checked]:text-white transition">
-               <input type="radio" name="people" class="hidden" checked> 2명
-             </label>
-             <label class="flex-1 border border-gray-200 py-3 text-center cursor-pointer hover:border-black has-[:checked]:bg-[#2c2c2c] has-[:checked]:text-white transition">
-               <input type="radio" name="people" class="hidden"> 3-4명
-             </label>
-             <label class="flex-1 border border-gray-200 py-3 text-center cursor-pointer hover:border-black has-[:checked]:bg-[#2c2c2c] has-[:checked]:text-white transition">
-               <input type="radio" name="people" class="hidden"> 5명+
-             </label>
-           </div>
-        </div>
-
-        <div>
-          <label class="block text-gray-400 text-xs mb-2">예약자 성함</label>
-          <input type="text" class="w-full bg-transparent border-b border-gray-300 py-2 focus:outline-none focus:border-black" placeholder="홍길동" required>
-        </div>
-
-        <div>
-          <label class="block text-gray-400 text-xs mb-2">연락처</label>
-          <input type="tel" class="w-full bg-transparent border-b border-gray-300 py-2 focus:outline-none focus:border-black" placeholder="010-0000-0000" required>
-        </div>
-        
-        <div class="pt-6">
-          <button type="submit" class="w-full bg-[#2c2c2c] text-white py-4 hover:bg-black transition text-xs font-sans tracking-[0.2em]">
-            CONFIRM
-          </button>
-        </div>
-      </form>
-    </div>
-  </div>
-
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>온 (溫) - 따뜻함을 담은 다이닝</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300;500;700&family=Playfair+Display:ital@0;1&display=swap" rel="stylesheet">
   <script>
-    function toggleDiningMenu() {
-      const menu = document.getElementById('dining-menu');
-      if (menu.style.opacity === '1') {
-        menu.style.opacity = '0';
-        menu.style.pointerEvents = 'none';
-        document.body.style.overflow = '';
-      } else {
-        menu.style.opacity = '1';
-        menu.style.pointerEvents = 'auto';
-        document.body.style.overflow = 'hidden';
-      }
-    }
-
-    function toggleDiningReservation() {
-      const modal = document.getElementById('dining-reservation');
-      if (modal.classList.contains('hidden')) {
-        modal.classList.remove('hidden');
-        setTimeout(() => modal.classList.remove('opacity-0'), 10);
-        document.body.style.overflow = 'hidden';
-      } else {
-        modal.classList.add('opacity-0');
-        setTimeout(() => modal.classList.add('hidden'), 500);
-        if (document.getElementById('dining-menu').style.opacity !== '1') {
-           document.body.style.overflow = '';
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            dark: '#1a1a1a',
+            gold: '#D4AF37',
+            cream: '#f5f5f0',
+          },
+          fontFamily: {
+            serif: ['Playfair Display', 'serif'],
+            kr: ['Noto Serif KR', 'serif'],
+          }
         }
       }
     }
   </script>
-</div>
+</head>
+<body class="bg-dark text-cream font-kr font-light">
+
+  <nav class="fixed w-full z-50 px-6 py-6 flex justify-between items-center mix-blend-difference">
+    <div class="text-2xl font-serif italic text-white z-50">ON Dining</div>
+    <div class="hidden md:flex gap-8 text-sm text-gray-300 z-50">
+      <a href="#menu" class="hover:text-white transition">메뉴</a>
+      <a href="#story" class="hover:text-white transition">이야기</a>
+      <a href="#reservation" class="hover:text-white transition">예약</a>
+    </div>
+    <button onclick="toggleDining()" class="border border-white/30 px-6 py-2 text-xs hover:bg-white hover:text-black transition z-50">
+      RESERVE
+    </button>
+  </nav>
+
+  <!-- Hero -->
+  <header class="h-screen flex items-center justify-center relative overflow-hidden">
+    <!-- Background Video Placeholder -->
+    <div class="absolute inset-0 z-0">
+      <img src="https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?q=80&w=1920" class="w-full h-full object-cover opacity-40 zoom-effect">
+    </div>
+    
+    <div class="relative z-10 text-center space-y-8 animate-fade-in-up">
+      <div class="border-l border-r border-white/20 px-8 py-2 inline-block">
+        <span class="text-xs tracking-[0.5em] uppercase">Korean Contemporary</span>
+      </div>
+      <h1 class="text-6xl md:text-8xl font-serif italic leading-none">
+        Taste of <br> <span class="text-gold not-italic font-kr font-bold">溫 (ON)</span>
+      </h1>
+      <p class="text-sm md:text-base text-gray-300 tracking-wider font-kr max-w-lg mx-auto leading-loose">
+        계절의 온기를 담아낸 정성스러운 한 끼.<br>
+        시간이 멈춘 듯한 공간에서 깊은 맛의 여운을 즐기세요.
+      </p>
+    </div>
+
+    <div class="absolute bottom-10 left-1/2 -translate-x-1/2 text-xs tracking-widest text-gold animate-bounce">
+      SCROLL
+    </div>
+  </header>
+
+  <!-- Menu Section -->
+  <section id="menu" class="py-24 px-6 bg-[#161616]">
+    <div class="max-w-4xl mx-auto">
+      <div class="text-center mb-16">
+        <h2 class="font-serif text-4xl mb-4 italic text-gold">Dining Course</h2>
+        <p class="text-gray-500 text-sm">제철 식재료에 따라 구성이 변경될 수 있습니다.</p>
+      </div>
+
+      <div class="space-y-12">
+        <!-- Course A -->
+        <div class="group cursor-pointer" onclick="toggleDining()">
+          <div class="flex justify-between items-baseline border-b border-white/10 pb-4 mb-4">
+            <h3 class="text-2xl font-serif italic">Lunch Standard</h3>
+            <span class="text-gold font-bold">₩ 85,000</span>
+          </div>
+          <p class="text-gray-400 text-sm leading-relaxed mb-4">
+            아뮤즈 부쉬 • 제철 생선회 • 트러플 감자 뇨끼 • 한우 채끝 등심 (+2.0) 또는 이베리코 프렌치랙 • 셔벗 • 다과와 차
+          </p>
+          <div class="h-0 group-hover:h-48 overflow-hidden transition-all duration-700">
+            <img src="https://images.unsplash.com/photo-1559339352-11d035aa65de?q=80&w=800" class="w-full h-full object-cover rounded opacity-80">
+          </div>
+        </div>
+
+        <!-- Course B -->
+        <div class="group cursor-pointer" onclick="toggleDining()">
+          <div class="flex justify-between items-baseline border-b border-white/10 pb-4 mb-4">
+            <h3 class="text-2xl font-serif italic">Dinner Signature</h3>
+            <span class="text-gold font-bold">₩ 150,000</span>
+          </div>
+          <p class="text-gray-400 text-sm leading-relaxed mb-4">
+            웰컴 디쉬 • 캐비어와 도미 • 랍스터 비스크 • 전복 리조또 • 한우 안심 스테이크 • 셰프 스페셜 디저트 • 쁘띠 푸르
+          </p>
+          <div class="h-0 group-hover:h-48 overflow-hidden transition-all duration-700">
+             <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?q=80&w=800" class="w-full h-full object-cover rounded opacity-80">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Reservation Modal -->
+  <div id="dining-modal" class="fixed inset-0 bg-black/90 z-[60] hidden flex items-center justify-center p-4">
+    <div class="bg-[#1f1f1f] border border-white/10 w-full max-w-md p-10 relative">
+      <button onclick="toggleDining()" class="absolute top-4 right-4 text-gray-500 hover:text-white">✕</button>
+      
+      <div class="text-center mb-10">
+        <h2 class="font-serif text-3xl italic text-gold mb-2">Reservation</h2>
+        <p class="text-xs text-gray-500 tracking-widest">소중한 분과의 시간을 준비하겠습니다</p>
+      </div>
+
+      <form class="space-y-6" onsubmit="event.preventDefault(); alert('예약 신청이 접수되었습니다. (예약금 안내 문자 발송)'); toggleDining();">
+        <div class="grid grid-cols-2 gap-6">
+          <div class="space-y-2">
+            <label class="text-xs text-gold uppercase tracking-wider">Date</label>
+            <input type="date" class="w-full bg-transparent border-b border-gray-700 text-cream py-2 outline-none focus:border-gold transition text-sm">
+          </div>
+          <div class="space-y-2">
+            <label class="text-xs text-gold uppercase tracking-wider">Guests</label>
+            <select class="w-full bg-transparent border-b border-gray-700 text-cream py-2 outline-none focus:border-gold transition text-sm">
+              <option class="bg-dark">2 People</option>
+              <option class="bg-dark">3 People</option>
+              <option class="bg-dark">4 People</option>
+              <option class="bg-dark">5+ (Room)</option>
+            </select>
+          </div>
+        </div>
+        <div class="space-y-2">
+           <label class="text-xs text-gold uppercase tracking-wider">Name</label>
+           <input type="text" class="w-full bg-transparent border-b border-gray-700 text-cream py-2 outline-none focus:border-gold transition">
+        </div>
+        <div class="space-y-2">
+           <label class="text-xs text-gold uppercase tracking-wider">Contact</label>
+           <input type="tel" placeholder="010-0000-0000" class="w-full bg-transparent border-b border-gray-700 text-cream py-2 outline-none focus:border-gold transition">
+        </div>
+        
+        <button class="w-full bg-gold text-dark py-4 font-serif italic text-lg hover:bg-white transition mt-4">
+          Book Table
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <style>
+    .zoom-effect { animation: zoom 20s infinite alternate; }
+    @keyframes zoom { from { transform: scale(1); } to { transform: scale(1.1); } }
+  </style>
+
+  <script>
+    function toggleDining() {
+      const modal = document.getElementById('dining-modal');
+      if(modal.classList.contains('hidden')) {
+        modal.classList.remove('hidden');
+      } else {
+        modal.classList.add('hidden');
+      }
+    }
+  </script>
+</body>
+</html>
