@@ -72,10 +72,10 @@
                  onclick="openPreview('<%= template.preview_url %>', '<%= j template.title %>', '<%= template.category %>', <%= template.id %>)">
               
               <% 
-                thumb_src = if template.image_url.present?
-                              template.image_url
-                            elsif template.pc_image.attached?
+                thumb_src = if template.pc_image.attached?
                               url_for(template.pc_image)
+                            elsif template.image_url.present?
+                              template.image_url
                             else
                               nil
                             end

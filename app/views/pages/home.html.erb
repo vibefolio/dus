@@ -63,10 +63,10 @@
           <div class="card" style="padding: 0; overflow: hidden; border: none; box-shadow: var(--shadow-xl);">
             <div style="height: 240px; overflow: hidden; position: relative;">
               <% 
-                img_src = if template.image_url.present?
-                            template.image_url
-                          elsif template.pc_image.attached?
+                img_src = if template.pc_image.attached?
                             url_for(template.pc_image)
+                          elsif template.image_url.present?
+                            template.image_url
                           else
                             'https://via.placeholder.com/800x600?text=No+Image'
                           end
@@ -274,8 +274,8 @@
       지금 바로 문의하시면 무료 컨설팅과 견적을 받아보실 수 있습니다
     </p>
     <div style="display: flex; gap: var(--space-4); justify-content: center; flex-wrap: wrap;">
-      <%= link_to "무료 상담 신청", contact_path, class: "btn btn-accent btn-lg" %>
-      <%= link_to "포트폴리오 보기", portfolio_path, class: "btn btn-outline btn-lg", style: "color: white; border-color: white;" %>
+      <%= link_to "디자인 템플릿 보기", design_templates_path, class: "btn btn-accent btn-lg" %>
+      <%= link_to "무료 상담 및 문의하기", contact_path, class: "btn btn-outline btn-lg", style: "color: white; border-color: white;" %>
     </div>
   </div>
 </section>
