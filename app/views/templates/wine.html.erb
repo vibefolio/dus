@@ -1,206 +1,152 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Wine Social - Exclusive Lounge</title>
+  <title>와인 소셜 - 도시의 밤</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Italiana&family=Lato:wght@300;400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,600;1,6..96,500&family=Noto+Serif+KR:wght@300;400&display=swap" rel="stylesheet">
   <script>
     tailwind.config = {
       theme: {
         extend: {
           colors: {
-            ruby: '#590d22',
-            wine: '#2b061e',
-            gold: '#c7a06c',
+            ruby: '#720e1e',
+            void: '#0F0F0F',
+            gold: '#C5A085',
           },
           fontFamily: {
-            serif: ['Italiana', 'serif'],
-            sans: ['Lato', 'sans-serif'],
+            serif: ['Bodoni Moda', 'serif'],
+            sans: ['Noto Serif KR', 'serif'],
           }
         }
       }
     }
   </script>
-  <style>
-    body { background-color: #0f0f0f; color: #e5e5e5; }
-    .text-gold { color: #c7a06c; }
-    .border-gold { border-color: #c7a06c; }
-    .bg-gradient-wine { background: linear-gradient(180deg, rgba(15,15,15,0) 0%, #2b061e 100%); }
-    .animate-float { animation: float 6s ease-in-out infinite; }
-    @keyframes float { 0% { transform: translateY(0px); } 50% { transform: translateY(-20px); } 100% { transform: translateY(0px); } }
-  </style>
 </head>
-<body class="antialiased selection:bg-ruby selection:text-white">
+<body class="bg-void text-gray-400 font-sans">
 
   <!-- Nav -->
-  <nav class="fixed w-full z-50 px-8 py-6 flex justify-between items-center mix-blend-difference">
-    <div class="font-serif text-2xl tracking-widest text-white">WINE SOCIAL</div>
-    <div class="hidden md:flex gap-10 text-xs tracking-[0.2em] font-light text-gray-400">
-      <a href="#list" class="hover:text-gold transition">WINE LIST</a>
-      <a href="#events" class="hover:text-gold transition">TASTING EVENTS</a>
-      <a href="#about" class="hover:text-gold transition">THE CELLAR</a>
+  <nav class="fixed w-full z-50 px-10 py-8 flex justify-between items-end mix-blend-difference">
+    <div class="leading-none">
+      <div class="text-xs uppercase tracking-[0.5em] mb-1 text-gold">Since 1999</div>
+      <div class="text-3xl font-serif text-white uppercase tracking-widest">Wine Social</div>
     </div>
-    <button onclick="toggleWineTable()" class="border border-white/20 px-6 py-2 text-xs tracking-[0.2em] hover:bg-white hover:text-black transition">
-      RESERVE TABLE
+    <div class="flex gap-12 font-serif italic text-lg">
+      <a href="#list" class="hover:text-gold transition">Wine List</a>
+      <a href="#pairing" class="hover:text-gold transition">Food Pairing</a>
+      <a href="#mood" class="hover:text-gold transition">Atmosphere</a>
+    </div>
+    <button onclick="toggleWine()" class="border-b border-gold text-gold hover:text-white transition pb-1 text-sm tracking-widest uppercase">
+      Book Table
     </button>
   </nav>
 
-  <!-- Hero with Parallax Feel -->
-  <header class="h-screen relative flex items-center justify-center overflow-hidden">
+  <!-- Parallax Hero -->
+  <header class="h-screen relative overflow-hidden flex items-center justify-center">
     <div class="absolute inset-0 z-0">
-      <img src="https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?q=80&w=1920" class="w-full h-full object-cover opacity-30">
-      <div class="absolute inset-0 bg-gradient-to-t from-[#0f0f0f] via-transparent to-[#0f0f0f]/80"></div>
+      <img src="https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?q=80&w=1920" class="w-full h-full object-cover opacity-30 scale-105 animate-slow-zoom">
     </div>
     
-    <div class="relative z-10 text-center space-y-8 max-w-2xl px-6">
-      <p class="text-gold text-xs tracking-[0.5em] uppercase animate-pulse">Private Member's Club</p>
-      <h1 class="text-6xl md:text-8xl font-serif leading-tight">
-        Uncork <br> <span class="italic text-ruby">Elegance</span>
+    <div class="relative z-10 text-center space-y-12">
+      <div class="w-px h-24 bg-gradient-to-b from-transparent to-gold mx-auto"></div>
+      <h1 class="text-6xl md:text-8xl font-serif text-white leading-tight">
+        Uncork <br> <span class="italic text-ruby text-7xl md:text-9xl">The Night</span>
       </h1>
-      <p class="font-light text-gray-400 leading-loose">
-        A curated selection of the world's finest vintages, served in an atmosphere of timeless sophistication.
+      <p class="max-w-md mx-auto leading-loose text-sm tracking-wide">
+        엄선된 300여 종의 와인 컬렉션과 재즈 라이브. <br>
+        깊어가는 밤, 당신의 감각을 깨우는 특별한 경험.
       </p>
-      <div class="pt-8">
-        <button onclick="toggleWineTable()" class="bg-ruby text-white px-10 py-4 text-xs font-bold tracking-[0.2em] hover:bg-white hover:text-ruby transition duration-500">
-          EXPLORE THE COLLECTION
-        </button>
-      </div>
+      <div class="w-px h-24 bg-gradient-to-t from-transparent to-gold mx-auto"></div>
     </div>
   </header>
 
-  <!-- Wine List (Horizontal Scroll) -->
-  <section id="list" class="py-32 border-t border-white/5 relative">
-    <div class="container mx-auto px-6 mb-12 flex justify-between items-end">
-      <div>
-        <h2 class="text-4xl font-serif mb-2">Curated Selection</h2>
-        <p class="text-gray-500 text-sm font-serif italic">Sommelier's Choice of the Month</p>
-      </div>
-      <div class="flex gap-2">
-        <button class="w-10 h-10 border border-white/10 flex items-center justify-center hover:bg-white/10 rounded-full">&larr;</button>
-        <button class="w-10 h-10 border border-white/10 flex items-center justify-center hover:bg-white/10 rounded-full">&rarr;</button>
-      </div>
-    </div>
-
-    <div class="flex overflow-x-auto no-scrollbar gap-8 px-6 pb-12 snap-x">
-      <!-- Card 1 -->
-      <div class="min-w-[300px] bg-[#1a1a1a] p-8 relative group cursor-pointer border border-transparent hover:border-gold/30 transition duration-500 snap-center">
-        <div class="absolute -top-10 left-1/2 -translate-x-1/2 w-20 animate-float">
-          <img src="https://pngimg.com/uploads/wine_bottle/wine_bottle_PNG2602.png" class="h-64 object-contain drop-shadow-2xl opacity-80 group-hover:opacity-100 transition">
-        </div>
-        <div class="mt-48 text-center space-y-4">
-          <div class="text-gold text-xs tracking-widest uppercase">Red • France</div>
-          <h3 class="text-2xl font-serif">Château Margaux</h3>
-          <p class="text-gray-500 text-sm font-light">2015 • Cabernet Sauvignon</p>
-          <div class="text-xl font-serif text-ruby">$450</div>
-        </div>
-      </div>
-      <!-- Card 2 -->
-      <div class="min-w-[300px] bg-[#1a1a1a] p-8 relative group cursor-pointer border border-transparent hover:border-gold/30 transition duration-500 snap-center">
-        <div class="absolute -top-10 left-1/2 -translate-x-1/2 w-20 animate-float" style="animation-delay: 1s;">
-          <img src="https://pngimg.com/uploads/wine_bottle/wine_bottle_PNG2602.png" class="h-64 object-contain drop-shadow-2xl opacity-80 group-hover:opacity-100 transition filter hue-rotate-30">
-        </div>
-        <div class="mt-48 text-center space-y-4">
-          <div class="text-gold text-xs tracking-widest uppercase">White • Italy</div>
-          <h3 class="text-2xl font-serif">Pinot Grigio</h3>
-          <p class="text-gray-500 text-sm font-light">2020 • Dry & Crisp</p>
-          <div class="text-xl font-serif text-ruby">$85</div>
-        </div>
-      </div>
-       <!-- Card 3 -->
-      <div class="min-w-[300px] bg-[#1a1a1a] p-8 relative group cursor-pointer border border-transparent hover:border-gold/30 transition duration-500 snap-center">
-        <div class="absolute -top-10 left-1/2 -translate-x-1/2 w-20 animate-float" style="animation-delay: 2s;">
-          <img src="https://pngimg.com/uploads/wine_bottle/wine_bottle_PNG2602.png" class="h-64 object-contain drop-shadow-2xl opacity-80 group-hover:opacity-100 transition filter hue-rotate-60">
-        </div>
-        <div class="mt-48 text-center space-y-4">
-          <div class="text-gold text-xs tracking-widest uppercase">Sparkling • France</div>
-          <h3 class="text-2xl font-serif">Dom Pérignon</h3>
-          <p class="text-gray-500 text-sm font-light">2012 • Vintage Champagne</p>
-          <div class="text-xl font-serif text-ruby">$320</div>
-        </div>
-      </div>
-      <!-- Card 4 -->
-      <div class="min-w-[300px] bg-[#1a1a1a] p-8 relative group cursor-pointer border border-transparent hover:border-gold/30 transition duration-500 snap-center">
-        <div class="absolute -top-10 left-1/2 -translate-x-1/2 w-20 animate-float" style="animation-delay: 1.5s;">
-          <img src="https://pngimg.com/uploads/wine_bottle/wine_bottle_PNG2602.png" class="h-64 object-contain drop-shadow-2xl opacity-80 group-hover:opacity-100 transition filter hue-rotate-90">
-        </div>
-        <div class="mt-48 text-center space-y-4">
-          <div class="text-gold text-xs tracking-widest uppercase">Red • USA</div>
-          <h3 class="text-2xl font-serif">Opus One</h3>
-          <p class="text-gray-500 text-sm font-light">2018 • Napa Valley Blend</p>
-          <div class="text-xl font-serif text-ruby">$520</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Events -->
-  <section id="events" class="py-32 relative">
-    <div class="container mx-auto px-6 grid md:grid-cols-2 gap-20 items-center">
-      <div class="relative">
-        <div class="absolute -inset-4 border border-gold/30 translate-x-4 translate-y-4"></div>
-        <img src="https://images.unsplash.com/photo-1516594915697-87eb3b1c14ea?q=80&w=800" class="w-full grayscale relative z-10 hover:grayscale-0 transition duration-700">
-      </div>
-      <div class="space-y-8">
-        <h2 class="text-4xl font-serif leading-tight">Private Tasting & <br> <span class="text-gold">Jazz Nights</span></h2>
-        <p class="text-gray-400 font-light leading-relaxed">
-          Join us every Friday for an intimate evening of live jazz and curated wine pairings. 
-          Limited seating available for members and their guests.
-        </p>
-        <ul class="space-y-4 font-serif text-lg">
-           <li class="flex items-center gap-4 text-white"><span class="text-ruby text-2xl">•</span> Blind Tasting Session</li>
-           <li class="flex items-center gap-4 text-white"><span class="text-ruby text-2xl">•</span> Vineyard Masterclass</li>
-           <li class="flex items-center gap-4 text-white"><span class="text-ruby text-2xl">•</span> Rooftop Sunset sip</li>
-        </ul>
-        <button onclick="toggleWineTable()" class="border-b border-gold text-gold hover:text-white pb-1 tracking-widest text-xs uppercase transition">View Event Calendar</button>
-      </div>
-    </div>
-  </section>
-
-  <!-- Reservation Modal -->
-  <div id="wine-modal" class="fixed inset-0 bg-[#0f0f0f]/95 z-[60] hidden opacity-0 transition-opacity duration-700 flex items-center justify-center p-6">
-    <div class="w-full max-w-lg relative text-center">
-      <div class="absolute top-0 left-1/2 -translate-x-1/2 w-px h-24 bg-gold opacity-50"></div>
-      
-      <div class="mt-32 mb-12">
-        <h2 class="text-4xl font-serif text-white mb-4">Request a Table</h2>
-        <p class="text-gold text-xs tracking-[0.3em] uppercase">Membership & Guest List</p>
+  <!-- Wine List Preview -->
+  <section id="list" class="py-32 px-10 bg-void">
+    <div class="max-w-5xl mx-auto">
+      <div class="flex justify-between items-end mb-20 border-b border-white/10 pb-4">
+        <h2 class="text-5xl font-serif text-white">Curated Selection</h2>
+        <span class="text-gold italic">Sommelier's Pick</span>
       </div>
 
-      <form class="space-y-10 max-w-sm mx-auto" onsubmit="event.preventDefault(); alert('Request sent. Our concierge will contact you.'); toggleWineTable();">
-        <div class="group">
-          <input type="text" placeholder="Full Name" class="w-full bg-transparent border-b border-gray-700 py-3 text-center text-xl font-serif focus:outline-none focus:border-gold transition">
-        </div>
-        <div class="group">
-          <div class="flex gap-4 justify-center">
-            <select class="bg-transparent border-b border-gray-700 py-3 text-center text-gray-400 focus:outline-none focus:border-gold">
-              <option>2 Guests</option>
-              <option>4 Guests</option>
-              <option>Private Room</option>
-            </select>
-            <input type="date" class="bg-transparent border-b border-gray-700 py-3 text-center text-gray-400 focus:outline-none focus:border-gold">
+      <div class="grid md:grid-cols-2 gap-20">
+        <!-- Item -->
+        <div class="group cursor-pointer" onclick="toggleWine()">
+          <div class="relative overflow-hidden mb-6 filter brightness-75 group-hover:brightness-100 transition duration-700">
+             <img src="https://images.unsplash.com/photo-1559563362-c667ba5f5480?q=80&w=600" class="w-full aspect-[4/5] object-cover">
+             <div class="absolute top-4 right-4 text-white font-serif text-xl border border-white/30 px-3 py-1 bg-black/50 backdrop-blur">96 pts</div>
           </div>
+          <div class="flex justify-between items-baseline mb-2">
+            <h3 class="text-2xl text-white font-serif">Château Margaux 2015</h3>
+            <span class="text-gold">Glass ₩ 45,000</span>
+          </div>
+          <p class="text-sm leading-relaxed border-l border-ruby pl-4 text-gray-500">
+            벨벳처럼 부드러운 탄닌과 풍부한 베리 향. <br> 보르도의 우아함을 완벽하게 표현한 빈티지.
+          </p>
+        </div>
+        <!-- Item -->
+        <div class="group cursor-pointer md:mt-32" onclick="toggleWine()">
+           <div class="relative overflow-hidden mb-6 filter brightness-75 group-hover:brightness-100 transition duration-700">
+             <img src="https://images.unsplash.com/photo-1584916201218-f4242ceb4809?q=80&w=600" class="w-full aspect-[4/5] object-cover">
+             <div class="absolute top-4 right-4 text-white font-serif text-xl border border-white/30 px-3 py-1 bg-black/50 backdrop-blur">92 pts</div>
+          </div>
+          <div class="flex justify-between items-baseline mb-2">
+            <h3 class="text-2xl text-white font-serif">Cloudy Bay Sauvignon Blanc</h3>
+            <span class="text-gold">Glass ₩ 18,000</span>
+          </div>
+          <p class="text-sm leading-relaxed border-l border-ruby pl-4 text-gray-500">
+            상큼한 라임과 열대과일의 폭발적인 아로마. <br> 해산물 요리와 완벽한 페어링을 자랑합니다.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Modal -->
+  <div id="wine-modal" class="fixed inset-0 bg-black/90 z-[60] hidden flex items-center justify-center p-4">
+    <div class="bg-void border border-white/10 w-full max-w-lg p-12 relative shadow-[0_0_50px_rgba(114,14,30,0.3)]">
+      <button onclick="toggleWine()" class="absolute top-6 right-6 text-white hover:text-ruby text-2xl font-serif">X</button>
+      
+      <div class="text-center mb-12">
+        <h2 class="font-serif text-4xl text-white mb-2 italic">Reserve</h2>
+        <p class="text-xs text-gold uppercase tracking-[0.2em]">Private & Social</p>
+      </div>
+
+      <form class="space-y-8" onsubmit="event.preventDefault(); alert('예약 대기 신청이 완료되었습니다.'); toggleWine();">
+        <div class="border-b border-white/20 pb-2">
+           <input type="text" placeholder="성함" class="w-full bg-transparent outline-none text-white placeholder-gray-600 font-serif text-lg text-center">
+        </div>
+        <div class="border-b border-white/20 pb-2">
+           <input type="tel" placeholder="연락처" class="w-full bg-transparent outline-none text-white placeholder-gray-600 font-serif text-lg text-center">
+        </div>
+        <div class="border-b border-white/20 pb-2">
+           <select class="w-full bg-transparent outline-none text-gray-400 font-serif text-lg text-center">
+             <option class="bg-void">Table for 2</option>
+             <option class="bg-void">Table for 3-4</option>
+             <option class="bg-void">Private Room (min. spend ₩300k)</option>
+             <option class="bg-void">Bar Seat</option>
+           </select>
         </div>
         
-        <button class="bg-white text-black w-full py-4 text-xs font-bold tracking-[0.2em] hover:bg-gold transition uppercase mt-8">
-          Submit Request
+        <button class="w-full bg-ruby text-white py-4 font-serif text-xl tracking-widest hover:bg-white hover:text-ruby transition duration-500">
+          Confirm
         </button>
-        
-        <button type="button" onclick="toggleWineTable()" class="text-gray-500 text-xs hover:text-white transition mt-8">CLOSE</button>
       </form>
     </div>
   </div>
 
+  <style>
+    .animate-slow-zoom { animation: zoom 30s infinite alternate linear; }
+    @keyframes zoom { from { transform: scale(1); } to { transform: scale(1.15); } }
+  </style>
+
   <script>
-    function toggleWineTable() {
+    function toggleWine() {
       const modal = document.getElementById('wine-modal');
       if(modal.classList.contains('hidden')) {
         modal.classList.remove('hidden');
-        setTimeout(() => modal.classList.remove('opacity-0'), 10);
       } else {
-        modal.classList.add('opacity-0');
-        setTimeout(() => modal.classList.add('hidden'), 500);
+        modal.classList.add('hidden');
       }
     }
   </script>

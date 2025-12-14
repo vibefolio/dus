@@ -1,180 +1,214 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Novus - Next Gen SaaS</title>
+  <title>Novus - 혁신적인 협업 툴</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Noto+Sans+KR:wght@300;400;700&display=swap" rel="stylesheet">
   <script>
     tailwind.config = {
       theme: {
         extend: {
           colors: {
-            bg: '#0B1120',
-            surface: '#1E293B',
-            primary: '#38BDF8',
-            accent: '#818CF8',
+            brand: '#6366f1',
+            dark: '#0f172a',
+            surface: '#1e293b',
           },
           fontFamily: {
-            sans: ['Inter', 'sans-serif'],
-            mono: ['JetBrains Mono', 'monospace'],
+            display: ['Inter', 'sans-serif'],
+            sans: ['Noto Sans KR', 'sans-serif'],
           }
         }
       }
     }
   </script>
-  <style>
-    body { background-color: #0B1120; color: #E2E8F0; }
-    .bg-grid {
-      background-size: 40px 40px;
-      background-image: linear-gradient(to right, rgba(56, 189, 248, 0.05) 1px, transparent 1px),
-                        linear-gradient(to bottom, rgba(56, 189, 248, 0.05) 1px, transparent 1px);
-    }
-  </style>
 </head>
-<body class="font-sans antialiased bg-grid overflow-x-hidden">
+<body class="bg-dark text-gray-300 font-sans antialiased">
 
   <!-- Nav -->
-  <nav class="fixed w-full z-50 px-6 py-4 border-b border-white/10 bg-bg/80 backdrop-blur-md">
-    <div class="container mx-auto flex justify-between items-center">
-      <div class="flex items-center gap-2 font-mono font-bold text-xl tracking-tight text-white">
-        <div class="w-6 h-6 bg-gradient-to-br from-primary to-accent rounded"></div>
-        NOVUS
+  <nav class="fixed w-full z-50 backdrop-blur-lg border-b border-white/10">
+    <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+      <div class="flex items-center gap-2 font-display font-bold text-white text-xl">
+        <div class="w-8 h-8 bg-brand rounded-lg flex items-center justify-center">N</div>
+        Novus
       </div>
-      <div class="hidden md:flex gap-8 text-sm font-medium text-gray-400">
-        <a href="#features" class="hover:text-white transition">Features</a>
-        <a href="#integration" class="hover:text-white transition">Integrations</a>
-        <a href="#pricing" class="hover:text-white transition">Pricing</a>
+      <div class="hidden md:flex gap-8 text-sm font-medium">
+        <a href="#features" class="hover:text-white transition">기능 소개</a>
+        <a href="#pricing" class="hover:text-white transition">요금제</a>
+        <a href="#blog" class="hover:text-white transition">블로그</a>
       </div>
       <div class="flex gap-4">
-        <button class="text-sm font-medium text-gray-400 hover:text-white">Log in</button>
-        <button onclick="toggleStartup()" class="bg-white text-bg px-4 py-2 rounded-lg text-sm font-bold hover:bg-primary hover:text-white transition">
-          Get Started
+        <button class="hidden md:block text-sm font-bold text-white hover:text-brand transition">로그인</button>
+        <button onclick="toggleNovus()" class="bg-brand text-white px-5 py-2 rounded-lg text-sm font-bold hover:bg-brand/90 transition shadow-lg shadow-brand/25">
+          무료로 시작하기
         </button>
       </div>
     </div>
   </nav>
 
   <!-- Hero -->
-  <header class="relative pt-32 pb-20 px-6 overflow-hidden">
-    <div class="container mx-auto text-center max-w-4xl relative z-10">
-      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-surface border border-white/10 text-xs font-mono text-primary mb-8">
-        <span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span> v2.0 is live
+  <header class="pt-40 pb-20 px-6 container mx-auto text-center relative overflow-hidden">
+    <!-- Background Glows -->
+    <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[500px] bg-brand/20 rounded-full blur-3xl -z-10"></div>
+    
+    <div class="max-w-4xl mx-auto space-y-8 animate-fade-in-up">
+      <div class="inline-flex items-center gap-2 bg-surface border border-white/10 rounded-full px-4 py-1 text-xs font-medium text-brand">
+        <span class="w-2 h-2 rounded-full bg-brand animate-pulse"></span>
+        v2.0 업데이트 출시
       </div>
-      <h1 class="text-5xl md:text-7xl font-extrabold tracking-tight mb-6 bg-clip-text text-transparent bg-gradient-to-b from-white to-gray-400">
-        Scale your infrastructure <br>
-        without the <span class="text-primary">chaos.</span>
+      <h1 class="text-5xl md:text-7xl font-display font-extrabold text-white leading-tight">
+        팀워크의 새로운 기준, <br>
+        <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand to-purple-500">Novus</span>로 완성하세요.
       </h1>
-      <p class="text-lg text-gray-400 mb-10 max-w-2xl mx-auto leading-relaxed">
-        Novus provides a unified control plane for your entire stack. 
-        Monitor, deploy, and scale with a single CLI command.
+      <p class="text-lg md:text-xl text-gray-400 max-w-2xl mx-auto">
+        복잡한 프로젝트 관리부터 실시간 커뮤니케이션까지. <br>
+        하나의 플랫폼에서 모든 업무를 효율적으로 처리하세요.
       </p>
       
-      <div class="flex flex-col md:flex-row gap-4 justify-center items-center mb-16">
-        <div class="relative w-full md:w-auto">
-          <input type="email" placeholder="Enter work email" class="w-full md:w-80 bg-surface border border-white/10 px-5 py-4 rounded-xl focus:outline-none focus:border-primary transition">
-        </div>
-        <button onclick="toggleStartup()" class="w-full md:w-auto px-8 py-4 bg-primary text-black font-bold rounded-xl hover:bg-white transition shadow-[0_0_20px_rgba(56,189,248,0.3)]">
-          Start Free Trial
+      <div class="flex flex-col sm:flex-row gap-4 justify-center pt-8">
+        <button onclick="toggleNovus()" class="bg-white text-dark px-8 py-4 rounded-xl font-bold text-lg hover:bg-gray-100 transition shadow-xl">
+          지금 무료로 시작하기
+        </button>
+        <button class="bg-surface border border-white/10 text-white px-8 py-4 rounded-xl font-bold text-lg hover:bg-white/5 transition flex items-center justify-center gap-2">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+          데모 영상 보기
         </button>
       </div>
 
-      <!-- Code Snippet -->
-      <div class="bg-[#0f1623] border border-white/10 rounded-2xl p-6 text-left max-w-2xl mx-auto shadow-2xl font-mono text-sm overflow-hidden relative group">
-        <div class="absolute top-4 right-4 flex gap-2">
-          <div class="w-3 h-3 rounded-full bg-red-500"></div>
-          <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
-          <div class="w-3 h-3 rounded-full bg-green-500"></div>
-        </div>
-        <div class="text-gray-500 mb-2"># Install Novus CLI</div>
-        <div class="text-primary">$ npm install -g @novus/cli</div>
-        <div class="text-gray-500 mt-4 mb-2"># Deploy your app</div>
-        <div class="text-white">$ novus deploy --production</div>
-        <div class="mt-2 text-emerald-400 group-hover:block hidden animate-pulse">
-           > Building... <br>
-           > Optimizing assets... <br>
-           > Deployed successfully in 2.1s 🚀
+      <!-- Hero Image / Dashboard Preview -->
+      <div class="mt-20 relative mx-auto max-w-5xl group cursor-pointer" onclick="toggleNovus()">
+        <div class="absolute -inset-1 bg-gradient-to-r from-brand to-purple-600 rounded-2xl blur opacity-25 group-hover:opacity-50 transition duration-1000"></div>
+        <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?q=80&w=1200" class="relative rounded-2xl border border-white/10 shadow-2xl w-full bg-dark">
+        
+        <!-- Floating Elements -->
+        <div class="absolute -right-8 top-1/2 bg-surface p-4 rounded-xl border border-white/10 shadow-xl animate-bounce hidden md:block">
+           <div class="flex items-center gap-3">
+             <div class="w-10 h-10 rounded-full bg-green-500/20 flex items-center justify-center text-green-500">✓</div>
+             <div>
+               <div class="text-xs text-gray-400">Task Completed</div>
+               <div class="text-sm font-bold text-white">Design System Update</div>
+             </div>
+           </div>
         </div>
       </div>
     </div>
-    
-    <!-- Glow Effect -->
-    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-primary/10 rounded-full filter blur-[120px] -z-10"></div>
   </header>
 
   <!-- Features Grid -->
-  <section id="features" class="py-24 px-6 border-t border-white/5 bg-surface/30">
-    <div class="container mx-auto max-w-6xl">
-       <div class="text-center mb-16">
-         <h2 class="text-3xl font-bold mb-4">Everything you need to ship</h2>
-         <p class="text-gray-400">Built for developers, by developers.</p>
-       </div>
-       
-       <div class="grid md:grid-cols-3 gap-8">
-         <div class="bg-surface border border-white/5 p-8 rounded-2xl hover:border-primary/50 transition duration-300">
-           <div class="w-12 h-12 bg-primary/20 rounded-lg flex items-center justify-center text-primary mb-6">
-             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
-           </div>
-           <h3 class="text-xl font-bold mb-3">Instant Deploy</h3>
-           <p class="text-gray-400 text-sm leading-relaxed">Push to git and we care of the rest. Automated builds, previews, and production rollouts.</p>
-         </div>
-         <div class="bg-surface border border-white/5 p-8 rounded-2xl hover:border-primary/50 transition duration-300">
-           <div class="w-12 h-12 bg-accent/20 rounded-lg flex items-center justify-center text-accent mb-6">
-             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
-           </div>
-           <h3 class="text-xl font-bold mb-3">Enterprise Security</h3>
-           <p class="text-gray-400 text-sm leading-relaxed">SOC2 compliant. Automated SSL, DDoS protection, and spicy waffles included.</p>
-         </div>
-         <div class="bg-surface border border-white/5 p-8 rounded-2xl hover:border-primary/50 transition duration-300">
-           <div class="w-12 h-12 bg-purple-500/20 rounded-lg flex items-center justify-center text-purple-400 mb-6">
-             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"/></svg>
-           </div>
-           <h3 class="text-xl font-bold mb-3">Global Edge</h3>
-           <p class="text-gray-400 text-sm leading-relaxed">Your app runs close to your users. 35+ regions worldwide with < 50ms latency.</p>
-         </div>
-       </div>
+  <section id="features" class="py-24 bg-surface/50 border-t border-white/5">
+    <div class="container mx-auto px-6">
+      <div class="text-center mb-16">
+        <h2 class="text-3xl md:text-4xl font-display font-bold text-white mb-4">왜 Novus인가요?</h2>
+        <p class="text-gray-400">단순한 도구를 넘어, 팀의 성장 엔진이 됩니다.</p>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-8">
+        <!-- Feature 1 -->
+        <div class="bg-surface p-8 rounded-2xl border border-white/5 hover:border-brand/50 transition duration-300 group cursor-pointer" onclick="toggleNovus()">
+          <div class="w-12 h-12 bg-brand/20 rounded-lg flex items-center justify-center text-brand mb-6 group-hover:scale-110 transition">⚡</div>
+          <h3 class="text-xl font-bold text-white mb-3">압도적인 속도</h3>
+          <p class="text-sm leading-relaxed">
+            최신 기술 스택으로 구축되어, 로딩 없는 쾌적한 업무 환경을 제공합니다. 
+            실시간 동기화로 딜레이 없는 협업이 가능합니다.
+          </p>
+        </div>
+        <!-- Feature 2 -->
+        <div class="bg-surface p-8 rounded-2xl border border-white/5 hover:border-brand/50 transition duration-300 group cursor-pointer" onclick="toggleNovus()">
+          <div class="w-12 h-12 bg-purple-500/20 rounded-lg flex items-center justify-center text-purple-400 mb-6 group-hover:scale-110 transition">🎨</div>
+          <h3 class="text-xl font-bold text-white mb-3">직관적인 디자인</h3>
+          <p class="text-sm leading-relaxed">
+            복잡한 매뉴얼 없이도 누구나 쉽게 사용할 수 있습니다. 
+            업무 흐름을 방해하지 않는 깔끔한 UI를 경험하세요.
+          </p>
+        </div>
+        <!-- Feature 3 -->
+        <div class="bg-surface p-8 rounded-2xl border border-white/5 hover:border-brand/50 transition duration-300 group cursor-pointer" onclick="toggleNovus()">
+          <div class="w-12 h-12 bg-blue-500/20 rounded-lg flex items-center justify-center text-blue-400 mb-6 group-hover:scale-110 transition">🔒</div>
+          <h3 class="text-xl font-bold text-white mb-3">강력한 보안</h3>
+          <p class="text-sm leading-relaxed">
+            기업급 보안 표준을 준수합니다. 
+            데이터 암호화와 2단계 인증으로 소중한 자산을 안전하게 보호합니다.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pricing -->
+  <section id="pricing" class="py-24 px-6 container mx-auto max-w-5xl">
+    <div class="text-center mb-16">
+      <h2 class="text-3xl font-bold text-white mb-4">합리적인 요금제</h2>
+      <p class="text-gray-400">팀의 규모에 맞는 플랜을 선택하세요.</p>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-8">
+      <!-- Starter -->
+      <div class="bg-surface border border-white/10 p-8 rounded-2xl">
+        <h3 class="text-lg font-bold text-white mb-2">Starter</h3>
+        <div class="text-3xl font-bold text-white mb-6">무료</div>
+        <ul class="space-y-4 text-sm mb-8 text-gray-400">
+          <li class="flex gap-2 text-white"><span>✓</span> 최대 5명 멤버</li>
+          <li class="flex gap-2 text-white"><span>✓</span> 기본 프로젝트 관리</li>
+          <li class="flex gap-2 text-white"><span>✓</span> 1GB 저장 공간</li>
+        </ul>
+        <button onclick="toggleNovus()" class="w-full py-3 bg-white/10 text-white font-bold rounded-lg hover:bg-white/20 transition">시작하기</button>
+      </div>
+      <!-- Pro -->
+      <div class="bg-surface border-2 border-brand p-8 rounded-2xl relative transform md:-translate-y-4">
+        <div class="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-brand text-white text-xs font-bold px-3 py-1 rounded-full uppercase">Most Popular</div>
+        <h3 class="text-lg font-bold text-white mb-2">Pro</h3>
+        <div class="text-3xl font-bold text-white mb-6">₩ 12,000 <span class="text-sm text-gray-500 font-normal">/월</span></div>
+        <ul class="space-y-4 text-sm mb-8 text-gray-400">
+          <li class="flex gap-2 text-white"><span>✓</span> 무제한 멤버</li>
+          <li class="flex gap-2 text-white"><span>✓</span> 고급 분석 도구</li>
+          <li class="flex gap-2 text-white"><span>✓</span> 100GB 저장 공간</li>
+          <li class="flex gap-2 text-white"><span>✓</span> 우선 고객 지원</li>
+        </ul>
+        <button onclick="toggleNovus()" class="w-full py-3 bg-brand text-white font-bold rounded-lg hover:bg-brand/90 transition shadow-lg">무료 체험하기</button>
+      </div>
+      <!-- Enterprise -->
+      <div class="bg-surface border border-white/10 p-8 rounded-2xl">
+        <h3 class="text-lg font-bold text-white mb-2">Enterprise</h3>
+        <div class="text-3xl font-bold text-white mb-6">문의</div>
+        <ul class="space-y-4 text-sm mb-8 text-gray-400">
+          <li class="flex gap-2 text-white"><span>✓</span> 전용 서버 제공</li>
+          <li class="flex gap-2 text-white"><span>✓</span> 커스텀 기능 개발</li>
+          <li class="flex gap-2 text-white"><span>✓</span> 무제한 저장 공간</li>
+          <li class="flex gap-2 text-white"><span>✓</span> 전담 매니저 배정</li>
+        </ul>
+        <button onclick="toggleNovus()" class="w-full py-3 bg-white/10 text-white font-bold rounded-lg hover:bg-white/20 transition">문의하기</button>
+      </div>
     </div>
   </section>
 
   <!-- Modal -->
-  <div id="startup-modal" class="fixed inset-0 bg-bg/90 backdrop-blur-sm z-[60] hidden flex items-center justify-center p-4">
-    <div class="bg-surface border border-white/10 w-full max-w-md rounded-2xl p-8 relative shadow-2xl">
-      <button onclick="toggleStartup()" class="absolute top-4 right-4 text-gray-500 hover:text-white">&times;</button>
+  <div id="novus-modal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-[60] hidden flex items-center justify-center p-4">
+    <div class="bg-surface w-full max-w-md p-8 rounded-2xl border border-white/10 relative shadow-2xl">
+      <button onclick="toggleNovus()" class="absolute top-4 right-4 text-gray-500 hover:text-white">&times;</button>
       
       <div class="text-center mb-8">
-        <h2 class="text-2xl font-bold mb-2">Deploy in Seconds</h2>
-        <p class="text-sm text-gray-400">No credit card required for hobby projects.</p>
+        <h2 class="text-2xl font-bold text-white mb-2">Get Started</h2>
+        <p class="text-sm text-gray-400">이메일로 간편하게 가입하세요.</p>
       </div>
 
-      <form class="space-y-4" onsubmit="event.preventDefault(); alert('Check your email for magic link!'); toggleStartup();">
-        <div>
-          <label class="block text-xs font-mono text-gray-500 mb-2">USERNAME</label>
-          <input type="text" class="w-full bg-bg border border-white/10 p-3 rounded-lg text-white focus:outline-none focus:border-primary">
-        </div>
-        <div>
-          <label class="block text-xs font-mono text-gray-500 mb-2">EMAIL ADDRESS</label>
-          <input type="email" class="w-full bg-bg border border-white/10 p-3 rounded-lg text-white focus:outline-none focus:border-primary">
-        </div>
-        <div>
-          <label class="block text-xs font-mono text-gray-500 mb-2">PASSWORD</label>
-          <input type="password" class="w-full bg-bg border border-white/10 p-3 rounded-lg text-white focus:outline-none focus:border-primary">
-        </div>
+      <form class="space-y-4" onsubmit="event.preventDefault(); alert('가입 환영 이메일이 발송되었습니다.'); toggleNovus();">
+        <input type="email" placeholder="이메일 주소" class="w-full bg-dark border border-white/10 rounded-lg p-3 text-white focus:border-brand outline-none transition">
+        <input type="password" placeholder="비밀번호" class="w-full bg-dark border border-white/10 rounded-lg p-3 text-white focus:border-brand outline-none transition">
         
-        <button class="w-full bg-gradient-to-r from-primary to-accent text-white py-4 rounded-lg font-bold hover:opacity-90 transition mt-6">
-          Create Account
+        <button class="w-full bg-brand text-white font-bold py-3 rounded-lg hover:bg-brand/90 transition mt-2">
+          계정 만들기
         </button>
+        <p class="text-xs text-center text-gray-500 mt-4">
+          계정 생성 시 <a href="#" class="text-brand underline">이용약관</a>에 동의하게 됩니다.
+        </p>
       </form>
-      
-      <div class="mt-6 text-center text-xs text-gray-500">
-        By clicking, you agree to our Terms and Privacy Policy.
-      </div>
     </div>
   </div>
 
   <script>
-    function toggleStartup() {
-      const modal = document.getElementById('startup-modal');
+    function toggleNovus() {
+      const modal = document.getElementById('novus-modal');
       if(modal.classList.contains('hidden')) {
         modal.classList.remove('hidden');
       } else {

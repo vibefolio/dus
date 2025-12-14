@@ -1,14 +1,14 @@
-# 🎨 D-LAB Design Templates Improvement Roadmap (Total: 31)
+# 🎨 D-LAB Design Templates Improvement Roadmap (Total: 32) (Localized)
 
-This roadmap tracks the progress of creating unique, high-quality designs for all 31 templates.
+This roadmap tracks the progress of creating unique, high-quality designs for all 32 templates.
 Goal: Apply 10 specific improvements to each template to ensure uniqueness and functionality.
 
 ## 📊 Status Summary
 
-- **Total**: 31
-- **Completed**: 4 (Beauty, Dining, Agency, Consulting - Initial versions)
-- **In Progress**: 1 (Fitness)
-- **Pending**: 26
+- **Total**: 32
+- **Completed**: 32
+- **In Progress**: 0
+- **Pending**: 0
 
 ---
 
@@ -47,9 +47,9 @@ Goal: Apply 10 specific improvements to each template to ensure uniqueness and f
 | 14  | **Marketing Agency** | Creative Gradient | ✅ Done | `templates/agency.html.erb`     | Separated from Corporate |
 | 15  | **Consulting Hub**   | Navy & Gold Trust | ✅ Done | `templates/consulting.html.erb` | Separated from Corporate |
 | 16  | **Novus**            | IT Startup        | ✅ Done | `templates/startup.html.erb`    | Dark Mode SaaS Style     |
-| 17  | **Code Academy**     | Tech Education    | ✅ Done | `templates/academy.html.erb`    | Blue/Clean Style         |
-| 18  | **English Kinder**   | Kids Education    | ✅ Done | `templates/kinder.html.erb`     | Primary Colors, Playful  |
-| 19  | **Rent-All**         | Car Rental        | ✅ Done | `templates/rental.html.erb`     | Blue/Red, Car Search UI  |
+| 17  | **Code Academy**     | Tech Education    | ✅ Done | `templates/academy.html.erb`    | Blue/Code Style          |
+| 18  | **Little Star**      | English Kinder    | ✅ Done | `templates/kinder.html.erb`     | Primary Colors, Playful  |
+| 19  | **Rent-All**         | Car Rental        | ✅ Done | `templates/rental.html.erb`     | Car Search UI            |
 | 20  | **Invest Future**    | Asset Management  | ✅ Done | `templates/finance.html.erb`    | Trust Navy, Charts       |
 
 ## 🏥 Medical & Law (5)
@@ -57,26 +57,29 @@ Goal: Apply 10 specific improvements to each template to ensure uniqueness and f
 | ID  | Template Name     | Concept           | Status  | File Path                    | Note                        |
 | --- | ----------------- | ----------------- | ------- | ---------------------------- | --------------------------- |
 | 21  | **Pure Clinic**   | Clean Dermatology | ✅ Done | `templates/medical.html.erb` | Silver/White High-End       |
-| 22  | **Dental Care**   | Bright Dental     | ✅ Done | `templates/dental.html.erb`  | Sky Blue, Appointment UI    |
-| 23  | **Pet Hospital**  | Warm Vet Care     | ✅ Done | `templates/vet.html.erb`     | Amber/Bone, Pet Friendly    |
-| 24  | **Trust & Logic** | Law Firm          | ✅ Done | `templates/law.html.erb`     | Dark Wood, Weighty Serif    |
-| 25  | **Tax Pro**       | Smart Accounting  | ✅ Done | `templates/tax.html.erb`     | Calculator UI, Professional |
+| 22  | **Gentle Dental** | Bright Dental     | ✅ Done | `templates/dental.html.erb`  | Sky Blue, Appointment UI    |
+| 23  | **Happy Vet**     | Warm Vet Care     | ✅ Done | `templates/vet.html.erb`     | Amber/Bone, Pet Friendly    |
+| 24  | **Justice Law**   | Law Firm          | ✅ Done | `templates/law.html.erb`     | Dark Wood, Weighty Serif    |
+| 25  | **Tax Partner**   | Smart Accounting  | ✅ Done | `templates/tax.html.erb`     | Calculator UI, Professional |
 
-## 🏠 Stay & Space (4)
+## 🏠 Stay & Space (5)
 
-| ID  | Template Name  | Concept         | Status  | File Path                     | Note                      |
-| --- | -------------- | --------------- | ------- | ----------------------------- | ------------------------- |
-| 26  | **Hanok Stay** | Traditional     | ✅ Done | `templates/stay.html.erb`     | -                         |
-| 27  | **Camp Vibez** | Glamping        | ✅ Done | `templates/camping.html.erb`  | Night Sky, Bonfire Colors |
-| 28  | **Focus Lab**  | Creative Studio | ✅ Done | `templates/studio.html.erb`   | Concrete/Neon, Industrial |
-| 29  | Clean Service  | Cleaning/Maid   | ✅ Done | `templates/cleaning.html.erb` | -                         |
+| ID  | Template Name   | Concept           | Status  | File Path                     | Note                     |
+| --- | --------------- | ----------------- | ------- | ----------------------------- | ------------------------ |
+| 26  | **Grand Hotel** | Luxury Hotel      | ✅ Done | `templates/hotel.html.erb`    | Booking UI, Suites       |
+| 27  | **Cozy Stay**   | Emotional Pension | ✅ Done | `templates/pension.html.erb`  | Polaroid Style Gallery   |
+| 28  | **Wild Camp**   | Glamping          | ✅ Done | `templates/camping.html.erb`  | Dark Nature, Gear Rental |
+| 29  | **Focus Lab**   | Creative Studio   | ✅ Done | `templates/studio.html.erb`   | Neon/Industrial, Booking |
+| 30  | **Clean Ssak**  | Cleaning Service  | ✅ Done | `templates/cleaning.html.erb` | Trust Blue, Quote Form   |
 
-## 🛍️ Shopping & Portfolio (2)
+## 🛍️ Shopping & Fashion (4)
 
-| ID  | Template Name  | Concept           | Status  | File Path                    | Note                |
-| --- | -------------- | ----------------- | ------- | ---------------------------- | ------------------- |
-| 30  | **AETHER**     | Minimal Grid Shop | ✅ Done | `templates/shop.html.erb`    | -                   |
-| 31  | **Pet Palace** | Cute Pet Shop     | ✅ Done | `templates/petshop.html.erb` | Coral/Mint, Cart UI |
+| ID  | Template Name      | Concept             | Status  | File Path                     | Note                |
+| --- | ------------------ | ------------------- | ------- | ----------------------------- | ------------------- |
+| 31  | **Minimal Studio** | Minimal Cloth Brand | ✅ Done | `templates/cloth.html.erb`    | Clean, Cart Drawer  |
+| 32  | **Urban Kicks**    | Street Shoe Shop    | ✅ Done | `templates/shoe.html.erb`     | Neon/Dark, Trendy   |
+| 33  | **L'Atelier**      | Leather Bag Brand   | ✅ Done | `templates/bag.html.erb`      | Craftsmanship Story |
+| 34  | **The Avenue**     | Fashion Multi-Shop  | ✅ Done | `templates/shopping.html.erb` | Editorial Style     |
 
 ---
 

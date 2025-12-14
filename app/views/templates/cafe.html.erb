@@ -1,176 +1,208 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Daily Crumb - Artisan Bakery</title>
+  <title>데일리 크럼 - 매일 굽는 빵</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;700&family=Noto+Sans+KR:wght@300;400;700&display=swap" rel="stylesheet">
   <script>
     tailwind.config = {
       theme: {
         extend: {
           colors: {
-            bread: '#8b4513',
-            wheat: '#f3e5ab',
-            cream: '#fffdd0',
-            crust: '#5D4037',
+            bread: '#D4A373',
+            flour: '#FAEDCD',
+            coffee: '#6F4E37',
           },
           fontFamily: {
-            serif: ['DM Serif Display', 'serif'],
-            sans: ['Jost', 'sans-serif'],
+            display: ['Comfortaa', 'cursive'],
+            sans: ['Noto Sans KR', 'sans-serif'],
           }
         }
       }
     }
   </script>
 </head>
-<body class="bg-[#faf9f6] text-crust font-sans">
+<body class="bg-flour text-coffee font-sans">
 
   <!-- Nav -->
-  <nav class="fixed w-full z-50 px-8 py-6 flex justify-between items-center transition-all bg-[#faf9f6]/90 backdrop-blur-sm shadow-sm border-b border-bread/10">
-    <div class="text-2xl font-serif italic text-bread flex items-center gap-2">
-      <span class="text-3xl">🥖</span> Daily Crumb
+  <nav class="fixed w-full z-50 px-6 py-4 bg-flour/90 backdrop-blur-sm shadow-sm flex justify-between items-center">
+    <div class="text-2xl font-display font-bold flex items-center gap-2">
+      <span class="text-3xl">🥐</span> Daily Crumb
     </div>
-    <div class="hidden md:flex gap-8 text-sm font-medium tracking-wide text-gray-600">
-      <a href="#breads" class="hover:text-bread transition">Fresh Breads</a>
-      <a href="#coffee" class="hover:text-bread transition">Coffee & Tea</a>
-      <a href="#story" class="hover:text-bread transition">Our Story</a>
+    <div class="hidden md:flex gap-8 font-bold text-gray-500 text-sm">
+      <a href="#bread" class="hover:text-bread transition">빵 나오는 시간</a>
+      <a href="#menu" class="hover:text-bread transition">음료</a>
+      <a href="#about" class="hover:text-bread transition">소개</a>
     </div>
-    <button onclick="toggleCafeRes()" class="bg-bread text-white px-6 py-2 rounded-lg text-sm font-medium hover:bg-crust transition shadow-md shadow-bread/20">
-      Order Pickup
+    <button onclick="toggleCafe()" class="bg-coffee text-white px-6 py-2 rounded-full font-bold text-sm hover:bg-bread transition shadow-md">
+      픽업 주문
     </button>
   </nav>
 
   <!-- Hero -->
-  <header class="min-h-screen flex items-center justify-center pt-20 relative overflow-hidden">
-    <div class="container mx-auto px-6 grid md:grid-cols-2 gap-12 items-center">
-      <div class="space-y-6 z-10">
-        <span class="inline-block px-3 py-1 bg-orange-100 text-orange-700 rounded-full text-xs font-bold uppercase mb-2">Baked Fresh Every Morning</span>
-        <h1 class="text-5xl md:text-7xl font-serif leading-tight text-bread">
-          Warmth in <br> Every <span class="italic text-orange-400">Crumb</span>
-        </h1>
-        <p class="text-lg text-gray-500 leading-relaxed max-w-md">
-          Artisan sourdough, flaky croissants, and rich espresso. 
-          Start your day with the simple happiness of good bread.
-        </p>
-        <div class="flex gap-4 pt-4">
-          <button onclick="toggleCafeRes()" class="px-8 py-4 bg-bread text-white rounded-xl font-medium shadow-xl hover:-translate-y-1 transition">View Menu</button>
-          <button class="px-8 py-4 border border-bread text-bread rounded-xl font-medium hover:bg-bread/5 transition">Our Location</button>
-        </div>
-      </div>
-      
-      <div class="relative z-10">
-        <div class="absolute inset-0 bg-wheat rounded-full filter blur-3xl opacity-50 transform scale-90 translate-y-10"></div>
-        <img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?q=80&w=800" class="relative w-full rounded-2xl shadow-2xl rotate-2 hover:rotate-0 transition duration-700 object-cover aspect-[4/3]">
-        <img src="https://images.unsplash.com/photo-1555507036-ab1f4038808a?q=80&w=600" class="absolute -bottom-10 -left-10 w-1/2 rounded-2xl shadow-xl -rotate-6 hover:rotate-0 transition duration-700 border-4 border-[#faf9f6]">
+  <header class="pt-24 pb-16 px-6 container mx-auto text-center">
+    <span class="inline-block bg-white text-bread px-4 py-1 rounded-full text-xs font-bold mb-6 shadow-sm border border-bread/20">
+      Open 08:00 - Close 20:00
+    </span>
+    <h1 class="text-5xl md:text-7xl font-display font-bold mb-6 text-gray-800 leading-tight">
+      Freshly Baked <br> <span class="text-bread">Everything.</span>
+    </h1>
+    <p class="text-gray-500 max-w-md mx-auto leading-relaxed mb-10">
+      유기농 밀가루와 천연 발효종으로 매일 아침 굽습니다. <br>
+      따뜻한 커피와 함께 여유로운 시간을 즐기세요.
+    </p>
+
+    <div class="relative max-w-4xl mx-auto group cursor-pointer" onclick="toggleCafe()">
+      <div class="absolute inset-0 bg-bread rounded-[3rem] rotate-3 opacity-20 transform group-hover:rotate-6 transition duration-500"></div>
+      <img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?q=80&w=1200" class="relative rounded-[3rem] shadow-2xl w-full h-[400px] object-cover">
+      <div class="absolute -bottom-6 -right-6 bg-white p-6 rounded-full shadow-lg w-32 h-32 flex flex-col justify-center items-center animate-bounce">
+        <span class="text-xs text-gray-400 font-bold uppercase">Best</span>
+        <span class="font-display font-bold text-lg text-bread">Sourdough</span>
       </div>
     </div>
   </header>
 
-  <!-- Breads Grid -->
-  <section id="breads" class="py-24 bg-white">
-    <div class="container mx-auto px-6">
-      <div class="text-center mb-16">
-        <h2 class="text-4xl font-serif text-bread mb-4">From the Oven</h2>
-        <p class="text-gray-500">Naturally leavened, hand-shaped.</p>
-      </div>
+  <!-- Showcase -->
+  <section id="bread" class="py-20 px-6">
+    <div class="container mx-auto">
+      <h2 class="text-3xl font-display font-bold text-center mb-16 text-gray-800">Today's Lineup</h2>
       
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
         <!-- Item -->
-        <div class="group cursor-pointer">
-          <div class="overflow-hidden rounded-xl mb-4">
-            <img src="https://images.unsplash.com/photo-1585476290130-9ebfd0024479?q=80&w=600" class="w-full aspect-square object-cover group-hover:scale-110 transition duration-500">
+        <div class="bg-white p-4 rounded-3xl shadow-sm hover:shadow-lg transition text-center group cursor-pointer" onclick="toggleCafe()">
+          <div class="w-full h-40 rounded-2xl overflow-hidden mb-4 bg-gray-100">
+            <img src="https://images.unsplash.com/photo-1586444248902-2f64eddc13df?q=80&w=400" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
           </div>
-          <h3 class="font-serif text-xl mb-1">Country Sourdough</h3>
-          <p class="text-sm text-gray-400">$8.00</p>
+          <h3 class="font-bold text-gray-800 mb-1">Croissant</h3>
+          <p class="text-xs text-gray-400">프랑스 고메 버터</p>
+          <p class="text-bread font-bold mt-2">₩ 4,500</p>
         </div>
         <!-- Item -->
-        <div class="group cursor-pointer">
-          <div class="overflow-hidden rounded-xl mb-4">
-            <img src="https://images.unsplash.com/photo-1555507036-ab1f4038808a?q=80&w=600" class="w-full aspect-square object-cover group-hover:scale-110 transition duration-500">
+        <div class="bg-white p-4 rounded-3xl shadow-sm hover:shadow-lg transition text-center group cursor-pointer" onclick="toggleCafe()">
+          <div class="w-full h-40 rounded-2xl overflow-hidden mb-4 bg-gray-100">
+            <img src="https://images.unsplash.com/photo-1574360814988-cb920805dc2c?q=80&w=400" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
           </div>
-          <h3 class="font-serif text-xl mb-1">Butter Croissant</h3>
-          <p class="text-sm text-gray-400">$4.50</p>
+          <h3 class="font-bold text-gray-800 mb-1">Baguette</h3>
+          <p class="text-xs text-gray-400">겉바속촉 정통 바게트</p>
+          <p class="text-bread font-bold mt-2">₩ 4,000</p>
         </div>
         <!-- Item -->
-        <div class="group cursor-pointer">
-          <div class="overflow-hidden rounded-xl mb-4">
-            <img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?q=80&w=600" class="w-full aspect-square object-cover group-hover:scale-110 transition duration-500">
+        <div class="bg-white p-4 rounded-3xl shadow-sm hover:shadow-lg transition text-center group cursor-pointer" onclick="toggleCafe()">
+          <div class="w-full h-40 rounded-2xl overflow-hidden mb-4 bg-gray-100">
+            <img src="https://images.unsplash.com/photo-1549396535-c11d5c55b9df?q=80&w=400" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
           </div>
-          <h3 class="font-serif text-xl mb-1">Pain au Chocolat</h3>
-          <p class="text-sm text-gray-400">$5.00</p>
+          <h3 class="font-bold text-gray-800 mb-1">Salt Bread</h3>
+          <p class="text-xs text-gray-400">안데스 소금빵</p>
+          <p class="text-bread font-bold mt-2">₩ 3,500</p>
         </div>
-        <!-- Item -->
-        <div class="group cursor-pointer">
-          <div class="overflow-hidden rounded-xl mb-4">
-            <img src="https://images.unsplash.com/photo-1565431693339-b9d9c228d706?q=80&w=600" class="w-full aspect-square object-cover group-hover:scale-110 transition duration-500">
+         <!-- Item -->
+        <div class="bg-white p-4 rounded-3xl shadow-sm hover:shadow-lg transition text-center group cursor-pointer" onclick="toggleCafe()">
+          <div class="w-full h-40 rounded-2xl overflow-hidden mb-4 bg-gray-100">
+            <img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?q=80&w=400" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
           </div>
-          <h3 class="font-serif text-xl mb-1">Baguette Tradition</h3>
-          <p class="text-sm text-gray-400">$3.50</p>
+          <h3 class="font-bold text-gray-800 mb-1">Ciabatta</h3>
+          <p class="text-xs text-gray-400">올리브 치아바타</p>
+          <p class="text-bread font-bold mt-2">₩ 4,800</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Story & Hours -->
-  <section id="story" class="py-24 bg-bread text-cream">
-    <div class="container mx-auto px-6 grid md:grid-cols-2 gap-16 items-center">
-      <div class="space-y-8">
-        <h2 class="text-4xl md:text-5xl font-serif">Slow Baking, <br> Simple Ingredients</h2>
-        <p class="opacity-80 leading-loose font-light">
-          We use only flour, water, salt, and time. Our dough ferments for 24 hours to develop deep flavor and distinct texture. 
-          No shortcuts, just honest baking.
-        </p>
-        <div class="pt-8 border-t border-cream/20 grid grid-cols-2 gap-8">
-           <div>
-             <div class="text-xs uppercase tracking-widest opacity-60 mb-2">Mon - Fri</div>
-             <div class="font-serif text-2xl">07:00 - 19:00</div>
-           </div>
-           <div>
-             <div class="text-xs uppercase tracking-widest opacity-60 mb-2">Sat - Sun</div>
-             <div class="font-serif text-2xl">08:00 - 18:00</div>
-           </div>
+  <!-- Drink Menu -->
+  <section id="menu" class="py-20 bg-white">
+    <div class="container mx-auto px-6 max-w-3xl">
+      <h2 class="text-3xl font-display font-bold text-center mb-12 text-coffee">Coffee & Others</h2>
+      
+      <div class="bg-flour p-8 rounded-[2rem] space-y-4">
+        <div class="flex justify-between items-center border-b border-coffee/10 pb-4">
+          <div>
+            <h3 class="font-bold text-lg">아메리카노 (Americano)</h3>
+            <p class="text-xs text-gray-500">산미 / 고소한 맛 선택 가능</p>
+          </div>
+          <div class="font-bold text-coffee">₩ 4,500</div>
         </div>
-      </div>
-      <div class="relative h-[500px] border border-cream/20 p-4">
-        <img src="https://images.unsplash.com/photo-1608198093002-ad4e005484ec?q=80&w=800" class="w-full h-full object-cover grayscale opacity-80 hover:grayscale-0 hover:opacity-100 transition duration-700">
+        <div class="flex justify-between items-center border-b border-coffee/10 pb-4">
+          <div>
+            <h3 class="font-bold text-lg">플랫 화이트 (Flat White)</h3>
+            <p class="text-xs text-gray-500">진한 에스프레소와 부드러운 우유</p>
+          </div>
+          <div class="font-bold text-coffee">₩ 5,000</div>
+        </div>
+        <div class="flex justify-between items-center border-b border-coffee/10 pb-4">
+          <div>
+            <h3 class="font-bold text-lg">바닐라빈 라떼 (Vanilla Latte)</h3>
+            <p class="text-xs text-gray-500">수제 바닐라 시럽</p>
+          </div>
+          <div class="font-bold text-coffee">₩ 5,500</div>
+        </div>
+        <div class="flex justify-between items-center border-b border-coffee/10 pb-4">
+          <div>
+            <h3 class="font-bold text-lg">시그니처 크림 라떼</h3>
+            <p class="text-xs text-gray-500">너티한 크림이 올라간 라떼</p>
+          </div>
+          <div class="font-bold text-coffee">₩ 6,000</div>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- Reservation Modal -->
-  <div id="cafe-modal" class="fixed inset-0 bg-black/60 z-[60] hidden flex items-center justify-center p-4">
-    <div class="bg-[#faf9f6] w-full max-w-md rounded-2xl p-8 relative shadow-2xl">
-      <button onclick="toggleCafeRes()" class="absolute top-4 right-4 text-gray-400 hover:text-bread">&times;</button>
+  <!-- Modal -->
+  <div id="cafe-modal" class="fixed inset-0 bg-coffee/80 backdrop-blur-sm z-[60] hidden flex items-center justify-center p-4">
+    <div class="bg-white w-full max-w-md rounded-[2rem] p-10 relative shadow-2xl">
+      <button onclick="toggleCafe()" class="absolute top-6 right-6 text-gray-400 hover:text-coffee text-xl">&times;</button>
       
-      <h2 class="text-3xl font-serif text-bread mb-2">Pre-Order</h2>
-      <p class="text-sm text-gray-500 mb-8">Skip the line, pick up your favorites.</p>
-      
-      <form class="space-y-4" onsubmit="event.preventDefault(); alert('Order received! We will have it ready.'); toggleCafeRes();">
-        <input type="text" placeholder="Name" class="w-full bg-white border border-gray-200 p-3 rounded-lg focus:outline-none focus:border-bread">
-        <div class="grid grid-cols-2 gap-4">
-          <select class="bg-white border border-gray-200 p-3 rounded-lg text-gray-600 focus:outline-none focus:border-bread">
-            <option>Sourdough</option>
-            <option>Croissant Box</option>
-            <option>Coffee Only</option>
-          </select>
-          <select class="bg-white border border-gray-200 p-3 rounded-lg text-gray-600 focus:outline-none focus:border-bread">
-            <option>08:00 AM</option>
-            <option>09:00 AM</option>
-            <option>12:00 PM</option>
-          </select>
+      <div class="text-center mb-8">
+        <h2 class="font-display text-2xl font-bold text-coffee mb-2">Order & Pick up</h2>
+        <p class="text-xs text-gray-500">기다리지 말고 바로 픽업하세요</p>
+      </div>
+
+      <form class="space-y-4" onsubmit="event.preventDefault(); alert('주문이 접수되었습니다. (준비 시간: 약 10분)'); toggleCafe();">
+        <div class="bg-gray-50 p-4 rounded-xl flex items-center gap-4">
+          <div class="w-16 h-16 bg-gray-200 rounded-lg overflow-hidden">
+             <img src="https://images.unsplash.com/photo-1549396535-c11d5c55b9df?q=80&w=200" class="w-full h-full object-cover">
+          </div>
+          <div>
+            <h4 class="font-bold text-sm">Salt Bread</h4>
+            <div class="flex items-center gap-2 mt-1">
+              <button type="button" class="w-6 h-6 bg-white rounded-full shadow flex items-center justify-center text-xs font-bold">-</button>
+              <span class="font-bold text-sm">1</span>
+              <button type="button" class="w-6 h-6 bg-white rounded-full shadow flex items-center justify-center text-xs font-bold">+</button>
+            </div>
+          </div>
+          <div class="ml-auto font-bold text-coffee">₩ 3,500</div>
         </div>
-        <textarea placeholder="Special Requests" class="w-full bg-white border border-gray-200 p-3 rounded-lg focus:outline-none focus:border-bread h-24"></textarea>
-        <button class="w-full bg-bread text-white py-4 rounded-xl font-medium shadow-lg hover:bg-crust transition">
-          Place Order
+
+        <div class="bg-gray-50 p-4 rounded-xl flex items-center gap-4">
+          <div class="w-16 h-16 bg-gray-200 rounded-lg overflow-hidden">
+             <img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?q=80&w=200" class="w-full h-full object-cover">
+          </div>
+          <div>
+            <h4 class="font-bold text-sm">Americano (ICED)</h4>
+             <div class="flex items-center gap-2 mt-1">
+              <button type="button" class="w-6 h-6 bg-white rounded-full shadow flex items-center justify-center text-xs font-bold">-</button>
+              <span class="font-bold text-sm">1</span>
+              <button type="button" class="w-6 h-6 bg-white rounded-full shadow flex items-center justify-center text-xs font-bold">+</button>
+            </div>
+          </div>
+          <div class="ml-auto font-bold text-coffee">₩ 4,500</div>
+        </div>
+        
+        <div class="flex justify-between items-center py-4 border-t border-gray-100">
+           <span class="font-bold text-gray-500">Total</span>
+           <span class="font-bold text-2xl text-coffee">₩ 8,000</span>
+        </div>
+        
+        <button class="w-full bg-coffee text-white py-4 rounded-xl font-bold shadow-lg hover:bg-bread transition">
+          결제하기
         </button>
       </form>
     </div>
   </div>
 
   <script>
-    function toggleCafeRes() {
+    function toggleCafe() {
       const modal = document.getElementById('cafe-modal');
       if(modal.classList.contains('hidden')) {
         modal.classList.remove('hidden');

@@ -11,13 +11,27 @@
       <form action="<%= design_templates_path %>" method="get" class="flex flex-col md:flex-row gap-4 items-center justify-between">
         
         <!-- Category Filter -->
-        <div class="flex gap-2 overflow-x-auto w-full md:w-auto pb-2 md:pb-0 no-scrollbar">
-          <% categories = ['all', 'beauty', 'dining', 'corporate', 'medical', 'fitness', 'shopping', 'space', 'stay', 'portfolio', 'law', 'cafe', 'academy'] %>
-          <% categories.each do |cat| %>
-            <button type="submit" name="category" value="<%= cat %>" 
+        <!-- Category Filter -->
+        <div class="flex flex-wrap gap-2 w-full md:flex-1">
+          <% 
+            categories = [
+              ['all', '전체'],
+              ['beauty', '뷰티'],
+              ['dining', '다이닝'],
+              ['corporate', '기업 · 스타트업'],
+              ['medical', '병원 · 법률'],
+              ['fitness', '운동 · 헬스'],
+              ['shopping', '쇼핑 · 패션'],
+              ['stay', '숙박 · 여행'],
+              ['space', '공간 · 스튜디오'],
+              ['academy', '교육 · 학원']
+            ] 
+          %>
+          <% categories.each do |cat_code, cat_name| %>
+            <button type="submit" name="category" value="<%= cat_code %>" 
                     class="px-4 py-2 rounded-full text-sm font-bold whitespace-nowrap transition-colors
-                    <%= params[:category] == cat || (params[:category].blank? && cat == 'all') ? 'bg-slate-900 text-white' : 'bg-gray-100 text-gray-500 hover:bg-gray-200' %>">
-              <%= cat == 'all' ? 'ALL' : cat.upcase %>
+                    <%= params[:category] == cat_code || (params[:category].blank? && cat_code == 'all') ? 'bg-slate-900 text-white' : 'bg-gray-100 text-gray-500 hover:bg-gray-200' %>">
+              <%= cat_name %>
             </button>
           <% end %>
         </div>

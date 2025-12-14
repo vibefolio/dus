@@ -1,136 +1,163 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Pure Clinic - Advanced Dermatology</title>
+  <title>퓨어 클리닉 - 피부의 본질을 찾다</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=Noto+Sans+KR:wght@300;400;500&display=swap" rel="stylesheet">
   <script>
     tailwind.config = {
       theme: {
         extend: {
           colors: {
-            skin: '#FDF2F8',
-            pure: '#FFFFFF',
-            accent: '#DB2777',
+            skin: '#F5ECE9',
+            silver: '#A6A6A6',
+            charcoal: '#333333',
           },
           fontFamily: {
             serif: ['Cormorant Garamond', 'serif'],
-            sans: ['Montserrat', 'sans-serif'],
+            sans: ['Noto Sans KR', 'sans-serif'],
           }
         }
       }
     }
   </script>
 </head>
-<body class="bg-gray-50 font-sans text-gray-600">
+<body class="bg-white text-charcoal font-sans font-light">
 
   <!-- Nav -->
-  <nav class="fixed w-full z-50 bg-white/80 backdrop-blur-md border-b border-gray-100 transition-all duration-300">
-    <div class="container mx-auto px-6 py-4 flex justify-between items-center">
-      <div class="font-serif text-3xl tracking-widest text-gray-800">
-        PURE <span class="text-accent font-light">CLINIC</span>
-      </div>
-      <div class="hidden md:flex gap-10 text-xs font-medium tracking-[0.2em] uppercase text-gray-500">
-        <a href="#procedures" class="hover:text-accent transition">Procedures</a>
-        <a href="#specialists" class="hover:text-accent transition">Specialists</a>
-        <a href="#reviews" class="hover:text-accent transition">Real Stories</a>
-      </div>
-      <button onclick="toggleMedical()" class="bg-black text-white px-6 py-2 text-xs font-bold tracking-widest hover:bg-accent transition">
-        CONSULTATION
-      </button>
+  <nav class="fixed w-full z-50 px-8 py-6 bg-white/80 backdrop-blur border-b border-gray-100 flex justify-between items-center">
+    <div class="text-2xl font-serif tracking-widest text-gray-800">PURE CLINIC</div>
+    <div class="hidden md:flex gap-10 text-xs tracking-widest text-gray-500">
+      <a href="#about" class="hover:text-black transition">브랜드 소개</a>
+      <a href="#procedures" class="hover:text-black transition">시술 안내</a>
+      <a href="#doctors" class="hover:text-black transition">의료진</a>
+      <a href="#contact" class="hover:text-black transition">오시는 길</a>
     </div>
+    <button onclick="toggleMedical()" class="border border-gray-300 px-6 py-2 text-xs hover:border-black hover:bg-black hover:text-white transition">
+      예약하기
+    </button>
   </nav>
 
   <!-- Hero -->
-  <header class="h-screen flex items-center justify-center relative overflow-hidden bg-skin">
+  <header class="h-screen relative flex items-center justify-center overflow-hidden">
     <div class="absolute inset-0 z-0">
-      <img src="https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?q=80&w=1920" class="w-full h-full object-cover opacity-50">
-      <div class="absolute inset-0 bg-gradient-to-r from-skin via-skin/80 to-transparent"></div>
+      <img src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?q=80&w=1920" class="w-full h-full object-cover opacity-90">
     </div>
-    
-    <div class="container mx-auto px-6 relative z-10 grid md:grid-cols-2">
-      <div class="space-y-8">
-        <p class="text-accent text-sm tracking-[0.3em] uppercase animate-fade-in-up">Esthetics & Dermatology</p>
-        <h1 class="text-6xl md:text-8xl font-serif font-light text-gray-900 leading-none animate-fade-in-up" style="animation-delay: 0.2s">
-          Reveal <br> Your <i class="text-accent">Glow</i>
-        </h1>
-        <p class="text-lg font-light leading-loose max-w-md animate-fade-in-up" style="animation-delay: 0.4s">
-          Personalized skin solutions merging medical science with aesthetic artistry. 
-          Experience the confidence of pure, radiant skin.
-        </p>
-        <div class="pt-8">
-           <button onclick="toggleMedical()" class="border-b border-black pb-1 text-sm tracking-[0.2em] hover:text-accent hover:border-accent transition uppercase">Discover Treatments</button>
-        </div>
-      </div>
+    <div class="relative z-10 text-center space-y-6 bg-white/30 backdrop-blur-sm p-12 rounded-full animate-fade-in aspect-square flex flex-col justify-center items-center shadow-lg border border-white/50">
+      <p class="text-xs tracking-[0.3em] uppercase text-gray-600">Dermatology & Esthetic</p>
+      <h1 class="text-5xl md:text-6xl font-serif font-light text-gray-900 leading-tight">
+        Pure Beauty, <br> <span class="italic">True You.</span>
+      </h1>
+      <p class="text-xs md:text-sm text-gray-700 leading-relaxed max-w-xs mx-auto">
+        본연의 아름다움을 찾아드리는 1:1 맞춤 솔루션. <br>
+        과학적인 진단과 섬세한 터치로 시간을 되돌립니다.
+      </p>
     </div>
   </header>
 
-  <!-- Before / After (Concept) -->
-  <section id="procedures" class="py-24 bg-white">
-    <div class="container mx-auto px-6">
-      <div class="text-center mb-20">
-        <h2 class="font-serif text-4xl md:text-5xl text-gray-900 mb-6">Signature Treatments</h2>
-        <div class="w-20 h-px bg-accent mx-auto"></div>
-      </div>
-      
-      <div class="grid md:grid-cols-3 gap-12">
-        <!-- Item 1 -->
-        <div class="group cursor-pointer">
-          <div class="overflow-hidden mb-6 relative">
-            <img src="https://images.unsplash.com/photo-1596755389378-c31d21fd1273?q=80&w=600" class="w-full aspect-[3/4] object-cover transition duration-700 group-hover:scale-105">
-            <div class="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition duration-700"></div>
-          </div>
-          <h3 class="font-serif text-2xl mb-2 text-gray-900 group-hover:text-accent transition">Laser Toning</h3>
-          <p class="text-sm font-light text-gray-500 leading-relaxed">Brighten skin tone and remove pigmentation with our dual-toning laser system.</p>
-        </div>
-        <!-- Item 2 -->
-        <div class="group cursor-pointer mt-0 md:-mt-12">
-          <div class="overflow-hidden mb-6 relative">
-            <img src="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?q=80&w=600" class="w-full aspect-[3/4] object-cover transition duration-700 group-hover:scale-105">
-             <div class="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition duration-700"></div>
-          </div>
-          <h3 class="font-serif text-2xl mb-2 text-gray-900 group-hover:text-accent transition">Anti-Aging Filler</h3>
-          <p class="text-sm font-light text-gray-500 leading-relaxed">Restore volume and smooth out fine lines naturally. FDA approved materials only.</p>
-        </div>
-        <!-- Item 3 -->
-        <div class="group cursor-pointer">
-          <div class="overflow-hidden mb-6 relative">
-            <img src="https://images.unsplash.com/photo-1512496015851-a90fb38ba796?q=80&w=600" class="w-full aspect-[3/4] object-cover transition duration-700 group-hover:scale-105">
-             <div class="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition duration-700"></div>
-          </div>
-          <h3 class="font-serif text-2xl mb-2 text-gray-900 group-hover:text-accent transition">Acne Care</h3>
-          <p class="text-sm font-light text-gray-500 leading-relaxed">Systematic 4-step program to control sebum and heal deep scars effectively.</p>
-        </div>
-      </div>
+  <!-- Procedures -->
+  <section id="procedures" class="py-24 px-6 bg-skin/30">
+    <div class="container mx-auto max-w-6xl">
+       <div class="flex flex-col md:flex-row justify-between items-end mb-16 border-b border-gray-200 pb-4">
+         <div>
+            <h2 class="text-3xl font-serif text-gray-800 mb-2">Signature Programs</h2>
+            <p class="text-xs text-gray-500 tracking-wider">안티에이징부터 스킨케어까지</p>
+         </div>
+         <a href="#" class="text-xs border-b border-gray-400 pb-1 hover:text-black hover:border-black transition mb-2 md:mb-0">전체 프로그램 보기</a>
+       </div>
+
+       <div class="grid md:grid-cols-3 gap-8">
+         <!-- Item -->
+         <div class="bg-white p-8 hover:shadow-xl transition duration-500 group cursor-pointer" onclick="toggleMedical()">
+           <div class="h-64 overflow-hidden mb-6 filter grayscale group-hover:grayscale-0 transition duration-700">
+             <img src="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?q=80&w=600" class="w-full h-full object-cover">
+           </div>
+           <h3 class="text-xl font-serif mb-2">Laser Lifting</h3>
+           <p class="text-xs text-gray-400 leading-relaxed mb-4">
+             울쎄라, 써마지 등 프리미엄 리프팅 장비를 활용하여 
+             피부 탄력을 회복하고 얼굴 라인을 정리합니다.
+           </p>
+           <div class="text-right text-xs font-bold border-t border-gray-100 pt-4">상담 문의</div>
+         </div>
+         <!-- Item -->
+         <div class="bg-white p-8 hover:shadow-xl transition duration-500 group cursor-pointer" onclick="toggleMedical()">
+           <div class="h-64 overflow-hidden mb-6 filter grayscale group-hover:grayscale-0 transition duration-700">
+             <img src="https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?q=80&w=600" class="w-full h-full object-cover">
+           </div>
+           <h3 class="text-xl font-serif mb-2">Skin Booster</h3>
+           <p class="text-xs text-gray-400 leading-relaxed mb-4">
+             리쥬란, 엑소좀 등 피부 재생에 탁월한 성분을 
+             직접 주입하여 속건조를 해결하고 광채를 부여합니다.
+           </p>
+           <div class="text-right text-xs font-bold border-t border-gray-100 pt-4">상담 문의</div>
+         </div>
+         <!-- Item -->
+         <div class="bg-white p-8 hover:shadow-xl transition duration-500 group cursor-pointer" onclick="toggleMedical()">
+           <div class="h-64 overflow-hidden mb-6 filter grayscale group-hover:grayscale-0 transition duration-700">
+             <img src="https://images.unsplash.com/photo-1512290923902-8a9f81dc236c?q=80&w=600" class="w-full h-full object-cover">
+           </div>
+           <h3 class="text-xl font-serif mb-2">Whitening Care</h3>
+           <p class="text-xs text-gray-400 leading-relaxed mb-4">
+             기미, 잡티, 색소 침착을 개선하여 
+             맑고 투명한 피부 톤으로 되돌려 드립니다.
+           </p>
+           <div class="text-right text-xs font-bold border-t border-gray-100 pt-4">상담 문의</div>
+         </div>
+       </div>
     </div>
   </section>
 
-  <!-- Reservation Modal -->
-  <div id="medical-modal" class="fixed inset-0 bg-white/95 z-[60] hidden flex items-center justify-center p-6 opacity-0 transition-opacity duration-500">
-    <div class="max-w-2xl w-full text-center relative">
-      <button onclick="toggleMedical()" class="absolute -top-12 right-0 text-3xl font-light hover:text-accent">&times;</button>
+  <!-- Doctors -->
+  <section id="doctors" class="py-24 px-6 container mx-auto text-center">
+    <div class="max-w-2xl mx-auto space-y-6">
+      <h2 class="text-3xl font-serif">Medical Team</h2>
+      <p class="text-sm text-gray-500 leading-loose">
+        피부과 전문의들로 구성된 퓨어 클리닉의 의료진은 
+        끊임없는 연구와 풍부한 임상 경험을 바탕으로 
+        안전하고 효과적인 시술을 약속드립니다.
+      </p>
+      <img src="https://images.unsplash.com/photo-1622253692010-333f2da6031d?q=80&w=1200" class="w-full h-64 object-cover mt-12 grayscale opacity-80">
+    </div>
+  </section>
+
+  <!-- Modal -->
+  <div id="medical-modal" class="fixed inset-0 bg-white/80 backdrop-blur-md z-[60] hidden flex items-center justify-center p-4">
+    <div class="bg-white w-full max-w-md p-10 border border-gray-200 relative shadow-2xl">
+      <button onclick="toggleMedical()" class="absolute top-4 right-4 text-gray-400 hover:text-black text-xl">&times;</button>
       
-      <p class="text-accent text-xs tracking-[0.3em] uppercase mb-4">Book Appointment</p>
-      <h2 class="font-serif text-5xl mb-12">Start Your Journey</h2>
-      
-      <form class="space-y-12" onsubmit="event.preventDefault(); alert('We will contact you to confirm.'); toggleMedical();">
-        <div class="grid grid-cols-2 gap-12 border-b border-gray-200 pb-4">
-           <input type="text" placeholder="Name" class="bg-transparent text-center text-xl outline-none placeholder-gray-300 font-serif">
-           <input type="tel" placeholder="Phone" class="bg-transparent text-center text-xl outline-none placeholder-gray-300 font-serif">
+      <div class="text-center mb-10">
+        <h2 class="font-serif text-2xl text-gray-800">Online Reservation</h2>
+        <p class="text-xs text-gray-400 mt-2">편안한 진료를 위해 예약제로 운영됩니다</p>
+      </div>
+
+      <form class="space-y-6" onsubmit="event.preventDefault(); alert('예약 신청 완료. 확인 전화를 드리겠습니다.'); toggleMedical();">
+        <div class="space-y-1">
+          <label class="text-xs text-gray-400">Name</label>
+          <input type="text" class="w-full border-b border-gray-200 py-2 outline-none focus:border-black transition">
         </div>
-        <div class="border-b border-gray-200 pb-4">
-           <select class="w-full bg-transparent text-center text-xl outline-none text-gray-500 font-serif">
-             <option>Consultation</option>
-             <option>Laser Treatment</option>
-             <option>Skincare (Basic)</option>
-             <option>Skincare (Premium)</option>
-           </select>
+        <div class="space-y-1">
+          <label class="text-xs text-gray-400">Phone</label>
+          <input type="tel" class="w-full border-b border-gray-200 py-2 outline-none focus:border-black transition">
+        </div>
+        <div class="space-y-1">
+          <label class="text-xs text-gray-400">Visit Date</label>
+          <input type="date" class="w-full border-b border-gray-200 py-2 outline-none focus:border-black transition text-gray-600">
+        </div>
+        <div class="space-y-1">
+          <label class="text-xs text-gray-400">Interested In</label>
+          <select class="w-full border-b border-gray-200 py-2 outline-none focus:border-black transition bg-transparent text-gray-600">
+            <option>레이저 리프팅</option>
+            <option>스킨 부스터</option>
+            <option>색소/미백</option>
+            <option>여드름/흉터</option>
+            <option>기타 상담</option>
+          </select>
         </div>
         
-        <button class="bg-black text-white px-12 py-4 text-xs font-bold tracking-[0.2em] hover:bg-accent transition uppercase">
-          Request Booking
+        <button class="w-full bg-charcoal text-white py-4 text-xs tracking-widest hover:bg-black transition mt-4">
+          예약 신청하기
         </button>
       </form>
     </div>
@@ -141,10 +168,8 @@
       const modal = document.getElementById('medical-modal');
       if(modal.classList.contains('hidden')) {
         modal.classList.remove('hidden');
-        setTimeout(() => modal.classList.remove('opacity-0'), 10);
       } else {
-        modal.classList.add('opacity-0');
-        setTimeout(() => modal.classList.add('hidden'), 500);
+        modal.classList.add('hidden');
       }
     }
   </script>

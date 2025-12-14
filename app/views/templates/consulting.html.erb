@@ -3,221 +3,192 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Global Consulting Group</title>
+  <title>컨설팅 허브 - 전략적 파트너</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
-  <style>
-    body { font-family: 'Lato', sans-serif; color: #334155; }
-    h1, h2, h3, h4, .font-serif { font-family: 'Playfair Display', serif; }
-    .bg-navy { background-color: #0f172a; }
-    .text-gold { color: #d4af37; }
-    .bg-gold { background-color: #d4af37; }
-    .border-gold { border-color: #d4af37; }
-  </style>
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            navy: '#0A192F',
+            gold: '#C9A959',
+            slate: '#8892B0',
+          },
+          fontFamily: {
+            serif: ['Libre Baskerville', 'serif'],
+            sans: ['Noto Sans KR', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
 </head>
-<body class="bg-gray-50">
+<body class="bg-gray-50 text-navy font-sans">
 
   <!-- Top Bar -->
-  <div class="bg-navy text-white text-xs py-2 px-6 flex justify-between items-center hidden md:flex">
-    <div>New York • London • Seoul • Singapore</div>
-    <div class="flex gap-4">
-      <a href="#" class="hover:text-gold transition">Careers</a>
-      <a href="#" class="hover:text-gold transition">News</a>
-      <a href="#" class="hover:text-gold transition">Client Login</a>
+  <div class="bg-navy text-slate text-xs py-2 px-6 flex justify-between">
+    <div class="hidden md:flex gap-4">
+      <span>서울시 강남구 테헤란로 123</span>
+      <span>|</span>
+      <span>02-1234-5678</span>
+    </div>
+    <div class="flex gap-4 ml-auto">
+      <a href="#" class="hover:text-white">News</a>
+      <a href="#" class="hover:text-white">Careers</a>
+      <a href="#" class="hover:text-white">Login</a>
     </div>
   </div>
 
-  <!-- Header -->
-  <header class="bg-white shadow-sm sticky top-0 z-50">
-    <div class="max-w-7xl mx-auto px-6 h-20 flex justify-between items-center">
-      <div class="text-2xl font-serif font-bold text-navy flex items-center gap-2">
-        <span class="w-8 h-8 bg-navy flex items-center justify-center text-gold text-lg">G</span>
-        CONSULTING
+  <!-- Nav -->
+  <nav class="sticky top-0 z-50 bg-white border-b border-gray-100 px-6 py-4 shadow-sm flex justify-between items-center">
+    <div class="text-2xl font-serif font-bold text-navy flex items-center gap-2">
+      <div class="w-8 h-8 bg-navy flex items-center justify-center text-gold text-sm font-serif italic">C</div>
+      Consulting Hub
+    </div>
+    <div class="hidden md:flex gap-8 font-medium text-gray-600 text-sm">
+      <a href="#expertise" class="hover:text-navy hover:underline underline-offset-4 transition">전문 분야</a>
+      <a href="#solutions" class="hover:text-navy hover:underline underline-offset-4 transition">솔루션</a>
+      <a href="#insights" class="hover:text-navy hover:underline underline-offset-4 transition">인사이트</a>
+    </div>
+    <button onclick="toggleConsult()" class="bg-navy text-white px-6 py-2 text-sm font-medium hover:bg-navy/90 transition">
+      상담 예약
+    </button>
+  </nav>
+
+  <!-- Hero -->
+  <header class="relative bg-navy text-white py-32 overflow-hidden">
+    <div class="absolute inset-0 z-0">
+      <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=1920" class="w-full h-full object-cover opacity-10">
+      <div class="absolute inset-0 bg-gradient-to-r from-navy via-navy/90 to-transparent"></div>
+    </div>
+    
+    <div class="container mx-auto px-6 relative z-10 grid md:grid-cols-2 gap-12 items-center">
+      <div class="space-y-8 animate-fade-in-up">
+        <h1 class="text-5xl md:text-6xl font-serif leading-tight">
+          Strategic Vision for <br> <span class="text-gold italic">Global Growth</span>
+        </h1>
+        <p class="text-slate text-lg leading-relaxed max-w-lg">
+          복잡한 비즈니스 환경 속에서 명확한 해답을 제시합니다. <br>
+          기업의 지속 가능한 성장을 위한 최고의 파트너가 되겠습니다.
+        </p>
+        <div class="flex gap-4 pt-4">
+          <button onclick="toggleConsult()" class="border border-gold text-gold px-8 py-3 hover:bg-gold hover:text-navy transition duration-300">
+            서비스 자세히 보기
+          </button>
+        </div>
       </div>
-      <nav class="hidden md:flex gap-8 text-sm font-bold tracking-wide text-navy">
-        <a href="#" class="hover:text-gold transition">EXPERTISE</a>
-        <a href="#" class="hover:text-gold transition">INDUSTRIES</a>
-        <a href="#" class="hover:text-gold transition">INSIGHTS</a>
-        <a href="#" class="hover:text-gold transition">OUR FIRM</a>
-      </nav>
-      <button class="bg-navy text-white px-6 py-2 text-sm font-bold hover:bg-gold transition hidden md:block" onclick="toggleConsultingModal()">
-        CONTACT US
-      </button>
-      <button class="md:hidden text-navy p-2" onclick="toggleMenu()">
-        <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
-      </button>
+      <div>
+         <!-- Abstract Chart Graphic -->
+         <div class="bg-white/5 backdrop-blur border border-white/10 p-8 rounded shadow-2xl">
+           <div class="flex justify-between items-end h-48 gap-4 px-4 pb-4 border-b border-slate/30">
+             <div class="w-full bg-gold/20 h-1/4 relative group"><div class="absolute bottom-full left-0 w-full text-center text-xs text-slate opacity-0 group-hover:opacity-100 mb-2">Q1</div></div>
+             <div class="w-full bg-gold/40 h-2/4 relative group"><div class="absolute bottom-full left-0 w-full text-center text-xs text-slate opacity-0 group-hover:opacity-100 mb-2">Q2</div></div>
+             <div class="w-full bg-gold/60 h-3/4 relative group"><div class="absolute bottom-full left-0 w-full text-center text-xs text-slate opacity-0 group-hover:opacity-100 mb-2">Q3</div></div>
+             <div class="w-full bg-gold h-full relative group"><div class="absolute bottom-full left-0 w-full text-center text-xs text-gold font-bold mb-2">+125%</div></div>
+           </div>
+           <div class="mt-4 flex justify-between text-xs text-slate">
+             <span>Annual Performance</span>
+             <span class="text-gold">Projected Growth</span>
+           </div>
+         </div>
+      </div>
     </div>
   </header>
 
-  <!-- Hero -->
-  <section class="relative h-[600px] flex items-center">
-    <div class="absolute inset-0 z-0">
-      <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2670&auto=format&fit=crop" class="w-full h-full object-cover">
-      <div class="absolute inset-0 bg-navy/80"></div>
-    </div>
-    <div class="relative z-10 max-w-7xl mx-auto px-6 text-white">
-      <p class="text-gold font-bold tracking-widest mb-4 uppercase text-sm">Strategic Excellence</p>
-      <h1 class="text-5xl md:text-6xl font-serif font-bold mb-8 leading-tight max-w-3xl">
-        Navigating Complex Challenges with Clarity
-      </h1>
-      <div class="flex flex-col sm:flex-row gap-4">
-        <button onclick="toggleConsultingModal()" class="bg-gold text-white px-8 py-4 font-bold hover:bg-white hover:text-navy transition min-w-[200px]">
-          SCHEDULE A CONSULTATION
-        </button>
-        <button class="border border-white text-white px-8 py-4 font-bold hover:bg-white hover:text-navy transition min-w-[200px]">
-          VIEW OUR SERVICES
-        </button>
-      </div>
-    </div>
-  </section>
-
-  <!-- Stats -->
-  <section class="py-16 bg-white border-b border-gray-100">
-    <div class="max-w-7xl mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-      <div>
-        <div class="text-4xl text-navy font-serif font-bold mb-2">25+</div>
-        <div class="text-sm text-gray-500 uppercase tracking-wide">Years Experience</div>
-      </div>
-      <div>
-        <div class="text-4xl text-navy font-serif font-bold mb-2">500+</div>
-        <div class="text-sm text-gray-500 uppercase tracking-wide">Global Clients</div>
-      </div>
-      <div>
-        <div class="text-4xl text-navy font-serif font-bold mb-2">$10B+</div>
-        <div class="text-sm text-gray-500 uppercase tracking-wide">Value Created</div>
-      </div>
-      <div>
-        <div class="text-4xl text-navy font-serif font-bold mb-2">50</div>
-        <div class="text-sm text-gray-500 uppercase tracking-wide">Offices Worldwide</div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Insights Grid -->
-  <section class="py-24 bg-gray-50">
-    <div class="max-w-7xl mx-auto px-6">
-      <div class="flex justify-between items-end mb-12">
-        <div>
-           <h2 class="text-3xl text-navy font-serif font-bold mb-4">Latest Insights</h2>
-           <p class="text-gray-600 max-w-xl">Our perspective on the critical issues facing global business today.</p>
-        </div>
-        <a href="#" class="hidden md:block text-navy font-bold border-b-2 border-gold pb-1 hover:text-gold transition">View All Insights</a>
+  <!-- Expertise -->
+  <section id="expertise" class="py-24 px-6 bg-white">
+    <div class="container mx-auto">
+      <div class="text-center mb-16">
+        <h2 class="text-3xl font-serif text-navy mb-4">Core Competencies</h2>
+        <div class="w-16 h-1 bg-gold mx-auto"></div>
       </div>
       
       <div class="grid md:grid-cols-3 gap-8">
-        <!-- Card 1 -->
-        <div class="bg-white shadow-lg group cursor-pointer">
-          <div class="h-64 overflow-hidden relative">
-            <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
-            <div class="absolute top-4 left-4 bg-gold text-white text-xs font-bold px-3 py-1 uppercase">Strategy</div>
-          </div>
-          <div class="p-8">
-            <h3 class="text-xl font-serif font-bold text-navy mb-4 group-hover:text-gold transition">Digital Transformation in 2025</h3>
-            <p class="text-gray-600 text-sm leading-relaxed mb-6">How traditional industries are reinventing themselves through AI and data analytics.</p>
-            <span class="text-xs font-bold text-navy uppercase tracking-wide">Read More &rarr;</span>
-          </div>
+        <!-- Card -->
+        <div class="bg-gray-50 p-8 border-t-4 border-navy hover:border-gold transition duration-300 group cursor-pointer" onclick="toggleConsult()">
+          <div class="w-12 h-12 bg-white rounded-full shadow-sm flex items-center justify-center text-2xl mb-6 text-gold">📊</div>
+          <h3 class="text-xl font-bold mb-3 text-navy">경영 전략 컨설팅</h3>
+          <p class="text-gray-600 text-sm leading-relaxed mb-6">
+            시장 분석부터 사업 모델 재구축까지, 
+            기업 가치를 극대화하는 맞춤형 전략을 수립합니다.
+          </p>
+          <a href="#" class="text-gold text-sm font-bold group-hover:underline">More details &rarr;</a>
         </div>
-        <!-- Card 2 -->
-        <div class="bg-white shadow-lg group cursor-pointer">
-          <div class="h-64 overflow-hidden relative">
-            <img src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=800&q=80" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
-            <div class="absolute top-4 left-4 bg-gold text-white text-xs font-bold px-3 py-1 uppercase">Sustainability</div>
-          </div>
-          <div class="p-8">
-            <h3 class="text-xl font-serif font-bold text-navy mb-4 group-hover:text-gold transition">The Green Economy Shift</h3>
-            <p class="text-gray-600 text-sm leading-relaxed mb-6">Analyzing the impact of ESG regulations on global supply chains.</p>
-            <span class="text-xs font-bold text-navy uppercase tracking-wide">Read More &rarr;</span>
-          </div>
+        <!-- Card -->
+        <div class="bg-gray-50 p-8 border-t-4 border-navy hover:border-gold transition duration-300 group cursor-pointer" onclick="toggleConsult()">
+          <div class="w-12 h-12 bg-white rounded-full shadow-sm flex items-center justify-center text-2xl mb-6 text-gold">⚖️</div>
+          <h3 class="text-xl font-bold mb-3 text-navy">기업 법무 자문</h3>
+          <p class="text-gray-600 text-sm leading-relaxed mb-6">
+            M&A, 지적재산권, 인사노무 등 복잡한 법적 리스크를 
+            사전에 예방하고 해결책을 제시합니다.
+          </p>
+          <a href="#" class="text-gold text-sm font-bold group-hover:underline">More details &rarr;</a>
         </div>
-        <!-- Card 3 -->
-        <div class="bg-white shadow-lg group cursor-pointer">
-          <div class="h-64 overflow-hidden relative">
-            <img src="https://images.unsplash.com/photo-1553877607-49d6da64b633?w=800&q=80" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
-            <div class="absolute top-4 left-4 bg-gold text-white text-xs font-bold px-3 py-1 uppercase">Leadership</div>
-          </div>
-          <div class="p-8">
-            <h3 class="text-xl font-serif font-bold text-navy mb-4 group-hover:text-gold transition">Future of Work</h3>
-            <p class="text-gray-600 text-sm leading-relaxed mb-6">Building resilient teams in an era of remote work and rapid change.</p>
-            <span class="text-xs font-bold text-navy uppercase tracking-wide">Read More &rarr;</span>
-          </div>
+        <!-- Card -->
+        <div class="bg-gray-50 p-8 border-t-4 border-navy hover:border-gold transition duration-300 group cursor-pointer" onclick="toggleConsult()">
+          <div class="w-12 h-12 bg-white rounded-full shadow-sm flex items-center justify-center text-2xl mb-6 text-gold">💰</div>
+          <h3 class="text-xl font-bold mb-3 text-navy">재무 & 투자</h3>
+          <p class="text-gray-600 text-sm leading-relaxed mb-6">
+            자금 조달, 투자 유치, 재무 구조 개선 등 
+            기업의 재무 건전성을 확보하는 솔루션을 제공합니다.
+          </p>
+          <a href="#" class="text-gold text-sm font-bold group-hover:underline">More details &rarr;</a>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Mobile Menu -->
-  <div id="mobile-menu" class="fixed inset-0 bg-navy z-50 transform -translate-x-full transition duration-300 md:hidden flex flex-col pt-24 px-8 text-white">
-    <button onclick="toggleMenu()" class="absolute top-6 right-6 text-white text-2xl">&times;</button>
-    <a href="#" class="text-2xl font-serif font-bold mb-6 hover:text-gold" onclick="toggleMenu()">EXPERTISE</a>
-    <a href="#" class="text-2xl font-serif font-bold mb-6 hover:text-gold" onclick="toggleMenu()">INDUSTRIES</a>
-    <a href="#" class="text-2xl font-serif font-bold mb-6 hover:text-gold" onclick="toggleMenu()">INSIGHTS</a>
-    <a href="#" class="text-2xl font-serif font-bold mb-6 hover:text-gold" onclick="toggleMenu()">OUR FIRM</a>
-    <a href="#" class="text-2xl font-serif font-bold mt-auto mb-12 text-gold" onclick="toggleMenu(); toggleConsultingModal()">CONTACT US</a>
-  </div>
-
-  <!-- Contact Modal -->
-  <div id="consulting-modal" class="fixed inset-0 bg-navy/90 z-[100] hidden opacity-0 transition-opacity duration-300 flex items-center justify-center p-4">
-    <div class="bg-white max-w-2xl w-full p-8 md:p-12 relative shadow-2xl">
-      <button onclick="toggleConsultingModal()" class="absolute top-4 right-4 text-2xl text-gray-400 hover:text-navy">&times;</button>
-      <div class="text-center mb-8">
-        <h3 class="text-3xl font-serif font-bold text-navy mb-2">Request a Consultation</h3>
-        <p class="text-gray-500">Our experts are ready to help you solve your most critical challenges.</p>
+  <!-- Quote -->
+  <section class="py-20 bg-navy text-white text-center px-6">
+    <div class="max-w-3xl mx-auto space-y-8">
+      <div class="text-gold text-6xl font-serif">"</div>
+      <p class="text-2xl md:text-3xl font-serif italic leading-relaxed text-slate">
+        우리의 목표는 단순히 조언을 하는 것이 아닙니다. <br>
+        고객과 함께 실행하고, 함께 결과를 만들어내는 것입니다.
+      </p>
+      <div class="text-sm font-bold tracking-widest uppercase mt-8">
+        James Kim, CEO
       </div>
+    </div>
+  </section>
+
+  <!-- Modal -->
+  <div id="consult-modal" class="fixed inset-0 bg-navy/80 z-[60] hidden flex items-center justify-center p-4">
+    <div class="bg-white w-full max-w-md p-8 relative shadow-2xl">
+      <button onclick="toggleConsult()" class="absolute top-4 right-4 text-gray-400 hover:text-navy text-2xl">&times;</button>
       
-      <form class="grid grid-cols-1 md:grid-cols-2 gap-6" onsubmit="event.preventDefault(); alert('Request submitted successfully.'); toggleConsultingModal();">
-        <div class="md:col-span-2">
-           <label class="block text-xs font-bold uppercase text-gray-500 mb-1">Full Name</label>
-           <input type="text" class="w-full border border-gray-300 p-3 focus:border-navy focus:outline-none" required>
-        </div>
-        <div>
-           <label class="block text-xs font-bold uppercase text-gray-500 mb-1">Company</label>
-           <input type="text" class="w-full border border-gray-300 p-3 focus:border-navy focus:outline-none">
-        </div>
-        <div>
-           <label class="block text-xs font-bold uppercase text-gray-500 mb-1">Email</label>
-           <input type="email" class="w-full border border-gray-300 p-3 focus:border-navy focus:outline-none" required>
-        </div>
-        <div class="md:col-span-2">
-           <label class="block text-xs font-bold uppercase text-gray-500 mb-1">Areas of Interest</label>
-           <select class="w-full border border-gray-300 p-3 focus:border-navy focus:outline-none bg-white">
-             <option>Strategy & Growth</option>
-             <option>Digital Transformation</option>
-             <option>Mergers & Acquisitions</option>
-             <option>Sustainability</option>
-             <option>Other</option>
-           </select>
-        </div>
-        <div class="md:col-span-2">
-           <label class="block text-xs font-bold uppercase text-gray-500 mb-1">Message</label>
-           <textarea rows="4" class="w-full border border-gray-300 p-3 focus:border-navy focus:outline-none"></textarea>
-        </div>
-        <div class="md:col-span-2">
-          <button type="submit" class="w-full bg-navy text-white font-bold py-4 hover:bg-gold transition uppercase tracking-widest text-sm">
-            Submit Request
-          </button>
-        </div>
+      <div class="text-center mb-8 border-b border-gray-100 pb-4">
+        <h2 class="font-serif text-2xl text-navy">Request Consultation</h2>
+        <p class="text-xs text-gray-500 mt-2">전문가와의 1:1 상담을 신청하세요</p>
+      </div>
+
+      <form class="space-y-4" onsubmit="event.preventDefault(); alert('상담 신청이 접수되었습니다. 담당자가 연락드리겠습니다.'); toggleConsult();">
+        <input type="text" placeholder="회사명" class="w-full bg-gray-50 border border-gray-200 p-3 text-sm focus:border-gold outline-none">
+        <input type="text" placeholder="담당자 성함" class="w-full bg-gray-50 border border-gray-200 p-3 text-sm focus:border-gold outline-none">
+        <input type="email" placeholder="이메일" class="w-full bg-gray-50 border border-gray-200 p-3 text-sm focus:border-gold outline-none">
+        <select class="w-full bg-gray-50 border border-gray-200 p-3 text-sm focus:border-gold outline-none text-gray-600">
+           <option>관심 분야 선택</option>
+           <option>경영 전략</option>
+           <option>법무 자문</option>
+           <option>재무/투자</option>
+           <option>기타 문의</option>
+        </select>
+        
+        <button class="w-full bg-navy text-white text-sm font-bold py-4 hover:bg-gold transition mt-2">
+          신청 완료
+        </button>
       </form>
     </div>
   </div>
 
   <script>
-    function toggleMenu() {
-      const menu = document.getElementById('mobile-menu');
-      if(menu.classList.contains('-translate-x-full')) {
-        menu.classList.remove('-translate-x-full');
-      } else {
-        menu.classList.add('-translate-x-full');
-      }
-    }
-
-    function toggleConsultingModal() {
-      const modal = document.getElementById('consulting-modal');
+    function toggleConsult() {
+      const modal = document.getElementById('consult-modal');
       if(modal.classList.contains('hidden')) {
         modal.classList.remove('hidden');
-        setTimeout(() => modal.classList.remove('opacity-0'), 10);
       } else {
-        modal.classList.add('opacity-0');
-        setTimeout(() => modal.classList.add('hidden'), 300);
+        modal.classList.add('hidden');
       }
     }
   </script>
