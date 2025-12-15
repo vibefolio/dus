@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>LearnHub - 지식의 허브</title>
+  <title>런허브 - 지식의 허브</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
   <script>
@@ -17,7 +17,7 @@
             darker: '#020617',
           },
           fontFamily: {
-            sans: ['Inter', 'Noto Sans KR', 'sans-serif'],
+            sans: ['Noto Sans KR', 'Inter', 'sans-serif'],
           }
         }
       }
@@ -26,68 +26,71 @@
 </head>
 <body class="bg-darker text-white font-sans">
 
-  <!-- Nav -->
+  <!-- 네비게이션 -->
   <nav class="fixed top-0 left-0 right-0 z-50 bg-darker/80 backdrop-blur-xl border-b border-white/10">
-    <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+    <div class="max-w-7xl mx-auto px-4 md:px-6 py-4 flex items-center justify-between">
       <div class="flex items-center gap-2">
         <div class="w-8 h-8 bg-gradient-to-br from-primary to-accent rounded-lg"></div>
-        <span class="text-xl font-bold">LearnHub</span>
+        <span class="text-lg md:text-xl font-bold">런허브</span>
       </div>
+      
+      <!-- 데스크탑 메뉴 -->
       <div class="hidden md:flex items-center gap-8 text-sm text-gray-400">
-        <a href="#" class="hover:text-white transition">전체 강의</a>
-        <a href="#" class="hover:text-white transition">로드맵</a>
-        <a href="#" class="hover:text-white transition">커뮤니티</a>
-        <a href="#" class="hover:text-white transition">기업교육</a>
+        <a href="#courses" class="hover:text-white transition">전체 강의</a>
+        <a href="#roadmap" class="hover:text-white transition">로드맵</a>
+        <a href="#community" class="hover:text-white transition">커뮤니티</a>
+        <a href="#business" class="hover:text-white transition">기업교육</a>
       </div>
-      <div class="flex items-center gap-3">
-        <button class="text-sm text-gray-400 hover:text-white transition">로그인</button>
-        <button class="px-4 py-2 bg-primary text-white text-sm font-semibold rounded-lg hover:bg-primary/80 transition">
-          무료 시작하기
+      
+      <div class="flex items-center gap-2 md:gap-3">
+        <button class="text-sm text-gray-400 hover:text-white transition hidden sm:block">로그인</button>
+        <button onclick="showModal()" class="px-3 md:px-4 py-2 bg-primary text-white text-sm font-semibold rounded-lg hover:bg-primary/80 transition">
+          무료 시작
         </button>
       </div>
     </div>
   </nav>
 
-  <!-- Hero -->
-  <section class="pt-32 pb-20 px-6 relative overflow-hidden">
-    <!-- Gradient Orbs -->
-    <div class="absolute top-20 left-1/4 w-96 h-96 bg-primary/30 rounded-full blur-[120px]"></div>
-    <div class="absolute bottom-0 right-1/4 w-96 h-96 bg-accent/20 rounded-full blur-[120px]"></div>
+  <!-- 히어로 섹션 -->
+  <section class="pt-24 md:pt-32 pb-16 md:pb-20 px-4 md:px-6 relative overflow-hidden">
+    <!-- 그라데이션 배경 -->
+    <div class="absolute top-20 left-1/4 w-64 md:w-96 h-64 md:h-96 bg-primary/30 rounded-full blur-[100px] md:blur-[120px]"></div>
+    <div class="absolute bottom-0 right-1/4 w-64 md:w-96 h-64 md:h-96 bg-accent/20 rounded-full blur-[100px] md:blur-[120px]"></div>
     
     <div class="max-w-7xl mx-auto relative z-10">
-      <div class="text-center max-w-3xl mx-auto mb-16">
-        <div class="inline-flex items-center gap-2 px-4 py-2 bg-white/5 border border-white/10 rounded-full text-sm text-gray-400 mb-6">
+      <div class="text-center max-w-3xl mx-auto mb-12 md:mb-16">
+        <div class="inline-flex items-center gap-2 px-3 md:px-4 py-2 bg-white/5 border border-white/10 rounded-full text-xs md:text-sm text-gray-400 mb-6">
           <span class="w-2 h-2 bg-green-400 rounded-full animate-pulse"></span>
           12,000+ 명이 학습 중
         </div>
-        <h1 class="text-5xl md:text-7xl font-extrabold mb-6 leading-tight">
+        <h1 class="text-4xl md:text-5xl lg:text-7xl font-extrabold mb-6 leading-tight">
           배움에는<br>
           <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent">경계가 없다</span>
         </h1>
-        <p class="text-xl text-gray-400 mb-8">
-          500개 이상의 프리미엄 강의로 당신의 커리어를 한 단계 업그레이드하세요.<br>
-          실무 전문가들의 노하우를 지금 바로 만나보세요.
+        <p class="text-lg md:text-xl text-gray-400 mb-8 px-4">
+          500개 이상의 프리미엄 강의로<br class="md:hidden"> 당신의 커리어를 업그레이드하세요.<br>
+          실무 전문가들의 노하우를 지금 만나보세요.
         </p>
-        <div class="flex flex-col sm:flex-row gap-4 justify-center">
-          <button onclick="showModal()" class="px-8 py-4 bg-gradient-to-r from-primary to-accent text-white font-bold rounded-xl hover:opacity-90 transition shadow-lg shadow-primary/25">
+        <div class="flex flex-col sm:flex-row gap-3 md:gap-4 justify-center px-4">
+          <button onclick="showModal()" class="px-6 md:px-8 py-3 md:py-4 bg-gradient-to-r from-primary to-accent text-white font-bold rounded-xl hover:opacity-90 transition shadow-lg shadow-primary/25">
             강의 둘러보기 →
           </button>
-          <button class="px-8 py-4 bg-white/5 border border-white/10 text-white font-semibold rounded-xl hover:bg-white/10 transition">
+          <button class="px-6 md:px-8 py-3 md:py-4 bg-white/5 border border-white/10 text-white font-semibold rounded-xl hover:bg-white/10 transition">
             무료 체험하기
           </button>
         </div>
       </div>
 
-      <!-- Course Preview Cards -->
-      <div class="grid md:grid-cols-3 gap-6">
+      <!-- 강의 카드 -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
         <div class="group bg-dark/50 border border-white/10 rounded-2xl overflow-hidden hover:border-primary/50 transition cursor-pointer" onclick="showModal()">
-          <div class="h-40 bg-gradient-to-br from-violet-600 to-purple-800 relative">
-            <div class="absolute bottom-3 left-3 px-2 py-1 bg-black/50 rounded text-xs font-semibold">인기</div>
+          <div class="h-32 md:h-40 bg-gradient-to-br from-violet-600 to-purple-800 relative">
+            <div class="absolute bottom-3 left-3 px-2 py-1 bg-black/50 rounded text-xs font-semibold">🔥 인기</div>
           </div>
-          <div class="p-5">
+          <div class="p-4 md:p-5">
             <div class="text-xs text-primary font-semibold mb-2">프로그래밍</div>
-            <h3 class="font-bold mb-2 group-hover:text-primary transition">React 완벽 마스터 클래스</h3>
-            <p class="text-sm text-gray-500 mb-4">초보부터 실전 프로젝트까지 한 번에</p>
+            <h3 class="font-bold mb-2 group-hover:text-primary transition">리액트 완벽 마스터</h3>
+            <p class="text-sm text-gray-500 mb-4">초보부터 실전 프로젝트까지</p>
             <div class="flex items-center justify-between">
               <div class="flex items-center gap-2">
                 <div class="w-6 h-6 bg-gray-600 rounded-full"></div>
@@ -98,13 +101,13 @@
           </div>
         </div>
 
-        <div class="group bg-dark/50 border border-white/10 rounded-2xl overflow-hidden hover:border-primary/50 transition cursor-pointer" onclick="showModal()">
-          <div class="h-40 bg-gradient-to-br from-emerald-600 to-teal-800 relative">
-            <div class="absolute bottom-3 left-3 px-2 py-1 bg-black/50 rounded text-xs font-semibold">NEW</div>
+        <div class="group bg-dark/50 border border-white/10 rounded-2xl overflow-hidden hover:border-emerald-500/50 transition cursor-pointer" onclick="showModal()">
+          <div class="h-32 md:h-40 bg-gradient-to-br from-emerald-600 to-teal-800 relative">
+            <div class="absolute bottom-3 left-3 px-2 py-1 bg-black/50 rounded text-xs font-semibold">✨ NEW</div>
           </div>
-          <div class="p-5">
+          <div class="p-4 md:p-5">
             <div class="text-xs text-emerald-400 font-semibold mb-2">데이터 사이언스</div>
-            <h3 class="font-bold mb-2 group-hover:text-emerald-400 transition">Python으로 시작하는 AI</h3>
+            <h3 class="font-bold mb-2 group-hover:text-emerald-400 transition">파이썬으로 시작하는 AI</h3>
             <p class="text-sm text-gray-500 mb-4">ChatGPT 시대의 필수 스킬</p>
             <div class="flex items-center justify-between">
               <div class="flex items-center gap-2">
@@ -116,13 +119,13 @@
           </div>
         </div>
 
-        <div class="group bg-dark/50 border border-white/10 rounded-2xl overflow-hidden hover:border-primary/50 transition cursor-pointer" onclick="showModal()">
-          <div class="h-40 bg-gradient-to-br from-orange-500 to-rose-600 relative">
-            <div class="absolute bottom-3 left-3 px-2 py-1 bg-black/50 rounded text-xs font-semibold">베스트</div>
+        <div class="group bg-dark/50 border border-white/10 rounded-2xl overflow-hidden hover:border-orange-500/50 transition cursor-pointer" onclick="showModal()">
+          <div class="h-32 md:h-40 bg-gradient-to-br from-orange-500 to-rose-600 relative">
+            <div class="absolute bottom-3 left-3 px-2 py-1 bg-black/50 rounded text-xs font-semibold">⭐ 베스트</div>
           </div>
-          <div class="p-5">
+          <div class="p-4 md:p-5">
             <div class="text-xs text-orange-400 font-semibold mb-2">디자인</div>
-            <h3 class="font-bold mb-2 group-hover:text-orange-400 transition">Figma UI/UX 실전 강의</h3>
+            <h3 class="font-bold mb-2 group-hover:text-orange-400 transition">피그마 UI/UX 실전</h3>
             <p class="text-sm text-gray-500 mb-4">현직 디자이너의 실무 노하우</p>
             <div class="flex items-center justify-between">
               <div class="flex items-center gap-2">
@@ -137,35 +140,63 @@
     </div>
   </section>
 
-  <!-- Stats -->
-  <section class="py-16 px-6 border-y border-white/10">
-    <div class="max-w-5xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+  <!-- 통계 섹션 -->
+  <section class="py-12 md:py-16 px-4 md:px-6 border-y border-white/10">
+    <div class="max-w-5xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8 text-center">
       <div>
-        <div class="text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent mb-2">500+</div>
-        <div class="text-sm text-gray-500">프리미엄 강의</div>
+        <div class="text-3xl md:text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent mb-2">500+</div>
+        <div class="text-xs md:text-sm text-gray-500">프리미엄 강의</div>
       </div>
       <div>
-        <div class="text-4xl font-extrabold mb-2">12K+</div>
-        <div class="text-sm text-gray-500">수강생</div>
+        <div class="text-3xl md:text-4xl font-extrabold mb-2">12K+</div>
+        <div class="text-xs md:text-sm text-gray-500">수강생</div>
       </div>
       <div>
-        <div class="text-4xl font-extrabold mb-2">98%</div>
-        <div class="text-sm text-gray-500">만족도</div>
+        <div class="text-3xl md:text-4xl font-extrabold mb-2">98%</div>
+        <div class="text-xs md:text-sm text-gray-500">만족도</div>
       </div>
       <div>
-        <div class="text-4xl font-extrabold mb-2">24/7</div>
-        <div class="text-sm text-gray-500">무제한 수강</div>
+        <div class="text-3xl md:text-4xl font-extrabold mb-2">24/7</div>
+        <div class="text-xs md:text-sm text-gray-500">무제한 수강</div>
       </div>
     </div>
   </section>
 
-  <!-- Modal -->
-  <div id="modal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
-    <div class="bg-dark border border-white/10 rounded-2xl p-8 max-w-md w-full">
-      <h3 class="text-2xl font-bold mb-4">무료 체험 신청</h3>
-      <p class="text-gray-400 mb-6">이메일을 입력하시면 7일 무료 체험을 시작할 수 있습니다.</p>
+  <!-- 특징 섹션 -->
+  <section id="roadmap" class="py-16 md:py-24 px-4 md:px-6">
+    <div class="max-w-7xl mx-auto">
+      <div class="text-center mb-12 md:mb-16">
+        <h2 class="text-2xl md:text-3xl font-bold mb-4">왜 런허브인가요?</h2>
+        <p class="text-gray-400">배움의 가치를 아는 분들이 선택합니다</p>
+      </div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+        <div class="bg-dark/50 border border-white/10 rounded-2xl p-6 md:p-8 hover:border-primary/50 transition">
+          <div class="w-12 h-12 bg-gradient-to-br from-primary to-accent rounded-xl flex items-center justify-center text-2xl mb-6">🎯</div>
+          <h3 class="text-xl font-bold mb-3">체계적인 로드맵</h3>
+          <p class="text-gray-400 text-sm leading-relaxed">목표에 맞춘 학습 경로로 효율적으로 성장할 수 있습니다.</p>
+        </div>
+        <div class="bg-dark/50 border border-white/10 rounded-2xl p-6 md:p-8 hover:border-primary/50 transition">
+          <div class="w-12 h-12 bg-gradient-to-br from-emerald-500 to-teal-600 rounded-xl flex items-center justify-center text-2xl mb-6">💼</div>
+          <h3 class="text-xl font-bold mb-3">실무 중심 커리큘럼</h3>
+          <p class="text-gray-400 text-sm leading-relaxed">현업 전문가들이 직접 제작한 실전 중심의 강의입니다.</p>
+        </div>
+        <div class="bg-dark/50 border border-white/10 rounded-2xl p-6 md:p-8 hover:border-primary/50 transition">
+          <div class="w-12 h-12 bg-gradient-to-br from-orange-500 to-rose-600 rounded-xl flex items-center justify-center text-2xl mb-6">🤝</div>
+          <h3 class="text-xl font-bold mb-3">1:1 멘토링 지원</h3>
+          <p class="text-gray-400 text-sm leading-relaxed">막히는 부분은 전문 멘토가 직접 도와드립니다.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 모달 -->
+  <div id="modal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden items-center justify-center p-4" style="display: none;">
+    <div class="bg-dark border border-white/10 rounded-2xl p-6 md:p-8 max-w-md w-full">
+      <h3 class="text-xl md:text-2xl font-bold mb-4">무료 체험 신청</h3>
+      <p class="text-gray-400 mb-6 text-sm md:text-base">이메일을 입력하시면 7일 무료 체험을 시작할 수 있습니다.</p>
       <form onsubmit="event.preventDefault(); alert('체험 신청 완료! 🎉'); hideModal();">
-        <input type="email" placeholder="이메일 주소" class="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg mb-4 focus:outline-none focus:border-primary">
+        <input type="email" placeholder="이메일 주소" class="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg mb-4 focus:outline-none focus:border-primary text-sm md:text-base">
         <button class="w-full py-3 bg-gradient-to-r from-primary to-accent text-white font-bold rounded-lg hover:opacity-90 transition">
           무료로 시작하기
         </button>
@@ -174,13 +205,29 @@
     </div>
   </div>
 
+  <!-- 푸터 -->
+  <footer class="border-t border-white/10 py-8 px-4 md:px-6">
+    <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-gray-500">
+      <div class="flex items-center gap-2">
+        <div class="w-6 h-6 bg-gradient-to-br from-primary to-accent rounded"></div>
+        <span class="font-bold text-white">런허브</span>
+      </div>
+      <p>© 2024 LearnHub. All rights reserved.</p>
+    </div>
+  </footer>
+
   <script>
     function showModal() {
-      document.getElementById('modal').classList.remove('hidden');
+      const modal = document.getElementById('modal');
+      modal.style.display = 'flex';
     }
     function hideModal() {
-      document.getElementById('modal').classList.add('hidden');
+      document.getElementById('modal').style.display = 'none';
     }
+    // ESC 키로 모달 닫기
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') hideModal();
+    });
   </script>
 </body>
 </html>
