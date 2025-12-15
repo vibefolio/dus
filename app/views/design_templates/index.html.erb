@@ -180,73 +180,75 @@
     <% end %>
   </div>
 
-  <!-- Improved Live Mockup Modal (Dark Theme like Main Page) -->
-  <div id="preview-modal" class="fixed inset-0 z-[100] hidden" role="dialog" aria-modal="true" style="display: none;">
-    <!-- Backdrop -->
-    <div class="absolute inset-0 bg-black/90 backdrop-blur-sm transition-opacity opacity-0" id="modal-backdrop"></div>
+  <!-- Live Demo Modal (Same style as Main Page) -->
+  <div id="preview-modal" style="display: none; position: fixed; inset: 0; z-index: 9999; background: rgba(0,0,0,0.85); backdrop-filter: blur(5px);">
     
     <!-- Header -->
-    <div class="absolute top-0 left-0 right-0 h-[60px] bg-[#1a1a1a] border-b border-[#333] flex items-center justify-between px-4 sm:px-6 z-[101]">
-      <div class="flex items-center gap-3">
-        <h2 id="modal-title" class="font-bold text-white text-lg truncate max-w-[150px] sm:max-w-none">Template Title</h2>
-        <span id="modal-category" class="px-2 py-0.5 bg-[#333] text-[#888] text-xs font-bold rounded uppercase border border-[#444]">CAT</span>
-      </div>
+    <div style="position: absolute; top: 0; left: 0; right: 0; height: 60px; background: #1a1a1a; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid #333; padding: 0 20px;">
+      <div style="color: white; font-weight: bold; font-size: 18px;" id="modal-title">Template Demo</div>
       
-      <!-- Center Controls (PC/Mobile Toggle) -->
-      <div class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 hidden md:flex bg-[#333] p-1 rounded-full">
-        <button onclick="setDevice('pc')" id="btn-device-pc" class="px-3 py-1.5 rounded-full flex items-center gap-2 text-sm transition-all text-white bg-[#555]">
-          <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
-          <span>PC</span>
+      <!-- View Switcher (Centered) -->
+      <div style="position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); background: #333; padding: 4px; border-radius: 99px; display: flex;">
+        <button onclick="setDevice('pc')" id="btn-device-pc" class="demo-view-btn active">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
+          <span style="margin-left: 6px; font-size: 14px;">PC</span>
         </button>
-        <button onclick="setDevice('mobile')" id="btn-device-mobile" class="px-3 py-1.5 rounded-full flex items-center gap-2 text-sm transition-all text-[#888] hover:text-white">
-          <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"/></svg>
-          <span>Mobile</span>
+        <button onclick="setDevice('mobile')" id="btn-device-mobile" class="demo-view-btn">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect><line x1="12" y1="18" x2="12" y2="18"></line></svg>
+          <span style="margin-left: 6px; font-size: 14px;">Mobile</span>
         </button>
       </div>
 
-      <div class="flex items-center gap-4">
-        <a id="modal-pick-btn" href="#" class="hidden sm:flex px-6 py-2 bg-emerald-600 text-white text-sm font-bold rounded-full hover:bg-emerald-500 transition shadow-lg shadow-emerald-900/20 items-center gap-2">
-          <span>PICK</span>
-          <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-width="2" d="M5 12h14m-7-7l7 7-7 7"/></svg>
-        </a>
-        
-        <button onclick="closePreview()" class="p-2 text-[#666] hover:text-white transition">
-          <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
-        </button>
-      </div>
+      <!-- Close Button -->
+      <button onclick="closePreview()" style="background: none; border: none; color: #999; cursor: pointer; padding: 8px;">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+        <span style="font-size: 12px; display: block; margin-top: 2px;">ESC</span>
+      </button>
     </div>
 
     <!-- Content Area -->
-    <div class="absolute top-[60px] bottom-0 left-0 right-0 flex justify-center items-center overflow-hidden bg-[#111] p-0 md:p-8" id="modal-content">
+    <div style="position: absolute; top: 60px; left: 0; right: 0; bottom: 0; overflow: hidden; display: flex; justify-content: center; align-items: center; padding: 20px;">
       
       <!-- PC Frame -->
-      <div id="frame-container-pc" class="w-full h-full bg-white md:rounded-lg overflow-hidden shadow-2xl relative transition-all duration-300">
-        <iframe id="iframe-preview-pc" class="w-full h-full border-none" src="about:blank"></iframe>
+      <div id="frame-container-pc" style="width: 100%; height: 100%; background: white; border-radius: 8px; overflow: hidden; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);">
+        <iframe id="iframe-preview-pc" src="" style="width: 100%; height: 100%; border: none;"></iframe>
       </div>
 
       <!-- Mobile Frame -->
-      <div id="frame-container-mobile" class="hidden w-[375px] h-[812px] max-h-[90vh] bg-black rounded-[40px] border-[12px] border-[#222] overflow-hidden shadow-2xl relative transition-all duration-300">
+      <div id="frame-container-mobile" style="display: none; width: 375px; height: 80vh; background: black; border-radius: 40px; border: 12px solid #1a1a1a; overflow: hidden; position: relative; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);">
         <!-- Notch -->
-        <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[120px] h-[30px] bg-[#222] rounded-b-[16px] z-20 pointer-events-none"></div>
-        <iframe id="iframe-preview-mobile" class="w-full h-full border-none bg-white" src="about:blank"></iframe>
+        <div style="position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 120px; height: 25px; background: #1a1a1a; border-radius: 0 0 15px 15px; z-index: 10;"></div>
+        <iframe id="iframe-preview-mobile" src="" style="width: 100%; height: 100%; border: none; background: white;"></iframe>
       </div>
 
-      <!-- Mobile Pick Button (Floating at bottom for actual mobile devices) -->
-      <div class="sm:hidden absolute bottom-6 left-1/2 -translate-x-1/2 z-50 w-[90%]">
-        <a id="modal-pick-btn-mobile" href="#" class="block w-full py-4 bg-emerald-600 text-white text-center font-bold rounded-xl shadow-xl">
-          이 템플릿으로 선택하기
-        </a>
-      </div>
     </div>
   </div>
 
+  <style>
+    .demo-view-btn {
+      border: none;
+      background: transparent;
+      color: #888;
+      padding: 6px 16px;
+      border-radius: 99px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      transition: all 0.2s;
+    }
+    .demo-view-btn.active {
+      background: #555;
+      color: white;
+    }
+    .demo-view-btn:hover:not(.active) {
+      color: #ccc;
+    }
+  </style>
+
   <script>
     const modal = document.getElementById('preview-modal');
-    const backdrop = document.getElementById('modal-backdrop');
     const iframePC = document.getElementById('iframe-preview-pc');
     const iframeMobile = document.getElementById('iframe-preview-mobile');
-    const pickBtn = document.getElementById('modal-pick-btn');
-    const pickBtnMobile = document.getElementById('modal-pick-btn-mobile');
     
     // UI Elements
     const framePC = document.getElementById('frame-container-pc');
@@ -256,62 +258,40 @@
 
     function openPreview(url, title, category, id) {
       // 1. Set Content
-      document.getElementById('modal-title').innerText = title;
-      document.getElementById('modal-category').innerText = category;
-      
-      const pickUrl = `/contact?template_id=${id}&template_title=${encodeURIComponent(title)}&preview_url=${encodeURIComponent(url)}`;
-      pickBtn.href = pickUrl;
-      pickBtnMobile.href = pickUrl;
+      document.getElementById('modal-title').innerText = title || 'Live Demo';
 
+      // 2. Load iframe
       iframePC.src = url;
       iframeMobile.src = url;
 
-      // 2. Show Modal
+      // 3. Show Modal
       modal.style.display = 'block';
-      modal.classList.remove('hidden');
       document.body.style.overflow = 'hidden';
-
-      // 3. Animation
-      setTimeout(() => {
-        backdrop.classList.remove('opacity-0');
-      }, 10);
 
       // 4. Default to PC view
       setDevice('pc');
     }
 
     function closePreview() {
-      // Animation Out
-      backdrop.classList.add('opacity-0');
+      modal.style.display = 'none';
+      document.body.style.overflow = '';
       
-      setTimeout(() => {
-        modal.style.display = 'none';
-        modal.classList.add('hidden');
-        document.body.style.overflow = '';
-        iframePC.src = 'about:blank';
-        iframeMobile.src = 'about:blank';
-      }, 300);
+      // Reset iframes to stop playback/process
+      iframePC.src = '';
+      iframeMobile.src = '';
     }
 
-    function setDevice(type) {
-      if (type === 'mobile') {
-        framePC.classList.add('hidden');
-        frameMobile.classList.remove('hidden');
-        
-        btnDevicePC.classList.remove('bg-[#555]', 'text-white');
-        btnDevicePC.classList.add('text-[#888]');
-        
-        btnDeviceMobile.classList.add('bg-[#555]', 'text-white');
-        btnDeviceMobile.classList.remove('text-[#888]');
+    function setDevice(mode) {
+      if (mode === 'mobile') {
+        framePC.style.display = 'none';
+        frameMobile.style.display = 'block';
+        btnDevicePC.classList.remove('active');
+        btnDeviceMobile.classList.add('active');
       } else {
-        frameMobile.classList.add('hidden');
-        framePC.classList.remove('hidden');
-
-        btnDeviceMobile.classList.remove('bg-[#555]', 'text-white');
-        btnDeviceMobile.classList.add('text-[#888]');
-        
-        btnDevicePC.classList.add('bg-[#555]', 'text-white');
-        btnDevicePC.classList.remove('text-[#888]');
+        frameMobile.style.display = 'none';
+        framePC.style.display = 'block';
+        btnDeviceMobile.classList.remove('active');
+        btnDevicePC.classList.add('active');
       }
     }
 
