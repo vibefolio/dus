@@ -1,11 +1,20 @@
 <!DOCTYPE html>
 <html lang="ko">
   <head>
+    <meta charset="UTF-8">
     <title><%= content_for(:title) || "디어스 - AI와 함께하는 디지털 혁신 파트너" %></title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="description" content="<%= content_for(:description) || '디어스는 AI 기술과 창의적인 디자인으로 비즈니스의 성공을 이끄는 프리미엄 개발 에이전시입니다.' %>">
-    <meta name="keywords" content="웹개발, 앱개발, AI개발, UI/UX디자인, 개발에이전시, 디어스, D.US">
+    <meta name="keywords" content="웹개발, 앱개발, AI개발, UI/UX디자인, 개발에이전시, 디어스, D.US, 홈페이지제작, 랜딩페이지">
     <meta name="author" content="디어스">
+    <meta name="robots" content="index, follow">
+    <meta name="theme-color" content="#00a859">
+    
+    <!-- Performance Hints -->
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+    <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
+    <link rel="dns-prefetch" href="https://images.unsplash.com">
     
     <!-- Google Analytics (GA4) - Replace G-XXXXXXXXXX with your Measurement ID -->
     <!--
@@ -42,13 +51,15 @@
     <link rel="icon" href="/favicon.png" type="image/png">
     <link rel="apple-touch-icon" href="/favicon.png">
 
-    <!-- Fonts -->
-    <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.8/dist/web/static/pretendard.css" />
+    <!-- Fonts (Optimized) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">  
-    <!-- Tailwind CSS CDN (Failsafe) -->
-    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preload" as="style" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.8/dist/web/static/pretendard.css" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.8/dist/web/static/pretendard.css"></noscript>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">  
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com" defer></script>
     <script>
       tailwind.config = {
         theme: {
