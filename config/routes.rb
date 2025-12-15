@@ -43,6 +43,9 @@ Rails.application.routes.draw do
   get 'templates/shoe', to: 'templates#shoe'
   get 'templates/bag', to: 'templates#bag'
   get 'templates/shopping', to: 'templates#shopping'
+  get 'templates/learnhub', to: 'templates#learnhub'
+  get 'templates/english', to: 'templates#english'
+  get 'templates/artistry', to: 'templates#artistry'
 
   root "pages#home"
 

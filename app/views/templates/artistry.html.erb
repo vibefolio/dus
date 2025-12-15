@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Artistry - 예술이 시작되는 곳</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            cream: '#faf7f2',
+            gold: '#c9a961',
+            wine: '#722f37',
+            charcoal: '#2d2d2d',
+          },
+          fontFamily: {
+            display: ['Playfair Display', 'serif'],
+            sans: ['Noto Sans KR', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    .brush-stroke {
+      background: linear-gradient(135deg, #c9a961 0%, #e8d5a3 50%, #c9a961 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+  </style>
+</head>
+<body class="bg-cream font-sans text-charcoal">
+
+  <!-- Nav -->
+  <nav class="fixed top-0 left-0 right-0 z-50 bg-cream/90 backdrop-blur-md">
+    <div class="max-w-7xl mx-auto px-6 py-5 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 border-2 border-gold rounded-full flex items-center justify-center">
+          <span class="text-gold text-xl">♪</span>
+        </div>
+        <span class="text-2xl font-display font-bold tracking-wide">Artistry</span>
+      </div>
+      <div class="hidden md:flex items-center gap-10 text-sm tracking-wider">
+        <a href="#" class="hover:text-gold transition">프로그램</a>
+        <a href="#" class="hover:text-gold transition">갤러리</a>
+        <a href="#" class="hover:text-gold transition">강사진</a>
+        <a href="#" class="hover:text-gold transition">오시는 길</a>
+      </div>
+      <button onclick="showModal()" class="px-6 py-2.5 border-2 border-charcoal text-charcoal font-medium hover:bg-charcoal hover:text-cream transition">
+        문의하기
+      </button>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="min-h-screen pt-24 flex items-center relative overflow-hidden">
+    <!-- Decorative Elements -->
+    <div class="absolute top-20 right-10 w-64 h-64 border border-gold/30 rounded-full"></div>
+    <div class="absolute bottom-20 left-10 w-40 h-40 border border-gold/20 rounded-full"></div>
+    
+    <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-16 items-center">
+      <div>
+        <div class="inline-block px-4 py-1 border border-gold text-gold text-xs tracking-widest mb-8">
+          SINCE 2005
+        </div>
+        <h1 class="text-5xl md:text-7xl font-display font-bold mb-6 leading-tight">
+          당신 안의<br>
+          <span class="brush-stroke">예술을 깨우다</span>
+        </h1>
+        <p class="text-lg text-gray-600 mb-10 leading-relaxed font-light">
+          피아노, 바이올린, 미술, 성악까지<br>
+          최고의 예술 교육을 경험하세요.<br>
+          <span class="text-gold">모든 수업 1회 무료 체험</span>
+        </p>
+        <div class="flex flex-wrap gap-4">
+          <button onclick="showModal()" class="px-8 py-4 bg-charcoal text-cream font-medium tracking-wide hover:bg-gold transition">
+            무료 체험 신청 →
+          </button>
+          <button class="px-8 py-4 border-2 border-charcoal text-charcoal font-medium tracking-wide hover:bg-charcoal hover:text-cream transition">
+            프로그램 보기
+          </button>
+        </div>
+      </div>
+      
+      <div class="relative">
+        <div class="relative z-10">
+          <img src="https://images.unsplash.com/photo-1520523839897-bd0b52f945a0?q=80&w=600" class="w-full h-[500px] object-cover" style="clip-path: polygon(10% 0%, 100% 0%, 90% 100%, 0% 100%);">
+        </div>
+        <div class="absolute -bottom-6 -left-6 bg-white p-6 shadow-xl z-20">
+          <div class="text-4xl font-display font-bold text-gold mb-1">18년</div>
+          <div class="text-sm text-gray-500">전통의 예술 교육</div>
+        </div>
+        <div class="absolute -top-6 -right-6 bg-wine text-cream p-6 shadow-xl z-20">
+          <div class="text-sm mb-1">수상 경력</div>
+          <div class="text-2xl font-display font-bold">127회</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Programs -->
+  <section class="py-24 px-6 bg-white">
+    <div class="max-w-7xl mx-auto">
+      <div class="text-center mb-16">
+        <div class="text-gold text-sm tracking-widest mb-4">OUR PROGRAMS</div>
+        <h2 class="text-4xl font-display font-bold">예술의 모든 분야</h2>
+      </div>
+      
+      <div class="grid md:grid-cols-4 gap-8">
+        <div class="group cursor-pointer" onclick="showModal()">
+          <div class="aspect-[3/4] mb-6 overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1552422535-c45813c61732?q=80&w=400" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
+          </div>
+          <div class="border-t border-gray-200 pt-4">
+            <h3 class="text-xl font-display font-bold mb-2">피아노</h3>
+            <p class="text-sm text-gray-500">클래식부터 재즈까지</p>
+          </div>
+        </div>
+
+        <div class="group cursor-pointer" onclick="showModal()">
+          <div class="aspect-[3/4] mb-6 overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1465847899084-d164df4dedc6?q=80&w=400" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
+          </div>
+          <div class="border-t border-gray-200 pt-4">
+            <h3 class="text-xl font-display font-bold mb-2">바이올린</h3>
+            <p class="text-sm text-gray-500">우아한 선율의 시작</p>
+          </div>
+        </div>
+
+        <div class="group cursor-pointer" onclick="showModal()">
+          <div class="aspect-[3/4] mb-6 overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1460661419201-fd4cecdf8a8b?q=80&w=400" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
+          </div>
+          <div class="border-t border-gray-200 pt-4">
+            <h3 class="text-xl font-display font-bold mb-2">미술</h3>
+            <p class="text-sm text-gray-500">드로잉, 유화, 수채화</p>
+          </div>
+        </div>
+
+        <div class="group cursor-pointer" onclick="showModal()">
+          <div class="aspect-[3/4] mb-6 overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1516280440614-37939bbacd81?q=80&w=400" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
+          </div>
+          <div class="border-t border-gray-200 pt-4">
+            <h3 class="text-xl font-display font-bold mb-2">성악</h3>
+            <p class="text-sm text-gray-500">당신의 목소리를 찾다</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Quote -->
+  <section class="py-24 px-6 bg-charcoal text-cream">
+    <div class="max-w-4xl mx-auto text-center">
+      <div class="text-6xl text-gold mb-8">"</div>
+      <blockquote class="text-3xl md:text-4xl font-display font-light italic leading-relaxed mb-8">
+        예술은 삶을 풍요롭게 만드는<br>가장 아름다운 방법입니다
+      </blockquote>
+      <div class="flex items-center justify-center gap-4">
+        <div class="w-12 h-12 bg-gold/20 rounded-full"></div>
+        <div class="text-left">
+          <div class="font-medium">김예술</div>
+          <div class="text-sm text-gray-400">Artistry 원장</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Modal -->
+  <div id="modal" class="fixed inset-0 bg-charcoal/80 z-50 hidden flex items-center justify-center p-4">
+    <div class="bg-cream p-10 max-w-md w-full">
+      <div class="text-center mb-8">
+        <div class="text-gold text-sm tracking-widest mb-2">FREE TRIAL</div>
+        <h3 class="text-3xl font-display font-bold">무료 체험 신청</h3>
+      </div>
+      <form onsubmit="event.preventDefault(); alert('신청 완료! 곧 연락드리겠습니다 🎵'); hideModal();">
+        <input type="text" placeholder="이름" class="w-full px-4 py-4 border-b border-gray-300 bg-transparent mb-4 focus:outline-none focus:border-gold">
+        <input type="tel" placeholder="연락처" class="w-full px-4 py-4 border-b border-gray-300 bg-transparent mb-4 focus:outline-none focus:border-gold">
+        <select class="w-full px-4 py-4 border-b border-gray-300 bg-transparent mb-6 focus:outline-none focus:border-gold text-gray-600">
+          <option>관심 분야 선택</option>
+          <option>피아노</option>
+          <option>바이올린</option>
+          <option>미술</option>
+          <option>성악</option>
+        </select>
+        <button class="w-full py-4 bg-charcoal text-cream font-medium tracking-wide hover:bg-gold hover:text-charcoal transition">
+          신청하기
+        </button>
+      </form>
+      <button onclick="hideModal()" class="w-full mt-6 text-gray-500 hover:text-charcoal transition text-sm tracking-wide">닫기</button>
+    </div>
+  </div>
+
+  <script>
+    function showModal() {
+      document.getElementById('modal').classList.remove('hidden');
+    }
+    function hideModal() {
+      document.getElementById('modal').classList.add('hidden');
+    }
+  </script>
+</body>
+</html>
