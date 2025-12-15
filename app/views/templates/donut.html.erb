@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>스위트 스팟 - 달콤한 행복</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Quicksand:wght@400;700&family=Noto+Sans+KR:wght@400;700&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            pink: '#FFB7B2',
+            mint: '#B5EAD7',
+            lemon: '#FFF7AC',
+            choco: '#6B4F4F',
+          },
+          fontFamily: {
+            display: ['Fredoka One', 'cursive'],
+            body: ['Quicksand', 'sans-serif'],
+            sans: ['Noto Sans KR', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-pink/10 text-gray-700 font-sans">
+
+  <!-- Nav -->
+  <nav class="p-6 flex justify-between items-center">
+    <div class="text-3xl font-display text-pink drop-shadow-md">
+      SWEET<span class="text-mint">SPOT</span>
+    </div>
+    <div class="hidden md:flex gap-6 font-bold text-gray-400 text-sm">
+      <a href="#donuts" class="hover:text-pink transition">도넛</a>
+      <a href="#cakes" class="hover:text-pink transition">케이크</a>
+      <a href="#class" class="hover:text-pink transition">클래스</a>
+    </div>
+    <button onclick="toggleSweet()" class="bg-white border-2 border-pink text-pink px-6 py-2 rounded-full font-bold hover:bg-pink hover:text-white transition shadow-sm">
+      선물하기 🎁
+    </button>
+  </nav>
+
+  <!-- Hero -->
+  <header class="py-16 text-center relative overflow-hidden">
+    <!-- Floating Sprinkles (CSS Only) -->
+    <div class="absolute top-10 left-10 text-4xl animate-bounce">🍩</div>
+    <div class="absolute top-20 right-20 text-4xl animate-bounce" style="animation-delay: 1s;">🍭</div>
+    <div class="absolute bottom-10 left-1/3 text-4xl animate-bounce" style="animation-delay: 0.5s;">🍰</div>
+    
+    <div class="relative z-10">
+      <h1 class="text-6xl md:text-8xl font-display text-gray-800 mb-6 drop-shadow-white">
+        Life is <span class="text-pink">Sweet!</span>
+      </h1>
+      <p class="text-lg text-gray-500 font-bold mb-10 max-w-md mx-auto">
+        한 입 베어 물면 퍼지는 달콤한 행복. <br>
+        매일 아침 만드는 수제 도넛과 디저트.
+      </p>
+      
+      <div class="flex justify-center items-center gap-12 group cursor-pointer" onclick="toggleSweet()">
+        <div class="relative w-64 h-64 bg-mint rounded-full flex items-center justify-center shadow-xl transform group-hover:rotate-12 transition duration-500">
+           <img src="https://images.unsplash.com/photo-1551024601-bec78aea704b?q=80&w=600" class="w-56 h-56 rounded-full object-cover border-8 border-white">
+           <div class="absolute -top-4 -right-4 bg-lemon text-choco font-bold px-4 py-2 rounded-full shadow border-2 border-white transform rotate-12">
+             New!
+           </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Menu Grid -->
+  <section id="donuts" class="py-20 px-6">
+    <div class="container mx-auto max-w-5xl">
+      <div class="text-center mb-16">
+        <h2 class="text-4xl font-display text-choco mb-4">Color Your Taste</h2>
+        <div class="flex justify-center gap-2">
+          <span class="w-3 h-3 rounded-full bg-pink"></span>
+          <span class="w-3 h-3 rounded-full bg-mint"></span>
+          <span class="w-3 h-3 rounded-full bg-lemon"></span>
+        </div>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-8">
+        <!-- Item -->
+        <div class="bg-white p-6 rounded-[2rem] shadow-sm hover:shadow-xl transition hover:-translate-y-2 group cursor-pointer" onclick="toggleSweet()">
+          <div class="bg-pink/20 rounded-3xl h-48 mb-6 flex items-center justify-center overflow-hidden relative">
+            <img src="https://images.unsplash.com/photo-1626094309830-abbb0c99da4a?q=80&w=400" class="w-40 h-40 object-contain drop-shadow-xl transform group-hover:scale-110 transition">
+          </div>
+          <h3 class="text-2xl font-display text-gray-800 mb-1">Strawberry Glaze</h3>
+          <p class="text-sm text-gray-400 font-bold mb-4">상큼한 딸기 글레이즈</p>
+          <div class="flex justify-between items-center">
+            <span class="text-xl font-bold text-pink">₩ 3,800</span>
+            <button class="w-8 h-8 rounded-full bg-gray-100 text-gray-500 hover:bg-pink hover:text-white transition font-bold">+</button>
+          </div>
+        </div>
+        <!-- Item -->
+        <div class="bg-white p-6 rounded-[2rem] shadow-sm hover:shadow-xl transition hover:-translate-y-2 group cursor-pointer" onclick="toggleSweet()">
+          <div class="bg-mint/20 rounded-3xl h-48 mb-6 flex items-center justify-center overflow-hidden relative">
+            <img src="https://images.unsplash.com/photo-1614597396930-cd6760b5b324?q=80&w=400" class="w-40 h-40 object-contain drop-shadow-xl transform group-hover:scale-110 transition">
+          </div>
+          <h3 class="text-2xl font-display text-gray-800 mb-1">Mint Choco</h3>
+          <p class="text-sm text-gray-400 font-bold mb-4">민초단을 위한 특별한 맛</p>
+          <div class="flex justify-between items-center">
+            <span class="text-xl font-bold text-mint">₩ 4,000</span>
+             <button class="w-8 h-8 rounded-full bg-gray-100 text-gray-500 hover:bg-mint hover:text-white transition font-bold">+</button>
+          </div>
+        </div>
+        <!-- Item -->
+        <div class="bg-white p-6 rounded-[2rem] shadow-sm hover:shadow-xl transition hover:-translate-y-2 group cursor-pointer" onclick="toggleSweet()">
+          <div class="bg-lemon/50 rounded-3xl h-48 mb-6 flex items-center justify-center overflow-hidden relative">
+            <img src="https://images.unsplash.com/photo-1551024601-bec78aea704b?q=80&w=400" class="w-full h-full object-cover">
+          </div>
+          <h3 class="text-2xl font-display text-gray-800 mb-1">Cream Bomb</h3>
+          <p class="text-sm text-gray-400 font-bold mb-4">터질듯한 우유 생크림</p>
+          <div class="flex justify-between items-center">
+            <span class="text-xl font-bold text-yellow-500">₩ 4,500</span>
+             <button class="w-8 h-8 rounded-full bg-gray-100 text-gray-500 hover:bg-yellow-400 hover:text-white transition font-bold">+</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Modal -->
+  <div id="sweet-modal" class="fixed inset-0 bg-pink/40 backdrop-blur-sm z-[60] hidden flex items-center justify-center p-4">
+    <div class="bg-white w-full max-w-md rounded-[2rem] p-8 relative shadow-2xl border-4 border-white">
+      <button onclick="toggleSweet()" class="absolute top-4 right-4 text-gray-400 hover:text-pink text-2xl font-bold">&times;</button>
+      
+      <div class="text-center mb-6">
+        <h2 class="font-display text-2xl text-pink mb-2">Sweet Box</h2>
+        <p class="text-xs text-gray-500 font-bold">4개 이상 구매 시 박스 포장 무료!</p>
+      </div>
+
+      <div class="space-y-4 mb-6">
+        <div class="flex items-center justify-between bg-gray-50 p-3 rounded-xl">
+           <span class="font-bold text-gray-600">🍩 4구 박스</span>
+           <span class="font-bold text-pink">₩ 15,000</span>
+        </div>
+         <div class="flex items-center justify-between bg-gray-50 p-3 rounded-xl">
+           <span class="font-bold text-gray-600">🍩 6구 박스</span>
+           <span class="font-bold text-pink">₩ 22,000</span>
+        </div>
+      </div>
+
+      <form class="space-y-4" onsubmit="event.preventDefault(); alert('포장완료! 매장에서 만나요 👋'); toggleSweet();">
+        <div class="flex gap-2">
+            <input type="text" placeholder="성함" class="flex-1 bg-gray-50 p-3 rounded-xl outline-none font-bold text-sm">
+            <input type="tel" placeholder="연락처" class="flex-1 bg-gray-50 p-3 rounded-xl outline-none font-bold text-sm">
+        </div>
+        
+        <button class="w-full bg-pink text-white py-4 rounded-xl font-display text-xl shadow-lg hover:scale-105 transition hover:shadow-xl mt-2">
+          Pick Up!
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    function toggleSweet() {
+      const modal = document.getElementById('sweet-modal');
+      if(modal.classList.contains('hidden')) {
+        modal.classList.remove('hidden');
+      } else {
+        modal.classList.add('hidden');
+      }
+    }
+  </script>
+</body>
+</html>

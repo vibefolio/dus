@@ -26,6 +26,7 @@ Rails.application.routes.draw do
   get 'templates/wine', to: 'templates#wine'
   get 'templates/salad', to: 'templates#salad'
   get 'templates/dessert', to: 'templates#dessert'
+  get 'templates/donut', to: 'templates#donut'
   get 'templates/kinder', to: 'templates#kinder'
   get 'templates/startup', to: 'templates#startup'
   get 'templates/rental', to: 'templates#rental'
