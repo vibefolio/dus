@@ -75,10 +75,15 @@
                           elsif template.image_url.present?
                             template.image_url
                           else
-                            'https://via.placeholder.com/800x600?text=No+Image'
+                            '/images/templates/portfolio_gallery.png'
                           end
               %>
-              <img src="<%= img_src %>" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s;" class="template-thumb" alt="<%= template.title %>">
+              <img src="<%= img_src %>" 
+                   loading="lazy" 
+                   decoding="async"
+                   alt="<%= template.title %> - <%= template.category %> 웹사이트 템플릿" 
+                   style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s;" 
+                   class="template-thumb">
               
               <!-- Category Badge -->
               <div style="position: absolute; top: 12px; left: 12px; background: white; padding: 4px 12px; border-radius: 99px; font-size: 12px; font-weight: bold; color: #1a1a1a;">

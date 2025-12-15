@@ -77,17 +77,15 @@
                             elsif template.image_url.present?
                               template.image_url
                             else
-                              nil
+                              '/images/templates/portfolio_gallery.png'
                             end
               %>
               
-              <% if thumb_src %>
-                <img src="<%= thumb_src %>" alt="<%= template.title %>" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-              <% else %>
-                <div class="w-full h-full flex items-center justify-center text-gray-300">
-                  <span>No Image</span>
-                </div>
-              <% end %>
+              <img src="<%= thumb_src %>" 
+                   alt="<%= template.title %> - <%= template.category %> 템플릿" 
+                   loading="lazy"
+                   decoding="async"
+                   class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
 
               <!-- Badge -->
               <div class="absolute top-4 left-4">
