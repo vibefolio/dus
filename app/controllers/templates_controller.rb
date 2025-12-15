@@ -8,7 +8,7 @@ class TemplatesController < ApplicationController
     medical law wedding cleaning agency consulting academy sculpt yoga 
     nail barber flower burger wine salad dessert donut kinder startup 
     rental finance dental vet tax camping studio petshop hotel pension 
-    cloth shoe bag shopping
+    cloth shoe bag shopping learnhub english artistry
   ].each do |template_name|
     define_method(template_name) do
       # 각 뷰는 app/views/templates/#{template_name}.html.erb
