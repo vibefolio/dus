@@ -116,7 +116,7 @@
               </p>
               <div style="display: flex; gap: 10px;">
                 <button onclick="openLiveDemo('<%= template.preview_url %>', '<%= template.title %>')" class="btn btn-outline btn-sm" style="flex: 1; text-align: center;">둘러보기</button>
-                <a href="/contact?template_title=<%= template.title %>" class="btn btn-primary btn-sm" style="flex: 1; text-align: center;">제작 의뢰</a>
+                <%= link_to "제작 의뢰", contact_path(template_id: template.id, template_title: template.title, preview_url: template.preview_url), class: "btn btn-primary btn-sm", style: "flex: 1; text-align: center;" %>
               </div>
             </div>
           </div>
