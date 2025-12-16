@@ -44,6 +44,12 @@
       .hero-text-box {
         text-align: left; /* 모바일: 왼쪽 정렬 */
         flex: 1;
+        min-width: 0; /* Flexbox text overflow fix */
+      }
+
+      .hero-title {
+        word-break: keep-all; /* 단어 단위 줄바꿈 */
+        overflow-wrap: break-word;
       }
 
       /* PC (Desktop) Responsive Styles */
@@ -71,22 +77,22 @@
     <div class="hero-wide-container">
       <div class="hero-flex-wrapper">
         <!-- Left Money (PC Only) -->
-        <img src="/images/money.png" class="money-side-img money-left" style="animation-delay: 0s;" alt="Money Icon">
+        <img src="https://cdn-icons-png.flaticon.com/512/2454/2454269.png" class="money-side-img money-left" style="animation-delay: 0s;" alt="Money Icon">
         
         <!-- Center Text -->
         <div class="hero-text-box">
-          <h1 class="hero-title" style="margin-bottom: 1rem; line-height: 1.2;">
+          <h1 class="hero-title" style="margin-bottom: 1rem; line-height: 1.3;">
             비싼 홈페이지? NO!<br>
             돈 벌어주는 홈페이지!
           </h1>
-          <p class="hero-subtitle" style="margin-bottom: 0;">
+          <p class="hero-subtitle" style="margin-bottom: 0; word-break: keep-all;">
             합리적인 구독 요금제로<br>
             초기개발비 부담은 낮추고,<br class="lg:hidden"> 사업에 집중하세요!
           </p>
         </div>
 
         <!-- Right Money (Always Visible) -->
-        <img src="/images/money.png" class="money-side-img money-right" style="animation-delay: 1.5s;" alt="Money Icon">
+        <img src="https://cdn-icons-png.flaticon.com/512/2454/2454269.png" class="money-side-img money-right" style="animation-delay: 1.5s;" alt="Money Icon">
       </div>
     </div>
     <div class="hero-cta">
