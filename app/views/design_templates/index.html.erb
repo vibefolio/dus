@@ -71,15 +71,7 @@
             <div class="relative aspect-[4/3] bg-gray-100 cursor-pointer overflow-hidden" 
                  onclick="openPreview('<%= template.preview_url %>', '<%= j template.title %>', '<%= template.category %>', <%= template.id %>)">
               
-              <% 
-                thumb_src = if template.pc_image.attached?
-                              url_for(template.pc_image)
-                            elsif template.image_url.present?
-                              template.image_url
-                            else
-                              '/images/templates/portfolio_gallery.png'
-                            end
-              %>
+              <% thumb_src = template.pc_thumbnail_url %>
               
               <img src="<%= thumb_src %>" 
                    alt="<%= template.title %> - <%= template.category %> 템플릿" 
