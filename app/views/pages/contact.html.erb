@@ -2,7 +2,7 @@
 <% content_for :description, "프로젝트 문의 및 견적 요청을 남겨주세요. 디어스 전문가가 빠르게 연락드리겠습니다." %>
 
 <!-- Contact Hero -->
-<section class="hero" style="min-height: 40vh; padding-top: 120px;">
+<section class="hero" style="min-height: 40vh; padding-top: 120px; padding-bottom: 120px;">
   <div class="hero-content">
     <h1 class="hero-title" style="font-size: var(--text-6xl);">프로젝트 문의</h1>
     <p class="hero-subtitle">
@@ -208,10 +208,7 @@
     <!-- [일반 문의 모드] 깔끔한 싱글 컨테이너 -->
     <div class="container container-sm" style="padding-bottom: 80px;">
       <div class="card" style="padding: var(--space-8);">
-        <div style="text-align: center; margin-bottom: var(--space-8);">
-          <h2 style="font-size: var(--text-3xl); margin-bottom: var(--space-2);">프로젝트 문의</h2>
-          <p class="text-gray">성공적인 프로젝트의 시작, 디어스가 함께하겠습니다.</p>
-        </div>
+
 
         <%= form_with model: @quote, url: contact_path, local: true, class: "contact-form", html: { onsubmit: "return submitContactForm(this);" } do |f| %>
           
