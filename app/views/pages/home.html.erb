@@ -4,6 +4,36 @@
 <!-- Hero Section -->
 <section class="hero">
   <div class="hero-content">
+<!-- 3D Money Icon Animation -->
+    <style>
+      @keyframes float-wobble {
+        0% { transform: translateY(0) rotate(0deg) scale(1); }
+        25% { transform: translateY(-15px) rotate(-5deg) scale(1.05); }
+        50% { transform: translateY(0) rotate(0deg) scale(1); }
+        75% { transform: translateY(-8px) rotate(5deg) scale(0.98); }
+        100% { transform: translateY(0) rotate(0deg) scale(1); }
+      }
+      .money-icon-3d {
+        width: 140px;
+        height: 140px;
+        margin: 0 auto 20px;
+        border-radius: 50%;
+        object-fit: cover;
+        box-shadow: 0 20px 40px -10px rgba(255, 215, 0, 0.5), inset 0 0 20px rgba(255, 255, 255, 0.5);
+        animation: float-wobble 4s ease-in-out infinite;
+        background: linear-gradient(135deg, #ffd700, #ffaa00);
+        border: 4px solid #fff;
+        display: block;
+      }
+    </style>
+    
+    <!-- 3D Money Icon Image -->
+    <div style="perspective: 1000px;">
+      <img src="https://images.unsplash.com/photo-1621416894569-0f39ed31d247?q=80&w=400&auto=format&fit=crop" 
+           alt="Money 3D Icon" 
+           class="money-icon-3d">
+    </div>
+
     <h1 class="hero-title">
       비싼 홈페이지? NO!<br>
       돈 벌어주는 홈페이지!
