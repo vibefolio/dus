@@ -56,16 +56,20 @@
       @media (min-width: 900px) {
         .hero-flex-wrapper {
           justify-content: center; /* PC: 중앙 정렬 */
-          gap: 4rem;
+          gap: 6rem; /* 이미지와 텍스트 간격 좀 더 시원하게 */
         }
         
         .hero-text-box {
           text-align: center; /* PC: 중앙 정렬 */
-          flex: initial; /* 내용물 크기만큼 */
+          flex: initial;
+        }
+
+        .hero-title {
+          white-space: nowrap; /* PC에서 텍스트 줄바꿈 방지 (br 태그로만 줄바꿈) */
         }
 
         .money-side-img {
-          width: 180px; /* PC 크기 확대 */
+          width: 220px; /* PC 크기 더 확대 */
         }
         
         .money-left {
@@ -89,10 +93,10 @@
       }
     </style>
 
-    <div class="hero-wide-container">
+    <div class="hero-wide-container" style="max-width: 100%; padding: 0 2rem;">
       <div class="hero-flex-wrapper">
         <!-- Left Money (PC Only) -->
-        <img src="/images/money2.png" class="money-side-img money-left" style="animation-delay: 0s;" alt="Money Icon">
+        <img src="/images/money_final.png" class="money-side-img money-left" style="animation-delay: 0s;" alt="Money Icon">
         
         <!-- Center Text -->
         <div class="hero-text-box">
@@ -107,7 +111,7 @@
         </div>
 
         <!-- Right Money (Always Visible) -->
-        <img src="/images/money2.png" class="money-side-img money-right" style="animation-delay: 1.5s;" alt="Money Icon">
+        <img src="/images/money_final.png" class="money-side-img money-right" style="animation-delay: 1.5s;" alt="Money Icon">
       </div>
     </div>
     <div class="hero-cta">
