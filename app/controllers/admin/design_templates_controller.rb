@@ -15,9 +15,6 @@ class Admin::DesignTemplatesController < ApplicationController
     @design_template = DesignTemplate.new(design_template_params)
 
     if @design_template.save
-      # PC 이미지 업로드 시 image_url 자동 업데이트
-      update_image_urls(@design_template)
-      
       Rails.cache.delete("featured_templates")
       redirect_to admin_design_templates_path, notice: "템플릿이 성공적으로 등록되었습니다."
     else
@@ -30,9 +27,6 @@ class Admin::DesignTemplatesController < ApplicationController
 
   def update
     if @design_template.update(design_template_params)
-      # PC/모바일 이미지 업로드 시 URL 자동 업데이트
-      update_image_urls(@design_template)
-      
       Rails.cache.delete("featured_templates")
       redirect_to admin_design_templates_path, notice: "템플릿이 성공적으로 수정되었습니다."
     else
@@ -61,20 +55,4 @@ class Admin::DesignTemplatesController < ApplicationController
     )
   end
 
-  # PC/모바일 이미지 업로드 시 URL 필드 자동 업데이트
-  def update_image_urls(template)
-    updates = {}
-    
-    # PC 이미지가 새로 업로드되었으면 image_url에 경로 저장
-    if template.pc_image.attached? && template.pc_image.blob.created_at > 1.minute.ago
-      updates[:image_url] = Rails.application.routes.url_helpers.rails_blob_path(template.pc_image, only_path: true)
-    end
-    
-    # 모바일 이미지가 새로 업로드되었으면 mobile_image_url에 경로 저장
-    if template.mobile_image.attached? && template.mobile_image.blob.created_at > 1.minute.ago
-      updates[:mobile_image_url] = Rails.application.routes.url_helpers.rails_blob_path(template.mobile_image, only_path: true)
-    end
-    
-    template.update_columns(updates) if updates.present?
-  end
 end

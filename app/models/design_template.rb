@@ -4,14 +4,14 @@ class DesignTemplate < ApplicationRecord
 
   validates :title, presence: true
 
-  # PC 대표 이미지 URL 반환 (우선순위: 업로드된 파일 > image_url)
+  # PC 대표 이미지 URL 반환 (우선순위: 업로드된 파일 > image_url > 기본 이미지)
   def pc_thumbnail_url
     if pc_image.attached?
       Rails.application.routes.url_helpers.rails_blob_path(pc_image, only_path: true)
     elsif image_url.present?
       image_url
     else
-      nil
+      '/images/templates/portfolio_gallery.png'
     end
   end
 
