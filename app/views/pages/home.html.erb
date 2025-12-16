@@ -8,49 +8,86 @@
     <style>
       @keyframes float-vertical {
         0%, 100% { transform: translateY(0); }
-        50% { transform: translateY(-20px); }
+        50% { transform: translateY(-15px); }
       }
+      
+      .hero-wide-container {
+        max-width: 1400px; /* PC 넓은 폭 */
+        margin: 0 auto;
+        padding: 0 1.5rem;
+      }
+
       .hero-flex-wrapper {
         display: flex;
         align-items: center;
-        justify-content: center;
-        gap: 2rem;
+        justify-content: space-between; /* 모바일: 좌우 배치 */
+        gap: 1rem;
         margin-bottom: 2rem;
         position: relative;
       }
+
+      /* Money Image Styles */
       .money-side-img {
-        width: 160px;
+        width: 100px; /* 모바일 기본 크기 */
         height: auto;
         object-fit: contain;
         animation: float-vertical 3s ease-in-out infinite;
         filter: drop-shadow(0 10px 15px rgba(0,0,0,0.1));
-        display: none; /* Mobile hidden by default */
+        flex-shrink: 0; /* 이미지 찌그러짐 방지 */
       }
-      @media (min-width: 768px) {
-        .money-side-img { display: block; }
-        .hero-flex-wrapper { gap: 4rem; }
-        .money-side-img { width: 180px; }
+
+      .money-left {
+        display: none; /* 모바일에서는 왼쪽 돈 숨김 */
+      }
+
+      /* Text Styles */
+      .hero-text-box {
+        text-align: left; /* 모바일: 왼쪽 정렬 */
+        flex: 1;
+      }
+
+      /* PC (Desktop) Responsive Styles */
+      @media (min-width: 900px) {
+        .hero-flex-wrapper {
+          justify-content: center; /* PC: 중앙 정렬 */
+          gap: 4rem;
+        }
+        
+        .hero-text-box {
+          text-align: center; /* PC: 중앙 정렬 */
+          flex: initial; /* 내용물 크기만큼 */
+        }
+
+        .money-side-img {
+          width: 180px; /* PC 크기 확대 */
+        }
+        
+        .money-left {
+          display: block; /* PC에서는 왼쪽 돈 표시 */
+        }
       }
     </style>
 
-    <div class="hero-flex-wrapper">
-      <!-- Left Money -->
-      <img src="/images/money.png" class="money-side-img" style="animation-delay: 0s;" alt="Money Icon">
-      
-      <!-- Center Text -->
-      <div class="text-center">
-        <h1 class="hero-title" style="margin-bottom: 1.5rem;">
-          비싼 홈페이지? NO!<br>
-          돈 벌어주는 홈페이지!
-        </h1>
-        <p class="hero-subtitle" style="margin-bottom: 0;">
-          합리적인 구독 요금제로<br>
-          초기개발비 부담은 낮추고, 사업에 집중하세요!
-        </p>
-      </div>
+    <div class="hero-wide-container">
+      <div class="hero-flex-wrapper">
+        <!-- Left Money (PC Only) -->
+        <img src="/images/money.png" class="money-side-img money-left" style="animation-delay: 0s;" alt="Money Icon">
+        
+        <!-- Center Text -->
+        <div class="hero-text-box">
+          <h1 class="hero-title" style="margin-bottom: 1rem; line-height: 1.2;">
+            비싼 홈페이지? NO!<br>
+            돈 벌어주는 홈페이지!
+          </h1>
+          <p class="hero-subtitle" style="margin-bottom: 0;">
+            합리적인 구독 요금제로<br>
+            초기개발비 부담은 낮추고,<br class="lg:hidden"> 사업에 집중하세요!
+          </p>
+        </div>
 
-      <!-- Right Money -->
-      <img src="/images/money.png" class="money-side-img" style="animation-delay: 1.5s;" alt="Money Icon">
+        <!-- Right Money (Always Visible) -->
+        <img src="/images/money.png" class="money-side-img money-right" style="animation-delay: 1.5s;" alt="Money Icon">
+      </div>
     </div>
     <div class="hero-cta">
       <%= link_to "구독요금제 보기", pricing_path, class: "btn btn-accent btn-lg" %>
