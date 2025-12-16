@@ -62,15 +62,20 @@
     <style>
       /* Critical Layout Styles - Inline for instant render */
       *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-      html { font-family: 'Pretendard', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; line-height: 1.5; -webkit-text-size-adjust: 100%; }
-      body { min-height: 100vh; background-color: #fff; color: #1f2937; opacity: 0; transition: opacity 0.1s ease-in; }
-      body.loaded { opacity: 1; }
+      html { font-family: 'Pretendard', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; line-height: 1.5; }
+      body { min-height: 100vh; background-color: #fff; color: #1f2937; }
       .navbar { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background: rgba(255,255,255,0.95); backdrop-filter: blur(10px); padding: 1rem 2rem; }
+      .navbar-container { display: flex; align-items: center; justify-content: space-between; max-width: 1280px; margin: 0 auto; }
+      .navbar-menu { display: flex; gap: 2rem; list-style: none; }
+      .navbar-link { text-decoration: none; color: #374151; font-weight: 500; }
       .container { max-width: 1280px; margin: 0 auto; padding: 0 1rem; }
-      .hidden { display: none !important; }
       main { padding-top: 80px; }
-      /* Prevent layout shift */
       img { max-width: 100%; height: auto; }
+      /* Flexbox utilities */
+      .flex { display: flex; }
+      .items-center { align-items: center; }
+      .justify-between { justify-content: space-between; }
+      /* Mobile menu hidden by default - will be controlled by Tailwind */
     </style>
 
     <!-- Tailwind CSS CDN (No defer - load immediately) -->
@@ -98,17 +103,6 @@
 
     <%# Includes all stylesheet files in app/assets/stylesheets %>
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
-    
-    <!-- Show body after styles loaded -->
-    <script>
-      document.addEventListener('DOMContentLoaded', function() {
-        document.body.classList.add('loaded');
-      });
-      // Fallback: show after 500ms even if DOMContentLoaded missed
-      setTimeout(function() {
-        if (document.body) document.body.classList.add('loaded');
-      }, 500);
-    </script>
   </head>
 
   <body>
