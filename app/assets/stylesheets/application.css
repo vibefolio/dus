@@ -578,6 +578,24 @@ a:hover {
   margin-bottom: var(--space-4);
 }
 
+.footer-section ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-section li {
+  margin-bottom: var(--space-2);
+}
+
+.footer-section a {
+  color: var(--color-gray-400);
+  transition: color var(--transition-fast);
+}
+
+.footer-section a:hover {
+  color: var(--color-accent);
+}
+
 .footer-bottom {
   border-top: 1px solid var(--color-gray-800);
   padding-top: var(--space-6);

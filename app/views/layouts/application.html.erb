@@ -16,16 +16,6 @@
     <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
     <link rel="dns-prefetch" href="https://images.unsplash.com">
     
-    <!-- Google Analytics (GA4) - Replace G-XXXXXXXXXX with your Measurement ID -->
-    <!--
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-XXXXXXXXXX');
-    </script>
-    -->
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="<%= request.original_url %>">
@@ -187,20 +177,20 @@
           
           <div class="footer-section">
             <h3>서비스</h3>
-            <ul style="list-style: none; padding: 0;">
-              <li style="margin-bottom: 0.5rem;"><a href="#" style="color: var(--color-gray-400);">웹 개발</a></li>
-              <li style="margin-bottom: 0.5rem;"><a href="#" style="color: var(--color-gray-400);">앱 개발</a></li>
-              <li style="margin-bottom: 0.5rem;"><a href="#" style="color: var(--color-gray-400);">UI/UX 디자인</a></li>
-              <li style="margin-bottom: 0.5rem;"><a href="#" style="color: var(--color-gray-400);">디지털 마케팅</a></li>
+            <ul>
+              <li><a href="#">웹 개발</a></li>
+              <li><a href="#">앱 개발</a></li>
+              <li><a href="#">UI/UX 디자인</a></li>
+              <li><a href="#">디지털 마케팅</a></li>
             </ul>
           </div>
           
           <div class="footer-section">
             <h3>회사</h3>
-            <ul style="list-style: none; padding: 0;">
-              <li style="margin-bottom: 0.5rem;"><%= link_to "디자인 템플릿", design_templates_path, style: "color: var(--color-gray-400);" %></li>
-              <li style="margin-bottom: 0.5rem;"><%= link_to "유지관리 구독", pricing_path, style: "color: var(--color-gray-400);" %></li>
-              <li style="margin-bottom: 0.5rem;"><%= link_to "문의하기", contact_path, style: "color: var(--color-gray-400);" %></li>
+            <ul>
+              <li><%= link_to "디자인 템플릿", design_templates_path %></li>
+              <li><%= link_to "유지관리 구독", pricing_path %></li>
+              <li><%= link_to "문의하기", contact_path %></li>
             </ul>
           </div>
           
