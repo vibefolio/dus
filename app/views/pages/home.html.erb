@@ -26,77 +26,112 @@
         position: relative;
       }
 
-      /* Money Image Styles */
+      /* Mobile First Styles */
       .money-side-img {
-        width: 100px; /* 모바일 기본 크기 */
+        width: 130px; /* 모바일 이미지 확대 (100px -> 130px) */
         height: auto;
         object-fit: contain;
         animation: float-vertical 3s ease-in-out infinite;
         filter: drop-shadow(0 10px 15px rgba(0,0,0,0.1));
-        flex-shrink: 0; /* 이미지 찌그러짐 방지 */
+        flex-shrink: 0;
       }
-
-      .money-left {
-        display: none; /* 모바일에서는 왼쪽 돈 숨김 */
-      }
-
-      /* Text Styles */
-      .hero-text-box {
-        text-align: left; /* 모바일: 왼쪽 정렬 */
-        flex: 1;
-        min-width: 0; /* Flexbox text overflow fix */
-      }
-
-      .hero-title {
-        word-break: keep-all; /* 단어 단위 줄바꿈 */
-        overflow-wrap: break-word;
+      
+      .hero-flex-wrapper {
+        display: flex;
+        align-items: center;
+        justify-content: space-between; /* 모바일: 텍스트-이미지 양옆 */
+        gap: 1rem;
+        margin-bottom: 2rem;
+        position: relative;
       }
 
       /* PC (Desktop) Responsive Styles */
       @media (min-width: 900px) {
         .hero-flex-wrapper {
-          justify-content: center; /* PC: 중앙 정렬 */
-          gap: 6rem; /* 이미지와 텍스트 간격 좀 더 시원하게 */
+          justify-content: space-between; /* 양끝 정렬 사용 */
+          gap: 2rem;
         }
         
         .hero-text-box {
-          text-align: center; /* PC: 중앙 정렬 */
-          flex: initial;
+          text-align: center;
+          flex: 0 0 auto; /* 텍스트는 자기 크기만큼만 */
+          z-index: 10;
         }
 
         .hero-title {
-          white-space: nowrap; /* PC에서 텍스트 줄바꿈 방지 (br 태그로만 줄바꿈) */
+          white-space: nowrap;
         }
 
-        .money-side-img {
-          width: 220px; /* PC 크기 더 확대 */
+        .money-side-img.money-right {
+          width: 280px; /* PC 이미지 크기 */
         }
         
-        .money-left {
-          display: block; /* PC에서는 왼쪽 돈 표시 */
+        /* 3단 구조를 위한 가상 요소 스타일 */
+        .pc-spacer {
+          flex: 1; /* 왼쪽 공간 차지 */
+        }
+        .money-wrapper-right {
+          flex: 1; /* 오른쪽 공간 차지 */
+          display: flex;
+          justify-content: flex-end; /* 이미지를 오른쪽 끝으로 */
         }
       }
 
       /* Stats Grid Responsive Styles */
       .stats-grid {
         display: flex;
-        flex-direction: column; /* 모바일: 세로 정렬 */
-        align-items: stretch;
-        justify-content: center;
+        flex-direction: column;
         gap: var(--space-4);
         margin-top: 3rem;
       }
+      
+      /* Stat Card Styles */
+      .stat-card {
+        background: rgba(255,255,255,0.1); /* 약간의 배경 추가 */
+        border-radius: 12px;
+        padding: 1.25rem 2rem; /* 패딩 축소 */
+        display: flex;
+        align-items: center; /* 수직 중앙 */
+        justify-content: space-between; /* 모바일: 양끝 정렬 (가로 배치) */
+        min-height: auto; /* 높이 제한 해제 */
+        flex-direction: row; /* 모바일 기본: 가로 배치 (1줄 만들기) */
+      }
+      
+      .stat-number {
+        font-size: 1.5rem;
+        font-weight: 800;
+        color: white; /* 텍스트 잘 보이게 */
+      }
+      
+      .stat-label {
+        font-size: 1rem;
+        font-weight: 500;
+        color: rgba(255,255,255,0.9);
+      }
+
       @media (min-width: 768px) {
         .stats-grid {
-          flex-direction: row; /* PC: 가로 정렬 */
+          flex-direction: row; 
+          align-items: stretch;
         }
+        .stat-card {
+          flex-direction: column; /* PC: 세로 배치 복귀 */
+          justify-content: center;
+          align-items: center;
+          min-height: 120px;
+          flex: 1;
+        }
+        .stat-number { font-size: 2.5rem; margin-bottom: 0.5rem; }
+        .stat-label { font-size: 1.125rem; }
       }
     </style>
 
     <div class="hero-wide-container" style="max-width: 100%; padding: 0 2rem;">
       <div class="hero-flex-wrapper">
-        <!-- Left Money Removed -->
-        
+        <!-- Left Spacer for PC Balance -->
+        <div class="pc-spacer hidden lg:block" style="display: none;"></div>
+        @media (min-width: 900px) { .pc-spacer { display: block !important; } } 
+
         <!-- Center Text -->
         <div class="hero-text-box">
           <h1 class="hero-title" style="margin-bottom: 1rem; line-height: 1.3;">
@@ -109,8 +144,10 @@
           </p>
         </div>
 
-        <!-- Right Money (Always Visible) -->
-        <img src="/images/money_final.png" class="money-side-img money-right" style="animation-delay: 1.5s;" alt="Money Icon">
+        <!-- Right Money (Wrapper for PC alignment) -->
+        <div class="money-wrapper-right">
+          <img src="/images/money_final.png" class="money-side-img money-right" style="animation-delay: 1.5s;" alt="Money Icon">
+        </div>
       </div>
     </div>
     <div class="hero-cta">
@@ -120,37 +157,26 @@
 
     <!-- Stats Grid -->
     <div class="stats-grid">
-      <div class="stat-card" style="min-height: 120px; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+      <div class="stat-card">
         <div class="stat-number">30+</div>
         <div class="stat-label">템플릿 선택</div>
       </div>
       
-      <!-- Separator (Desktop Only) -->
-      <div class="hidden md:flex" style="align-items: center; color: rgba(255,255,255,0.3);">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
-      </div>
+      <!-- Separator removed for cleaner mobile look, kept in PC structure logically if needed but removing messy markup for now as grid gap handles spacing -->
 
-      <div class="stat-card" style="min-height: 120px; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+      <div class="stat-card">
         <div class="stat-number">3+</div>
         <div class="stat-label">플랜 선택</div>
       </div>
 
-      <div class="hidden md:flex" style="align-items: center; color: rgba(255,255,255,0.3);">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
-      </div>
-
-      <div class="stat-card" style="min-height: 120px; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+      <div class="stat-card">
         <div class="stat-number">맞춤형</div>
-        <div class="stat-label">개발</div>
+        <div class="stat-label">개발 서비스</div>
       </div>
 
-      <div class="hidden md:flex" style="align-items: center; color: rgba(255,255,255,0.3);">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
-      </div>
-
-      <div class="stat-card" style="min-height: 120px; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+      <div class="stat-card">
         <div class="stat-number">안정적인</div>
-        <div class="stat-label">유지관리</div>
+        <div class="stat-label">유지보수</div>
       </div>
     </div>
   </div>
