@@ -12,7 +12,7 @@
       }
       
       .hero-wide-container {
-        max-width: 1400px; /* PC 넓은 폭 */
+        max-width: 1920px; /* PC 넓은 폭 확장 */
         margin: 0 auto;
         padding: 0 1.5rem;
       }
@@ -72,12 +72,27 @@
           display: block; /* PC에서는 왼쪽 돈 표시 */
         }
       }
+
+      /* Stats Grid Responsive Styles */
+      .stats-grid {
+        display: flex;
+        flex-direction: column; /* 모바일: 세로 정렬 */
+        align-items: stretch;
+        justify-content: center;
+        gap: var(--space-4);
+        margin-top: 3rem;
+      }
+      @media (min-width: 768px) {
+        .stats-grid {
+          flex-direction: row; /* PC: 가로 정렬 */
+        }
+      }
     </style>
 
     <div class="hero-wide-container">
       <div class="hero-flex-wrapper">
         <!-- Left Money (PC Only) -->
-        <img src="https://cdn-icons-png.flaticon.com/512/2454/2454269.png" class="money-side-img money-left" style="animation-delay: 0s;" alt="Money Icon">
+        <img src="/images/money2.png" class="money-side-img money-left" style="animation-delay: 0s;" alt="Money Icon">
         
         <!-- Center Text -->
         <div class="hero-text-box">
@@ -92,7 +107,7 @@
         </div>
 
         <!-- Right Money (Always Visible) -->
-        <img src="https://cdn-icons-png.flaticon.com/512/2454/2454269.png" class="money-side-img money-right" style="animation-delay: 1.5s;" alt="Money Icon">
+        <img src="/images/money2.png" class="money-side-img money-right" style="animation-delay: 1.5s;" alt="Money Icon">
       </div>
     </div>
     <div class="hero-cta">
@@ -101,12 +116,13 @@
     </div>
 
     <!-- Stats Grid -->
-    <div class="stats-grid" style="display: flex; align-items: stretch; justify-content: center; gap: var(--space-4);">
+    <div class="stats-grid">
       <div class="stat-card" style="min-height: 120px; display: flex; flex-direction: column; justify-content: center; align-items: center;">
         <div class="stat-number">30+</div>
         <div class="stat-label">템플릿 선택</div>
       </div>
       
+      <!-- Separator (Desktop Only) -->
       <div class="hidden md:flex" style="align-items: center; color: rgba(255,255,255,0.3);">
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
       </div>
