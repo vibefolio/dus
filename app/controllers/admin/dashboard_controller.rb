@@ -8,8 +8,15 @@ class Admin::DashboardController < ApplicationController
     @pending_quotes_count = Quote.where(status: "pending").count
     @templates_count = DesignTemplate.count
     @featured_templates_count = DesignTemplate.where(is_featured: true).count
-    @faqs_count = Faq.count
-    @published_faqs_count = Faq.where(published: true).count
+    
+    # FAQ 테이블이 존재하는 경우에만 카운트
+    begin
+      @faqs_count = Faq.count
+      @published_faqs_count = Faq.where(published: true).count
+    rescue => e
+      @faqs_count = 0
+      @published_faqs_count = 0
+    end
     
     @recent_portfolios = Portfolio.order(created_at: :desc).limit(5)
     @recent_quotes = Quote.order(created_at: :desc).limit(5)
