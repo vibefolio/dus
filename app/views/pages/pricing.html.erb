@@ -283,43 +283,26 @@
       <h2 style="font-size: var(--text-5xl); margin-bottom: var(--space-4);">자주 묻는 질문</h2>
     </div>
 
-    <div style="display: flex; flex-direction: column; gap: var(--space-4);">
-      <div class="card">
-        <h4 style="font-size: var(--text-xl); font-weight: 700; margin-bottom: var(--space-3); color: var(--color-primary);">
-          Q. 구독을 중단하면 어떻게 되나요?
-        </h4>
-        <p class="text-gray">
-          구독 중단 시 유지보수 및 업데이트 서비스가 종료됩니다. 다만 개발된 웹사이트는 계속 사용하실 수 있으며, 필요 시 언제든 구독을 재개하실 수 있습니다.
+    <% if @faqs.present? %>
+      <div style="display: flex; flex-direction: column; gap: var(--space-4);">
+        <% @faqs.each do |faq| %>
+          <div class="card">
+            <h4 style="font-size: var(--text-xl); font-weight: 700; margin-bottom: var(--space-3); color: var(--color-primary);">
+              Q. <%= faq.question %>
+            </h4>
+            <p class="text-gray">
+              <%= simple_format(faq.answer) %>
+            </p>
+          </div>
+        <% end %>
+      </div>
+    <% else %>
+      <div class="card text-center" style="padding: var(--space-12);">
+        <p class="text-gray" style="font-size: var(--text-lg);">
+          등록된 FAQ가 없습니다.
         </p>
       </div>
-
-      <div class="card">
-        <h4 style="font-size: var(--text-xl); font-weight: 700; margin-bottom: var(--space-3); color: var(--color-primary);">
-          Q. 플랜 변경이 가능한가요?
-        </h4>
-        <p class="text-gray">
-          네, 언제든지 플랜 업그레이드 또는 다운그레이드가 가능합니다. 차액은 다음 결제 시 정산됩니다.
-        </p>
-      </div>
-
-      <div class="card">
-        <h4 style="font-size: var(--text-xl); font-weight: 700; margin-bottom: var(--space-3); color: var(--color-primary);">
-          Q. 초기 개발 기간은 얼마나 걸리나요?
-        </h4>
-        <p class="text-gray">
-          베이직 플랜은 1주 이내 / 프로플랜은 1~2주 / 마스터플랜은 2~4주 이상 소요됩니다.
-        </p>
-      </div>
-
-      <div class="card">
-        <h4 style="font-size: var(--text-xl); font-weight: 700; margin-bottom: var(--space-3); color: var(--color-primary);">
-          Q. 도메인과 호스팅 비용은 포함되나요?
-        </h4>
-        <p class="text-gray">
-          도메인과 호스팅 비용은 별도입니다. 포함시 별도의 비용이 발생할 수 있습니다.
-        </p>
-      </div>
-    </div>
+    <% end %>
   </div>
 </section>
 
