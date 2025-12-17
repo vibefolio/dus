@@ -4,7 +4,7 @@
 </div>
 
 <!-- Statistics Cards -->
-<div class="grid grid-4" style="gap: var(--space-6); margin-bottom: var(--space-12);">
+<div class="grid grid-3" style="gap: var(--space-6); margin-bottom: var(--space-12);">
   <!-- Portfolios Card -->
   <div class="card" style="background: linear-gradient(135deg, #00a859 0%, #00c569 100%); color: white;">
     <div style="display: flex; justify-content: space-between; align-items: start;">
@@ -58,27 +58,6 @@
       </div>
     </div>
   </div>
-
-  <!-- FAQ Card -->
-  <div class="card" style="background: linear-gradient(135deg, #8B5CF6 0%, #A78BFA 100%); color: white;">
-    <div style="display: flex; justify-content: space-between; align-items: start;">
-      <div>
-        <p style="font-size: var(--text-sm); color: rgba(255,255,255,0.9); margin-bottom: var(--space-2);">FAQ</p>
-        <div style="display: flex; align-items: baseline; gap: 8px;">
-          <p style="font-size: var(--text-5xl); font-weight: 900; margin-bottom: var(--space-2);"><%= @faqs_count %></p>
-          <span style="font-size: var(--text-sm); opacity: 0.9;">(공개: <%= @published_faqs_count %>)</span>
-        </div>
-        <%= link_to "관리하기 →", admin_faqs_path, style: "color: white; text-decoration: underline; font-size: var(--text-sm);" %>
-      </div>
-      <div style="width: 60px; height: 60px; background: rgba(255,255,255,0.2); border-radius: var(--radius-full); display: flex; align-items: center; justify-content: center;">
-        <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
-          <circle cx="12" cy="12" r="10"/>
-          <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/>
-          <line x1="12" y1="17" x2="12.01" y2="17"/>
-        </svg>
-      </div>
-    </div>
-  </div>
 </div>
 
 <!-- Quick Actions -->
@@ -104,14 +83,6 @@
         <polyline points="22,6 12,13 2,6"/>
       </svg>
       문의 내역
-    <% end %>
-    <%= link_to admin_faqs_path, class: "btn btn-outline btn-lg" do %>
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-right: 8px;">
-        <circle cx="12" cy="12" r="10"/>
-        <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/>
-        <line x1="12" y1="17" x2="12.01" y2="17"/>
-      </svg>
-      FAQ 관리
     <% end %>
   </div>
 </div>

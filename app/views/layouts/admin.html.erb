@@ -85,16 +85,6 @@
                 <span>문의 내역</span>
               <% end %>
             </li>
-            <li style="margin-bottom: var(--space-2);">
-              <%= link_to admin_faqs_path, style: "display: flex; align-items: center; gap: var(--space-3); padding: var(--space-3); border-radius: var(--radius-md); color: var(--color-gray-700); text-decoration: none; transition: all var(--transition-fast); #{request.path.include?('faqs') ? 'background: var(--color-primary); color: white;' : ''}" do %>
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <circle cx="12" cy="12" r="10"/>
-                  <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/>
-                  <line x1="12" y1="17" x2="12.01" y2="17"/>
-                </svg>
-                <span>FAQ 관리</span>
-              <% end %>
-            </li>
           </ul>
         </nav>
       </aside>

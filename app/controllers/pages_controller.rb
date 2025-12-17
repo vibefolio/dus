@@ -46,17 +46,6 @@ class PagesController < ApplicationController
   end
 
   def pricing
-    begin
-      # FAQ 테이블이 존재하는 경우에만 로드
-      if ActiveRecord::Base.connection.table_exists?('faqs')
-        @faqs = Faq.published.ordered
-      else
-        @faqs = []
-      end
-    rescue => e
-      Rails.logger.error "Failed to load FAQs: #{e.message}"
-      @faqs = []
-    end
   end
 
   def create_quote
