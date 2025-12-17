@@ -225,3 +225,6 @@ templates.each do |t|
 end
 
 puts "Seed Data Updated Successfully: #{DesignTemplate.count} Templates"
+
+# Load FAQ seeds
+load Rails.root.join('db', 'seeds', 'faqs.rb')

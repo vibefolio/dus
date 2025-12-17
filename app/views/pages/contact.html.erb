@@ -90,32 +90,41 @@
               <span class="text-xs font-normal text-white bg-emerald-500 px-2 py-1 rounded">필수 입력</span>
             </h2>
             
-            <%= form_with url: contact_path, local: true, class: "space-y-6" do |f| %>
+            <%= form_with url: contact_path, local: true, class: "space-y-6", html: { id: "template-contact-form" } do |f| %>
+              
+              <!-- Honeypot 필드 (봇 차단용) -->
+              <div style="position: absolute; left: -9999px; opacity: 0; pointer-events: none;" aria-hidden="true">
+                <%= text_field_tag "quote[website]", nil, tabindex: "-1", autocomplete: "off", placeholder: "Leave this field blank" %>
+              </div>
+
+              <!-- 폼 로드 시간 -->
+              <%= hidden_field_tag :form_loaded_at, Time.current.to_i %>
+
               <div class="grid grid-cols-2 gap-5">
                 <div>
                   <label class="block text-sm font-bold text-gray-700 mb-2">담당자명 *</label>
-                  <%= f.text_field :name, class: "w-full px-4 py-3.5 rounded-xl bg-gray-50 border border-gray-200 focus:border-emerald-500 focus:ring-2 focus:ring-emerald-100 transition outline-none", placeholder: "홍길동", required: true %>
+                  <%= text_field_tag "quote[contact_name]", nil, class: "w-full px-4 py-3.5 rounded-xl bg-gray-50 border border-gray-200 focus:border-emerald-500 focus:ring-2 focus:ring-emerald-100 transition outline-none", placeholder: "홍길동", required: true %>
                 </div>
                 <div>
                   <label class="block text-sm font-bold text-gray-700 mb-2">회사명</label>
-                  <%= f.text_field :company, class: "w-full px-4 py-3.5 rounded-xl bg-gray-50 border border-gray-200 focus:border-emerald-500 focus:ring-2 focus:ring-emerald-100 transition outline-none", placeholder: "회사명 입력" %>
+                  <%= text_field_tag "quote[company_name]", nil, class: "w-full px-4 py-3.5 rounded-xl bg-gray-50 border border-gray-200 focus:border-emerald-500 focus:ring-2 focus:ring-emerald-100 transition outline-none", placeholder: "회사명 입력" %>
                 </div>
               </div>
 
               <div>
                 <label class="block text-sm font-bold text-gray-700 mb-2">이메일 *</label>
-                <%= f.email_field :email, class: "w-full px-4 py-3.5 rounded-xl bg-gray-50 border border-gray-200 focus:border-emerald-500 focus:ring-2 focus:ring-emerald-100 transition outline-none", placeholder: "example@company.com", required: true %>
+                <%= email_field_tag "quote[email]", nil, class: "w-full px-4 py-3.5 rounded-xl bg-gray-50 border border-gray-200 focus:border-emerald-500 focus:ring-2 focus:ring-emerald-100 transition outline-none", placeholder: "example@company.com", required: true %>
               </div>
               
               <div>
                 <label class="block text-sm font-bold text-gray-700 mb-2">연락처 *</label>
-                <%= f.text_field :phone, class: "w-full px-4 py-3.5 rounded-xl bg-gray-50 border border-gray-200 focus:border-emerald-500 focus:ring-2 focus:ring-emerald-100 transition outline-none", placeholder: "010-0000-0000", required: true %>
+                <%= text_field_tag "quote[phone]", nil, class: "w-full px-4 py-3.5 rounded-xl bg-gray-50 border border-gray-200 focus:border-emerald-500 focus:ring-2 focus:ring-emerald-100 transition outline-none", placeholder: "010-0000-0000", required: true %>
               </div>
 
               <div>
                  <label class="block text-sm font-bold text-gray-700 mb-2">예산 범위</label>
                  <div class="relative">
-                   <%= f.select :budget, ["500만원 ~ 1,000만원", "1,000만원 ~ 3,000만원", "3,000만원 ~ 5,000만원", "5,000만원 이상", "미정"], { prompt: "예산을 선택해주세요" }, class: "w-full px-4 py-3.5 rounded-xl bg-gray-50 border border-gray-200 focus:border-emerald-500 focus:ring-2 focus:ring-emerald-100 transition outline-none appearance-none cursor-pointer" %>
+                   <%= select_tag "quote[budget]", options_for_select(["500만원 ~ 1,000만원", "1,000만원 ~ 3,000만원", "3,000만원 ~ 5,000만원", "5,000만원 이상", "미정"]), { prompt: "예산을 선택해주세요" }, class: "w-full px-4 py-3.5 rounded-xl bg-gray-50 border border-gray-200 focus:border-emerald-500 focus:ring-2 focus:ring-emerald-100 transition outline-none appearance-none cursor-pointer" %>
                    <div class="absolute inset-y-0 right-0 flex items-center px-4 pointer-events-none">
                      <svg class="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
                    </div>
@@ -131,8 +140,11 @@
                     ""
                   end
                 %>
-                <%= f.text_area :message, value: default_msg, rows: 6, class: "w-full px-4 py-3.5 rounded-xl bg-gray-50 border border-gray-200 focus:border-emerald-500 focus:ring-2 focus:ring-emerald-100 transition outline-none text-sm leading-relaxed resize-none", required: true %>
+                <%= text_area_tag "quote[message]", default_msg, rows: 6, class: "w-full px-4 py-3.5 rounded-xl bg-gray-50 border border-gray-200 focus:border-emerald-500 focus:ring-2 focus:ring-emerald-100 transition outline-none text-sm leading-relaxed resize-none", required: true %>
               </div>
+
+              <!-- 프로젝트 유형 hidden 필드 -->
+              <%= hidden_field_tag "quote[project_type]", "템플릿 의뢰" %>
 
               <button type="submit" class="w-full py-4 bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-lg rounded-xl shadow-lg shadow-emerald-200 hover:shadow-emerald-300 transition-all transform hover:-translate-y-0.5 flex justify-center items-center gap-2">
                 <span>무료 견적 신청하기</span>
@@ -210,8 +222,16 @@
       <div class="card" style="padding: var(--space-8);">
 
 
-        <%= form_with model: @quote, url: contact_path, local: true, class: "contact-form", html: { onsubmit: "return submitContactForm(this);" } do |f| %>
+        <%= form_with model: @quote, url: contact_path, local: true, class: "contact-form", html: { onsubmit: "return submitContactForm(this);", id: "contact-form" } do |f| %>
           
+          <!-- Honeypot 필드 (봇 차단용 - 사람은 볼 수 없음) -->
+          <div style="position: absolute; left: -9999px; opacity: 0; pointer-events: none;" aria-hidden="true">
+            <%= f.text_field :website, tabindex: "-1", autocomplete: "off", placeholder: "Leave this field blank" %>
+          </div>
+
+          <!-- 폼 로드 시간 (빠른 제출 차단용) -->
+          <%= hidden_field_tag :form_loaded_at, Time.current.to_i %>
+
           <div class="form-grid">
             <div class="form-group">
               <%= f.label :contact_name, "담당자 성함 *", class: "form-label" %>

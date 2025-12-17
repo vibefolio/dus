@@ -66,6 +66,7 @@ Rails.application.routes.draw do
     resources :portfolios
     resources :quotes, only: [ :index, :show ]
     resources :design_templates
+    resources :faqs
   end
 
   # SEO

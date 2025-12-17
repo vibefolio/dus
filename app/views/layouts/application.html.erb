@@ -109,7 +109,7 @@
           <li><%= link_to "홈", root_path, class: "navbar-link #{current_page?(root_path) ? 'active' : ''}" %></li>
           <li><%= link_to "디자인 템플릿", design_templates_path, class: "navbar-link #{current_page?(design_templates_path) ? 'active' : ''}" %></li>
           <%# <li><%= link_to "포트폴리오", portfolio_path, class: "navbar-link #{current_page?(portfolio_path) ? 'active' : ''}" %>
-          <li><%= link_to "유지관리 구독", pricing_path, class: "navbar-link #{current_page?(pricing_path) ? 'active' : ''}" %></li>
+          <li><%= link_to "구독요금제", pricing_path, class: "navbar-link #{current_page?(pricing_path) ? 'active' : ''}" %></li>
           <li><%= link_to "문의하기", contact_path, class: "navbar-link #{current_page?(contact_path) ? 'active' : ''}" %></li>
         </ul>
 
@@ -125,7 +125,7 @@
       <div id="mobile-menu" class="hidden md:hidden absolute top-full left-0 w-full bg-white shadow-lg border-t border-gray-100 flex flex-col p-4 space-y-4">
         <%= link_to "홈", root_path, class: "block px-4 py-2 text-gray-700 font-bold hover:bg-gray-50 rounded-lg #{current_page?(root_path) ? 'text-emerald-600 bg-emerald-50' : ''}" %>
         <%= link_to "디자인 템플릿", design_templates_path, class: "block px-4 py-2 text-gray-700 font-bold hover:bg-gray-50 rounded-lg #{current_page?(design_templates_path) ? 'text-emerald-600 bg-emerald-50' : ''}" %>
-        <%= link_to "유지관리 구독", pricing_path, class: "block px-4 py-2 text-gray-700 font-bold hover:bg-gray-50 rounded-lg #{current_page?(pricing_path) ? 'text-emerald-600 bg-emerald-50' : ''}" %>
+        <%= link_to "구독요금제", pricing_path, class: "block px-4 py-2 text-gray-700 font-bold hover:bg-gray-50 rounded-lg #{current_page?(pricing_path) ? 'text-emerald-600 bg-emerald-50' : ''}" %>
         <%= link_to "문의하기", contact_path, class: "block px-4 py-2 text-gray-700 font-bold hover:bg-gray-50 rounded-lg #{current_page?(contact_path) ? 'text-emerald-600 bg-emerald-50' : ''}" %>
       </div>
     </nav>
@@ -189,7 +189,7 @@
             <h3>회사</h3>
             <ul>
               <li><%= link_to "디자인 템플릿", design_templates_path %></li>
-              <li><%= link_to "유지관리 구독", pricing_path %></li>
+              <li><%= link_to "구독요금제", pricing_path %></li>
               <li><%= link_to "문의하기", contact_path %></li>
             </ul>
           </div>

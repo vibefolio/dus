@@ -46,10 +46,49 @@ class PagesController < ApplicationController
   end
 
   def pricing
+    begin
+      @faqs = Faq.published.ordered
+    rescue => e
+      Rails.logger.error "Failed to load FAQs: #{e.message}"
+      @faqs = []
+    end
   end
 
   def create_quote
     begin
+      # 1. Honeypot 필드 체크 (봇이 채우는 숨겨진 필드)
+      if params[:quote][:website].present?
+        Rails.logger.warn "Spam detected: Honeypot field filled - IP: #{request.remote_ip}"
+        redirect_to contact_path, notice: "문의가 접수되었습니다." # 봇에게는 성공한 것처럼 보이게
+        return
+      end
+
+      # 2. Rate Limiting 체크
+      if SpamFilter.rate_limited?(request.remote_ip)
+        flash[:alert] = "너무 많은 요청이 감지되었습니다. 잠시 후 다시 시도해주세요."
+        redirect_to contact_path
+        return
+      end
+
+      # 3. 제출 시간 체크 (너무 빠른 제출 차단 - 최소 3초)
+      if params[:form_loaded_at].present?
+        form_loaded_time = Time.at(params[:form_loaded_at].to_i)
+        if Time.current - form_loaded_time < 3.seconds
+          Rails.logger.warn "Spam detected: Too fast submission - IP: #{request.remote_ip}"
+          redirect_to contact_path, notice: "문의가 접수되었습니다."
+          return
+        end
+      end
+
+      # 4. 스팸 콘텐츠 체크
+      if SpamFilter.spam?(quote_params)
+        Rails.logger.warn "Spam detected: Spam content - IP: #{request.remote_ip}, Email: #{quote_params[:email]}"
+        flash[:alert] = "스팸으로 의심되는 내용이 감지되었습니다. 문의 내용을 확인해주세요."
+        @quote = Quote.new(quote_params)
+        render :contact, status: :unprocessable_entity
+        return
+      end
+
       @quote = Quote.new(quote_params)
       @quote.status = "pending"
 
