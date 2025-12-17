@@ -92,14 +92,6 @@
             
             <%= form_with url: contact_path, local: true, class: "space-y-6", html: { id: "template-contact-form" } do |f| %>
               
-              <!-- Honeypot 필드 (봇 차단용) -->
-              <div style="position: absolute; left: -9999px; opacity: 0; pointer-events: none;" aria-hidden="true">
-                <%= text_field_tag "quote[website]", nil, tabindex: "-1", autocomplete: "off", placeholder: "Leave this field blank" %>
-              </div>
-
-              <!-- 폼 로드 시간 -->
-              <%= hidden_field_tag :form_loaded_at, Time.current.to_i %>
-
               <div class="grid grid-cols-2 gap-5">
                 <div>
                   <label class="block text-sm font-bold text-gray-700 mb-2">담당자명 *</label>
@@ -224,14 +216,6 @@
 
         <%= form_with model: @quote, url: contact_path, local: true, class: "contact-form", html: { onsubmit: "return submitContactForm(this);", id: "contact-form" } do |f| %>
           
-          <!-- Honeypot 필드 (봇 차단용 - 사람은 볼 수 없음) -->
-          <div style="position: absolute; left: -9999px; opacity: 0; pointer-events: none;" aria-hidden="true">
-            <%= f.text_field :website, tabindex: "-1", autocomplete: "off", placeholder: "Leave this field blank" %>
-          </div>
-
-          <!-- 폼 로드 시간 (빠른 제출 차단용) -->
-          <%= hidden_field_tag :form_loaded_at, Time.current.to_i %>
-
           <div class="form-grid">
             <div class="form-group">
               <%= f.label :contact_name, "담당자 성함 *", class: "form-label" %>
