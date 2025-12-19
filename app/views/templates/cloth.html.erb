@@ -1,175 +1,169 @@
-<!DOCTYPE html>
-<html lang="ko">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>미니멀 스튜디오 - 심플의 미학</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500&family=Noto+Sans+KR:wght@300;400;500&display=swap" rel="stylesheet">
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            stone: '#a8a29e',
-            ash: '#2b2b2b',
-            raw: '#f5f5f4',
-          },
-          fontFamily: {
-            sans: ['Jost', 'Noto Sans KR', 'sans-serif'],
-          }
-        }
-      }
-    }
-  </script>
-</head>
-<body class="bg-white text-ash font-sans">
+<%# Cloth Template - 블랑 앤 느와 (미니멀 브랜드) %>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.0/vanilla-tilt.min.js"></script>
 
-  <!-- Nav -->
-  <nav class="fixed w-full z-50 px-10 py-8 bg-white/90 backdrop-blur-sm flex justify-between items-center">
-    <div class="text-xl tracking-[0.2em] font-light">MINIMAL</div>
-    <div class="hidden md:flex gap-12 text-xs tracking-widest font-medium text-gray-400">
-      <a href="#new" class="hover:text-black transition">NEW ARRIVALS</a>
-      <a href="#collection" class="hover:text-black transition">COLLECTION</a>
-      <a href="#about" class="hover:text-black transition">ABOUT</a>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,400&family=Montserrat:wght@200;300;400&display=swap');
+  
+  .font-serif { font-family: 'Cormorant Garamond', serif; }
+  .font-sans { font-family: 'Montserrat', sans-serif; }
+  
+  .vertical-text {
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+  }
+  
+  .hide-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+</style>
+
+<div class="bg-[#f5f5f0] text-[#333] font-sans selection:bg-[#333] selection:text-white h-screen overflow-hidden flex flex-col md:flex-row">
+
+  <!-- Sidebar Nav (Desktop) -->
+  <nav class="hidden md:flex flex-col justify-between w-24 h-full border-r border-[#dcdcdc] py-8 items-center bg-white z-20">
+    <div class="font-serif text-2xl font-bold tracking-widest -rotate-90 mt-12 whitespace-nowrap">BLANC</div>
+    <div class="flex flex-col gap-12 text-[10px] tracking-[0.3em] uppercase vertical-text items-center">
+      <a href="#collection" class="hover:text-gray-400 transition rotate-180">Collection</a>
+      <a href="#about" class="hover:text-gray-400 transition rotate-180">About</a>
+      <a href="#shop" class="hover:text-gray-400 transition rotate-180">Shop</a>
     </div>
-    <div class="flex gap-6 text-xs tracking-widest font-medium">
-      <button onclick="toggleCloth()">SEARCH</button>
-      <button onclick="toggleCloth()">CART (0)</button>
-    </div>
+    <div class="text-xs">2024</div>
+  </nav>
+  
+  <!-- Mobile Nav -->
+  <nav class="md:hidden fixed top-0 w-full z-50 px-6 py-4 flex justify-between items-center bg-white/90 backdrop-blur border-b border-gray-100">
+    <div class="font-serif text-xl font-bold tracking-widest">BLANC</div>
+    <div class="text-xs uppercase tracking-widest">Menu</div>
   </nav>
 
-  <!-- Hero -->
-  <header class="h-screen flex items-center justify-center px-6 relative">
-    <div class="grid md:grid-cols-2 gap-12 items-center max-w-6xl mx-auto w-full">
-      <div class="space-y-8 order-2 md:order-1 animate-fade-in">
-        <span class="text-xs uppercase tracking-[0.3em] text-gray-400 border-b border-gray-200 pb-2">Spring / Summer 2025</span>
-        <h1 class="text-5xl md:text-7xl font-light leading-tight">
-          LESS IS <br> <span class="font-medium">MORE.</span>
-        </h1>
-        <p class="text-sm text-gray-500 leading-loose max-w-sm font-light">
-          불필요한 것은 덜어내고 본질에 집중합니다. <br>
-          지속 가능한 소재와 타임리스 디자인의 가치.
-        </p>
-        <div class="pt-8">
-          <button onclick="toggleCloth()" class="bg-ash text-white px-10 py-4 text-xs tracking-[0.2em] hover:bg-black transition">
-            SHOP NOW
+  <!-- Main Content Area -->
+  <main class="flex-1 h-full overflow-y-auto overflow-x-hidden relative scroll-smooth">
+    
+    <!-- Hero -->
+    <section class="h-screen relative flex items-center justify-center">
+       <div class="absolute inset-0 p-8 md:p-16">
+          <img src="https://images.unsplash.com/photo-1515347619252-60a6bf4fffce?q=80&w=1920" class="w-full h-full object-cover filter brightness-95 grayscale hover:grayscale-0 transition duration-[2s] rounded-sm">
+       </div>
+       <div class="absolute bottom-20 left-12 md:left-24 z-10 mix-blend-difference text-white">
+          <p class="text-[10px] tracking-[0.5em] uppercase mb-4 animate-fade-in-up">Spring Summer 2024</p>
+          <h1 class="text-6xl md:text-9xl font-serif italic mb-0 leading-none animate-fade-in-up delay-100">
+             Silence <br> & Form
+          </h1>
+       </div>
+       <div class="absolute bottom-20 right-12 md:right-24 z-10 animate-fade-in-up delay-200">
+          <button class="w-32 h-32 rounded-full border border-white/50 text-white text-xs uppercase tracking-widest hover:bg-white hover:text-black hover:border-white transition duration-500 backdrop-blur-sm">
+             Explore
           </button>
-        </div>
-      </div>
-      <div class="order-1 md:order-2 h-[600px] overflow-hidden relative">
-         <img src="https://images.unsplash.com/photo-1434389677669-e08b4cac3105?q=80&w=800" class="w-full h-full object-cover">
-         <div class="absolute bottom-6 right-6 bg-white/80 backdrop-blur px-6 py-4 text-center">
-           <p class="text-xs uppercase tracking-widest mb-1">Look 01</p>
-           <p class="font-medium">Linen Jacket</p>
-         </div>
-      </div>
-    </div>
-  </header>
+       </div>
+    </section>
 
-  <!-- Product Showcase -->
-  <section id="collection" class="py-32 px-10">
-    <div class="container mx-auto">
-      <div class="flex justify-between items-end mb-16">
-        <h2 class="text-3xl font-light">Essential Items</h2>
-        <a href="#" class="text-xs tracking-widest border-b border-gray-300 pb-1 hover:border-black transition">VIEW ALL</a>
-      </div>
+    <!-- Content Split -->
+    <section id="about" class="min-h-screen py-24 px-8 md:px-24 grid md:grid-cols-2 gap-16 items-center bg-[#f5f5f0]">
+       <div class="space-y-8">
+          <span class="block w-12 h-[1px] bg-black"></span>
+          <h2 class="text-4xl md:text-5xl font-serif leading-tight">
+             "We design for the <br> <span class="italic text-gray-500">quiet moments</span>."
+          </h2>
+          <p class="text-sm font-light leading-loose text-gray-600 max-w-sm">
+             불필요한 장식을 배제하고 본질에 집중합니다.
+             최고급 천연 소재와 정교한 테일러링으로
+             시간이 흘러도 변하지 않는 가치를 만듭니다.
+          </p>
+          <div class="grid grid-cols-2 gap-8 pt-8 text-[10px] uppercase tracking-widest text-gray-500">
+             <div>
+                <span class="block text-2xl text-black font-serif mb-1">100%</span>
+                Organic Cotton
+             </div>
+             <div>
+                <span class="block text-2xl text-black font-serif mb-1">Hand</span>
+                Made in Seoul
+             </div>
+          </div>
+       </div>
+       <div class="relative" data-tilt data-tilt-max="5">
+          <div class="absolute top-10 right-10 w-full h-full border border-gray-400 -z-10"></div>
+          <img src="https://images.unsplash.com/photo-1532453288672-3a27e9be9efd?q=80&w=800" class="w-full grayscale shadow-xl">
+       </div>
+    </section>
 
-      <div class="grid md:grid-cols-3 gap-x-8 gap-y-16">
-        <!-- Item -->
-        <div class="group cursor-pointer" onclick="toggleCloth()">
-          <div class="relative overflow-hidden mb-6 bg-raw h-[500px]">
-            <img src="https://images.unsplash.com/photo-1576566588028-4147f3842f27?q=80&w=600" class="w-full h-full object-cover group-hover:scale-105 transition duration-700">
-            <button class="absolute bottom-0 w-full bg-white py-4 text-xs tracking-widest uppercase translate-y-full group-hover:translate-y-0 transition duration-300 hover:bg-ash hover:text-white">
-              Add to Cart
-            </button>
+    <!-- Lookbook Scroll -->
+    <section id="collection" class="py-24 overflow-x-hidden bg-white">
+       <div class="px-8 md:px-24 mb-16 flex justify-between items-end">
+          <h2 class="text-4xl font-serif">Lookbook</h2>
+          <span class="text-xs uppercase tracking-widest">Drag to scroll &rarr;</span>
+       </div>
+       
+       <div class="flex gap-4 md:gap-8 px-8 md:px-24 overflow-x-auto pb-8 hide-scrollbar snap-x">
+          <!-- Item 1 -->
+          <div class="min-w-[300px] md:min-w-[400px] snap-center group cursor-pointer relative">
+             <div class="overflow-hidden mb-4 relative">
+                <img src="https://images.unsplash.com/photo-1550614000-4b9519e09966?q=80&w=600" class="w-full h-[500px] object-cover transition duration-700 group-hover:scale-105">
+                <div class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition duration-500 flex items-center justify-center">
+                   <span class="text-white font-serif text-2xl italic">Look 01</span>
+                </div>
+             </div>
+             <p class="font-serif text-xl border-b border-gray-200 pb-2 flex justify-between">
+                <span>Linen Dress</span>
+                <span class="text-sm font-sans font-light">₩ 180,000</span>
+             </p>
           </div>
-          <div class="flex justify-between items-start">
-            <div>
-              <h3 class="font-medium text-lg mb-1">Oversized Cotton Shirt</h3>
-              <p class="text-xs text-gray-400">Organic Cotton 100%</p>
-            </div>
-            <span class="text-sm">₩ 89,000</span>
+          
+          <!-- Item 2 -->
+          <div class="min-w-[300px] md:min-w-[400px] snap-center group cursor-pointer relative">
+             <div class="overflow-hidden mb-4 relative">
+                <img src="https://images.unsplash.com/photo-1549575917-062e24029283?q=80&w=600" class="w-full h-[500px] object-cover transition duration-700 group-hover:scale-105">
+                <div class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition duration-500 flex items-center justify-center">
+                   <span class="text-white font-serif text-2xl italic">Look 02</span>
+                </div>
+             </div>
+             <p class="font-serif text-xl border-b border-gray-200 pb-2 flex justify-between">
+                <span>Wool Cardigan</span>
+                <span class="text-sm font-sans font-light">₩ 150,000</span>
+             </p>
           </div>
-        </div>
-        <!-- Item -->
-        <div class="group cursor-pointer md:mt-20" onclick="toggleCloth()">
-          <div class="relative overflow-hidden mb-6 bg-raw h-[500px]">
-            <img src="https://images.unsplash.com/photo-1591047139829-d91aecb6caea?q=80&w=600" class="w-full h-full object-cover group-hover:scale-105 transition duration-700">
-            <button class="absolute bottom-0 w-full bg-white py-4 text-xs tracking-widest uppercase translate-y-full group-hover:translate-y-0 transition duration-300 hover:bg-ash hover:text-white">
-              Add to Cart
-            </button>
+          
+          <!-- Item 3 -->
+          <div class="min-w-[300px] md:min-w-[400px] snap-center group cursor-pointer relative">
+             <div class="overflow-hidden mb-4 relative">
+                <img src="https://images.unsplash.com/photo-1516762689617-e1cffcef479d?q=80&w=600" class="w-full h-[500px] object-cover transition duration-700 group-hover:scale-105">
+                <div class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition duration-500 flex items-center justify-center">
+                   <span class="text-white font-serif text-2xl italic">Look 03</span>
+                </div>
+             </div>
+             <p class="font-serif text-xl border-b border-gray-200 pb-2 flex justify-between">
+                <span>Wide Pants</span>
+                <span class="text-sm font-sans font-light">₩ 120,000</span>
+             </p>
           </div>
-          <div class="flex justify-between items-start">
-            <div>
-              <h3 class="font-medium text-lg mb-1">Wide Wool Trousers</h3>
-              <p class="text-xs text-gray-400">Merino Wool Blend</p>
-            </div>
-            <span class="text-sm">₩ 128,000</span>
-          </div>
-        </div>
-        <!-- Item -->
-        <div class="group cursor-pointer" onclick="toggleCloth()">
-          <div class="relative overflow-hidden mb-6 bg-raw h-[500px]">
-            <img src="https://images.unsplash.com/photo-1596755094514-f87e34085b2c?q=80&w=600" class="w-full h-full object-cover group-hover:scale-105 transition duration-700">
-             <button class="absolute bottom-0 w-full bg-white py-4 text-xs tracking-widest uppercase translate-y-full group-hover:translate-y-0 transition duration-300 hover:bg-ash hover:text-white">
-              Add to Cart
-            </button>
-          </div>
-          <div class="flex justify-between items-start">
-            <div>
-              <h3 class="font-medium text-lg mb-1">Classic Trench Coat</h3>
-              <p class="text-xs text-gray-400">Water Repellent</p>
-            </div>
-            <span class="text-sm">₩ 245,000</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+       </div>
+    </section>
 
-  <!-- Slide-over Cart (Simulated) -->
-  <div id="cloth-modal" class="fixed inset-0 bg-black/50 z-[60] hidden flex justify-end">
-    <div class="bg-white w-full max-w-sm h-full p-8 flex flex-col animate-slide-in-right">
-      <div class="flex justify-between items-center mb-8">
-        <h2 class="text-xl tracking-widest font-light">SHOPPING CART</h2>
-        <button onclick="toggleCloth()" class="text-gray-400 hover:text-black">&times;</button>
-      </div>
+    <!-- Footer -->
+    <footer class="bg-[#1a1a1a] text-white py-24 px-8 md:px-24">
+       <div class="grid md:grid-cols-2 gap-16">
+          <div>
+             <h3 class="font-serif text-3xl mb-8">Stay Updated</h3>
+             <form class="flex border-b border-white/30 pb-4 max-w-sm">
+                <input type="email" placeholder="E-mail" class="bg-transparent w-full outline-none placeholder-gray-500 font-light">
+                <button class="text-xs uppercase tracking-widest hover:text-gray-400">Join</button>
+             </form>
+          </div>
+          <div class="flex flex-col justify-between text-xs font-light tracking-widest text-gray-500 uppercase leading-loose text-right">
+             <p>2024 Blanc & Noir<br>All Rights Reserved</p>
+             <div class="flex gap-4 justify-end mt-4">
+               <a href="#" class="hover:text-white">Instagram</a>
+               <a href="#" class="hover:text-white">Facebook</a>
+             </div>
+          </div>
+       </div>
+    </footer>
+  </main>
 
-      <div class="flex-1 flex flex-col justify-center items-center text-gray-400 space-y-4">
-        <span class="text-4xl font-thin">Empty</span>
-        <p class="text-xs tracking-widest uppercase">장바구니가 비어있습니다.</p>
-        <button onclick="toggleCloth()" class="mt-4 border-b border-black text-black text-xs pb-1 hover:text-stone transition">
-          쇼핑 계속하기
-        </button>
-      </div>
-      
-      <div class="border-t border-gray-100 pt-6 space-y-4">
-        <div class="flex justify-between items-center font-medium">
-          <span>Subtotal</span>
-          <span>₩ 0</span>
-        </div>
-        <button class="w-full bg-ash text-white py-4 text-xs tracking-[0.2em] hover:bg-black transition">
-          CHECKOUT
-        </button>
-      </div>
-    </div>
-  </div>
+</div>
 
-  <style>
-    .animate-slide-in-right { animation: slideRight 0.3s ease-out; }
-    @keyframes slideRight { from { transform: translateX(100%); } to { transform: translateX(0); } }
-  </style>
-
-  <script>
-    function toggleCloth() {
-      const modal = document.getElementById('cloth-modal');
-      if(modal.classList.contains('hidden')) {
-        modal.classList.remove('hidden');
-      } else {
-        modal.classList.add('hidden');
-      }
-    }
-  </script>
-</body>
-</html>
+<script>
+  VanillaTilt.init(document.querySelectorAll("[data-tilt]"), {
+    max: 5,
+    speed: 400,
+  });
+</script>

@@ -1,4 +1,11 @@
 Rails.application.routes.draw do
+  resources :orders do
+    collection do
+      get 'success'
+      get 'fail'
+    end
+  end
+  resources :products
   # 메인 페이지
   # Design Template Previews
   get 'templates/beauty', to: 'templates#beauty'

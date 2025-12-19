@@ -1,174 +1,149 @@
-<!DOCTYPE html>
-<html lang="ko">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>포커스 랩 - 크리에이티브 스튜디오</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;700&family=Noto+Sans+KR:wght@300;400;700&display=swap" rel="stylesheet">
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            concrete: '#e5e5e5',
-            neon: '#CCFF00',
-          },
-          fontFamily: {
-            display: ['Space Grotesk', 'sans-serif'],
-            sans: ['Noto Sans KR', 'sans-serif'],
-          }
-        }
-      }
+<%# Studio Template - 모노크롬 스튜디오 %>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.0/vanilla-tilt.min.js"></script>
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Italiana&family=Noto+Sans+KR:wght@300;400&display=swap');
+  
+  .font-serif { font-family: 'Italiana', serif; }
+  .font-sans { font-family: 'Noto Sans KR', sans-serif; }
+  
+  .masonry-grid {
+    column-count: 2;
+    column-gap: 2rem;
+  }
+  @media (min-width: 768px) {
+    .masonry-grid {
+      column-count: 3;
     }
-  </script>
-</head>
-<body class="bg-concrete font-sans selection:bg-neon selection:text-black">
+  }
+  .masonry-item {
+    break-inside: avoid;
+    margin-bottom: 2rem;
+  }
+  
+  .cursor-dot {
+    width: 10px;
+    height: 10px;
+    background: white;
+    border-radius: 50%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    z-index: 9999;
+    mix-blend-mode: difference;
+    transition: transform 0.2s;
+  }
+</style>
+
+<div class="bg-black text-white font-sans selection:bg-white selection:text-black min-h-screen">
+  <!-- Custom Cursor element could be added with JS -->
 
   <!-- Nav -->
-  <nav class="fixed w-full z-50 flex justify-between items-center px-8 py-6 mix-blend-difference text-white">
-    <div class="text-2xl font-display font-bold tracking-tighter">FOCUS▪LAB</div>
-    <div class="hidden md:flex gap-12 font-bold text-sm">
-      <a href="#spaces" class="hover:underline decoration-2 underline-offset-4">촬영 공간</a>
-      <a href="#equipment" class="hover:underline decoration-2 underline-offset-4">렌탈 장비</a>
-      <a href="#membership" class="hover:underline decoration-2 underline-offset-4">멤버십</a>
+  <nav class="fixed w-full z-50 px-8 py-8 mix-blend-difference flex justify-between items-end">
+    <div class="text-xl font-serif">MONOCHROME</div>
+    <div class="hidden md:flex gap-8 text-xs tracking-widest uppercase">
+      <a href="#portfolio" class="hover:underline">Portfolio</a>
+      <a href="#about" class="hover:underline">Artist</a>
+      <a href="#contact" class="hover:underline">Contact</a>
     </div>
-    <button onclick="toggleStudio()" class="border border-white px-6 py-2 hover:bg-white hover:text-black transition uppercase text-sm font-bold">
-      예약하기
-    </button>
   </nav>
 
   <!-- Hero -->
-  <header class="h-screen flex flex-col justify-center px-8 md:px-20 relative overflow-hidden">
-    <div class="absolute right-0 top-0 h-full w-1/3 bg-black transform skew-x-12 translate-x-32 hidden md:block"></div>
-    
-    <div class="relative z-10 max-w-4xl">
-      <h1 class="text-7xl md:text-9xl font-display font-bold leading-[0.8] mb-8 tracking-tighter">
-        CREATE <br>
-        <span class="text-transparent stroke-text hover:text-neon transition duration-500 cursor-default" style="-webkit-text-stroke: 2px black;">WITHOUT</span> <br>
-        LIMITS.
+  <header class="h-screen flex items-center justify-center px-6 relative">
+    <div class="text-center z-10 w-full" data-tilt data-tilt-max="3" data-tilt-speed="400" data-tilt-full-page-listening>
+      <p class="text-[10px] tracking-[1em] uppercase mb-4 opacity-50">Photography Studio</p>
+      <h1 class="text-6xl md:text-9xl font-serif leading-none tracking-tight mix-blend-overlay opacity-80">
+        CAPTURE<br>THE<br>MOMENT
       </h1>
-      <p class="text-xl md:text-2xl font-light max-w-xl text-gray-800 leading-relaxed">
-        포토그래퍼, 디자이너, 크리에이터를 위한 놀이터. <br>
-        높은 층고와 풍부한 자연광, 최상의 장비를 경험하세요.
-      </p>
-      
-      <div class="mt-12 flex gap-6 items-center">
-        <button onclick="toggleStudio()" class="bg-black text-white px-8 py-4 font-bold tracking-widest hover:bg-neon hover:text-black transition">
-          스케줄 확인하기
-        </button>
-        <div class="w-32 h-[1px] bg-black"></div>
-        <div class="font-bold font-display">01 / 04</div>
-      </div>
+      <div class="w-[1px] h-32 bg-white/20 mx-auto mt-12"></div>
     </div>
     
-    <img src="https://images.unsplash.com/photo-1596230357878-36ce487f846d?q=80&w=800" class="absolute bottom-20 right-20 w-80 md:w-96 grayscale hover:grayscale-0 transition duration-700 z-20 shadow-2xl rotate-3">
+    <div class="absolute inset-0 z-0 opacity-40">
+       <img src="https://images.unsplash.com/photo-1471341971476-84d5a7d74d82?q=80&w=1920" class="w-full h-full object-cover grayscale">
+    </div>
   </header>
 
-  <!-- Spaces Marquee -->
-  <div class="bg-black text-neon py-6 overflow-hidden border-y border-neon">
-    <div class="flex gap-20 whitespace-nowrap text-4xl font-display font-bold animate-[marquee_15s_linear_infinite]">
-      <span>PHOTO STUDIO A</span>
-      <span>•</span>
-      <span>RECORDING BOOTH</span>
-      <span>•</span>
-      <span>EDITING SUITE</span>
-      <span>•</span>
-      <span>MEETING ROOM</span>
-      <span>•</span>
-      <span>PHOTO STUDIO A</span>
-      <span>•</span>
-      <span>RECORDING BOOTH</span>
-      <span>•</span>
-      <span>EDITING SUITE</span>
-      <span>•</span>
-      <span>MEETING ROOM</span>
-      <span>•</span>
-    </div>
-  </div>
-
-  <!-- Gallery Grid -->
-  <section id="spaces" class="py-32 px-8">
-    <div class="grid md:grid-cols-2 gap-8 max-w-7xl mx-auto">
-      <!-- Item -->
-      <div class="relative group cursor-pointer" onclick="toggleStudio()">
-        <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=800" class="w-full h-[600px] object-cover grayscale group-hover:grayscale-0 transition duration-500 filter contrast-125">
-        <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition duration-500 flex items-center justify-center">
-           <div class="bg-neon text-black px-6 py-2 font-display font-bold text-2xl transform -rotate-3">STUDIO A</div>
-        </div>
-        <div class="mt-4 flex justify-between font-bold text-xl border-b border-black pb-2">
-          <span class="font-display">The White Cyclorama</span>
-          <span class="font-display">₩ 80,000 / hr</span>
-        </div>
-        <p class="text-sm text-gray-500 mt-1">대형 호리존, 조명 무료 대여</p>
+  <!-- About -->
+  <section id="about" class="py-32 px-6 bg-[#0a0a0a]">
+    <div class="container mx-auto grid md:grid-cols-2 gap-16 items-center">
+      <div class="relative">
+        <img src="https://images.unsplash.com/photo-1554048612-387768052bf7?q=80&w=800" class="w-full grayscale brightness-75 hover:brightness-100 transition duration-700">
       </div>
-       <!-- Item -->
-      <div class="relative group cursor-pointer mt-12 md:mt-32" onclick="toggleStudio()">
-        <img src="https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?q=80&w=800" class="w-full h-[600px] object-cover grayscale group-hover:grayscale-0 transition duration-500 filter contrast-125">
-        <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition duration-500 flex items-center justify-center">
-           <div class="bg-neon text-black px-6 py-2 font-display font-bold text-2xl transform rotate-2">PODCAST ROOM</div>
+      <div>
+        <h2 class="text-4xl font-serif mb-8">The Artist</h2>
+        <p class="text-gray-400 font-light leading-loose mb-12">
+          우리는 빛과 그림자, 그 사이의 찰나를 기록합니다.<br>
+          인위적인 연출보다는 피사체 본연의 분위기를 담아내는 것에 집중합니다.<br>
+          당신의 가장 자연스러운 순간이 작품이 됩니다.
+        </p>
+        <div class="grid grid-cols-2 gap-8 border-t border-white/10 pt-8">
+           <div>
+             <span class="text-2xl font-serif">10+</span>
+             <p class="text-xs text-gray-500 uppercase mt-1">Years Experience</p>
+           </div>
+           <div>
+             <span class="text-2xl font-serif">500+</span>
+             <p class="text-xs text-gray-500 uppercase mt-1">Portrait Sessions</p>
+           </div>
         </div>
-        <div class="mt-4 flex justify-between font-bold text-xl border-b border-black pb-2">
-          <span class="font-display">Soundproof Studio</span>
-          <span class="font-display">₩ 50,000 / hr</span>
-        </div>
-        <p class="text-sm text-gray-500 mt-1">완벽 방음, 4채널 마이크 시스템</p>
       </div>
     </div>
   </section>
 
-  <!-- Modal -->
-  <div id="studio-modal" class="fixed inset-0 bg-black/90 backdrop-blur-md z-[60] hidden flex items-center justify-center p-4">
-    <div class="bg-concrete w-full max-w-lg p-0 relative shadow-[20px_20px_0px_#ccff00]">
-      <div class="bg-black text-white p-6 flex justify-between items-center">
-         <h2 class="text-2xl font-display font-bold tracking-tighter">BOOKING REQUEST</h2>
-         <button onclick="toggleStudio()" class="text-white hover:text-neon text-2xl">&times;</button>
+  <!-- Portfolio (Masonry) -->
+  <section id="portfolio" class="py-32 px-4 md:px-12 bg-black">
+    <div class="masonry-grid">
+      <!-- Item 1 -->
+      <div class="masonry-item group cursor-pointer relative">
+        <img src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?q=80&w=600" class="w-full grayscale group-hover:grayscale-0 transition duration-500">
+        <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-300">
+           <span class="font-serif text-2xl drop-shadow-lg">Portrait</span>
+        </div>
       </div>
-      
-      <div class="p-8 space-y-6">
-        <div class="grid grid-cols-2 gap-4">
-          <div>
-             <label class="block text-xs font-bold uppercase tracking-widest mb-2 font-display">Date</label>
-             <input type="date" class="w-full bg-white border-2 border-black p-3 font-mono focus:bg-neon focus:outline-none transition">
-          </div>
-          <div>
-             <label class="block text-xs font-bold uppercase tracking-widest mb-2 font-display">Time</label>
-             <input type="time" class="w-full bg-white border-2 border-black p-3 font-mono focus:bg-neon focus:outline-none transition">
-          </div>
+      <!-- Item 2 -->
+      <div class="masonry-item group cursor-pointer relative">
+        <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=600" class="w-full grayscale group-hover:grayscale-0 transition duration-500">
+        <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-300">
+           <span class="font-serif text-2xl drop-shadow-lg">Fashion</span>
         </div>
-        <div>
-           <label class="block text-xs font-bold uppercase tracking-widest mb-2 font-display">Select Space</label>
-           <select class="w-full bg-white border-2 border-black p-3 font-bold focus:bg-neon focus:outline-none transition">
-             <option>Studio A (Cyclorama)</option>
-             <option>Podcast Room</option>
-             <option>Editing Suite</option>
-           </select>
+      </div>
+      <!-- Item 3 -->
+      <div class="masonry-item group cursor-pointer relative">
+        <img src="https://images.unsplash.com/photo-1542038784456-1ea8e935640e?q=80&w=600" class="w-full grayscale group-hover:grayscale-0 transition duration-500">
+        <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-300">
+           <span class="font-serif text-2xl drop-shadow-lg">Object</span>
         </div>
-        <div>
-           <label class="block text-xs font-bold uppercase tracking-widest mb-2 font-display">Phone</label>
-           <input type="tel" placeholder="010-0000-0000" class="w-full bg-white border-2 border-black p-3 font-bold focus:bg-neon focus:outline-none transition">
+      </div>
+      <!-- Item 4 -->
+      <div class="masonry-item group cursor-pointer relative">
+        <img src="https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=600" class="w-full grayscale group-hover:grayscale-0 transition duration-500">
+        <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-300">
+           <span class="font-serif text-2xl drop-shadow-lg">Wedding</span>
         </div>
-        
-        <button class="w-full bg-black text-white font-bold py-5 hover:bg-neon hover:text-black transition tracking-widest uppercase font-display" onclick="alert('예약이 신청되었습니다. 관리자가 확인 후 연락드립니다.'); toggleStudio();">
-          Confirm Schedule
-        </button>
+      </div>
+      <!-- Item 5 -->
+      <div class="masonry-item group cursor-pointer relative">
+        <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=600" class="w-full grayscale group-hover:grayscale-0 transition duration-500">
+        <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-300">
+           <span class="font-serif text-2xl drop-shadow-lg">Profile</span>
+        </div>
       </div>
     </div>
-  </div>
+  </section>
 
-  <style>
-    @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
-  </style>
+  <!-- Contact -->
+  <section id="contact" class="py-32 px-6 bg-white text-black text-center">
+    <div class="container mx-auto max-w-2xl">
+      <p class="font-serif text-3xl mb-8">Let's create something timeless.</p>
+      <a href="mailto:contact@monochrome.com" class="text-xl border-b border-black pb-1 hover:opacity-50 transition">contact@monochrome.com</a>
+      
+      <div class="flex justify-center gap-8 mt-16 text-xs uppercase tracking-widest">
+        <a href="#" class="hover:underline">Instagram</a>
+        <a href="#" class="hover:underline">Behance</a>
+        <a href="#" class="hover:underline">Pinterest</a>
+      </div>
+    </div>
+  </section>
 
-  <script>
-    function toggleStudio() {
-      const modal = document.getElementById('studio-modal');
-      if(modal.classList.contains('hidden')) {
-        modal.classList.remove('hidden');
-      } else {
-        modal.classList.add('hidden');
-      }
-    }
-  </script>
-</body>
-</html>
+</div>

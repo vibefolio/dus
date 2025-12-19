@@ -1,234 +1,218 @@
-<!DOCTYPE html>
-<html lang="ko">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>어반 핏 - 한계를 넘어서</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Black+Ops+One&family=Noto+Sans+KR:wght@400;700;900&display=swap" rel="stylesheet">
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            neon: '#CCFF00',
-            darkbg: '#0a0a0a',
-            panel: '#1f1f1f',
-          },
-          fontFamily: {
-            display: ['Black Ops One', 'cursive'],
-            sans: ['Noto Sans KR', 'sans-serif'],
-          }
-        }
-      }
-    }
-  </script>
-</head>
-<body class="bg-darkbg text-white font-sans selection:bg-neon selection:text-black">
+<%# Gym Template - 리라임 휘트니스 %>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.0/vanilla-tilt.min.js"></script>
+
+<style>
+  .gym-font { font-family: 'Inter', sans-serif; }
+  .clip-diagonal {
+    clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+  }
+  .clip-diagonal-reverse {
+    clip-path: polygon(0 15%, 100% 0, 100% 100%, 0 100%);
+  }
+  .neon-text {
+    text-shadow: 0 0 10px #c6ff00;
+  }
+  .glitch-hover:hover {
+    animation: glitch 0.3s cubic-bezier(.25, .46, .45, .94) both infinite;
+  }
+  @keyframes glitch {
+    0% { transform: translate(0) }
+    20% { transform: translate(-2px, 2px) }
+    40% { transform: translate(-2px, -2px) }
+    60% { transform: translate(2px, 2px) }
+    80% { transform: translate(2px, -2px) }
+    100% { transform: translate(0) }
+  }
+</style>
+
+<div class="bg-black text-white gym-font selection:bg-[#c6ff00] selection:text-black">
 
   <!-- Nav -->
-  <nav class="fixed w-full z-50 flex justify-between items-center px-6 py-4 bg-darkbg/90 backdrop-blur border-b border-white/10">
-    <div class="text-2xl font-display text-neon tracking-wider">URBAN FIT</div>
-    <div class="hidden md:flex gap-8 font-bold text-gray-400 text-sm">
-      <a href="#program" class="hover:text-neon transition">프로그램</a>
-      <a href="#schedule" class="hover:text-neon transition">스케줄</a>
-      <a href="#trainers" class="hover:text-neon transition">트레이너</a>
-      <a href="#membership" class="hover:text-neon transition">멤버십</a>
+  <nav class="fixed w-full z-50 px-6 py-4 flex justify-between items-center bg-black/90 border-b border-[#c6ff00]/20 backdrop-blur">
+    <div class="text-3xl font-black italic tracking-tighter text-white">
+      LIMIT<span class="text-[#c6ff00]">BREAKER</span>
     </div>
-    <button onclick="toggleModal()" class="border border-neon text-neon px-6 py-2 font-bold hover:bg-neon hover:text-black transition skew-x-[-10deg]">
-      <span class="block skew-x-[10deg]">무료 체험 신청</span>
+    <div class="hidden md:flex gap-8 font-bold uppercase italic text-sm text-gray-400">
+      <a href="#about" class="hover:text-[#c6ff00] transition">About</a>
+      <a href="#trainers" class="hover:text-[#c6ff00] transition">Trainers</a>
+      <a href="#program" class="hover:text-[#c6ff00] transition">Program</a>
+      <a href="#membership" class="hover:text-[#c6ff00] transition">Membership</a>
+    </div>
+    <button onclick="document.getElementById('membership').scrollIntoView({behavior: 'smooth'})"
+            class="px-8 py-2 bg-[#c6ff00] text-black font-black italic uppercase skew-x-[-10deg] hover:bg-white transition transform hover:scale-105">
+      Join Now
     </button>
   </nav>
 
   <!-- Hero -->
-  <header class="relative h-screen flex items-center justify-center overflow-hidden">
-    <!-- Video Background Placeholder -->
+  <header class="h-screen relative flex items-center overflow-hidden clip-diagonal">
     <div class="absolute inset-0 z-0">
-      <div class="absolute inset-0 bg-gradient-to-t from-darkbg via-darkbg/80 to-transparent z-10"></div>
-      <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=1920" class="w-full h-full object-cover opacity-60">
+      <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=1920&auto=format&fit=crop" class="w-full h-full object-cover opacity-60">
+      <div class="absolute inset-0 bg-gradient-to-r from-black via-black/70 to-transparent"></div>
     </div>
     
-    <div class="relative z-20 text-center px-6">
-      <h1 class="text-6xl md:text-9xl font-display text-transparent bg-clip-text bg-gradient-to-b from-white to-gray-600 mb-6 drop-shadow-[0_5px_5px_rgba(0,0,0,0.5)]">
-        NO LIMITS
-      </h1>
-      <p class="text-xl md:text-3xl font-bold text-neon mb-10 tracking-widest uppercase">
-        당신의 잠재력을 깨우세요
-      </p>
-      <div class="flex flex-col md:flex-row gap-4 justify-center">
-        <button onclick="toggleModal()" class="bg-neon text-black px-10 py-4 text-xl font-black uppercase hover:scale-105 transition shadow-[0_0_20px_rgba(204,255,0,0.4)]">
-          지금 시작하기
-        </button>
-        <button class="border-2 border-white text-white px-10 py-4 text-xl font-black uppercase hover:bg-white hover:text-black transition">
-          지점 찾기
+    <div class="container mx-auto px-6 relative z-10 grid md:grid-cols-2">
+      <div class="space-y-6">
+        <h1 class="text-7xl md:text-9xl font-black italic leading-none tracking-tighter mb-4" data-tilt data-tilt-max="5">
+          NO PAIN <br>
+          <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#c6ff00] to-green-500 neon-text">NO GAIN</span>
+        </h1>
+        <p class="text-xl text-gray-400 max-w-lg leading-relaxed font-light">
+          한계를 뛰어넘을 준비가 되셨습니까? <br>
+          최고의 시설과 전문가들이 당신의 변화를 책임집니다.
+        </p>
+        
+        <div class="flex gap-4 pt-8">
+           <div class="border-l-4 border-[#c6ff00] pl-4">
+             <p class="text-3xl font-black text-white">24/7</p>
+             <p class="text-xs text-gray-500 uppercase">Open Gym</p>
+           </div>
+           <div class="border-l-4 border-white pl-4">
+             <p class="text-3xl font-black text-white">50+</p>
+             <p class="text-xs text-gray-500 uppercase">Machines</p>
+           </div>
+        </div>
+
+        <button class="mt-8 px-10 py-4 border-2 border-[#c6ff00] text-[#c6ff00] font-black uppercase tracking-widest hover:bg-[#c6ff00] hover:text-black transition duration-300 glitch-hover">
+          Start Free Trial
         </button>
       </div>
-    </div>
-
-    <!-- Scroll Indicator -->
-    <div class="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce text-neon">
-      <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-width="3" d="M19 14l-7 7m0 0l-7-7m7 7V3" /></svg>
     </div>
   </header>
 
-  <!-- Stats Bar -->
-  <div class="bg-neon text-black py-4 overflow-hidden">
-    <div class="flex gap-12 justify-center items-center font-black text-lg md:text-2xl whitespace-nowrap overflow-x-auto no-scrollbar px-4">
-      <span>🏋️ 최신식 머신 50종+</span>
-      <span>🥊 크로스핏 존</span>
-      <span>🧘 필라테스 스튜디오</span>
-      <span>🚿 개인 샤워실 완비</span>
-      <span>🅿️ 3시간 무료 주차</span>
-    </div>
-  </div>
-
-  <!-- Weekly Schedule (Tab UI) -->
-  <section id="schedule" class="py-24 px-6 container mx-auto">
-    <div class="text-center mb-16">
-      <h2 class="text-4xl md:text-5xl font-bold mb-4">이번 주 스케줄</h2>
-      <p class="text-gray-400">원하는 클래스를 선택하여 예약하세요.</p>
-    </div>
-
-    <div class="bg-panel p-1 rounded-xl flex justify-between md:justify-center gap-2 mb-8 overflow-x-auto">
-      <button class="px-6 py-3 bg-neon text-black font-bold rounded-lg whitespace-nowrap">월요일</button>
-      <button class="px-6 py-3 text-gray-400 font-bold hover:text-white whitespace-nowrap">화요일</button>
-      <button class="px-6 py-3 text-gray-400 font-bold hover:text-white whitespace-nowrap">수요일</button>
-      <button class="px-6 py-3 text-gray-400 font-bold hover:text-white whitespace-nowrap">목요일</button>
-      <button class="px-6 py-3 text-gray-400 font-bold hover:text-white whitespace-nowrap">금요일</button>
-    </div>
-
-    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-      <!-- Card -->
-      <div class="bg-panel p-8 border-l-4 border-neon hover:bg-white/5 transition group cursor-pointer" onclick="toggleModal()">
-        <div class="flex justify-between items-start mb-4">
-          <span class="text-2xl font-bold text-white">07:00 AM</span>
-          <span class="bg-gray-800 text-xs px-2 py-1 rounded text-gray-300">60분</span>
-        </div>
-        <h3 class="text-xl font-bold mb-2">모닝 부트캠프</h3>
-        <p class="text-sm text-gray-400 mb-4">고강도 인터벌 트레이닝으로 하루를 깨우세요.</p>
-        <div class="flex justify-between items-center text-sm">
-          <span class="text-neon font-bold">강사: 김철수</span>
-          <span class="text-gray-500 group-hover:text-white transition">예약하기 &rarr;</span>
-        </div>
-      </div>
-      <!-- Card -->
-      <div class="bg-panel p-8 border-l-4 border-purple-500 hover:bg-white/5 transition group cursor-pointer" onclick="toggleModal()">
-        <div class="flex justify-between items-start mb-4">
-          <span class="text-2xl font-bold text-white">10:00 AM</span>
-          <span class="bg-gray-800 text-xs px-2 py-1 rounded text-gray-300">50분</span>
-        </div>
-        <h3 class="text-xl font-bold mb-2">파워 요가</h3>
-        <p class="text-sm text-gray-400 mb-4">근력 강화와 유연성을 동시에 잡는 요가.</p>
-        <div class="flex justify-between items-center text-sm">
-          <span class="text-purple-400 font-bold">강사: 이영희</span>
-          <span class="text-gray-500 group-hover:text-white transition">예약하기 &rarr;</span>
-        </div>
-      </div>
-      <!-- Card -->
-      <div class="bg-panel p-8 border-l-4 border-blue-500 hover:bg-white/5 transition group cursor-pointer" onclick="toggleModal()">
-        <div class="flex justify-between items-start mb-4">
-          <span class="text-2xl font-bold text-white">07:00 PM</span>
-          <span class="bg-gray-800 text-xs px-2 py-1 rounded text-gray-300">90분</span>
-        </div>
-        <h3 class="text-xl font-bold mb-2">크로스핏 WOD</h3>
-        <p class="text-sm text-gray-400 mb-4">오늘의 와드에 도전하고 한계를 시험하세요.</p>
-        <div class="flex justify-between items-center text-sm">
-          <span class="text-blue-400 font-bold">강사: 박지성</span>
-          <span class="text-gray-500 group-hover:text-white transition">예약하기 &rarr;</span>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Membership Pricing -->
-  <section id="membership" class="py-24 bg-white/5 border-t border-white/10">
+  <!-- Programs (Process UI) -->
+  <section id="program" class="py-24 bg-[#111] relative">
     <div class="container mx-auto px-6">
-      <h2 class="text-4xl font-bold text-center mb-16 text-neon font-display">MEMBERSHIP OPTIONS</h2>
-      <div class="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-        <!-- Basic -->
-        <div class="bg-darkbg border border-gray-700 p-8 rounded-2xl hover:border-neon transition duration-300">
-          <h3 class="text-xl font-bold text-gray-400 mb-4">베이직 (Basic)</h3>
-          <div class="text-4xl font-black text-white mb-2">₩50,000<span class="text-lg text-gray-500 font-normal">/월</span></div>
-          <p class="text-sm text-gray-400 mb-8 border-b border-gray-800 pb-8">가볍게 운동을 시작하는 분들을 위한 플랜</p>
-          <ul class="space-y-4 text-sm font-bold text-gray-300 mb-8">
-            <li class="flex gap-2"><span>✅</span> 헬스장 무제한 이용</li>
-            <li class="flex gap-2"><span>✅</span> 운동복/수건 제공</li>
-            <li class="flex gap-2 text-gray-600"><span>❌</span> GX 프로그램 참여</li>
-            <li class="flex gap-2 text-gray-600"><span>❌</span> 개인 락커</li>
-          </ul>
-          <button onclick="toggleModal()" class="w-full py-4 border border-white text-white font-bold hover:bg-white hover:text-black transition uppercase">
-            선택하기
-          </button>
+      <div class="text-center mb-16">
+        <h2 class="text-4xl font-black italic uppercase text-white mb-2">Target Your Goal</h2>
+        <div class="w-24 h-1 bg-[#c6ff00] mx-auto skew-x-[-20deg]"></div>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-8">
+        <!-- Card -->
+        <div class="group relative h-[400px] bg-neutral-900 border border-neutral-800 hover:border-[#c6ff00] transition duration-500 overflow-hidden" data-tilt>
+          <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent z-10"></div>
+          <img src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?q=80&w=800" class="absolute inset-0 w-full h-full object-cover opacity-50 group-hover:opacity-80 transition duration-700 group-hover:scale-110">
+          
+          <div class="absolute bottom-0 left-0 p-8 z-20">
+            <h3 class="text-3xl font-black italic text-white mb-2 group-hover:text-[#c6ff00] transition">MUSCLE UP</h3>
+            <p class="text-gray-400 text-sm mb-4 translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition duration-300">
+              체계적인 웨이트 트레이닝으로 근육량 증가 및 바디 프로필 준비
+            </p>
+            <span class="text-xs font-bold border border-white px-3 py-1 uppercase">Advanced</span>
+          </div>
         </div>
-        <!-- Pro -->
-        <div class="bg-panel border-2 border-neon p-8 rounded-2xl transform md:-translate-y-4 shadow-[0_0_30px_rgba(204,255,0,0.1)]">
-          <div class="text-neon font-bold text-sm tracking-widest mb-4 uppercase">Most Popular</div>
-          <h3 class="text-2xl font-bold text-white mb-4">프로 (Pro)</h3>
-          <div class="text-5xl font-black text-white mb-2">₩90,000<span class="text-lg text-gray-500 font-normal">/월</span></div>
-          <p class="text-sm text-gray-400 mb-8 border-b border-gray-700 pb-8">다양한 프로그램을 즐기는 운동 마니아</p>
-          <ul class="space-y-4 text-sm font-bold text-white mb-8">
-            <li class="flex gap-2"><span>✅</span> 헬스장 + 전 지점 이용</li>
-            <li class="flex gap-2"><span>✅</span> 모든 GX 클래스 무료</li>
-            <li class="flex gap-2"><span>✅</span> 월 1회 무료 PT</li>
-            <li class="flex gap-2"><span>✅</span> 개인 락커 제공</li>
-          </ul>
-          <button onclick="toggleModal()" class="w-full py-4 bg-neon text-black font-black hover:bg-white transition uppercase shadow-lg">
-            지금 가입하기
-          </button>
+
+        <!-- Card -->
+        <div class="group relative h-[400px] bg-neutral-900 border border-neutral-800 hover:border-[#c6ff00] transition duration-500 overflow-hidden" data-tilt>
+          <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent z-10"></div>
+          <img src="https://images.unsplash.com/photo-1549476464-37392f717541?q=80&w=800" class="absolute inset-0 w-full h-full object-cover opacity-50 group-hover:opacity-80 transition duration-700 group-hover:scale-110">
+          
+          <div class="absolute bottom-0 left-0 p-8 z-20">
+            <h3 class="text-3xl font-black italic text-white mb-2 group-hover:text-[#c6ff00] transition">CROSSFIT</h3>
+            <p class="text-gray-400 text-sm mb-4 translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition duration-300">
+              고강도 기능성 운동으로 심폐지구력과 근력을 동시에 향상
+            </p>
+            <span class="text-xs font-bold border border-white px-3 py-1 uppercase">Hardcore</span>
+          </div>
         </div>
-        <!-- PT -->
-        <div class="bg-darkbg border border-gray-700 p-8 rounded-2xl hover:border-neon transition duration-300">
-          <h3 class="text-xl font-bold text-gray-400 mb-4">1:1 PT (10회)</h3>
-          <div class="text-4xl font-black text-white mb-2">₩600,000</div>
-          <p class="text-sm text-gray-400 mb-8 border-b border-gray-800 pb-8">확실한 목표 달성과 체계적인 관리</p>
-          <ul class="space-y-4 text-sm font-bold text-gray-300 mb-8">
-            <li class="flex gap-2"><span>✅</span> 멤버십 3개월 무료</li>
-            <li class="flex gap-2"><span>✅</span> 맞춤형 식단 관리</li>
-            <li class="flex gap-2"><span>✅</span> 체형 분석 및 교정</li>
-            <li class="flex gap-2"><span>✅</span> 바디프로필 지원</li>
-          </ul>
-          <button onclick="toggleModal()" class="w-full py-4 border border-white text-white font-bold hover:bg-white hover:text-black transition uppercase">
-            상담 신청
-          </button>
+
+        <!-- Card -->
+        <div class="group relative h-[400px] bg-neutral-900 border border-neutral-800 hover:border-[#c6ff00] transition duration-500 overflow-hidden" data-tilt>
+          <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent z-10"></div>
+          <img src="https://images.unsplash.com/photo-1534258936925-c48947387603?q=80&w=800" class="absolute inset-0 w-full h-full object-cover opacity-50 group-hover:opacity-80 transition duration-700 group-hover:scale-110">
+          
+          <div class="absolute bottom-0 left-0 p-8 z-20">
+            <h3 class="text-3xl font-black italic text-white mb-2 group-hover:text-[#c6ff00] transition">DIET BURN</h3>
+            <p class="text-gray-400 text-sm mb-4 translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition duration-300">
+              인터벌 트레이닝과 식단 관리로 단기간 체지방 감량
+            </p>
+            <span class="text-xs font-bold border border-white px-3 py-1 uppercase">Beginner</span>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Reservation Modal -->
-  <div id="gym-modal" class="fixed inset-0 bg-black/90 z-[60] hidden flex items-center justify-center p-4 backdrop-blur-sm">
-    <div class="bg-panel w-full max-w-lg border border-neon/30 p-8 relative shadow-2xl skew-x-[-2deg]">
-      <button onclick="toggleModal()" class="absolute -top-5 -right-5 bg-neon text-black w-10 h-10 font-bold flex items-center justify-center hover:scale-110 transition skew-x-[2deg]">X</button>
+  <!-- Trainers -->
+  <section id="trainers" class="py-24 bg-neutral-900 clip-diagonal-reverse pb-40">
+    <div class="container mx-auto px-6">
+      <h2 class="text-4xl font-black italic text-white mb-12 text-right">MEET THE PROS</h2>
       
-      <div class="text-center mb-8 skew-x-[2deg]">
-        <h2 class="text-3xl font-display text-white mb-2">GET STARTED</h2>
-        <p class="text-gray-400">무료 체험 또는 상담을 신청하세요.</p>
-      </div>
+      <div class="flex flex-col md:flex-row gap-6 justify-center">
+        <!-- Trainer 1 -->
+        <div class="w-full md:w-1/3 bg-black border-2 border-transparent hover:border-[#c6ff00] p-6 transition duration-300 group">
+          <div class="h-80 bg-neutral-800 mb-6 overflow-hidden relative grayscale group-hover:grayscale-0 transition duration-500">
+            <img src="https://images.unsplash.com/photo-1567013127542-490d757e51fc?q=80&w=600" class="w-full h-full object-cover">
+          </div>
+          <h3 class="text-2xl font-black italic text-white">ALEX KANG</h3>
+          <p class="text-[#c6ff00] font-bold text-sm mb-4">HEAD COACH</p>
+          <ul class="text-gray-500 text-sm space-y-2">
+            <li>- NSCA-CPT / CSCS</li>
+            <li>- 보디빌딩 국가대표 출신</li>
+            <li>- 재활 트레이닝 전문</li>
+          </ul>
+        </div>
+        
+        <!-- Trainer 2 -->
+        <div class="w-full md:w-1/3 bg-black border-2 border-transparent hover:border-[#c6ff00] p-6 transition duration-300 group mt-0 md:-mt-12 z-10 shadow-2xl">
+          <div class="h-80 bg-neutral-800 mb-6 overflow-hidden relative grayscale group-hover:grayscale-0 transition duration-500">
+            <img src="https://images.unsplash.com/photo-1611672585731-fa10603fb9e0?q=80&w=600" class="w-full h-full object-cover">
+          </div>
+          <h3 class="text-2xl font-black italic text-white">SARAH LEE</h3>
+          <p class="text-[#c6ff00] font-bold text-sm mb-4">PILATES & YOGA</p>
+          <ul class="text-gray-500 text-sm space-y-2">
+            <li>- STOTT PILATES certified</li>
+            <li>- 요가 지도자 자격 1급</li>
+            <li>- 체형 교정 전문</li>
+          </ul>
+        </div>
 
-      <form class="space-y-4 skew-x-[2deg]" onsubmit="event.preventDefault(); alert('신청 완료! 곧 연락드리겠습니다.'); toggleModal();">
-        <input type="text" placeholder="이름" class="w-full bg-darkbg border border-gray-700 p-4 text-white focus:border-neon outline-none font-bold">
-        <input type="tel" placeholder="연락처 (010-0000-0000)" class="w-full bg-darkbg border border-gray-700 p-4 text-white focus:border-neon outline-none font-bold">
-        <select class="w-full bg-darkbg border border-gray-700 p-4 text-white focus:border-neon outline-none font-bold">
-          <option>무료 1일 체험</option>
-          <option>PT 상담</option>
-          <option>멤버십 가입 문의</option>
-        </select>
-        <button class="w-full bg-neon text-black py-4 font-black text-xl hover:bg-white transition uppercase mt-4">
-          신청하기
+        <!-- Trainer 3 -->
+        <div class="w-full md:w-1/3 bg-black border-2 border-transparent hover:border-[#c6ff00] p-6 transition duration-300 group">
+          <div class="h-80 bg-neutral-800 mb-6 overflow-hidden relative grayscale group-hover:grayscale-0 transition duration-500">
+            <img src="https://images.unsplash.com/photo-1594381898411-846e7d193883?q=80&w=600" class="w-full h-full object-cover">
+          </div>
+          <h3 class="text-2xl font-black italic text-white">MIKE CHOI</h3>
+          <p class="text-[#c6ff00] font-bold text-sm mb-4">CROSSFIT L2</p>
+          <ul class="text-gray-500 text-sm space-y-2">
+            <li>- CrossFit Level 2 Trainer</li>
+            <li>- 파워리프팅 대회 입상</li>
+            <li>- 기능성 트레이닝 전문</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Membership (Footer) -->
+  <section id="membership" class="py-24 bg-black relative">
+    <div class="container mx-auto px-6 text-center max-w-4xl">
+      <h2 class="text-5xl font-black italic text-white mb-8 neon-text">JOIN THE MOVEMENT</h2>
+      <p class="text-xl text-gray-400 mb-12">
+        오늘 시작하지 않으면 내일도 똑같습니다.<br>
+        지금 등록하고 무료 PT 2회를 받아보세요.
+      </p>
+
+      <form class="grid md:grid-cols-2 gap-4 bg-neutral-900/50 p-8 border border-neutral-800">
+        <input type="text" placeholder="NAME" class="bg-black border border-neutral-700 p-4 text-white uppercase italic focus:border-[#c6ff00] outline-none">
+        <input type="tel" placeholder="PHONE" class="bg-black border border-neutral-700 p-4 text-white uppercase italic focus:border-[#c6ff00] outline-none">
+        <button type="button" class="md:col-span-2 bg-[#c6ff00] text-black font-black text-xl py-4 uppercase italic tracking-widest hover:bg-white transition skew-x-[-10deg]">
+          Get My Offer
         </button>
       </form>
+      
+      <p class="text-gray-600 text-xs mt-8">Copyright 2024 LimitBreaker Gym. All rights reserved.</p>
     </div>
-  </div>
+  </section>
 
-  <script>
-    function toggleModal() {
-      const modal = document.getElementById('gym-modal');
-      if(modal.classList.contains('hidden')) {
-        modal.classList.remove('hidden');
-      } else {
-        modal.classList.add('hidden');
-      }
-    }
-  </script>
-</body>
-</html>
+</div>
+
+<script>
+  VanillaTilt.init(document.querySelectorAll("[data-tilt]"), {
+    max: 10,
+    speed: 400,
+    glare: true,
+    "max-glare": 0.5,
+  });
+</script>

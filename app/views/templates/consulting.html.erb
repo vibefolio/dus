@@ -1,196 +1,200 @@
-<!DOCTYPE html>
-<html lang="ko">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>컨설팅 허브 - 전략적 파트너</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            navy: '#0A192F',
-            gold: '#C9A959',
-            slate: '#8892B0',
-          },
-          fontFamily: {
-            serif: ['Libre Baskerville', 'serif'],
-            sans: ['Noto Sans KR', 'sans-serif'],
-          }
-        }
-      }
-    }
-  </script>
-</head>
-<body class="bg-gray-50 text-navy font-sans">
+<%# Consulting Template - 비저너리 파트너스 (경영 컨설팅) %>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.0/vanilla-tilt.min.js"></script>
 
-  <!-- Top Bar -->
-  <div class="bg-navy text-slate text-xs py-2 px-6 flex justify-between">
-    <div class="hidden md:flex gap-4">
-      <span>서울시 강남구 테헤란로 123</span>
-      <span>|</span>
-      <span>02-1234-5678</span>
-    </div>
-    <div class="flex gap-4 ml-auto">
-      <a href="#" class="hover:text-white">News</a>
-      <a href="#" class="hover:text-white">Careers</a>
-      <a href="#" class="hover:text-white">Login</a>
-    </div>
-  </div>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Lato:wght@300;400;700&display=swap');
+  
+  .font-serif { font-family: 'Playfair Display', serif; }
+  .font-sans { font-family: 'Lato', sans-serif; }
+  
+  .bg-pattern {
+    background-color: #0f172a;
+    background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%231e293b' fill-opacity='0.4'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  }
+</style>
+
+<div class="bg-white text-slate-800 font-sans selection:bg-slate-900 selection:text-white">
 
   <!-- Nav -->
-  <nav class="sticky top-0 z-50 bg-white border-b border-gray-100 px-6 py-4 shadow-sm flex justify-between items-center">
-    <div class="text-2xl font-serif font-bold text-navy flex items-center gap-2">
-      <div class="w-8 h-8 bg-navy flex items-center justify-center text-gold text-sm font-serif italic">C</div>
-      Consulting Hub
+  <nav class="fixed w-full z-50 px-8 py-6 bg-white/95 backdrop-blur border-b border-slate-100 transition-all duration-300">
+    <div class="container mx-auto flex justify-between items-center">
+      <div class="font-serif text-2xl font-bold tracking-tight text-slate-900">
+         VISIONARY <br><span class="text-xs tracking-[0.3em] font-sans font-normal text-slate-500 uppercase">Partners</span>
+      </div>
+      
+      <div class="hidden md:flex gap-12 text-xs font-bold uppercase tracking-widest text-slate-500">
+        <a href="#expertise" class="hover:text-slate-900 transition">Expertise</a>
+        <a href="#cases" class="hover:text-slate-900 transition">Case Study</a>
+        <a href="#team" class="hover:text-slate-900 transition">Our Team</a>
+        <a href="#insight" class="hover:text-slate-900 transition">Insights</a>
+      </div>
+      
+      <button class="border border-slate-300 px-6 py-2 text-xs font-bold uppercase tracking-widest hover:bg-slate-900 hover:text-white transition">
+         Contact Us
+      </button>
     </div>
-    <div class="hidden md:flex gap-8 font-medium text-gray-600 text-sm">
-      <a href="#expertise" class="hover:text-navy hover:underline underline-offset-4 transition">전문 분야</a>
-      <a href="#solutions" class="hover:text-navy hover:underline underline-offset-4 transition">솔루션</a>
-      <a href="#insights" class="hover:text-navy hover:underline underline-offset-4 transition">인사이트</a>
-    </div>
-    <button onclick="toggleConsult()" class="bg-navy text-white px-6 py-2 text-sm font-medium hover:bg-navy/90 transition">
-      상담 예약
-    </button>
   </nav>
 
   <!-- Hero -->
-  <header class="relative bg-navy text-white py-32 overflow-hidden">
-    <div class="absolute inset-0 z-0">
-      <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=1920" class="w-full h-full object-cover opacity-10">
-      <div class="absolute inset-0 bg-gradient-to-r from-navy via-navy/90 to-transparent"></div>
-    </div>
-    
-    <div class="container mx-auto px-6 relative z-10 grid md:grid-cols-2 gap-12 items-center">
-      <div class="space-y-8 animate-fade-in-up">
-        <h1 class="text-5xl md:text-6xl font-serif leading-tight">
-          Strategic Vision for <br> <span class="text-gold italic">Global Growth</span>
-        </h1>
-        <p class="text-slate text-lg leading-relaxed max-w-lg">
-          복잡한 비즈니스 환경 속에서 명확한 해답을 제시합니다. <br>
-          기업의 지속 가능한 성장을 위한 최고의 파트너가 되겠습니다.
-        </p>
-        <div class="flex gap-4 pt-4">
-          <button onclick="toggleConsult()" class="border border-gold text-gold px-8 py-3 hover:bg-gold hover:text-navy transition duration-300">
-            서비스 자세히 보기
-          </button>
+  <header class="h-screen relative flex items-center justify-center bg-pattern text-white overflow-hidden">
+     <!-- Background Image Overlay -->
+     <div class="absolute inset-0 opacity-20">
+        <img src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?q=80&w=1920" class="w-full h-full object-cover grayscale">
+     </div>
+     
+     <div class="container mx-auto px-6 relative z-10 grid md:grid-cols-2 gap-16 items-center">
+        <div class="border-l-2 border-slate-500 pl-8 space-y-8 animate-fade-in-up">
+           <p class="text-slate-400 text-sm tracking-[0.2em] uppercase">Global Strategy Firm</p>
+           <h1 class="text-5xl md:text-6xl font-serif leading-tight">
+              We define <br>
+              <span class="italic text-slate-300">The Next Era</span> <br>
+              of Business.
+           </h1>
+           <p class="text-slate-400 font-light leading-loose max-w-md">
+              불확실성의 시대, 명확한 비전과 실행 가능한 전략으로
+              기업의 근본적인 변화를 이끌어냅니다.
+           </p>
+           <div class="pt-8">
+              <a href="#expertise" class="text-xs uppercase tracking-widest border-b border-white pb-1 hover:text-slate-300 hover:border-slate-300 transition">Discover Solutions &rarr;</a>
+           </div>
         </div>
-      </div>
-      <div>
-         <!-- Abstract Chart Graphic -->
-         <div class="bg-white/5 backdrop-blur border border-white/10 p-8 rounded shadow-2xl">
-           <div class="flex justify-between items-end h-48 gap-4 px-4 pb-4 border-b border-slate/30">
-             <div class="w-full bg-gold/20 h-1/4 relative group"><div class="absolute bottom-full left-0 w-full text-center text-xs text-slate opacity-0 group-hover:opacity-100 mb-2">Q1</div></div>
-             <div class="w-full bg-gold/40 h-2/4 relative group"><div class="absolute bottom-full left-0 w-full text-center text-xs text-slate opacity-0 group-hover:opacity-100 mb-2">Q2</div></div>
-             <div class="w-full bg-gold/60 h-3/4 relative group"><div class="absolute bottom-full left-0 w-full text-center text-xs text-slate opacity-0 group-hover:opacity-100 mb-2">Q3</div></div>
-             <div class="w-full bg-gold h-full relative group"><div class="absolute bottom-full left-0 w-full text-center text-xs text-gold font-bold mb-2">+125%</div></div>
+        
+        <!-- Abstract Visual -->
+        <div class="hidden md:flex justify-center items-center relative h-[400px]">
+           <div class="absolute w-64 h-64 border border-slate-500/30 rounded-full animate-[spin_10s_linear_infinite]"></div>
+           <div class="absolute w-96 h-96 border border-slate-500/20 rounded-full animate-[spin_15s_linear_infinite_reverse]"></div>
+           <div class="absolute w-48 h-48 border border-white/10 rounded-full backdrop-blur-sm flex items-center justify-center text-center p-4">
+              <p class="font-serif italic text-lg opacity-80">"Insight into <br>Action"</p>
            </div>
-           <div class="mt-4 flex justify-between text-xs text-slate">
-             <span>Annual Performance</span>
-             <span class="text-gold">Projected Growth</span>
-           </div>
-         </div>
-      </div>
-    </div>
+        </div>
+     </div>
   </header>
 
   <!-- Expertise -->
-  <section id="expertise" class="py-24 px-6 bg-white">
+  <section id="expertise" class="py-24 px-6 bg-slate-50">
     <div class="container mx-auto">
-      <div class="text-center mb-16">
-        <h2 class="text-3xl font-serif text-navy mb-4">Core Competencies</h2>
-        <div class="w-16 h-1 bg-gold mx-auto"></div>
-      </div>
-      
-      <div class="grid md:grid-cols-3 gap-8">
-        <!-- Card -->
-        <div class="bg-gray-50 p-8 border-t-4 border-navy hover:border-gold transition duration-300 group cursor-pointer" onclick="toggleConsult()">
-          <div class="w-12 h-12 bg-white rounded-full shadow-sm flex items-center justify-center text-2xl mb-6 text-gold">📊</div>
-          <h3 class="text-xl font-bold mb-3 text-navy">경영 전략 컨설팅</h3>
-          <p class="text-gray-600 text-sm leading-relaxed mb-6">
-            시장 분석부터 사업 모델 재구축까지, 
-            기업 가치를 극대화하는 맞춤형 전략을 수립합니다.
-          </p>
-          <a href="#" class="text-gold text-sm font-bold group-hover:underline">More details &rarr;</a>
-        </div>
-        <!-- Card -->
-        <div class="bg-gray-50 p-8 border-t-4 border-navy hover:border-gold transition duration-300 group cursor-pointer" onclick="toggleConsult()">
-          <div class="w-12 h-12 bg-white rounded-full shadow-sm flex items-center justify-center text-2xl mb-6 text-gold">⚖️</div>
-          <h3 class="text-xl font-bold mb-3 text-navy">기업 법무 자문</h3>
-          <p class="text-gray-600 text-sm leading-relaxed mb-6">
-            M&A, 지적재산권, 인사노무 등 복잡한 법적 리스크를 
-            사전에 예방하고 해결책을 제시합니다.
-          </p>
-          <a href="#" class="text-gold text-sm font-bold group-hover:underline">More details &rarr;</a>
-        </div>
-        <!-- Card -->
-        <div class="bg-gray-50 p-8 border-t-4 border-navy hover:border-gold transition duration-300 group cursor-pointer" onclick="toggleConsult()">
-          <div class="w-12 h-12 bg-white rounded-full shadow-sm flex items-center justify-center text-2xl mb-6 text-gold">💰</div>
-          <h3 class="text-xl font-bold mb-3 text-navy">재무 & 투자</h3>
-          <p class="text-gray-600 text-sm leading-relaxed mb-6">
-            자금 조달, 투자 유치, 재무 구조 개선 등 
-            기업의 재무 건전성을 확보하는 솔루션을 제공합니다.
-          </p>
-          <a href="#" class="text-gold text-sm font-bold group-hover:underline">More details &rarr;</a>
-        </div>
-      </div>
+       <div class="grid md:grid-cols-2 gap-16 mb-16">
+          <div>
+             <h2 class="text-4xl font-serif mb-6 text-slate-900">Our Expertise</h2>
+             <div class="w-12 h-1 bg-slate-900"></div>
+          </div>
+          <div>
+             <p class="text-slate-600 font-light leading-relaxed">
+                우리는 산업별 깊이 있는 통찰력과 데이터 기반의 분석을 결합하여
+                고객이 직면한 가장 복잡한 문제들을 해결합니다.
+             </p>
+          </div>
+       </div>
+       
+       <div class="grid md:grid-cols-3 gap-0 border border-slate-200 bg-white shadow-sm">
+          <!-- Item 1 -->
+          <div class="p-10 border-r border-b border-slate-200 hover:bg-slate-900 hover:text-white transition duration-300 group cursor-pointer">
+             <span class="text-3xl mb-6 block font-serif opacity-30 group-hover:opacity-100 transition">01</span>
+             <h3 class="text-xl font-bold mb-4 uppercase tracking-wider">Strategy</h3>
+             <p class="text-sm opacity-60 leading-relaxed">
+                기업 성장 전략,<br>신사업 개발 및 포트폴리오 최적화.
+             </p>
+          </div>
+          <!-- Item 2 -->
+          <div class="p-10 border-r border-b border-slate-200 hover:bg-slate-900 hover:text-white transition duration-300 group cursor-pointer">
+             <span class="text-3xl mb-6 block font-serif opacity-30 group-hover:opacity-100 transition">02</span>
+             <h3 class="text-xl font-bold mb-4 uppercase tracking-wider">M&A</h3>
+             <p class="text-sm opacity-60 leading-relaxed">
+                인수합병 전략 수립,<br>실사(Due Diligence) 및 합병 후 통합(PMI).
+             </p>
+          </div>
+          <!-- Item 3 -->
+          <div class="p-10 border-b border-slate-200 hover:bg-slate-900 hover:text-white transition duration-300 group cursor-pointer">
+             <span class="text-3xl mb-6 block font-serif opacity-30 group-hover:opacity-100 transition">03</span>
+             <h3 class="text-xl font-bold mb-4 uppercase tracking-wider">Digital</h3>
+             <p class="text-sm opacity-60 leading-relaxed">
+                디지털 트랜스포메이션,<br>AI 도입 및 데이터 분석 플랫폼 구축.
+             </p>
+          </div>
+          <!-- Item 4 -->
+          <div class="p-10 border-r border-slate-200 hover:bg-slate-900 hover:text-white transition duration-300 group cursor-pointer">
+             <span class="text-3xl mb-6 block font-serif opacity-30 group-hover:opacity-100 transition">04</span>
+             <h3 class="text-xl font-bold mb-4 uppercase tracking-wider">Operations</h3>
+             <p class="text-sm opacity-60 leading-relaxed">
+                공급망 관리(SCM),<br>운영 효율화 및 비용 절감.
+             </p>
+          </div>
+          <!-- Item 5 -->
+          <div class="p-10 border-r border-slate-200 hover:bg-slate-900 hover:text-white transition duration-300 group cursor-pointer">
+             <span class="text-3xl mb-6 block font-serif opacity-30 group-hover:opacity-100 transition">05</span>
+             <h3 class="text-xl font-bold mb-4 uppercase tracking-wider">Organization</h3>
+             <p class="text-sm opacity-60 leading-relaxed">
+                조직 설계 및 성과 관리,<br>리더십 개발 및 기업 문화 혁신.
+             </p>
+          </div>
+          <!-- Item 6 -->
+          <div class="p-10 hover:bg-slate-900 hover:text-white transition duration-300 group cursor-pointer flex items-center justify-center">
+             <span class="text-xs uppercase tracking-widest border-b border-current pb-1">View All Services &rarr;</span>
+          </div>
+       </div>
     </div>
+  </section>
+
+  <!-- Case Study -->
+  <section id="cases" class="py-24 px-6 bg-white">
+     <div class="container mx-auto">
+        <h2 class="text-4xl font-serif mb-12 text-center text-slate-900">Success Stories</h2>
+        
+        <div class="grid md:grid-cols-2 gap-12">
+            <!-- Case 1 -->
+            <div class="group cursor-pointer">
+               <div class="overflow-hidden mb-6 relative">
+                  <img src="https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?q=80&w=800" class="w-full h-80 object-cover transition duration-700 group-hover:scale-110 grayscale hover:grayscale-0">
+                  <div class="absolute bottom-0 left-0 bg-white p-4">
+                     <span class="text-xs font-bold uppercase tracking-widest text-blue-900">Technology</span>
+                  </div>
+               </div>
+               <h3 class="text-2xl font-serif mb-3 group-hover:text-blue-900 transition">Digital Transformation for Global Retailer</h3>
+               <p class="text-slate-500 font-light leading-relaxed mb-4">
+                  오프라인 중심의 유통 기업을 옴니채널 플랫폼으로 전환하여
+                  온라인 매출 300% 성장을 달성한 사례.
+               </p>
+               <span class="text-xs font-bold uppercase tracking-widest border-b border-slate-900 pb-1">Read Case Study</span>
+            </div>
+
+            <!-- Case 2 -->
+            <div class="group cursor-pointer mt-12 md:mt-0">
+               <div class="overflow-hidden mb-6 relative">
+                  <img src="https://images.unsplash.com/photo-1556740738-b6a63e27c4df?q=80&w=800" class="w-full h-80 object-cover transition duration-700 group-hover:scale-110 grayscale hover:grayscale-0">
+                  <div class="absolute bottom-0 left-0 bg-white p-4">
+                     <span class="text-xs font-bold uppercase tracking-widest text-blue-900">Finance</span>
+                  </div>
+               </div>
+               <h3 class="text-2xl font-serif mb-3 group-hover:text-blue-900 transition">Post-Merger Integration Strategy</h3>
+               <p class="text-slate-500 font-light leading-relaxed mb-4">
+                  대형 금융사 간 합병 후 조직 및 IT 시스템 통합을 통해
+                  시너지 효과를 극대화하고 운영 비용을 20% 절감.
+               </p>
+               <span class="text-xs font-bold uppercase tracking-widest border-b border-slate-900 pb-1">Read Case Study</span>
+            </div>
+        </div>
+     </div>
   </section>
 
   <!-- Quote -->
-  <section class="py-20 bg-navy text-white text-center px-6">
-    <div class="max-w-3xl mx-auto space-y-8">
-      <div class="text-gold text-6xl font-serif">"</div>
-      <p class="text-2xl md:text-3xl font-serif italic leading-relaxed text-slate">
-        우리의 목표는 단순히 조언을 하는 것이 아닙니다. <br>
-        고객과 함께 실행하고, 함께 결과를 만들어내는 것입니다.
-      </p>
-      <div class="text-sm font-bold tracking-widest uppercase mt-8">
-        James Kim, CEO
-      </div>
+  <section id="insight" class="py-32 px-6 bg-slate-900 text-white text-center">
+    <div class="container mx-auto max-w-3xl">
+       <span class="text-6xl font-serif opacity-30">"</span>
+       <h3 class="text-3xl md:text-5xl font-serif leading-tight mb-8">
+          The best way to predict the future is to create it.
+       </h3>
+       <p class="text-slate-400 text-lg font-light mb-8">Peter Drucker</p>
+       <button class="bg-white text-slate-900 px-8 py-3 text-xs font-bold uppercase tracking-widest hover:bg-slate-200 transition">
+          Partner With Us
+       </button>
     </div>
   </section>
 
-  <!-- Modal -->
-  <div id="consult-modal" class="fixed inset-0 bg-navy/80 z-[60] hidden flex items-center justify-center p-4">
-    <div class="bg-white w-full max-w-md p-8 relative shadow-2xl">
-      <button onclick="toggleConsult()" class="absolute top-4 right-4 text-gray-400 hover:text-navy text-2xl">&times;</button>
-      
-      <div class="text-center mb-8 border-b border-gray-100 pb-4">
-        <h2 class="font-serif text-2xl text-navy">Request Consultation</h2>
-        <p class="text-xs text-gray-500 mt-2">전문가와의 1:1 상담을 신청하세요</p>
-      </div>
+</div>
 
-      <form class="space-y-4" onsubmit="event.preventDefault(); alert('상담 신청이 접수되었습니다. 담당자가 연락드리겠습니다.'); toggleConsult();">
-        <input type="text" placeholder="회사명" class="w-full bg-gray-50 border border-gray-200 p-3 text-sm focus:border-gold outline-none">
-        <input type="text" placeholder="담당자 성함" class="w-full bg-gray-50 border border-gray-200 p-3 text-sm focus:border-gold outline-none">
-        <input type="email" placeholder="이메일" class="w-full bg-gray-50 border border-gray-200 p-3 text-sm focus:border-gold outline-none">
-        <select class="w-full bg-gray-50 border border-gray-200 p-3 text-sm focus:border-gold outline-none text-gray-600">
-           <option>관심 분야 선택</option>
-           <option>경영 전략</option>
-           <option>법무 자문</option>
-           <option>재무/투자</option>
-           <option>기타 문의</option>
-        </select>
-        
-        <button class="w-full bg-navy text-white text-sm font-bold py-4 hover:bg-gold transition mt-2">
-          신청 완료
-        </button>
-      </form>
-    </div>
-  </div>
-
-  <script>
-    function toggleConsult() {
-      const modal = document.getElementById('consult-modal');
-      if(modal.classList.contains('hidden')) {
-        modal.classList.remove('hidden');
-      } else {
-        modal.classList.add('hidden');
-      }
-    }
-  </script>
-</body>
-</html>
+<script>
+  VanillaTilt.init(document.querySelectorAll("[data-tilt]"), {
+    max: 10,
+    speed: 400,
+  });
+</script>

@@ -1,180 +1,212 @@
-<!DOCTYPE html>
-<html lang="ko">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>법무법인 정의 - 신뢰의 이름</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Garamond:ital,wght@0,400;0,700;1,400&family=Noto+Serif+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            midnight: '#1a202c',
-            gavel: '#8B4513',
-            paper: '#f7fafc',
-          },
-          fontFamily: {
-            serif: ['Garamond', 'serif'],
-            kr: ['Noto Serif KR', 'serif'],
-          }
-        }
-      }
-    }
-  </script>
-</head>
-<body class="bg-paper text-midnight font-kr">
+<%# Law Template - 법무법인 정의 %>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.0/vanilla-tilt.min.js"></script>
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700;800&family=Noto+Sans+KR:wght@300;400;500&display=swap');
+  
+  .font-serif { font-family: 'Nanum Myeongjo', serif; }
+  .font-sans { font-family: 'Noto Sans KR', sans-serif; }
+  
+  .bg-law-pattern {
+    background-color: #0f172a;
+    background-image: repeating-linear-gradient(45deg, rgba(255,255,255,0.02) 0px, rgba(255,255,255,0.02) 1px, transparent 1px, transparent 10px);
+  }
+</style>
+
+<div class="bg-white text-slate-800 font-sans selection:bg-slate-800 selection:text-amber-500">
 
   <!-- Nav -->
-  <nav class="fixed w-full z-50 bg-white/95 backdrop-blur-sm border-b border-gray-200 shadow-sm">
-    <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+  <nav class="fixed w-full z-50 px-8 py-5 bg-white/95 backdrop-blur border-b border-slate-200">
+    <div class="container mx-auto flex justify-between items-center">
       <div class="flex items-center gap-3">
-        <div class="w-8 h-8 bg-midnight text-white flex items-center justify-center font-serif font-bold text-xl">L</div>
-        <div class="font-bold text-xl tracking-tight">법무법인 <span class="text-gavel">정의</span></div>
+        <div class="w-10 h-10 bg-slate-900 flex items-center justify-center text-amber-500 font-serif font-black text-xl">正</div>
+        <div class="flex flex-col">
+           <span class="font-serif font-bold text-xl text-slate-900 leading-none tracking-widest">법무법인 정의</span>
+           <span class="text-[10px] tracking-[0.3em] text-slate-500 uppercase mt-1">Law Firm Justice</span>
+        </div>
       </div>
-      <div class="hidden md:flex gap-10 font-medium text-gray-600">
-        <a href="#about" class="hover:text-midnight transition">구성원 소개</a>
-        <a href="#expert" class="hover:text-midnight transition">업무 분야</a>
-        <a href="#result" class="hover:text-midnight transition">승소 사례</a>
+      <div class="hidden md:flex gap-10 font-serif font-bold text-slate-600 text-sm">
+        <a href="#about" class="hover:text-amber-600 transition">법인 소개</a>
+        <a href="#practice" class="hover:text-amber-600 transition">전문 분야</a>
+        <a href="#success" class="hover:text-amber-600 transition">승소 사례</a>
+        <a href="#counsel" class="hover:text-amber-600 transition">상담 문의</a>
       </div>
-      <div class="flex gap-4">
-        <span class="text-sm font-bold text-gavel self-center">Tel. 02-555-0000</span>
-        <button onclick="toggleLaw()" class="bg-midnight text-white px-5 py-2 text-sm hover:bg-gray-800 transition">
-          상담 예약
-        </button>
-      </div>
+      <button onclick="document.getElementById('counsel').scrollIntoView({behavior: 'smooth'})"
+              class="px-6 py-2 border border-slate-900 text-slate-900 font-serif font-bold text-sm hover:bg-slate-900 hover:text-white transition">
+        무료 법률 상담
+      </button>
     </div>
   </nav>
 
-  <!-- Hero Classy -->
-  <header class="pt-32 pb-24 px-6 container mx-auto">
-    <div class="grid md:grid-cols-2 gap-12 items-center">
-      <div class="order-2 md:order-1 space-y-8 animate-fade-in-up md:pr-12">
-        <div class="w-12 h-1 bg-gavel"></div>
-        <h1 class="text-5xl md:text-6xl font-bold leading-tight">
-          당신의 권리를 지키는 <br>
-          <span class="italic text-gavel">든든한 법률 파트너</span>
-        </h1>
-        <p class="text-gray-600 text-lg leading-loose font-light">
-          복잡하고 어려운 법률 문제, 혼자 고민하지 마십시오. <br>
-          풍부한 경험과 전문성을 갖춘 변호인단이 <br>
-          최적의 해결책을 제시해 드립니다.
-        </p>
-        <div class="flex gap-6 pt-4">
-          <button onclick="toggleLaw()" class="border border-midnight px-8 py-3 hover:bg-midnight hover:text-white transition duration-300">
-            무료 법률 상담
-          </button>
-          <button class="text-gray-500 hover:text-midnight border-b border-gray-300 hover:border-midnight pb-1 transition">
-            오시는 길 &rarr;
-          </button>
-        </div>
-      </div>
-      <div class="order-1 md:order-2 relative h-[500px]">
-        <div class="absolute top-0 right-0 w-3/4 h-full bg-gray-200 z-0"></div>
-        <img src="https://images.unsplash.com/photo-1589829085413-56de8ae18c73?q=80&w=800" class="absolute bottom-12 right-12 w-3/4 h-4/5 object-cover shadow-2xl z-10 grayscale hover:grayscale-0 transition duration-700">
-      </div>
+  <!-- Hero -->
+  <header class="h-screen bg-law-pattern relative flex items-center justify-center overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-b from-slate-900/80 via-transparent to-slate-900"></div>
+    
+    <div class="container mx-auto px-6 relative z-10 grid md:grid-cols-2 gap-16 items-center">
+       <div class="text-white space-y-8">
+         <div class="w-20 h-1 bg-amber-600 mb-8"></div>
+         <h1 class="text-5xl md:text-7xl font-serif font-bold leading-tight">
+           진실을 향한<br>
+           <span class="text-amber-500">흔들리지 않는</span><br>
+           변호
+         </h1>
+         <p class="text-slate-400 text-lg font-light leading-relaxed max-w-lg">
+           복잡한 법률 문제, 혼자 고민하지 마십시오.<br>
+           대법원 판사 출신 변호인단이 당신의 권리를 지켜드립니다.<br>
+           처음부터 끝까지, 의뢰인의 편에서 싸우겠습니다.
+         </p>
+         
+         <div class="grid grid-cols-2 gap-8 pt-8 border-t border-white/10">
+            <div>
+              <p class="text-3xl font-serif font-bold text-white mb-1">98<span class="text-amber-500 text-xl">%</span></p>
+              <p class="text-xs text-slate-500 uppercase tracking-widest">승소율</p>
+            </div>
+            <div>
+              <p class="text-3xl font-serif font-bold text-white mb-1">2,500<span class="text-amber-500 text-xl">+</span></p>
+              <p class="text-xs text-slate-500 uppercase tracking-widest">누적 상담 건수</p>
+            </div>
+         </div>
+       </div>
+
+       <div class="relative hidden md:block" data-tilt data-tilt-max="3">
+         <div class="absolute inset-0 border border-amber-600/30 transform translate-x-4 translate-y-4"></div>
+         <img src="https://images.unsplash.com/photo-1507679799987-c73779587ccf?q=80&w=800" class="relative z-10 w-full h-[600px] object-cover filter brightness-75 contrast-125 grayscale hover:grayscale-0 transition duration-1000 shadow-2xl">
+         
+         <div class="absolute bottom-10 -left-10 bg-white p-8 shadow-xl max-w-xs z-20 border-l-4 border-amber-600">
+           <p class="font-serif font-bold text-xl text-slate-900 mb-2">"끝까지 책임지겠습니다"</p>
+           <p class="text-sm text-slate-500">대표변호사 김정의</p>
+         </div>
+       </div>
     </div>
   </header>
 
-  <!-- Practice Areas -->
-  <section id="expert" class="py-24 bg-white border-t border-gray-100">
+  <!-- Practice Areas (Process UI) -->
+  <section id="practice" class="py-24 bg-white">
     <div class="container mx-auto px-6">
-      <div class="text-center mb-16">
-        <h2 class="text-3xl font-bold mb-4">전문 분야</h2>
-        <p class="text-gray-500">각 분야 전문 변호사가 체계적으로 대응합니다.</p>
-      </div>
+       <div class="flex flex-col md:flex-row justify-between items-end mb-16 border-b border-slate-200 pb-8">
+         <div class="mb-4 md:mb-0">
+           <span class="text-amber-600 font-bold tracking-widest text-xs uppercase mb-2 block">Our Expertise</span>
+           <h2 class="text-4xl font-serif font-bold text-slate-900">전문 분야</h2>
+         </div>
+         <p class="text-slate-500 text-sm max-w-md text-right">
+           각 분야별 전담 변호사가 사건 초기 대응부터 소송 종결까지<br>
+           체계적인 원스톱 법률 서비스를 제공합니다.
+         </p>
+       </div>
 
-      <div class="grid md:grid-cols-3 gap-8 text-center">
-        <!-- Area 1 -->
-        <div class="p-8 border border-gray-100 hover:border-gavel hover:shadow-lg transition duration-300 group cursor-pointer" onclick="toggleLaw()">
-          <div class="text-gavel text-4xl mb-6">⚖️</div>
-          <h3 class="text-xl font-bold mb-4">민사 소송</h3>
-          <p class="text-gray-500 text-sm leading-relaxed">
-            채권채무, 손해배상, 부동산 분쟁 등 <br> 재산상의 권리를 지켜드립니다.
-          </p>
-        </div>
-        <!-- Area 2 -->
-        <div class="p-8 border border-gray-100 hover:border-gavel hover:shadow-lg transition duration-300 group cursor-pointer" onclick="toggleLaw()">
-           <div class="text-gavel text-4xl mb-6">🏢</div>
-          <h3 class="text-xl font-bold mb-4">기업 법무</h3>
-          <p class="text-gray-500 text-sm leading-relaxed">
-            계약 검토, M&A, 기업 회생 등 <br> 기업 운영의 리스크를 관리합니다.
-          </p>
-        </div>
-        <!-- Area 3 -->
-        <div class="p-8 border border-gray-100 hover:border-gavel hover:shadow-lg transition duration-300 group cursor-pointer" onclick="toggleLaw()">
-           <div class="text-gavel text-4xl mb-6">👨‍👩‍👧‍👦</div>
-          <h3 class="text-xl font-bold mb-4">가사 / 이혼</h3>
-          <p class="text-gray-500 text-sm leading-relaxed">
-            이혼, 재산분할, 상속 등 <br> 가족 간의 분쟁을 원만하게 해결합니다.
-          </p>
-        </div>
-      </div>
+       <div class="grid md:grid-cols-3 gap-8">
+         <!-- Card 1 -->
+         <div class="group border border-slate-200 p-8 hover:border-amber-600 transition duration-500 cursor-pointer bg-slate-50 hover:bg-white text-center">
+           <div class="w-16 h-16 bg-white border border-slate-200 rounded-full flex items-center justify-center text-3xl mb-6 mx-auto group-hover:scale-110 group-hover:border-amber-600 transition">⚖️</div>
+           <h3 class="font-serif font-bold text-xl mb-4 text-slate-900">민사 소송</h3>
+           <p class="text-slate-500 text-sm leading-relaxed mb-6">
+             손해배상, 부동산, 채권채무 등<br>
+             재산권 분쟁 해결 및 권리 구제
+           </p>
+           <span class="text-xs font-bold text-amber-600 uppercase tracking-widest group-hover:underline">View Case</span>
+         </div>
+
+         <!-- Card 2 -->
+         <div class="group border border-slate-200 p-8 hover:border-amber-600 transition duration-500 cursor-pointer bg-slate-50 hover:bg-white text-center">
+           <div class="w-16 h-16 bg-white border border-slate-200 rounded-full flex items-center justify-center text-3xl mb-6 mx-auto group-hover:scale-110 group-hover:border-amber-600 transition">🔨</div>
+           <h3 class="font-serif font-bold text-xl mb-4 text-slate-900">형사 변호</h3>
+           <p class="text-slate-500 text-sm leading-relaxed mb-6">
+             경찰 조사 동석부터 재판까지,<br>
+             억울함이 없도록 강력한 변호
+           </p>
+           <span class="text-xs font-bold text-amber-600 uppercase tracking-widest group-hover:underline">View Case</span>
+         </div>
+
+         <!-- Card 3 -->
+         <div class="group border border-slate-200 p-8 hover:border-amber-600 transition duration-500 cursor-pointer bg-slate-50 hover:bg-white text-center">
+           <div class="w-16 h-16 bg-white border border-slate-200 rounded-full flex items-center justify-center text-3xl mb-6 mx-auto group-hover:scale-110 group-hover:border-amber-600 transition">🏢</div>
+           <h3 class="font-serif font-bold text-xl mb-4 text-slate-900">기업 법무</h3>
+           <p class="text-slate-500 text-sm leading-relaxed mb-6">
+             계약 검토, M&A, 노무 관리 등<br>
+             기업 운영의 리스크 매니지먼트
+           </p>
+           <span class="text-xs font-bold text-amber-600 uppercase tracking-widest group-hover:underline">View Case</span>
+         </div>
+       </div>
     </div>
   </section>
 
-  <!-- Stats -->
-  <section class="py-20 bg-midnight text-white text-center">
-    <div class="container mx-auto px-6 grid md:grid-cols-3 gap-12 divide-x divide-white/20">
-      <div>
-        <div class="text-5xl font-serif mb-2">1,500+</div>
-        <div class="text-sm tracking-widest uppercase text-gray-400">성공 사례</div>
-      </div>
-      <div>
-        <div class="text-5xl font-serif mb-2">95%</div>
-        <div class="text-sm tracking-widest uppercase text-gray-400">승소율</div>
-      </div>
-      <div>
-        <div class="text-5xl font-serif mb-2">20+</div>
-        <div class="text-sm tracking-widest uppercase text-gray-400">전문 변호사</div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Modal -->
-  <div id="law-modal" class="fixed inset-0 bg-midnight/80 z-[60] hidden flex items-center justify-center p-4">
-    <div class="bg-white w-full max-w-lg p-12 relative shadow-xl">
-      <button onclick="toggleLaw()" class="absolute top-6 right-6 text-gray-400 hover:text-black text-2xl">&times;</button>
+  <!-- Process -->
+  <section class="py-24 bg-slate-900 text-white border-y border-white/10">
+    <div class="container mx-auto px-6">
+      <h2 class="text-3xl font-serif font-bold text-center mb-16">사건 처리 프로세스</h2>
       
-      <div class="mb-10 border-b border-gray-200 pb-6">
-        <h2 class="text-3xl font-bold text-midnight mb-2">법률 상담 예약</h2>
-        <p class="text-sm text-gray-500">초기 상담은 15분간 무료로 진행됩니다.</p>
+      <div class="grid md:grid-cols-4 gap-8 text-center relative">
+         <div class="hidden md:block absolute top-[2.5rem] left-0 right-0 h-[1px] bg-white/10"></div>
+         
+         <div class="relative">
+           <div class="w-20 h-20 bg-slate-800 border border-white/20 rounded-full flex items-center justify-center text-amber-500 font-serif font-bold text-2xl mx-auto mb-6 relative z-10">01</div>
+           <h3 class="font-bold text-lg mb-2">상담 접수</h3>
+           <p class="text-slate-400 text-sm">전화 및 온라인 예약</p>
+         </div>
+
+         <div class="relative">
+           <div class="w-20 h-20 bg-slate-800 border border-white/20 rounded-full flex items-center justify-center text-amber-500 font-serif font-bold text-2xl mx-auto mb-6 relative z-10">02</div>
+           <h3 class="font-bold text-lg mb-2">법률 분석</h3>
+           <p class="text-slate-400 text-sm">사안 검토 및 전략 수립</p>
+         </div>
+
+         <div class="relative">
+           <div class="w-20 h-20 bg-slate-800 border border-white/20 rounded-full flex items-center justify-center text-amber-500 font-serif font-bold text-2xl mx-auto mb-6 relative z-10">03</div>
+           <h3 class="font-bold text-lg mb-2">사건 진행</h3>
+           <p class="text-slate-400 text-sm">서면 작성 및 변론</p>
+         </div>
+         
+         <div class="relative">
+           <div class="w-20 h-20 bg-amber-600 border border-amber-500 rounded-full flex items-center justify-center text-white font-serif font-bold text-2xl mx-auto mb-6 relative z-10 shadow-[0_0_20px_rgba(217,119,6,0.5)]">04</div>
+           <h3 class="font-bold text-lg mb-2 text-amber-500">종결</h3>
+           <p class="text-slate-400 text-sm">판결 및 집행</p>
+         </div>
       </div>
-
-      <form class="space-y-6" onsubmit="event.preventDefault(); alert('상담 예약이 접수되었습니다. 사무실에서 연락드리겠습니다.'); toggleLaw();">
-        <div class="grid grid-cols-2 gap-6">
-           <input type="text" placeholder="성함" class="w-full bg-gray-50 border border-gray-200 p-3 outline-none focus:border-midnight transition">
-           <input type="tel" placeholder="연락처" class="w-full bg-gray-50 border border-gray-200 p-3 outline-none focus:border-midnight transition">
-        </div>
-        
-        <select class="w-full bg-gray-50 border border-gray-200 p-3 outline-none focus:border-midnight transition text-gray-600">
-          <option>상담 분야 선택</option>
-          <option>민사 소송</option>
-          <option>형사 소송</option>
-          <option>이혼 / 가사</option>
-          <option>기업 법무</option>
-          <option>기타</option>
-        </select>
-
-        <textarea rows="4" placeholder="사건 개요를 간단히 적어주십시오. (비밀 보장)" class="w-full bg-gray-50 border border-gray-200 p-3 outline-none focus:border-midnight transition resize-none"></textarea>
-        
-        <button class="w-full bg-midnight text-white py-4 font-bold hover:bg-gavel transition duration-300">
-          예약 신청
-        </button>
-      </form>
     </div>
-  </div>
+  </section>
 
-  <script>
-    function toggleLaw() {
-      const modal = document.getElementById('law-modal');
-      if(modal.classList.contains('hidden')) {
-        modal.classList.remove('hidden');
-      } else {
-        modal.classList.add('hidden');
-      }
-    }
-  </script>
-</body>
-</html>
+  <!-- Counsel Form -->
+  <section id="counsel" class="py-24 bg-white">
+    <div class="container mx-auto px-6 max-w-4xl">
+      <div class="bg-slate-50 border border-slate-200 p-10 md:p-16 text-center shadow-lg">
+        <h2 class="text-3xl font-serif font-bold text-slate-900 mb-6">비공개 법률 상담</h2>
+        <p class="text-slate-500 mb-10 leading-relaxed">
+          모든 상담 내용은 변호사법에 따라 철저히 비밀이 보장됩니다.<br>
+          간단한 내용을 남겨주시면 전담 변호사가 직접 연락드립니다.
+        </p>
+
+        <form class="space-y-6 text-left">
+          <div class="grid md:grid-cols-2 gap-6">
+            <div>
+               <label class="block text-xs font-bold text-slate-500 uppercase mb-2 tracking-widest">Name</label>
+               <input type="text" class="w-full bg-white border border-slate-300 p-3 outline-none focus:border-amber-600 transition" placeholder="의뢰인 성함">
+            </div>
+            <div>
+               <label class="block text-xs font-bold text-slate-500 uppercase mb-2 tracking-widest">Phone</label>
+               <input type="tel" class="w-full bg-white border border-slate-300 p-3 outline-none focus:border-amber-600 transition" placeholder="연락처">
+            </div>
+          </div>
+          <div>
+            <label class="block text-xs font-bold text-slate-500 uppercase mb-2 tracking-widest">Message</label>
+            <textarea class="w-full bg-white border border-slate-300 p-3 outline-none focus:border-amber-600 transition h-32 placeholder-slate-300" placeholder="상담 내용을 간략히 적어주세요"></textarea>
+          </div>
+          
+          <button type="button" class="w-full py-4 bg-slate-900 text-white font-serif font-bold text-lg hover:bg-amber-600 transition duration-300">
+            상담 신청하기
+          </button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<script>
+  VanillaTilt.init(document.querySelectorAll("[data-tilt]"), {
+    max: 5,
+    speed: 400,
+    glare: true,
+    "max-glare": 0.2,
+  });
+</script>

@@ -1,157 +1,208 @@
-<!DOCTYPE html>
-<html lang="ko">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>LUMIER - 프리미엄 뷰티 살롱</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Italiana&family=Noto+Sans+KR:wght@300;400;500&display=swap" rel="stylesheet">
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            gold: '#D4AF37',
-            cream: '#FDFBF7',
-          },
-          fontFamily: {
-            serif: ['Italiana', 'serif'],
-            sans: ['Noto Sans KR', 'sans-serif'],
-          }
-        }
-      }
-    }
-  </script>
-</head>
-<body class="bg-cream text-gray-800 font-sans">
+<%# Beauty Template - 르 블랑 에스테틱 %>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.0/vanilla-tilt.min.js"></script>
 
-  <!-- Navigation -->
-  <nav class="fixed w-full z-50 px-6 py-4 flex justify-between items-center bg-cream/90 backdrop-blur-sm border-b border-gold/20">
-    <div class="text-2xl font-serif tracking-widest">LUMIER</div>
-    <div class="hidden md:flex gap-8 text-xs tracking-widest">
-      <a href="#services" class="hover:text-gold transition">서비스</a>
-      <a href="#gallery" class="hover:text-gold transition">갤러리</a>
-      <a href="#about" class="hover:text-gold transition">브랜드</a>
-      <a href="#contact" class="hover:text-gold transition">예약</a>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Noto+Sans+KR:wght@300;400&display=swap');
+  
+  .font-serif { font-family: 'Cormorant Garamond', serif; }
+  .font-sans { font-family: 'Noto Sans KR', sans-serif; }
+  
+  .bg-skin {
+    background: linear-gradient(135deg, #fdfbf7 0%, #f7f1e3 100%);
+  }
+  
+  .glass-effect {
+    background: rgba(255, 255, 255, 0.4);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.6);
+  }
+</style>
+
+<div class="bg-[#fdfbf7] text-[#594a4e] font-sans selection:bg-[#d4a373] selection:text-white">
+
+  <!-- Nav -->
+  <nav class="fixed w-full z-50 px-8 py-6 flex justify-between items-center transition-all bg-white/50 backdrop-blur-sm">
+    <div class="text-2xl font-serif italic tracking-widest text-[#8b7e74]">
+      Le Blanc
     </div>
-    <button onclick="toggleModal()" class="border border-gray-800 px-6 py-2 text-xs hover:bg-black hover:text-white transition uppercase">
-      간편 예약
-    </button>
+    <div class="hidden md:flex gap-10 text-xs font-bold tracking-[0.2em] text-[#8b7e74] uppercase">
+      <a href="#philosophy" class="hover:text-[#d4a373] transition">Philosophy</a>
+      <a href="#program" class="hover:text-[#d4a373] transition">Program</a>
+      <a href="#products" class="hover:text-[#d4a373] transition">Products</a>
+      <a href="#reservation" class="hover:text-[#d4a373] transition">Contact</a>
+    </div>
+    <a href="#reservation" class="w-8 h-8 rounded-full border border-[#8b7e74] flex items-center justify-center text-[#8b7e74] hover:bg-[#8b7e74] hover:text-white transition">
+       <span class="text-xs">R</span>
+    </a>
   </nav>
 
-  <!-- Hero with Enhanced Contrast -->
-  <header class="h-screen relative flex items-center justify-center">
-    <div class="absolute inset-0">
-      <img src="https://images.unsplash.com/photo-1600334089648-b0d9d3028eb2?q=80&w=1920" class="w-full h-full object-cover">
-      <div class="absolute inset-0 bg-black/30"></div>
+  <!-- Hero -->
+  <header class="min-h-screen relative flex items-center justify-center overflow-hidden bg-skin">
+    <div class="absolute right-0 top-0 w-1/2 h-full"> 
+       <img src="https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?q=80&w=1920" class="w-full h-full object-cover opacity-80 mask-image-gradient">
+       <div class="absolute inset-0 bg-gradient-to-r from-[#fdfbf7] to-transparent"></div>
     </div>
-    <div class="relative z-10 text-center text-white space-y-6 animate-fade-in px-4">
-      <p class="text-xs md:text-sm tracking-[0.3em] uppercase">Premium Beauty Lounge</p>
-      <h1 class="text-5xl md:text-8xl font-serif tracking-wide drop-shadow-md">
-        Timeless <br> <span class="text-gold italic">Elegance</span>
-      </h1>
-      <p class="font-light text-sm md:text-base tracking-wider max-w-lg mx-auto leading-relaxed opacity-90">
-        당신만의 고유한 아름다움을 찾아드립니다. <br>
-        최고의 전문가들이 선사하는 럭셔리 뷰티 케어를 경험하세요.
-      </p>
-      <div class="pt-8">
-        <button onclick="toggleModal()" class="bg-white text-black px-8 py-3 text-xs tracking-widest hover:bg-gold hover:text-white transition uppercase">
-          스타일 상담하기
+    
+    <div class="container mx-auto px-6 relative z-10 grid md:grid-cols-2 gap-12 items-center">
+      <div class="space-y-8">
+        <p class="font-serif italic text-2xl text-[#d4a373]">Premium Aesthetic</p>
+        <h1 class="text-6xl md:text-8xl font-serif font-light leading-tight text-[#4a4a4a]">
+          Discover <br>
+          Your Inner <br>
+          <span class="italic font-normal">Glow.</span>
+        </h1>
+        <p class="text-[#8b7e74] leading-loose font-light max-w-md">
+          피부 본연의 빛을 찾아드리는 1:1 맞춤 솔루션.<br>
+          르 블랑만의 독자적인 테크닉으로 시간을 되돌려드립니다.
+        </p>
+        <button onclick="document.getElementById('program').scrollIntoView({behavior: 'smooth'})"
+                class="mt-8 px-8 py-3 border border-[#8b7e74] text-[#8b7e74] rounded-full hover:bg-[#8b7e74] hover:text-white transition uppercase text-xs tracking-widest">
+          Explore Treatments
         </button>
+      </div>
+      
+      <div class="relative hidden md:block" data-tilt data-tilt-max="2">
+        <div class="relative z-10 p-4 bg-white/30 backdrop-blur rounded-[200px_200px_0_0] shadow-2xl border border-white/50">
+          <img src="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?q=80&w=800" class="w-full h-[500px] object-cover rounded-[190px_190px_0_0]">
+        </div>
+        <!-- Circle Decor -->
+        <div class="absolute -bottom-10 -right-10 w-40 h-40 rounded-full bg-[#fde2e2] mix-blend-multiply filter blur-xl opacity-70 animate-pulse"></div>
       </div>
     </div>
   </header>
 
-  <!-- Services Grid -->
-  <section id="services" class="py-24 px-6 max-w-7xl mx-auto">
-    <div class="text-center mb-16">
-      <h2 class="font-serif text-4xl mb-4">Our Services</h2>
-      <div class="w-10 h-px bg-gold mx-auto"></div>
+  <!-- Philosophy -->
+  <section id="philosophy" class="py-32 px-6 bg-white relative">
+    <div class="container mx-auto max-w-4xl text-center">
+      <span class="text-[#d4a373] text-xs font-bold tracking-[0.3em] uppercase mb-4 block">Our Promise</span>
+      <h2 class="text-4xl md:text-5xl font-serif italic text-[#4a4a4a] mb-8 leading-normal">
+        "True beauty comes from <br> deep relaxation."
+      </h2>
+      <p class="text-gray-500 leading-loose font-light">
+        우리는 단순히 피부 겉면만을 관리하지 않습니다.<br>
+        유기농 아로마 테라피와 림프 순환 케어를 통해<br>
+        몸과 마음의 균형을 되찾아드립니다.
+      </p>
+      
+      <div class="grid grid-cols-3 gap-8 mt-16 text-center">
+        <div>
+          <div class="w-16 h-16 mx-auto mb-4 bg-[#f8f5f2] rounded-full flex items-center justify-center text-2xl text-[#d4a373]">🌿</div>
+          <p class="font-serif italic text-lg">Organic</p>
+        </div>
+        <div>
+          <div class="w-16 h-16 mx-auto mb-4 bg-[#f8f5f2] rounded-full flex items-center justify-center text-2xl text-[#d4a373]">👐</div>
+          <p class="font-serif italic text-lg">Hand Touch</p>
+        </div>
+        <div>
+          <div class="w-16 h-16 mx-auto mb-4 bg-[#f8f5f2] rounded-full flex items-center justify-center text-2xl text-[#d4a373]">💧</div>
+          <p class="font-serif italic text-lg">Hydration</p>
+        </div>
+      </div>
     </div>
-    
-    <div class="grid md:grid-cols-3 gap-12 text-center">
-      <div class="space-y-4 group cursor-pointer" onclick="toggleModal()">
-        <div class="overflow-hidden rounded-full w-48 h-48 mx-auto mb-6 border-4 border-transparent group-hover:border-gold transition duration-500">
-          <img src="https://images.unsplash.com/photo-1562322140-8baeececf3df?q=80&w=500" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
-        </div>
-        <h3 class="font-serif text-2xl">Hair Styling</h3>
-        <p class="text-sm text-gray-500 leading-relaxed px-4">
-          최신 트렌드 컷트부터 퍼스널 컬러 염색까지. 
-          손상 없는 프리미엄 약제만을 사용합니다.
-        </p>
-        <p class="text-gold text-sm font-bold">₩35,000 ~</p>
+  </section>
+  
+  <!-- Programs (Horizontal Scroll or Grid) -->
+  <section id="program" class="py-32 px-6 bg-[#f7f1e3]">
+    <div class="container mx-auto">
+      <div class="flex justify-between items-end mb-16 px-4">
+        <h2 class="text-4xl font-serif text-[#4a4a4a]">Signature Programs</h2>
+        <span class="text-xs text-[#8b7e74] tracking-widest uppercase">Best Selection</span>
       </div>
-      <div class="space-y-4 group cursor-pointer" onclick="toggleModal()">
-        <div class="overflow-hidden rounded-full w-48 h-48 mx-auto mb-6 border-4 border-transparent group-hover:border-gold transition duration-500">
-          <img src="/images/templates/beauty_makeup.png" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
+
+      <div class="grid md:grid-cols-3 gap-8">
+        <!-- Item 1 -->
+        <div class="group cursor-pointer">
+          <div class="h-[450px] overflow-hidden rounded-[2rem] mb-6 relative shadow-lg">
+            <img src="https://images.unsplash.com/photo-1600334089648-b0d9d3028eb2?q=80&w=800" class="w-full h-full object-cover transition duration-1000 group-hover:scale-110">
+            <div class="absolute inset-0 bg-black/10 group-hover:bg-black/20 transition"></div>
+            <div class="absolute bottom-6 left-6 text-white">
+               <p class="font-serif italic text-3xl mb-2">Anti-Aging</p>
+               <p class="text-xs uppercase tracking-widest opacity-80">90 min • 150,000 KRW</p>
+            </div>
+          </div>
+          <div class="px-2">
+            <p class="text-sm text-[#8b7e74] leading-relaxed">고농축 콜라겐 벨벳 마스크와 리프팅 테크닉으로 탄력 있는 피부를 완성합니다.</p>
+          </div>
         </div>
-        <h3 class="font-serif text-2xl">Make Up</h3>
-        <p class="text-sm text-gray-500 leading-relaxed px-4">
-          웨딩, 면접, 데이트 등 특별한 날을 위한 메이크업. 
-          당신의 장점을 자연스럽게 부각시켜 드립니다.
-        </p>
-        <p class="text-gold text-sm font-bold">₩80,000 ~</p>
-      </div>
-      <div class="space-y-4 group cursor-pointer" onclick="toggleModal()">
-        <div class="overflow-hidden rounded-full w-48 h-48 mx-auto mb-6 border-4 border-transparent group-hover:border-gold transition duration-500">
-          <img src="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?q=80&w=500" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
+
+        <!-- Item 2 -->
+        <div class="group cursor-pointer md:-mt-12">
+          <div class="h-[450px] overflow-hidden rounded-[2rem] mb-6 relative shadow-lg">
+            <img src="https://images.unsplash.com/photo-1512290923902-8a9f81dc236c?q=80&w=800" class="w-full h-full object-cover transition duration-1000 group-hover:scale-110">
+            <div class="absolute inset-0 bg-black/10 group-hover:bg-black/20 transition"></div>
+            <div class="absolute bottom-6 left-6 text-white">
+               <p class="font-serif italic text-3xl mb-2">Whitening</p>
+               <p class="text-xs uppercase tracking-widest opacity-80">70 min • 120,000 KRW</p>
+            </div>
+          </div>
+          <div class="px-2">
+            <p class="text-sm text-[#8b7e74] leading-relaxed">비타민 C 이온 토닝 관리로 칙칙한 피부톤을 맑고 투명하게 개선합니다.</p>
+          </div>
         </div>
-        <h3 class="font-serif text-2xl">Spa & Care</h3>
-        <p class="text-sm text-gray-500 leading-relaxed px-4">
-          편안한 휴식과 함께하는 두피 클리닉 및 스킨케어. 
-          지친 몸과 마음에 활력을 불어넣으세요.
-        </p>
-        <p class="text-gold text-sm font-bold">₩50,000 ~</p>
+
+        <!-- Item 3 -->
+        <div class="group cursor-pointer">
+          <div class="h-[450px] overflow-hidden rounded-[2rem] mb-6 relative shadow-lg">
+            <img src="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?q=80&w=800" class="w-full h-full object-cover transition duration-1000 group-hover:scale-110">
+            <div class="absolute inset-0 bg-black/10 group-hover:bg-black/20 transition"></div>
+            <div class="absolute bottom-6 left-6 text-white">
+               <p class="font-serif italic text-3xl mb-2">Wedding Care</p>
+               <p class="text-xs uppercase tracking-widest opacity-80">120 min • 200,000 KRW</p>
+            </div>
+          </div>
+          <div class="px-2">
+            <p class="text-sm text-[#8b7e74] leading-relaxed">가장 아름다운 날을 위한 스페셜 케어. 드레스 라인(승모근/팔뚝) 집중 관리.</p>
+          </div>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- Reservation Modal -->
-  <div id="modal" class="fixed inset-0 bg-black/60 z-[60] hidden flex items-center justify-center p-4">
-    <div class="bg-cream w-full max-w-md p-8 relative shadow-2xl">
-      <button onclick="toggleModal()" class="absolute top-4 right-4 text-2xl hover:text-gold">&times;</button>
-      
-      <div class="text-center mb-8">
-        <h2 class="font-serif text-3xl mb-2">Reservation</h2>
-        <p class="text-xs text-gray-500 tracking-widest uppercase">당신의 아름다움을 예약하세요</p>
-      </div>
+  <!-- Reservation -->
+  <section id="reservation" class="py-32 px-6 bg-white relative overflow-hidden">
+     <div class="absolute left-0 bottom-0 w-64 h-64 bg-[#fde2e2] rounded-full filter blur-3xl opacity-30"></div>
+     
+     <div class="container mx-auto max-w-5xl bg-[#fdfbf7] border border-[#f0eadd] p-12 md:p-20 relative z-10 glass-effect">
+       <div class="grid md:grid-cols-2 gap-16">
+         <div>
+           <h2 class="font-serif text-4xl text-[#4a4a4a] mb-6">Make a Reservation</h2>
+           <p class="text-[#8b7e74] font-light mb-8">
+             프라이빗한 관리를 위해 100% 예약제로 운영됩니다.<br>
+             원하시는 시간을 선택해 주시면 확인 후 연락드리겠습니다.
+           </p>
+           <div class="space-y-2 text-sm text-[#8b7e74]">
+             <p>Mon - Fri : 10:00 - 21:00</p>
+             <p>Sat : 10:00 - 17:00</p>
+             <p>Sun / Holiday : Closed</p>
+           </div>
+         </div>
+         
+         <form class="space-y-6">
+           <input type="text" placeholder="Your Name" class="w-full bg-transparent border-b border-[#d4cfc5] py-3 outline-none focus:border-[#d4a373] transition text-[#594a4e] placeholder-[#a69c95]">
+           <input type="tel" placeholder="Phone Number" class="w-full bg-transparent border-b border-[#d4cfc5] py-3 outline-none focus:border-[#d4a373] transition text-[#594a4e] placeholder-[#a69c95]">
+           <div class="grid grid-cols-2 gap-4">
+              <input type="date" class="w-full bg-transparent border-b border-[#d4cfc5] py-3 outline-none focus:border-[#d4a373] transition text-[#594a4e]">
+              <select class="w-full bg-transparent border-b border-[#d4cfc5] py-3 outline-none focus:border-[#d4a373] transition text-[#594a4e]">
+                <option>Anti-Aging</option>
+                <option>Whitening</option>
+                <option>Wedding Care</option>
+              </select>
+           </div>
+           
+           <button class="bg-[#d4a373] text-white px-10 py-4 rounded-full hover:bg-[#c29365] transition w-full mt-4 text-xs font-bold tracking-widest uppercase shadow-lg">
+             Confirm Request
+           </button>
+         </form>
+       </div>
+     </div>
+  </section>
 
-      <form class="space-y-6" onsubmit="event.preventDefault(); alert('예약이 완료되었습니다.'); toggleModal();">
-        <div class="space-y-2">
-          <label class="text-xs font-bold uppercase tracking-wide">Name</label>
-          <input type="text" class="w-full bg-white border border-gray-200 p-3 focus:border-gold outline-none">
-        </div>
-        <div class="space-y-2">
-          <label class="text-xs font-bold uppercase tracking-wide">Date & Time</label>
-          <input type="datetime-local" class="w-full bg-white border border-gray-200 p-3 focus:border-gold outline-none text-gray-500">
-        </div>
-        <div class="space-y-2">
-          <label class="text-xs font-bold uppercase tracking-wide">Service</label>
-          <select class="w-full bg-white border border-gray-200 p-3 focus:border-gold outline-none">
-            <option>Hair Cut (₩35,000)</option>
-            <option>Dye & Color (₩80,000)</option>
-            <option>Perm (₩100,000)</option>
-            <option>Make Up (₩80,000)</option>
-            <option>Head Spa (₩50,000)</option>
-          </select>
-        </div>
-        
-        <button class="w-full bg-black text-white py-4 text-xs font-bold tracking-widest hover:bg-gold transition uppercase">
-          Confirm Booking
-        </button>
-      </form>
-    </div>
-  </div>
+</div>
 
-  <script>
-    function toggleModal() {
-      const modal = document.getElementById('modal');
-      if(modal.classList.contains('hidden')) {
-        modal.classList.remove('hidden');
-      } else {
-        modal.classList.add('hidden');
-      }
-    }
-  </script>
-</body>
-</html>
+<script>
+  VanillaTilt.init(document.querySelectorAll("[data-tilt]"), {
+    max: 5,
+    speed: 1000,
+    scale: 1.02
+  });
+</script>

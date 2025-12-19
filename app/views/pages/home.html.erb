@@ -12,125 +12,147 @@
       }
       
       .hero-wide-container {
-        max-width: 1920px; /* PC 넓은 폭 확장 */
+        max-width: 1400px;
         margin: 0 auto;
         padding: 0 1.5rem;
       }
 
       .hero-flex-wrapper {
         display: flex;
+        flex-direction: column; /* Mobile: side by side logic revised to stack or center */
         align-items: center;
-        justify-content: space-between; /* 모바일: 좌우 배치 */
-        gap: 1rem;
+        gap: 2rem;
         margin-bottom: 2rem;
         position: relative;
+        text-align: center;
       }
 
-      /* Mobile First Styles */
+      .hero-text-box {
+        z-index: 10;
+        width: 100%;
+      }
+
       .money-side-img {
-        width: 130px; /* 모바일 이미지 확대 (100px -> 130px) */
+        width: clamp(120px, 30vw, 160px);
         height: auto;
-        object-fit: contain;
         animation: float-vertical 3s ease-in-out infinite;
-        filter: drop-shadow(0 10px 15px rgba(0,0,0,0.1));
+        filter: drop-shadow(0 15px 30px rgba(0,0,0,0.1));
         flex-shrink: 0;
       }
-      
-      .hero-flex-wrapper {
-        display: flex;
-        align-items: center;
-        justify-content: space-between; /* 모바일: 텍스트-이미지 양옆 */
-        gap: 1rem;
-        margin-bottom: 2rem;
-        position: relative;
-      }
 
-      /* PC (Desktop) Responsive Styles */
       @media (min-width: 900px) {
         .hero-flex-wrapper {
-          justify-content: space-between; /* 양끝 정렬 사용 */
-          gap: 2rem;
+          flex-direction: row;
+          justify-content: space-between;
+          text-align: left;
+          gap: 3rem;
         }
-        
         .hero-text-box {
-          text-align: center;
-          flex: 0 0 auto; /* 텍스트는 자기 크기만큼만 */
-          z-index: 10;
+          flex: 0 0 60%;
         }
-
-        .hero-title {
-          white-space: nowrap;
-        }
-
         .money-side-img.money-right {
-          width: 280px; /* PC 이미지 크기 */
-        }
-        
-        /* 3단 구조를 위한 가상 요소 스타일 */
-        .pc-spacer {
-          flex: 1; /* 왼쪽 공간 차지 */
+          width: 320px;
         }
         .money-wrapper-right {
-          flex: 1; /* 오른쪽 공간 차지 */
+          flex: 1;
           display: flex;
-          justify-content: flex-end; /* 이미지를 오른쪽 끝으로 */
+          justify-content: flex-end;
         }
       }
 
       /* Stats Grid Responsive Styles */
       .stats-grid {
-        display: flex;
-        flex-direction: column;
-        gap: var(--space-4);
-        margin-top: 3rem;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr); /* Mobile: 2x2 is much cleaner */
+        gap: 0.75rem;
+        margin-top: 2.5rem;
+        width: 100%;
       }
       
-      /* Stat Card Styles */
-      .stat-card {
-        background: rgba(255,255,255,0.1); /* 약간의 배경 추가 */
-        border-radius: 12px;
-        padding: 1.25rem 2rem; /* 패딩 축소 */
-        display: flex;
-        align-items: center; /* 수직 중앙 */
-        justify-content: space-between; /* 모바일: 양끝 정렬 (가로 배치) */
-        min-height: auto; /* 높이 제한 해제 */
-        flex-direction: row; /* 모바일 기본: 가로 배치 (1줄 만들기) */
-      }
-      
-      .stat-number {
-        font-size: 1.2rem;
-        font-weight: 800;
-        color: white; /* 텍스트 잘 보이게 */
-        white-space: nowrap;
-        word-break: keep-all;
-      }
-      .stat-number2 {
-        font-size: 1.19rem;
-        font-weight: 800;
-        color: white; /* 텍스트 잘 보이게 */
-      }
-      
-      .stat-label {
-        font-size: 1rem;
-        font-weight: 500;
-        color: rgba(255,255,255,0.9);
+      @media (min-width: 1024px) {
+        .stats-grid {
+          grid-template-columns: repeat(4, 1fr); /* PC: 4 columns */
+          gap: 1.5rem;
+          margin-top: 4rem;
+        }
       }
 
-      @media (min-width: 768px) {
-        .stats-grid {
-          flex-direction: row; 
-          align-items: stretch;
-        }
-        .stat-card {
-          flex-direction: column; /* PC: 세로 배치 복귀 */
-          justify-content: center;
-          align-items: center;
-          min-height: 120px;
-          flex: 1;
-        }
-        .stat-number { font-size: 2.4rem; margin-bottom: 0.5rem; }
-        .stat-label { font-size: 1.125rem; }
+      /* Stat Card Styles */
+      .stat-card {
+        background: rgba(255, 255, 255, 0.12);
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 16px;
+        padding: 1.25rem 0.5rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
       }
+
+      .stat-card:hover {
+        background: rgba(255, 255, 255, 0.2);
+        transform: translateY(-4px);
+        box-shadow: 0 10px 20px -5px rgba(0, 0, 0, 0.1);
+      }
+
+      .stat-number {
+        font-size: clamp(1.25rem, 5vw, 1.75rem);
+        font-weight: 850;
+        color: white;
+        margin-bottom: 0.25rem;
+        white-space: nowrap;
+        word-break: keep-all;
+        line-height: 1.1;
+        letter-spacing: -0.02em;
+      }
+
+      .stat-label {
+        font-size: clamp(0.75rem, 3.5vw, 0.875rem);
+        font-weight: 500;
+        color: rgba(255,255,255,0.85);
+        letter-spacing: -0.01em;
+      }
+
+      @media (min-width: 1024px) {
+        .stat-card {
+          padding: 2.5rem 1.5rem;
+          min-height: 160px;
+          border-radius: 24px;
+        }
+        .stat-number {
+          font-size: 2.75rem;
+          margin-bottom: 0.75rem;
+        }
+        .stat-label {
+          font-size: 1.125rem;
+        }
+      }
+
+      .hero-cta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+        justify-content: center;
+        margin-top: 2rem;
+      }
+
+      @media (max-width: 480px) {
+        .hero-cta .btn {
+          width: 100%;
+        }
+      }
+
+      /* Grid Global Helper Responsive */
+      @media (max-width: 768px) {
+        .grid-3 {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
     </style>
 
     <div class="hero-wide-container" style="max-width: 100%; padding: 0 2rem;">
@@ -140,11 +162,11 @@
 
         <!-- Center Text -->
         <div class="hero-text-box">
-          <h1 class="hero-title" style="margin-bottom: 1rem; line-height: 1.3; text-align: left;">
+          <h1 class="hero-title" style="margin-bottom: 1.5rem; line-height: 1.2; font-weight: 850; letter-spacing: -0.02em; font-size: clamp(2rem, 10vw, 4.5rem); word-break: keep-all;">
             비싼 홈페이지? NO!<br>
             돈 벌어주는 홈페이지!
           </h1>
-          <p class="hero-subtitle" style="margin-bottom: 0; word-break: keep-all; text-align: left;">
+          <p class="hero-subtitle" style="margin-bottom: 0.5rem; word-break: keep-all; font-size: clamp(1rem, 4.5vw, 1.5rem); opacity: 0.9; line-height: 1.6;">
             구독 요금제로 초기 개발비 부담은 낮추고,<br>주력 사업에 집중하세요!
           </p>
         </div>
@@ -192,8 +214,8 @@
   <div class="container">
     <div class="text-center" style="margin-bottom: 4rem;">
       <span style="color: var(--color-accent); font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; font-size: var(--text-sm);">PREMIUM TEMPLATES</span>
-      <h2 style="font-size: var(--text-5xl); margin-top: var(--space-2); margin-bottom: var(--space-4);">시간과 돈을 벌어주는 디자인 템플릿</h2>
-      <p class="text-gray" style="font-size: var(--text-xl); max-width: 700px; margin: 0 auto;">
+      <h2 style="font-size: clamp(1.75rem, 5vw, 3rem); margin-top: var(--space-2); margin-bottom: var(--space-4); font-weight: 800; word-break: keep-all; line-height: 1.3;">시간과 돈을 벌어주는 디자인 템플릿</h2>
+      <p class="text-gray" style="font-size: clamp(1rem, 4vw, 1.25rem); max-width: 700px; margin: 0 auto; word-break: keep-all; line-height: 1.6;">
         업종별 최적화된 고퀄리티 디자인으로<br>합리적인 구독요금제로 빠르게 사업을 시작하세요.
       </p>
     </div>

@@ -1,164 +1,186 @@
-<!DOCTYPE html>
-<html lang="ko">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>온 (溫) - 따뜻함을 담은 다이닝</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300;500;700&family=Playfair+Display:ital@0;1&display=swap" rel="stylesheet">
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            dark: '#1a1a1a',
-            gold: '#D4AF37',
-            cream: '#f5f5f0',
-          },
-          fontFamily: {
-            serif: ['Playfair Display', 'serif'],
-            kr: ['Noto Serif KR', 'serif'],
-          }
-        }
-      }
-    }
-  </script>
-</head>
-<body class="bg-dark text-cream font-kr font-light">
+<%# Dining Template - 더 테이블 %>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.0/vanilla-tilt.min.js"></script>
 
-  <nav class="fixed w-full z-50 px-6 py-6 flex justify-between items-center mix-blend-difference">
-    <div class="text-2xl font-serif italic text-white z-50">ON Dining</div>
-    <div class="hidden md:flex gap-8 text-sm text-gray-300 z-50">
-      <a href="#menu" class="hover:text-white transition">메뉴</a>
-      <a href="#story" class="hover:text-white transition">이야기</a>
-      <a href="#reservation" class="hover:text-white transition">예약</a>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Noto+Sans+KR:wght@300;400&display=swap');
+  
+  .font-serif { font-family: 'Playfair Display', serif; }
+  .font-sans { font-family: 'Noto Sans KR', sans-serif; }
+  
+  .bg-texture {
+    background-color: #121212;
+    background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23222222' fill-opacity='0.4'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  }
+</style>
+
+<div class="bg-[#121212] text-[#e0e0e0] font-sans selection:bg-orange-500 selection:text-white">
+
+  <!-- Nav -->
+  <nav class="fixed w-full z-50 px-8 py-6 mix-blend-difference">
+    <div class="container mx-auto flex justify-between items-center">
+      <a href="#" class="font-serif text-2xl tracking-[0.2em] font-bold text-white">THE TABLE</a>
+      <div class="hidden md:flex gap-12 text-[10px] font-bold tracking-[0.3em] uppercase text-gray-400">
+        <a href="#about" class="hover:text-white transition">Chef</a>
+        <a href="#menu" class="hover:text-white transition">Menu</a>
+        <a href="#gallery" class="hover:text-white transition">Gallery</a>
+        <a href="#reserve" class="hover:text-white transition">Reserve</a>
+      </div>
     </div>
-    <button onclick="toggleDining()" class="border border-white/30 px-6 py-2 text-xs hover:bg-white hover:text-black transition z-50">
-      RESERVE
-    </button>
   </nav>
 
-  <!-- Hero -->
-  <header class="h-screen flex items-center justify-center relative overflow-hidden">
-    <!-- Background Video Placeholder -->
+  <!-- Hero with Chef Image -->
+  <header class="h-screen relative flex items-center justify-center overflow-hidden">
     <div class="absolute inset-0 z-0">
-      <img src="https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?q=80&w=1920" class="w-full h-full object-cover opacity-40 zoom-effect">
+       <img src="https://images.unsplash.com/photo-1544148103-0773bf10d330?q=80&w=1920" class="w-full h-full object-cover opacity-60 filter brightness-50">
+       <div class="absolute inset-0 bg-gradient-to-t from-[#121212] via-transparent to-[#121212]/50"></div>
     </div>
     
-    <div class="relative z-10 text-center space-y-8 animate-fade-in-up">
-      <div class="border-l border-r border-white/20 px-8 py-2 inline-block">
-        <span class="text-xs tracking-[0.5em] uppercase">Korean Contemporary</span>
-      </div>
-      <h1 class="text-6xl md:text-8xl font-serif italic leading-none">
-        Taste of <br> <span class="text-gold not-italic font-kr font-bold">溫 (ON)</span>
+    <div class="relative z-10 text-center space-y-8 px-4">
+      <p class="font-serif italic text-2xl text-orange-500 mb-4 animate-pulse">Fine Dining Experience</p>
+      <h1 class="text-5xl md:text-8xl font-serif text-white tracking-widest uppercase leading-tight mb-8">
+        Taste of <br> Artistry
       </h1>
-      <p class="text-sm md:text-base text-gray-300 tracking-wider font-kr max-w-lg mx-auto leading-loose">
-        계절의 온기를 담아낸 정성스러운 한 끼.<br>
-        시간이 멈춘 듯한 공간에서 깊은 맛의 여운을 즐기세요.
+      <p class="max-w-lg mx-auto text-gray-400 font-light leading-loose text-sm md:text-base">
+        제철 식재료에 담아낸 셰프의 철학.<br>
+        미각을 깨우는 특별한 미식 여행으로 초대합니다.
       </p>
-    </div>
-
-    <div class="absolute bottom-10 left-1/2 -translate-x-1/2 text-xs tracking-widest text-gold animate-bounce">
-      SCROLL
+      
+      <div class="pt-8 flex flex-col items-center gap-2">
+         <div class="w-[1px] h-20 bg-white/20 mb-4"></div>
+         <span class="text-[10px] tracking-[0.3em] uppercase text-gray-500">Scroll Down</span>
+      </div>
     </div>
   </header>
 
-  <!-- Menu Section -->
-  <section id="menu" class="py-24 px-6 bg-[#161616]">
-    <div class="max-w-4xl mx-auto">
-      <div class="text-center mb-16">
-        <h2 class="font-serif text-4xl mb-4 italic text-gold">Dining Course</h2>
-        <p class="text-gray-500 text-sm">제철 식재료에 따라 구성이 변경될 수 있습니다.</p>
+  <!-- About Chef -->
+  <section id="about" class="py-32 px-6 bg-texture">
+    <div class="container mx-auto grid md:grid-cols-2 gap-16 items-center">
+      <div class="order-2 md:order-1 relative" data-tilt data-tilt-max="3">
+         <div class="absolute top-[-20px] left-[-20px] w-full h-full border border-orange-500/30 -z-0"></div>
+         <img src="https://images.unsplash.com/photo-1577219491135-ce391730fb2c?q=80&w=800" class="w-full grayscale hover:grayscale-0 transition duration-1000 shadow-2xl z-10 relative">
       </div>
-
-      <div class="space-y-12">
-        <!-- Course A -->
-        <div class="group cursor-pointer" onclick="toggleDining()">
-          <div class="flex justify-between items-baseline border-b border-white/10 pb-4 mb-4">
-            <h3 class="text-2xl font-serif italic">Lunch Standard</h3>
-            <span class="text-gold font-bold">₩ 85,000</span>
-          </div>
-          <p class="text-gray-400 text-sm leading-relaxed mb-4">
-            아뮤즈 부쉬 • 제철 생선회 • 트러플 감자 뇨끼 • 한우 채끝 등심 (+2.0) 또는 이베리코 프렌치랙 • 셔벗 • 다과와 차
-          </p>
-          <div class="h-0 group-hover:h-48 overflow-hidden transition-all duration-700">
-            <img src="https://images.unsplash.com/photo-1559339352-11d035aa65de?q=80&w=800" class="w-full h-full object-cover rounded opacity-80">
-          </div>
-        </div>
-
-        <!-- Course B -->
-        <div class="group cursor-pointer" onclick="toggleDining()">
-          <div class="flex justify-between items-baseline border-b border-white/10 pb-4 mb-4">
-            <h3 class="text-2xl font-serif italic">Dinner Signature</h3>
-            <span class="text-gold font-bold">₩ 150,000</span>
-          </div>
-          <p class="text-gray-400 text-sm leading-relaxed mb-4">
-            웰컴 디쉬 • 캐비어와 도미 • 랍스터 비스크 • 전복 리조또 • 한우 안심 스테이크 • 셰프 스페셜 디저트 • 쁘띠 푸르
-          </p>
-          <div class="h-0 group-hover:h-48 overflow-hidden transition-all duration-700">
-             <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?q=80&w=800" class="w-full h-full object-cover rounded opacity-80">
-          </div>
+      <div class="order-1 md:order-2 space-y-6">
+        <span class="text-orange-500 font-serif italic text-xl">Head Chef</span>
+        <h2 class="text-4xl font-serif text-white leading-relaxed">
+          "요리는 접시 위에 그리는<br>가장 맛있는 예술입니다."
+        </h2>
+        <p class="text-gray-400 leading-loose font-light">
+          미슐랭 3스타 레스토랑 출신 수석 셰프가 선보이는 컨템포러리 다이닝.<br>
+          매일 아침 산지에서 공수한 신선한 재료만이<br>
+          우리의 주방에 들어올 수 있습니다.
+        </p>
+        <div class="pt-8">
+           <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e4/Signature_sample.svg/1200px-Signature_sample.svg.png" class="h-12 filter invert opacity-50">
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Reservation Modal -->
-  <div id="dining-modal" class="fixed inset-0 bg-black/90 z-[60] hidden flex items-center justify-center p-4">
-    <div class="bg-[#1f1f1f] border border-white/10 w-full max-w-md p-10 relative">
-      <button onclick="toggleDining()" class="absolute top-4 right-4 text-gray-500 hover:text-white">✕</button>
-      
-      <div class="text-center mb-10">
-        <h2 class="font-serif text-3xl italic text-gold mb-2">Reservation</h2>
-        <p class="text-xs text-gray-500 tracking-widest">소중한 분과의 시간을 준비하겠습니다</p>
+  <!-- Menu Cards -->
+  <section id="menu" class="py-32 px-6 bg-[#0a0a0a]">
+    <div class="container mx-auto">
+      <div class="text-center mb-16">
+         <h2 class="text-4xl font-serif text-white mb-4">Signature Course</h2>
+         <p class="text-[10px] tracking-[0.3em] uppercase text-orange-500">Seasonal Special</p>
       </div>
 
-      <form class="space-y-6" onsubmit="event.preventDefault(); alert('예약 신청이 접수되었습니다. (예약금 안내 문자 발송)'); toggleDining();">
-        <div class="grid grid-cols-2 gap-6">
-          <div class="space-y-2">
-            <label class="text-xs text-gold uppercase tracking-wider">Date</label>
-            <input type="date" class="w-full bg-transparent border-b border-gray-700 text-cream py-2 outline-none focus:border-gold transition text-sm">
-          </div>
-          <div class="space-y-2">
-            <label class="text-xs text-gold uppercase tracking-wider">Guests</label>
-            <select class="w-full bg-transparent border-b border-gray-700 text-cream py-2 outline-none focus:border-gold transition text-sm">
-              <option class="bg-dark">2 People</option>
-              <option class="bg-dark">3 People</option>
-              <option class="bg-dark">4 People</option>
-              <option class="bg-dark">5+ (Room)</option>
-            </select>
-          </div>
-        </div>
-        <div class="space-y-2">
-           <label class="text-xs text-gold uppercase tracking-wider">Name</label>
-           <input type="text" class="w-full bg-transparent border-b border-gray-700 text-cream py-2 outline-none focus:border-gold transition">
-        </div>
-        <div class="space-y-2">
-           <label class="text-xs text-gold uppercase tracking-wider">Contact</label>
-           <input type="tel" placeholder="010-0000-0000" class="w-full bg-transparent border-b border-gray-700 text-cream py-2 outline-none focus:border-gold transition">
-        </div>
-        
-        <button class="w-full bg-gold text-dark py-4 font-serif italic text-lg hover:bg-white transition mt-4">
-          Book Table
-        </button>
-      </form>
+      <div class="grid md:grid-cols-3 gap-12">
+         <!-- Course A -->
+         <div class="group cursor-pointer">
+            <div class="bg-[#1a1a1a] p-10 text-center border border-white/5 hover:border-orange-500/50 transition duration-500 relative overflow-hidden">
+               <div class="w-32 h-32 rounded-full overflow-hidden mx-auto mb-8 border-2 border-white/10 group-hover:border-orange-500 transition">
+                  <img src="https://images.unsplash.com/photo-1502998070258-dc1338445ac2?q=80&w=400" class="w-full h-full object-cover">
+               </div>
+               <h3 class="text-2xl font-serif text-white mb-2">Lunch Course</h3>
+               <p class="text-gray-500 text-xs mb-6 uppercase tracking-widest">12:00 - 14:30</p>
+               <ul class="text-sm text-gray-400 space-y-3 mb-8 font-light">
+                  <li>Amuse-Bouche</li>
+                  <li>Seasonal Salad</li>
+                  <li>Today's Pasta or Risotto</li>
+                  <li>Daily Dessert & Coffee</li>
+               </ul>
+               <span class="text-xl font-serif text-orange-500">₩ 65,000</span>
+            </div>
+         </div>
+
+         <!-- Course B -->
+         <div class="group cursor-pointer transform md:-translate-y-8">
+            <div class="bg-[#1a1a1a] p-10 text-center border border-white/5 hover:border-orange-500/50 transition duration-500 relative overflow-hidden shadow-2xl">
+               <div class="absolute top-0 right-0 bg-orange-500 text-black text-[10px] font-bold px-3 py-1 uppercase">Best</div>
+               <div class="w-32 h-32 rounded-full overflow-hidden mx-auto mb-8 border-2 border-white/10 group-hover:border-orange-500 transition">
+                  <img src="https://images.unsplash.com/photo-1544025162-d76690b67f11?q=80&w=400" class="w-full h-full object-cover">
+               </div>
+               <h3 class="text-2xl font-serif text-white mb-2">Dinner Course A</h3>
+               <p class="text-gray-500 text-xs mb-6 uppercase tracking-widest">17:30 - 20:00</p>
+               <ul class="text-sm text-gray-400 space-y-3 mb-8 font-light">
+                  <li>Welcome Dish</li>
+                  <li>Appetizer Platter</li>
+                  <li>USDA Prime Steak (150g)</li>
+                  <li>Special Dessert & Tea</li>
+               </ul>
+               <span class="text-xl font-serif text-orange-500">₩ 120,000</span>
+            </div>
+         </div>
+
+         <!-- Course C -->
+         <div class="group cursor-pointer">
+            <div class="bg-[#1a1a1a] p-10 text-center border border-white/5 hover:border-orange-500/50 transition duration-500 relative overflow-hidden">
+               <div class="w-32 h-32 rounded-full overflow-hidden mx-auto mb-8 border-2 border-white/10 group-hover:border-orange-500 transition">
+                  <img src="https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?q=80&w=400" class="w-full h-full object-cover">
+               </div>
+               <h3 class="text-2xl font-serif text-white mb-2">Chef's Tasting</h3>
+               <p class="text-gray-500 text-xs mb-6 uppercase tracking-widest">Reservation Only</p>
+               <ul class="text-sm text-gray-400 space-y-3 mb-8 font-light">
+                  <li>Omakase Style 9 Courses</li>
+                  <li>Wine Pairing (3 Glass)</li>
+                  <li>Premium Korean Beef</li>
+                  <li>Anniversary Plate</li>
+               </ul>
+               <span class="text-xl font-serif text-orange-500">₩ 250,000</span>
+            </div>
+         </div>
+      </div>
     </div>
-  </div>
+  </section>
 
-  <style>
-    .zoom-effect { animation: zoom 20s infinite alternate; }
-    @keyframes zoom { from { transform: scale(1); } to { transform: scale(1.1); } }
-  </style>
+  <!-- Reservation (Dark Form) -->
+  <section id="reserve" class="py-32 px-6 bg-texture border-t border-white/10">
+    <div class="container mx-auto max-w-2xl text-center">
+       <span class="text-orange-500 text-xs font-bold tracking-widest uppercase mb-4 block">Reservation</span>
+       <h2 class="text-4xl font-serif text-white mb-12">Book Your Table</h2>
+       
+       <form class="space-y-8">
+          <div class="grid grid-cols-2 gap-8">
+             <div class="text-left border-b border-white/20 pb-2">
+                <input type="date" class="w-full bg-transparent outline-none text-white text-lg placeholder-gray-600">
+             </div>
+             <div class="text-left border-b border-white/20 pb-2">
+                 <select class="w-full bg-transparent outline-none text-white text-lg bg-[#121212]">
+                   <option>18:00</option>
+                   <option>19:00</option>
+                 </select>
+             </div>
+          </div>
+          <div class="grid grid-cols-2 gap-8">
+             <div class="text-left border-b border-white/20 pb-2">
+                <input type="text" placeholder="Name" class="w-full bg-transparent outline-none text-white text-lg placeholder-gray-600">
+             </div>
+             <div class="text-left border-b border-white/20 pb-2">
+                 <input type="tel" placeholder="Phone" class="w-full bg-transparent outline-none text-white text-lg placeholder-gray-600">
+             </div>
+          </div>
+          <button class="w-full py-4 bg-orange-600 text-black font-serif font-bold uppercase tracking-widest hover:bg-white transition duration-300 mt-8">Confirm Reservation</button>
+       </form>
+    </div>
+  </section>
 
-  <script>
-    function toggleDining() {
-      const modal = document.getElementById('dining-modal');
-      if(modal.classList.contains('hidden')) {
-        modal.classList.remove('hidden');
-      } else {
-        modal.classList.add('hidden');
-      }
-    }
-  </script>
-</body>
-</html>
+</div>
+
+<script>
+  VanillaTilt.init(document.querySelectorAll("[data-tilt]"), {
+    max: 5,
+    speed: 400,
+    glare: true,
+    "max-glare": 0.2,
+  });
+</script>

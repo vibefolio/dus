@@ -1,204 +1,202 @@
-<!DOCTYPE html>
-<html lang="ko">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>샐러드 그린 - 신선함을 담다</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Noto+Sans+KR:wght@300;400;700&display=swap" rel="stylesheet">
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            leaf: '#4ADE80',
-            carrot: '#FB923C',
-            offwhite: '#F9FAFB',
-          },
-          fontFamily: {
-            display: ['DM Sans', 'sans-serif'],
-            sans: ['Noto Sans KR', 'sans-serif'],
-          }
-        }
-      }
-    }
-  </script>
-</head>
-<body class="bg-offwhite text-gray-800 font-sans">
+<%# Salad Template - 그린스 앤 그레인 (샐러드/포케) %>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.0/vanilla-tilt.min.js"></script>
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&family=Noto+Sans+KR:wght@300;400;500;700&display=swap');
+  
+  .font-display { font-family: 'Quicksand', sans-serif; }
+  .font-sans { font-family: 'Noto Sans KR', sans-serif; }
+  
+  .bg-leaf {
+    background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 30c0-5 5-10 10-10s10 5 10 10-5 10-10 10-10-5-10-10zm-10 10c0-5 5-10 10-10s10 5 10 10-5 10-10 10-10-5-10-10z' fill='%2310b981' fill-opacity='0.1' fill-rule='evenodd'/%3E%3C/svg%3E");
+  }
+</style>
+
+<div class="bg-[#fcfdfc] text-slate-800 font-display selection:bg-green-200 selection:text-green-900">
 
   <!-- Nav -->
-  <nav class="sticky top-0 z-50 px-6 py-4 bg-white/80 backdrop-blur-md flex justify-between items-center shadow-sm">
-    <div class="flex items-center gap-2 font-display font-bold text-2xl tracking-tight text-gray-900">
-      <div class="w-8 h-8 bg-leaf rounded-full flex items-center justify-center text-white text-sm">🥗</div>
-      SaladGreen
+  <nav class="fixed w-full z-50 px-6 py-4 bg-white/90 backdrop-blur-md shadow-sm border-b border-green-50">
+    <div class="container mx-auto flex justify-between items-center">
+      <div class="flex items-center gap-2">
+         <span class="text-3xl">🥗</span>
+         <span class="font-bold text-xl text-green-700 tracking-tight">Greens & Grains</span>
+      </div>
+      
+      <div class="hidden md:flex gap-8 font-bold text-slate-500 text-sm uppercase tracking-wide">
+        <a href="#menu" class="hover:text-green-600 transition">Menu</a>
+        <a href="#custom" class="hover:text-green-600 transition">Custom Bowl</a>
+        <a href="#subscription" class="hover:text-green-600 transition">Subscription</a>
+        <a href="#locations" class="hover:text-green-600 transition">Locations</a>
+      </div>
+      
+      <button class="bg-green-600 text-white px-6 py-2 rounded-full font-bold text-sm hover:bg-green-700 transition shadow-lg shadow-green-200">
+        Order Pickup
+      </button>
     </div>
-    <div class="hidden md:flex gap-8 text-sm font-bold text-gray-400">
-      <a href="#menu" class="hover:text-leaf transition">메뉴 보기</a>
-      <a href="#custom" class="hover:text-leaf transition">나만의 샐러드</a>
-      <a href="#delivery" class="hover:text-leaf transition">정기 배송</a>
-    </div>
-    <button onclick="toggleSalad()" class="bg-gray-900 text-white px-5 py-2 rounded-full font-bold text-sm hover:bg-leaf transition shadow-lg shadow-green-200">
-      주문하기
-    </button>
   </nav>
 
   <!-- Hero -->
-  <header class="py-12 md:py-24 px-6 container mx-auto">
-    <div class="bg-white rounded-[3rem] p-8 md:p-16 shadow-xl grid md:grid-cols-2 gap-12 items-center relative overflow-hidden">
-      <div class="absolute top-0 right-0 w-64 h-64 bg-yellow-100 rounded-full blur-3xl -z-10 transform translate-x-1/2 -translate-y-1/2"></div>
-      
-      <div class="space-y-6">
-        <span class="inline-block bg-orange-100 text-carrot px-3 py-1 rounded-lg text-xs font-bold uppercase tracking-wider">Fresh & Organic</span>
-        <h1 class="text-5xl md:text-7xl font-display font-bold leading-tight text-gray-900">
-          Eat Clean, <br> <span class="text-leaf">Live Green.</span>
-        </h1>
-        <p class="text-gray-500 text-lg leading-relaxed max-w-md">
-          농장에서 식탁까지, 가장 신선한 재료로 채우는 건강한 한 끼. 
-          오늘 수확한 채소로 만든 샐러드를 만나보세요.
-        </p>
-        <div class="flex gap-4 pt-4">
-          <button onclick="toggleSalad()" class="bg-leaf text-white px-8 py-4 rounded-2xl font-bold hover:bg-green-500 transition shadow-lg shadow-green-200 text-lg">
-            바로 주문하기
-          </button>
-          <button class="px-8 py-4 rounded-2xl font-bold text-gray-500 hover:bg-gray-100 transition">
-            구독 알아보기
-          </button>
-        </div>
-        
-        <div class="pt-8 flex items-center gap-4">
-          <div class="flex -space-x-3">
-             <div class="w-10 h-10 rounded-full border-2 border-white bg-gray-200"></div>
-             <div class="w-10 h-10 rounded-full border-2 border-white bg-gray-300"></div>
-             <div class="w-10 h-10 rounded-full border-2 border-white bg-gray-400"></div>
+  <header class="pt-32 pb-20 px-6 relative overflow-hidden bg-gradient-to-br from-green-50 to-orange-50">
+    <!-- Decorative Circle -->
+    <div class="absolute top-0 right-0 w-[600px] h-[600px] bg-green-200 rounded-full opacity-20 blur-3xl transform translate-x-1/3 -translate-y-1/3"></div>
+    
+    <div class="container mx-auto grid md:grid-cols-2 gap-12 items-center relative z-10">
+       <div class="space-y-6">
+          <span class="text-orange-500 font-bold tracking-widest text-xs uppercase bg-white px-3 py-1 rounded-full shadow-sm border border-orange-100 inline-block mb-2">Eat Fresh, Live Healthy</span>
+          <h1 class="text-5xl md:text-7xl font-bold leading-tight text-slate-900">
+             Freshness <br> in every <span class="text-green-600">Bowl.</span>
+          </h1>
+          <p class="text-slate-600 text-lg font-medium leading-relaxed max-w-md">
+             농장에서 갓 수확한 신선한 채소와 건강한 곡물.<br>
+             매일 아침 정성스럽게 준비하는 당신을 위한 한 끼.
+          </p>
+          <div class="flex gap-4 pt-4">
+             <button class="bg-slate-900 text-white px-8 py-3 rounded-full font-bold shadow-xl hover:translate-y-1 transition">View Menu</button>
+             <button class="bg-white text-slate-900 border border-slate-200 px-8 py-3 rounded-full font-bold hover:border-green-500 hover:text-green-600 transition">How it works</button>
           </div>
-          <div class="text-sm font-bold text-gray-400">
-            <span class="text-gray-900">5,000+</span> 명이 구독 중입니다
+          
+          <div class="flex items-center gap-4 pt-8">
+             <div class="flex -space-x-3">
+                <div class="w-10 h-10 rounded-full bg-slate-200 border-2 border-white"></div>
+                <div class="w-10 h-10 rounded-full bg-slate-300 border-2 border-white"></div>
+                <div class="w-10 h-10 rounded-full bg-slate-400 border-2 border-white"></div>
+             </div>
+             <p class="text-sm font-bold text-slate-500">
+                <span class="text-green-600">4.9 ★</span> from 2,000+ reviews
+             </p>
           </div>
-        </div>
-      </div>
-      
-      <div class="relative">
-        <img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?q=80&w=800" class="w-full rounded-[2.5rem] shadow-2xl rotate-2 hover:-rotate-1 transition duration-500 object-cover h-[500px]">
-        <!-- Floating Badge -->
-        <div class="absolute bottom-8 left-8 bg-white p-4 rounded-2xl shadow-lg flex items-center gap-3 animate-bounce">
-          <span class="text-2xl">🥑</span>
-          <div>
-            <div class="text-xs text-gray-400 font-bold uppercase">Super Food</div>
-            <div class="font-display font-bold text-gray-900">Avocado Topping</div>
+       </div>
+       
+       <div class="relative flex justify-center items-center" data-tilt>
+          <div class="absolute inset-0 bg-green-500 rounded-full opacity-10 blur-2xl transform scale-90"></div>
+          <img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?q=80&w=800" class="w-[80%] md:w-full object-contain relative z-10 drop-shadow-2xl hover:scale-105 transition duration-500">
+          
+          <!-- Floating Badges -->
+          <div class="absolute top-10 right-10 bg-white px-4 py-2 rounded-xl shadow-lg border border-green-50 animate-bounce">
+             <span class="text-2xl">🥑</span> <span class="font-bold text-sm">Fresh Avocado</span>
           </div>
-        </div>
-      </div>
+          <div class="absolute bottom-10 left-10 bg-white px-4 py-2 rounded-xl shadow-lg border border-green-50 animate-bounce delay-150">
+             <span class="text-2xl">🥗</span> <span class="font-bold text-sm">Organic Kale</span>
+          </div>
+       </div>
     </div>
   </header>
 
-  <!-- Menu Horizontal Scroll -->
-  <section id="menu" class="py-12 overflow-x-hidden">
-    <div class="container mx-auto px-6 mb-8 flex justify-between items-end">
-      <h2 class="text-3xl font-display font-bold">인기 메뉴</h2>
-      <div class="flex gap-2">
-         <button class="w-10 h-10 rounded-full border border-gray-200 flex items-center justify-center hover:bg-gray-100">&larr;</button>
-         <button class="w-10 h-10 rounded-full border border-gray-200 flex items-center justify-center hover:bg-gray-100">&rarr;</button>
-      </div>
-    </div>
-    
-    <div class="flex gap-6 px-6 overflow-x-auto pb-12 snap-x no-scrollbar">
-      <!-- Card 1 -->
-      <div class="min-w-[300px] md:min-w-[350px] bg-white p-4 rounded-[2rem] shadow-sm hover:shadow-xl transition group snap-center cursor-pointer" onclick="toggleSalad()">
-        <div class="h-48 rounded-[1.5rem] overflow-hidden mb-4 relative">
-          <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?q=80&w=600" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
-          <div class="absolute top-3 right-3 bg-white px-3 py-1 rounded-full text-xs font-bold shadow">450 kcal</div>
-        </div>
-        <div class="px-2 pb-2">
-          <h3 class="text-xl font-bold mb-1">연어 아보카도 볼</h3>
-          <p class="text-sm text-gray-400 mb-4">훈제 연어, 아보카도, 렌틸콩, 레몬 드레싱</p>
-          <div class="flex justify-between items-center">
-            <span class="text-lg font-display font-bold text-leaf">₩ 12,900</span>
-            <button class="bg-gray-100 text-gray-900 w-10 h-10 rounded-full font-bold hover:bg-leaf hover:text-white transition">+</button>
-          </div>
-        </div>
-      </div>
-       <!-- Card 2 -->
-      <div class="min-w-[300px] md:min-w-[350px] bg-white p-4 rounded-[2rem] shadow-sm hover:shadow-xl transition group snap-center cursor-pointer" onclick="toggleSalad()">
-        <div class="h-48 rounded-[1.5rem] overflow-hidden mb-4 relative">
-          <img src="https://images.unsplash.com/photo-1540420773420-3366772f4999?q=80&w=600" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
-          <div class="absolute top-3 right-3 bg-white px-3 py-1 rounded-full text-xs font-bold shadow">380 kcal</div>
-        </div>
-        <div class="px-2 pb-2">
-          <h3 class="text-xl font-bold mb-1">그릴드 치킨 시저</h3>
-          <p class="text-sm text-gray-400 mb-4">수비드 닭가슴살, 로메인, 크루통, 시저 드레싱</p>
-          <div class="flex justify-between items-center">
-            <span class="text-lg font-display font-bold text-leaf">₩ 10,900</span>
-            <button class="bg-gray-100 text-gray-900 w-10 h-10 rounded-full font-bold hover:bg-leaf hover:text-white transition">+</button>
-          </div>
-        </div>
-      </div>
-       <!-- Card 3 -->
-      <div class="min-w-[300px] md:min-w-[350px] bg-white p-4 rounded-[2rem] shadow-sm hover:shadow-xl transition group snap-center cursor-pointer" onclick="toggleSalad()">
-        <div class="h-48 rounded-[1.5rem] overflow-hidden mb-4 relative">
-          <img src="https://images.unsplash.com/photo-1623428187969-5da2dcea5ebf?q=80&w=600" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
-          <div class="absolute top-3 right-3 bg-white px-3 py-1 rounded-full text-xs font-bold shadow">320 kcal</div>
-        </div>
-        <div class="px-2 pb-2">
-          <h3 class="text-xl font-bold mb-1">머쉬룸 웜 볼</h3>
-          <p class="text-sm text-gray-400 mb-4">구운 버섯, 현미밥, 두부, 올리브 오일</p>
-          <div class="flex justify-between items-center">
-            <span class="text-lg font-display font-bold text-leaf">₩ 11,500</span>
-            <button class="bg-gray-100 text-gray-900 w-10 h-10 rounded-full font-bold hover:bg-leaf hover:text-white transition">+</button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Slide-up Modal -->
-  <div id="salad-modal" class="fixed inset-0 bg-black/50 z-[60] hidden flex items-end sm:items-center justify-center transition-all">
-    <div class="bg-white w-full max-w-lg rounded-t-[2rem] sm:rounded-[2rem] p-8 shadow-2xl transform transition-transform duration-300">
-      <div class="flex justify-between items-center mb-8">
-        <div>
-          <h2 class="text-2xl font-bold font-display">주문하기</h2>
-          <p class="text-gray-400 text-sm">신선함을 배달해 드려요</p>
-        </div>
-        <button onclick="toggleSalad()" class="bg-gray-100 w-10 h-10 rounded-full font-bold text-gray-500 hover:bg-gray-200">&times;</button>
-      </div>
-      
-      <form class="space-y-6" onsubmit="event.preventDefault(); alert('주문완료! 건강한 한 끼 되세요. 🥗'); toggleSalad();">
-        <div class="space-y-4">
-          <label class="block font-bold text-sm text-gray-500 uppercase">베이스 선택</label>
-          <div class="grid grid-cols-3 gap-2">
-            <button type="button" class="border-2 border-leaf bg-green-50 text-leaf font-bold py-3 rounded-xl text-sm">채소 믹스</button>
-            <button type="button" class="border-2 border-gray-100 text-gray-400 font-bold py-3 rounded-xl text-sm hover:border-leaf hover:text-leaf">현미밥</button>
-            <button type="button" class="border-2 border-gray-100 text-gray-400 font-bold py-3 rounded-xl text-sm hover:border-leaf hover:text-leaf">메밀면</button>
-          </div>
+  <!-- Popular Menu -->
+  <section id="menu" class="py-24 px-6 bg-leaf">
+     <div class="container mx-auto">
+        <div class="text-center mb-16">
+           <h2 class="text-4xl font-bold mb-4">Popular Bowls</h2>
+           <div class="flex justify-center gap-4 text-sm font-bold">
+              <button class="bg-green-600 text-white px-4 py-1 rounded-full shadow-md">All</button>
+              <button class="bg-white text-slate-500 px-4 py-1 rounded-full hover:bg-green-50 transition">Salad</button>
+              <button class="bg-white text-slate-500 px-4 py-1 rounded-full hover:bg-green-50 transition">Poke</button>
+              <button class="bg-white text-slate-500 px-4 py-1 rounded-full hover:bg-green-50 transition">Warm Bowl</button>
+           </div>
         </div>
         
-        <div class="space-y-2">
-           <label class="block font-bold text-sm text-gray-500 uppercase">토핑 추가</label>
-           <select class="w-full bg-gray-50 border-none p-4 rounded-xl font-bold text-gray-700 outline-none focus:ring-2 focus:ring-leaf/50">
-             <option>아보카도 반 개 (+2,000원)</option>
-             <option>닭가슴살 100g (+2,500원)</option>
-             <option>연어 80g (+4,000원)</option>
-             <option>선택 안 함</option>
-           </select>
+        <div class="grid md:grid-cols-3 gap-8">
+           <!-- Item 1 -->
+           <div class="bg-white rounded-3xl p-6 shadow-sm hover:shadow-xl transition border border-slate-100 group cursor-pointer relative overflow-hidden">
+              <div class="absolute top-0 right-0 bg-orange-400 text-white text-xs font-bold px-3 py-1 rounded-bl-xl z-20">BEST</div>
+              <div class="h-48 flex items-center justify-center mb-6 relative">
+                 <div class="absolute w-40 h-40 bg-green-100 rounded-full opacity-50 blur-xl"></div>
+                 <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?q=80&w=400" class="w-48 h-48 object-cover rounded-full shadow-lg group-hover:scale-110 transition duration-500 relative z-10">
+              </div>
+              <h3 class="text-xl font-bold mb-2">Salmon Avocado Poke</h3>
+              <p class="text-sm text-slate-500 mb-4 line-clamp-2">Fresh salmon, avocado, cucumber, edamame, seaweed salad, brown rice with sesame ginger dressing.</p>
+              <div class="flex justify-between items-center">
+                 <span class="text-lg font-bold text-green-700">₩ 12,900</span>
+                 <button class="w-8 h-8 rounded-full bg-slate-100 text-slate-600 flex items-center justify-center hover:bg-green-600 hover:text-white transition font-bold">+</button>
+              </div>
+           </div>
+           
+           <!-- Item 2 -->
+           <div class="bg-white rounded-3xl p-6 shadow-sm hover:shadow-xl transition border border-slate-100 group cursor-pointer">
+              <div class="h-48 flex items-center justify-center mb-6 relative">
+                 <div class="absolute w-40 h-40 bg-red-100 rounded-full opacity-50 blur-xl"></div>
+                 <img src="https://images.unsplash.com/photo-1623428187969-5da2dcea5ebf?q=80&w=400" class="w-48 h-48 object-cover rounded-full shadow-lg group-hover:scale-110 transition duration-500 relative z-10">
+              </div>
+              <h3 class="text-xl font-bold mb-2">Grilled Chicken Caesar</h3>
+              <p class="text-sm text-slate-500 mb-4 line-clamp-2">Grilled chicken breast, romaine, parmesan crisps, cherry tomatoes, croutons with yogurt caesar dressing.</p>
+              <div class="flex justify-between items-center">
+                 <span class="text-lg font-bold text-green-700">₩ 10,900</span>
+                 <button class="w-8 h-8 rounded-full bg-slate-100 text-slate-600 flex items-center justify-center hover:bg-green-600 hover:text-white transition font-bold">+</button>
+              </div>
+           </div>
+           
+           <!-- Item 3 -->
+           <div class="bg-white rounded-3xl p-6 shadow-sm hover:shadow-xl transition border border-slate-100 group cursor-pointer">
+              <div class="h-48 flex items-center justify-center mb-6 relative">
+                 <div class="absolute w-40 h-40 bg-yellow-100 rounded-full opacity-50 blur-xl"></div>
+                 <img src="https://images.unsplash.com/photo-1540420773420-3366772f4999?q=80&w=400" class="w-48 h-48 object-cover rounded-full shadow-lg group-hover:scale-110 transition duration-500 relative z-10">
+              </div>
+              <h3 class="text-xl font-bold mb-2">Mushroom Quinoa Bowl</h3>
+              <p class="text-sm text-slate-500 mb-4 line-clamp-2">Roasted mushrooms, quinoa, chickpeas, roasted sweet potato, kale with balsamic vinaigrette.</p>
+              <div class="flex justify-between items-center">
+                 <span class="text-lg font-bold text-green-700">₩ 11,500</span>
+                 <button class="w-8 h-8 rounded-full bg-slate-100 text-slate-600 flex items-center justify-center hover:bg-green-600 hover:text-white transition font-bold">+</button>
+              </div>
+           </div>
         </div>
+     </div>
+  </section>
 
-        <button class="w-full bg-gray-900 text-white py-5 rounded-2xl font-bold text-lg hover:bg-leaf transition shadow-lg mt-4">
-          장바구니 담기
-        </button>
-      </form>
-    </div>
-  </div>
+  <!-- Custom Bowl Step -->
+  <section id="custom" class="py-24 px-6 bg-slate-900 text-white overflow-hidden relative">
+     <div class="container mx-auto relative z-10">
+        <div class="grid md:grid-cols-2 gap-16 items-center">
+           <div>
+              <span class="text-green-400 font-bold tracking-widest uppercase text-xs mb-2 block">Make It Yours</span>
+              <h2 class="text-4xl md:text-5xl font-bold mb-8">Build Your Own Bowl</h2>
+              
+              <div class="space-y-8">
+                 <div class="flex gap-4">
+                    <div class="w-12 h-12 rounded-full bg-slate-800 flex items-center justify-center font-bold text-green-400 border border-slate-700">1</div>
+                    <div>
+                       <h4 class="font-bold text-lg mb-1">Choose Base</h4>
+                       <p class="text-slate-400 text-sm">Mixed Greens, Brown Rice, Quinoa, Soba Noodles</p>
+                    </div>
+                 </div>
+                 <div class="flex gap-4">
+                    <div class="w-12 h-12 rounded-full bg-slate-800 flex items-center justify-center font-bold text-green-400 border border-slate-700">2</div>
+                    <div>
+                       <h4 class="font-bold text-lg mb-1">Add Proteins</h4>
+                       <p class="text-slate-400 text-sm">Salmon, Tuna, Chicken, Tofu, Shrimp, Egg</p>
+                    </div>
+                 </div>
+                 <div class="flex gap-4">
+                    <div class="w-12 h-12 rounded-full bg-slate-800 flex items-center justify-center font-bold text-green-400 border border-slate-700">3</div>
+                    <div>
+                       <h4 class="font-bold text-lg mb-1">Pick Toppings</h4>
+                       <p class="text-slate-400 text-sm">Corn, Tomato, Cucumber, Onion, Nuts, Seeds</p>
+                    </div>
+                 </div>
+                 <div class="flex gap-4">
+                    <div class="w-12 h-12 rounded-full bg-slate-800 flex items-center justify-center font-bold text-green-400 border border-slate-700">4</div>
+                    <div>
+                       <h4 class="font-bold text-lg mb-1">Dress It Up</h4>
+                       <p class="text-slate-400 text-sm">Spicy Mayo, Sesame Ginger, Balsamic, Lemon Pesto</p>
+                    </div>
+                 </div>
+              </div>
+              
+              <button class="mt-12 bg-green-500 text-white px-8 py-3 rounded-full font-bold hover:bg-green-600 transition shadow-lg shadow-green-500/30">Start Building</button>
+           </div>
+           
+           <div class="relative h-[500px] flex items-center justify-center">
+               <!-- Mockup of ingredients flying into bowl -->
+               <img src="https://images.unsplash.com/photo-1543353071-1d58f9a60738?q=80&w=600" class="rounded-2xl shadow-2xl skew-y-6 hover:skew-y-0 transition duration-700 border-4 border-slate-800/50">
+           </div>
+        </div>
+     </div>
+  </section>
 
-  <script>
-    function toggleSalad() {
-      const modal = document.getElementById('salad-modal');
-      if(modal.classList.contains('hidden')) {
-        modal.classList.remove('hidden');
-        document.body.style.overflow = 'hidden';
-      } else {
-        modal.classList.add('hidden');
-        document.body.style.overflow = '';
-      }
-    }
-  </script>
-</body>
-</html>
+</div>
+
+<script>
+  VanillaTilt.init(document.querySelectorAll("[data-tilt]"), {
+    max: 10,
+    speed: 400,
+  });
+</script>
