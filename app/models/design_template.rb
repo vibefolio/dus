@@ -4,26 +4,14 @@ class DesignTemplate < ApplicationRecord
 
   validates :title, presence: true
 
-  # PC 대표 이미지 URL 반환 (우선순위: 업로드된 파일 > image_url > 기본 이미지)
+  # PC 대표 이미지 URL 반환 (순환 참조 방지를 위해 ActiveStorage Helper 제거)
   def pc_thumbnail_url
-    if pc_image.attached?
-      Rails.application.routes.url_helpers.rails_blob_path(pc_image, only_path: true)
-    elsif image_url.present?
-      image_url
-    else
-      '/images/templates/portfolio_gallery.png'
-    end
+    image_url.presence || '/images/templates/portfolio_gallery.png'
   end
 
-  # 모바일 대표 이미지 URL 반환 (우선순위: 업로드된 파일 > mobile_image_url > PC 이미지)
+  # 모바일 대표 이미지 URL 반환
   def mobile_thumbnail_url
-    if mobile_image.attached?
-      Rails.application.routes.url_helpers.rails_blob_path(mobile_image, only_path: true)
-    elsif mobile_image_url.present?
-      mobile_image_url
-    else
-      pc_thumbnail_url # 모바일 이미지가 없으면 PC 이미지 사용
-    end
+    mobile_image_url.presence || pc_thumbnail_url
   end
 
   # 현재 적용된 PC 이미지 소스 타입 반환
