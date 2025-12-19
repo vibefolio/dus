@@ -1,109 +1,85 @@
 <%# Nail Template - 네온 네일 %>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.0/vanilla-tilt.min.js"></script>
 
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Righteous&family=Noto+Sans+KR:wght@300;400;700&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;700;900&display=swap');
   
-  .font-display { font-family: 'Righteous', cursive; }
   .font-sans { font-family: 'Noto Sans KR', sans-serif; }
   
-  .neon-text {
-    text-shadow: 
-      0 0 5px #fff,
-      0 0 10px #fff,
-      0 0 20px #ff00de,
-      0 0 30px #ff00de,
-      0 0 40px #ff00de;
-  }
-  
-  .grid-gallery {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-    gap: 1rem;
-  }
-  .grid-gallery img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border-radius: 1rem;
-    transition: transform 0.3s;
-  }
-  .grid-gallery img:hover {
-    transform: scale(1.05);
-    z-index: 10;
+  .neon-glow {
+    text-shadow: 0 0 10px rgba(217, 70, 239, 0.5);
   }
 </style>
 
 <div class="bg-black text-white font-sans selection:bg-fuchsia-500 selection:text-white">
 
   <!-- Nav -->
-  <nav class="fixed w-full z-50 px-6 py-4 bg-black/80 backdrop-blur border-b border-fuchsia-500/30">
+  <nav class="fixed w-full z-50 px-6 py-4 bg-black/90 backdrop-blur-sm border-b border-fuchsia-500/30">
     <div class="container mx-auto flex justify-between items-center">
-      <div class="font-display text-2xl text-fuchsia-500 tracking-widest">NEON NAIL</div>
-      <div class="hidden md:flex gap-8 text-sm font-bold uppercase tracking-widest">
-        <a href="#art" class="hover:text-fuchsia-400 transition">Art</a>
-        <a href="#price" class="hover:text-fuchsia-400 transition">Price</a>
-        <a href="#booking" class="hover:text-fuchsia-400 transition">Booking</a>
+      <div class="text-xl font-black text-fuchsia-400 tracking-wide">네온 네일</div>
+      <div class="hidden md:flex gap-8 text-sm font-bold">
+        <a href="#art" class="hover:text-fuchsia-400 transition">아트</a>
+        <a href="#price" class="hover:text-fuchsia-400 transition">가격</a>
+        <a href="#booking" class="hover:text-fuchsia-400 transition">예약</a>
       </div>
-      <a href="#booking" class="w-10 h-10 rounded-full border border-fuchsia-500 flex items-center justify-center text-fuchsia-500 hover:bg-fuchsia-500 hover:text-white transition shadow-[0_0_10px_#d946ef]">N</a>
+      <a href="#booking" class="w-9 h-9 rounded-full border border-fuchsia-500 flex items-center justify-center text-fuchsia-400 hover:bg-fuchsia-500 hover:text-white transition text-sm font-bold">N</a>
     </div>
   </nav>
 
   <!-- Hero -->
-  <header class="h-screen flex items-center justify-center relative overflow-hidden">
+  <header class="min-h-screen flex items-center justify-center relative overflow-hidden pt-16">
     <div class="absolute inset-0 z-0 opacity-40">
-       <img src="https://images.unsplash.com/photo-1604654894610-df63bc536371?q=80&w=1920" class="w-full h-full object-cover grayscale mix-blend-screen">
+       <img src="https://images.unsplash.com/photo-1604654894610-df63bc536371?q=80&w=1920" alt="네일 아트" class="w-full h-full object-cover">
        <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black"></div>
     </div>
     
-    <div class="relative z-10 text-center px-4">
-      <h1 class="text-6xl md:text-9xl font-display mb-4 neon-text" data-tilt>
-        COLOR<br>YOUR<br>MOOD
+    <div class="relative z-10 text-center px-6">
+      <h1 class="text-5xl md:text-7xl font-black mb-6 neon-glow text-fuchsia-300 leading-tight">
+        당신의<br>무드를<br><span class="text-white">색칠하다</span>
       </h1>
-      <p class="text-fuchsia-200 text-lg md:text-xl font-light tracking-wider max-w-xl mx-auto">
+      <p class="text-fuchsia-200 text-base md:text-lg font-light tracking-wide max-w-md mx-auto mb-10">
         손끝에서 시작되는 당신만의 무드.<br>
         트렌디한 감각의 프리미엄 네일샵.
       </p>
       
-      <div class="mt-12 flex justify-center gap-6">
+      <div class="flex justify-center gap-8">
          <div class="text-center">
-            <p class="font-display text-3xl">10:00</p>
-            <p class="text-[10px] text-gray-500 uppercase tracking-widest">Open</p>
+            <p class="text-2xl font-black text-fuchsia-400">10:00</p>
+            <p class="text-xs text-gray-500">오픈</p>
          </div>
          <div class="w-[1px] h-10 bg-gray-700"></div>
          <div class="text-center">
-            <p class="font-display text-3xl">21:00</p>
-            <p class="text-[10px] text-gray-500 uppercase tracking-widest">Close</p>
+            <p class="text-2xl font-black text-fuchsia-400">21:00</p>
+            <p class="text-xs text-gray-500">마감</p>
          </div>
       </div>
     </div>
   </header>
 
-  <!-- Month's Art (Gallery) -->
-  <section id="art" class="py-24 px-4 bg-[#0a0a0a]">
+  <!-- Monthly Art Gallery -->
+  <section id="art" class="py-20 md:py-24 px-4 bg-[#0a0a0a]">
     <div class="container mx-auto">
-      <div class="flex justify-between items-end mb-12 border-b border-fuchsia-900/30 pb-4">
-        <h2 class="text-4xl font-display text-white">This Month's Art</h2>
-        <span class="text-fuchsia-500 font-bold">See More &rarr;</span>
+      <div class="flex justify-between items-end mb-10 border-b border-fuchsia-900/30 pb-4">
+        <h2 class="text-3xl font-black">이달의 아트</h2>
+        <span class="text-fuchsia-500 font-bold text-sm">전체 보기 →</span>
       </div>
 
-      <div class="grid md:grid-cols-4 gap-4 auto-rows-[200px]">
-        <div class="md:col-span-2 md:row-span-2 relative group overflow-hidden rounded-2xl border border-white/10">
-           <img src="https://images.unsplash.com/photo-1632516643720-e7f5d7d6ecc9?q=80&w=800" class="w-full h-full object-cover transition duration-500 group-hover:scale-110">
-           <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex items-end p-6">
-              <span class="font-display text-2xl text-fuchsia-400">Aurora Glow</span>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-3 auto-rows-[180px] md:auto-rows-[200px]">
+        <div class="col-span-2 row-span-2 relative group overflow-hidden rounded-xl border border-white/10">
+           <img src="https://images.unsplash.com/photo-1632516643720-e7f5d7d6ecc9?q=80&w=800" alt="오로라 글로우" class="w-full h-full object-cover transition duration-500 group-hover:scale-105">
+           <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex items-end p-5">
+              <span class="text-xl font-black text-fuchsia-400">오로라 글로우</span>
            </div>
         </div>
-        <div class="relative group overflow-hidden rounded-2xl border border-white/10">
-           <img src="https://images.unsplash.com/photo-1519014816548-bf5fe059e98b?q=80&w=400" class="w-full h-full object-cover transition duration-500 group-hover:scale-110">
+        <div class="relative group overflow-hidden rounded-xl border border-white/10">
+           <img src="https://images.unsplash.com/photo-1519014816548-bf5fe059e98b?q=80&w=400" alt="네일 아트" class="w-full h-full object-cover transition duration-500 group-hover:scale-105">
         </div>
-        <div class="relative group overflow-hidden rounded-2xl border border-white/10">
-           <img src="https://images.unsplash.com/photo-1596919293424-9dfc571736b4?q=80&w=400" class="w-full h-full object-cover transition duration-500 group-hover:scale-110">
+        <div class="relative group overflow-hidden rounded-xl border border-white/10">
+           <img src="https://images.unsplash.com/photo-1596919293424-9dfc571736b4?q=80&w=400" alt="네일 아트" class="w-full h-full object-cover transition duration-500 group-hover:scale-105">
         </div>
-        <div class="md:col-span-2 relative group overflow-hidden rounded-2xl border border-white/10">
-           <img src="https://images.unsplash.com/photo-1522337660859-02fbefca4702?q=80&w=600" class="w-full h-full object-cover transition duration-500 group-hover:scale-110">
-           <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex items-end p-6">
-              <span class="font-display text-xl text-white">Simple Basic</span>
+        <div class="col-span-2 relative group overflow-hidden rounded-xl border border-white/10">
+           <img src="https://images.unsplash.com/photo-1522337660859-02fbefca4702?q=80&w=600" alt="심플 베이직" class="w-full h-full object-cover transition duration-500 group-hover:scale-105">
+           <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex items-end p-5">
+              <span class="text-lg font-bold text-white">심플 베이직</span>
            </div>
         </div>
       </div>
@@ -111,30 +87,30 @@
   </section>
 
   <!-- Price List -->
-  <section id="price" class="py-24 bg-black relative">
-    <div class="container mx-auto px-6 max-w-3xl">
-       <h2 class="text-4xl font-display text-center mb-16 text-fuchsia-500">Menu & Price</h2>
+  <section id="price" class="py-20 md:py-24 bg-black relative">
+    <div class="container mx-auto px-6 max-w-2xl">
+       <h2 class="text-3xl font-black text-center mb-12 text-fuchsia-400">메뉴 & 가격</h2>
        
-       <div class="space-y-6">
+       <div class="space-y-5">
           <div class="flex justify-between items-center border-b border-gray-800 pb-4">
-             <span class="text-xl font-bold">Gel Basic (Hand)</span>
-             <span class="text-fuchsia-400 font-display text-xl">40,000</span>
+             <span class="text-lg font-bold">젤 베이직 (핸드)</span>
+             <span class="text-fuchsia-400 font-black text-lg">₩ 40,000</span>
           </div>
           <div class="flex justify-between items-center border-b border-gray-800 pb-4">
-             <span class="text-xl font-bold">Gel Basic (Foot)</span>
-             <span class="text-fuchsia-400 font-display text-xl">50,000</span>
+             <span class="text-lg font-bold">젤 베이직 (풋)</span>
+             <span class="text-fuchsia-400 font-black text-lg">₩ 50,000</span>
           </div>
           <div class="flex justify-between items-center border-b border-gray-800 pb-4">
-             <span class="text-xl font-bold">Month's Art</span>
-             <span class="text-fuchsia-400 font-display text-xl">59,000 ~</span>
+             <span class="text-lg font-bold">이달의 아트</span>
+             <span class="text-fuchsia-400 font-black text-lg">₩ 59,000 ~</span>
           </div>
           <div class="flex justify-between items-center border-b border-gray-800 pb-4">
-             <span class="text-xl font-bold">Extension (1 tip)</span>
-             <span class="text-fuchsia-400 font-display text-xl">10,000</span>
+             <span class="text-lg font-bold">연장 (1개)</span>
+             <span class="text-fuchsia-400 font-black text-lg">₩ 10,000</span>
           </div>
           <div class="flex justify-between items-center border-b border-gray-800 pb-4">
-             <span class="text-xl font-bold">Remove</span>
-             <span class="text-fuchsia-400 font-display text-xl">10,000</span>
+             <span class="text-lg font-bold">제거</span>
+             <span class="text-fuchsia-400 font-black text-lg">₩ 10,000</span>
           </div>
        </div>
        <p class="text-center text-gray-500 text-sm mt-8">* 회원권 결제 시 추가 적립 혜택이 있습니다.</p>
@@ -142,23 +118,23 @@
   </section>
 
   <!-- Booking -->
-  <section id="booking" class="py-24 bg-[#111]">
+  <section id="booking" class="py-20 md:py-24 bg-[#111]">
     <div class="container mx-auto px-6 text-center">
-       <div class="border border-fuchsia-500 rounded-3xl p-10 md:p-20 relative max-w-4xl mx-auto overflow-hidden">
-          <div class="absolute -top-20 -left-20 w-64 h-64 bg-fuchsia-600 rounded-full blur-[100px] opacity-30"></div>
-          <div class="absolute -bottom-20 -right-20 w-64 h-64 bg-blue-600 rounded-full blur-[100px] opacity-30"></div>
+       <div class="border border-fuchsia-500/50 rounded-2xl p-8 md:p-16 relative max-w-3xl mx-auto overflow-hidden">
+          <div class="absolute -top-20 -left-20 w-48 h-48 bg-fuchsia-600 rounded-full blur-[80px] opacity-20"></div>
+          <div class="absolute -bottom-20 -right-20 w-48 h-48 bg-blue-600 rounded-full blur-[80px] opacity-20"></div>
           
-          <h2 class="text-4xl font-display mb-8 relative z-10">Make a Reservation</h2>
-          <p class="text-gray-400 mb-12 relative z-10">100% 예약제 운영. 노쇼 방지를 위해 예약금이 있습니다.</p>
+          <h2 class="text-3xl font-black mb-6 relative z-10">예약하기</h2>
+          <p class="text-gray-400 mb-10 relative z-10">100% 예약제 운영. 노쇼 방지를 위해 예약금이 있습니다.</p>
           
           <div class="flex flex-col md:flex-row gap-4 justify-center relative z-10">
-             <button class="px-8 py-4 bg-[#ffe812] text-black font-bold rounded-xl hover:bg-yellow-400 transition flex items-center justify-center gap-2">
-               <span>💬</span> KakaoTalk
+             <button class="px-6 py-4 bg-[#ffe812] text-black font-bold rounded-xl hover:bg-yellow-400 transition flex items-center justify-center gap-2">
+               <span>💬</span> 카카오톡 예약
              </button>
-             <button class="px-8 py-4 bg-[#03c75a] text-white font-bold rounded-xl hover:bg-green-600 transition flex items-center justify-center gap-2">
-               <span>N</span> Naver Booking
+             <button class="px-6 py-4 bg-[#03c75a] text-white font-bold rounded-xl hover:bg-green-600 transition flex items-center justify-center gap-2">
+               <span>N</span> 네이버 예약
              </button>
-             <button class="px-8 py-4 bg-fuchsia-600 text-white font-bold rounded-xl hover:bg-fuchsia-700 transition flex items-center justify-center gap-2">
+             <button class="px-6 py-4 bg-fuchsia-600 text-white font-bold rounded-xl hover:bg-fuchsia-700 transition flex items-center justify-center gap-2">
                <span>📞</span> 02-1234-5678
              </button>
           </div>
@@ -166,13 +142,12 @@
     </div>
   </section>
 
-</div>
+  <!-- Footer -->
+  <footer class="py-10 px-6 bg-black border-t border-fuchsia-900/30">
+    <div class="container mx-auto text-center">
+      <p class="text-lg font-black text-fuchsia-400 mb-2">네온 네일</p>
+      <p class="text-sm text-gray-500">서울시 강남구 신사동 123-45</p>
+    </div>
+  </footer>
 
-<script>
-  VanillaTilt.init(document.querySelectorAll("[data-tilt]"), {
-    max: 10,
-    speed: 400,
-    glare: true,
-    "max-glare": 0.5,
-  });
-</script>
+</div>

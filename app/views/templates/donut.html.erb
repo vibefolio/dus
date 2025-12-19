@@ -1,142 +1,117 @@
-<%# Donut Template - 롤링 도넛 %>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.0/vanilla-tilt.min.js"></script>
+<%# Donut Template - 롤링도넛 %>
 
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Chewy&family=Gaegu:wght@400;700&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Jua&family=Noto+Sans+KR:wght@400;700&display=swap');
   
-  .font-chewy { font-family: 'Chewy', cursive; }
-  .font-hand { font-family: 'Gaegu', cursive; }
+  .font-title { font-family: 'Jua', sans-serif; }
+  .font-sans { font-family: 'Noto Sans KR', sans-serif; }
   
   .bg-sprinkles {
     background-color: #fff;
     background-image: 
-      radial-gradient(#FF0080 3px, transparent 4px),
-      radial-gradient(#7928CA 3px, transparent 4px),
-      radial-gradient(#FF0080 3px, transparent 4px);
-    background-size: 40px 40px;
-    background-position: 0 0, 20px 20px, 10px 30px;
-  }
-  
-  .spin-slow {
-    animation: spin 10s linear infinite;
-  }
-  @keyframes spin {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(360deg); }
+      radial-gradient(#FF69B4 2px, transparent 3px),
+      radial-gradient(#9B59B6 2px, transparent 3px);
+    background-size: 30px 30px;
+    background-position: 0 0, 15px 15px;
   }
 </style>
 
-<div class="bg-yellow-300 text-purple-900 font-hand selection:bg-purple-500 selection:text-white overflow-x-hidden">
+<div class="bg-yellow-300 text-purple-900 font-sans selection:bg-purple-500 selection:text-white overflow-x-hidden">
 
   <!-- Nav -->
-  <nav class="fixed w-full z-50 px-6 py-4 flex justify-between items-center bg-white/90 border-b-4 border-purple-500 rounded-b-3xl shadow-[0_4px_0_0_rgba(168,85,247,0.5)]">
-    <div class="flex items-center gap-2 text-3xl font-chewy text-purple-600 transform -rotate-2">
-      <span class="text-4xl">🍩</span> ROLLIN'
+  <nav class="fixed w-full z-50 px-6 py-4 flex justify-between items-center bg-white/95 backdrop-blur-sm border-b-4 border-purple-400 shadow-md">
+    <div class="flex items-center gap-2 text-2xl md:text-3xl font-title text-purple-600">
+      <span class="text-3xl">🍩</span> 롤링도넛
     </div>
-    <div class="hidden md:flex gap-8 text-xl font-bold text-gray-500">
-      <a href="#menu" class="hover:text-purple-600 hover:scale-110 transition">MENU</a>
-      <a href="#about" class="hover:text-purple-600 hover:scale-110 transition">STORY</a>
-      <a href="#location" class="hover:text-purple-600 hover:scale-110 transition">LOCATION</a>
+    <div class="hidden md:flex gap-8 text-base font-bold text-gray-600">
+      <a href="#menu" class="hover:text-purple-600 transition">메뉴</a>
+      <a href="#about" class="hover:text-purple-600 transition">소개</a>
+      <a href="#location" class="hover:text-purple-600 transition">오시는 길</a>
     </div>
-    <button class="bg-purple-600 text-white font-chewy text-xl px-6 py-2 rounded-full hover:bg-purple-700 transition transform hover:scale-105 shadow-lg">
-      Order Now
+    <button class="bg-purple-600 text-white font-bold text-base px-5 py-2 rounded-full hover:bg-purple-700 transition shadow-lg">
+      주문하기
     </button>
   </nav>
 
   <!-- Hero -->
-  <header class="h-screen pt-24 relative overflow-hidden flex flex-col items-center justify-center bg-yellow-300">
+  <header class="min-h-screen pt-24 relative overflow-hidden flex flex-col items-center justify-center bg-yellow-300 px-6">
     <!-- Background Circle -->
-    <div class="absolute w-[800px] h-[800px] bg-white rounded-full flex items-center justify-center animate-pulse">
-       <div class="w-[600px] h-[600px] bg-pink-200 rounded-full"></div>
-    </div>
+    <div class="absolute w-[500px] md:w-[700px] h-[500px] md:h-[700px] bg-white/80 rounded-full"></div>
     
-    <div class="relative z-10 text-center space-y-4">
-      <div class="inline-block bg-white border-2 border-dashed border-purple-500 px-6 py-2 rounded-full font-bold text-lg transform rotate-2 mb-4 hover:rotate-6 transition">
-         🎉 Grand Open Event 1+1
+    <div class="relative z-10 text-center space-y-4 max-w-2xl mx-auto">
+      <div class="inline-block bg-white border-2 border-dashed border-purple-400 px-5 py-2 rounded-full font-bold text-base mb-4">
+         🎉 오픈 이벤트 1+1
       </div>
-      <h1 class="text-7xl md:text-9xl font-chewy text-purple-600 drop-shadow-[4px_4px_0px_#fff]">
-        HAPPINESS <br> <span class="text-pink-500">IS ROUND</span>
+      <h1 class="text-5xl md:text-7xl font-title text-purple-600 leading-tight">
+        행복은<br><span class="text-pink-500">동그랗다</span>
       </h1>
-      <p class="text-xl md:text-2xl font-bold text-purple-800 bg-white/50 backdrop-blur-sm px-4 py-1 rounded inline-block">
+      <p class="text-lg md:text-xl font-bold text-purple-800 bg-white/60 px-4 py-2 rounded-lg inline-block">
         매일 아침 구워내는 수제 도넛의 달콤한 유혹!
       </p>
       
-      <div class="relative h-[300px] w-full mt-8" data-tilt data-tilt-max="10">
-         <img src="https://images.unsplash.com/photo-1631397857502-861614777cff?q=80&w=600" class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 md:w-80 object-contain drop-shadow-2xl z-20 hover:scale-110 transition duration-300">
-         
-         <!-- Floating Sprinkles -->
-         <div class="absolute top-0 left-1/4 text-4xl animate-bounce" style="animation-delay: 0.1s">🍬</div>
-         <div class="absolute bottom-10 right-1/4 text-5xl animate-bounce" style="animation-delay: 0.3s">🍭</div>
-         <div class="absolute top-20 right-20 text-4xl animate-bounce" style="animation-delay: 0.5s">🍫</div>
+      <div class="relative h-[200px] md:h-[280px] w-full mt-6">
+         <img src="https://images.unsplash.com/photo-1631397857502-861614777cff?q=80&w=600" alt="수제 도넛" class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-48 md:w-64 object-contain drop-shadow-2xl">
       </div>
     </div>
   </header>
 
   <!-- Menu Grid -->
-  <section id="menu" class="py-24 bg-white rounded-t-[4rem] relative z-20 -mt-10 border-t-8 border-purple-500 bg-sprinkles">
+  <section id="menu" class="py-20 md:py-24 bg-white rounded-t-[3rem] relative z-20 -mt-8 border-t-8 border-purple-400 bg-sprinkles">
     <div class="container mx-auto px-6">
-       <div class="text-center mb-16">
-          <h2 class="text-5xl font-chewy text-purple-600 mb-4 bg-white inline-block px-4 pt-2 rounded-xl border-4 border-purple-200 rotation-2">Best Sellers</h2>
-          <p class="text-xl text-gray-500 font-bold bg-white inline-block px-2">가장 인기있는 메뉴를 만나보세요!</p>
+       <div class="text-center mb-12">
+          <h2 class="text-4xl md:text-5xl font-title text-purple-600 mb-3 bg-white inline-block px-4 pt-2 rounded-xl border-4 border-purple-200">베스트 메뉴</h2>
+          <p class="text-lg text-gray-600 font-bold bg-white inline-block px-3 py-1 rounded">가장 인기있는 메뉴를 만나보세요!</p>
        </div>
 
-       <div class="grid md:grid-cols-4 gap-8">
+       <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
           <!-- Item 1 -->
-          <div class="bg-pink-100 rounded-3xl p-6 text-center shadow-[8px_8px_0_0_rgba(0,0,0,0.1)] hover:translate-y-2 hover:shadow-none transition border-4 border-white cursor-pointer group">
-             <div class="w-32 h-32 bg-white rounded-full mx-auto mb-4 flex items-center justify-center text-5xl group-hover:rotate-12 transition">🍓</div>
-             <h3 class="font-chewy text-2xl text-purple-800 mb-1">Berry Bomb</h3>
-             <p class="text-sm font-bold text-gray-500 mb-4">상큼한 라즈베리 잼 가득</p>
-             <span class="bg-purple-600 text-white px-4 py-1 rounded-full font-bold">₩ 3,500</span>
+          <div class="bg-pink-100 rounded-2xl p-5 text-center shadow-lg hover:shadow-xl hover:-translate-y-1 transition border-4 border-white cursor-pointer group">
+             <div class="w-20 h-20 md:w-28 md:h-28 bg-white rounded-full mx-auto mb-3 flex items-center justify-center text-4xl md:text-5xl group-hover:scale-110 transition">🍓</div>
+             <h3 class="font-title text-xl md:text-2xl text-purple-800 mb-1">베리 봄</h3>
+             <p class="text-xs md:text-sm font-bold text-gray-500 mb-3">상큼한 라즈베리 잼 가득</p>
+             <span class="bg-purple-600 text-white px-4 py-1 rounded-full font-bold text-sm">₩ 3,500</span>
           </div>
           
           <!-- Item 2 -->
-          <div class="bg-blue-100 rounded-3xl p-6 text-center shadow-[8px_8px_0_0_rgba(0,0,0,0.1)] hover:translate-y-2 hover:shadow-none transition border-4 border-white cursor-pointer group transform md:translate-y-8">
-             <div class="w-32 h-32 bg-white rounded-full mx-auto mb-4 flex items-center justify-center text-5xl group-hover:rotate-12 transition">🍪</div>
-             <h3 class="font-chewy text-2xl text-purple-800 mb-1">Cookie Monster</h3>
-             <p class="text-sm font-bold text-gray-500 mb-4">오레오 크럼블 토핑</p>
-             <span class="bg-purple-600 text-white px-4 py-1 rounded-full font-bold">₩ 3,800</span>
+          <div class="bg-blue-100 rounded-2xl p-5 text-center shadow-lg hover:shadow-xl hover:-translate-y-1 transition border-4 border-white cursor-pointer group">
+             <div class="w-20 h-20 md:w-28 md:h-28 bg-white rounded-full mx-auto mb-3 flex items-center justify-center text-4xl md:text-5xl group-hover:scale-110 transition">🍪</div>
+             <h3 class="font-title text-xl md:text-2xl text-purple-800 mb-1">쿠키 몬스터</h3>
+             <p class="text-xs md:text-sm font-bold text-gray-500 mb-3">오레오 크럼블 토핑</p>
+             <span class="bg-purple-600 text-white px-4 py-1 rounded-full font-bold text-sm">₩ 3,800</span>
           </div>
 
           <!-- Item 3 -->
-          <div class="bg-yellow-100 rounded-3xl p-6 text-center shadow-[8px_8px_0_0_rgba(0,0,0,0.1)] hover:translate-y-2 hover:shadow-none transition border-4 border-white cursor-pointer group">
-             <div class="w-32 h-32 bg-white rounded-full mx-auto mb-4 flex items-center justify-center text-5xl group-hover:rotate-12 transition">🍯</div>
-             <h3 class="font-chewy text-2xl text-purple-800 mb-1">Honey Glazed</h3>
-             <p class="text-sm font-bold text-gray-500 mb-4">클래식한 달콤함</p>
-             <span class="bg-purple-600 text-white px-4 py-1 rounded-full font-bold">₩ 3,000</span>
+          <div class="bg-yellow-100 rounded-2xl p-5 text-center shadow-lg hover:shadow-xl hover:-translate-y-1 transition border-4 border-white cursor-pointer group">
+             <div class="w-20 h-20 md:w-28 md:h-28 bg-white rounded-full mx-auto mb-3 flex items-center justify-center text-4xl md:text-5xl group-hover:scale-110 transition">🍯</div>
+             <h3 class="font-title text-xl md:text-2xl text-purple-800 mb-1">허니 글레이즈</h3>
+             <p class="text-xs md:text-sm font-bold text-gray-500 mb-3">클래식한 달콤함</p>
+             <span class="bg-purple-600 text-white px-4 py-1 rounded-full font-bold text-sm">₩ 3,000</span>
           </div>
           
           <!-- Item 4 -->
-          <div class="bg-green-100 rounded-3xl p-6 text-center shadow-[8px_8px_0_0_rgba(0,0,0,0.1)] hover:translate-y-2 hover:shadow-none transition border-4 border-white cursor-pointer group transform md:translate-y-8">
-             <div class="w-32 h-32 bg-white rounded-full mx-auto mb-4 flex items-center justify-center text-5xl group-hover:rotate-12 transition">🍵</div>
-             <h3 class="font-chewy text-2xl text-purple-800 mb-1">Matcha Cream</h3>
-             <p class="text-sm font-bold text-gray-500 mb-4">진한 말차 크림</p>
-             <span class="bg-purple-600 text-white px-4 py-1 rounded-full font-bold">₩ 4,000</span>
+          <div class="bg-green-100 rounded-2xl p-5 text-center shadow-lg hover:shadow-xl hover:-translate-y-1 transition border-4 border-white cursor-pointer group">
+             <div class="w-20 h-20 md:w-28 md:h-28 bg-white rounded-full mx-auto mb-3 flex items-center justify-center text-4xl md:text-5xl group-hover:scale-110 transition">🍵</div>
+             <h3 class="font-title text-xl md:text-2xl text-purple-800 mb-1">말차 크림</h3>
+             <p class="text-xs md:text-sm font-bold text-gray-500 mb-3">진한 말차 크림</p>
+             <span class="bg-purple-600 text-white px-4 py-1 rounded-full font-bold text-sm">₩ 4,000</span>
           </div>
        </div>
     </div>
   </section>
 
   <!-- Location / Footer -->
-  <section id="location" class="py-24 bg-purple-600 text-white text-center">
+  <section id="location" class="py-20 bg-purple-600 text-white text-center">
     <div class="container mx-auto px-6">
-       <h2 class="text-4xl font-chewy mb-8">Come Visit Us!</h2>
-       <div class="bg-white text-purple-900 rounded-3xl p-8 max-w-2xl mx-auto shadow-2xl transform rotate-1">
-          <p class="text-2xl font-bold mb-4">🚀 서울시 마포구 연남동 123-45</p>
-          <p class="text-lg mb-8">매일 11:00 - 21:00 (도넛 소진 시 조기 마감)</p>
-          <div class="flex justify-center gap-4">
-             <button class="bg-yellow-400 text-purple-900 font-bold px-6 py-3 rounded-xl hover:bg-yellow-300 transition shadow-lg">Instagram</button>
-             <button class="bg-pink-400 text-white font-bold px-6 py-3 rounded-xl hover:bg-pink-300 transition shadow-lg">Map</button>
+       <h2 class="text-3xl md:text-4xl font-title mb-8">매장 방문</h2>
+       <div class="bg-white text-purple-900 rounded-2xl p-6 md:p-8 max-w-xl mx-auto shadow-2xl">
+          <p class="text-xl md:text-2xl font-bold mb-3">📍 서울시 마포구 연남동 123-45</p>
+          <p class="text-base md:text-lg mb-6">매일 11:00 - 21:00 (도넛 소진 시 조기 마감)</p>
+          <div class="flex flex-col md:flex-row justify-center gap-3">
+             <button class="bg-yellow-400 text-purple-900 font-bold px-6 py-3 rounded-xl hover:bg-yellow-300 transition shadow-lg">인스타그램</button>
+             <button class="bg-pink-400 text-white font-bold px-6 py-3 rounded-xl hover:bg-pink-300 transition shadow-lg">지도 보기</button>
           </div>
        </div>
     </div>
   </section>
 
 </div>
-
-<script>
-  VanillaTilt.init(document.querySelectorAll("[data-tilt]"), {
-    max: 20,
-    speed: 400,
-    scale: 1.1,
-  });
-</script>

@@ -1,134 +1,113 @@
 <%# Dessert Template - 달콤 상점 %>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.0/vanilla-tilt.min.js"></script>
 
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@300;400;600&family=Gaegu:wght@400;700&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Gaegu:wght@400;700&family=Noto+Sans+KR:wght@400;700&display=swap');
   
-  .font-round { font-family: 'Fredoka', sans-serif; }
   .font-hand { font-family: 'Gaegu', cursive; }
-  
-  .sprinkle-bg {
-    background-color: #fff0f5;
-    background-image: radial-gradient(#ff6b6b 15%, transparent 16%),
-    radial-gradient(#4ecdc4 15%, transparent 16%);
-    background-size: 60px 60px;
-    background-position: 0 0, 30px 30px;
-  }
-  
-  .float-animation {
-    animation: float 3s ease-in-out infinite;
-  }
-  @keyframes float {
-    0% { transform: translateY(0px) rotate(0deg); }
-    50% { transform: translateY(-10px) rotate(5deg); }
-    100% { transform: translateY(0px) rotate(0deg); }
-  }
+  .font-sans { font-family: 'Noto Sans KR', sans-serif; }
 </style>
 
-<div class="bg-pink-50 text-gray-700 font-round selection:bg-pink-300 selection:text-white">
+<div class="bg-pink-50 text-gray-700 font-sans selection:bg-pink-300 selection:text-white">
 
   <!-- Nav -->
-  <nav class="fixed w-full z-50 px-6 py-4 bg-white/80 backdrop-blur border-b-4 border-pink-200 rounded-b-3xl shadow-sm">
+  <nav class="fixed w-full z-50 px-6 py-4 bg-white/90 backdrop-blur border-b-4 border-pink-200 shadow-sm">
     <div class="container mx-auto flex justify-between items-center">
       <div class="flex items-center gap-2">
-        <span class="text-3xl animate-spin-slow">🍩</span>
-        <span class="font-hand font-bold text-2xl text-pink-500">달콤상점</span>
+        <span class="text-2xl">🍩</span>
+        <span class="font-hand font-bold text-xl text-pink-500">달콤상점</span>
       </div>
-      <div class="hidden md:flex gap-8 font-hand text-xl font-bold text-gray-500">
+      <div class="hidden md:flex gap-6 font-hand text-lg font-bold text-gray-500">
         <a href="#menu" class="hover:text-pink-500 transition">메뉴</a>
         <a href="#story" class="hover:text-pink-500 transition">이야기</a>
         <a href="#order" class="hover:text-pink-500 transition">주문하기</a>
       </div>
-      <button onclick="document.getElementById('order').scrollIntoView({behavior: 'smooth'})"
-              class="px-6 py-2 bg-pink-400 text-white rounded-full font-bold shadow-lg hover:bg-pink-500 transition transform hover:scale-110">
-        Pick Up!
+      <button class="px-5 py-2 bg-pink-400 text-white rounded-full font-bold shadow-lg hover:bg-pink-500 transition text-sm">
+        픽업!
       </button>
     </div>
   </nav>
 
   <!-- Hero -->
-  <header class="min-h-screen pt-32 pb-20 px-6 relative overflow-hidden flex items-center justify-center sprinkle-bg">
-    <div class="container mx-auto grid md:grid-cols-2 gap-12 items-center relative z-10">
-      <div class="text-center md:text-left space-y-6">
+  <header class="min-h-[600px] pt-28 pb-16 px-6 relative overflow-hidden flex items-center justify-center bg-pink-50">
+    <div class="container mx-auto grid md:grid-cols-2 gap-10 items-center relative z-10">
+      <div class="text-center md:text-left space-y-5">
         <span class="inline-block bg-white text-pink-500 px-4 py-2 rounded-full font-bold shadow-sm border-2 border-pink-200 transform -rotate-3 text-sm">
            🍰 당일 생산 당일 판매 원칙!
         </span>
-        <h1 class="text-6xl md:text-8xl font-black leading-none text-gray-800" style="text-shadow: 4px 4px 0px #ffc0cb;">
-          Sweet <br>
-          <span class="text-pink-500">Moments</span>
+        <h1 class="text-5xl md:text-6xl font-black leading-none text-gray-800">
+          달콤한<br>
+          <span class="text-pink-500">순간</span>
         </h1>
-        <p class="text-gray-500 text-lg leading-relaxed font-hand">
+        <p class="text-gray-500 text-base leading-relaxed font-hand">
           한 입 베어물면 퍼지는 달콤한 행복.<br>
           천연 재료로 만든 수제 디저트를 만나보세요.
         </p>
-        <div class="pt-4 flex justify-center md:justify-start gap-4">
-           <button class="px-8 py-4 bg-gray-800 text-white rounded-2xl font-bold shadow-xl hover:bg-gray-700 transition transform hover:-translate-y-1">
-             Best Menu 🏆
+        <div class="pt-3 flex justify-center md:justify-start gap-3">
+           <button class="px-6 py-3 bg-gray-800 text-white rounded-xl font-bold shadow-xl hover:bg-gray-700 transition text-sm">
+             베스트 메뉴 🏆
            </button>
-           <button class="px-8 py-4 bg-white text-pink-500 border-2 border-pink-200 rounded-2xl font-bold shadow-sm hover:bg-pink-50 transition transform hover:-translate-y-1">
-             Instagram 📸
+           <button class="px-6 py-3 bg-white text-pink-500 border-2 border-pink-200 rounded-xl font-bold shadow-sm hover:bg-pink-50 transition text-sm">
+             인스타그램 📸
            </button>
         </div>
       </div>
 
-      <div class="relative" data-tilt data-tilt-max="10">
-        <!-- Blob Background -->
-        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-pink-200 rounded-full blur-3xl opacity-50"></div>
-        <img src="https://images.unsplash.com/photo-1558301211-0d8c8ddee6ec?q=80&w=800" class="relative z-10 w-full drop-shadow-2xl float-animation transform scale-110 rotate-6">
+      <div class="relative">
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-72 h-72 bg-pink-200 rounded-full blur-3xl opacity-50"></div>
+        <img src="https://images.unsplash.com/photo-1558301211-0d8c8ddee6ec?q=80&w=800" alt="도넛" class="relative z-10 w-full drop-shadow-2xl transform rotate-6 h-[350px] object-cover rounded-2xl">
         
-        <!-- Floating Elements -->
-        <span class="absolute top-10 right-20 text-5xl float-animation" style="animation-delay: 0.5s">🍭</span>
-        <span class="absolute bottom-10 left-10 text-6xl float-animation" style="animation-delay: 1s">🍪</span>
+        <span class="absolute top-8 right-16 text-4xl">🍭</span>
+        <span class="absolute bottom-8 left-8 text-5xl">🍪</span>
       </div>
     </div>
   </header>
 
   <!-- Menu Grid -->
-  <section id="menu" class="py-24 bg-white rounded-[3rem]">
+  <section id="menu" class="py-16 md:py-20 bg-white">
     <div class="container mx-auto px-6">
-      <div class="text-center mb-16">
-        <h2 class="text-4xl font-black text-gray-800 mb-4">What's Today?</h2>
-        <p class="font-hand text-xl text-pink-400">오늘 라인업을 소개합니다!</p>
+      <div class="text-center mb-12">
+        <h2 class="text-3xl font-black text-gray-800 mb-3">오늘의 메뉴</h2>
+        <p class="font-hand text-lg text-pink-400">오늘 라인업을 소개합니다!</p>
       </div>
 
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
         <!-- Item 1 -->
         <div class="text-center group cursor-pointer">
-           <div class="bg-yellow-100 rounded-[2rem] p-6 mb-4 transition duration-300 transform group-hover:scale-105 group-hover:bg-yellow-200 shadow-sm">
-              <img src="https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?q=80&w=400" class="w-full h-40 object-contain drop-shadow-lg">
+           <div class="bg-yellow-100 rounded-2xl p-5 mb-3 transition transform group-hover:scale-105 group-hover:bg-yellow-200 shadow-sm">
+              <img src="https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?q=80&w=400" alt="레몬 케이크" class="w-full h-32 object-contain drop-shadow-lg">
            </div>
-           <h3 class="font-bold text-xl mb-1 text-gray-800">Lemon Cake</h3>
-           <p class="text-sm text-gray-400">상큼한 레몬 글레이즈</p>
+           <h3 class="font-bold text-lg mb-1 text-gray-800">레몬 케이크</h3>
+           <p class="text-xs text-gray-400">상큼한 레몬 글레이즈</p>
            <p class="text-pink-500 font-bold mt-2">₩4,500</p>
         </div>
 
         <!-- Item 2 -->
-        <div class="text-center group cursor-pointer mt-8 md:mt-0">
-           <div class="bg-pink-100 rounded-[2rem] p-6 mb-4 transition duration-300 transform group-hover:scale-105 group-hover:bg-pink-200 shadow-sm">
-              <img src="https://images.unsplash.com/photo-1626094309830-abbb0c99da4a?q=80&w=400" class="w-full h-40 object-contain drop-shadow-lg">
+        <div class="text-center group cursor-pointer">
+           <div class="bg-pink-100 rounded-2xl p-5 mb-3 transition transform group-hover:scale-105 group-hover:bg-pink-200 shadow-sm">
+              <img src="https://images.unsplash.com/photo-1626094309830-abbb0c99da4a?q=80&w=400" alt="베리 마카롱" class="w-full h-32 object-contain drop-shadow-lg">
            </div>
-           <h3 class="font-bold text-xl mb-1 text-gray-800">Berry Macaron</h3>
-           <p class="text-sm text-gray-400">딸기 요거트 필링</p>
+           <h3 class="font-bold text-lg mb-1 text-gray-800">베리 마카롱</h3>
+           <p class="text-xs text-gray-400">딸기 요거트 필링</p>
            <p class="text-pink-500 font-bold mt-2">₩3,000</p>
         </div>
 
         <!-- Item 3 -->
         <div class="text-center group cursor-pointer">
-           <div class="bg-blue-100 rounded-[2rem] p-6 mb-4 transition duration-300 transform group-hover:scale-105 group-hover:bg-blue-200 shadow-sm">
-              <img src="https://images.unsplash.com/photo-1551024601-564d6dbf4e19?q=80&w=400" class="w-full h-40 object-contain drop-shadow-lg">
+           <div class="bg-blue-100 rounded-2xl p-5 mb-3 transition transform group-hover:scale-105 group-hover:bg-blue-200 shadow-sm">
+              <img src="https://images.unsplash.com/photo-1551024601-564d6dbf4e19?q=80&w=400" alt="글레이즈 도넛" class="w-full h-32 object-contain drop-shadow-lg">
            </div>
-           <h3 class="font-bold text-xl mb-1 text-gray-800">Glazed Donut</h3>
-           <p class="text-sm text-gray-400">클래식의 정석</p>
+           <h3 class="font-bold text-lg mb-1 text-gray-800">글레이즈 도넛</h3>
+           <p class="text-xs text-gray-400">클래식의 정석</p>
            <p class="text-pink-500 font-bold mt-2">₩3,500</p>
         </div>
 
         <!-- Item 4 -->
-        <div class="text-center group cursor-pointer mt-8 md:mt-0">
-           <div class="bg-purple-100 rounded-[2rem] p-6 mb-4 transition duration-300 transform group-hover:scale-105 group-hover:bg-purple-200 shadow-sm">
-              <img src="https://images.unsplash.com/photo-1579372786545-d24232daf58c?q=80&w=400" class="w-full h-40 object-contain drop-shadow-lg">
+        <div class="text-center group cursor-pointer">
+           <div class="bg-purple-100 rounded-2xl p-5 mb-3 transition transform group-hover:scale-105 group-hover:bg-purple-200 shadow-sm">
+              <img src="https://images.unsplash.com/photo-1579372786545-d24232daf58c?q=80&w=400" alt="컵케이크" class="w-full h-32 object-contain drop-shadow-lg">
            </div>
-           <h3 class="font-bold text-xl mb-1 text-gray-800">Cupcake</h3>
-           <p class="text-sm text-gray-400">부드러운 버터크림</p>
+           <h3 class="font-bold text-lg mb-1 text-gray-800">컵케이크</h3>
+           <p class="text-xs text-gray-400">부드러운 버터크림</p>
            <p class="text-pink-500 font-bold mt-2">₩5,000</p>
         </div>
       </div>
@@ -136,33 +115,33 @@
   </section>
 
   <!-- Pick Up Order -->
-  <section id="order" class="py-24 bg-pink-400 text-white relative overflow-hidden rounded-t-[3rem] -mt-10">
-    <div class="container mx-auto px-6 max-w-lg relative z-10">
-      <div class="bg-white rounded-3xl p-10 shadow-2xl text-gray-800 transform rotate-2 hover:rotate-0 transition duration-500">
-        <h2 class="text-3xl font-black text-center mb-2">Pre-Order</h2>
-        <p class="text-center text-gray-400 mb-8 font-hand text-lg">미리 주문하고 기다리지 마세요!</p>
+  <section id="order" class="py-16 md:py-20 bg-pink-400 text-white relative overflow-hidden">
+    <div class="container mx-auto px-6 max-w-md relative z-10">
+      <div class="bg-white rounded-2xl p-8 shadow-2xl text-gray-800">
+        <h2 class="text-2xl font-black text-center mb-2">사전 주문</h2>
+        <p class="text-center text-gray-400 mb-6 font-hand text-base">미리 주문하고 기다리지 마세요!</p>
 
         <form class="space-y-4">
           <div>
-            <label class="block font-bold text-sm mb-1 ml-2 text-pink-500">Name</label>
-            <input type="text" class="w-full bg-gray-100 rounded-xl p-3 outline-none focus:ring-2 focus:ring-pink-300 transition">
+            <label class="block font-bold text-sm mb-1 ml-2 text-pink-500">이름</label>
+            <input type="text" class="w-full bg-gray-100 rounded-xl p-3 outline-none focus:ring-2 focus:ring-pink-300 transition text-sm">
           </div>
           <div>
-            <label class="block font-bold text-sm mb-1 ml-2 text-pink-500">Phone</label>
-            <input type="tel" class="w-full bg-gray-100 rounded-xl p-3 outline-none focus:ring-2 focus:ring-pink-300 transition">
+            <label class="block font-bold text-sm mb-1 ml-2 text-pink-500">연락처</label>
+            <input type="tel" class="w-full bg-gray-100 rounded-xl p-3 outline-none focus:ring-2 focus:ring-pink-300 transition text-sm">
           </div>
-          <div class="grid grid-cols-2 gap-4">
+          <div class="grid grid-cols-2 gap-3">
              <div>
-                <label class="block font-bold text-sm mb-1 ml-2 text-pink-500">Menu</label>
-                <select class="w-full bg-gray-100 rounded-xl p-3 outline-none focus:ring-2 focus:ring-pink-300 transition text-gray-500">
-                   <option>Macaron Set (5p)</option>
-                   <option>Donut Box (4p)</option>
-                   <option>Random Box</option>
+                <label class="block font-bold text-sm mb-1 ml-2 text-pink-500">메뉴</label>
+                <select class="w-full bg-gray-100 rounded-xl p-3 outline-none focus:ring-2 focus:ring-pink-300 transition text-gray-500 text-sm">
+                   <option>마카롱 세트 (5개)</option>
+                   <option>도넛 박스 (4개)</option>
+                   <option>랜덤 박스</option>
                 </select>
              </div>
              <div>
-                <label class="block font-bold text-sm mb-1 ml-2 text-pink-500">Pick-up Time</label>
-                <select class="w-full bg-gray-100 rounded-xl p-3 outline-none focus:ring-2 focus:ring-pink-300 transition text-gray-500">
+                <label class="block font-bold text-sm mb-1 ml-2 text-pink-500">픽업 시간</label>
+                <select class="w-full bg-gray-100 rounded-xl p-3 outline-none focus:ring-2 focus:ring-pink-300 transition text-gray-500 text-sm">
                    <option>12:00</option>
                    <option>14:00</option>
                    <option>16:00</option>
@@ -170,19 +149,18 @@
                 </select>
              </div>
           </div>
-          <button class="w-full bg-gray-800 text-white font-bold py-4 rounded-xl shadow-lg hover:bg-gray-700 transition mt-4">
-            Order Now!
+          <button class="w-full bg-gray-800 text-white font-bold py-3 rounded-xl shadow-lg hover:bg-gray-700 transition mt-3 text-sm">
+            주문하기!
           </button>
         </form>
       </div>
     </div>
   </section>
 
-</div>
+  <!-- Footer -->
+  <footer class="py-10 px-6 bg-pink-100 text-center">
+    <p class="font-hand text-xl text-pink-500 mb-2">🍩 달콤상점</p>
+    <p class="text-sm text-gray-500">서울시 마포구 연남동 123-45</p>
+  </footer>
 
-<script>
-  VanillaTilt.init(document.querySelectorAll("[data-tilt]"), {
-    max: 15,
-    speed: 400,
-  });
-</script>
+</div>

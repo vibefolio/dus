@@ -1,198 +1,175 @@
 <%# Burger Template - 버거 조인트 %>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.0/vanilla-tilt.min.js"></script>
 
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Anton&family=Gowun+Dodum&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700;900&display=swap');
   
-  .font-heading { font-family: 'Anton', sans-serif; }
-  .font-body { font-family: 'Gowun Dodum', sans-serif; }
+  .font-sans { font-family: 'Noto Sans KR', sans-serif; }
   
   .burger-pattern {
     background-color: #1a1a1a;
     background-image: radial-gradient(#FF9F1C 1px, transparent 1px);
     background-size: 30px 30px;
   }
-  
-  .drip-text {
-    position: relative;
-    z-index: 10;
-  }
-  .drip-text::after {
-    content: '';
-    position: absolute;
-    bottom: -10px;
-    left: 0;
-    width: 100%;
-    height: 20px;
-    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="%23FF9F1C" fill-opacity="1" d="M0,192L48,197.3C96,203,192,213,288,229.3C384,245,480,267,576,250.7C672,235,768,181,864,181.3C960,181,1056,235,1152,234.7C1248,235,1344,181,1392,154.7L1440,128L1440,0L1392,0C1344,0,1248,0,1152,0C1056,0,960,0,864,0C768,0,672,0,576,0C480,0,384,0,288,0C192,0,96,0,48,0L0,0Z"></path></svg>');
-    background-size: cover;
-    z-index: -1;
-  }
 </style>
 
-<div class="bg-[#1a1a1a] text-white font-body selection:bg-[#FF9F1C] selection:text-black">
+<div class="bg-[#1a1a1a] text-white font-sans selection:bg-[#FF9F1C] selection:text-black">
 
   <!-- Nav -->
-  <nav class="fixed w-full z-50 px-6 py-4 flex justify-between items-center bg-black/90 backdrop-blur-md border-b border-[#FF9F1C]/20">
-    <div class="text-3xl font-heading tracking-wider text-[#FF9F1C] drop-shadow-[0_0_10px_rgba(255,159,28,0.5)]">
-      BURGER <span class="text-white">JOINT</span>
+  <nav class="fixed w-full z-50 px-6 py-4 flex justify-between items-center bg-black/95 backdrop-blur-sm border-b border-[#FF9F1C]/20">
+    <div class="text-2xl font-black text-[#FF9F1C]">
+      버거<span class="text-white">조인트</span>
     </div>
-    <div class="hidden md:flex gap-8 font-heading uppercase text-lg tracking-widest text-gray-400">
-      <a href="#menu" class="hover:text-[#FF9F1C] transition">Burgers</a>
-      <a href="#sides" class="hover:text-[#FF9F1C] transition">Sides</a>
-      <a href="#location" class="hover:text-[#FF9F1C] transition">Find Us</a>
+    <div class="hidden md:flex gap-6 font-bold text-gray-400">
+      <a href="#menu" class="hover:text-[#FF9F1C] transition">버거</a>
+      <a href="#sides" class="hover:text-[#FF9F1C] transition">사이드</a>
+      <a href="#location" class="hover:text-[#FF9F1C] transition">위치</a>
     </div>
-    <button onclick="document.getElementById('order').scrollIntoView({behavior: 'smooth'})"
-            class="px-8 py-2 bg-[#FF9F1C] text-black font-heading tracking-widest hover:bg-white transition transform skew-x-[-12deg]">
-      ORDER NOW
+    <button class="px-6 py-2 bg-[#FF9F1C] text-black font-black hover:bg-white transition text-sm">
+      주문하기
     </button>
   </nav>
 
   <!-- Hero -->
-  <header class="h-screen relative flex items-center justify-center overflow-hidden burger-pattern">
+  <header class="min-h-screen relative flex items-center justify-center overflow-hidden burger-pattern pt-16">
     <div class="absolute inset-0 bg-gradient-to-tr from-black/80 via-transparent to-black/80 z-10"></div>
     
-    <div class="container mx-auto px-6 relative z-20 grid md:grid-cols-2 items-center gap-12">
-      <div class="order-2 md:order-1 space-y-6">
-        <span class="inline-block bg-[#E71D36] text-white px-4 py-1 font-bold text-sm uppercase -rotate-2 transform">
-          100% Real Beef
+    <div class="container mx-auto px-6 relative z-20 grid md:grid-cols-2 items-center gap-10">
+      <div class="order-2 md:order-1 space-y-5">
+        <span class="inline-block bg-[#E71D36] text-white px-4 py-1 font-bold text-sm">
+          100% 리얼 비프
         </span>
-        <h1 class="text-7xl md:text-9xl font-heading leading-none" data-tilt data-tilt-max="5">
-          JUICY <br>
-          <span class="text-[#FF9F1C] drip-text">BEAST</span> <br>
-          BURGER
+        <h1 class="text-5xl md:text-7xl font-black leading-tight">
+          육즙 <br>
+          <span class="text-[#FF9F1C]">폭발</span> <br>
+          버거
         </h1>
-        <p class="text-xl text-gray-400 max-w-md leading-relaxed">
+        <p class="text-lg text-gray-400 max-w-md leading-relaxed">
           매일 매장에서 직접 갈아 만드는 패티.<br>
           한 입 베어무는 순간, 육즙의 축제가 시작됩니다.
         </p>
-        <div class="pt-8">
-          <button class="px-10 py-4 bg-white text-black font-heading text-xl tracking-widest hover:bg-[#FF9F1C] transition hover:scale-105 shadow-[8px_8px_0px_#000]">
-            VIEW MENU
+        <div class="pt-5">
+          <button class="px-8 py-4 bg-white text-black font-black text-lg hover:bg-[#FF9F1C] transition shadow-lg">
+            메뉴 보기
           </button>
         </div>
       </div>
       
-      <div class="order-1 md:order-2 relative" data-tilt data-tilt-full-page-listening>
-        <!-- Floating Elements -->
-        <span class="absolute top-10 right-10 text-6xl animate-bounce">🧀</span>
-        <span class="absolute bottom-10 left-10 text-6xl animate-bounce" style="animation-delay: 0.5s">🍅</span>
+      <div class="order-1 md:order-2 relative">
+        <span class="absolute top-8 right-8 text-5xl">🧀</span>
+        <span class="absolute bottom-8 left-8 text-5xl">🍅</span>
         
-        <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?q=80&w=800" class="w-full relative z-10 drop-shadow-[0_20px_50px_rgba(255,159,28,0.3)] transform hover:scale-110 transition duration-500">
+        <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?q=80&w=800" alt="육즙 버거" class="w-full relative z-10 drop-shadow-2xl hover:scale-105 transition duration-500">
       </div>
     </div>
   </header>
 
-  <!-- Menu Grid (Process UI for Customizing) -->
-  <section id="menu" class="py-24 bg-[#111]">
+  <!-- Menu Grid -->
+  <section id="menu" class="py-16 md:py-20 bg-[#111]">
     <div class="container mx-auto px-6">
-      <div class="text-center mb-16">
-        <h2 class="text-5xl font-heading text-white mb-4">THE LINEUP</h2>
+      <div class="text-center mb-12">
+        <h2 class="text-4xl font-black text-white mb-3">메뉴 라인업</h2>
         <p class="text-gray-500">육즙 가득한 수제 버거 컬렉션</p>
       </div>
 
-      <div class="grid md:grid-cols-3 gap-8">
+      <div class="grid md:grid-cols-3 gap-6">
         <!-- Burger 1 -->
-        <div class="bg-[#1a1a1a] p-6 border-2 border-[#333] hover:border-[#FF9F1C] transition duration-300 group cursor-pointer rounded-xl" onclick="alert('Added to cart!')">
-          <div class="relative mb-6 overflow-hidden rounded-lg h-60">
-            <img src="https://images.unsplash.com/photo-1594212699903-ec8a3eca50f5?q=80&w=600" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+        <div class="bg-[#1a1a1a] p-5 border-2 border-[#333] hover:border-[#FF9F1C] transition group cursor-pointer rounded-xl">
+          <div class="relative mb-5 overflow-hidden rounded-lg h-52">
+            <img src="https://images.unsplash.com/photo-1594212699903-ec8a3eca50f5?q=80&w=600" alt="클래식 치즈버거" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
             <div class="absolute top-2 right-2 bg-[#FF9F1C] text-black font-bold px-3 py-1 text-xs">BEST</div>
           </div>
-          <h3 class="text-3xl font-heading text-white mb-2 group-hover:text-[#FF9F1C]">CLASSIC CHEESE</h3>
+          <h3 class="text-2xl font-black text-white mb-2 group-hover:text-[#FF9F1C]">클래식 치즈</h3>
           <p class="text-gray-400 text-sm mb-4">두툼한 패티, 체다치즈, 신선한 야채의 정석</p>
           <div class="flex justify-between items-center">
-             <span class="text-2xl font-bold text-[#FF9F1C]">₩8,900</span>
-             <button class="w-10 h-10 bg-white rounded-full flex items-center justify-center text-black font-bold text-xl hover:bg-[#FF9F1C] transition">+</button>
+             <span class="text-xl font-bold text-[#FF9F1C]">₩8,900</span>
+             <button class="w-9 h-9 bg-white rounded-full flex items-center justify-center text-black font-bold text-lg hover:bg-[#FF9F1C] transition">+</button>
           </div>
         </div>
 
         <!-- Burger 2 -->
-        <div class="bg-[#1a1a1a] p-6 border-2 border-[#333] hover:border-[#E71D36] transition duration-300 group cursor-pointer rounded-xl" onclick="alert('Added to cart!')">
-          <div class="relative mb-6 overflow-hidden rounded-lg h-60">
-            <img src="https://images.unsplash.com/photo-1550547660-d9450f859349?q=80&w=600" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+        <div class="bg-[#1a1a1a] p-5 border-2 border-[#333] hover:border-[#E71D36] transition group cursor-pointer rounded-xl">
+          <div class="relative mb-5 overflow-hidden rounded-lg h-52">
+            <img src="https://images.unsplash.com/photo-1550547660-d9450f859349?q=80&w=600" alt="볼케이노 버거" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
             <div class="absolute top-2 right-2 bg-[#E71D36] text-white font-bold px-3 py-1 text-xs">SPICY</div>
           </div>
-          <h3 class="text-3xl font-heading text-white mb-2 group-hover:text-[#E71D36]">VOLCANO</h3>
+          <h3 class="text-2xl font-black text-white mb-2 group-hover:text-[#E71D36]">볼케이노</h3>
           <p class="text-gray-400 text-sm mb-4">할라피뇨와 특제 핫소스의 화끈한 만남</p>
           <div class="flex justify-between items-center">
-             <span class="text-2xl font-bold text-[#E71D36]">₩9,500</span>
-             <button class="w-10 h-10 bg-white rounded-full flex items-center justify-center text-black font-bold text-xl hover:bg-[#E71D36] hover:text-white transition">+</button>
+             <span class="text-xl font-bold text-[#E71D36]">₩9,500</span>
+             <button class="w-9 h-9 bg-white rounded-full flex items-center justify-center text-black font-bold text-lg hover:bg-[#E71D36] hover:text-white transition">+</button>
           </div>
         </div>
 
         <!-- Burger 3 -->
-        <div class="bg-[#1a1a1a] p-6 border-2 border-[#333] hover:border-[#2EC4B6] transition duration-300 group cursor-pointer rounded-xl" onclick="alert('Added to cart!')">
-          <div class="relative mb-6 overflow-hidden rounded-lg h-60">
-            <img src="https://images.unsplash.com/photo-1551782450-a2132b4ba21d?q=80&w=600" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+        <div class="bg-[#1a1a1a] p-5 border-2 border-[#333] hover:border-[#2EC4B6] transition group cursor-pointer rounded-xl">
+          <div class="relative mb-5 overflow-hidden rounded-lg h-52">
+            <img src="https://images.unsplash.com/photo-1551782450-a2132b4ba21d?q=80&w=600" alt="파인 머쉬룸 버거" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
           </div>
-          <h3 class="text-3xl font-heading text-white mb-2 group-hover:text-[#2EC4B6]">PINE MUSHROOM</h3>
+          <h3 class="text-2xl font-black text-white mb-2 group-hover:text-[#2EC4B6]">파인 머쉬룸</h3>
           <p class="text-gray-400 text-sm mb-4">구운 파인애플과 버섯의 풍미 가득</p>
           <div class="flex justify-between items-center">
-             <span class="text-2xl font-bold text-[#2EC4B6]">₩9,900</span>
-             <button class="w-10 h-10 bg-white rounded-full flex items-center justify-center text-black font-bold text-xl hover:bg-[#2EC4B6] hover:text-white transition">+</button>
+             <span class="text-xl font-bold text-[#2EC4B6]">₩9,900</span>
+             <button class="w-9 h-9 bg-white rounded-full flex items-center justify-center text-black font-bold text-lg hover:bg-[#2EC4B6] hover:text-white transition">+</button>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Process (Step) -->
-  <section class="py-24 bg-[#FF9F1C] text-black">
+  <!-- Process -->
+  <section class="py-16 md:py-20 bg-[#FF9F1C] text-black">
     <div class="container mx-auto px-6 text-center">
-      <h2 class="text-4xl font-heading mb-16">BUILD YOUR BEAST</h2>
+      <h2 class="text-3xl font-black mb-12">나만의 버거 만들기</h2>
       
-      <div class="flex flex-col md:flex-row justify-center items-center gap-4 md:gap-8">
+      <div class="flex flex-col md:flex-row justify-center items-center gap-4 md:gap-6">
         <div class="flex flex-col items-center">
-           <div class="w-24 h-24 bg-white border-4 border-black rounded-full flex items-center justify-center text-4xl mb-4 shadow-[4px_4px_0px_#000]">🥩</div>
-           <span class="font-bold text-xl">CHOOSE PATTY</span>
-           <span class="text-sm opacity-70">Beef / Chicken / Shrimp</span>
+           <div class="w-20 h-20 bg-white border-4 border-black rounded-full flex items-center justify-center text-3xl mb-3 shadow-lg">🥩</div>
+           <span class="font-bold text-lg">패티 선택</span>
+           <span class="text-sm opacity-70">비프 / 치킨 / 새우</span>
         </div>
-        <div class="text-4xl font-black">&rarr;</div>
+        <div class="text-3xl font-black">→</div>
         <div class="flex flex-col items-center">
-           <div class="w-24 h-24 bg-white border-4 border-black rounded-full flex items-center justify-center text-4xl mb-4 shadow-[4px_4px_0px_#000]">🧀</div>
-           <span class="font-bold text-xl">ADD TOPPINGS</span>
-           <span class="text-sm opacity-70">Cheese / Bacon / Egg</span>
+           <div class="w-20 h-20 bg-white border-4 border-black rounded-full flex items-center justify-center text-3xl mb-3 shadow-lg">🧀</div>
+           <span class="font-bold text-lg">토핑 추가</span>
+           <span class="text-sm opacity-70">치즈 / 베이컨 / 에그</span>
         </div>
-        <div class="text-4xl font-black">&rarr;</div>
+        <div class="text-3xl font-black">→</div>
         <div class="flex flex-col items-center">
-           <div class="w-24 h-24 bg-white border-4 border-black rounded-full flex items-center justify-center text-4xl mb-4 shadow-[4px_4px_0px_#000]">🥤</div>
-           <span class="font-bold text-xl">MAKE IT SET</span>
-           <span class="text-sm opacity-70">Fries + Drink</span>
+           <div class="w-20 h-20 bg-white border-4 border-black rounded-full flex items-center justify-center text-3xl mb-3 shadow-lg">🥤</div>
+           <span class="font-bold text-lg">세트 구성</span>
+           <span class="text-sm opacity-70">감자튀김 + 음료</span>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Location / Footer -->
-  <section id="location" class="py-24 bg-black relative">
+  <!-- Location -->
+  <section id="location" class="py-16 md:py-20 bg-black relative">
     <div class="container mx-auto px-6 text-center">
-      <div class="border-2 border-dashed border-[#333] p-12 rounded-3xl max-w-4xl mx-auto">
-        <h2 class="text-4xl font-heading text-white mb-8">VISIT US</h2>
-        <div class="grid md:grid-cols-2 gap-8 text-left">
+      <div class="border-2 border-dashed border-[#333] p-10 rounded-2xl max-w-3xl mx-auto">
+        <h2 class="text-3xl font-black text-white mb-6">오시는 길</h2>
+        <div class="grid md:grid-cols-2 gap-6 text-left">
           <div>
-            <h3 class="text-[#FF9F1C] font-bold text-xl mb-2">Location</h3>
+            <h3 class="text-[#FF9F1C] font-bold text-lg mb-2">위치</h3>
             <p class="text-gray-400">서울 마포구 와우산로 123<br>홍대입구역 9번 출구 도보 5분</p>
           </div>
           <div>
-            <h3 class="text-[#FF9F1C] font-bold text-xl mb-2">Hours</h3>
-            <p class="text-gray-400">Mon-Sun: 11:00 - 22:00<br>(Break Time: 15:00 - 17:00)</p>
+            <h3 class="text-[#FF9F1C] font-bold text-lg mb-2">영업시간</h3>
+            <p class="text-gray-400">매일: 11:00 - 22:00<br>(브레이크 타임: 15:00 - 17:00)</p>
           </div>
         </div>
-        <div class="mt-8 pt-8 border-t border-[#333] flex justify-center gap-4">
-           <a href="#" class="w-12 h-12 bg-[#222] rounded-full flex items-center justify-center text-white hover:bg-[#FF9F1C] hover:text-black transition">IG</a>
-           <a href="#" class="w-12 h-12 bg-[#222] rounded-full flex items-center justify-center text-white hover:bg-[#FF9F1C] hover:text-black transition">FB</a>
+        <div class="mt-6 pt-6 border-t border-[#333] flex justify-center gap-3">
+           <a href="#" class="w-10 h-10 bg-[#222] rounded-full flex items-center justify-center text-white hover:bg-[#FF9F1C] hover:text-black transition text-sm">IG</a>
+           <a href="#" class="w-10 h-10 bg-[#222] rounded-full flex items-center justify-center text-white hover:bg-[#FF9F1C] hover:text-black transition text-sm">FB</a>
         </div>
       </div>
     </div>
   </section>
 
-</div>
+  <!-- Footer -->
+  <footer class="py-8 px-6 bg-[#1a1a1a] border-t border-[#333] text-center">
+    <p class="text-[#FF9F1C] font-black text-lg mb-2">버거 조인트</p>
+    <p class="text-gray-600 text-sm">© 2024 Burger Joint. All rights reserved.</p>
+  </footer>
 
-<script>
-  VanillaTilt.init(document.querySelectorAll("[data-tilt]"), {
-    max: 10,
-    speed: 400,
-    glare: true,
-    "max-glare": 0.5,
-  });
-</script>
+</div>
