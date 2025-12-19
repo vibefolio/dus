@@ -1,174 +1,264 @@
-<!DOCTYPE html>
-<html lang="ko">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>젠틀 덴탈 - 편안한 미소</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            teal: '#2DD4BF',
-            sky: '#E0F2FE',
-            blueGray: '#334155',
-          },
-          fontFamily: {
-            display: ['DM Sans', 'sans-serif'],
-            sans: ['Noto Sans KR', 'sans-serif'],
-          }
-        }
-      }
-    }
-  </script>
-</head>
-<body class="bg-white text-blueGray font-sans">
+<%# Dental Template - 미소 라인 치과 %>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.0/vanilla-tilt.min.js"></script>
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700&family=Noto+Sans+KR:wght@300;400;500;700&display=swap');
+  
+  .font-serif { font-family: 'Nanum Myeongjo', serif; }
+  .font-sans { font-family: 'Noto Sans KR', sans-serif; }
+  
+  .bg-pattern {
+    background-color: #f8fafc;
+    background-image: radial-gradient(#e2e8f0 1px, transparent 1px);
+    background-size: 20px 20px;
+  }
+  
+  .glass-card {
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+  }
+</style>
+
+<div class="bg-slate-50 text-slate-800 font-sans selection:bg-teal-500 selection:text-white">
 
   <!-- Nav -->
-  <nav class="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-gray-100">
-    <div class="container mx-auto px-6 py-4 flex justify-between items-center">
-      <div class="text-2xl font-display font-bold text-teal flex items-center gap-2">
-        <span class="text-3xl">🦷</span> GentleDental
+  <nav class="fixed w-full z-50 px-6 py-4 bg-white/90 backdrop-blur-sm border-b border-slate-100 shadow-sm">
+    <div class="container mx-auto flex justify-between items-center">
+      <div class="flex items-center gap-2">
+        <span class="text-3xl text-teal-500">🦷</span>
+        <div class="flex flex-col">
+           <span class="font-serif font-bold text-xl text-slate-800 leading-none">미소라인</span>
+           <span class="text-[10px] tracking-widest text-slate-400 uppercase">Dental Clinic</span>
+        </div>
       </div>
-      <div class="hidden md:flex gap-8 font-medium text-sm text-gray-400">
-        <a href="#about" class="hover:text-teal transition">병원 소개</a>
-        <a href="#services" class="hover:text-teal transition">진료 과목</a>
-        <a href="#reviews" class="hover:text-teal transition">치료 후기</a>
+      <div class="hidden md:flex gap-8 font-medium text-slate-500 text-sm">
+        <a href="#about" class="hover:text-teal-500 transition">의료진 소개</a>
+        <a href="#specialty" class="hover:text-teal-500 transition">진료 과목</a>
+        <a href="#process" class="hover:text-teal-500 transition">진료 과정</a>
+        <a href="#contact" class="hover:text-teal-500 transition">오시는 길</a>
       </div>
-      <button onclick="toggleDental()" class="bg-teal/10 text-teal px-5 py-2 rounded-lg font-bold hover:bg-teal hover:text-white transition">
-        빠른 예약 (02-1234-5678)
-      </button>
+      <div class="flex gap-2">
+         <a href="tel:02-1234-5678" class="hidden md:flex items-center gap-2 px-4 py-2 border border-slate-200 rounded text-slate-600 text-sm hover:border-teal-500 transition">
+           📞 02-1234-5678
+         </a>
+         <button onclick="document.getElementById('booking').scrollIntoView({behavior: 'smooth'})"
+                 class="px-5 py-2 bg-teal-500 text-white font-bold rounded text-sm hover:bg-teal-600 transition shadow-lg shadow-teal-200">
+           네이버 예약
+         </button>
+      </div>
     </div>
   </nav>
 
-  <!-- Hero with Split Layout -->
-  <header class="grid md:grid-cols-2 min-h-screen">
-    <div class="bg-teal flex items-center justify-center p-12 text-white relative overflow-hidden">
-      <!-- Background Circles -->
-      <div class="absolute top-0 left-0 w-64 h-64 bg-white/10 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2"></div>
-      <div class="absolute bottom-0 right-0 w-96 h-96 bg-white/10 rounded-full blur-3xl translate-x-1/4 translate-y-1/4"></div>
-      
-      <div class="relative z-10 max-w-md space-y-6">
-        <h1 class="text-5xl md:text-6xl font-display font-bold leading-tight">
-          아프지 않은 치료, <br> 건강한 미소.
-        </h1>
-        <p class="text-teal-50 text-lg leading-relaxed">
-          과잉 진료 없는 정직한 치과. <br>
-          통증 최소화 시스템으로 편안한 진료를 약속합니다.
-        </p>
-        <div class="flex gap-4 pt-4">
-          <button onclick="toggleDental()" class="bg-white text-teal px-8 py-4 rounded-xl font-bold shadow-lg hover:bg-gray-50 transition transform hover:-translate-y-1">
-            진료 예약하기
-          </button>
-        </div>
-      </div>
-    </div>
-    <div class="relative h-96 md:h-auto">
-      <img src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?q=80&w=1200" class="w-full h-full object-cover">
-      <div class="absolute inset-0 bg-gradient-to-t from-white/50 to-transparent md:hidden"></div>
-    </div>
+  <!-- Hero -->
+  <header class="pt-32 pb-20 px-6 bg-pattern relative overflow-hidden min-h-screen flex items-center">
+     <!-- Abstract Shapes -->
+     <div class="absolute top-20 right-0 w-[600px] h-[600px] bg-teal-50 rounded-full blur-3xl opacity-50 -z-0"></div>
+     <div class="absolute bottom-0 left-0 w-[400px] h-[400px] bg-blue-50 rounded-full blur-3xl opacity-50 -z-0"></div>
+
+     <div class="container mx-auto grid md:grid-cols-2 gap-12 items-center relative z-10">
+       <div class="space-y-8">
+         <span class="text-teal-600 font-bold tracking-widest text-sm uppercase bg-teal-50 px-3 py-1 rounded-full">Since 1998</span>
+         <h1 class="text-5xl md:text-6xl font-serif font-bold leading-tight text-slate-900">
+           당신의 미소가 <br>
+           <span class="text-teal-500 relative inline-block">
+             아름다워지는 곳
+             <svg class="absolute bottom-1 w-full h-3 text-teal-200 -z-10" viewBox="0 0 100 20" preserveAspectRatio="none">
+               <path d="M0 15 Q 50 25 100 15" stroke="currentColor" stroke-width="8" fill="none" opacity="0.5"/>
+             </svg>
+           </span>
+         </h1>
+         <p class="text-lg text-slate-500 leading-relaxed max-w-md">
+           과잉 진료 없는 정직한 치과,<br>
+           통증 최소화 시스템으로 편안한 진료를 약속드립니다.<br>
+           대학병원 출신 전문의 3인 협진 시스템.
+         </p>
+         
+         <div class="flex flex-col sm:flex-row gap-4 pt-4">
+           <button onclick="document.getElementById('booking').scrollIntoView({behavior: 'smooth'})"
+                   class="px-8 py-4 bg-slate-900 text-white font-bold rounded hover:bg-slate-800 transition shadow-xl">
+             진료 예약하기
+           </button>
+           <button class="px-8 py-4 bg-white border border-slate-200 text-slate-700 font-bold rounded hover:border-teal-500 hover:text-teal-500 transition flex items-center justify-center gap-2">
+             <span>💬</span> 카카오톡 상담
+           </button>
+         </div>
+       </div>
+
+       <div class="relative pl-10">
+         <div class="absolute top-10 left-0 w-full h-full border-2 border-teal-200 rounded-[2rem] -z-10 transform -translate-x-4 -translate-y-4"></div>
+         <img src="https://images.unsplash.com/photo-1588776814546-1ffcf101e938?q=80&w=800" class="rounded-[2rem] shadow-2xl w-full h-[500px] object-cover" data-tilt data-tilt-max="3">
+         
+         <!-- Floating Cards -->
+         <div class="absolute -bottom-6 -right-6 bg-white p-6 rounded-xl shadow-lg border-l-4 border-teal-500 animate-bounce" style="animation-duration: 3s">
+           <p class="text-xs text-slate-400 mb-1">임플란트 누적 식립</p>
+           <p class="text-2xl font-black text-slate-800">15,000+</p>
+         </div>
+         <div class="absolute top-10 -left-6 bg-white p-6 rounded-xl shadow-lg border-l-4 border-blue-500 animate-bounce" style="animation-duration: 4s">
+            <p class="text-xs text-slate-400 mb-1">네이버 평점</p>
+            <p class="text-2xl font-black text-slate-800">⭐ 4.95</p>
+         </div>
+       </div>
+     </div>
   </header>
 
-  <!-- Services Grid -->
-  <section id="services" class="py-24 px-6 container mx-auto">
-    <div class="text-center mb-16">
-      <h2 class="text-3xl font-bold text-gray-800 mb-4">소중한 치아를 지켜드립니다</h2>
-      <p class="text-gray-400">첨단 장비와 숙련된 의료진의 정밀한 진료</p>
-    </div>
-
-    <div class="grid md:grid-cols-4 gap-6">
-      <!-- Card -->
-      <div class="bg-sky/30 p-8 rounded-2xl hover:bg-sky/50 transition duration-300 group cursor-pointer" onclick="toggleDental()">
-        <div class="bg-white w-14 h-14 rounded-xl flex items-center justify-center text-3xl mb-6 shadow-sm">🦷</div>
-        <h3 class="text-xl font-bold mb-2">충치 치료</h3>
-        <p class="text-sm text-gray-500 leading-relaxed">
-          초기 진단부터 신경치료까지, 자연 치아를 최대한 보존합니다.
-        </p>
-      </div>
-      <!-- Card -->
-      <div class="bg-sky/30 p-8 rounded-2xl hover:bg-sky/50 transition duration-300 group cursor-pointer" onclick="toggleDental()">
-        <div class="bg-white w-14 h-14 rounded-xl flex items-center justify-center text-3xl mb-6 shadow-sm">✨</div>
-        <h3 class="text-xl font-bold mb-2">심미 보철</h3>
-        <p class="text-sm text-gray-500 leading-relaxed">
-          라미네이트, 올세라믹 등 티 나지 않는 자연스러운 아름다움.
-        </p>
-      </div>
-      <!-- Card -->
-      <div class="bg-sky/30 p-8 rounded-2xl hover:bg-sky/50 transition duration-300 group cursor-pointer" onclick="toggleDental()">
-        <div class="bg-white w-14 h-14 rounded-xl flex items-center justify-center text-3xl mb-6 shadow-sm">🔩</div>
-        <h3 class="text-xl font-bold mb-2">임플란트</h3>
-        <p class="text-sm text-gray-500 leading-relaxed">
-          3D CT 분석을 통한 안전하고 튼튼한 맞춤형 임플란트 식립.
-        </p>
-      </div>
-      <!-- Card -->
-      <div class="bg-sky/30 p-8 rounded-2xl hover:bg-sky/50 transition duration-300 group cursor-pointer" onclick="toggleDental()">
-        <div class="bg-white w-14 h-14 rounded-xl flex items-center justify-center text-3xl mb-6 shadow-sm">😬</div>
-        <h3 class="text-xl font-bold mb-2">치아 교정</h3>
-        <p class="text-sm text-gray-500 leading-relaxed">
-          소아 교정부터 성인 투명 교정까지, 가지런한 치열을 만듭니다.
-        </p>
-      </div>
-    </div>
-  </section>
-
-  <!-- Review/Stats -->
-  <section class="py-20 bg-gray-50">
-    <div class="container mx-auto px-6 grid md:grid-cols-3 gap-12 text-center">
-      <div>
-        <div class="text-4xl font-bold text-teal mb-2">15,000+</div>
-        <div class="text-gray-500 font-medium">누적 진료 환자</div>
-      </div>
-      <div>
-        <div class="text-4xl font-bold text-teal mb-2">10년</div>
-        <div class="text-gray-500 font-medium">한 자리에서 지켜온 신뢰</div>
-      </div>
-      <div>
-         <div class="text-4xl font-bold text-teal mb-2">98%</div>
-        <div class="text-gray-500 font-medium">환자 만족도</div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Modal -->
-  <div id="dental-modal" class="fixed inset-0 bg-blueGray/50 backdrop-blur-sm z-[60] hidden flex items-center justify-center p-4">
-    <div class="bg-white w-full max-w-md p-8 rounded-2xl shadow-2xl relative">
-      <button onclick="toggleDental()" class="absolute top-4 right-4 text-gray-400 hover:text-teal text-xl">&times;</button>
-      
-      <div class="text-center mb-8">
-        <h2 class="text-2xl font-bold text-gray-800 mb-1">진료 예약</h2>
-        <p class="text-xs text-gray-400">대기 시간 없이 편안하게 진료받으세요.</p>
+  <!-- Process (Step) -->
+  <section id="process" class="py-24 bg-white">
+    <div class="container mx-auto px-6">
+      <div class="text-center mb-16">
+        <h2 class="text-3xl font-serif font-bold text-slate-900 mb-4">안심 진료 프로세스</h2>
+        <p class="text-slate-500">환자분의 치아 상태를 정확히 파악하고 꼭 필요한 치료만 권장합니다.</p>
       </div>
 
-      <form class="space-y-4" onsubmit="event.preventDefault(); alert('예약 접수가 완료되었습니다.'); toggleDental();">
-        <input type="text" placeholder="성함" class="w-full bg-gray-50 border border-gray-100 p-4 rounded-xl outline-none focus:border-teal transition text-sm font-bold">
-        <input type="tel" placeholder="연락처" class="w-full bg-gray-50 border border-gray-100 p-4 rounded-xl outline-none focus:border-teal transition text-sm font-bold">
-        
-        <div class="grid grid-cols-2 gap-4">
-          <input type="date" class="bg-gray-50 border border-gray-100 p-4 rounded-xl outline-none focus:border-teal transition text-sm text-gray-500">
-          <input type="time" class="bg-gray-50 border border-gray-100 p-4 rounded-xl outline-none focus:border-teal transition text-sm text-gray-500">
+      <div class="grid md:grid-cols-4 gap-8 relative">
+        <div class="hidden md:block absolute top-[2rem] left-0 w-full h-[1px] bg-slate-100 -z-0"></div>
+
+        <div class="relative bg-white pt-8 text-center group cursor-pointer">
+          <div class="w-16 h-16 bg-teal-50 rounded-full flex items-center justify-center text-2xl mx-auto mb-6 group-hover:bg-teal-500 group-hover:text-white transition duration-300 relative z-10 shadow-sm">1</div>
+          <h3 class="font-bold text-lg mb-2">정밀 검진</h3>
+          <p class="text-sm text-slate-500">3D CT 및 구강 스캐너로<br>정확한 상태 분석</p>
         </div>
-        
-        <textarea rows="3" placeholder="불편하신 증상을 간단히 적어주세요." class="w-full bg-gray-50 border border-gray-100 p-4 rounded-xl outline-none focus:border-teal transition text-sm font-bold resize-none"></textarea>
 
-        <button class="w-full bg-teal text-white py-4 rounded-xl font-bold shadow-lg hover:bg-teal-600 transition mt-2">
-          예약 확정
-        </button>
-      </form>
+        <div class="relative bg-white pt-8 text-center group cursor-pointer">
+          <div class="w-16 h-16 bg-teal-50 rounded-full flex items-center justify-center text-2xl mx-auto mb-6 group-hover:bg-teal-500 group-hover:text-white transition duration-300 relative z-10 shadow-sm">2</div>
+          <h3 class="font-bold text-lg mb-2">1:1 맞춤 진단</h3>
+          <p class="text-sm text-slate-500">대표 원장님의 설명과<br>치료 계획 수립</p>
+        </div>
+
+        <div class="relative bg-white pt-8 text-center group cursor-pointer">
+          <div class="w-16 h-16 bg-teal-50 rounded-full flex items-center justify-center text-2xl mx-auto mb-6 group-hover:bg-teal-500 group-hover:text-white transition duration-300 relative z-10 shadow-sm">3</div>
+          <h3 class="font-bold text-lg mb-2">무통 마취 진료</h3>
+          <p class="text-sm text-slate-500">통증 저감 시스템을 통한<br>편안한 치료 진행</p>
+        </div>
+
+        <div class="relative bg-white pt-8 text-center group cursor-pointer">
+           <div class="w-16 h-16 bg-teal-50 rounded-full flex items-center justify-center text-2xl mx-auto mb-6 group-hover:bg-teal-500 group-hover:text-white transition duration-300 relative z-10 shadow-sm">4</div>
+           <h3 class="font-bold text-lg mb-2">사후 관리</h3>
+           <p class="text-sm text-slate-500">정기 검진 및 스케일링<br>평생 주치의 케어</p>
+        </div>
+      </div>
     </div>
-  </div>
+  </section>
 
-  <script>
-    function toggleDental() {
-      const modal = document.getElementById('dental-modal');
-      if(modal.classList.contains('hidden')) {
-        modal.classList.remove('hidden');
-      } else {
-        modal.classList.add('hidden');
-      }
-    }
-  </script>
-</body>
-</html>
+  <!-- Specialties -->
+  <section id="specialty" class="py-24 bg-slate-50">
+    <div class="container mx-auto px-6">
+      <div class="grid md:grid-cols-3 gap-8">
+        <!-- Card 1 -->
+        <div class="bg-white p-8 rounded-2xl shadow-sm hover:shadow-xl transition duration-500 group">
+          <div class="w-14 h-14 bg-teal-100 rounded-xl mb-6 flex items-center justify-center text-3xl group-hover:scale-110 transition">🦷</div>
+          <h3 class="font-serif font-bold text-xl mb-3 text-slate-800">네비게이션 임플란트</h3>
+          <p class="text-slate-500 text-sm leading-relaxed mb-6">
+            최첨단 디지털 장비로 모의 수술을 진행하여
+            절개 범위를 최소화하고 회복 속도를 높입니다.
+          </p>
+          <a href="#" class="text-teal-600 font-bold text-sm hover:underline">자세히 보기 &rarr;</a>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="bg-white p-8 rounded-2xl shadow-sm hover:shadow-xl transition duration-500 group">
+          <div class="w-14 h-14 bg-blue-100 rounded-xl mb-6 flex items-center justify-center text-3xl group-hover:scale-110 transition">✨</div>
+          <h3 class="font-serif font-bold text-xl mb-3 text-slate-800">심미 보철 / 라미네이트</h3>
+          <p class="text-slate-500 text-sm leading-relaxed mb-6">
+            치아 삭제량을 최소화하여 자연 치아를 보존하며,
+            가장 자연스럽고 아름다운 미소를 디자인합니다.
+          </p>
+          <a href="#" class="text-teal-600 font-bold text-sm hover:underline">자세히 보기 &rarr;</a>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="bg-white p-8 rounded-2xl shadow-sm hover:shadow-xl transition duration-500 group">
+          <div class="w-14 h-14 bg-purple-100 rounded-xl mb-6 flex items-center justify-center text-3xl group-hover:scale-110 transition">👶</div>
+          <h3 class="font-serif font-bold text-xl mb-3 text-slate-800">소아 / 교정 진료</h3>
+          <p class="text-slate-500 text-sm leading-relaxed mb-6">
+            성장기 아이들을 위한 맞춤형 예방 치료와
+            가지런한 치아를 위한 전문 교정 솔루션.
+          </p>
+          <a href="#" class="text-teal-600 font-bold text-sm hover:underline">자세히 보기 &rarr;</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Reservation Form -->
+  <section id="booking" class="py-24 bg-teal-900 text-white relative overflow-hidden">
+     <div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-10"></div>
+     
+     <div class="container mx-auto px-6 grid md:grid-cols-2 gap-16 items-center relative z-10">
+       <div>
+         <h2 class="text-4xl font-serif font-bold mb-6">진료 예약</h2>
+         <p class="text-teal-200 mb-8 leading-relaxed">
+           원하시는 날짜와 시간을 남겨주시면<br>
+           진료 시간 내에 빠르게 확정 전화를 드립니다.
+         </p>
+         
+         <div class="space-y-4">
+           <div class="flex items-center gap-4 p-4 border border-teal-700 rounded-lg bg-teal-800/50">
+             <span class="text-2xl">🕒</span>
+             <div>
+               <p class="font-bold">진료 시간</p>
+               <p class="text-sm text-teal-200">평일 09:30 - 18:30 (야간 화/목 ~20:30)</p>
+               <p class="text-sm text-teal-200">토요일 09:30 - 14:00 (점심시간 없음)</p>
+             </div>
+           </div>
+           
+           <div class="flex items-center gap-4 p-4 border border-teal-700 rounded-lg bg-teal-800/50">
+             <span class="text-2xl">🚗</span>
+             <div>
+               <p class="font-bold">오시는 길</p>
+               <p class="text-sm text-teal-200">강남역 11번 출구 바로 앞 글라스타워 5층</p>
+               <p class="text-sm text-teal-200 text-xs mt-1">* 건물 내 무료 주차 가능</p>
+             </div>
+           </div>
+         </div>
+       </div>
+
+       <form class="bg-white p-8 md:p-10 rounded-2xl text-slate-800 shadow-2xl">
+         <h3 class="font-bold text-xl mb-6 border-b pb-4">간편 예약 접수</h3>
+         <div class="space-y-4">
+           <div>
+             <label class="block text-sm font-bold text-slate-500 mb-1">성함</label>
+             <input type="text" class="w-full bg-slate-50 border border-slate-200 rounded p-3 focus:border-teal-500 outline-none" placeholder="홍길동">
+           </div>
+           <div>
+             <label class="block text-sm font-bold text-slate-500 mb-1">연락처</label>
+             <input type="tel" class="w-full bg-slate-50 border border-slate-200 rounded p-3 focus:border-teal-500 outline-none" placeholder="010-0000-0000">
+           </div>
+           <div class="grid grid-cols-2 gap-4">
+              <div>
+                <label class="block text-sm font-bold text-slate-500 mb-1">예약 날짜</label>
+                <input type="date" class="w-full bg-slate-50 border border-slate-200 rounded p-3 focus:border-teal-500 outline-none text-slate-500">
+              </div>
+              <div>
+                <label class="block text-sm font-bold text-slate-500 mb-1">진료 과목</label>
+                <select class="w-full bg-slate-50 border border-slate-200 rounded p-3 focus:border-teal-500 outline-none text-slate-500">
+                  <option>선택해주세요</option>
+                  <option>임플란트</option>
+                  <option>충치 치료</option>
+                  <option>스케일링</option>
+                  <option>교정 상담</option>
+                </select>
+              </div>
+           </div>
+           
+           <div class="pt-4">
+             <button type="button" class="w-full py-4 bg-teal-500 text-white font-bold text-lg rounded hover:bg-teal-600 transition shadow-lg">
+               예약 신청하기
+             </button>
+             <p class="text-xs text-center text-slate-400 mt-3">개인정보 수집 및 이용에 동의합니다.</p>
+           </div>
+         </div>
+       </form>
+     </div>
+  </section>
+
+</div>
+
+<script>
+  VanillaTilt.init(document.querySelectorAll("[data-tilt]"), {
+    max: 5,
+    speed: 400,
+    glare: true,
+    "max-glare": 0.2,
+  });
+</script>

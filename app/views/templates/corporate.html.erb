@@ -1,64 +1,269 @@
-<div class="font-sans text-slate-800 bg-white min-h-screen">
+<%# Corporate Template - 넥서스 그룹 %>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.0/vanilla-tilt.min.js"></script>
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;600;800&family=Noto+Sans+KR:wght@300;400;500;700&display=swap');
+  
+  .font-display { font-family: 'Manrope', sans-serif; }
+  .font-sans { font-family: 'Noto Sans KR', sans-serif; }
+  
+  .pattern-grid {
+    background-image: linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+    background-size: 40px 40px;
+  }
+</style>
+
+<div class="bg-white text-slate-800 font-sans selection:bg-blue-900 selection:text-white">
+
   <!-- Nav -->
-  <nav class="flex items-center justify-between px-8 py-4 border-b border-slate-100 sticky top-0 bg-white/90 backdrop-blur z-50">
-    <div class="font-bold text-2xl text-blue-600 tracking-tighter">Novus.</div>
-    <div class="hidden md:flex gap-8 text-sm font-medium text-slate-500">
-      <a href="#" class="hover:text-blue-600">Product</a>
-      <a href="#" class="hover:text-blue-600">Solutions</a>
-      <a href="#" class="hover:text-blue-600">Enterprise</a>
-    </div>
-    <div class="flex gap-4">
-      <button class="text-sm font-medium hover:text-blue-600">Log in</button>
-      <button class="bg-blue-600 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-blue-700 transition">Get Started</button>
+  <nav class="fixed w-full z-50 px-8 py-4 bg-white/95 backdrop-blur border-b border-slate-100 transition-all duration-300" id="navbar">
+    <div class="container mx-auto flex justify-between items-center">
+      <div class="flex items-center gap-2">
+         <div class="w-8 h-8 bg-blue-900 text-white flex items-center justify-center font-display font-bold rounded-sm">N</div>
+         <span class="font-display font-bold text-xl tracking-tight text-slate-900">NEXUS CORP</span>
+      </div>
+      
+      <div class="hidden md:flex gap-10 text-sm font-medium text-slate-600">
+        <a href="#about" class="hover:text-blue-900 transition">About Us</a>
+        <a href="#business" class="hover:text-blue-900 transition">Business Area</a>
+        <a href="#sustainability" class="hover:text-blue-900 transition">Sustainability</a>
+        <a href="#news" class="hover:text-blue-900 transition">News Room</a>
+        <a href="#careers" class="hover:text-blue-900 transition">Careers</a>
+      </div>
+      
+      <div class="flex gap-4">
+         <button class="text-slate-400 hover:text-blue-900">EN</button>
+         <button class="text-slate-400 hover:text-blue-900">KR</button>
+      </div>
     </div>
   </nav>
 
   <!-- Hero -->
-  <section class="py-32 px-6 text-center max-w-5xl mx-auto">
-    <span class="inline-block py-1 px-3 rounded-full bg-blue-50 text-blue-600 text-xs font-bold mb-6">NEW FEATURE RELEASED</span>
-    <h1 class="text-5xl md:text-7xl font-extrabold tracking-tight text-slate-900 mb-8 leading-tight">
-      Manage your team<br>
-      <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">like never before.</span>
-    </h1>
-    <p class="text-xl text-slate-500 mb-12 max-w-2xl mx-auto">
-      The only platform that gives you complete control over your workflow.
-      Streamline collaboration, automate tasks, and scale faster.
-    </p>
-    <div class="flex justify-center gap-4">
-      <button class="bg-slate-900 text-white px-8 py-4 rounded-xl font-bold text-lg hover:bg-slate-800 transition shadow-lg shadow-blue-500/20">Start Free Trial</button>
-      <button class="bg-white text-slate-900 border border-slate-200 px-8 py-4 rounded-xl font-bold text-lg hover:bg-slate-50 transition">View Demo</button>
+  <header class="h-screen relative flex items-center justify-center overflow-hidden bg-slate-900 text-white">
+    <div class="absolute inset-0 z-0">
+       <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=1920" class="w-full h-full object-cover opacity-30">
+       <div class="absolute inset-0 pattern-grid"></div>
+       <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent"></div>
     </div>
     
-    <!-- Dashboard Image -->
-    <div class="mt-20 rounded-2xl overflow-hidden shadow-2xl border border-slate-200 bg-slate-50 p-2">
-      <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=2426&auto=format&fit=crop" class="w-full h-auto rounded-xl" alt="Dashboard">
+    <div class="container mx-auto px-6 relative z-10 grid md:grid-cols-2 gap-12 items-center">
+      <div class="space-y-8 animate-fade-in-up">
+         <div class="inline-block border border-blue-500/50 bg-blue-500/10 px-4 py-1 text-xs font-bold text-blue-400 rounded-full uppercase tracking-wider mb-4">
+            Innovating the Future
+         </div>
+         <h1 class="text-5xl md:text-7xl font-display font-bold leading-tight">
+            Building Tomorrow,<br>
+            <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-300">Today.</span>
+         </h1>
+         <p class="text-slate-400 text-lg leading-relaxed max-w-xl">
+            끊임없는 혁신과 도전으로 더 나은 세상을 만들어갑니다.<br>
+            넥서스 그룹은 글로벌 리더로서 지속가능한 미래를 선도합니다.
+         </p>
+         <div class="pt-8 flex flex-col sm:flex-row gap-4">
+            <button class="px-8 py-4 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded transition shadow-lg shadow-blue-900/50">
+               View Our Vision
+            </button>
+            <button class="px-8 py-4 border border-white/20 hover:bg-white/10 text-white font-bold rounded transition backdrop-blur-sm">
+               Download Report
+            </button>
+         </div>
+      </div>
+      
+      <div class="hidden md:block relative" data-tilt data-tilt-max="2">
+         <div class="relative z-10 bg-white/5 backdrop-blur-md border border-white/10 p-8 rounded-lg shadow-2xl">
+            <div class="flex justify-between items-end mb-8">
+               <div>
+                  <p class="text-slate-400 text-sm mb-1">Stock Price (NXUS)</p>
+                  <p class="text-4xl font-display font-bold">145,200 <span class="text-green-400 text-lg">▲ 2.4%</span></p>
+               </div>
+               <div class="text-right">
+                  <p class="text-slate-400 text-xs">2024.12.24 15:30 KST</p>
+               </div>
+            </div>
+            <!-- Simple Chart Representation -->
+            <div class="h-32 flex items-end gap-2 opacity-80">
+               <div class="w-full bg-blue-500/20 h-[40%] rounded-t"></div>
+               <div class="w-full bg-blue-500/30 h-[50%] rounded-t"></div>
+               <div class="w-full bg-blue-500/40 h-[45%] rounded-t"></div>
+               <div class="w-full bg-blue-500/50 h-[60%] rounded-t"></div>
+               <div class="w-full bg-blue-500/60 h-[55%] rounded-t"></div>
+               <div class="w-full bg-blue-500/70 h-[70%] rounded-t"></div>
+               <div class="w-full bg-blue-500/80 h-[85%] rounded-t"></div>
+               <div class="w-full bg-blue-500 h-[80%] rounded-t"></div>
+               <div class="w-full bg-green-500 h-[95%] rounded-t shadow-[0_0_15px_rgba(34,197,94,0.5)]"></div>
+            </div>
+         </div>
+      </div>
+    </div>
+    
+    <div class="absolute bottom-0 w-full h-20 bg-gradient-to-t from-white to-transparent"></div>
+  </header>
+
+  <!-- Business Areas -->
+  <section id="business" class="py-24 px-6 bg-white">
+    <div class="container mx-auto">
+       <div class="text-center mb-16 px-4">
+          <h2 class="text-3xl font-bold mb-4 font-display text-slate-900">Core Business</h2>
+          <p class="text-slate-500">넥서스 그룹의 성장 동력이 되는 4대 핵심 사업 분야입니다.</p>
+       </div>
+
+       <div class="grid md:grid-cols-4 gap-8">
+          <!-- Card 1 -->
+          <div class="group cursor-pointer">
+             <div class="overflow-hidden rounded-lg mb-6 relative h-64">
+                <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=400" class="w-full h-full object-cover transition duration-700 group-hover:scale-110">
+                <div class="absolute inset-0 bg-blue-900/80 opacity-0 group-hover:opacity-100 transition duration-300 flex items-center justify-center">
+                   <span class="text-white font-bold border-b border-white pb-1">Learn More</span>
+                </div>
+             </div>
+             <h3 class="text-xl font-bold mb-2 font-display">Semiconductors</h3>
+             <p class="text-sm text-slate-500 leading-relaxed">
+                차세대 반도체 기술로 디지털 혁명을 주도합니다.
+                초미세 공정 기술력 확보.
+             </p>
+          </div>
+          
+          <!-- Card 2 -->
+          <div class="group cursor-pointer mt-8 md:mt-0">
+             <div class="overflow-hidden rounded-lg mb-6 relative h-64">
+                <img src="https://images.unsplash.com/photo-1509391366360-2e959784a276?q=80&w=400" class="w-full h-full object-cover transition duration-700 group-hover:scale-110">
+                <div class="absolute inset-0 bg-blue-900/80 opacity-0 group-hover:opacity-100 transition duration-300 flex items-center justify-center">
+                   <span class="text-white font-bold border-b border-white pb-1">Learn More</span>
+                </div>
+             </div>
+             <h3 class="text-xl font-bold mb-2 font-display">Green Energy</h3>
+             <p class="text-sm text-slate-500 leading-relaxed">
+                태양광, 풍력 등 신재생 에너지 솔루션을 통해
+                탄소 중립 실현에 앞장섭니다.
+             </p>
+          </div>
+          
+          <!-- Card 3 -->
+          <div class="group cursor-pointer">
+             <div class="overflow-hidden rounded-lg mb-6 relative h-64">
+                <img src="https://images.unsplash.com/photo-1555774698-0b77e0d5fac6?q=80&w=400" class="w-full h-full object-cover transition duration-700 group-hover:scale-110">
+                <div class="absolute inset-0 bg-blue-900/80 opacity-0 group-hover:opacity-100 transition duration-300 flex items-center justify-center">
+                   <span class="text-white font-bold border-b border-white pb-1">Learn More</span>
+                </div>
+             </div>
+             <h3 class="text-xl font-bold mb-2 font-display">Mobility</h3>
+             <p class="text-sm text-slate-500 leading-relaxed">
+                자율주행 및 전기차 부품 사업을 확장하여
+                미래 모빌리티 시장을 선점합니다.
+             </p>
+          </div>
+          
+          <!-- Card 4 -->
+          <div class="group cursor-pointer mt-8 md:mt-0">
+             <div class="overflow-hidden rounded-lg mb-6 relative h-64">
+                <img src="https://images.unsplash.com/photo-1526628953301-3e589a6a8b74?q=80&w=400" class="w-full h-full object-cover transition duration-700 group-hover:scale-110">
+                <div class="absolute inset-0 bg-blue-900/80 opacity-0 group-hover:opacity-100 transition duration-300 flex items-center justify-center">
+                   <span class="text-white font-bold border-b border-white pb-1">Learn More</span>
+                </div>
+             </div>
+             <h3 class="text-xl font-bold mb-2 font-display">AI Solution</h3>
+             <p class="text-sm text-slate-500 leading-relaxed">
+                인공지능 기반의 스마트 팩토리, 클라우드 서비스로
+                디지털 트랜스포메이션을 지원합니다.
+             </p>
+          </div>
+       </div>
     </div>
   </section>
 
-  <!-- Features -->
-  <section class="py-24 bg-slate-50">
-    <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-3 gap-12">
-      <div class="bg-white p-8 rounded-2xl shadow-sm hover:shadow-md transition">
-        <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center text-blue-600 mb-6">
-          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
-        </div>
-        <h3 class="text-xl font-bold mb-3">Lightning Fast</h3>
-        <p class="text-slate-500">Optimized for speed. No more waiting for pages to load or data to sync.</p>
-      </div>
-      <div class="bg-white p-8 rounded-2xl shadow-sm hover:shadow-md transition">
-        <div class="w-12 h-12 bg-indigo-100 rounded-lg flex items-center justify-center text-indigo-600 mb-6">
-          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
-        </div>
-        <h3 class="text-xl font-bold mb-3">Bank-Grade Security</h3>
-        <p class="text-slate-500">Your data is encrypted and protected with enterprise-level security protocols.</p>
-      </div>
-       <div class="bg-white p-8 rounded-2xl shadow-sm hover:shadow-md transition">
-        <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center text-purple-600 mb-6">
-          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path></svg>
-        </div>
-        <h3 class="text-xl font-bold mb-3">Real-time Analytics</h3>
-        <p class="text-slate-500">Gain insights instantly with our powerful, real-time data visualization tools.</p>
-      </div>
+  <!-- Metrics / ESG -->
+  <section id="sustainability" class="py-24 bg-slate-50 px-6">
+    <div class="container mx-auto grid md:grid-cols-2 gap-16 items-center">
+       <div>
+          <span class="text-blue-600 font-bold uppercase tracking-widest text-xs mb-2 block">ESG Management</span>
+          <h2 class="text-3xl md:text-4xl font-bold mb-8 font-display text-slate-900">Sustainable Growth</h2>
+          <p class="text-slate-500 leading-relaxed mb-8">
+             넥서스 그룹은 환경을 생각하고 사회적 책임을 다하며, 투명한 지배구조를 확립합니다.
+             모든 이해관계자와 함께 성장하는 미래를 그립니다.
+          </p>
+          
+          <div class="space-y-6">
+             <div class="flex items-center gap-4 p-4 bg-white rounded-lg shadow-sm border border-slate-100">
+                <div class="w-12 h-12 bg-green-100 text-green-600 rounded-full flex items-center justify-center font-bold">E</div>
+                <div>
+                   <h4 class="font-bold text-slate-800">Eco-Friendly</h4>
+                   <p class="text-xs text-slate-500">2030 RE100 달성 목표</p>
+                </div>
+             </div>
+             <div class="flex items-center gap-4 p-4 bg-white rounded-lg shadow-sm border border-slate-100">
+                <div class="w-12 h-12 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center font-bold">S</div>
+                <div>
+                   <h4 class="font-bold text-slate-800">Social Responsibility</h4>
+                   <p class="text-xs text-slate-500">지역사회 동반 성장 프로그램</p>
+                </div>
+             </div>
+             <div class="flex items-center gap-4 p-4 bg-white rounded-lg shadow-sm border border-slate-100">
+                <div class="w-12 h-12 bg-purple-100 text-purple-600 rounded-full flex items-center justify-center font-bold">G</div>
+                <div>
+                   <h4 class="font-bold text-slate-800">Governance</h4>
+                   <p class="text-xs text-slate-500">이사회 중심 책임 경영</p>
+                </div>
+             </div>
+          </div>
+       </div>
+       
+       <div class="grid grid-cols-2 gap-4">
+          <div class="bg-blue-900 text-white p-8 rounded-2xl flex flex-col justify-between h-48" data-tilt>
+             <span class="text-3xl font-display font-bold">25+</span>
+             <span class="text-sm opacity-70">Countries</span>
+          </div>
+          <div class="bg-white p-8 rounded-2xl shadow-lg border border-slate-100 flex flex-col justify-between h-48" data-tilt>
+             <span class="text-3xl font-display font-bold text-blue-900">40K</span>
+             <span class="text-sm text-slate-500">Employees</span>
+          </div>
+          <div class="bg-white p-8 rounded-2xl shadow-lg border border-slate-100 flex flex-col justify-between h-48" data-tilt>
+             <span class="text-3xl font-display font-bold text-blue-900">$52B</span>
+             <span class="text-sm text-slate-500">Annual Revenue</span>
+          </div>
+          <div class="bg-cyan-500 text-white p-8 rounded-2xl flex flex-col justify-between h-48" data-tilt>
+             <span class="text-3xl font-display font-bold">No.1</span>
+             <span class="text-sm opacity-80">Global Market Share</span>
+          </div>
+       </div>
     </div>
   </section>
+
+  <!-- News -->
+  <section id="news" class="py-24 px-6 bg-white">
+     <div class="container mx-auto">
+        <div class="flex justify-between items-end mb-12">
+           <h2 class="text-3xl font-bold font-display text-slate-900">Latest News</h2>
+           <a href="#" class="text-sm font-bold text-blue-600 hover:text-blue-800">View All &rarr;</a>
+        </div>
+        
+        <div class="grid md:grid-cols-3 gap-8">
+           <div class="border-b border-slate-100 pb-8 hover:bg-slate-50 transition p-4 rounded-lg">
+              <p class="text-xs text-slate-400 mb-2">2024.12.20</p>
+              <h3 class="font-bold text-lg mb-4 hover:text-blue-600 transition cursor-pointer">넥서스 그룹, 차세대 AI 반도체 양산 성공</h3>
+              <p class="text-sm text-slate-500 line-clamp-2">세계 최초 3나노 공정 기반의 신경망 처리 장치(NPU) 양산에 성공하며 글로벌 시장 선점에 나선다.</p>
+           </div>
+           <div class="border-b border-slate-100 pb-8 hover:bg-slate-50 transition p-4 rounded-lg">
+              <p class="text-xs text-slate-400 mb-2">2024.12.15</p>
+              <h3 class="font-bold text-lg mb-4 hover:text-blue-600 transition cursor-pointer">유럽 친환경 에너지 프로젝트 수주</h3>
+              <p class="text-sm text-slate-500 line-clamp-2">덴마크 해상 풍력 단지 조성 사업의 메인 공급사로 선정되어 2조원 규모의 계약을 체결했다.</p>
+           </div>
+           <div class="border-b border-slate-100 pb-8 hover:bg-slate-50 transition p-4 rounded-lg">
+              <p class="text-xs text-slate-400 mb-2">2024.12.01</p>
+              <h3 class="font-bold text-lg mb-4 hover:text-blue-600 transition cursor-pointer">연말 이웃돕기 성금 100억원 기탁</h3>
+              <p class="text-sm text-slate-500 line-clamp-2">사회복지공동모금회에 이웃사랑 성금을 전달하며 나눔 경영을 실천했다.</p>
+           </div>
+        </div>
+     </div>
+  </section>
+
 </div>
+
+<script>
+  VanillaTilt.init(document.querySelectorAll("[data-tilt]"), {
+    max: 5,
+    speed: 400,
+    glare: true,
+    "max-glare": 0.1,
+  });
+</script>

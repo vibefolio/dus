@@ -1,186 +1,211 @@
-<!DOCTYPE html>
-<html lang="ko">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>크리에이티브 에이전시 - 디지털의 미래</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&family=Noto+Sans+KR:wght@300;500;700&display=swap" rel="stylesheet">
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          fontFamily: {
-            display: ['Space Grotesk', 'sans-serif'],
-            sans: ['Noto Sans KR', 'sans-serif'],
-          },
-          backgroundImage: {
-            'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
-          }
-        }
-      }
-    }
-  </script>
-</head>
-<body class="bg-black text-white font-sans selection:bg-purple-500 selection:text-white">
+<%# Agency Template - 디지털 에이전시 %>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.0/vanilla-tilt.min.js"></script>
 
-  <!-- Noise Overlay -->
-  <div class="fixed inset-0 opacity-[0.03] pointer-events-none z-50 mix-blend-overlay" style="background-image: url('https://grainy-gradients.vercel.app/noise.svg')"></div>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Noto+Sans+KR:wght@300;400;700&display=swap');
+  
+  .font-display { font-family: 'Syncopate', sans-serif; }
+  .font-sans { font-family: 'Noto Sans KR', sans-serif; }
+  
+  .glitch-wrapper {
+    position: relative;
+    overflow: hidden;
+  }
+  .glitch-text::before, .glitch-text::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+  .glitch-text::before {
+    left: 2px;
+    text-shadow: -1px 0 #ff00c1;
+    clip: rect(44px, 450px, 56px, 0);
+    animation: glitch-anim 5s infinite linear alternate-reverse;
+  }
+  .glitch-text::after {
+    left: -2px;
+    text-shadow: -1px 0 #00fff9;
+    clip: rect(44px, 450px, 56px, 0);
+    animation: glitch-anim2 5s infinite linear alternate-reverse;
+  }
+  @keyframes glitch-anim {
+    0% { clip: rect(38px, 9999px, 81px, 0); }
+    20% { clip: rect(69px, 9999px, 16px, 0); }
+    40% { clip: rect(8px, 9999px, 55px, 0); }
+    60% { clip: rect(25px, 9999px, 12px, 0); }
+    80% { clip: rect(66px, 9999px, 39px, 0); }
+    100% { clip: rect(11px, 9999px, 76px, 0); }
+  }
+  @keyframes glitch-anim2 {
+    0% { clip: rect(57px, 9999px, 13px, 0); }
+    20% { clip: rect(32px, 9999px, 97px, 0); }
+    40% { clip: rect(55px, 9999px, 18px, 0); }
+    60% { clip: rect(89px, 9999px, 46px, 0); }
+    80% { clip: rect(36px, 9999px, 68px, 0); }
+    100% { clip: rect(98px, 9999px, 21px, 0); }
+  }
+  
+  .noise-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0.05;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  }
+</style>
+
+<div class="bg-black text-white font-sans selection:bg-lime-400 selection:text-black min-h-screen overflow-x-hidden">
+  <div class="noise-bg"></div>
 
   <!-- Nav -->
-  <nav class="fixed w-full z-40 px-6 py-6 flex justify-between items-center bg-black/50 backdrop-blur-md border-b border-white/10">
-    <div class="text-2xl font-display font-bold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-pink-600">
+  <nav class="fixed w-full z-50 px-8 py-6 flex justify-between items-center mix-blend-difference">
+    <div class="text-2xl font-display font-bold tracking-widest text-white">
       AGENCY_X
     </div>
-    <div class="hidden md:flex gap-8 text-sm font-medium text-gray-400">
-      <a href="#work" class="hover:text-white transition">포트폴리오</a>
-      <a href="#services" class="hover:text-white transition">서비스</a>
-      <a href="#about" class="hover:text-white transition">팀 소개</a>
-      <a href="#contact" class="hover:text-white transition">문의하기</a>
+    <div class="hidden md:flex gap-10 text-xs font-bold uppercase tracking-widest">
+      <a href="#work" class="hover:text-lime-400 transition">Work</a>
+      <a href="#about" class="hover:text-lime-400 transition">About</a>
+      <a href="#contact" class="hover:text-lime-400 transition">Contact</a>
     </div>
-    <button onclick="toggleAgency()" class="bg-white text-black px-6 py-2 rounded-full font-bold text-sm hover:scale-105 transition">
-      프로젝트 시작
-    </button>
+    <div class="w-10 h-10 border border-white rounded-full flex items-center justify-center hover:bg-white hover:text-black transition cursor-pointer">
+       <span class="text-xs">MENU</span>
+    </div>
   </nav>
 
   <!-- Hero -->
   <header class="h-screen flex items-center justify-center relative overflow-hidden">
-    <!-- Gradient Blobs -->
-    <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-purple-600 rounded-full mix-blend-screen filter blur-[100px] opacity-50 animate-pulse"></div>
-    <div class="absolute bottom-1/4 right-1/4 w-96 h-96 bg-blue-600 rounded-full mix-blend-screen filter blur-[100px] opacity-50 animate-pulse" style="animation-delay: 2s"></div>
-
-    <div class="relative z-10 text-center px-4 max-w-5xl">
-      <h1 class="text-6xl md:text-9xl font-display font-bold leading-none tracking-tighter mb-8 bg-clip-text text-transparent bg-gradient-to-b from-white to-gray-500">
-        We Design <br> The Future.
+    <div class="absolute inset-0 opacity-30">
+       <img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?q=80&w=1920" class="w-full h-full object-cover grayscale">
+       <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black"></div>
+    </div>
+    
+    <div class="relative z-10 text-center px-4 mix-blend-difference">
+      <p class="text-lime-400 font-bold tracking-[0.5em] text-xs mb-8 uppercase">We create future</p>
+      <h1 class="text-6xl md:text-9xl font-display font-bold mb-8 glitch-text" data-text="DIGITAL SHIFT">
+        DIGITAL<br>SHIFT
       </h1>
-      <p class="text-gray-400 text-lg md:text-xl max-w-2xl mx-auto leading-relaxed mb-12">
-        브랜드의 잠재력을 깨우는 크리에이티브 솔루션. <br>
-        데이터 기반의 전략과 감각적인 디자인으로 비즈니스를 성장시킵니다.
+      <p class="max-w-xl mx-auto text-gray-400 leading-relaxed text-sm md:text-base">
+        우리는 브랜드의 디지털 경험을 재정의합니다.<br>
+        한계를 넘어선 크리에이티브로 새로운 가치를 창출하세요.
       </p>
-      
-      <div class="flex flex-col md:flex-row gap-6 justify-center items-center">
-        <button onclick="toggleAgency()" class="group relative px-8 py-4 bg-transparent overflow-hidden rounded-full border border-white/30 text-white font-bold transition-all hover:border-white">
-          <div class="absolute inset-0 w-0 bg-white transition-all duration-[250ms] ease-out group-hover:w-full opacity-10"></div>
-          <span class="relative">Showreel 보기</span>
-        </button>
-        <div class="flex -space-x-4">
-          <img class="w-12 h-12 rounded-full border-2 border-black" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=100">
-          <img class="w-12 h-12 rounded-full border-2 border-black" src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=100">
-          <img class="w-12 h-12 rounded-full border-2 border-black" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=100">
-          <div class="w-12 h-12 rounded-full border-2 border-black bg-gray-800 flex items-center justify-center text-xs font-bold">+20</div>
-        </div>
-      </div>
+    </div>
+
+    <div class="absolute bottom-10 left-10 text-xs font-bold tracking-widest text-gray-500 rotate-90 origin-left">
+      SCROLL DOWN &rarr;
     </div>
   </header>
 
-  <!-- Featured Work -->
-  <section id="work" class="py-24 px-6 bg-neutral-900 border-t border-white/5">
-    <div class="container mx-auto">
-      <div class="flex justify-between items-end mb-16">
-        <h2 class="text-4xl md:text-5xl font-display font-bold">Selected Works</h2>
-        <a href="#" class="text-gray-400 hover:text-white transition border-b border-gray-600 hover:border-white pb-1">전체 보기</a>
-      </div>
-
-      <div class="grid md:grid-cols-2 gap-8 md:gap-16">
-        <!-- Project 1 -->
-        <div class="group cursor-pointer" onclick="toggleAgency()">
-          <div class="overflow-hidden rounded-2xl mb-6 relative">
-            <img src="https://images.unsplash.com/photo-1600607686527-6fb886090705?q=80&w=800" class="w-full aspect-[4/3] object-cover transition duration-700 group-hover:scale-105">
-            <div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition duration-300 flex items-center justify-center">
-              <span class="border border-white/30 bg-white/10 backdrop-blur px-6 py-2 rounded-full text-sm font-bold">View Case Study</span>
-            </div>
-          </div>
-          <h3 class="text-2xl font-bold mb-2 group-hover:text-purple-400 transition">Neo Bank Rebranding</h3>
-          <p class="text-gray-500 text-sm">Fintech • UI/UX Design</p>
-        </div>
-        <!-- Project 2 -->
-        <div class="group cursor-pointer md:mt-24" onclick="toggleAgency()">
-          <div class="overflow-hidden rounded-2xl mb-6 relative">
-            <img src="https://images.unsplash.com/photo-1611162617474-5b21e879e113?q=80&w=800" class="w-full aspect-[4/3] object-cover transition duration-700 group-hover:scale-105">
-            <div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition duration-300 flex items-center justify-center">
-              <span class="border border-white/30 bg-white/10 backdrop-blur px-6 py-2 rounded-full text-sm font-bold">View Case Study</span>
-            </div>
-          </div>
-          <h3 class="text-2xl font-bold mb-2 group-hover:text-pink-500 transition">Meta Verse Platform</h3>
-          <p class="text-gray-500 text-sm">Web 3.0 • 3D Interaction</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Services Marquee -->
-  <section id="services" class="py-24 bg-black overflow-hidden border-t border-white/5">
-    <div class="container mx-auto px-6 mb-12">
-      <h2 class="text-sm font-bold text-gray-500 uppercase tracking-widest">Our Expertise</h2>
-    </div>
-    
-    <div class="relative flex overflow-x-hidden group">
-      <div class="animate-marquee whitespace-nowrap flex gap-4 text-7xl md:text-9xl font-display font-bold text-transparent" style="-webkit-text-stroke: 1px rgba(255,255,255,0.2);">
-        <span>BRANDING</span>
-        <span class="text-white">UX/UI</span>
-        <span>DEVELOPMENT</span>
-        <span>MARKETING</span>
-        <span class="text-purple-500">MOTION</span>
-        <span>BRANDING</span>
-        <span class="text-white">UX/UI</span>
-        <span>DEVELOPMENT</span>
-      </div>
-    </div>
-  </section>
-
-  <!-- Modal -->
-  <div id="agency-modal" class="fixed inset-0 bg-black/80 backdrop-blur-md z-[60] hidden flex items-center justify-center p-4">
-    <div class="bg-[#111] border border-white/10 w-full max-w-lg p-10 rounded-3xl relative">
-      <button onclick="toggleAgency()" class="absolute top-6 right-6 text-gray-500 hover:text-white text-xl">&times;</button>
-      
-      <div class="text-center mb-10">
-        <h2 class="font-display text-3xl font-bold mb-2 bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-pink-600">Let's Talk</h2>
-        <p class="text-gray-500 text-sm">함께 만들고 싶은 것이 있나요?</p>
-      </div>
-
-      <form class="space-y-6" onsubmit="event.preventDefault(); alert('문의가 발송되었습니다. 확인 후 연락드리겠습니다.'); toggleAgency();">
-        <div class="space-y-1">
-          <label class="text-xs font-bold text-gray-600 uppercase ml-1">이메일</label>
-          <input type="email" placeholder="example@company.com" class="w-full bg-[#222] border border-transparent focus:border-purple-500 rounded-xl p-4 text-white outline-none transition">
-        </div>
-        <div class="space-y-1">
-          <label class="text-xs font-bold text-gray-600 uppercase ml-1">프로젝트 예산</label>
-          <select class="w-full bg-[#222] border border-transparent focus:border-purple-500 rounded-xl p-4 text-white outline-none transition">
-            <option>₩ 1,000만원 - 3,000만원</option>
-            <option>₩ 3,000만원 - 5,000만원</option>
-            <option>₩ 5,000만원 - 1억원</option>
-            <option>₩ 1억원 이상</option>
-          </select>
-        </div>
-        <div class="space-y-1">
-          <label class="text-xs font-bold text-gray-600 uppercase ml-1">내용</label>
-          <textarea rows="3" placeholder="프로젝트에 대해 간략히 설명해주세요." class="w-full bg-[#222] border border-transparent focus:border-purple-500 rounded-xl p-4 text-white outline-none transition resize-none"></textarea>
-        </div>
-        
-        <button class="w-full bg-white text-black font-bold py-4 rounded-xl hover:bg-gray-200 transition mt-2">
-          문의 보내기
-        </button>
-      </form>
+  <!-- Marquee -->
+  <div class="py-6 border-y border-white/20 overflow-hidden bg-lime-400 text-black">
+    <div class="whitespace-nowrap animate-[marquee_20s_linear_infinite] font-display font-bold text-4xl">
+      CREATIVE • STRATEGY • DEVELOPMENT • BRANDING • MARKETING • DESIGN • EXPERIENCE • CREATIVE • STRATEGY • DEVELOPMENT • 
     </div>
   </div>
-
   <style>
-    .animate-marquee { animation: marquee 20s linear infinite; }
     @keyframes marquee {
       0% { transform: translateX(0); }
       100% { transform: translateX(-50%); }
     }
   </style>
 
-  <script>
-    function toggleAgency() {
-      const modal = document.getElementById('agency-modal');
-      if(modal.classList.contains('hidden')) {
-        modal.classList.remove('hidden');
-      } else {
-        modal.classList.add('hidden');
-      }
-    }
-  </script>
-</body>
-</html>
+  <!-- Work Grid -->
+  <section id="work" class="py-32 px-4 md:px-12 bg-black">
+    <div class="grid md:grid-cols-2 gap-8 md:gap-24">
+      <!-- Item 1 -->
+      <div class="group cursor-pointer">
+        <div class="h-[600px] overflow-hidden mb-6 relative" data-tilt>
+           <img src="https://images.unsplash.com/photo-1600607686527-6fb886090705?q=80&w=800" class="w-full h-full object-cover transition duration-700 group-hover:scale-110 grayscale group-hover:grayscale-0">
+           <div class="absolute inset-0 bg-lime-400/20 opacity-0 group-hover:opacity-100 transition duration-300 mix-blend-multiply"></div>
+        </div>
+        <div class="flex justify-between items-end border-b border-white/20 pb-4">
+          <div>
+            <span class="text-xs text-lime-400 font-bold tracking-widest uppercase mb-1 block">Branding</span>
+            <h3 class="text-4xl font-display font-bold">NEO TOKYO</h3>
+          </div>
+          <span class="text-xl font-bold group-hover:text-lime-400 transition">&nearr;</span>
+        </div>
+      </div>
+
+      <!-- Item 2 -->
+      <div class="group cursor-pointer md:mt-32">
+        <div class="h-[600px] overflow-hidden mb-6 relative" data-tilt>
+           <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=800" class="w-full h-full object-cover transition duration-700 group-hover:scale-110 grayscale group-hover:grayscale-0">
+           <div class="absolute inset-0 bg-purple-500/20 opacity-0 group-hover:opacity-100 transition duration-300 mix-blend-multiply"></div>
+        </div>
+        <div class="flex justify-between items-end border-b border-white/20 pb-4">
+          <div>
+            <span class="text-xs text-purple-400 font-bold tracking-widest uppercase mb-1 block">Web Design</span>
+            <h3 class="text-4xl font-display font-bold">CYBER PUNK</h3>
+          </div>
+          <span class="text-xl font-bold group-hover:text-purple-400 transition">&nearr;</span>
+        </div>
+      </div>
+
+      <!-- Item 3 -->
+      <div class="group cursor-pointer">
+        <div class="h-[600px] overflow-hidden mb-6 relative" data-tilt>
+           <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=800" class="w-full h-full object-cover transition duration-700 group-hover:scale-110 grayscale group-hover:grayscale-0">
+           <div class="absolute inset-0 bg-blue-500/20 opacity-0 group-hover:opacity-100 transition duration-300 mix-blend-multiply"></div>
+        </div>
+        <div class="flex justify-between items-end border-b border-white/20 pb-4">
+          <div>
+            <span class="text-xs text-blue-400 font-bold tracking-widest uppercase mb-1 block">App Dev</span>
+            <h3 class="text-4xl font-display font-bold">FINTECH X</h3>
+          </div>
+          <span class="text-xl font-bold group-hover:text-blue-400 transition">&nearr;</span>
+        </div>
+      </div>
+      
+       <!-- Item 4 -->
+      <div class="group cursor-pointer md:mt-32">
+        <div class="h-[600px] overflow-hidden mb-6 relative" data-tilt>
+           <img src="https://images.unsplash.com/photo-1614850523459-c2f4c699c52e?q=80&w=800" class="w-full h-full object-cover transition duration-700 group-hover:scale-110 grayscale group-hover:grayscale-0">
+           <div class="absolute inset-0 bg-red-500/20 opacity-0 group-hover:opacity-100 transition duration-300 mix-blend-multiply"></div>
+        </div>
+        <div class="flex justify-between items-end border-b border-white/20 pb-4">
+          <div>
+            <span class="text-xs text-red-400 font-bold tracking-widest uppercase mb-1 block">3D Motion</span>
+            <h3 class="text-4xl font-display font-bold">FLOW STATE</h3>
+          </div>
+          <span class="text-xl font-bold group-hover:text-red-400 transition">&nearr;</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact" class="py-32 bg-lime-400 text-black relative">
+    <div class="container mx-auto px-6 text-center">
+      <h2 class="text-5xl md:text-8xl font-display font-bold mb-12 uppercase leading-none">
+        Ready to<br>Disrupt?
+      </h2>
+      <a href="mailto:hello@agencyx.com" class="inline-block text-xl md:text-3xl font-bold border-b-2 border-black hover:bg-black hover:text-lime-400 transition px-4 py-2">
+        hello@agencyx.com
+      </a>
+      
+      <div class="mt-24 grid grid-cols-2 md:grid-cols-4 gap-8 text-sm font-bold border-t border-black pt-8">
+        <div>Instagram</div>
+        <div>Behance</div>
+        <div>LinkedIn</div>
+        <div>Vimeo</div>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<script>
+  VanillaTilt.init(document.querySelectorAll("[data-tilt]"), {
+    max: 10,
+    speed: 400,
+    glare: true,
+    "max-glare": 0.5,
+  });
+</script>

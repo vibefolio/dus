@@ -1,232 +1,192 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Pet Palace - For Royal Pets</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Dosis:wght@400;600;800&family=Quicksand:wght@400;700&display=swap" rel="stylesheet">
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            coral: '#fb7185',
-            mint: '#2dd4bf',
-            cream: '#fff1f2',
-          },
-          fontFamily: {
-            display: ['Dosis', 'sans-serif'],
-            body: ['Quicksand', 'sans-serif'],
-          }
-        }
-      }
-    }
-  </script>
-</head>
-<body class="bg-cream font-body text-gray-700">
+<%# Petshop Template - 멍멍살롱 %>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.0/vanilla-tilt.min.js"></script>
 
-  <!-- Promo Banner -->
-  <div class="bg-mint text-white text-center py-2 text-sm font-bold tracking-wide">
-    Free Shipping on orders over $50! 🚚
-  </div>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Jua&family=Noto+Sans+KR:wght@400;700&display=swap');
+  
+  .font-cute { font-family: 'Jua', sans-serif; }
+  .font-sans { font-family: 'Noto Sans KR', sans-serif; }
+  
+  .paw-print {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Cpath fill='%23fbbf24' fill-opacity='0.4' d='M226.5 92.9c14.3 42.9-.3 86.2-32.6 96.8s-70.1-19.3-84.4-62.2s.3-86.2 32.6-96.8s70.1 19.3 84.4 62.2zM100.4 119.3c5.4 44.9-20.4 85.1-57.6 89.9s-72.3-25.3-77.6-70.2s20.4-85.1 57.6-89.9s72.3 25.3 77.6 70.2zM346.4 162.5c-44.6-10.9-65.5-55.5-46.7-99.7s64.9-72 109.5-61s65.5 55.5 46.7 99.7s-64.9 72-109.5 61zM404.6 221.7c-37.5-3.3-64.4-42.3-60.1-87.1s43.6-77.1 81.1-73.8s64.4 42.3 60.1 87.1s-43.6 77.1-81.1 73.8zM256 224c65.4 0 120.6 44.1 137.1 106.3c3.4 12.7 5.2 26 5.2 39.7c0 74.9-63.8 135.7-142.3 135.7c-78.5 0-142.3-60.8-142.3-135.7c0-13.7 1.8-26.9 5.2-39.7C135.4 268.1 190.6 224 256 224z'/%3E%3C/svg%3E");
+    background-size: contain;
+    background-repeat: no-repeat;
+    animation: walk 10s infinite linear;
+  }
+  @keyframes walk {
+    0% { transform: translate(0, 0) rotate(0deg); opacity: 0; }
+    10% { opacity: 1; }
+    90% { opacity: 1; }
+    100% { transform: translate(100vw, -100px) rotate(20deg); opacity: 0; }
+  }
+  
+  .bouncy:hover {
+    animation: bounce 0.5s infinite alternate;
+  }
+  @keyframes bounce {
+    from { transform: translateY(0); }
+    to { transform: translateY(-10px); }
+  }
+</style>
+
+<div class="bg-yellow-50 text-gray-800 font-sans selection:bg-yellow-400 selection:text-white">
 
   <!-- Nav -->
-  <nav class="sticky top-0 z-50 bg-white/80 backdrop-blur-md shadow-sm">
-    <div class="container mx-auto px-6 py-4 flex justify-between items-center">
-      <div class="flex items-center gap-2 text-3xl font-display font-extrabold text-coral">
-        <span>👑</span> Pet Palace
+  <nav class="fixed w-full z-50 px-6 py-4 bg-white/90 backdrop-blur border-b border-yellow-200 shadow-sm rounded-b-3xl">
+    <div class="container mx-auto flex justify-between items-center">
+      <div class="flex items-center gap-2">
+        <span class="text-3xl animate-bounce">🐶</span>
+        <span class="font-cute text-2xl text-yellow-500">멍멍살롱</span>
       </div>
-      <div class="hidden md:flex gap-8 font-bold text-gray-400">
-        <a href="#dogs" class="hover:text-coral transition">Dog</a>
-        <a href="#cats" class="hover:text-coral transition">Cat</a>
-        <a href="#new" class="hover:text-coral transition">New Arrivals</a>
-        <a href="#sale" class="hover:text-coral transition text-red-400">Sale</a>
+      <div class="hidden md:flex gap-8 font-cute text-lg text-gray-500">
+        <a href="#about" class="hover:text-yellow-500 transition">소개</a>
+        <a href="#service" class="hover:text-yellow-500 transition">서비스</a>
+        <a href="#hotel" class="hover:text-yellow-500 transition">호텔링</a>
+        <a href="#contact" class="hover:text-yellow-500 transition">예약하기</a>
       </div>
-      <div class="flex gap-4 items-center">
-        <button class="relative">
-          <svg class="w-6 h-6 text-gray-400 hover:text-coral transition" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
-        </button>
-        <button class="relative" onclick="toggleCart()">
-          <svg class="w-6 h-6 text-gray-400 hover:text-coral transition" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/></svg>
-          <span class="absolute -top-2 -right-2 bg-coral text-white text-xs w-5 h-5 flex items-center justify-center rounded-full font-bold">2</span>
-        </button>
-      </div>
+      <button onclick="document.getElementById('contact').scrollIntoView({behavior: 'smooth'})"
+              class="px-6 py-2 bg-yellow-400 text-white font-cute text-lg rounded-full shadow-lg hover:bg-yellow-500 transition transform hover:scale-105">
+        상담신청
+      </button>
     </div>
   </nav>
 
-  <!-- Hero Slider -->
-  <header class="container mx-auto px-6 py-12">
-    <div class="bg-gradient-to-r from-coral to-pink-400 rounded-[3rem] p-12 md:p-24 text-white relative overflow-hidden shadow-2xl shadow-pink-200">
-      <div class="relative z-10 max-w-xl space-y-6">
-        <span class="inline-block bg-white text-coral px-4 py-2 rounded-full font-bold uppercase text-xs tracking-widest mb-2">Winter Collection</span>
-        <h1 class="text-5xl md:text-7xl font-display font-extrabold leading-tight">
-          Style For Every <br> Little <span class="text-mint drop-shadow-md">Paw.</span>
+  <!-- Hero -->
+  <header class="pt-32 pb-20 px-6 relative overflow-hidden min-h-screen flex items-center">
+    <!-- Paw Prints Animation -->
+    <div class="paw-print" style="top: 20%; left: 10%; animation-delay: 0s;"></div>
+    <div class="paw-print" style="top: 50%; left: 30%; animation-delay: 2s;"></div>
+    <div class="paw-print" style="top: 80%; left: 60%; animation-delay: 4s;"></div>
+    <div class="paw-print" style="top: 30%; left: 80%; animation-delay: 6s;"></div>
+
+    <div class="container mx-auto grid md:grid-cols-2 gap-12 items-center relative z-10">
+      <div class="text-center md:text-left space-y-6">
+        <span class="inline-block bg-white text-yellow-500 px-4 py-2 rounded-full font-bold shadow-sm border border-yellow-200 animate-pulse">
+           🐾 프리미엄 펫 케어샵
+        </span>
+        <h1 class="text-5xl md:text-7xl font-cute leading-tight text-gray-800" data-tilt>
+          반려견을 위한<br>
+          <span class="text-yellow-500">행복한 하루</span>를<br>
+          선물하세요!
         </h1>
-        <p class="text-xl opacity-90 font-bold">
-          Cozy sweaters, durable toys, and organic treats. Treat your furry royalty.
+        <p class="text-lg text-gray-500 leading-relaxed font-cute">
+          스트레스 없는 미용부터 편안한 호텔링까지.<br>
+          전문 펫시터와 미용사가 1:1로 케어합니다.
         </p>
-        <button onclick="toggleCart()" class="bg-mint text-white px-10 py-4 rounded-2xl font-bold text-xl shadow-lg hover:bg-teal-400 hover:-translate-y-1 transition mt-4">
-          Shop Now
-        </button>
+        <div class="flex gap-4 justify-center md:justify-start pt-4">
+          <button class="px-8 py-4 bg-gray-800 text-white rounded-2xl font-bold shadow-xl hover:bg-gray-700 transition flex items-center gap-2 font-cute text-xl">
+             <span class="text-2xl">✂️</span> 미용 예약
+          </button>
+          <button class="px-8 py-4 bg-white text-yellow-500 border-2 border-yellow-400 rounded-2xl font-bold hover:bg-yellow-50 transition flex items-center gap-2 font-cute text-xl">
+             <span class="text-2xl">🏨</span> 호텔 예약
+          </button>
+        </div>
       </div>
-      
-      <div class="absolute right-0 bottom-0 md:-right-20 md:top-10 w-full md:w-1/2">
-        <img src="https://images.unsplash.com/photo-1543466835-00a7907e9de1?q=80&w=800" class="w-full object-cover transform rotate-12 hover:rotate-6 transition duration-700 drop-shadow-2xl rounded-3xl border-8 border-white/20">
+
+      <div class="relative" data-tilt data-tilt-max="5">
+        <div class="absolute inset-0 bg-yellow-300 rounded-[3rem] transform rotate-6 translate-x-4 translate-y-4"></div>
+        <img src="https://images.unsplash.com/photo-1587300003388-59208cc962cb?q=80&w=800" class="relative rounded-[3rem] shadow-2xl w-full h-[500px] object-cover border-4 border-white">
+        
+        <!-- Floating Sticker -->
+        <div class="absolute -top-4 -right-4 bg-white p-4 rounded-full shadow-lg border-2 border-yellow-400 w-24 h-24 flex items-center justify-center rotate-12 bouncy">
+           <span class="text-center font-cute text-lg leading-tight text-gray-800">첫방문<br><span class="text-red-500">20%</span><br>할인</span>
+        </div>
       </div>
-      
-      <!-- Decor -->
-      <div class="absolute top-10 right-1/2 text-5xl opacity-50 animate-bounce">🦴</div>
     </div>
   </header>
 
-  <!-- Categories -->
-  <section class="py-12 px-6">
-    <div class="container mx-auto grid grid-cols-2 md:grid-cols-4 gap-6">
-      <div class="bg-white p-6 rounded-[2rem] text-center hover:shadow-xl transition cursor-pointer group">
-        <div class="text-5xl mb-4 group-hover:scale-110 transition">🐕</div>
-        <h3 class="font-bold text-xl text-gray-800">Dogs</h3>
+  <!-- Service Cards -->
+  <section id="service" class="py-24 bg-white rounded-t-[4rem]">
+    <div class="container mx-auto px-6">
+      <div class="text-center mb-16">
+        <h2 class="text-4xl font-cute text-gray-800 mb-4">어떤 서비스가 필요하신가요?</h2>
+        <p class="text-gray-500 font-cute text-xl">댕댕이 맞춤형 풀 케어 서비스</p>
       </div>
-      <div class="bg-white p-6 rounded-[2rem] text-center hover:shadow-xl transition cursor-pointer group">
-        <div class="text-5xl mb-4 group-hover:scale-110 transition">🐈</div>
-        <h3 class="font-bold text-xl text-gray-800">Cats</h3>
-      </div>
-      <div class="bg-white p-6 rounded-[2rem] text-center hover:shadow-xl transition cursor-pointer group">
-        <div class="text-5xl mb-4 group-hover:scale-110 transition">🛁</div>
-        <h3 class="font-bold text-xl text-gray-800">Grooming</h3>
-      </div>
-      <div class="bg-white p-6 rounded-[2rem] text-center hover:shadow-xl transition cursor-pointer group">
-        <div class="text-5xl mb-4 group-hover:scale-110 transition">🧸</div>
-        <h3 class="font-bold text-xl text-gray-800">Toys</h3>
+
+      <div class="grid md:grid-cols-4 gap-6">
+        <!-- Card 1 -->
+        <div class="bg-blue-50 p-8 rounded-3xl text-center hover:shadow-xl transition duration-300 transform hover:-translate-y-2 cursor-pointer group">
+          <div class="w-20 h-20 bg-white rounded-full flex items-center justify-center text-4xl mb-6 mx-auto shadow-sm group-hover:scale-110 transition">🛁</div>
+          <h3 class="font-cute text-2xl mb-2 text-gray-800">스파 & 목욕</h3>
+          <p class="text-sm text-gray-500">탄산수 스파로<br>피부 각질 케어</p>
+        </div>
+        <!-- Card 2 -->
+        <div class="bg-pink-50 p-8 rounded-3xl text-center hover:shadow-xl transition duration-300 transform hover:-translate-y-2 cursor-pointer group">
+          <div class="w-20 h-20 bg-white rounded-full flex items-center justify-center text-4xl mb-6 mx-auto shadow-sm group-hover:scale-110 transition">✂️</div>
+          <h3 class="font-cute text-2xl mb-2 text-gray-800">가위컷 미용</h3>
+          <p class="text-sm text-gray-500">견종별 맞춤 스타일링<br>스트레스 최소화</p>
+        </div>
+        <!-- Card 3 -->
+        <div class="bg-green-50 p-8 rounded-3xl text-center hover:shadow-xl transition duration-300 transform hover:-translate-y-2 cursor-pointer group">
+          <div class="w-20 h-20 bg-white rounded-full flex items-center justify-center text-4xl mb-6 mx-auto shadow-sm group-hover:scale-110 transition">🏨</div>
+          <h3 class="font-cute text-2xl mb-2 text-gray-800">펫 호텔</h3>
+          <p class="text-sm text-gray-500">24시간 CCTV<br>넓은 개별 룸</p>
+        </div>
+        <!-- Card 4 -->
+        <div class="bg-purple-50 p-8 rounded-3xl text-center hover:shadow-xl transition duration-300 transform hover:-translate-y-2 cursor-pointer group">
+          <div class="w-20 h-20 bg-white rounded-full flex items-center justify-center text-4xl mb-6 mx-auto shadow-sm group-hover:scale-110 transition">🎓</div>
+          <h3 class="font-cute text-2xl mb-2 text-gray-800">유치원</h3>
+          <p class="text-sm text-gray-500">사회성 기르기 프로그램<br>친구들과 놀이 시간</p>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- Product Grid -->
-  <section id="new" class="py-12 px-6">
+  <!-- Photo Gallery (Grid) -->
+  <section class="py-20 px-6 bg-yellow-50">
     <div class="container mx-auto">
-      <h2 class="text-3xl font-display font-extrabold text-gray-800 mb-8 text-center md:text-left">Trending Now 🔥</h2>
-      
-      <div class="grid md:grid-cols-4 gap-8">
-        <!-- Product 1 -->
-        <div class="bg-white rounded-3xl p-4 shadow-sm hover:shadow-xl transition group">
-          <div class="bg-gray-100 rounded-2xl h-64 mb-4 overflow-hidden relative">
-            <img src="https://images.unsplash.com/photo-1576201836106-db1758fd1c97?q=80&w=600" class="w-full h-full object-cover object-center group-hover:scale-110 transition duration-500">
-            <button class="absolute top-3 right-3 bg-white p-2 rounded-full shadow hover:text-red-500 transition">❤️</button>
-          </div>
-          <h3 class="font-bold text-lg mb-1">Cozy Knit Sweater</h3>
-          <p class="text-gray-400 text-sm mb-3">Warm & Stylish</p>
-          <div class="flex justify-between items-center">
-            <span class="font-display font-bold text-2xl text-coral">$24.99</span>
-            <button class="bg-gray-800 text-white p-3 rounded-xl hover:bg-mint transition" onclick="toggleCart()">+</button>
-          </div>
+      <h2 class="text-3xl font-cute text-center mb-10">행복한 댕댕이 갤러리 📸</h2>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+        <div class="rounded-2xl overflow-hidden h-48 md:h-64 shadow-md group">
+           <img src="https://images.unsplash.com/photo-1591769225440-811ad7d6eca6?q=80&w=400" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
         </div>
-        <!-- Product 2 -->
-        <div class="bg-white rounded-3xl p-4 shadow-sm hover:shadow-xl transition group">
-          <div class="bg-gray-100 rounded-2xl h-64 mb-4 overflow-hidden relative">
-            <img src="https://images.unsplash.com/photo-1599566150163-29194dcaad36?q=80&w=600" class="w-full h-full object-cover object-center group-hover:scale-110 transition duration-500">
-            <button class="absolute top-3 right-3 bg-white p-2 rounded-full shadow hover:text-red-500 transition">❤️</button>
-          </div>
-          <h3 class="font-bold text-lg mb-1">Organic Chews</h3>
-          <p class="text-gray-400 text-sm mb-3">Healthy Snacks</p>
-          <div class="flex justify-between items-center">
-            <span class="font-display font-bold text-2xl text-coral">$12.50</span>
-            <button class="bg-gray-800 text-white p-3 rounded-xl hover:bg-mint transition" onclick="toggleCart()">+</button>
-          </div>
+        <div class="rounded-2xl overflow-hidden h-48 md:h-64 shadow-md group">
+           <img src="https://images.unsplash.com/photo-1583511655857-d19b40a7a54e?q=80&w=400" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
         </div>
-        <!-- Product 3 -->
-        <div class="bg-white rounded-3xl p-4 shadow-sm hover:shadow-xl transition group">
-          <div class="bg-gray-100 rounded-2xl h-64 mb-4 overflow-hidden relative">
-             <div class="absolute inset-0 flex items-center justify-center text-4xl bg-blue-50">🧶</div>
-            <button class="absolute top-3 right-3 bg-white p-2 rounded-full shadow hover:text-red-500 transition">❤️</button>
-          </div>
-          <h3 class="font-bold text-lg mb-1">Rope Toy Set</h3>
-          <p class="text-gray-400 text-sm mb-3">Durable Cotton</p>
-          <div class="flex justify-between items-center">
-            <span class="font-display font-bold text-2xl text-coral">$18.00</span>
-            <button class="bg-gray-800 text-white p-3 rounded-xl hover:bg-mint transition" onclick="toggleCart()">+</button>
-          </div>
+        <div class="rounded-2xl overflow-hidden h-48 md:h-64 shadow-md group">
+           <img src="https://images.unsplash.com/photo-1548199973-03cce0bbc87b?q=80&w=400" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
         </div>
-        <!-- Product 4 -->
-        <div class="bg-white rounded-3xl p-4 shadow-sm hover:shadow-xl transition group">
-          <div class="bg-gray-100 rounded-2xl h-64 mb-4 overflow-hidden relative">
-             <div class="absolute inset-0 flex items-center justify-center text-4xl bg-yellow-50">🛌</div>
-            <button class="absolute top-3 right-3 bg-white p-2 rounded-full shadow hover:text-red-500 transition">❤️</button>
-          </div>
-          <h3 class="font-bold text-lg mb-1">Cloud Bed</h3>
-          <p class="text-gray-400 text-sm mb-3">Ultra Soft Memory Foam</p>
-          <div class="flex justify-between items-center">
-            <span class="font-display font-bold text-2xl text-coral">$45.99</span>
-            <button class="bg-gray-800 text-white p-3 rounded-xl hover:bg-mint transition" onclick="toggleCart()">+</button>
-          </div>
+        <div class="rounded-2xl overflow-hidden h-48 md:h-64 shadow-md group">
+           <img src="https://images.unsplash.com/photo-1517849845537-4d257902454a?q=80&w=400" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Cart Modal -->
-  <div id="cart-modal" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-[60] hidden flex justify-end">
-    <div class="bg-white w-full max-w-md h-full shadow-2xl p-8 animate-slide-left overflow-y-auto">
-      <div class="flex justify-between items-center mb-8">
-        <h2 class="text-2xl font-display font-extrabold text-gray-800">Your Cart (2)</h2>
-        <button onclick="toggleCart()" class="text-gray-400 hover:text-coral font-bold text-xl">&times;</button>
-      </div>
-      
-      <div class="space-y-6 mb-8">
-        <!-- Item -->
-        <div class="flex gap-4 items-center">
-          <div class="w-20 h-20 bg-gray-100 rounded-xl"></div>
-          <div class="flex-grow">
-            <h3 class="font-bold">Cozy Knit Sweater</h3>
-            <p class="text-sm text-gray-400">Size: M / Red</p>
+  <!-- Booking Form -->
+  <section id="contact" class="py-20 bg-white rounded-t-[4rem] relative overflow-hidden">
+    <div class="absolute -right-10 top-20 w-40 h-40 bg-yellow-100 rounded-full blur-3xl opacity-50"></div>
+    <div class="absolute -left-10 bottom-20 w-40 h-40 bg-blue-100 rounded-full blur-3xl opacity-50"></div>
+
+    <div class="container mx-auto px-6 max-w-lg relative z-10">
+      <div class="bg-white border-4 border-yellow-200 rounded-[2rem] p-8 md:p-12 text-center shadow-xl">
+        <h2 class="font-cute text-3xl mb-2 text-gray-800">간편 예약하기</h2>
+        <p class="text-gray-500 mb-8 font-cute">우리 아이 정보를 남겨주세요!</p>
+        
+        <form class="space-y-4">
+          <input type="text" placeholder="보호자님 성함" class="w-full bg-gray-50 border-0 rounded-xl p-4 font-cute outline-none focus:ring-2 focus:ring-yellow-400">
+          <input type="tel" placeholder="연락처" class="w-full bg-gray-50 border-0 rounded-xl p-4 font-cute outline-none focus:ring-2 focus:ring-yellow-400">
+          <div class="grid grid-cols-2 gap-4">
+             <input type="text" placeholder="반려견 이름" class="w-full bg-gray-50 border-0 rounded-xl p-4 font-cute outline-none focus:ring-2 focus:ring-yellow-400">
+             <input type="text" placeholder="견종 / 나이" class="w-full bg-gray-50 border-0 rounded-xl p-4 font-cute outline-none focus:ring-2 focus:ring-yellow-400">
           </div>
-          <div class="font-bold text-coral">$24.99</div>
-        </div>
-         <!-- Item -->
-        <div class="flex gap-4 items-center">
-          <div class="w-20 h-20 bg-gray-100 rounded-xl"></div>
-          <div class="flex-grow">
-            <h3 class="font-bold">Squeaky Duck</h3>
-            <p class="text-sm text-gray-400">Regular</p>
-          </div>
-          <div class="font-bold text-coral">$8.50</div>
-        </div>
-      </div>
-      
-      <div class="border-t border-gray-100 pt-6 space-y-4">
-        <div class="flex justify-between font-bold text-gray-500">
-          <span>Subtotal</span>
-          <span>$33.49</span>
-        </div>
-        <div class="flex justify-between font-bold text-gray-500">
-          <span>Shipping</span>
-          <span class="text-mint">Free</span>
-        </div>
-        <div class="flex justify-between font-display font-extrabold text-2xl text-gray-800">
-          <span>Total</span>
-          <span>$33.49</span>
-        </div>
-        <button class="w-full bg-coral text-white py-4 rounded-xl font-bold shadow-lg hover:bg-pink-500 transition mt-4" onclick="alert('Checkout functionality coming soon!'); toggleCart();">
-          Checkout
-        </button>
+          <button class="w-full bg-yellow-400 text-white font-cute text-xl py-4 rounded-xl hover:bg-yellow-500 transition shadow-md">
+            예약 신청 완료
+          </button>
+        </form>
       </div>
     </div>
-  </div>
-  
-  <style>
-    @keyframes slide-left { from { transform: translateX(100%); } to { transform: translateX(0); } }
-    .animate-slide-left { animation: slide-left 0.3s ease-out; }
-  </style>
+  </section>
 
-  <script>
-    function toggleCart() {
-      const modal = document.getElementById('cart-modal');
-      if(modal.classList.contains('hidden')) {
-        modal.classList.remove('hidden');
-      } else {
-        modal.classList.add('hidden');
-      }
-    }
-  </script>
-</body>
-</html>
+</div>
+
+<script>
+  VanillaTilt.init(document.querySelectorAll("[data-tilt]"), {
+    max: 15,
+    speed: 400,
+    scale: 1.05
+  });
+</script>

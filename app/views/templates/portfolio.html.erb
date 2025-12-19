@@ -1,80 +1,162 @@
-<div class="font-sans text-gray-200 bg-[#111] min-h-screen">
-  <!-- Sidebar / Nav -->
-  <div class="fixed top-0 left-0 w-full md:w-64 h-16 md:h-full border-b md:border-b-0 md:border-r border-white/10 p-6 flex flex-row md:flex-col justify-between items-center md:items-start z-50 bg-[#111]">
-    <div class="text-2xl font-black tracking-tighter w-full">ARC.</div>
-    
-    <nav class="hidden md:flex flex-col gap-4 text-sm font-medium text-gray-500 w-full">
-      <a href="#" class="text-white">All Projects</a>
-      <a href="#" class="hover:text-white transition">Photography</a>
-      <a href="#" class="hover:text-white transition">Branding</a>
-      <a href="#" class="hover:text-white transition">Editorial</a>
-    </nav>
+<%# Portfolio Template - 제이 디자인 (UX/UI 포트폴리오) %>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.0/vanilla-tilt.min.js"></script>
 
-    <div class="hidden md:block text-xs text-gray-600 w-full">
-      © 2024 Archive.<br>All rights reserved.
-    </div>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Inter:wght@300;400;500&display=swap');
+  
+  .font-display { font-family: 'Syncopate', sans-serif; }
+  .font-sans { font-family: 'Inter', sans-serif; }
+  
+  .marquee-box {
+    display: flex;
+    overflow: hidden;
+    user-select: none;
+  }
+  .marquee-content {
+    flex-shrink: 0;
+    display: flex;
+    justify-content: space-around;
+    min-width: 100%;
+    gap: 2rem;
+    animation: scroll 20s linear infinite;
+  }
+  @keyframes scroll {
+    from { transform: translateX(0); }
+    to { transform: translateX(calc(-100% - 2rem)); }
+  }
+  
+  .blend-screen { mix-blend-mode: screen; }
+</style>
 
-    <!-- Mobile Menu Button -->
-    <button class="md:hidden text-white">Menu</button>
-  </div>
+<div class="bg-black text-white font-sans selection:bg-[#fbff00] selection:text-black overflow-x-hidden">
 
-  <!-- Content -->
-  <div class="pt-20 md:pt-0 md:pl-64">
-    <!-- Header -->
-    <header class="p-8 md:p-20 border-b border-white/10">
-      <h1 class="text-4xl md:text-7xl font-bold leading-tight mb-8">
-        Visual Explorer<br>
-        <span class="text-gray-600">Based in Seoul.</span>
-      </h1>
-      <p class="max-w-xl text-gray-400 leading-relaxed">
-        저는 디지털 환경에서의 시각적 경험을 탐구합니다. 
-        브랜드의 아이덴티티를 명확하게 규정하고, 
-        사용자에게 강렬한 인상을 남기는 디자인을 추구합니다.
-      </p>
-    </header>
+  <!-- Nav -->
+  <nav class="fixed w-full z-50 px-8 py-6 mix-blend-difference">
+     <div class="flex justify-between items-center">
+        <a href="#" class="font-display font-bold text-xl uppercase tracking-widest border border-white px-4 py-1 hover:bg-white hover:text-black transition duration-300">Jay.D</a>
+        
+        <div class="hidden md:flex gap-12 text-xs font-bold uppercase tracking-widest">
+           <a href="#work" class="hover:text-gray-400 transition">Work</a>
+           <a href="#about" class="hover:text-gray-400 transition">About</a>
+           <a href="#contact" class="hover:text-gray-400 transition">Contact</a>
+        </div>
+        
+        <a href="mailto:hello@jay.design" class="hidden md:block text-xs font-bold uppercase tracking-widest hover:text-[#fbff00] transition">hello@jay.design</a>
+     </div>
+  </nav>
 
-    <!-- Masonry Grid -->
-    <div class="p-4 md:p-8 grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8">
-      <!-- Item 1 -->
-      <div class="group relative">
-        <div class="overflow-hidden rounded-lg">
-           <img src="https://images.unsplash.com/photo-1600607686527-6fb886090705?q=80&w=1000&auto=format&fit=crop" class="w-full h-auto grayscale group-hover:grayscale-0 transition duration-500">
+  <!-- Hero with Marquee -->
+  <header class="h-screen flex flex-col justify-center relative pt-20">
+     <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-gradient-to-r from-purple-600 to-blue-600 rounded-full blur-[100px] opacity-30 animate-pulse"></div>
+     
+     <div class="container mx-auto px-6 relative z-10">
+        <p class="text-gray-400 text-sm md:text-base font-medium mb-4 animate-fade-in-up">Seoul based Product Designer</p>
+        <h1 class="text-6xl md:text-9xl font-display font-bold leading-none mb-12 mix-blend-difference animate-fade-in-up delay-100 uppercase">
+           Creating <br> <span class="text-transparent stroke-white" style="-webkit-text-stroke: 2px white;">Digital</span> <br> Experience
+        </h1>
+     </div>
+     
+     <!-- Scrolling Marquee -->
+     <div class="marquee-box border-y border-white/20 py-4 mt-auto mb-12 bg-white/5 backdrop-blur-sm transform -rotate-1">
+        <div class="marquee-content font-display font-bold text-4xl md:text-6xl uppercase opacity-50 text-white">
+           <span>• UX Research</span> <span>• UI Design</span> <span>• Prototyping</span> <span>• Interaction</span> <span>• Branding</span> <span>• Motion</span>
+           <span>• UX Research</span> <span>• UI Design</span> <span>• Prototyping</span> <span>• Interaction</span> <span>• Branding</span> <span>• Motion</span>
         </div>
-        <div class="mt-3 flex justify-between items-baseline">
-          <h3 class="font-bold text-lg">Neon Future</h3>
-          <span class="text-xs text-gray-500">Branding</span>
+     </div>
+  </header>
+
+  <!-- Selected Work (Grid) -->
+  <section id="work" class="py-24 px-6">
+     <div class="container mx-auto">
+        <div class="grid gap-24">
+           <!-- Project 1 -->
+           <div class="group relative cursor-pointer grid md:grid-cols-2 gap-8 items-center">
+              <div class="order-2 md:order-1">
+                 <span class="text-[#fbff00] font-display text-sm mb-4 block opacity-0 group-hover:opacity-100 transition duration-300 transform -translate-x-4 group-hover:translate-x-0">01</span>
+                 <h2 class="text-4xl md:text-6xl font-display font-bold mb-6 group-hover:text-[#fbff00] transition duration-300">Fintech App <br> Redesign</h2>
+                 <p class="text-gray-400 text-lg mb-8 max-w-md">
+                    금융 앱의 복잡한 사용자 경험을 단순화하고, MZ세대를 타겟으로 한 직관적인 인터페이스 설계.
+                 </p>
+                 <div class="flex flex-wrap gap-2 text-xs font-bold uppercase tracking-wider text-gray-500">
+                    <span class="border border-gray-700 px-3 py-1 rounded-full">Mobile App</span>
+                    <span class="border border-gray-700 px-3 py-1 rounded-full">Finance</span>
+                    <span class="border border-gray-700 px-3 py-1 rounded-full">2023</span>
+                 </div>
+              </div>
+              <div class="order-1 md:order-2 overflow-hidden rounded-lg" data-tilt>
+                 <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=800" class="w-full h-full object-cover transition duration-700 group-hover:scale-110 filter grayscale group-hover:grayscale-0">
+              </div>
+           </div>
+
+           <!-- Project 2 -->
+           <div class="group relative cursor-pointer grid md:grid-cols-2 gap-8 items-center">
+              <div class="md:text-right overflow-hidden rounded-lg order-1" data-tilt>
+                 <img src="https://images.unsplash.com/photo-1611162617474-5b21e879e113?q=80&w=800" class="w-full h-full object-cover transition duration-700 group-hover:scale-110 filter grayscale group-hover:grayscale-0">
+              </div>
+              <div class="order-2">
+                 <span class="text-[#fbff00] font-display text-sm mb-4 block opacity-0 group-hover:opacity-100 transition duration-300 transform translate-x-4 group-hover:translate-x-0 text-right">02</span>
+                 <h2 class="text-4xl md:text-6xl font-display font-bold mb-6 group-hover:text-[#fbff00] transition duration-300 md:text-right">E-Commerce <br> Dashboard</h2>
+                 <p class="text-gray-400 text-lg mb-8 max-w-md ml-auto md:text-right">
+                    셀러들이 판매 데이터를 한눈에 파악하고 관리할 수 있도록 돕는 B2B 대시보드 시스템 구축.
+                 </p>
+                 <div class="flex flex-wrap gap-2 text-xs font-bold uppercase tracking-wider text-gray-500 justify-start md:justify-end">
+                    <span class="border border-gray-700 px-3 py-1 rounded-full">Web Platform</span>
+                    <span class="border border-gray-700 px-3 py-1 rounded-full">B2B</span>
+                    <span class="border border-gray-700 px-3 py-1 rounded-full">2024</span>
+                 </div>
+              </div>
+           </div>
+
+           <!-- Project 3 -->
+           <div class="group relative cursor-pointer grid md:grid-cols-2 gap-8 items-center">
+              <div class="order-2 md:order-1">
+                 <span class="text-[#fbff00] font-display text-sm mb-4 block opacity-0 group-hover:opacity-100 transition duration-300 transform -translate-x-4 group-hover:translate-x-0">03</span>
+                 <h2 class="text-4xl md:text-6xl font-display font-bold mb-6 group-hover:text-[#fbff00] transition duration-300">Smart Home <br> Interface</h2>
+                 <p class="text-gray-400 text-lg mb-8 max-w-md">
+                    IoT 기기를 제어하는 스마트 홈 허브 인터페이스 디자인. 음성 인식 및 터치 인터랙션 최적화.
+                 </p>
+                 <div class="flex flex-wrap gap-2 text-xs font-bold uppercase tracking-wider text-gray-500">
+                    <span class="border border-gray-700 px-3 py-1 rounded-full">IoT</span>
+                    <span class="border border-gray-700 px-3 py-1 rounded-full">Interface</span>
+                    <span class="border border-gray-700 px-3 py-1 rounded-full">2023</span>
+                 </div>
+              </div>
+              <div class="order-1 md:order-2 overflow-hidden rounded-lg" data-tilt>
+                 <img src="https://images.unsplash.com/photo-1558002038-109155714297?q=80&w=800" class="w-full h-full object-cover transition duration-700 group-hover:scale-110 filter grayscale group-hover:grayscale-0">
+              </div>
+           </div>
         </div>
-      </div>
-      <!-- Item 2 -->
-      <div class="group relative md:mt-20">
-        <div class="overflow-hidden rounded-lg">
-           <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=1000&auto=format&fit=crop" class="w-full h-auto grayscale group-hover:grayscale-0 transition duration-500">
-        </div>
-         <div class="mt-3 flex justify-between items-baseline">
-          <h3 class="font-bold text-lg">Abstract Forms</h3>
-          <span class="text-xs text-gray-500">Art Direction</span>
-        </div>
-      </div>
-      <!-- Item 3 -->
-      <div class="group relative">
-        <div class="overflow-hidden rounded-lg">
-           <img src="https://images.unsplash.com/photo-1550684848-fac1c5b4e853?q=80&w=1000&auto=format&fit=crop" class="w-full h-auto grayscale group-hover:grayscale-0 transition duration-500">
-        </div>
-         <div class="mt-3 flex justify-between items-baseline">
-          <h3 class="font-bold text-lg">Urban Silence</h3>
-          <span class="text-xs text-gray-500">Photography</span>
-        </div>
-      </div>
-       <!-- Item 4 -->
-      <div class="group relative md:mt-20">
-        <div class="overflow-hidden rounded-lg">
-           <img src="https://images.unsplash.com/photo-1561212044-bac5ef688a07?q=80&w=1000&auto=format&fit=crop" class="w-full h-auto grayscale group-hover:grayscale-0 transition duration-500">
-        </div>
-         <div class="mt-3 flex justify-between items-baseline">
-          <h3 class="font-bold text-lg">Glass Material</h3>
-          <span class="text-xs text-gray-500">3D Render</span>
-        </div>
-      </div>
-    </div>
-  </div>
+     </div>
+  </section>
+
+  <!-- CTA -->
+  <section id="contact" class="h-[70vh] flex flex-col justify-center items-center text-center px-6 relative overflow-hidden bg-[#111]">
+     <!-- Big Hover Link -->
+     <a href="mailto:hello@jay.design" class="group relative z-10 transition duration-500">
+        <span class="font-display font-bold text-5xl md:text-8xl hover:text-transparent hover:text-stroke hover:scale-105 transition duration-500 block" style="-webkit-text-stroke: 1px #fbff00;">Let's Talk</span>
+        <span class="font-display font-bold text-5xl md:text-8xl absolute top-0 left-0 text-[#fbff00] opacity-0 group-hover:opacity-100 group-hover:translate-x-2 group-hover:-translate-y-2 transition duration-500 pointer-events-none">Let's Talk</span>
+     </a>
+     
+     <p class="text-gray-500 mt-8 mb-4">Have an idea? Let's build something amazing together.</p>
+     
+     <div class="flex gap-8 mt-12">
+        <a href="#" class="text-xs font-bold uppercase tracking-widest hover:text-[#fbff00] transition">LinkedIn</a>
+        <a href="#" class="text-xs font-bold uppercase tracking-widest hover:text-[#fbff00] transition">Behance</a>
+        <a href="#" class="text-xs font-bold uppercase tracking-widest hover:text-[#fbff00] transition">Instagram</a>
+     </div>
+     
+     <div class="absolute bottom-6 left-0 w-full text-center text-[10px] text-gray-600 uppercase tracking-widest">
+        © 2024 Jay Design. All Rights Reserved.
+     </div>
+  </section>
+
 </div>
+
+<script>
+  VanillaTilt.init(document.querySelectorAll("[data-tilt]"), {
+    max: 10,
+    speed: 400,
+    glare: true,
+    "max-glare": 0.2,
+  });
+</script>

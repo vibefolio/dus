@@ -1,166 +1,176 @@
-<!DOCTYPE html>
-<html lang="ko">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>스컬트 & 소울 - 프리미엄 필라테스</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Noto+Sans+KR:wght@300;400;500&display=swap" rel="stylesheet">
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            charcoal: '#2c2c2c',
-            sand: '#e8e6e1',
-            gold: '#c5a059',
-          },
-          fontFamily: {
-            serif: ['Cinzel', 'serif'],
-            sans: ['Noto Sans KR', 'sans-serif'],
-          }
-        }
-      }
-    }
-  </script>
-</head>
-<body class="bg-charcoal text-sand font-sans font-light">
+<%# Sculpt Template - 에테르노 필라테스 %>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.0/vanilla-tilt.min.js"></script>
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Noto+Sans+KR:wght@300;400;500&display=swap');
+  
+  .font-serif { font-family: 'Cinzel', serif; }
+  .font-sans { font-family: 'Noto Sans KR', sans-serif; }
+  
+  .bg-grain {
+    background-color: #2c2c2c;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E");
+  }
+</style>
+
+<div class="bg-[#2c2c2c] text-[#e8e6e1] font-sans font-light selection:bg-[#c5a059] selection:text-black">
 
   <!-- Nav -->
-  <nav class="fixed w-full z-50 flex justify-between items-center px-8 py-6 mix-blend-difference text-sand">
-    <div class="text-xl font-serif tracking-widest">SCULPT & SOUL</div>
-    <div class="hidden md:flex gap-10 text-xs tracking-widest uppercase">
-      <a href="#about" class="hover:text-gold transition">소개</a>
-      <a href="#classes" class="hover:text-gold transition">클래스</a>
-      <a href="#studio" class="hover:text-gold transition">스튜디오</a>
-      <a href="#contact" class="hover:text-gold transition">문의</a>
+  <nav class="fixed w-full z-50 flex justify-between items-center px-8 py-6 mix-blend-difference text-[#e8e6e1] backdrop-blur-sm border-b border-white/5">
+    <div class="text-xl font-serif tracking-[0.2em]">AETURNO</div>
+    <div class="hidden md:flex gap-12 text-[10px] tracking-[0.2em] uppercase font-medium">
+      <a href="#philosophy" class="hover:text-[#c5a059] transition">Philosophy</a>
+      <a href="#class" class="hover:text-[#c5a059] transition">Class</a>
+      <a href="#instructors" class="hover:text-[#c5a059] transition">Instructors</a>
+      <a href="#contact" class="hover:text-[#c5a059] transition">Contact</a>
     </div>
-    <button onclick="togglePilates()" class="border border-sand px-6 py-2 text-xs hover:bg-gold hover:border-gold hover:text-black transition uppercase">
-      예약하기
+    <button onclick="togglePilates()" class="border border-[#e8e6e1]/50 px-6 py-2 text-[10px] tracking-[0.2em] hover:bg-[#c5a059] hover:border-[#c5a059] hover:text-black transition uppercase">
+      Book Lesson
     </button>
   </nav>
 
-  <!-- Hero with Parallax Feel -->
+  <!-- Hero -->
   <header class="h-screen relative flex items-center justify-center overflow-hidden">
+    <!-- Parallax Image -->
     <div class="absolute inset-0">
-      <img src="https://images.unsplash.com/photo-1518310383802-640c2de311b2?q=80&w=1920" class="w-full h-full object-cover opacity-40 grayscale">
+      <img src="https://images.unsplash.com/photo-1518310383802-640c2de311b2?q=80&w=1920" class="w-full h-full object-cover opacity-50 grayscale transition duration-[2s] hover:scale-105">
+      <div class="absolute inset-0 bg-gradient-to-b from-[#2c2c2c]/80 via-transparent to-[#2c2c2c]"></div>
     </div>
+    
     <div class="relative z-10 text-center space-y-8 px-4">
-      <p class="text-gold text-sm tracking-[0.3em] uppercase animate-fade-in-up">Body • Mind • Spirit</p>
-      <h1 class="text-5xl md:text-7xl font-serif leading-tight animate-fade-in-up delay-100">
-        균형 잡힌 삶을 위한 <br> <span class="italic text-gold">우아한 움직임</span>
+      <div class="w-[1px] h-20 bg-[#c5a059] mx-auto mb-8"></div>
+      <p class="text-[#c5a059] text-xs tracking-[0.4em] uppercase">Premium Pilates Studio</p>
+      <h1 class="text-5xl md:text-7xl font-serif leading-tight">
+        Sculpt Your <br> <span class="italic text-[#c5a059]">Inner Balance</span>
       </h1>
-      <p class="max-w-md mx-auto text-gray-300 leading-loose text-sm md:text-base animate-fade-in-up delay-200">
-        몸의 중심을 단단하게, 마음은 유연하게.<br>
-        스컬트 & 소울에서 진정한 나를 마주하세요.
+      <p class="max-w-md mx-auto text-gray-400 leading-loose text-sm font-light">
+        가장 우아한 움직임으로 완성하는 나만의 리듬.<br>
+        에테르노 필라테스에서 진정한 균형을 찾으세요.
       </p>
-      <div class="pt-8 animate-fade-in-up delay-300">
-         <a href="#classes" class="border-b border-gold pb-1 text-sm tracking-widest hover:text-gold transition uppercase">클래스 보기</a>
-      </div>
+    </div>
+    
+    <div class="absolute bottom-10 left-10 text-[10px] tracking-[0.2em] text-gray-500 uppercase">
+       Since 2024 • Seoul
     </div>
   </header>
 
-  <!-- About Grid -->
-  <section id="about" class="py-24 px-8 bg-sand text-charcoal">
-    <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-16 items-center">
-      <div>
-        <h2 class="font-serif text-4xl mb-8">Refine Your Form</h2>
-        <p class="mb-6 leading-relaxed text-gray-600">
-          필라테스는 단순한 운동이 아닙니다. 내 몸의 미세한 근육을 깨우고, 
-          올바른 정렬을 찾아가는 과정입니다. 저희는 클래식 필라테스의 원칙을 고수하며, 
-          현대적인 해부학 지식을 더해 가장 효과적인 시퀀스를 제공합니다.
+  <!-- Philosophy -->
+  <section id="philosophy" class="py-32 px-8 bg-[#e8e6e1] text-[#2c2c2c]">
+    <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-20 items-center">
+      <div class="relative pl-8 border-l border-[#c5a059]">
+        <h2 class="font-serif text-4xl mb-8">The Art of Control</h2>
+        <p class="mb-6 leading-relaxed font-light text-gray-600">
+          필라테스는 단순한 운동이 아닌, 내 몸을 온전히 제어하는 예술입니다.
+          우리는 조셉 필라테스의 클래식 원칙을 현대적 해부학으로 재해석하여,
+          근본적인 체형 교정과 코어 강화를 지향합니다.
         </p>
-        <p class="leading-relaxed text-gray-600">
-          프라이빗 레슨부터 소그룹 기구 필라테스까지, 
-          숙련된 강사진이 당신의 몸에 맞는 최적의 프로그램을 제안합니다.
+        <p class="leading-relaxed font-light text-gray-600">
+          모든 세션은 회원의 컨디션에 맞춘 1:1 맞춤형 시퀀스로 진행되며,
+          움직임의 퀄리티에 집중합니다.
         </p>
-        <div class="mt-8 flex gap-4 font-serif text-lg">
-          <div class="flex flex-col">
-            <span class="text-gold text-3xl">05</span>
-            <span class="text-xs tracking-widest uppercase">Years Experience</span>
-          </div>
-          <div class="w-px bg-gray-300 h-12"></div>
-          <div class="flex flex-col">
-            <span class="text-gold text-3xl">12</span>
-            <span class="text-xs tracking-widest uppercase">Expert Instructors</span>
-          </div>
-        </div>
       </div>
       <div class="grid grid-cols-2 gap-4">
-        <img src="https://images.unsplash.com/photo-1518609878373-06d740f60d8b?q=80&w=400" class="w-full h-64 object-cover rounded-tl-[4rem]">
-        <img src="https://images.unsplash.com/photo-1575052814088-64478839de8c?q=80&w=400" class="w-full h-64 object-cover mt-12 rounded-br-[4rem]">
+        <div class="pt-12">
+           <img src="https://images.unsplash.com/photo-1518609878373-06d740f60d8b?q=80&w=400" class="w-full h-80 object-cover grayscale hover:grayscale-0 transition duration-700 rounded-t-full" data-tilt>
+        </div>
+        <div>
+           <img src="https://images.unsplash.com/photo-1575052814088-64478839de8c?q=80&w=400" class="w-full h-80 object-cover grayscale hover:grayscale-0 transition duration-700 rounded-b-full" data-tilt>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- Classes Carousel -->
-  <section id="classes" class="py-24 px-6 bg-charcoal">
-    <div class="text-center mb-16">
-      <span class="text-gold text-xs tracking-widest uppercase block mb-2">Our Programs</span>
-      <h2 class="font-serif text-3xl md:text-4xl">Curated Classes</h2>
+  <!-- Classes (Horizontal Scroll) -->
+  <section id="class" class="py-32 border-t border-[#e8e6e1]/10">
+    <div class="container mx-auto px-6 mb-16 flex justify-between items-end">
+       <div>
+         <span class="text-[#c5a059] text-xs tracking-[0.2em] uppercase block mb-2">Programs</span>
+         <h2 class="font-serif text-3xl text-[#e8e6e1]">Curated Sessions</h2>
+       </div>
+       <div class="flex gap-4">
+          <button class="text-[#c5a059] hover:text-white transition">&larr;</button>
+          <button class="text-[#c5a059] hover:text-white transition">&rarr;</button>
+       </div>
     </div>
     
-    <div class="flex overflow-x-auto gap-8 pb-8 max-w-7xl mx-auto snap-x no-scrollbar">
-      <!-- Item 1 -->
-      <div class="min-w-[300px] md:min-w-[350px] bg-white/5 p-8 border border-white/10 snap-center hover:border-gold transition cursor-pointer group" onclick="togglePilates()">
-        <h3 class="font-serif text-2xl mb-2 group-hover:text-gold transition">Reformer Basic</h3>
-        <p class="text-xs text-gray-400 mb-6 uppercase tracking-widest">초급 • 50분</p>
-        <p class="text-gray-300 text-sm leading-relaxed mb-6">
-          기구 필라테스 입문자를 위한 수업. 
-          리포머의 스프링 저항을 이용해 코어 근육을 강화하고 자세를 교정합니다.
+    <div class="flex overflow-x-auto gap-8 px-6 pb-12 max-w-[1920px] mx-auto snap-x scrollbar-hide">
+      <!-- Card 1 -->
+      <div class="min-w-[350px] bg-[#2c2c2c] border border-[#e8e6e1]/10 p-8 hover:border-[#c5a059] transition duration-500 group snap-center relative">
+        <div class="absolute top-0 right-0 p-4 text-[#c5a059] opacity-20 text-4xl font-serif">01</div>
+        <h3 class="font-serif text-2xl mb-4 text-white group-hover:text-[#c5a059] transition">Reformer</h3>
+        <p class="text-xs text-gray-500 mb-8 uppercase tracking-widest">Alignment • Core</p>
+        <p class="text-gray-400 text-sm leading-relaxed mb-8 font-light">
+          스프링의 저항을 이용해 근육을 길고 가늘게 단련합니다.<br>
+          자세 교정과 유연성 향상에 탁월합니다.
         </p>
-        <div class="text-gold font-serif text-xl">₩35,000 <span class="text-xs text-gray-500 font-sans">/ 1회 (그룹)</span></div>
+        <div class="flex justify-between items-center border-t border-[#e8e6e1]/10 pt-4">
+           <span class="text-lg font-serif">Private</span>
+           <span class="text-[#c5a059] text-sm tracking-widest">+ Detail</span>
+        </div>
       </div>
-      <!-- Item 2 -->
-      <div class="min-w-[300px] md:min-w-[350px] bg-white/5 p-8 border border-white/10 snap-center hover:border-gold transition cursor-pointer group" onclick="togglePilates()">
-        <h3 class="font-serif text-2xl mb-2 group-hover:text-gold transition">Private 1:1</h3>
-        <p class="text-xs text-gray-400 mb-6 uppercase tracking-widest">전체 레벨 • 50분</p>
-        <p class="text-gray-300 text-sm leading-relaxed mb-6">
-          오직 당신만을 위한 맞춤형 시퀀스. 
-          체형 분석을 통한 개인별 솔루션과 집중적인 케어를 제공합니다.
+
+      <!-- Card 2 -->
+      <div class="min-w-[350px] bg-[#2c2c2c] border border-[#e8e6e1]/10 p-8 hover:border-[#c5a059] transition duration-500 group snap-center relative">
+        <div class="absolute top-0 right-0 p-4 text-[#c5a059] opacity-20 text-4xl font-serif">02</div>
+        <h3 class="font-serif text-2xl mb-4 text-white group-hover:text-[#c5a059] transition">Cadillac</h3>
+        <p class="text-xs text-gray-500 mb-8 uppercase tracking-widest">Rehab • Strength</p>
+        <p class="text-gray-400 text-sm leading-relaxed mb-8 font-light">
+          다양한 부속 기구를 활용하여 고난이도 동작부터<br>
+          재활 운동까지 맞춤형 시퀀스를 제공합니다.
         </p>
-        <div class="text-gold font-serif text-xl">₩88,000 <span class="text-xs text-gray-500 font-sans">/ 1회</span></div>
+        <div class="flex justify-between items-center border-t border-[#e8e6e1]/10 pt-4">
+           <span class="text-lg font-serif">Private</span>
+           <span class="text-[#c5a059] text-sm tracking-widest">+ Detail</span>
+        </div>
       </div>
-      <!-- Item 3 -->
-      <div class="min-w-[300px] md:min-w-[350px] bg-white/5 p-8 border border-white/10 snap-center hover:border-gold transition cursor-pointer group" onclick="togglePilates()">
-        <h3 class="font-serif text-2xl mb-2 group-hover:text-gold transition">Cadillac Flow</h3>
-        <p class="text-xs text-gray-400 mb-6 uppercase tracking-widest">중급 • 50분</p>
-        <p class="text-gray-300 text-sm leading-relaxed mb-6">
-          캐딜락을 활용한 다이내믹한 동작으로 
-          유연성과 근력을 동시에 향상시키는 중급자 프로그램입니다.
+
+      <!-- Card 3 -->
+      <div class="min-w-[350px] bg-[#2c2c2c] border border-[#e8e6e1]/10 p-8 hover:border-[#c5a059] transition duration-500 group snap-center relative">
+        <div class="absolute top-0 right-0 p-4 text-[#c5a059] opacity-20 text-4xl font-serif">03</div>
+        <h3 class="font-serif text-2xl mb-4 text-white group-hover:text-[#c5a059] transition">Wunda Chair</h3>
+        <p class="text-xs text-gray-500 mb-8 uppercase tracking-widest">Balance • Control</p>
+        <p class="text-gray-400 text-sm leading-relaxed mb-8 font-light">
+          작은 지지면 위에서 균형을 잡으며<br>
+          코어의 안정성과 하체 근력을 강화합니다.
         </p>
-        <div class="text-gold font-serif text-xl">₩40,000 <span class="text-xs text-gray-500 font-sans">/ 1회 (소그룹)</span></div>
+        <div class="flex justify-between items-center border-t border-[#e8e6e1]/10 pt-4">
+           <span class="text-lg font-serif">Duet</span>
+           <span class="text-[#c5a059] text-sm tracking-widest">+ Detail</span>
+        </div>
       </div>
     </div>
   </section>
 
   <!-- Reservation Modal -->
-  <div id="pilates-modal" class="fixed inset-0 bg-charcoal/90 z-[60] hidden flex items-center justify-center p-4 backdrop-blur-md">
-    <div class="bg-sand text-charcoal w-full max-w-md p-10 relative shadow-2xl">
-      <button onclick="togglePilates()" class="absolute top-4 right-4 text-2xl font-serif hover:text-gold">&times;</button>
+  <div id="pilates-modal" class="fixed inset-0 bg-black/80 z-[60] hidden flex items-center justify-center p-4 backdrop-blur-md">
+    <div class="bg-[#e8e6e1] text-[#2c2c2c] w-full max-w-lg p-12 relative shadow-2xl skew-y-1">
+      <button onclick="togglePilates()" class="absolute top-6 right-6 text-2xl font-serif hover:text-[#c5a059] transition">&times;</button>
       
       <div class="text-center mb-10">
-        <h2 class="font-serif text-3xl mb-2">Reserve Your Spot</h2>
-        <p class="text-sm text-gray-500 uppercase tracking-widest">당신의 변화가 시작되는 곳</p>
+        <span class="text-[#c5a059] text-xs tracking-[0.2em] uppercase block mb-2">Reservation</span>
+        <h2 class="font-serif text-3xl">Begin Your Journey</h2>
       </div>
 
       <form class="space-y-6" onsubmit="event.preventDefault(); alert('예약 상담 신청이 완료되었습니다.'); togglePilates();">
-        <div class="border-b border-gray-300 pb-2">
-           <input type="text" placeholder="성함" class="w-full bg-transparent outline-none placeholder-gray-400 font-serif">
+        <div class="border-b border-[#2c2c2c]/20 pb-2">
+           <label class="block text-[10px] uppercase tracking-widest text-gray-500 mb-1">Name</label>
+           <input type="text" class="w-full bg-transparent outline-none font-serif text-lg placeholder-gray-400">
         </div>
-        <div class="border-b border-gray-300 pb-2">
-           <input type="tel" placeholder="연락처" class="w-full bg-transparent outline-none placeholder-gray-400 font-serif">
+        <div class="border-b border-[#2c2c2c]/20 pb-2">
+           <label class="block text-[10px] uppercase tracking-widest text-gray-500 mb-1">Contact</label>
+           <input type="tel" class="w-full bg-transparent outline-none font-serif text-lg placeholder-gray-400">
         </div>
-        <div class="border-b border-gray-300 pb-2">
-           <select class="w-full bg-transparent outline-none text-gray-600 font-serif">
-             <option>체험 레슨 신청 (₩30,000)</option>
-             <option>1:1 프라이빗 상담</option>
-             <option>그룹 레슨 문의</option>
+        <div class="border-b border-[#2c2c2c]/20 pb-2">
+           <label class="block text-[10px] uppercase tracking-widest text-gray-500 mb-1">Interest</label>
+           <select class="w-full bg-transparent outline-none font-serif text-lg text-gray-600">
+             <option>Private 1:1</option>
+             <option>Duet 2:1</option>
+             <option>Group 4:1</option>
            </select>
         </div>
         
-        <button class="w-full bg-charcoal text-sand py-4 text-xs font-bold tracking-[0.2em] hover:bg-gold hover:text-white transition uppercase mt-4">
-          상담 신청하기
+        <button class="w-full bg-[#2c2c2c] text-[#e8e6e1] py-4 text-xs font-bold tracking-[0.3em] hover:bg-[#c5a059] hover:text-black transition uppercase mt-8">
+          Request Consultation
         </button>
       </form>
     </div>
@@ -169,12 +179,9 @@
   <script>
     function togglePilates() {
       const modal = document.getElementById('pilates-modal');
-      if(modal.classList.contains('hidden')) {
-        modal.classList.remove('hidden');
-      } else {
-        modal.classList.add('hidden');
-      }
+      modal.classList.toggle('hidden');
     }
+    
+    // Auto-scroll logic for Horizontal Scroll could be added here
   </script>
-</body>
-</html>
+</div>

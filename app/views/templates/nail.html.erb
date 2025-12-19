@@ -1,207 +1,178 @@
-<!DOCTYPE html>
-<html lang="ko">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>네일 아티스트리 - 손끝의 예술</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300;500;700&family=Noto+Sans+KR:wght@400;700&display=swap" rel="stylesheet">
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            gum: '#ff6b95',
-            lilac: '#e0c3fc',
-            sky: '#8ec5fc',
-          },
-          fontFamily: {
-            display: ['Fredoka', 'sans-serif'],
-            sans: ['Noto Sans KR', 'sans-serif'],
-          }
-        }
-      }
-    }
-  </script>
-</head>
-<body class="bg-gray-50 text-gray-700 font-sans">
+<%# Nail Template - 네온 네일 %>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.0/vanilla-tilt.min.js"></script>
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Righteous&family=Noto+Sans+KR:wght@300;400;700&display=swap');
+  
+  .font-display { font-family: 'Righteous', cursive; }
+  .font-sans { font-family: 'Noto Sans KR', sans-serif; }
+  
+  .neon-text {
+    text-shadow: 
+      0 0 5px #fff,
+      0 0 10px #fff,
+      0 0 20px #ff00de,
+      0 0 30px #ff00de,
+      0 0 40px #ff00de;
+  }
+  
+  .grid-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1rem;
+  }
+  .grid-gallery img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 1rem;
+    transition: transform 0.3s;
+  }
+  .grid-gallery img:hover {
+    transform: scale(1.05);
+    z-index: 10;
+  }
+</style>
+
+<div class="bg-black text-white font-sans selection:bg-fuchsia-500 selection:text-white">
 
   <!-- Nav -->
-  <nav class="sticky top-0 z-50 px-6 py-4 flex justify-between items-center bg-white/80 backdrop-blur-md">
-    <div class="text-2xl font-display font-bold text-transparent bg-clip-text bg-gradient-to-r from-gum to-lilac">
-      NAIL•ARTISTRY
+  <nav class="fixed w-full z-50 px-6 py-4 bg-black/80 backdrop-blur border-b border-fuchsia-500/30">
+    <div class="container mx-auto flex justify-between items-center">
+      <div class="font-display text-2xl text-fuchsia-500 tracking-widest">NEON NAIL</div>
+      <div class="hidden md:flex gap-8 text-sm font-bold uppercase tracking-widest">
+        <a href="#art" class="hover:text-fuchsia-400 transition">Art</a>
+        <a href="#price" class="hover:text-fuchsia-400 transition">Price</a>
+        <a href="#booking" class="hover:text-fuchsia-400 transition">Booking</a>
+      </div>
+      <a href="#booking" class="w-10 h-10 rounded-full border border-fuchsia-500 flex items-center justify-center text-fuchsia-500 hover:bg-fuchsia-500 hover:text-white transition shadow-[0_0_10px_#d946ef]">N</a>
     </div>
-    <div class="hidden md:flex gap-8 font-bold text-gray-400 text-sm">
-      <a href="#designs" class="hover:text-gum transition">디자인</a>
-      <a href="#pricing" class="hover:text-gum transition">가격표</a>
-      <a href="#inst" class="hover:text-gum transition">인스타그램</a>
-    </div>
-    <button onclick="toggleNail()" class="bg-black text-white px-6 py-2 rounded-full font-bold shadow-lg hover:bg-gum transition hover:-translate-y-1">
-      예약하기
-    </button>
   </nav>
 
-  <!-- Hero with Blobs -->
-  <header class="py-20 px-6 container mx-auto text-center relative overflow-hidden">
-    <!-- Blobs -->
-    <div class="absolute top-0 left-0 w-64 h-64 bg-lilac/30 rounded-full blur-3xl p-10 animate-blob"></div>
-    <div class="absolute bottom-0 right-0 w-80 h-80 bg-sky/30 rounded-full blur-3xl p-10 animate-blob animation-delay-2000"></div>
-    <div class="absolute top-1/2 left-1/2 w-72 h-72 bg-gum/20 rounded-full blur-3xl p-10 animate-blob animation-delay-4000 transform -translate-x-1/2"></div>
- 
-    <div class="relative z-10 space-y-6">
-      <span class="inline-block bg-white border-2 border-gum text-gum px-4 py-1 rounded-full text-xs font-bold uppercase mb-4">New Season</span>
-      <h1 class="text-5xl md:text-7xl font-display font-bold text-gray-800 leading-tight">
-        Pop Your Colors, <br> <span class="text-gum">Express Yourself.</span>
+  <!-- Hero -->
+  <header class="h-screen flex items-center justify-center relative overflow-hidden">
+    <div class="absolute inset-0 z-0 opacity-40">
+       <img src="https://images.unsplash.com/photo-1604654894610-df63bc536371?q=80&w=1920" class="w-full h-full object-cover grayscale mix-blend-screen">
+       <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black"></div>
+    </div>
+    
+    <div class="relative z-10 text-center px-4">
+      <h1 class="text-6xl md:text-9xl font-display mb-4 neon-text" data-tilt>
+        COLOR<br>YOUR<br>MOOD
       </h1>
-      <p class="text-lg text-gray-500 max-w-md mx-auto">
-        트렌디한 젤 네일과 꼼꼼한 케어. <br>
-        나만의 컬러를 찾아 기분 전환을 시작해보세요.
+      <p class="text-fuchsia-200 text-lg md:text-xl font-light tracking-wider max-w-xl mx-auto">
+        손끝에서 시작되는 당신만의 무드.<br>
+        트렌디한 감각의 프리미엄 네일샵.
       </p>
       
-      <!-- Overlapping Avatars/Images -->
-      <div class="flex justify-center -space-x-8 pt-8 pb-12">
-        <img class="w-24 h-24 rounded-full border-4 border-white object-cover" src="https://images.unsplash.com/photo-1604654894610-df63bc536371?q=80&w=400">
-        <img class="w-24 h-24 rounded-full border-4 border-white object-cover mt-6 z-10" src="https://images.unsplash.com/photo-1522337660859-02fbefca4702?q=80&w=400">
-        <img class="w-24 h-24 rounded-full border-4 border-white object-cover" src="https://images.unsplash.com/photo-1519014816548-bf5fe059e98b?q=80&w=400">
+      <div class="mt-12 flex justify-center gap-6">
+         <div class="text-center">
+            <p class="font-display text-3xl">10:00</p>
+            <p class="text-[10px] text-gray-500 uppercase tracking-widest">Open</p>
+         </div>
+         <div class="w-[1px] h-10 bg-gray-700"></div>
+         <div class="text-center">
+            <p class="font-display text-3xl">21:00</p>
+            <p class="text-[10px] text-gray-500 uppercase tracking-widest">Close</p>
+         </div>
       </div>
     </div>
   </header>
 
-  <!-- Designs Grid -->
-  <section id="designs" class="py-12 px-6">
+  <!-- Month's Art (Gallery) -->
+  <section id="art" class="py-24 px-4 bg-[#0a0a0a]">
     <div class="container mx-auto">
-      <div class="flex justify-between items-end mb-8">
-        <h2 class="text-3xl font-display font-bold text-gray-800">이달의 아트</h2>
-        <a href="#" class="text-gum font-bold text-sm">더 보기 &rarr;</a>
+      <div class="flex justify-between items-end mb-12 border-b border-fuchsia-900/30 pb-4">
+        <h2 class="text-4xl font-display text-white">This Month's Art</h2>
+        <span class="text-fuchsia-500 font-bold">See More &rarr;</span>
       </div>
-      
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8">
-        <!-- Item -->
-        <div class="bg-white p-4 rounded-3xl shadow-sm hover:shadow-xl transition group cursor-pointer" onclick="toggleNail()">
-          <div class="aspect-square rounded-2xl overflow-hidden mb-4 bg-gray-100 relative">
-            <img src="https://images.unsplash.com/photo-1632922267756-9b71242b1592?q=80&w=400" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
-            <div class="absolute bottom-2 right-2 bg-white px-2 py-1 rounded-lg text-xs font-bold shadow">₩59,000</div>
-          </div>
-          <h3 class="font-bold text-gray-800">시럽 그라데이션</h3>
-          <p class="text-xs text-gray-400">청순한 느낌의 데일리 아트</p>
+
+      <div class="grid md:grid-cols-4 gap-4 auto-rows-[200px]">
+        <div class="md:col-span-2 md:row-span-2 relative group overflow-hidden rounded-2xl border border-white/10">
+           <img src="https://images.unsplash.com/photo-1632516643720-e7f5d7d6ecc9?q=80&w=800" class="w-full h-full object-cover transition duration-500 group-hover:scale-110">
+           <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex items-end p-6">
+              <span class="font-display text-2xl text-fuchsia-400">Aurora Glow</span>
+           </div>
         </div>
-        <!-- Item -->
-        <div class="bg-white p-4 rounded-3xl shadow-sm hover:shadow-xl transition group cursor-pointer" onclick="toggleNail()">
-          <div class="aspect-square rounded-2xl overflow-hidden mb-4 bg-gray-100 relative">
-            <img src="https://images.unsplash.com/photo-1599695627685-2e557b774640?q=80&w=400" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
-            <div class="absolute bottom-2 right-2 bg-white px-2 py-1 rounded-lg text-xs font-bold shadow">₩69,000</div>
-          </div>
-          <h3 class="font-bold text-gray-800">오로라 파우더</h3>
-          <p class="text-xs text-gray-400">영롱하게 빛나는 포인트</p>
+        <div class="relative group overflow-hidden rounded-2xl border border-white/10">
+           <img src="https://images.unsplash.com/photo-1519014816548-bf5fe059e98b?q=80&w=400" class="w-full h-full object-cover transition duration-500 group-hover:scale-110">
         </div>
-        <!-- Item -->
-        <div class="bg-white p-4 rounded-3xl shadow-sm hover:shadow-xl transition group cursor-pointer" onclick="toggleNail()">
-          <div class="aspect-square rounded-2xl overflow-hidden mb-4 bg-gray-100 relative">
-            <img src="https://images.unsplash.com/photo-1516975080664-ed2fc6a32937?q=80&w=400" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
-             <div class="absolute bottom-2 right-2 bg-white px-2 py-1 rounded-lg text-xs font-bold shadow">₩45,000</div>
-          </div>
-          <h3 class="font-bold text-gray-800">풀 컬러 (2색)</h3>
-          <p class="text-xs text-gray-400">깔끔하고 엣지있는 컬러링</p>
+        <div class="relative group overflow-hidden rounded-2xl border border-white/10">
+           <img src="https://images.unsplash.com/photo-1596919293424-9dfc571736b4?q=80&w=400" class="w-full h-full object-cover transition duration-500 group-hover:scale-110">
         </div>
-        <!-- Item -->
-        <div class="bg-white p-4 rounded-3xl shadow-sm hover:shadow-xl transition group cursor-pointer" onclick="toggleNail()">
-          <div class="aspect-square rounded-2xl overflow-hidden mb-4 bg-gray-100 relative">
-            <img src="https://images.unsplash.com/photo-1605230491845-a496b83f0601?q=80&w=400" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
-             <div class="absolute bottom-2 right-2 bg-white px-2 py-1 rounded-lg text-xs font-bold shadow">₩79,000</div>
-          </div>
-          <h3 class="font-bold text-gray-800">스톤 & 파츠</h3>
-          <p class="text-xs text-gray-400">화려함의 끝판왕</p>
+        <div class="md:col-span-2 relative group overflow-hidden rounded-2xl border border-white/10">
+           <img src="https://images.unsplash.com/photo-1522337660859-02fbefca4702?q=80&w=600" class="w-full h-full object-cover transition duration-500 group-hover:scale-110">
+           <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex items-end p-6">
+              <span class="font-display text-xl text-white">Simple Basic</span>
+           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Pricing Table -->
-  <section id="pricing" class="py-12 bg-white">
-    <div class="container mx-auto px-6 max-w-2xl">
-      <h2 class="text-3xl font-display font-bold text-center mb-8">Service Menu</h2>
-      <div class="space-y-4">
-        <div class="flex justify-between items-center border-b border-gray-100 pb-4">
-          <div>
-            <h4 class="font-bold text-lg">기본 케어</h4>
-            <p class="text-xs text-gray-400">큐티클 정리 + 영양 + 오일</p>
+  <!-- Price List -->
+  <section id="price" class="py-24 bg-black relative">
+    <div class="container mx-auto px-6 max-w-3xl">
+       <h2 class="text-4xl font-display text-center mb-16 text-fuchsia-500">Menu & Price</h2>
+       
+       <div class="space-y-6">
+          <div class="flex justify-between items-center border-b border-gray-800 pb-4">
+             <span class="text-xl font-bold">Gel Basic (Hand)</span>
+             <span class="text-fuchsia-400 font-display text-xl">40,000</span>
           </div>
-          <div class="font-bold text-gum">₩15,000</div>
-        </div>
-        <div class="flex justify-between items-center border-b border-gray-100 pb-4">
-          <div>
-            <h4 class="font-bold text-lg">젤 원컬러 (손)</h4>
-            <p class="text-xs text-gray-400">케어 포함</p>
+          <div class="flex justify-between items-center border-b border-gray-800 pb-4">
+             <span class="text-xl font-bold">Gel Basic (Foot)</span>
+             <span class="text-fuchsia-400 font-display text-xl">50,000</span>
           </div>
-          <div class="font-bold text-gum">₩40,000</div>
-        </div>
-        <div class="flex justify-between items-center border-b border-gray-100 pb-4">
-          <div>
-            <h4 class="font-bold text-lg">젤 원컬러 (발)</h4>
-            <p class="text-xs text-gray-400">케어 포함</p>
+          <div class="flex justify-between items-center border-b border-gray-800 pb-4">
+             <span class="text-xl font-bold">Month's Art</span>
+             <span class="text-fuchsia-400 font-display text-xl">59,000 ~</span>
           </div>
-          <div class="font-bold text-gum">₩50,000</div>
-        </div>
-        <div class="flex justify-between items-center border-b border-gray-100 pb-4">
-          <div>
-            <h4 class="font-bold text-lg">이달의 아트</h4>
-            <p class="text-xs text-gray-400">매달 변경되는 디자인 (현금가)</p>
+          <div class="flex justify-between items-center border-b border-gray-800 pb-4">
+             <span class="text-xl font-bold">Extension (1 tip)</span>
+             <span class="text-fuchsia-400 font-display text-xl">10,000</span>
           </div>
-          <div class="font-bold text-gum">₩59,000 ~</div>
-        </div>
-      </div>
+          <div class="flex justify-between items-center border-b border-gray-800 pb-4">
+             <span class="text-xl font-bold">Remove</span>
+             <span class="text-fuchsia-400 font-display text-xl">10,000</span>
+          </div>
+       </div>
+       <p class="text-center text-gray-500 text-sm mt-8">* 회원권 결제 시 추가 적립 혜택이 있습니다.</p>
     </div>
   </section>
 
-  <!-- Modal -->
-  <div id="nail-modal" class="fixed inset-0 bg-white/60 backdrop-blur-sm z-[60] hidden flex items-center justify-center p-4">
-    <div class="bg-white w-full max-w-sm rounded-[2rem] p-8 shadow-2xl relative border-4 border-gum/20">
-      <button onclick="toggleNail()" class="absolute top-4 right-4 text-gray-400 hover:text-gum text-xl">&times;</button>
-      
-      <div class="text-center mb-6">
-        <h2 class="font-display text-2xl text-gum">Pick Your Time!</h2>
-        <p class="text-xs text-gray-500"></p>
-      </div>
-
-      <form class="space-y-4" onsubmit="event.preventDefault(); alert('예약 접수 완료! 💖'); toggleNail();">
-        <input type="text" placeholder="성함" class="w-full bg-gray-50 p-4 rounded-xl font-bold text-sm outline-none focus:ring-2 focus:ring-gum/50">
-        <input type="tel" placeholder="연락처" class="w-full bg-gray-50 p-4 rounded-xl font-bold text-sm outline-none focus:ring-2 focus:ring-gum/50">
-        <div class="grid grid-cols-2 gap-2">
-           <button type="button" class="bg-gum text-white py-2 rounded-xl text-sm font-bold">11:00 AM</button>
-           <button type="button" class="bg-gray-100 text-gray-400 py-2 rounded-xl text-sm font-bold hover:bg-lilac hover:text-white">02:00 PM</button>
-           <button type="button" class="bg-gray-100 text-gray-400 py-2 rounded-xl text-sm font-bold hover:bg-lilac hover:text-white">04:00 PM</button>
-           <button type="button" class="bg-gray-100 text-gray-400 py-2 rounded-xl text-sm font-bold hover:bg-lilac hover:text-white">07:00 PM</button>
-        </div>
-        <button class="w-full bg-black text-white py-4 rounded-xl font-bold shadow-lg hover:scale-105 transition mt-2">
-          예약 확정
-        </button>
-      </form>
+  <!-- Booking -->
+  <section id="booking" class="py-24 bg-[#111]">
+    <div class="container mx-auto px-6 text-center">
+       <div class="border border-fuchsia-500 rounded-3xl p-10 md:p-20 relative max-w-4xl mx-auto overflow-hidden">
+          <div class="absolute -top-20 -left-20 w-64 h-64 bg-fuchsia-600 rounded-full blur-[100px] opacity-30"></div>
+          <div class="absolute -bottom-20 -right-20 w-64 h-64 bg-blue-600 rounded-full blur-[100px] opacity-30"></div>
+          
+          <h2 class="text-4xl font-display mb-8 relative z-10">Make a Reservation</h2>
+          <p class="text-gray-400 mb-12 relative z-10">100% 예약제 운영. 노쇼 방지를 위해 예약금이 있습니다.</p>
+          
+          <div class="flex flex-col md:flex-row gap-4 justify-center relative z-10">
+             <button class="px-8 py-4 bg-[#ffe812] text-black font-bold rounded-xl hover:bg-yellow-400 transition flex items-center justify-center gap-2">
+               <span>💬</span> KakaoTalk
+             </button>
+             <button class="px-8 py-4 bg-[#03c75a] text-white font-bold rounded-xl hover:bg-green-600 transition flex items-center justify-center gap-2">
+               <span>N</span> Naver Booking
+             </button>
+             <button class="px-8 py-4 bg-fuchsia-600 text-white font-bold rounded-xl hover:bg-fuchsia-700 transition flex items-center justify-center gap-2">
+               <span>📞</span> 02-1234-5678
+             </button>
+          </div>
+       </div>
     </div>
-  </div>
+  </section>
 
-  <style>
-    @keyframes blob {
-      0% { transform: translate(0px, 0px) scale(1); }
-      33% { transform: translate(30px, -50px) scale(1.1); }
-      66% { transform: translate(-20px, 20px) scale(0.9); }
-      100% { transform: translate(0px, 0px) scale(1); }
-    }
-    .animate-blob {
-      animation: blob 7s infinite;
-    }
-    .animation-delay-2000 { animation-delay: 2s; }
-    .animation-delay-4000 { animation-delay: 4s; }
-  </style>
+</div>
 
-  <script>
-    function toggleNail() {
-      const modal = document.getElementById('nail-modal');
-      if(modal.classList.contains('hidden')) {
-        modal.classList.remove('hidden');
-      } else {
-        modal.classList.add('hidden');
-      }
-    }
-  </script>
-</body>
-</html>
+<script>
+  VanillaTilt.init(document.querySelectorAll("[data-tilt]"), {
+    max: 10,
+    speed: 400,
+    glare: true,
+    "max-glare": 0.5,
+  });
+</script>

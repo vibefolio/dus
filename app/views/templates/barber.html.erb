@@ -1,164 +1,271 @@
-<!DOCTYPE html>
-<html lang="ko">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>바버 클래식 - 신사의 공간</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Rye&family=Noto+Sans+KR:wght@400;700&display=swap" rel="stylesheet">
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            leather: '#5D4037',
-            gold: '#D4AF37',
-            cream: '#F5F5DC',
-          },
-          fontFamily: {
-            display: ['Rye', 'serif'],
-            serif: ['Abril Fatface', 'cursive'],
-            sans: ['Noto Sans KR', 'sans-serif'],
-          }
-        }
-      }
-    }
-  </script>
-</head>
-<body class="bg-[#1a1a1a] text-cream font-sans">
+<%# Barber Template - 바버 클래식 %>
+<!-- Vanilla Tilt -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.0/vanilla-tilt.min.js"></script>
 
-  <!-- Nav -->
-  <nav class="border-b border-gold/30 px-6 py-6 flex flex-col md:flex-row justify-between items-center gap-4">
-    <div class="text-3xl font-display text-gold tracking-widest text-center md:text-left">
+<style>
+  .barber-hero-bg {
+    background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1621605815971-fbc98d665033?q=80&w=1920&auto=format&fit=crop');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+  }
+  .gold-gradient-text {
+    background: linear-gradient(135deg, #D4AF37 0%, #F5F5DC 50%, #D4AF37 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .process-line {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: #D4AF37;
+    opacity: 0.3;
+    z-index: 0;
+    transform: translateY(-50%);
+  }
+</style>
+
+<div class="bg-neutral-900 text-gray-200 font-sans selection:bg-yellow-600 selection:text-white">
+  
+  <!-- Navbar -->
+  <nav class="absolute w-full z-50 px-6 py-6 flex justify-between items-center border-b border-white/10">
+    <div class="text-2xl font-serif font-bold text-yellow-500 tracking-widest">
       BARBER CLASSIC
-      <div class="text-xs font-sans text-gray-500 tracking-[0.5em] mt-1 opacity-70">EST. 2024</div>
     </div>
-    <div class="flex gap-8 text-sm font-bold tracking-widest uppercase text-gray-400">
-      <a href="#services" class="hover:text-gold transition">서비스</a>
-      <a href="#about" class="hover:text-gold transition">스토리</a>
-      <a href="#booking" class="hover:text-gold transition">예약</a>
+    <div class="hidden md:flex gap-8 text-sm font-bold uppercase tracking-[0.2em] text-gray-400">
+      <a href="#about" class="hover:text-yellow-500 transition">About</a>
+      <a href="#services" class="hover:text-yellow-500 transition">Services</a>
+      <a href="#process" class="hover:text-yellow-500 transition">Process</a>
+      <a href="#reservation" class="hover:text-yellow-500 transition">Booking</a>
     </div>
+    <button onclick="document.getElementById('reservation').scrollIntoView({behavior: 'smooth'})" 
+            class="px-6 py-2 border border-yellow-500 text-yellow-500 text-xs font-bold uppercase tracking-widest hover:bg-yellow-500 hover:text-black transition">
+      Reservation
+    </button>
   </nav>
 
-  <!-- Hero -->
-  <header class="relative py-20 px-6 border-b-8 border-gold/10">
-    <div class="container mx-auto grid md:grid-cols-2 gap-12 items-center">
-      <div class="space-y-8 order-2 md:order-1 text-center md:text-left">
-        <h1 class="text-5xl md:text-7xl font-display leading-tight text-white">
-          Grooming for <br> <span class="text-gold shadow-gold">Gentlemen.</span>
+  <!-- Hero Section -->
+  <header class="relative h-screen flex items-center justify-center barber-hero-bg">
+    <div class="container mx-auto px-6 grid md:grid-cols-2 gap-12 items-center">
+      <div class="z-10 text-center md:text-left space-y-8">
+        <div class="inline-block border-b-2 border-yellow-500 pb-1 text-yellow-500 text-xs tracking-[0.3em] uppercase mb-4">
+          Premium Grooming Service
+        </div>
+        <h1 class="text-5xl md:text-7xl font-serif font-bold leading-none text-white drop-shadow-2xl" data-tilt data-tilt-max="5">
+          Masterpiece<br>
+          <span class="gold-gradient-text">On Your Head</span>
         </h1>
-        <p class="text-gray-400 text-lg leading-relaxed max-w-md mx-auto md:mx-0 font-serif">
-          클래식한 감성과 섬세한 기술이 만나는 곳. <br>
-          당신의 품격을 완성해 드립니다.
+        <p class="text-gray-400 text-lg leading-relaxed max-w-md mx-auto md:mx-0">
+          단순한 이발이 아닙니다. 당신의 품격을 완성하는 예술입니다. <br>
+          최고급 도구와 클래식한 기술로 신사의 멋을 찾아드립니다.
         </p>
-        <button onclick="toggleBarber()" class="border-2 border-gold text-gold px-10 py-3 text-sm font-bold tracking-[0.2em] hover:bg-gold hover:text-black transition uppercase">
-          예약하기
-        </button>
+        <div class="flex flex-col md:flex-row gap-4 pt-4 justify-center md:justify-start">
+          <button onclick="document.getElementById('services').scrollIntoView({behavior: 'smooth'})"
+                  class="bg-yellow-600 text-white px-8 py-4 font-bold text-sm tracking-widest uppercase hover:bg-yellow-700 transition shadow-lg hover:shadow-yellow-600/30">
+            View Services
+          </button>
+          <button class="border border-white/20 text-white px-8 py-4 font-bold text-sm tracking-widest uppercase hover:bg-white hover:text-black transition">
+            Portfolio
+          </button>
+        </div>
       </div>
-      <div class="order-1 md:order-2 relative">
-        <div class="absolute inset-0 border-4 border-gold transform translate-x-4 translate-y-4"></div>
-        <img src="https://images.unsplash.com/photo-1585747860715-2ba37e788b70?q=80&w=800" class="relative z-10 grayscale hover:grayscale-0 transition duration-700 w-full object-cover h-[500px]">
+      
+      <!-- Hero Image Card with Tilt -->
+      <div class="hidden md:block relative z-10" data-tilt data-tilt-full-page-listening>
+        <div class="absolute inset-0 border-2 border-yellow-500 transform translate-x-4 translate-y-4 rounded-lg"></div>
+        <img src="https://images.unsplash.com/photo-1621605815971-fbc98d665033?q=80&w=800" 
+             class="relative rounded-lg shadow-2xl grayscale hover:grayscale-0 transition duration-1000 object-cover w-full h-[600px] brightness-75 hover:brightness-100">
       </div>
+    </div>
+
+    <!-- Scroll Down -->
+    <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 flex flex-col items-center gap-2">
+      <span class="text-[10px] text-gray-500 uppercase tracking-widest">Scroll</span>
+      <div class="w-[1px] h-12 bg-gradient-to-b from-yellow-500 to-transparent"></div>
     </div>
   </header>
 
-  <!-- Services (Menu Style) -->
-  <section id="services" class="py-24 bg-[#1f1f1f]">
-    <div class="container mx-auto px-6 max-w-4xl">
-      <div class="text-center mb-16">
-        <span class="text-gold text-xs tracking-[0.3em] uppercase block mb-4">Price List</span>
-        <h2 class="font-display text-4xl text-white">Our Services</h2>
+  <!-- Process Section (New) -->
+  <section id="process" class="py-24 bg-neutral-900 border-b border-white/5 relative overflow-hidden">
+    <div class="container mx-auto px-6">
+      <div class="text-center mb-20">
+        <span class="text-yellow-600 text-xs tracking-[0.3em] uppercase">Workflow</span>
+        <h2 class="text-4xl font-serif text-white mt-4 mb-4">The Classic Ritual</h2>
+        <p class="text-gray-500">완벽한 스타일을 위한 바버 클래식만의 4단계 프로세스</p>
       </div>
 
-      <div class="grid md:grid-cols-2 gap-x-16 gap-y-8">
-        <!-- Item -->
-        <div class="border-b border-gray-700 pb-4 group cursor-pointer" onclick="toggleBarber()">
-          <div class="flex justify-between items-end mb-2">
-            <h3 class="font-serif text-2xl text-white group-hover:text-gold transition">Classic Cut</h3>
-            <span class="font-bold text-gold text-xl">₩35,000</span>
+      <div class="relative grid md:grid-cols-4 gap-8">
+        <!-- Connecting Line (Desktop) -->
+        <div class="hidden md:block process-line"></div>
+
+        <!-- Steps -->
+        <div class="relative z-10 text-center group cursor-pointer">
+          <div class="w-20 h-20 bg-neutral-800 border-2 border-neutral-700 group-hover:border-yellow-500 rounded-full flex items-center justify-center mx-auto mb-6 transition duration-300 shadow-xl">
+            <span class="text-2xl">✂️</span>
           </div>
-          <p class="text-xs text-gray-500 uppercase tracking-wider">가위질 & 스타일링 + 샴푸</p>
+          <h3 class="text-xl font-bold text-white mb-2 group-hover:text-yellow-500 transition">1. Consultation</h3>
+          <p class="text-sm text-gray-500 px-4">두상과 모질 파악,<br>1:1 맞춤 스타일 상담</p>
         </div>
-        <!-- Item -->
-        <div class="border-b border-gray-700 pb-4 group cursor-pointer" onclick="toggleBarber()">
-          <div class="flex justify-between items-end mb-2">
-            <h3 class="font-serif text-2xl text-white group-hover:text-gold transition">Hot Towel Shave</h3>
-            <span class="font-bold text-gold text-xl">₩30,000</span>
+
+        <div class="relative z-10 text-center group cursor-pointer delay-100">
+          <div class="w-20 h-20 bg-neutral-800 border-2 border-neutral-700 group-hover:border-yellow-500 rounded-full flex items-center justify-center mx-auto mb-6 transition duration-300 shadow-xl">
+            <span class="text-2xl">🚿</span>
           </div>
-          <p class="text-xs text-gray-500 uppercase tracking-wider">전통 습식 면도 + 스팀 타월</p>
+          <h3 class="text-xl font-bold text-white mb-2 group-hover:text-yellow-500 transition">2. Pre-Shave</h3>
+          <p class="text-sm text-gray-500 px-4">스팀 타월과 오일 마사지로<br>피부 및 두피 이완</p>
         </div>
-        <!-- Item -->
-        <div class="border-b border-gray-700 pb-4 group cursor-pointer" onclick="toggleBarber()">
-          <div class="flex justify-between items-end mb-2">
-            <h3 class="font-serif text-2xl text-white group-hover:text-gold transition">Beard Trim</h3>
-            <span class="font-bold text-gold text-xl">₩20,000</span>
+
+        <div class="relative z-10 text-center group cursor-pointer delay-200">
+          <div class="w-20 h-20 bg-neutral-800 border-2 border-neutral-700 group-hover:border-yellow-500 rounded-full flex items-center justify-center mx-auto mb-6 transition duration-300 shadow-xl">
+            <span class="text-2xl">💈</span>
           </div>
-          <p class="text-xs text-gray-500 uppercase tracking-wider">수염 다듬기 & 라인 정리</p>
+          <h3 class="text-xl font-bold text-white mb-2 group-hover:text-yellow-500 transition">3. Styling</h3>
+          <p class="text-sm text-gray-500 px-4">숙련된 기술로<br>정교한 컷트 및 쉐이빙</p>
         </div>
-        <!-- Item -->
-        <div class="border-b border-gray-700 pb-4 group cursor-pointer" onclick="toggleBarber()">
-          <div class="flex justify-between items-end mb-2">
-            <h3 class="font-serif text-2xl text-white group-hover:text-gold transition">Full Package</h3>
-            <span class="font-bold text-gold text-xl">₩60,000</span>
+
+        <div class="relative z-10 text-center group cursor-pointer delay-300">
+          <div class="w-20 h-20 bg-neutral-800 border-2 border-neutral-700 group-hover:border-yellow-500 rounded-full flex items-center justify-center mx-auto mb-6 transition duration-300 shadow-xl">
+            <span class="text-2xl">🥃</span>
           </div>
-          <p class="text-xs text-gray-500 uppercase tracking-wider">컷트 + 쉐이빙 + 두피 마사지</p>
+          <h3 class="text-xl font-bold text-white mb-2 group-hover:text-yellow-500 transition">4. After Care</h3>
+          <p class="text-sm text-gray-500 px-4">포마드 스타일링 및<br>위스키/음료 서비스</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Modal -->
-  <div id="barber-modal" class="fixed inset-0 bg-black/90 z-[60] hidden flex items-center justify-center p-4">
-    <div class="bg-[#1a1a1a] border border-gold w-full max-w-md p-8 relative">
-      <button onclick="toggleBarber()" class="absolute top-4 right-4 text-gray-500 hover:text-gold font-serif text-xl">X</button>
-      
-      <div class="text-center mb-8 border-b border-gold/20 pb-4">
-        <h2 class="font-display text-2xl text-gold mb-2">Book Your Seat</h2>
-        <p class="text-xs text-gray-500 uppercase tracking-widest">예약은 신사의 약속입니다</p>
-      </div>
-
-      <form class="space-y-6" onsubmit="event.preventDefault(); alert('예약이 확정되었습니다.'); toggleBarber();">
-        <div>
-           <label class="block text-xs font-bold text-gold uppercase mb-2 tracking-widest">Name</label>
-           <input type="text" class="w-full bg-[#2a2a2a] border-b border-gray-600 p-2 text-white outline-none focus:border-gold transition font-serif">
-        </div>
-        <div>
-           <label class="block text-xs font-bold text-gold uppercase mb-2 tracking-widest">Phone</label>
-           <input type="tel" class="w-full bg-[#2a2a2a] border-b border-gray-600 p-2 text-white outline-none focus:border-gold transition font-serif">
-        </div>
-        <div class="grid grid-cols-2 gap-4">
-           <div>
-             <label class="block text-xs font-bold text-gold uppercase mb-2 tracking-widest">Date</label>
-             <input type="date" class="w-full bg-[#2a2a2a] border-b border-gray-600 p-2 text-white outline-none focus:border-gold transition font-serif text-gray-400">
-           </div>
-           <div>
-             <label class="block text-xs font-bold text-gold uppercase mb-2 tracking-widest">Time</label>
-             <select class="w-full bg-[#2a2a2a] border-b border-gray-600 p-2 text-white outline-none focus:border-gold transition font-serif">
-               <option>10:00 AM</option>
-               <option>11:00 AM</option>
-               <option>01:00 PM</option>
-               <option>02:00 PM</option>
-               <option>03:00 PM</option>
-             </select>
-           </div>
-        </div>
+  <!-- Services & Pricing -->
+  <section id="services" class="py-24 bg-neutral-800">
+    <div class="container mx-auto px-6 grid md:grid-cols-2 gap-16 items-center">
+      <div>
+        <h2 class="text-4xl font-serif text-white mb-12">
+          Service Menu <br>
+          <span class="text-xl font-sans text-gray-500 font-normal mt-2 block">모든 코스에는 스타일링 팁 제공이 포함됩니다.</span>
+        </h2>
         
-        <button class="w-full bg-gold text-black font-bold py-4 text-xs tracking-[0.2em] hover:bg-white transition uppercase mt-4">
-          Confirm Appointment
-        </button>
-      </form>
+        <div class="space-y-8">
+          <!-- Menu Item -->
+          <div class="group cursor-pointer">
+            <div class="flex justify-between items-baseline border-b border-gray-700 pb-2 mb-2 group-hover:border-yellow-500 transition">
+              <h3 class="text-2xl font-serif text-gray-200 group-hover:text-yellow-500 transition">Signature Cut</h3>
+              <span class="text-xl text-yellow-500 font-bold">₩ 45,000</span>
+            </div>
+            <p class="text-sm text-gray-500">상담 + 컷트 + 라인 정리 + 샴푸 + 스타일링</p>
+          </div>
+          <!-- Menu Item -->
+          <div class="group cursor-pointer">
+            <div class="flex justify-between items-baseline border-b border-gray-700 pb-2 mb-2 group-hover:border-yellow-500 transition">
+              <h3 class="text-2xl font-serif text-gray-200 group-hover:text-yellow-500 transition">Classic Shave</h3>
+              <span class="text-xl text-yellow-500 font-bold">₩ 35,000</span>
+            </div>
+            <p class="text-sm text-gray-500">스팀 타월 + 습식 면도 + 애프터 쉐이브 + 페이스 마사지</p>
+          </div>
+          <!-- Menu Item -->
+          <div class="group cursor-pointer">
+            <div class="flex justify-between items-baseline border-b border-gray-700 pb-2 mb-2 group-hover:border-yellow-500 transition">
+              <h3 class="text-2xl font-serif text-gray-200 group-hover:text-yellow-500 transition">Full Course</h3>
+              <span class="text-xl text-yellow-500 font-bold">₩ 75,000</span>
+            </div>
+            <p class="text-sm text-gray-500">시그니처 컷 + 클래식 쉐이브 + 두피 스파 (90분)</p>
+          </div>
+          <!-- Menu Item -->
+          <div class="group cursor-pointer">
+            <div class="flex justify-between items-baseline border-b border-gray-700 pb-2 mb-2 group-hover:border-yellow-500 transition">
+              <h3 class="text-2xl font-serif text-gray-200 group-hover:text-yellow-500 transition">Down Perm</h3>
+              <span class="text-xl text-yellow-500 font-bold">₩ 30,000</span>
+            </div>
+            <p class="text-sm text-gray-500">옆머리 다운펌 (컷트 비용 별도)</p>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Detailed Image Grid -->
+      <div class="grid grid-cols-2 gap-4" data-tilt data-tilt-max="5">
+        <img src="https://images.unsplash.com/photo-1593702295094-380ade2ee624?q=80&w=600" class="rounded-lg shadow-xl translate-y-8 grayscale hover:grayscale-0 transition duration-700">
+        <img src="https://images.unsplash.com/photo-1503951914875-befbb6470523?q=80&w=600" class="rounded-lg shadow-xl -translate-y-8 grayscale hover:grayscale-0 transition duration-700">
+        <img src="https://images.unsplash.com/photo-1622286342621-4bd786c2447c?q=80&w=600" class="rounded-lg shadow-xl translate-y-4 grayscale hover:grayscale-0 transition duration-700 col-span-2 h-40 object-cover w-full">
+      </div>
     </div>
-  </div>
+  </section>
 
-  <script>
-    function toggleBarber() {
-      const modal = document.getElementById('barber-modal');
-      if(modal.classList.contains('hidden')) {
-        modal.classList.remove('hidden');
-      } else {
-        modal.classList.add('hidden');
-      }
+  <!-- Reservation Form -->
+  <section id="reservation" class="py-24 bg-neutral-900 border-t border-white/5 relative">
+    <div class="container mx-auto px-6 max-w-4xl text-center">
+      <h2 class="text-4xl font-serif text-white mb-4">Book Your Visit</h2>
+      <p class="text-gray-500 mb-12">원하시는 날짜와 시간을 선택해주세요. 최고의 서비스로 보답하겠습니다.</p>
+      
+      <div class="bg-neutral-800 p-8 md:p-12 rounded-lg border border-white/5 shadow-2xl relative overflow-hidden">
+        <!-- Shine effect -->
+        <div class="absolute top-0 right-0 w-64 h-64 bg-yellow-600/10 rounded-full blur-[100px] pointer-events-none"></div>
+
+        <form class="grid md:grid-cols-2 gap-8 text-left">
+          <div class="space-y-6">
+            <div>
+              <label class="block text-xs font-bold text-yellow-600 uppercase mb-2 tracking-widest">Name</label>
+              <input type="text" class="w-full bg-neutral-900 border-b border-gray-700 p-3 text-white outline-none focus:border-yellow-500 transition placeholder-gray-700" placeholder="홍길동">
+            </div>
+            <div>
+              <label class="block text-xs font-bold text-yellow-600 uppercase mb-2 tracking-widest">Contact</label>
+              <input type="tel" class="w-full bg-neutral-900 border-b border-gray-700 p-3 text-white outline-none focus:border-yellow-500 transition placeholder-gray-700" placeholder="010-0000-0000">
+            </div>
+            <div>
+              <label class="block text-xs font-bold text-yellow-600 uppercase mb-2 tracking-widest">Services</label>
+              <select class="w-full bg-neutral-900 border-b border-gray-700 p-3 text-gray-400 outline-none focus:border-yellow-500 transition">
+                <option>Signature Cut</option>
+                <option>Classic Shave</option>
+                <option>Full Course</option>
+              </select>
+            </div>
+          </div>
+          
+          <div class="space-y-6">
+            <div>
+              <label class="block text-xs font-bold text-yellow-600 uppercase mb-2 tracking-widest">Date</label>
+              <input type="date" class="w-full bg-neutral-900 border-b border-gray-700 p-3 text-gray-400 outline-none focus:border-yellow-500 transition">
+            </div>
+            <div>
+              <label class="block text-xs font-bold text-yellow-600 uppercase mb-2 tracking-widest">Time</label>
+              <div class="grid grid-cols-3 gap-2">
+                <button type="button" class="p-2 border border-gray-700 text-gray-400 text-xs hover:border-yellow-500 hover:text-yellow-500 transition">10:00</button>
+                <button type="button" class="p-2 border border-gray-700 text-gray-400 text-xs hover:border-yellow-500 hover:text-yellow-500 transition">11:00</button>
+                <button type="button" class="p-2 border border-blue-500/0 bg-yellow-600 text-black font-bold text-xs" disabled>12:00</button>
+                <button type="button" class="p-2 border border-gray-700 text-gray-400 text-xs hover:border-yellow-500 hover:text-yellow-500 transition">13:00</button>
+                <button type="button" class="p-2 border border-gray-700 text-gray-400 text-xs hover:border-yellow-500 hover:text-yellow-500 transition">14:00</button>
+                <button type="button" class="p-2 border border-gray-700 text-gray-400 text-xs hover:border-yellow-500 hover:text-yellow-500 transition">15:00</button>
+              </div>
+            </div>
+            
+            <button type="button" class="w-full h-14 mt-auto bg-yellow-600 text-white font-bold tracking-[0.2em] uppercase hover:bg-white hover:text-black transition shadow-lg">
+              Confirm
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<script>
+  // Navbar transparency effect
+  window.addEventListener('scroll', () => {
+    const nav = document.querySelector('nav');
+    if (window.scrollY > 50) {
+      nav.classList.add('bg-neutral-900', 'shadow-lg');
+      nav.classList.remove('border-b', 'border-white/10');
+    } else {
+      nav.classList.remove('bg-neutral-900', 'shadow-lg');
+      nav.classList.add('border-b', 'border-white/10');
     }
-  </script>
-</body>
-</html>
+  });
+
+  // Tilt Init
+  VanillaTilt.init(document.querySelectorAll("[data-tilt]"), {
+    max: 5,
+    speed: 400,
+    glare: true,
+    "max-glare": 0.2,
+  });
+</script>

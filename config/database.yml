@@ -11,13 +11,13 @@ development:
 test:
   <<: *default
   database: storage/test.sqlite3
-
-# PostgreSQL configuration for production
+# PostgreSQL configuration for production (Supabase)
 production:
   primary:
     adapter: postgresql
     encoding: unicode
     pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+    # Set this in production environment: postgresql://postgres.mrnvmrpopahfdiahtgmf:elwkdlselfoq1!@aws-0-ap-northeast-2.pooler.supabase.com:6543/postgres
     url: <%= ENV['DATABASE_URL'] %>
   cache:
     adapter: postgresql

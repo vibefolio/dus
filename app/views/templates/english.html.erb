@@ -1,273 +1,249 @@
-<!DOCTYPE html>
-<html lang="ko">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>잉글리시타운 - 영어가 쉬워지는 곳</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            primary: '#2563eb',
-            accent: '#fbbf24',
-            sky: '#0ea5e9',
-          },
-          fontFamily: {
-            display: ['Poppins', 'sans-serif'],
-            sans: ['Noto Sans KR', 'sans-serif'],
-          }
-        }
-      }
-    }
-  </script>
-</head>
-<body class="bg-white font-sans">
+<%# English Template - 잉글리시 타운 %>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.0/vanilla-tilt.min.js"></script>
 
-  <!-- 네비게이션 -->
-  <nav class="bg-white shadow-sm sticky top-0 z-50">
-    <div class="max-w-7xl mx-auto px-4 md:px-6 py-4 flex items-center justify-between">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;700;900&family=Noto+Sans+KR:wght@400;500;700&display=swap');
+  
+  .font-eng { font-family: 'Outfit', sans-serif; }
+  .font-kor { font-family: 'Noto Sans KR', sans-serif; }
+  
+  .bg-grid-isometric {
+    background-image: linear-gradient(30deg, #f0f4f8 12%, transparent 12.5%, transparent 87%, #f0f4f8 87.5%, #f0f4f8),
+    linear-gradient(150deg, #f0f4f8 12%, transparent 12.5%, transparent 87%, #f0f4f8 87.5%, #f0f4f8),
+    linear-gradient(30deg, #f0f4f8 12%, transparent 12.5%, transparent 87%, #f0f4f8 87.5%, #f0f4f8),
+    linear-gradient(150deg, #f0f4f8 12%, transparent 12.5%, transparent 87%, #f0f4f8 87.5%, #f0f4f8),
+    linear-gradient(60deg, #f0f4f877 25%, transparent 25.5%, transparent 75%, #f0f4f877 75%, #f0f4f877),
+    linear-gradient(60deg, #f0f4f877 25%, transparent 25.5%, transparent 75%, #f0f4f877 75%, #f0f4f877);
+    background-size: 40px 70px;
+    background-position: 0 0, 0 0, 20px 35px, 20px 35px, 0 0, 20px 35px;
+  }
+
+  .floating-letter {
+    animation: float 6s ease-in-out infinite;
+    position: absolute;
+    font-weight: 900;
+    opacity: 0.1;
+    z-index: 0;
+  }
+  @keyframes float {
+    0% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-20px) rotate(10deg); }
+    100% { transform: translateY(0px) rotate(0deg); }
+  }
+</style>
+
+<div class="bg-white text-slate-800 font-kor selection:bg-blue-500 selection:text-white overflow-x-hidden">
+
+  <!-- Nav -->
+  <nav class="fixed w-full z-50 px-6 py-4 bg-white/90 backdrop-blur border-b border-slate-200">
+    <div class="container mx-auto flex justify-between items-center">
       <div class="flex items-center gap-2">
-        <div class="text-2xl md:text-3xl">🌎</div>
-        <span class="text-xl md:text-2xl font-display font-bold text-primary">잉글리시<span class="text-sky">타운</span></span>
+        <div class="w-10 h-10 bg-blue-600 rounded-lg flex items-center justify-center text-white font-eng font-black text-xl shadow-lg">E</div>
+        <span class="font-eng font-bold text-2xl text-slate-800">English Town</span>
       </div>
-      
-      <!-- 데스크탑 메뉴 -->
-      <div class="hidden md:flex items-center gap-8 text-sm font-medium text-gray-600">
-        <a href="#programs" class="hover:text-primary transition">프로그램</a>
-        <a href="#test" class="hover:text-primary transition">레벨테스트</a>
-        <a href="#reviews" class="hover:text-primary transition">수강후기</a>
-        <a href="#about" class="hover:text-primary transition">학원소개</a>
+      <div class="hidden md:flex gap-8 font-medium text-slate-500">
+        <a href="#curriculum" class="hover:text-blue-600 transition">Curriculum</a>
+        <a href="#teachers" class="hover:text-blue-600 transition">Teachers</a>
+        <a href="#review" class="hover:text-blue-600 transition">Reviews</a>
       </div>
-      
-      <div class="flex items-center gap-2 md:gap-3">
-        <a href="tel:02-1234-5678" class="hidden sm:flex items-center gap-2 text-sm text-gray-600">
-          <span>📞</span> 02-1234-5678
-        </a>
-        <button onclick="showModal()" class="px-4 md:px-5 py-2 md:py-2.5 bg-accent text-gray-900 text-sm font-bold rounded-full hover:bg-yellow-400 transition shadow-lg shadow-accent/25">
-          무료 상담
-        </button>
-      </div>
+      <button onclick="document.getElementById('counseling').scrollIntoView({behavior: 'smooth'})"
+              class="px-6 py-2 bg-blue-600 text-white rounded-full font-bold text-sm hover:bg-blue-700 transition shadow-lg shadow-blue-200">
+        Free Level Test
+      </button>
     </div>
   </nav>
 
-  <!-- 히어로 섹션 -->
-  <section class="relative overflow-hidden">
-    <div class="absolute inset-0 bg-gradient-to-br from-primary via-sky to-blue-400"></div>
-    <div class="absolute inset-0 opacity-10" style="background-image: url('data:image/svg+xml,<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 100 100\"><circle cx=\"50\" cy=\"50\" r=\"40\" fill=\"none\" stroke=\"white\" stroke-width=\"0.5\"/></svg>'); background-size: 80px;"></div>
-    
-    <div class="relative z-10 max-w-7xl mx-auto px-4 md:px-6 py-16 md:py-28">
-      <div class="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
-        <div class="text-white text-center md:text-left">
-          <div class="inline-flex items-center gap-2 px-3 md:px-4 py-2 bg-white/20 backdrop-blur rounded-full text-xs md:text-sm mb-6">
-            ⭐ 수강생 만족도 98.7%
-          </div>
-          <h1 class="text-3xl md:text-4xl lg:text-6xl font-display font-extrabold mb-6 leading-tight">
-            영어로 말해요,<br>
-            <span class="text-accent">자신있게!</span>
-          </h1>
-          <p class="text-lg md:text-xl text-blue-100 mb-8 leading-relaxed">
-            20년 전통의 검증된 커리큘럼으로<br>
-            3개월 안에 영어 자신감을 키워드립니다.
-          </p>
-          <div class="flex flex-col sm:flex-row gap-3 md:gap-4 justify-center md:justify-start">
-            <button onclick="showModal()" class="px-6 md:px-8 py-3 md:py-4 bg-accent text-gray-900 font-bold rounded-full hover:bg-yellow-400 transition shadow-xl flex items-center justify-center gap-2">
-              <span>무료 레벨테스트</span>
-              <span>→</span>
-            </button>
-            <button class="px-6 md:px-8 py-3 md:py-4 bg-white/20 backdrop-blur text-white font-semibold rounded-full hover:bg-white/30 transition">
-              프로그램 보기
-            </button>
-          </div>
+  <!-- Hero with Isometric Grid -->
+  <header class="pt-32 pb-20 px-6 bg-grid-isometric relative min-h-screen flex items-center">
+    <!-- Floating Letters -->
+    <div class="floating-letter text-9xl text-blue-900 top-20 left-10" style="animation-delay: 0s">A</div>
+    <div class="floating-letter text-8xl text-red-500 bottom-10 right-20" style="animation-delay: 2s">B</div>
+    <div class="floating-letter text-9xl text-yellow-500 top-40 right-10" style="animation-delay: 4s">C</div>
+
+    <div class="container mx-auto grid md:grid-cols-2 gap-12 items-center relative z-10">
+      <div class="space-y-8">
+        <div class="inline-flex items-center gap-2 px-4 py-2 bg-blue-50 text-blue-600 rounded-full text-sm font-bold border border-blue-100">
+          <span class="w-2 h-2 rounded-full bg-blue-600 animate-pulse"></span>
+          2024 신규 수강생 모집 중
+        </div>
+        <h1 class="text-6xl md:text-7xl font-eng font-black leading-tight text-slate-900">
+          Speak with <br>
+          <span class="text-blue-600">Confidence.</span>
+        </h1>
+        <p class="text-xl text-slate-500 leading-relaxed font-light">
+          더 넓은 세상을 향한 첫걸음. <br>
+          잉글리시 타운만의 검증된 커리큘럼으로<br>
+          영어의 즐거움을 깨워드립니다.
+        </p>
+        <div class="flex gap-4 pt-4">
+          <button class="px-8 py-4 bg-slate-900 text-white rounded-xl font-bold hover:scale-105 transition shadow-xl">
+            수강신청 바로가기
+          </button>
+          <button class="px-8 py-4 bg-white text-slate-900 border-2 border-slate-200 rounded-xl font-bold hover:border-blue-600 hover:text-blue-600 transition">
+            브로슈어 다운로드
+          </button>
         </div>
         
-        <div class="relative hidden md:block">
-          <div class="bg-white rounded-3xl shadow-2xl p-6 transform rotate-3 hover:rotate-0 transition duration-500">
-            <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=600" class="w-full h-64 object-cover rounded-2xl mb-4">
-            <div class="flex items-center gap-3">
-              <div class="flex -space-x-2">
-                <div class="w-8 h-8 bg-blue-500 rounded-full border-2 border-white"></div>
-                <div class="w-8 h-8 bg-green-500 rounded-full border-2 border-white"></div>
-                <div class="w-8 h-8 bg-purple-500 rounded-full border-2 border-white"></div>
-              </div>
-              <span class="text-sm text-gray-600">12,000+ 수강생이 선택</span>
-            </div>
+        <div class="flex items-center gap-4 pt-8 border-t border-slate-200">
+          <div class="flex -space-x-4">
+            <div class="w-12 h-12 rounded-full bg-slate-200 border-2 border-white overflow-hidden"><img src="https://randomuser.me/api/portraits/men/32.jpg"></div>
+            <div class="w-12 h-12 rounded-full bg-slate-200 border-2 border-white overflow-hidden"><img src="https://randomuser.me/api/portraits/women/44.jpg"></div>
+            <div class="w-12 h-12 rounded-full bg-slate-200 border-2 border-white overflow-hidden"><img src="https://randomuser.me/api/portraits/men/86.jpg"></div>
           </div>
-          <!-- 플로팅 요소 -->
-          <div class="absolute -top-4 -left-4 bg-white rounded-2xl shadow-lg p-4 animate-bounce">
-            <div class="text-2xl">🎯</div>
-            <div class="text-xs font-bold text-gray-800">목표 달성률</div>
-            <div class="text-lg font-bold text-primary">94%</div>
-          </div>
-          <div class="absolute -bottom-4 -right-4 bg-accent rounded-2xl shadow-lg p-4">
-            <div class="text-2xl">🏆</div>
-            <div class="text-xs font-bold text-gray-800">베스트 학원</div>
-            <div class="text-sm font-bold">5년 연속</div>
+          <p class="text-sm font-bold text-slate-600">
+            <span class="text-blue-600">1,500+</span> Students are learning
+          </p>
+        </div>
+      </div>
+
+      <div class="relative" data-tilt data-tilt-max="5">
+        <div class="absolute inset-0 bg-blue-600 rounded-[2rem] transform rotation-3 translate-x-4 translate-y-4 opacity-20"></div>
+        <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=800" class="relative rounded-[2rem] shadow-2xl w-full h-[500px] object-cover border-4 border-white">
+        
+        <!-- Floating Stat Card -->
+        <div class="absolute -bottom-6 -left-6 bg-white p-6 rounded-2xl shadow-xl border border-slate-100 animate-bounce">
+          <div class="flex items-center gap-4">
+             <div class="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center text-2xl">📈</div>
+             <div>
+               <p class="text-xs text-slate-400 font-bold uppercase">Average Score</p>
+               <p class="text-2xl font-black text-slate-800">Top 10%</p>
+             </div>
           </div>
         </div>
       </div>
     </div>
-  </section>
+  </header>
 
-  <!-- 프로그램 섹션 -->
-  <section id="programs" class="py-16 md:py-20 px-4 md:px-6 bg-gray-50">
-    <div class="max-w-7xl mx-auto">
-      <div class="text-center mb-12 md:mb-16">
-        <h2 class="text-2xl md:text-3xl lg:text-4xl font-bold mb-4">맞춤형 영어 프로그램</h2>
-        <p class="text-gray-600">나에게 딱 맞는 과정을 선택하세요</p>
+  <!-- Process / Roadmap -->
+  <section id="curriculum" class="py-24 bg-white">
+    <div class="container mx-auto px-6">
+      <div class="text-center mb-20">
+        <span class="text-blue-600 font-bold tracking-widest text-xs uppercase">Roadmap</span>
+        <h2 class="text-4xl font-eng font-black text-slate-900 mt-2">Your Journey to Fluency</h2>
       </div>
-      
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
-        <div class="bg-white rounded-3xl p-6 md:p-8 shadow-lg hover:shadow-2xl transition cursor-pointer group" onclick="showModal()">
-          <div class="w-14 md:w-16 h-14 md:h-16 bg-blue-100 rounded-2xl flex items-center justify-center text-2xl md:text-3xl mb-6 group-hover:scale-110 transition">
-            💼
+
+      <div class="grid md:grid-cols-4 gap-8 relative">
+        <!-- Connecting Line -->
+        <div class="hidden md:block absolute top-[2.5rem] left-0 right-0 h-1 bg-slate-100"></div>
+
+        <!-- Step 1 -->
+        <div class="relative pt-10 text-center group cursor-pointer">
+          <div class="w-20 h-20 bg-white border-4 border-blue-100 rounded-2xl flex items-center justify-center mx-auto mb-6 text-3xl shadow-sm relative z-10 group-hover:border-blue-600 group-hover:scale-110 transition duration-300">
+            🎯
           </div>
-          <h3 class="text-lg md:text-xl font-bold mb-3">비즈니스 영어</h3>
-          <p class="text-gray-600 text-sm mb-4">회의, 프레젠테이션, 이메일 작성 등 비즈니스 현장에서 바로 활용</p>
-          <ul class="text-sm text-gray-500 space-y-2 mb-6">
-            <li>✓ 1:1 맞춤 수업</li>
-            <li>✓ 실무 시뮬레이션</li>
-            <li>✓ 원어민 피드백</li>
-          </ul>
-          <div class="flex items-center justify-between">
-            <span class="text-xl md:text-2xl font-bold text-primary">3개월</span>
-            <span class="px-3 md:px-4 py-2 bg-primary/10 text-primary font-semibold rounded-full text-xs md:text-sm">월 39만원</span>
-          </div>
+          <h3 class="font-bold text-xl mb-2">Level Test</h3>
+          <p class="text-slate-500 text-sm">AI 기반 정밀 진단으로<br>현재 실력 파악</p>
         </div>
 
-        <div class="bg-gradient-to-br from-primary to-sky rounded-3xl p-6 md:p-8 shadow-xl text-white transform md:scale-105 cursor-pointer relative" onclick="showModal()">
-          <div class="absolute top-4 right-4 px-3 py-1 bg-accent text-gray-900 font-bold rounded-full text-xs">BEST</div>
-          <div class="w-14 md:w-16 h-14 md:h-16 bg-white/20 rounded-2xl flex items-center justify-center text-2xl md:text-3xl mb-6">
+        <!-- Step 2 -->
+        <div class="relative pt-10 text-center group cursor-pointer">
+          <div class="w-20 h-20 bg-white border-4 border-blue-100 rounded-2xl flex items-center justify-center mx-auto mb-6 text-3xl shadow-sm relative z-10 group-hover:border-blue-600 group-hover:scale-110 transition duration-300">
+            📚
+          </div>
+          <h3 class="font-bold text-xl mb-2">Custom Class</h3>
+          <p class="text-slate-500 text-sm">개인별 목표에 맞춘<br>최적화 커리큘럼 배정</p>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="relative pt-10 text-center group cursor-pointer">
+          <div class="w-20 h-20 bg-white border-4 border-blue-100 rounded-2xl flex items-center justify-center mx-auto mb-6 text-3xl shadow-sm relative z-10 group-hover:border-blue-600 group-hover:scale-110 transition duration-300">
+            🗣️
+          </div>
+          <h3 class="font-bold text-xl mb-2">Speaking</h3>
+          <p class="text-slate-500 text-sm">원어민 강사와 함께하는<br>실전 회화 훈련</p>
+        </div>
+
+        <!-- Step 4 -->
+        <div class="relative pt-10 text-center group cursor-pointer">
+          <div class="w-20 h-20 bg-white border-4 border-blue-100 rounded-2xl flex items-center justify-center mx-auto mb-6 text-3xl shadow-sm relative z-10 group-hover:border-blue-600 group-hover:scale-110 transition duration-300">
             🎓
           </div>
-          <h3 class="text-lg md:text-xl font-bold mb-3">토익/토플 집중반</h3>
-          <p class="text-blue-100 text-sm mb-4">목표 점수 달성을 위한 체계적인 커리큘럼과 실전 모의고사</p>
-          <ul class="text-sm text-blue-100 space-y-2 mb-6">
-            <li>✓ 점수 보장제</li>
-            <li>✓ 매주 모의고사</li>
-            <li>✓ 1:1 약점 분석</li>
-          </ul>
-          <div class="flex items-center justify-between">
-            <span class="text-xl md:text-2xl font-bold">2개월</span>
-            <span class="px-3 md:px-4 py-2 bg-white/20 font-semibold rounded-full text-xs md:text-sm">월 49만원</span>
-          </div>
-        </div>
-
-        <div class="bg-white rounded-3xl p-6 md:p-8 shadow-lg hover:shadow-2xl transition cursor-pointer group" onclick="showModal()">
-          <div class="w-14 md:w-16 h-14 md:h-16 bg-green-100 rounded-2xl flex items-center justify-center text-2xl md:text-3xl mb-6 group-hover:scale-110 transition">
-            ✈️
-          </div>
-          <h3 class="text-lg md:text-xl font-bold mb-3">여행 영어</h3>
-          <p class="text-gray-600 text-sm mb-4">해외여행에서 자신있게 소통할 수 있는 실용 영어 회화</p>
-          <ul class="text-sm text-gray-500 space-y-2 mb-6">
-            <li>✓ 상황별 회화</li>
-            <li>✓ 롤플레이 수업</li>
-            <li>✓ 소규모 그룹</li>
-          </ul>
-          <div class="flex items-center justify-between">
-            <span class="text-xl md:text-2xl font-bold text-green-600">1개월</span>
-            <span class="px-3 md:px-4 py-2 bg-green-100 text-green-700 font-semibold rounded-full text-xs md:text-sm">월 29만원</span>
-          </div>
+          <h3 class="font-bold text-xl mb-2">Certificate</h3>
+          <p class="text-slate-500 text-sm">레벨업 테스트 통과 및<br>수료증 발급</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- 수강 후기 섹션 -->
-  <section id="reviews" class="py-16 md:py-20 px-4 md:px-6">
-    <div class="max-w-7xl mx-auto">
-      <div class="text-center mb-12">
-        <h2 class="text-2xl md:text-3xl font-bold mb-4">수강생 후기</h2>
-        <p class="text-gray-600">실제 수강생들의 생생한 이야기</p>
-      </div>
-      
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <div class="bg-gray-50 rounded-2xl p-6">
-          <div class="flex items-center gap-1 text-yellow-400 mb-4">⭐⭐⭐⭐⭐</div>
-          <p class="text-gray-600 mb-4">"3개월 만에 토익 850점 달성! 체계적인 커리큘럼과 선생님의 1:1 케어가 정말 좋았어요."</p>
-          <div class="flex items-center gap-3">
-            <div class="w-10 h-10 bg-blue-200 rounded-full"></div>
-            <div>
-              <div class="font-semibold text-sm">김수강</div>
-              <div class="text-xs text-gray-500">토익 집중반 수료</div>
-            </div>
-          </div>
+  <!-- Programs Grid -->
+  <section class="py-24 bg-slate-50">
+     <div class="container mx-auto px-6">
+       <div class="grid md:grid-cols-3 gap-8">
+         <div class="bg-white p-8 rounded-3xl shadow-sm hover:shadow-xl transition duration-300 border border-slate-100" data-tilt data-tilt-glare data-tilt-max-glare="0.2">
+           <span class="bg-yellow-100 text-yellow-700 font-bold px-3 py-1 rounded text-xs mb-4 inline-block">Popular</span>
+           <h3 class="font-eng font-bold text-2xl mb-2">Business Class</h3>
+           <p class="text-slate-500 text-sm mb-6">글로벌 비즈니스를 위한 이메일, 회의, 프레젠테이션 스킬 마스터</p>
+           <div class="flex items-baseline gap-1 mb-6">
+             <span class="text-3xl font-black text-slate-800">₩350k</span>
+             <span class="text-slate-400 text-sm">/ month</span>
+           </div>
+           <button class="w-full py-3 bg-slate-900 text-white rounded-xl font-bold hover:bg-blue-600 transition">More Info</button>
+         </div>
+
+         <div class="bg-blue-600 p-8 rounded-3xl shadow-xl transform md:scale-105 relative" data-tilt data-tilt-glare data-tilt-max-glare="0.5">
+           <div class="absolute top-0 right-0 p-4 bg-white/20 rounded-bl-3xl backdrop-blur">
+             <span class="text-white font-bold text-xs">Best Value</span>
+           </div>
+           <h3 class="font-eng font-bold text-2xl text-white mb-2">Intensive Course</h3>
+           <p class="text-blue-100 text-sm mb-6">단기간 집중 몰입 교육. 하루 4시간 원어민 수업 + 1:1 케어</p>
+           <div class="flex items-baseline gap-1 mb-6">
+             <span class="text-3xl font-black text-white">₩600k</span>
+             <span class="text-blue-200 text-sm">/ month</span>
+           </div>
+           <button class="w-full py-3 bg-white text-blue-600 rounded-xl font-bold hover:bg-yellow-400 hover:text-slate-900 transition shadow-lg">More Info</button>
+         </div>
+
+         <div class="bg-white p-8 rounded-3xl shadow-sm hover:shadow-xl transition duration-300 border border-slate-100" data-tilt data-tilt-glare data-tilt-max-glare="0.2">
+           <span class="bg-green-100 text-green-700 font-bold px-3 py-1 rounded text-xs mb-4 inline-block">Beginner</span>
+           <h3 class="font-eng font-bold text-2xl mb-2">Basic Step</h3>
+           <p class="text-slate-500 text-sm mb-6">영어 울렁증 극복. 기초 문법부터 실생활 회화 입문까지</p>
+           <div class="flex items-baseline gap-1 mb-6">
+             <span class="text-3xl font-black text-slate-800">₩250k</span>
+             <span class="text-slate-400 text-sm">/ month</span>
+           </div>
+           <button class="w-full py-3 bg-slate-900 text-white rounded-xl font-bold hover:bg-blue-600 transition">More Info</button>
+         </div>
+       </div>
+     </div>
+  </section>
+
+  <!-- Counseling Form -->
+  <section id="counseling" class="py-24 bg-white relative overflow-hidden">
+    <div class="container mx-auto px-6 max-w-4xl relative z-10">
+      <div class="bg-blue-50 rounded-[3rem] p-12 md:p-16 border border-blue-100 relative shadow-lg">
+        <!-- Decor -->
+        <div class="absolute -top-10 -right-10 w-40 h-40 bg-blue-200 rounded-full blur-3xl opacity-50"></div>
+        <div class="absolute -bottom-10 -left-10 w-40 h-40 bg-yellow-200 rounded-full blur-3xl opacity-50"></div>
+
+        <div class="text-center mb-10">
+          <h2 class="text-3xl font-bold mb-4">Start Your Free Trial</h2>
+          <p class="text-slate-500">지금 신청하시면 레벨 테스트와 1회 무료 체험 수업을 제공해드립니다.</p>
         </div>
-        <div class="bg-gray-50 rounded-2xl p-6">
-          <div class="flex items-center gap-1 text-yellow-400 mb-4">⭐⭐⭐⭐⭐</div>
-          <p class="text-gray-600 mb-4">"해외 출장 갈 때마다 걱정이었는데, 이제는 자신있게 미팅을 진행해요!"</p>
-          <div class="flex items-center gap-3">
-            <div class="w-10 h-10 bg-green-200 rounded-full"></div>
-            <div>
-              <div class="font-semibold text-sm">박직장</div>
-              <div class="text-xs text-gray-500">비즈니스 영어 수료</div>
-            </div>
-          </div>
-        </div>
-        <div class="bg-gray-50 rounded-2xl p-6">
-          <div class="flex items-center gap-1 text-yellow-400 mb-4">⭐⭐⭐⭐⭐</div>
-          <p class="text-gray-600 mb-4">"유럽 여행에서 현지인들과 대화할 수 있어서 여행이 10배 즐거웠어요!"</p>
-          <div class="flex items-center gap-3">
-            <div class="w-10 h-10 bg-purple-200 rounded-full"></div>
-            <div>
-              <div class="font-semibold text-sm">이여행</div>
-              <div class="text-xs text-gray-500">여행 영어 수료</div>
-            </div>
-          </div>
-        </div>
+
+        <form class="grid md:grid-cols-2 gap-6">
+           <input type="text" placeholder="Student Name" class="w-full bg-white p-4 rounded-xl border border-blue-100 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 outline-none transition">
+           <input type="tel" placeholder="Phone Number" class="w-full bg-white p-4 rounded-xl border border-blue-100 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 outline-none transition">
+           <select class="w-full bg-white p-4 rounded-xl border border-blue-100 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 outline-none transition text-slate-500">
+             <option>Select Course</option>
+             <option>Business Class</option>
+             <option>Intensive Course</option>
+             <option>Basic Step</option>
+           </select>
+           <button class="bg-blue-600 text-white font-bold p-4 rounded-xl hover:bg-blue-700 transition shadow-lg flex items-center justify-center gap-2">
+             Apply Now <span>&rarr;</span>
+           </button>
+        </form>
       </div>
     </div>
   </section>
 
-  <!-- 모달 -->
-  <div id="modal" class="fixed inset-0 bg-black/50 z-50 items-center justify-center p-4" style="display: none;">
-    <div class="bg-white rounded-3xl p-6 md:p-8 max-w-md w-full shadow-2xl">
-      <div class="text-center mb-6">
-        <div class="text-4xl mb-4">📝</div>
-        <h3 class="text-xl md:text-2xl font-bold mb-2">무료 레벨테스트 신청</h3>
-        <p class="text-gray-600 text-sm">10분 테스트로 나의 영어 실력을 확인하세요!</p>
-      </div>
-      <form onsubmit="event.preventDefault(); alert('신청 완료! 곧 연락드리겠습니다 📞'); hideModal();">
-        <input type="text" placeholder="이름" class="w-full px-4 py-3 border border-gray-200 rounded-xl mb-3 focus:outline-none focus:border-primary">
-        <input type="tel" placeholder="연락처" class="w-full px-4 py-3 border border-gray-200 rounded-xl mb-3 focus:outline-none focus:border-primary">
-        <select class="w-full px-4 py-3 border border-gray-200 rounded-xl mb-4 focus:outline-none focus:border-primary text-gray-600">
-          <option>관심 프로그램 선택</option>
-          <option>비즈니스 영어</option>
-          <option>토익/토플 집중반</option>
-          <option>여행 영어</option>
-        </select>
-        <button class="w-full py-3 md:py-4 bg-primary text-white font-bold rounded-xl hover:bg-blue-700 transition">
-          무료 신청하기
-        </button>
-      </form>
-      <button onclick="hideModal()" class="w-full mt-4 text-gray-500 hover:text-gray-700 transition text-sm">닫기</button>
-    </div>
-  </div>
+</div>
 
-  <!-- 푸터 -->
-  <footer class="bg-gray-900 text-white py-8 px-4 md:px-6">
-    <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4 text-sm">
-      <div class="flex items-center gap-2">
-        <span class="text-2xl">🌎</span>
-        <span class="font-bold">잉글리시타운</span>
-      </div>
-      <p class="text-gray-400">© 2024 English Town. All rights reserved.</p>
-    </div>
-  </footer>
-
-  <script>
-    function showModal() {
-      const modal = document.getElementById('modal');
-      modal.style.display = 'flex';
-    }
-    function hideModal() {
-      document.getElementById('modal').style.display = 'none';
-    }
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') hideModal();
-    });
-  </script>
-</body>
-</html>
+<script>
+  VanillaTilt.init(document.querySelectorAll("[data-tilt]"), {
+    max: 10,
+    speed: 400,
+    glare: true,
+    "max-glare": 0.2,
+  });
+</script>

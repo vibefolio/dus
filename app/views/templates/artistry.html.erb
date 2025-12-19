@@ -1,231 +1,184 @@
-<!DOCTYPE html>
-<html lang="ko">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>아티스트리 - 예술이 시작되는 곳</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;600;700&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            cream: '#faf7f2',
-            gold: '#c9a961',
-            wine: '#722f37',
-            charcoal: '#2d2d2d',
-          },
-          fontFamily: {
-            display: ['Noto Serif KR', 'serif'],
-            sans: ['Noto Sans KR', 'sans-serif'],
-          }
-        }
-      }
-    }
-  </script>
-</head>
-<body class="bg-cream font-sans text-charcoal">
+<%# Artistry Template - MUA JIN (메이크업 아티스트) %>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.0/vanilla-tilt.min.js"></script>
 
-  <!-- 네비게이션 -->
-  <nav class="fixed top-0 left-0 right-0 z-50 bg-cream/90 backdrop-blur-md">
-    <div class="max-w-7xl mx-auto px-4 md:px-6 py-4 md:py-5 flex items-center justify-between">
-      <div class="flex items-center gap-2 md:gap-3">
-        <div class="w-8 md:w-10 h-8 md:h-10 border-2 border-gold rounded-full flex items-center justify-center">
-          <span class="text-gold text-lg md:text-xl">♪</span>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,wght@0,400;0,700;1,400&family=Noto+Sans+KR:wght@300;400&display=swap');
+  
+  .font-serif { font-family: 'Bodoni Moda', serif; }
+  .font-sans { font-family: 'Noto Sans KR', sans-serif; }
+  
+  .cursor-dot {
+    width: 8px;
+    height: 8px;
+    background: white;
+    border-radius: 50%;
+    position: fixed;
+    pointer-events: none;
+    z-index: 9999;
+    mix-blend-mode: difference;
+    transition: transform 0.2s;
+  }
+  
+  .before-after-container {
+    position: relative;
+    width: 100%;
+    height: 500px;
+    overflow: hidden;
+  }
+  .before-img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('https://images.unsplash.com/photo-1512413914633-b5043f4041ea?q=80&w=800');
+    background-size: cover;
+    background-position: center;
+  }
+  .after-img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 50%;
+    height: 100%;
+    background-image: url('https://images.unsplash.com/photo-1526045612212-70caf35c14df?q=80&w=800');
+    background-size: cover;
+    background-position: center;
+    border-right: 2px solid white;
+  }
+</style>
+
+<div class="bg-black text-white font-sans selection:bg-[#d4af37] selection:text-black cursor-none" id="app">
+  <div class="cursor-dot hidden md:block"></div>
+
+  <!-- Nav -->
+  <nav class="fixed w-full z-50 p-6 mix-blend-difference">
+     <div class="flex justify-between items-end">
+        <a href="#" class="font-serif text-3xl italic">MUA JIN</a>
+        <div class="flex gap-8 text-[10px] tracking-[0.3em] font-light uppercase">
+           <a href="#work" class="hover:text-gray-400 transition">Work</a>
+           <a href="#about" class="hover:text-gray-400 transition">Profile</a>
+           <a href="#contact" class="hover:text-gray-400 transition">Contact</a>
         </div>
-        <span class="text-xl md:text-2xl font-display font-bold tracking-wide">아티스트리</span>
-      </div>
-      
-      <!-- 데스크탑 메뉴 -->
-      <div class="hidden md:flex items-center gap-10 text-sm tracking-wider">
-        <a href="#programs" class="hover:text-gold transition">프로그램</a>
-        <a href="#gallery" class="hover:text-gold transition">갤러리</a>
-        <a href="#teachers" class="hover:text-gold transition">강사진</a>
-        <a href="#location" class="hover:text-gold transition">오시는 길</a>
-      </div>
-      
-      <button onclick="showModal()" class="px-4 md:px-6 py-2 md:py-2.5 border-2 border-charcoal text-charcoal text-sm font-medium hover:bg-charcoal hover:text-cream transition">
-        문의하기
-      </button>
-    </div>
+     </div>
   </nav>
 
-  <!-- 히어로 섹션 -->
-  <section class="min-h-screen pt-20 md:pt-24 flex items-center relative overflow-hidden">
-    <!-- 장식 요소 -->
-    <div class="absolute top-20 right-10 w-32 md:w-64 h-32 md:h-64 border border-gold/30 rounded-full hidden md:block"></div>
-    <div class="absolute bottom-20 left-10 w-20 md:w-40 h-20 md:h-40 border border-gold/20 rounded-full hidden md:block"></div>
-    
-    <div class="max-w-7xl mx-auto px-4 md:px-6 grid md:grid-cols-2 gap-8 md:gap-16 items-center">
-      <div class="text-center md:text-left">
-        <div class="inline-block px-3 md:px-4 py-1 border border-gold text-gold text-xs tracking-widest mb-6 md:mb-8">
-          SINCE 2005
-        </div>
-        <h1 class="text-4xl md:text-5xl lg:text-7xl font-display font-bold mb-6 leading-tight">
-          당신 안의<br>
-          <span class="text-gold">예술을 깨우다</span>
+  <!-- Hero -->
+  <header class="h-screen relative flex items-center justify-center overflow-hidden">
+     <div class="absolute inset-0 opacity-40">
+        <img src="https://images.unsplash.com/photo-1522337660859-02fbefca4702?q=80&w=1920" class="w-full h-full object-cover grayscale transition duration-1000 hover:scale-105 hover:grayscale-0">
+     </div>
+     
+     <div class="relative z-10 text-center mix-blend-difference cursor-none">
+        <p class="text-[10px] tracking-[0.5em] uppercase mb-8">Professional Makeup Artist</p>
+        <h1 class="text-6xl md:text-9xl font-serif italic mb-4">
+           Reveal Your <br> Inner Glow
         </h1>
-        <p class="text-base md:text-lg text-gray-600 mb-8 md:mb-10 leading-relaxed font-light">
-          피아노, 바이올린, 미술, 성악까지<br>
-          최고의 예술 교육을 경험하세요.<br>
-          <span class="text-gold font-medium">모든 수업 1회 무료 체험</span>
+        <div class="w-[1px] h-24 bg-white mx-auto mt-12 animate-bounce"></div>
+     </div>
+  </header>
+
+  <!-- About -->
+  <section id="about" class="py-32 px-6 bg-[#0a0a0a]">
+     <div class="container mx-auto grid md:grid-cols-2 gap-24 items-center">
+        <div class="relative">
+           <div class="aspect-[3/4] overflow-hidden grayscale hover:grayscale-0 transition duration-1000" data-tilt>
+              <img src="https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?q=80&w=800" class="w-full h-full object-cover">
+           </div>
+           <div class="absolute -bottom-10 -right-10 font-serif text-8xl text-[#d4af37] opacity-20 -z-10">JIN</div>
+        </div>
+        
+        <div class="space-y-8">
+           <h2 class="font-serif text-5xl italic text-[#d4af37]">Park Jin</h2>
+           <p class="font-light leading-loose text-gray-400 max-w-sm">
+              청담동 15년 경력의 노하우로
+              당신이 가진 본연의 아름다움을 찾아드립니다.
+              웨딩, 화보, 방송 메이크업 전문.
+           </p>
+           <div class="grid grid-cols-2 gap-8 pt-8 border-t border-white/10">
+              <div>
+                 <p class="font-serif text-2xl mb-2">1,500+</p>
+                 <p class="text-[10px] uppercase tracking-widest text-gray-500">Weddings</p>
+              </div>
+              <div>
+                 <p class="font-serif text-2xl mb-2">Editor's</p>
+                 <p class="text-[10px] uppercase tracking-widest text-gray-500">Choice</p>
+              </div>
+           </div>
+        </div>
+     </div>
+  </section>
+
+  <!-- Gallery -->
+  <section id="work" class="py-32">
+     <div class="container mx-auto px-6 mb-16">
+        <h2 class="font-serif text-4xl italic text-center text-[#d4af37]">Selected Works</h2>
+     </div>
+     
+     <div class="grid grid-cols-2 md:grid-cols-3 gap-1">
+        <div class="aspect-[3/4] md:aspect-square overflow-hidden group relative cursor-pointer">
+           <img src="https://images.unsplash.com/photo-1596704017254-9b1b1c676233?q=80&w=600" class="w-full h-full object-cover transition duration-700 group-hover:scale-110">
+           <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition duration-300 flex items-center justify-center">
+              <span class="font-serif italic text-2xl">Editorial</span>
+           </div>
+        </div>
+        <div class="aspect-[3/4] md:aspect-square overflow-hidden group relative cursor-pointer">
+           <img src="https://images.unsplash.com/photo-1595867948259-7df9f2e32a26?q=80&w=600" class="w-full h-full object-cover transition duration-700 group-hover:scale-110">
+           <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition duration-300 flex items-center justify-center">
+              <span class="font-serif italic text-2xl">Wedding</span>
+           </div>
+        </div>
+        <div class="aspect-[3/4] md:aspect-square overflow-hidden group relative cursor-pointer">
+           <img src="https://images.unsplash.com/photo-1516975080664-ed2fc6a32937?q=80&w=600" class="w-full h-full object-cover transition duration-700 group-hover:scale-110">
+           <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition duration-300 flex items-center justify-center">
+              <span class="font-serif italic text-2xl">Lookbook</span>
+           </div>
+        </div>
+     </div>
+  </section>
+  
+  <!-- Booking -->
+  <section id="contact" class="py-32 px-6 bg-[#0a0a0a] text-center">
+     <div class="max-w-xl mx-auto border border-[#d4af37] p-12 relative">
+        <div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-[#0a0a0a] px-4 font-serif italic text-[#d4af37]">Reservation</div>
+        
+        <h3 class="font-serif text-3xl mb-8">Make an Appointment</h3>
+        <p class="text-gray-500 text-sm mb-10 font-light">
+           특별한 날을 위한 완벽한 준비.<br>
+           최소 2주 전 예약을 권장 드립니다.
         </p>
-        <div class="flex flex-col sm:flex-row gap-3 md:gap-4 justify-center md:justify-start">
-          <button onclick="showModal()" class="px-6 md:px-8 py-3 md:py-4 bg-charcoal text-cream font-medium tracking-wide hover:bg-gold transition">
-            무료 체험 신청 →
-          </button>
-          <button class="px-6 md:px-8 py-3 md:py-4 border-2 border-charcoal text-charcoal font-medium tracking-wide hover:bg-charcoal hover:text-cream transition">
-            프로그램 보기
-          </button>
-        </div>
-      </div>
-      
-      <div class="relative hidden md:block">
-        <div class="relative z-10">
-          <img src="https://images.unsplash.com/photo-1520523839897-bd0b52f945a0?q=80&w=600" class="w-full h-[400px] lg:h-[500px] object-cover" style="clip-path: polygon(10% 0%, 100% 0%, 90% 100%, 0% 100%);">
-        </div>
-        <div class="absolute -bottom-6 -left-6 bg-white p-4 md:p-6 shadow-xl z-20">
-          <div class="text-3xl md:text-4xl font-display font-bold text-gold mb-1">18년</div>
-          <div class="text-xs md:text-sm text-gray-500">전통의 예술 교육</div>
-        </div>
-        <div class="absolute -top-6 -right-6 bg-wine text-cream p-4 md:p-6 shadow-xl z-20">
-          <div class="text-xs md:text-sm mb-1">수상 경력</div>
-          <div class="text-xl md:text-2xl font-display font-bold">127회</div>
-        </div>
-      </div>
-    </div>
+        
+        <form class="space-y-6">
+           <input type="text" placeholder="Name" class="w-full bg-transparent border-b border-white/20 py-3 outline-none focus:border-[#d4af37] transition font-serif text-center">
+           <input type="tel" placeholder="Phone" class="w-full bg-transparent border-b border-white/20 py-3 outline-none focus:border-[#d4af37] transition font-serif text-center">
+           <button class="w-full bg-[#d4af37] text-black font-bold py-4 mt-8 hover:bg-white transition uppercase text-xs tracking-widest">
+              Send Request
+           </button>
+        </form>
+     </div>
   </section>
 
-  <!-- 모바일용 히어로 이미지 -->
-  <section class="md:hidden px-4 pb-12">
-    <div class="relative">
-      <img src="https://images.unsplash.com/photo-1520523839897-bd0b52f945a0?q=80&w=600" class="w-full h-64 object-cover rounded-2xl">
-      <div class="absolute bottom-4 left-4 bg-white p-3 shadow-lg rounded-lg">
-        <div class="text-2xl font-display font-bold text-gold">18년</div>
-        <div class="text-xs text-gray-500">전통의 예술 교육</div>
-      </div>
-    </div>
-  </section>
-
-  <!-- 프로그램 섹션 -->
-  <section id="programs" class="py-16 md:py-24 px-4 md:px-6 bg-white">
-    <div class="max-w-7xl mx-auto">
-      <div class="text-center mb-12 md:mb-16">
-        <div class="text-gold text-xs md:text-sm tracking-widest mb-4">프로그램</div>
-        <h2 class="text-3xl md:text-4xl font-display font-bold">예술의 모든 분야</h2>
-      </div>
-      
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8">
-        <div class="group cursor-pointer" onclick="showModal()">
-          <div class="aspect-[3/4] mb-4 md:mb-6 overflow-hidden rounded-lg md:rounded-none">
-            <img src="https://images.unsplash.com/photo-1552422535-c45813c61732?q=80&w=400" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
-          </div>
-          <div class="border-t border-gray-200 pt-3 md:pt-4">
-            <h3 class="text-lg md:text-xl font-display font-bold mb-1 md:mb-2">피아노</h3>
-            <p class="text-xs md:text-sm text-gray-500">클래식부터 재즈까지</p>
-          </div>
-        </div>
-
-        <div class="group cursor-pointer" onclick="showModal()">
-          <div class="aspect-[3/4] mb-4 md:mb-6 overflow-hidden rounded-lg md:rounded-none">
-            <img src="https://images.unsplash.com/photo-1465847899084-d164df4dedc6?q=80&w=400" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
-          </div>
-          <div class="border-t border-gray-200 pt-3 md:pt-4">
-            <h3 class="text-lg md:text-xl font-display font-bold mb-1 md:mb-2">바이올린</h3>
-            <p class="text-xs md:text-sm text-gray-500">우아한 선율의 시작</p>
-          </div>
-        </div>
-
-        <div class="group cursor-pointer" onclick="showModal()">
-          <div class="aspect-[3/4] mb-4 md:mb-6 overflow-hidden rounded-lg md:rounded-none">
-            <img src="https://images.unsplash.com/photo-1460661419201-fd4cecdf8a8b?q=80&w=400" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
-          </div>
-          <div class="border-t border-gray-200 pt-3 md:pt-4">
-            <h3 class="text-lg md:text-xl font-display font-bold mb-1 md:mb-2">미술</h3>
-            <p class="text-xs md:text-sm text-gray-500">드로잉, 유화, 수채화</p>
-          </div>
-        </div>
-
-        <div class="group cursor-pointer" onclick="showModal()">
-          <div class="aspect-[3/4] mb-4 md:mb-6 overflow-hidden rounded-lg md:rounded-none">
-            <img src="https://images.unsplash.com/photo-1516280440614-37939bbacd81?q=80&w=400" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
-          </div>
-          <div class="border-t border-gray-200 pt-3 md:pt-4">
-            <h3 class="text-lg md:text-xl font-display font-bold mb-1 md:mb-2">성악</h3>
-            <p class="text-xs md:text-sm text-gray-500">당신의 목소리를 찾다</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- 인용 섹션 -->
-  <section class="py-16 md:py-24 px-4 md:px-6 bg-charcoal text-cream">
-    <div class="max-w-4xl mx-auto text-center">
-      <div class="text-4xl md:text-6xl text-gold mb-6 md:mb-8">"</div>
-      <blockquote class="text-2xl md:text-3xl lg:text-4xl font-display font-light italic leading-relaxed mb-6 md:mb-8">
-        예술은 삶을 풍요롭게 만드는<br>가장 아름다운 방법입니다
-      </blockquote>
-      <div class="flex items-center justify-center gap-4">
-        <div class="w-10 md:w-12 h-10 md:h-12 bg-gold/20 rounded-full"></div>
-        <div class="text-left">
-          <div class="font-medium">김예술</div>
-          <div class="text-xs md:text-sm text-gray-400">아티스트리 원장</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- 모달 -->
-  <div id="modal" class="fixed inset-0 bg-charcoal/80 z-50 items-center justify-center p-4" style="display: none;">
-    <div class="bg-cream p-8 md:p-10 max-w-md w-full">
-      <div class="text-center mb-6 md:mb-8">
-        <div class="text-gold text-xs md:text-sm tracking-widest mb-2">무료 체험</div>
-        <h3 class="text-2xl md:text-3xl font-display font-bold">체험 수업 신청</h3>
-      </div>
-      <form onsubmit="event.preventDefault(); alert('신청 완료! 곧 연락드리겠습니다 🎵'); hideModal();">
-        <input type="text" placeholder="이름" class="w-full px-4 py-3 md:py-4 border-b border-gray-300 bg-transparent mb-4 focus:outline-none focus:border-gold">
-        <input type="tel" placeholder="연락처" class="w-full px-4 py-3 md:py-4 border-b border-gray-300 bg-transparent mb-4 focus:outline-none focus:border-gold">
-        <select class="w-full px-4 py-3 md:py-4 border-b border-gray-300 bg-transparent mb-6 focus:outline-none focus:border-gold text-gray-600">
-          <option>관심 분야 선택</option>
-          <option>피아노</option>
-          <option>바이올린</option>
-          <option>미술</option>
-          <option>성악</option>
-        </select>
-        <button class="w-full py-3 md:py-4 bg-charcoal text-cream font-medium tracking-wide hover:bg-gold hover:text-charcoal transition">
-          신청하기
-        </button>
-      </form>
-      <button onclick="hideModal()" class="w-full mt-6 text-gray-500 hover:text-charcoal transition text-sm tracking-wide">닫기</button>
-    </div>
-  </div>
-
-  <!-- 푸터 -->
-  <footer class="bg-charcoal text-cream py-8 px-4 md:px-6">
-    <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4 text-sm">
-      <div class="flex items-center gap-2">
-        <div class="w-8 h-8 border border-gold rounded-full flex items-center justify-center">
-          <span class="text-gold">♪</span>
-        </div>
-        <span class="font-display font-bold">아티스트리</span>
-      </div>
-      <p class="text-gray-400">© 2024 Artistry. All rights reserved.</p>
-    </div>
-  </footer>
-
+  <!-- Custom Cursor Script -->
   <script>
-    function showModal() {
-      const modal = document.getElementById('modal');
-      modal.style.display = 'flex';
-    }
-    function hideModal() {
-      document.getElementById('modal').style.display = 'none';
-    }
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') hideModal();
+    const cursor = document.querySelector('.cursor-dot');
+    document.addEventListener('mousemove', (e) => {
+       cursor.style.left = e.clientX + 'px';
+       cursor.style.top = e.clientY + 'px';
+    });
+    
+    document.addEventListener('mousedown', () => {
+       cursor.style.transform = 'scale(2)';
+    });
+    
+    document.addEventListener('mouseup', () => {
+       cursor.style.transform = 'scale(1)';
+    });
+    
+    VanillaTilt.init(document.querySelectorAll("[data-tilt]"), {
+      max: 5,
+      speed: 400,
+      glare: true,
+      "max-glare": 0.2,
     });
   </script>
-</body>
-</html>
+</div>

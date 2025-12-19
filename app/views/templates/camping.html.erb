@@ -1,176 +1,230 @@
-<!DOCTYPE html>
-<html lang="ko">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>와일드 캠프 - 자연 속으로</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Black+Ops+One&family=Noto+Sans+KR:wght@400;700;900&display=swap" rel="stylesheet">
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            forest: '#2d3436',
-            moss: '#55efc4',
-            fire: '#fab1a0',
-          },
-          fontFamily: {
-            display: ['Black Ops One', 'cursive'],
-            sans: ['Noto Sans KR', 'sans-serif'],
-          }
-        }
-      }
-    }
-  </script>
-</head>
-<body class="bg-forest text-gray-300 font-sans">
+<%# Camping Template - 와일드 캠프 %>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.0/vanilla-tilt.min.js"></script>
 
-  <!-- Nav -->
-  <nav class="fixed w-full z-50 px-6 py-6 flex justify-between items-center bg-forest/80 backdrop-blur-sm border-b border-white/5">
-    <div class="text-2xl font-display text-moss tracking-wider">WILD CAMP</div>
-    <div class="hidden md:flex gap-8 font-bold text-sm uppercase tracking-widest">
-      <a href="#gear" class="hover:text-moss transition">Gear</a>
-      <a href="#spots" class="hover:text-moss transition">Spots</a>
-      <a href="#community" class="hover:text-moss transition">Crew</a>
+<style>
+  .camp-hero {
+    background: url('https://images.unsplash.com/photo-1478131143081-80f7f84ca84d?q=80&w=1920&auto=format&fit=crop') no-repeat center center/cover;
+    position: relative;
+  }
+  .firefly {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: #FFD700;
+    border-radius: 50%;
+    box-shadow: 0 0 10px #FFD700;
+    animation: fly 10s infinite;
+  }
+  @keyframes fly {
+    0% { transform: translate(0, 0); opacity: 0; }
+    50% { opacity: 1; }
+    100% { transform: translate(100px, -100px); opacity: 0; }
+  }
+  .wood-pattern {
+    background-color: #2d3436;
+    background-image: repeating-linear-gradient(45deg, rgba(255,255,255,0.03) 0px, rgba(255,255,255,0.03) 2px, transparent 2px, transparent 12px);
+  }
+  /* Clip path for rugged feel */
+  .rugged-border {
+    clip-path: polygon(0 0, 100% 0, 100% 95%, 50% 100%, 0 95%);
+  }
+</style>
+
+<div class="bg-[#2d3436] text-gray-300 font-sans selection:bg-[#fab1a0] selection:text-[#2d3436]">
+
+  <!-- Navbar -->
+  <nav class="fixed w-full z-50 px-6 py-4 flex justify-between items-center bg-[#2d3436]/90 backdrop-blur border-b border-white/5">
+    <div class="flex items-center gap-2">
+      <span class="text-2xl">🔥</span>
+      <span class="font-black text-2xl text-white tracking-widest uppercase">Wild Camp</span>
     </div>
-    <button onclick="toggleCamp()" class="border-2 border-moss text-moss px-6 py-2 rounded font-bold hover:bg-moss hover:text-forest transition uppercase">
-      Book Site
-    </button>
+    <div class="hidden md:flex gap-8 font-bold text-sm uppercase tracking-widest text-[#55efc4]">
+      <a href="#about" class="hover:text-white transition">About</a>
+      <a href="#zones" class="hover:text-white transition">Camping Zones</a>
+      <a href="#gear" class="hover:text-white transition">Gear Rental</a>
+      <a href="#reservation" class="hover:text-white transition text-[#fab1a0]">Book Now</a>
+    </div>
   </nav>
 
-  <!-- Hero -->
-  <header class="h-screen relative flex items-center justify-center overflow-hidden">
-    <!-- Video element would be here, using image for now -->
-    <div class="absolute inset-0 z-0">
-      <img src="https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?q=80&w=1920" class="w-full h-full object-cover opacity-40">
-      <div class="absolute inset-0 bg-gradient-to-b from-forest/50 via-transparent to-forest"></div>
-    </div>
-
-    <div class="relative z-10 text-center space-y-4 px-4">
-      <h1 class="text-6xl md:text-9xl font-display text-white mb-2 tracking-tighter mix-blend-overlay">
-        INTO THE <br> <span class="text-moss">WILD</span>
+  <!-- Hero Section -->
+  <header class="h-screen camp-hero flex items-center justify-center rugged-border">
+    <div class="absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-[#2d3436]"></div>
+    <!-- Fireflies -->
+    <div class="firefly" style="top: 20%; left: 20%; animation-delay: 0s;"></div>
+    <div class="firefly" style="top: 60%; left: 80%; animation-delay: 2s;"></div>
+    <div class="firefly" style="top: 40%; left: 50%; animation-delay: 4s;"></div>
+    
+    <div class="relative z-10 text-center px-4" data-tilt data-tilt-max="3">
+      <div class="inline-block border border-[#55efc4] px-4 py-1 text-[#55efc4] font-bold text-xs tracking-[0.5em] uppercase mb-6 rounded-full bg-black/50 backdrop-blur">
+        Nature Awaits
+      </div>
+      <h1 class="text-6xl md:text-9xl font-black text-white mb-6 tracking-tighter mix-blend-overlay opacity-90">
+        NO WIFI<br>
+        <span class="text-[#55efc4]">GREAT CONNECTION</span>
       </h1>
-      <p class="text-xl md:text-2xl font-bold max-w-2xl mx-auto leading-relaxed text-gray-400">
-        문명을 잠시 잊고, 본능을 깨우는 시간. <br>
-        진정한 아웃도어 라이프가 시작됩니다.
+      <p class="text-xl md:text-2xl text-gray-300 max-w-2xl mx-auto font-light leading-relaxed">
+        화면은 끄고, 별을 켜세요. <br>
+        도시의 소음 대신 타닥거리는 장작 소리가 당신을 반깁니다.
       </p>
-      <div class="pt-8">
-        <button onclick="toggleCamp()" class="bg-moss text-forest px-10 py-4 font-black text-xl rounded hover:scale-105 transition shadow-[0_0_20px_rgba(85,239,196,0.5)]">
-          START ADVENTURE
+      
+      <div class="mt-12 group">
+        <button onclick="document.getElementById('reservation').scrollIntoView({behavior: 'smooth'})"
+                class="relative px-12 py-5 bg-[#55efc4] text-[#2d3436] font-black text-lg tracking-widest uppercase overflow-hidden transition-transform transform group-hover:scale-105 group-hover:shadow-[0_0_30px_#55efc4]">
+          <span class="relative z-10">Start Adventure</span>
         </button>
       </div>
     </div>
-
-    <!-- Scroll Indicator -->
-    <div class="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce text-moss">
-      <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path></svg>
-    </div>
   </header>
 
-  <!-- Gear Rental -->
-  <section id="gear" class="py-24 px-6 bg-[#252525]">
-    <div class="container mx-auto">
-      <div class="flex justify-between items-end mb-16 border-b border-white/10 pb-4">
-        <h2 class="text-4xl font-display text-white">Rental Gear</h2>
-        <a href="#" class="text-moss font-bold hover:underline">View All &rarr;</a>
-      </div>
-
-      <div class="grid md:grid-cols-3 gap-8">
-        <!-- Item -->
-        <div class="group cursor-pointer" onclick="toggleCamp()">
-          <div class="bg-forest rounded-xl p-8 mb-4 border border-white/5 group-hover:border-moss transition duration-300 relative overflow-hidden">
-             <div class="absolute top-0 right-0 bg-moss text-forest text-xs font-black px-3 py-1">BEST</div>
-             <img src="https://images.unsplash.com/photo-1523987355523-c7b5b0dd90a7?q=80&w=400" class="w-full h-48 object-contain filter drop-shadow-xl group-hover:scale-110 transition duration-500">
-          </div>
-          <h3 class="text-xl font-bold text-white mb-1">Premium Tent</h3>
-          <p class="text-sm text-gray-500 mb-2">4인용 / 방수 / 난방 가능</p>
-          <p class="text-moss font-bold text-lg">₩ 50,000 <span class="text-xs text-gray-500">/ 1일</span></p>
+  <!-- Info & Safety (Process like) -->
+  <section id="about" class="py-24 wood-pattern relative">
+    <div class="container mx-auto px-6">
+      <div class="grid md:grid-cols-2 gap-16 items-center">
+        <div class="space-y-8">
+           <span class="text-[#fab1a0] font-bold tracking-[0.2em] uppercase text-sm">Why Wild Camp?</span>
+           <h2 class="text-5xl font-black text-white leading-tight">
+             불편함이 주는<br>
+             <span class="text-[#55efc4]">완벽한 자유</span>
+           </h2>
+           <p class="text-lg leading-loose">
+             와일드 캠프는 인공적인 시설을 최소화했습니다. <br>
+             하지만 안전과 위생만큼은 타협하지 않습니다. <br>
+             전문 크루가 상주하며 당신의 안전한 야생 체험을 돕습니다.
+           </p>
+           
+           <div class="space-y-6 pt-4">
+             <div class="flex items-start gap-4">
+               <div class="w-12 h-12 bg-[#2d3436] border border-[#55efc4] rounded flex items-center justify-center text-2xl shrink-0">🛡️</div>
+               <div>
+                 <h3 class="text-white font-bold text-xl mb-1">Safety First</h3>
+                 <p class="text-sm">24시간 보안 요원 및 응급 키트 상시 구비</p>
+               </div>
+             </div>
+             <div class="flex items-start gap-4">
+               <div class="w-12 h-12 bg-[#2d3436] border border-[#fab1a0] rounded flex items-center justify-center text-2xl shrink-0">🚿</div>
+               <div>
+                 <h3 class="text-white font-bold text-xl mb-1">Clean Zone</h3>
+                 <p class="text-sm">5성급 호텔 수준의 공용 샤워실 & 화장실 관리</p>
+               </div>
+             </div>
+           </div>
         </div>
-        <!-- Item -->
-        <div class="group cursor-pointer" onclick="toggleCamp()">
-          <div class="bg-forest rounded-xl p-8 mb-4 border border-white/5 group-hover:border-moss transition duration-300 relative overflow-hidden">
-             <img src="https://images.unsplash.com/photo-1478131143081-80f7f84ca84d?q=80&w=400" class="w-full h-48 object-contain filter drop-shadow-xl group-hover:scale-110 transition duration-500">
-          </div>
-          <h3 class="text-xl font-bold text-white mb-1">Cooking Set</h3>
-          <p class="text-sm text-gray-500 mb-2">코펠 / 버너 / 그리들 포함</p>
-          <p class="text-moss font-bold text-lg">₩ 25,000 <span class="text-xs text-gray-500">/ 1일</span></p>
-        </div>
-        <!-- Item -->
-        <div class="group cursor-pointer" onclick="toggleCamp()">
-          <div class="bg-forest rounded-xl p-8 mb-4 border border-white/5 group-hover:border-moss transition duration-300 relative overflow-hidden">
-             <img src="https://images.unsplash.com/photo-1517173796530-3118d035d3a5?q=80&w=400" class="w-full h-48 object-contain filter drop-shadow-xl group-hover:scale-110 transition duration-500">
-          </div>
-          <h3 class="text-xl font-bold text-white mb-1">Camping Chair</h3>
-          <p class="text-sm text-gray-500 mb-2">릴렉스 체어 2개 세트</p>
-          <p class="text-moss font-bold text-lg">₩ 15,000 <span class="text-xs text-gray-500">/ 1일</span></p>
+        
+        <div class="grid grid-cols-2 gap-4" data-tilt>
+          <img src="https://images.unsplash.com/photo-1523987355523-c7b5b0dd90a7?q=80&w=600" class="rounded-lg opacity-80 hover:opacity-100 transition duration-500 translate-y-12 shadow-2xl">
+          <img src="https://images.unsplash.com/photo-1496275068113-fff8c90750d1?q=80&w=600" class="rounded-lg opacity-80 hover:opacity-100 transition duration-500 shadow-2xl border-4 border-[#2d3436]">
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Reservation Modal -->
-  <div id="camp-modal" class="fixed inset-0 bg-black/90 z-[60] hidden flex items-center justify-center p-4">
-    <div class="bg-forest w-full max-w-lg p-8 border-2 border-moss relative shadow-[0_0_50px_rgba(85,239,196,0.2)]">
-      <button onclick="toggleCamp()" class="absolute top-4 right-4 text-gray-500 hover:text-moss text-2xl font-black">X</button>
-      
-      <div class="text-center mb-8">
-        <h2 class="font-display text-3xl text-white mb-2">BOOKING</h2>
-        <p class="text-xs text-moss font-bold tracking-widest uppercase">Select your journey</p>
+  <!-- Zones (Process UI Style) -->
+  <section id="zones" class="py-24 bg-[#222]">
+    <div class="container mx-auto px-6">
+      <div class="text-center mb-16">
+        <h2 class="text-4xl font-black text-white mb-4">CHOOSE YOUR SPOT</h2>
+        <p class="text-gray-500">당신의 캠핑 스타일은 무엇인가요?</p>
       </div>
 
-      <form class="space-y-6" onsubmit="event.preventDefault(); alert('예약 신청 완료! 캠핑장에서 만나요 🔥'); toggleCamp();">
-        <div class="space-y-2">
-           <label class="text-xs font-bold text-gray-500 uppercase">Location</label>
-           <select class="w-full bg-black/30 border border-white/10 text-white p-3 rounded outline-none focus:border-moss transition">
-             <option class="bg-forest">A 구역 (Forest View)</option>
-             <option class="bg-forest">B 구역 (Lake View)</option>
-             <option class="bg-forest">C 구역 (Glamping)</option>
-           </select>
-        </div>
-        
-        <div class="grid grid-cols-2 gap-4">
-           <div class="space-y-2">
-             <label class="text-xs font-bold text-gray-500 uppercase">Check In</label>
-             <input type="date" class="w-full bg-black/30 border border-white/10 text-white p-3 rounded outline-none focus:border-moss transition">
-           </div>
-           <div class="space-y-2">
-             <label class="text-xs font-bold text-gray-500 uppercase">Nights</label>
-             <input type="number" min="1" value="1" class="w-full bg-black/30 border border-white/10 text-white p-3 rounded outline-none focus:border-moss transition">
-           </div>
-        </div>
-
-        <div class="space-y-2">
-          <label class="text-xs font-bold text-gray-500 uppercase">Rental Gear (Optional)</label>
-          <div class="flex flex-wrap gap-2">
-             <label class="bg-black/30 border border-white/10 px-4 py-2 rounded cursor-pointer hover:border-moss flex items-center gap-2">
-               <input type="checkbox" class="accent-moss"> <span class="text-sm">Tent</span>
-             </label>
-             <label class="bg-black/30 border border-white/10 px-4 py-2 rounded cursor-pointer hover:border-moss flex items-center gap-2">
-               <input type="checkbox" class="accent-moss"> <span class="text-sm">BBQ</span>
-             </label>
-             <label class="bg-black/30 border border-white/10 px-4 py-2 rounded cursor-pointer hover:border-moss flex items-center gap-2">
-               <input type="checkbox" class="accent-moss"> <span class="text-sm">Fire Pit</span>
-             </label>
+      <div class="grid md:grid-cols-3 gap-8">
+        <!-- Zone 1 -->
+        <div class="group relative h-[500px] overflow-hidden rounded-2xl cursor-pointer">
+          <img src="https://images.unsplash.com/photo-1533240332313-0db49b459ad6?q=80&w=800" class="absolute inset-0 w-full h-full object-cover transition duration-700 group-hover:scale-110">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent flex flex-col justify-end p-8">
+            <h3 class="text-3xl font-black text-white mb-2">FOREST ZONE</h3>
+            <p class="text-gray-400 mb-6 translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition duration-500">
+              울창한 편백나무 숲 속, 피톤치드와 함께하는 프라이빗 캠핑
+            </p>
+            <span class="text-[#55efc4] font-bold tracking-widest border border-[#55efc4] self-start px-4 py-2 rounded uppercase text-sm">
+              Book This Spot
+            </span>
           </div>
         </div>
-        
-        <button class="w-full bg-moss text-forest font-black py-4 text-xl hover:bg-white transition mt-4 clip-path-slant">
-          CONFIRM
-        </button>
-      </form>
-    </div>
-  </div>
 
-  <script>
-    function toggleCamp() {
-      const modal = document.getElementById('camp-modal');
-      if(modal.classList.contains('hidden')) {
-        modal.classList.remove('hidden');
-      } else {
-        modal.classList.add('hidden');
-      }
-    }
-  </script>
-</body>
-</html>
+        <!-- Zone 2 -->
+        <div class="group relative h-[500px] overflow-hidden rounded-2xl cursor-pointer mt-0 md:-mt-12 shadow-[0_0_30px_rgba(0,0,0,0.5)] z-10">
+          <div class="absolute top-4 right-4 bg-[#fab1a0] text-black font-black px-3 py-1 rounded text-xs z-20">POPULAR</div>
+          <img src="https://images.unsplash.com/photo-1470246973918-29a53295c561?q=80&w=800" class="absolute inset-0 w-full h-full object-cover transition duration-700 group-hover:scale-110">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent flex flex-col justify-end p-8">
+            <h3 class="text-3xl font-black text-white mb-2">LAKE ZONE</h3>
+            <p class="text-gray-400 mb-6 translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition duration-500">
+              잔잔한 호수를 바라보며 즐기는 물멍과 카누 체험
+            </p>
+            <span class="text-[#fab1a0] font-bold tracking-widest border border-[#fab1a0] self-start px-4 py-2 rounded uppercase text-sm">
+              Book This Spot
+            </span>
+          </div>
+        </div>
+
+        <!-- Zone 3 -->
+        <div class="group relative h-[500px] overflow-hidden rounded-2xl cursor-pointer">
+          <img src="https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?q=80&w=800" class="absolute inset-0 w-full h-full object-cover transition duration-700 group-hover:scale-110">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent flex flex-col justify-end p-8">
+            <h3 class="text-3xl font-black text-white mb-2">AUTO CAMP</h3>
+            <p class="text-gray-400 mb-6 translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition duration-500">
+              내 차 바로 옆에 텐트를. 전기 시설 완비된 편리한 오토캠핑
+            </p>
+            <span class="text-white font-bold tracking-widest border border-white self-start px-4 py-2 rounded uppercase text-sm">
+              Book This Spot
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Reservation (Bottom) -->
+  <section id="reservation" class="py-24 wood-pattern relative">
+    <div class="absolute inset-0 bg-black/50"></div>
+    <div class="container mx-auto px-6 relative z-10">
+      <div class="bg-black/40 backdrop-blur-md border border-white/10 rounded-2xl p-10 md:p-16 max-w-5xl mx-auto shadow-2xl">
+        <div class="text-center mb-12">
+          <h2 class="text-4xl md:text-5xl font-black text-white mb-4">READY TO ESCAPE?</h2>
+          <p class="text-xl text-[#55efc4]">지금 예약하면 바비큐 세트 무료 제공 이벤트 중!</p>
+        </div>
+
+        <form class="space-y-6">
+          <div class="grid md:grid-cols-2 gap-6">
+            <div>
+              <label class="block text-xs font-bold text-gray-400 uppercase mb-2">Name</label>
+              <input type="text" class="w-full bg-[#2d3436] border border-gray-600 rounded p-4 text-white focus:border-[#55efc4] outline-none" placeholder="홍길동">
+            </div>
+             <div>
+              <label class="block text-xs font-bold text-gray-400 uppercase mb-2">Phone</label>
+              <input type="tel" class="w-full bg-[#2d3436] border border-gray-600 rounded p-4 text-white focus:border-[#55efc4] outline-none" placeholder="010-0000-0000">
+            </div>
+          </div>
+          
+          <div class="grid md:grid-cols-3 gap-6">
+             <div>
+              <label class="block text-xs font-bold text-gray-400 uppercase mb-2">Zone</label>
+              <select class="w-full bg-[#2d3436] border border-gray-600 rounded p-4 text-white focus:border-[#55efc4] outline-none">
+                 <option>Forest Zone</option>
+                 <option>Lake Zone</option>
+                 <option>Auto Camp</option>
+              </select>
+            </div>
+            <div class="md:col-span-2">
+              <label class="block text-xs font-bold text-gray-400 uppercase mb-2">Date (Check-in)</label>
+              <input type="date" class="w-full bg-[#2d3436] border border-gray-600 rounded p-4 text-white focus:border-[#55efc4] outline-none text-gray-400">
+            </div>
+          </div>
+
+          <button type="button" class="w-full py-5 bg-[#55efc4] hover:bg-[#fab1a0] text-[#2d3436] font-black text-xl tracking-[0.2em] rounded uppercase transition duration-300 shadow-lg mt-6">
+            Confirm Booking
+          </button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<script>
+  VanillaTilt.init(document.querySelectorAll("[data-tilt]"), {
+    max: 5,
+    speed: 400,
+    glare: true,
+    "max-glare": 0.2,
+  });
+</script>
