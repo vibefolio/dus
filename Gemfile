@@ -56,8 +56,8 @@ gem "thruster", require: false
 # gem "image_processing", "~> 1.2"
 
 # PDF generation (선택사항 - Windows에서 설치 오류 시 주석 처리)
-# gem "prawn"
-# gem "prawn-table"
+gem "prawn"
+gem "prawn-table"
 
 # Pagination
 gem "kaminari"
