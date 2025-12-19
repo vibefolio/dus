@@ -1,269 +1,226 @@
 <%# Corporate Template - 넥서스 그룹 %>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.0/vanilla-tilt.min.js"></script>
 
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;600;800&family=Noto+Sans+KR:wght@300;400;500;700&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap');
   
-  .font-display { font-family: 'Manrope', sans-serif; }
   .font-sans { font-family: 'Noto Sans KR', sans-serif; }
-  
-  .pattern-grid {
-    background-image: linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
-    background-size: 40px 40px;
-  }
 </style>
 
 <div class="bg-white text-slate-800 font-sans selection:bg-blue-900 selection:text-white">
 
   <!-- Nav -->
-  <nav class="fixed w-full z-50 px-8 py-4 bg-white/95 backdrop-blur border-b border-slate-100 transition-all duration-300" id="navbar">
+  <nav class="fixed w-full z-50 px-6 py-4 bg-white/95 backdrop-blur border-b border-slate-100 shadow-sm">
     <div class="container mx-auto flex justify-between items-center">
       <div class="flex items-center gap-2">
-         <div class="w-8 h-8 bg-blue-900 text-white flex items-center justify-center font-display font-bold rounded-sm">N</div>
-         <span class="font-display font-bold text-xl tracking-tight text-slate-900">NEXUS CORP</span>
+         <div class="w-8 h-8 bg-blue-900 text-white flex items-center justify-center font-bold rounded-sm">N</div>
+         <span class="font-bold text-xl tracking-tight text-slate-900 uppercase">Nexus Corp</span>
       </div>
       
-      <div class="hidden md:flex gap-10 text-sm font-medium text-slate-600">
-        <a href="#about" class="hover:text-blue-900 transition">About Us</a>
-        <a href="#business" class="hover:text-blue-900 transition">Business Area</a>
-        <a href="#sustainability" class="hover:text-blue-900 transition">Sustainability</a>
-        <a href="#news" class="hover:text-blue-900 transition">News Room</a>
-        <a href="#careers" class="hover:text-blue-900 transition">Careers</a>
+      <div class="hidden md:flex gap-8 text-sm font-medium text-slate-600">
+        <a href="#about" class="hover:text-blue-900 transition">기업 소개</a>
+        <a href="#business" class="hover:text-blue-900 transition">사업 분야</a>
+        <a href="#sustainability" class="hover:text-blue-900 transition">지속가능경영</a>
+        <a href="#news" class="hover:text-blue-900 transition">뉴스룸</a>
+        <a href="#careers" class="hover:text-blue-900 transition">인재 채용</a>
       </div>
       
-      <div class="flex gap-4">
+      <div class="flex gap-4 text-xs font-bold">
          <button class="text-slate-400 hover:text-blue-900">EN</button>
-         <button class="text-slate-400 hover:text-blue-900">KR</button>
+         <button class="text-blue-900 border-b-2 border-blue-900">KR</button>
       </div>
     </div>
   </nav>
 
   <!-- Hero -->
-  <header class="h-screen relative flex items-center justify-center overflow-hidden bg-slate-900 text-white">
-    <div class="absolute inset-0 z-0">
-       <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=1920" class="w-full h-full object-cover opacity-30">
-       <div class="absolute inset-0 pattern-grid"></div>
+  <header class="min-h-screen relative flex items-center justify-center overflow-hidden bg-slate-900 text-white">
+    <div class="absolute inset-0 z-0 text-center">
+       <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=1920" alt="기업 배경" class="w-full h-full object-cover opacity-30">
        <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent"></div>
     </div>
     
     <div class="container mx-auto px-6 relative z-10 grid md:grid-cols-2 gap-12 items-center">
-      <div class="space-y-8 animate-fade-in-up">
-         <div class="inline-block border border-blue-500/50 bg-blue-500/10 px-4 py-1 text-xs font-bold text-blue-400 rounded-full uppercase tracking-wider mb-4">
-            Innovating the Future
+      <div class="space-y-6">
+         <div class="inline-block border border-blue-500/50 bg-blue-500/10 px-3 py-1 text-xs font-bold text-blue-400 rounded-full uppercase tracking-wider">
+            미래를 혁신하다
          </div>
-         <h1 class="text-5xl md:text-7xl font-display font-bold leading-tight">
-            Building Tomorrow,<br>
-            <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-300">Today.</span>
+         <h1 class="text-4xl md:text-6xl font-black leading-tight">
+            내일을 생각하는<br>
+            <span class="text-blue-400">넥서스 그룹</span>
          </h1>
-         <p class="text-slate-400 text-lg leading-relaxed max-w-xl">
+         <p class="text-slate-400 text-lg leading-relaxed max-w-xl font-light">
             끊임없는 혁신과 도전으로 더 나은 세상을 만들어갑니다.<br>
             넥서스 그룹은 글로벌 리더로서 지속가능한 미래를 선도합니다.
          </p>
-         <div class="pt-8 flex flex-col sm:flex-row gap-4">
-            <button class="px-8 py-4 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded transition shadow-lg shadow-blue-900/50">
-               View Our Vision
+         <div class="pt-6 flex flex-col sm:flex-row gap-4">
+            <button class="px-8 py-3.5 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded transition shadow-lg">
+               비전 확인하기
             </button>
-            <button class="px-8 py-4 border border-white/20 hover:bg-white/10 text-white font-bold rounded transition backdrop-blur-sm">
-               Download Report
+            <button class="px-8 py-3.5 border border-white/20 hover:bg-white/10 text-white font-bold rounded transition backdrop-blur-sm">
+               브로슈어 다운로드
             </button>
          </div>
       </div>
       
-      <div class="hidden md:block relative" data-tilt data-tilt-max="2">
-         <div class="relative z-10 bg-white/5 backdrop-blur-md border border-white/10 p-8 rounded-lg shadow-2xl">
-            <div class="flex justify-between items-end mb-8">
+      <div class="hidden md:block">
+         <div class="bg-white/5 backdrop-blur-md border border-white/10 p-8 rounded-lg shadow-2xl">
+            <div class="flex justify-between items-end mb-6">
                <div>
-                  <p class="text-slate-400 text-sm mb-1">Stock Price (NXUS)</p>
-                  <p class="text-4xl font-display font-bold">145,200 <span class="text-green-400 text-lg">▲ 2.4%</span></p>
-               </div>
-               <div class="text-right">
-                  <p class="text-slate-400 text-xs">2024.12.24 15:30 KST</p>
+                  <p class="text-slate-400 text-sm mb-1">실시간 주가 (NXUS)</p>
+                  <p class="text-3xl font-bold">145,200 <span class="text-green-400 text-lg">▲ 2.4%</span></p>
                </div>
             </div>
-            <!-- Simple Chart Representation -->
-            <div class="h-32 flex items-end gap-2 opacity-80">
-               <div class="w-full bg-blue-500/20 h-[40%] rounded-t"></div>
-               <div class="w-full bg-blue-500/30 h-[50%] rounded-t"></div>
-               <div class="w-full bg-blue-500/40 h-[45%] rounded-t"></div>
-               <div class="w-full bg-blue-500/50 h-[60%] rounded-t"></div>
-               <div class="w-full bg-blue-500/60 h-[55%] rounded-t"></div>
-               <div class="w-full bg-blue-500/70 h-[70%] rounded-t"></div>
-               <div class="w-full bg-blue-500/80 h-[85%] rounded-t"></div>
+            <div class="h-24 flex items-end gap-1.5 opacity-80">
+               <div class="w-full bg-blue-500/30 h-[40%] rounded-t"></div>
+               <div class="w-full bg-blue-500/40 h-[50%] rounded-t"></div>
+               <div class="w-full bg-blue-500/50 h-[45%] rounded-t"></div>
+               <div class="w-full bg-blue-500/60 h-[60%] rounded-t"></div>
+               <div class="w-full bg-blue-500/70 h-[55%] rounded-t"></div>
+               <div class="w-full bg-blue-500/80 h-[70%] rounded-t"></div>
+               <div class="w-full bg-blue-500/90 h-[85%] rounded-t"></div>
                <div class="w-full bg-blue-500 h-[80%] rounded-t"></div>
-               <div class="w-full bg-green-500 h-[95%] rounded-t shadow-[0_0_15px_rgba(34,197,94,0.5)]"></div>
+               <div class="w-full bg-green-500 h-[95%] rounded-t shadow-[0_0_10px_rgba(34,197,94,0.5)]"></div>
             </div>
          </div>
       </div>
     </div>
-    
-    <div class="absolute bottom-0 w-full h-20 bg-gradient-to-t from-white to-transparent"></div>
   </header>
 
   <!-- Business Areas -->
-  <section id="business" class="py-24 px-6 bg-white">
+  <section id="business" class="py-16 md:py-24 px-6 bg-white">
     <div class="container mx-auto">
-       <div class="text-center mb-16 px-4">
-          <h2 class="text-3xl font-bold mb-4 font-display text-slate-900">Core Business</h2>
-          <p class="text-slate-500">넥서스 그룹의 성장 동력이 되는 4대 핵심 사업 분야입니다.</p>
+       <div class="text-center mb-16">
+          <h2 class="text-3xl font-bold mb-4 text-slate-900 border-b-2 border-blue-900 inline-block pb-2">핵심 사업 분야</h2>
+          <p class="text-slate-500 text-sm">넥서스 그룹의 성장 동력이 되는 4대 핵심 사업 분야입니다.</p>
        </div>
 
-       <div class="grid md:grid-cols-4 gap-8">
+       <div class="grid md:grid-cols-4 gap-6">
           <!-- Card 1 -->
           <div class="group cursor-pointer">
-             <div class="overflow-hidden rounded-lg mb-6 relative h-64">
-                <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=400" class="w-full h-full object-cover transition duration-700 group-hover:scale-110">
-                <div class="absolute inset-0 bg-blue-900/80 opacity-0 group-hover:opacity-100 transition duration-300 flex items-center justify-center">
-                   <span class="text-white font-bold border-b border-white pb-1">Learn More</span>
-                </div>
+             <div class="overflow-hidden rounded-lg mb-4 h-52">
+                <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=400" alt="반도체" class="w-full h-full object-cover transition duration-500 group-hover:scale-110">
              </div>
-             <h3 class="text-xl font-bold mb-2 font-display">Semiconductors</h3>
-             <p class="text-sm text-slate-500 leading-relaxed">
-                차세대 반도체 기술로 디지털 혁명을 주도합니다.
-                초미세 공정 기술력 확보.
-             </p>
+             <h3 class="text-xl font-bold mb-2">반도체 솔루션</h3>
+             <p class="text-xs text-slate-500 leading-relaxed">차세대 반도체 기술로 디지털 혁명을 주도합니다. 초미세 공정 기술력을 기반으로 합니다.</p>
           </div>
           
           <!-- Card 2 -->
-          <div class="group cursor-pointer mt-8 md:mt-0">
-             <div class="overflow-hidden rounded-lg mb-6 relative h-64">
-                <img src="https://images.unsplash.com/photo-1509391366360-2e959784a276?q=80&w=400" class="w-full h-full object-cover transition duration-700 group-hover:scale-110">
-                <div class="absolute inset-0 bg-blue-900/80 opacity-0 group-hover:opacity-100 transition duration-300 flex items-center justify-center">
-                   <span class="text-white font-bold border-b border-white pb-1">Learn More</span>
-                </div>
+          <div class="group cursor-pointer mt-6 md:mt-0">
+             <div class="overflow-hidden rounded-lg mb-4 h-52">
+                <img src="https://images.unsplash.com/photo-1509391366360-2e959784a276?q=80&w=400" alt="에너지" class="w-full h-full object-cover transition duration-500 group-hover:scale-110">
              </div>
-             <h3 class="text-xl font-bold mb-2 font-display">Green Energy</h3>
-             <p class="text-sm text-slate-500 leading-relaxed">
-                태양광, 풍력 등 신재생 에너지 솔루션을 통해
-                탄소 중립 실현에 앞장섭니다.
-             </p>
+             <h3 class="text-xl font-bold mb-2">친환경 에너지</h3>
+             <p class="text-xs text-slate-500 leading-relaxed">태양광, 풍력 등 신재생 에너지 솔루션을 통해 탄소 중립 실현에 앞장섭니다.</p>
           </div>
           
           <!-- Card 3 -->
           <div class="group cursor-pointer">
-             <div class="overflow-hidden rounded-lg mb-6 relative h-64">
-                <img src="https://images.unsplash.com/photo-1555774698-0b77e0d5fac6?q=80&w=400" class="w-full h-full object-cover transition duration-700 group-hover:scale-110">
-                <div class="absolute inset-0 bg-blue-900/80 opacity-0 group-hover:opacity-100 transition duration-300 flex items-center justify-center">
-                   <span class="text-white font-bold border-b border-white pb-1">Learn More</span>
-                </div>
+             <div class="overflow-hidden rounded-lg mb-4 h-52">
+                <img src="https://images.unsplash.com/photo-1555774698-0b77e0d5fac6?q=80&w=400" alt="모빌리티" class="w-full h-full object-cover transition duration-500 group-hover:scale-110">
              </div>
-             <h3 class="text-xl font-bold mb-2 font-display">Mobility</h3>
-             <p class="text-sm text-slate-500 leading-relaxed">
-                자율주행 및 전기차 부품 사업을 확장하여
-                미래 모빌리티 시장을 선점합니다.
-             </p>
+             <h3 class="text-xl font-bold mb-2">스마트 모빌리티</h3>
+             <p class="text-xs text-slate-500 leading-relaxed">자율주행 및 전기차 기술을 확장하여 미래 모빌리티 시장을 선점합니다.</p>
           </div>
           
           <!-- Card 4 -->
-          <div class="group cursor-pointer mt-8 md:mt-0">
-             <div class="overflow-hidden rounded-lg mb-6 relative h-64">
-                <img src="https://images.unsplash.com/photo-1526628953301-3e589a6a8b74?q=80&w=400" class="w-full h-full object-cover transition duration-700 group-hover:scale-110">
-                <div class="absolute inset-0 bg-blue-900/80 opacity-0 group-hover:opacity-100 transition duration-300 flex items-center justify-center">
-                   <span class="text-white font-bold border-b border-white pb-1">Learn More</span>
-                </div>
+          <div class="group cursor-pointer mt-6 md:mt-0">
+             <div class="overflow-hidden rounded-lg mb-4 h-52">
+                <img src="https://images.unsplash.com/photo-1526628953301-3e589a6a8b74?q=80&w=400" alt="AI" class="w-full h-full object-cover transition duration-500 group-hover:scale-110">
              </div>
-             <h3 class="text-xl font-bold mb-2 font-display">AI Solution</h3>
-             <p class="text-sm text-slate-500 leading-relaxed">
-                인공지능 기반의 스마트 팩토리, 클라우드 서비스로
-                디지털 트랜스포메이션을 지원합니다.
-             </p>
+             <h3 class="text-xl font-bold mb-2">인공지능 & IT</h3>
+             <p class="text-xs text-slate-500 leading-relaxed">AI 기반의 스마트 팩토리, 클라우드 서비스로 고객의 디지털 전환을 지원합니다.</p>
           </div>
        </div>
     </div>
   </section>
 
-  <!-- Metrics / ESG -->
-  <section id="sustainability" class="py-24 bg-slate-50 px-6">
-    <div class="container mx-auto grid md:grid-cols-2 gap-16 items-center">
+  <!-- ESG Management -->
+  <section id="sustainability" class="py-16 md:py-24 bg-slate-50 px-6">
+    <div class="container mx-auto grid md:grid-cols-2 gap-12 items-center">
        <div>
-          <span class="text-blue-600 font-bold uppercase tracking-widest text-xs mb-2 block">ESG Management</span>
-          <h2 class="text-3xl md:text-4xl font-bold mb-8 font-display text-slate-900">Sustainable Growth</h2>
-          <p class="text-slate-500 leading-relaxed mb-8">
-             넥서스 그룹은 환경을 생각하고 사회적 책임을 다하며, 투명한 지배구조를 확립합니다.
+          <span class="text-blue-600 font-bold tracking-widest text-xs mb-2 block uppercase">ESG 경영</span>
+          <h2 class="text-3xl font-bold mb-6 text-slate-900">지속가능한 성장</h2>
+          <p class="text-slate-500 leading-relaxed mb-8 text-sm">
+             넥서스 그룹은 환경을 생각하고 사회적 책임을 다하며, 투명한 지배구조를 확립합니다.<br>
              모든 이해관계자와 함께 성장하는 미래를 그립니다.
           </p>
           
-          <div class="space-y-6">
-             <div class="flex items-center gap-4 p-4 bg-white rounded-lg shadow-sm border border-slate-100">
-                <div class="w-12 h-12 bg-green-100 text-green-600 rounded-full flex items-center justify-center font-bold">E</div>
-                <div>
-                   <h4 class="font-bold text-slate-800">Eco-Friendly</h4>
-                   <p class="text-xs text-slate-500">2030 RE100 달성 목표</p>
-                </div>
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+             <div class="bg-white p-5 rounded-lg border border-slate-100 shadow-sm text-center">
+                <span class="block text-2xl font-black text-green-500 mb-2">E</span>
+                <p class="text-xs font-bold text-slate-800">에너지 혁신</p>
+                <p class="text-[10px] text-slate-400 mt-1">RE100 달성 목표</p>
              </div>
-             <div class="flex items-center gap-4 p-4 bg-white rounded-lg shadow-sm border border-slate-100">
-                <div class="w-12 h-12 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center font-bold">S</div>
-                <div>
-                   <h4 class="font-bold text-slate-800">Social Responsibility</h4>
-                   <p class="text-xs text-slate-500">지역사회 동반 성장 프로그램</p>
-                </div>
+             <div class="bg-white p-5 rounded-lg border border-slate-100 shadow-sm text-center">
+                <span class="block text-2xl font-black text-blue-500 mb-2">S</span>
+                <p class="text-xs font-bold text-slate-800">상생 경영</p>
+                <p class="text-[10px] text-slate-400 mt-1">지역사회 파트너십</p>
              </div>
-             <div class="flex items-center gap-4 p-4 bg-white rounded-lg shadow-sm border border-slate-100">
-                <div class="w-12 h-12 bg-purple-100 text-purple-600 rounded-full flex items-center justify-center font-bold">G</div>
-                <div>
-                   <h4 class="font-bold text-slate-800">Governance</h4>
-                   <p class="text-xs text-slate-500">이사회 중심 책임 경영</p>
-                </div>
+             <div class="bg-white p-5 rounded-lg border border-slate-100 shadow-sm text-center">
+                <span class="block text-2xl font-black text-purple-500 mb-2">G</span>
+                <p class="text-xs font-bold text-slate-800">투명한 거버넌스</p>
+                <p class="text-[10px] text-slate-400 mt-1">책임 경영 실천</p>
              </div>
           </div>
        </div>
        
        <div class="grid grid-cols-2 gap-4">
-          <div class="bg-blue-900 text-white p-8 rounded-2xl flex flex-col justify-between h-48" data-tilt>
-             <span class="text-3xl font-display font-bold">25+</span>
-             <span class="text-sm opacity-70">Countries</span>
+          <div class="bg-blue-900 text-white p-6 rounded-xl flex flex-col justify-between h-36">
+             <span class="text-2xl font-bold">25+</span>
+             <span class="text-xs opacity-70">진출 국가</span>
           </div>
-          <div class="bg-white p-8 rounded-2xl shadow-lg border border-slate-100 flex flex-col justify-between h-48" data-tilt>
-             <span class="text-3xl font-display font-bold text-blue-900">40K</span>
-             <span class="text-sm text-slate-500">Employees</span>
+          <div class="bg-white p-6 rounded-xl shadow border border-slate-100 flex flex-col justify-between h-36">
+             <span class="text-2xl font-bold text-blue-900">4만+</span>
+             <span class="text-xs text-slate-500">전 세계 임직원</span>
           </div>
-          <div class="bg-white p-8 rounded-2xl shadow-lg border border-slate-100 flex flex-col justify-between h-48" data-tilt>
-             <span class="text-3xl font-display font-bold text-blue-900">$52B</span>
-             <span class="text-sm text-slate-500">Annual Revenue</span>
+          <div class="bg-white p-6 rounded-xl shadow border border-slate-100 flex flex-col justify-between h-36">
+             <span class="text-2xl font-bold text-blue-900">70조+</span>
+             <span class="text-xs text-slate-500">연간 매출액</span>
           </div>
-          <div class="bg-cyan-500 text-white p-8 rounded-2xl flex flex-col justify-between h-48" data-tilt>
-             <span class="text-3xl font-display font-bold">No.1</span>
-             <span class="text-sm opacity-80">Global Market Share</span>
+          <div class="bg-blue-400 text-white p-6 rounded-xl flex flex-col justify-between h-36">
+             <span class="text-1xl font-bold">Global No.1</span>
+             <span class="text-xs opacity-90">시장 점유율</span>
           </div>
        </div>
     </div>
   </section>
 
   <!-- News -->
-  <section id="news" class="py-24 px-6 bg-white">
-     <div class="container mx-auto">
-        <div class="flex justify-between items-end mb-12">
-           <h2 class="text-3xl font-bold font-display text-slate-900">Latest News</h2>
-           <a href="#" class="text-sm font-bold text-blue-600 hover:text-blue-800">View All &rarr;</a>
+  <section id="news" class="py-16 md:py-24 px-6 bg-white">
+     <div class="container mx-auto px-4">
+        <div class="flex justify-between items-end mb-10">
+           <h2 class="text-2xl font-bold text-slate-900 uppercase">뉴스룸</h2>
+           <a href="#" class="text-xs font-bold text-blue-600 hover:underline">전체 보기 &rarr;</a>
         </div>
         
-        <div class="grid md:grid-cols-3 gap-8">
-           <div class="border-b border-slate-100 pb-8 hover:bg-slate-50 transition p-4 rounded-lg">
-              <p class="text-xs text-slate-400 mb-2">2024.12.20</p>
-              <h3 class="font-bold text-lg mb-4 hover:text-blue-600 transition cursor-pointer">넥서스 그룹, 차세대 AI 반도체 양산 성공</h3>
-              <p class="text-sm text-slate-500 line-clamp-2">세계 최초 3나노 공정 기반의 신경망 처리 장치(NPU) 양산에 성공하며 글로벌 시장 선점에 나선다.</p>
+        <div class="grid md:grid-cols-3 gap-10">
+           <div class="border-b border-slate-100 pb-6 group cursor-pointer">
+              <p class="text-[10px] text-slate-400 mb-2">2024.12.20</p>
+              <h3 class="font-bold text-base mb-3 group-hover:text-blue-600 transition">넥서스 그룹, 차세대 AI 반도체 양산 성공</h3>
+              <p class="text-xs text-slate-500">세계 최초 3나노 공정 기반의 NPU 양산에 성공하며 시장 선점에 나섭니다.</p>
            </div>
-           <div class="border-b border-slate-100 pb-8 hover:bg-slate-50 transition p-4 rounded-lg">
-              <p class="text-xs text-slate-400 mb-2">2024.12.15</p>
-              <h3 class="font-bold text-lg mb-4 hover:text-blue-600 transition cursor-pointer">유럽 친환경 에너지 프로젝트 수주</h3>
-              <p class="text-sm text-slate-500 line-clamp-2">덴마크 해상 풍력 단지 조성 사업의 메인 공급사로 선정되어 2조원 규모의 계약을 체결했다.</p>
+           <div class="border-b border-slate-100 pb-6 group cursor-pointer">
+              <p class="text-[10px] text-slate-400 mb-2">2024.12.15</p>
+              <h3 class="font-bold text-base mb-3 group-hover:text-blue-600 transition">유럽 친환경 에너지 프로젝트 수주</h3>
+              <p class="text-xs text-slate-500">덴마크 해상 풍력 단지 조성 사업의 메인 공급사로 선정되었습니다.</p>
            </div>
-           <div class="border-b border-slate-100 pb-8 hover:bg-slate-50 transition p-4 rounded-lg">
-              <p class="text-xs text-slate-400 mb-2">2024.12.01</p>
-              <h3 class="font-bold text-lg mb-4 hover:text-blue-600 transition cursor-pointer">연말 이웃돕기 성금 100억원 기탁</h3>
-              <p class="text-sm text-slate-500 line-clamp-2">사회복지공동모금회에 이웃사랑 성금을 전달하며 나눔 경영을 실천했다.</p>
+           <div class="border-b border-slate-100 pb-6 group cursor-pointer">
+              <p class="text-[10px] text-slate-400 mb-2">2024.12.01</p>
+              <h3 class="font-bold text-base mb-3 group-hover:text-blue-600 transition">연말 이웃돕기 성금 100억원 기탁</h3>
+              <p class="text-xs text-slate-500">사회복지공동모금회에 성금을 전달하며 나눔 경영을 실천했습니다.</p>
            </div>
         </div>
      </div>
   </section>
 
-</div>
+  <!-- Footer -->
+  <footer class="py-12 bg-slate-900 text-center text-white">
+    <div class="container mx-auto px-6">
+       <p class="font-bold text-lg mb-4">NEXUS CORP</p>
+       <div class="text-[10px] text-slate-500 space-y-1">
+          <p>서울시 강남구 테헤란로 123 넥서스타워</p>
+          <p>© 2024 NEXUS CORP. All Rights Reserved.</p>
+       </div>
+    </div>
+  </footer>
 
-<script>
-  VanillaTilt.init(document.querySelectorAll("[data-tilt]"), {
-    max: 5,
-    speed: 400,
-    glare: true,
-    "max-glare": 0.1,
-  });
-</script>
+</div>

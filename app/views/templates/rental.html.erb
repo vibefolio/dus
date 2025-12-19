@@ -1,29 +1,20 @@
 <%# Rental Template - 고카 렌터카 %>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.0/vanilla-tilt.min.js"></script>
 
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Racing+Sans+One&family=Noto+Sans+KR:wght@300;400;700;900&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;700;900&display=swap');
   
-  .font-race { font-family: 'Racing Sans One', cursive; }
   .font-sans { font-family: 'Noto Sans KR', sans-serif; }
-  
-  .skew-bg {
-    transform: skewY(-3deg);
-  }
-  .skew-reset {
-    transform: skewY(3deg);
-  }
 </style>
 
 <div class="bg-gray-50 text-slate-800 font-sans selection:bg-blue-600 selection:text-white overflow-x-hidden">
 
   <!-- Nav -->
-  <nav class="fixed w-full z-50 px-6 py-4 bg-white/90 backdrop-blur border-b border-gray-200">
+  <nav class="fixed w-full z-50 px-6 py-4 bg-white/95 backdrop-blur-sm border-b border-gray-200">
     <div class="container mx-auto flex justify-between items-center">
-      <div class="flex items-center gap-1 font-race text-3xl text-blue-600 italic">
-        <span>GO</span><span class="text-slate-900">CAR</span>
+      <div class="flex items-center gap-1 text-2xl font-black">
+        <span class="text-blue-600">고</span><span class="text-slate-900">카</span>
       </div>
-      <div class="hidden md:flex gap-8 font-bold text-slate-500">
+      <div class="hidden md:flex gap-6 font-bold text-slate-500 text-sm">
         <a href="#search" class="hover:text-blue-600 transition">실시간 예약</a>
         <a href="#fleet" class="hover:text-blue-600 transition">보유 차종</a>
         <a href="#guide" class="hover:text-blue-600 transition">이용 안내</a>
@@ -37,29 +28,27 @@
   </nav>
 
   <!-- Hero -->
-  <header class="pt-32 pb-48 bg-slate-900 text-white relative overflow-hidden h-[700px] flex items-center">
-    <!-- Video Background Placeholder -->
+  <header class="pt-24 pb-32 bg-slate-900 text-white relative overflow-hidden min-h-[600px] flex items-center">
     <div class="absolute inset-0 z-0">
-       <img src="https://images.unsplash.com/photo-1494976388531-d1058494cdd8?q=80&w=1920" class="w-full h-full object-cover opacity-50">
+       <img src="https://images.unsplash.com/photo-1494976388531-d1058494cdd8?q=80&w=1920" alt="렌터카" class="w-full h-full object-cover opacity-50">
        <div class="absolute inset-0 bg-gradient-to-r from-slate-900 via-slate-900/80 to-transparent"></div>
     </div>
 
-    <div class="container mx-auto px-6 relative z-10 grid md:grid-cols-2 gap-12 items-center">
-      <div class="space-y-6">
-        <span class="bg-blue-600 text-white px-3 py-1 text-xs font-bold rounded uppercase tracking-wider">Summer Sale 30%</span>
-        <h1 class="text-6xl md:text-8xl font-black italic leading-none">
-          DRIVE <br>
-          <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-300">YOUR DREAM</span>
+    <div class="container mx-auto px-6 relative z-10 grid md:grid-cols-2 gap-10 items-center">
+      <div class="space-y-5">
+        <span class="bg-blue-600 text-white px-3 py-1 text-xs font-bold rounded">여름 세일 30%</span>
+        <h1 class="text-5xl md:text-6xl font-black leading-tight">
+          당신의<br><span class="text-blue-400">드림카</span>를<br>달리세요
         </h1>
-        <p class="text-slate-300 text-lg max-w-md">
+        <p class="text-slate-300 text-base max-w-md">
           여행의 시작을 더욱 특별하게.<br>
           전 차종 3년 미만 신차, 금연 차량 보증.
         </p>
       </div>
       
       <!-- Quick Search Box -->
-      <div class="bg-white p-8 rounded-2xl shadow-2xl text-slate-800 w-full md:w-96 ml-auto" data-tilt data-tilt-max="5">
-         <h3 class="font-black text-xl mb-6 flex items-center gap-2">
+      <div class="bg-white p-6 md:p-8 rounded-2xl shadow-2xl text-slate-800 w-full max-w-md ml-auto">
+         <h3 class="font-black text-lg mb-5 flex items-center gap-2">
            <span class="text-blue-600">⚡</span> 빠른 예약 검색
          </h3>
          <form class="space-y-4">
@@ -81,7 +70,7 @@
                  <option>전기차</option>
               </select>
            </div>
-           <button class="w-full py-4 bg-blue-600 text-white font-black text-lg rounded hover:bg-blue-700 transition shadow-lg transform hover:-translate-y-1">
+           <button class="w-full py-4 bg-blue-600 text-white font-black text-base rounded hover:bg-blue-700 transition shadow-lg">
              최저가 차량 검색
            </button>
          </form>
@@ -90,20 +79,20 @@
   </header>
 
   <!-- Fleet / Categories -->
-  <section id="fleet" class="py-24 bg-white -mt-20 relative z-20 rounded-t-[3rem]">
+  <section id="fleet" class="py-20 md:py-24 bg-white -mt-12 relative z-20 rounded-t-[2rem]">
     <div class="container mx-auto px-6">
-       <div class="text-center mb-16">
-          <h2 class="text-4xl font-black text-slate-900 italic transform -skew-x-6">OUR FLEET</h2>
+       <div class="text-center mb-12">
+          <h2 class="text-3xl font-black text-slate-900">보유 차종</h2>
           <p class="text-slate-500 mt-2">여행 스타일에 맞는 최적의 차량을 선택하세요.</p>
        </div>
 
-       <div class="grid md:grid-cols-4 gap-6">
+       <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
           <div class="group cursor-pointer">
-             <div class="bg-slate-50 rounded-2xl p-6 hover:bg-blue-50 transition duration-300 h-full border border-slate-100 hover:border-blue-200">
-                <img src="https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?q=80&w=400" class="w-full h-32 object-contain mb-4 group-hover:scale-110 transition">
-                <h3 class="font-bold text-xl mb-1">Economy</h3>
-                <p class="text-xs text-slate-500 mb-4">모닝, 레이, 아반떼</p>
-                <div class="flex justify-between items-center border-t py-2">
+             <div class="bg-slate-50 rounded-xl p-5 hover:bg-blue-50 transition h-full border border-slate-100 hover:border-blue-200">
+                <img src="https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?q=80&w=400" alt="이코노미" class="w-full h-24 object-contain mb-3 group-hover:scale-105 transition">
+                <h3 class="font-bold text-lg mb-1">이코노미</h3>
+                <p class="text-xs text-slate-500 mb-3">모닝, 레이, 아반떼</p>
+                <div class="flex justify-between items-center border-t pt-2">
                    <span class="text-blue-600 font-black">₩ 45,000~</span>
                    <span class="bg-blue-100 text-blue-600 text-[10px] px-2 py-1 rounded">Best</span>
                 </div>
@@ -111,22 +100,22 @@
           </div>
           
           <div class="group cursor-pointer">
-             <div class="bg-slate-50 rounded-2xl p-6 hover:bg-blue-50 transition duration-300 h-full border border-slate-100 hover:border-blue-200">
-                <img src="https://images.unsplash.com/photo-1550355291-bbee04a92027?q=80&w=400" class="w-full h-32 object-contain mb-4 group-hover:scale-110 transition">
-                <h3 class="font-bold text-xl mb-1">Standard</h3>
-                <p class="text-xs text-slate-500 mb-4">쏘나타, K5, 그랜저</p>
-                <div class="flex justify-between items-center border-t py-2">
+             <div class="bg-slate-50 rounded-xl p-5 hover:bg-blue-50 transition h-full border border-slate-100 hover:border-blue-200">
+                <img src="https://images.unsplash.com/photo-1550355291-bbee04a92027?q=80&w=400" alt="스탠다드" class="w-full h-24 object-contain mb-3 group-hover:scale-105 transition">
+                <h3 class="font-bold text-lg mb-1">스탠다드</h3>
+                <p class="text-xs text-slate-500 mb-3">쏘나타, K5, 그랜저</p>
+                <div class="flex justify-between items-center border-t pt-2">
                    <span class="text-blue-600 font-black">₩ 75,000~</span>
                 </div>
              </div>
           </div>
 
           <div class="group cursor-pointer">
-             <div class="bg-slate-50 rounded-2xl p-6 hover:bg-blue-50 transition duration-300 h-full border border-slate-100 hover:border-blue-200">
-                <img src="https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?q=80&w=400" class="w-full h-32 object-contain mb-4 group-hover:scale-110 transition">
-                <h3 class="font-bold text-xl mb-1">SUV / RV</h3>
-                <p class="text-xs text-slate-500 mb-4">투싼, 싼타페, 카니발</p>
-                <div class="flex justify-between items-center border-t py-2">
+             <div class="bg-slate-50 rounded-xl p-5 hover:bg-blue-50 transition h-full border border-slate-100 hover:border-blue-200">
+                <img src="https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?q=80&w=400" alt="SUV" class="w-full h-24 object-contain mb-3 group-hover:scale-105 transition">
+                <h3 class="font-bold text-lg mb-1">SUV / RV</h3>
+                <p class="text-xs text-slate-500 mb-3">투싼, 싼타페, 카니발</p>
+                <div class="flex justify-between items-center border-t pt-2">
                    <span class="text-blue-600 font-black">₩ 95,000~</span>
                    <span class="bg-green-100 text-green-600 text-[10px] px-2 py-1 rounded">Family</span>
                 </div>
@@ -134,11 +123,11 @@
           </div>
           
           <div class="group cursor-pointer">
-             <div class="bg-slate-50 rounded-2xl p-6 hover:bg-blue-50 transition duration-300 h-full border border-slate-100 hover:border-blue-200">
-                <img src="https://images.unsplash.com/photo-1560958089-b8a1929cea89?q=80&w=400" class="w-full h-32 object-contain mb-4 group-hover:scale-110 transition">
-                <h3 class="font-bold text-xl mb-1">Electric</h3>
-                <p class="text-xs text-slate-500 mb-4">아이오닉5, EV6, 테슬라</p>
-                <div class="flex justify-between items-center border-t py-2">
+             <div class="bg-slate-50 rounded-xl p-5 hover:bg-blue-50 transition h-full border border-slate-100 hover:border-blue-200">
+                <img src="https://images.unsplash.com/photo-1560958089-b8a1929cea89?q=80&w=400" alt="전기차" class="w-full h-24 object-contain mb-3 group-hover:scale-105 transition">
+                <h3 class="font-bold text-lg mb-1">전기차</h3>
+                <p class="text-xs text-slate-500 mb-3">아이오닉5, EV6, 테슬라</p>
+                <div class="flex justify-between items-center border-t pt-2">
                    <span class="text-blue-600 font-black">₩ 85,000~</span>
                    <span class="bg-purple-100 text-purple-600 text-[10px] px-2 py-1 rounded">Eco</span>
                 </div>
@@ -148,55 +137,52 @@
     </div>
   </section>
 
-  <!-- Process / Advantages -->
-  <section class="py-24 bg-blue-600 text-white skew-bg mb-24">
-     <div class="container mx-auto px-6 skew-reset">
-        <h2 class="text-3xl font-black italic text-center mb-16">WHY GOCAR?</h2>
-        <div class="grid md:grid-cols-3 gap-12 text-center">
+  <!-- Advantages -->
+  <section class="py-20 bg-blue-600 text-white">
+     <div class="container mx-auto px-6">
+        <h2 class="text-2xl font-black text-center mb-12">왜 고카인가요?</h2>
+        <div class="grid md:grid-cols-3 gap-8 text-center">
            <div>
-              <div class="w-20 h-20 bg-white/20 rounded-full flex items-center justify-center text-4xl mx-auto mb-6 backdrop-blur">🚀</div>
-              <h3 class="font-bold text-xl mb-2">빠른 배차 시스템</h3>
+              <div class="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center text-3xl mx-auto mb-4">🚀</div>
+              <h3 class="font-bold text-lg mb-2">빠른 배차 시스템</h3>
               <p class="text-blue-100 text-sm">공항 셔틀 5분 간격 운행<br>키오스크로 대기 없이 인수</p>
            </div>
            <div>
-              <div class="w-20 h-20 bg-white/20 rounded-full flex items-center justify-center text-4xl mx-auto mb-6 backdrop-blur">✨</div>
-              <h3 class="font-bold text-xl mb-2">청결한 실내 관리</h3>
+              <div class="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center text-3xl mx-auto mb-4">✨</div>
+              <h3 class="font-bold text-lg mb-2">청결한 실내 관리</h3>
               <p class="text-blue-100 text-sm">매 회차 전문 세차 및 소독<br>전 차량 금연 운영</p>
            </div>
            <div>
-              <div class="w-20 h-20 bg-white/20 rounded-full flex items-center justify-center text-4xl mx-auto mb-6 backdrop-blur">🛡️</div>
-              <h3 class="font-bold text-xl mb-2">완전 자차 보험</h3>
+              <div class="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center text-3xl mx-auto mb-4">🛡️</div>
+              <h3 class="font-bold text-lg mb-2">완전 자차 보험</h3>
               <p class="text-blue-100 text-sm">사고 시 본인 부담금 0원<br>안심하고 주행하세요</p>
            </div>
         </div>
      </div>
   </section>
 
-  <!-- FAQ / CS -->
-  <section id="cs" class="py-24 px-6 bg-slate-50">
-    <div class="container mx-auto max-w-4xl">
-       <div class="bg-white border border-slate-200 rounded-xl p-8 md:p-12 shadow-sm flex flex-col md:flex-row items-center justify-between gap-8">
+  <!-- CS -->
+  <section id="cs" class="py-20 px-6 bg-slate-50">
+    <div class="container mx-auto max-w-3xl">
+       <div class="bg-white border border-slate-200 rounded-xl p-8 md:p-10 shadow-sm flex flex-col md:flex-row items-center justify-between gap-6">
           <div>
-             <h2 class="text-2xl font-bold text-slate-900 mb-2">고객센터 안내</h2>
-             <p class="text-slate-500 mb-4">예약 변경 및 취소 문의는 고객센터를 이용해주세요.</p>
-             <p class="text-4xl font-black text-blue-600">1588-0000</p>
-             <p class="text-xs text-slate-400 mt-2">운영시간: 09:00 ~ 18:00 (연중무휴)</p>
+             <h2 class="text-xl font-bold text-slate-900 mb-2">고객센터 안내</h2>
+             <p class="text-slate-500 text-sm mb-3">예약 변경 및 취소 문의는 고객센터를 이용해주세요.</p>
+             <p class="text-3xl font-black text-blue-600">1588-0000</p>
+             <p class="text-xs text-slate-400 mt-1">운영시간: 09:00 ~ 18:00 (연중무휴)</p>
           </div>
           <div class="flex flex-col gap-3 w-full md:w-auto">
-             <button class="px-8 py-3 border border-slate-300 rounded font-bold hover:bg-slate-50 transition w-full">1:1 문의하기</button>
-             <button class="px-8 py-3 border border-slate-300 rounded font-bold hover:bg-slate-50 transition w-full">자주 묻는 질문</button>
+             <button class="px-6 py-3 border border-slate-300 rounded font-bold hover:bg-slate-50 transition w-full">1:1 문의하기</button>
+             <button class="px-6 py-3 border border-slate-300 rounded font-bold hover:bg-slate-50 transition w-full">자주 묻는 질문</button>
           </div>
        </div>
     </div>
   </section>
 
-</div>
+  <!-- Footer -->
+  <footer class="py-10 px-6 bg-slate-900 text-center">
+    <p class="text-xl font-black text-blue-400 mb-2">고카</p>
+    <p class="text-sm text-slate-500">제주도 제주시 공항로 123</p>
+  </footer>
 
-<script>
-  VanillaTilt.init(document.querySelectorAll("[data-tilt]"), {
-    max: 5,
-    speed: 400,
-    glare: true,
-    "max-glare": 0.2,
-  });
-</script>
+</div>

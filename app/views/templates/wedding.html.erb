@@ -1,159 +1,149 @@
-<%# Wedding Template - 모바일 청첩장 테마 %>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.0/vanilla-tilt.min.js"></script>
+<%# Wedding Template - 모바일 청첩장 %>
 
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Gowun+Dodum&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700;800&family=Gowun+Dodum&display=swap');
 
-  .wedding-font-serif { font-family: 'Cormorant Garamond', serif; }
-  .wedding-font-sans { font-family: 'Gowun Dodum', sans-serif; }
+  .font-serif { font-family: 'Nanum Myeongjo', serif; }
+  .font-sans { font-family: 'Gowun Dodum', sans-serif; }
 
   .fade-up {
     opacity: 0;
-    transform: translateY(30px);
-    transition: all 1s ease-out;
+    transform: translateY(20px);
+    transition: all 0.8s ease-out;
   }
   .fade-up.visible {
     opacity: 1;
     transform: translateY(0);
   }
-  
-  .wedding-shadow {
-    box-shadow: 0 10px 30px -10px rgba(0,0,0,0.1);
-  }
-
-  /* Flowers falling animation can be added if needed */
 </style>
 
-<div class="bg-[#FDFBF7] text-[#4A4A4A] wedding-font-sans overflow-x-hidden">
+<div class="bg-[#FDFBF7] text-[#4A4A4A] font-sans overflow-x-hidden">
   
   <!-- Main Cover -->
-  <header class="h-screen relative flex flex-col items-center justify-center text-center px-6 overflow-hidden">
+  <header class="min-h-screen relative flex flex-col items-center justify-center text-center px-6 overflow-hidden">
     <div class="absolute inset-0 z-0">
-      <img src="https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=1920&auto=format&fit=crop" class="w-full h-full object-cover opacity-90 animate-[pulse_10s_infinite]">
-      <div class="absolute inset-0 bg-white/30 backdrop-blur-[2px]"></div>
+      <img src="https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=1920" alt="웨딩 사진" class="w-full h-full object-cover opacity-90">
+      <div class="absolute inset-0 bg-white/30"></div>
     </div>
 
-    <div class="relative z-10 p-12 border border-[#4A4A4A]/20 bg-white/60 backdrop-blur-md shadow-2xl max-w-lg w-full wedding-shadow fade-up" data-tilt data-tilt-max="3" data-tilt-speed="1000">
-      <p class="text-[#8B5E3C] tracking-[0.2em] text-sm mb-4 uppercase">The Wedding Of</p>
-      <h1 class="text-6xl wedding-font-serif italic text-[#2C2C2C] mb-6">
-        Minwu <br>
-        <span class="text-4xl text-[#8B5E3C]">&</span> <br>
-        Jiyeon
+    <div class="relative z-10 p-10 md:p-12 border border-[#4A4A4A]/20 bg-white/70 backdrop-blur-sm shadow-xl max-w-md w-full fade-up">
+      <p class="text-[#8B5E3C] tracking-widest text-sm mb-4">결혼합니다</p>
+      <h1 class="text-5xl md:text-6xl font-serif text-[#2C2C2C] mb-6 leading-tight">
+        민우<br>
+        <span class="text-3xl text-[#8B5E3C]">&</span><br>
+        지연
       </h1>
       
       <div class="w-12 h-[1px] bg-[#8B5E3C] mx-auto mb-6"></div>
       
-      <p class="text-xl mb-2">2024. 10. 12. SAT 12:00 PM</p>
+      <p class="text-lg mb-2">2024. 10. 12. 토요일 오후 12시</p>
       <p class="text-sm text-gray-500">라움 아트 센터 2F 마제스틱 볼룸</p>
     </div>
     
-    <div class="absolute bottom-10 animate-bounce text-[#4A4A4A]/50">
-      Scroll Down
+    <div class="absolute bottom-8 text-[#4A4A4A]/50 text-sm">
+      아래로 스크롤
     </div>
   </header>
 
   <!-- Invitation Text -->
-  <section class="py-24 px-6 text-center bg-white relative">
-    <div class="max-w-xl mx-auto space-y-8 fade-up">
-      <span class="text-[#8B5E3C] tracking-widest text-xs uppercase">Invitation</span>
-      <h2 class="text-3xl wedding-font-serif italic mb-8">소중한 분들을 초대합니다</h2>
-      <p class="leading-loose text-[#666]">
+  <section class="py-20 md:py-24 px-6 text-center bg-white relative">
+    <div class="max-w-lg mx-auto space-y-8 fade-up">
+      <span class="text-[#8B5E3C] tracking-widest text-xs">초대합니다</span>
+      <h2 class="text-2xl md:text-3xl font-serif mb-6">소중한 분들을 초대합니다</h2>
+      <p class="leading-loose text-[#666] text-base">
         서로가 마주보며 다져온 사랑을<br>
         이제 함께 한 곳을 바라보며 걸어가려 합니다.<br>
         저희 두 사람의 새로운 시작을<br>
         따뜻한 마음으로 축복해 주시면 감사하겠습니다.
       </p>
       
-      <div class="flex justify-center gap-12 pt-8">
+      <div class="flex justify-center gap-10 pt-8">
         <div>
-          <p class="text-sm text-gray-400 mb-1">GROOM</p>
+          <p class="text-sm text-gray-400 mb-1">신랑</p>
           <p class="text-lg font-bold">김민우</p>
         </div>
         <div class="h-12 w-[1px] bg-gray-200"></div>
         <div>
-          <p class="text-sm text-gray-400 mb-1">BRIDE</p>
+          <p class="text-sm text-gray-400 mb-1">신부</p>
           <p class="text-lg font-bold">이지연</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Gallery (Grid) -->
-  <section class="py-24 px-4 bg-[#F9F5F0]">
-    <div class="max-w-4xl mx-auto">
-      <div class="text-center mb-16 fade-up">
-        <h2 class="text-4xl wedding-font-serif italic text-[#8B5E3C]">Gallery</h2>
+  <!-- Gallery -->
+  <section class="py-20 md:py-24 px-4 bg-[#F9F5F0]">
+    <div class="max-w-3xl mx-auto">
+      <div class="text-center mb-12 fade-up">
+        <h2 class="text-3xl font-serif text-[#8B5E3C]">갤러리</h2>
         <p class="text-sm text-gray-500 mt-2">우리의 아름다운 순간들</p>
       </div>
 
-      <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+      <div class="grid grid-cols-2 md:grid-cols-3 gap-3">
         <div class="row-span-2 relative group overflow-hidden rounded-lg shadow-md fade-up">
-          <img src="https://images.unsplash.com/photo-1544605963-c6b75f284534?q=80&w=600" class="w-full h-full object-cover transition duration-700 group-hover:scale-105">
+          <img src="https://images.unsplash.com/photo-1544605963-c6b75f284534?q=80&w=600" alt="웨딩 사진" class="w-full h-full object-cover transition duration-500 group-hover:scale-105">
         </div>
         <div class="relative group overflow-hidden rounded-lg shadow-md fade-up">
-          <img src="https://images.unsplash.com/photo-1522673607200-1645062cd958?q=80&w=600" class="w-full h-64 object-cover transition duration-700 group-hover:scale-105">
+          <img src="https://images.unsplash.com/photo-1522673607200-1645062cd958?q=80&w=600" alt="웨딩 사진" class="w-full h-48 md:h-56 object-cover transition duration-500 group-hover:scale-105">
         </div>
         <div class="relative group overflow-hidden rounded-lg shadow-md fade-up">
-          <img src="https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?q=80&w=600" class="w-full h-64 object-cover transition duration-700 group-hover:scale-105">
+          <img src="https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?q=80&w=600" alt="웨딩 사진" class="w-full h-48 md:h-56 object-cover transition duration-500 group-hover:scale-105">
         </div>
         <div class="col-span-2 relative group overflow-hidden rounded-lg shadow-md fade-up">
-          <img src="https://images.unsplash.com/photo-1583939003579-730e3918a45a?q=80&w=1200" class="w-full h-64 object-cover transition duration-700 group-hover:scale-105 grayscale hover:grayscale-0">
+          <img src="https://images.unsplash.com/photo-1583939003579-730e3918a45a?q=80&w=1200" alt="웨딩 사진" class="w-full h-48 md:h-56 object-cover transition duration-500 group-hover:scale-105">
         </div>
       </div>
     </div>
   </section>
 
   <!-- Calendar / D-Day -->
-  <section class="py-24 px-6 bg-white text-center">
+  <section class="py-20 md:py-24 px-6 bg-white text-center">
     <div class="max-w-md mx-auto fade-up">
-      <h2 class="text-2xl wedding-font-serif italic text-[#8B5E3C] mb-8">Calendar</h2>
-      <div class="text-4xl font-bold mb-4">10. 12</div>
-      <p class="text-gray-400 text-sm mb-12">Saturday</p>
+      <h2 class="text-2xl font-serif text-[#8B5E3C] mb-8">예식 일정</h2>
+      <div class="text-4xl font-bold mb-2">10월 12일</div>
+      <p class="text-gray-400 text-sm mb-10">토요일 오후 12시</p>
       
-      <!-- Simple Calendar Visual -->
-      <div class="bg-gray-50 p-8 rounded-full aspect-square flex items-center justify-center shadow-inner mx-auto w-64 h-64 mb-12 relative">
-        <div class="absolute top-2 w-2 h-2 rounded-full bg-[#8B5E3C]"></div>
-        <div>
-           <p class="text-sm text-gray-400 uppercase tracking-widest mb-2">We are getting married in</p>
-           <p class="text-yellow-600 text-5xl font-serif italic" id="d-day">D-35</p>
-        </div>
+      <!-- D-Day Counter -->
+      <div class="bg-gray-50 p-8 rounded-2xl shadow-inner mx-auto max-w-xs">
+         <p class="text-sm text-gray-400 tracking-wide mb-2">결혼식까지</p>
+         <p class="text-[#8B5E3C] text-4xl font-serif" id="d-day">D-35</p>
       </div>
     </div>
   </section>
 
   <!-- Location & Map -->
-  <section class="py-24 px-6 bg-[#F9F5F0]">
-    <div class="max-w-2xl mx-auto text-center fade-up">
-      <h2 class="text-3xl wedding-font-serif italic text-[#8B5E3C] mb-8">Location</h2>
+  <section class="py-20 md:py-24 px-6 bg-[#F9F5F0]">
+    <div class="max-w-xl mx-auto text-center fade-up">
+      <h2 class="text-2xl md:text-3xl font-serif text-[#8B5E3C] mb-8">오시는 길</h2>
       <p class="font-bold text-xl mb-2">라움 아트 센터</p>
       <p class="text-gray-500 mb-8">서울 강남구 언주로 564</p>
       
       <!-- Map Placeholder -->
-      <div class="w-full h-64 bg-gray-200 rounded-lg mb-8 flex items-center justify-center text-gray-400">
+      <div class="w-full h-52 md:h-64 bg-gray-200 rounded-xl mb-8 flex items-center justify-center text-gray-400 text-sm">
         * 네이버/카카오 지도 API 연동 영역 *
       </div>
       
-      <div class="flex flex-col md:flex-row gap-4 justify-center">
-        <button class="px-8 py-3 bg-[#FAE100] text-[#3C1E1E] rounded font-bold hover:opacity-90 transition shadow-sm">
+      <div class="flex flex-col md:flex-row gap-3 justify-center">
+        <button class="px-6 py-3 bg-[#FAE100] text-[#3C1E1E] rounded-lg font-bold hover:opacity-90 transition shadow">
           카카오맵 보기
         </button>
-        <button class="px-8 py-3 bg-[#03C75A] text-white rounded font-bold hover:opacity-90 transition shadow-sm">
+        <button class="px-6 py-3 bg-[#03C75A] text-white rounded-lg font-bold hover:opacity-90 transition shadow">
           네이버 지도 보기
         </button>
       </div>
     </div>
   </section>
 
-  <!-- Bottom CTA -->
-  <footer class="py-12 bg-[#4A4A4A] text-white text-center">
-    <p class="wedding-font-serif italic text-2xl mb-4">Thank you</p>
-    <p class="text-xs opacity-50">저희의 시작을 축복해주셔서 감사합니다.</p>
+  <!-- Footer -->
+  <footer class="py-10 bg-[#4A4A4A] text-white text-center">
+    <p class="font-serif text-xl mb-3">감사합니다</p>
+    <p class="text-xs opacity-60">저희의 시작을 축복해주셔서 감사합니다.</p>
     
-    <div class="mt-8 flex justify-center gap-4">
-       <button class="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center hover:bg-white/20 transition">
+    <div class="mt-6 flex justify-center gap-4">
+       <button class="w-11 h-11 rounded-full bg-white/10 flex items-center justify-center hover:bg-white/20 transition text-lg">
          💌
        </button>
-       <button class="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center hover:bg-white/20 transition">
+       <button class="w-11 h-11 rounded-full bg-white/10 flex items-center justify-center hover:bg-white/20 transition text-lg">
          📞
        </button>
     </div>
@@ -172,13 +162,4 @@
   }, { threshold: 0.1 });
 
   document.querySelectorAll('.fade-up').forEach((el) => observer.observe(el));
-
-  // Vanilla Tilt
-  VanillaTilt.init(document.querySelectorAll("[data-tilt]"), {
-    max: 10,
-    speed: 400,
-    scale: 1.02,
-    glare: true,
-    "max-glare": 0.5
-  });
 </script>

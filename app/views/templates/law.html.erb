@@ -1,5 +1,4 @@
 <%# Law Template - 법무법인 정의 %>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.0/vanilla-tilt.min.js"></script>
 
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700;800&family=Noto+Sans+KR:wght@300;400;500&display=swap');
@@ -16,77 +15,76 @@
 <div class="bg-white text-slate-800 font-sans selection:bg-slate-800 selection:text-amber-500">
 
   <!-- Nav -->
-  <nav class="fixed w-full z-50 px-8 py-5 bg-white/95 backdrop-blur border-b border-slate-200">
+  <nav class="fixed w-full z-50 px-6 py-5 bg-white/95 backdrop-blur border-b border-slate-200">
     <div class="container mx-auto flex justify-between items-center">
-      <div class="flex items-center gap-3">
-        <div class="w-10 h-10 bg-slate-900 flex items-center justify-center text-amber-500 font-serif font-black text-xl">正</div>
+      <div class="flex items-center gap-2">
+        <div class="w-9 h-9 bg-slate-900 flex items-center justify-center text-amber-500 font-serif font-black text-lg">正</div>
         <div class="flex flex-col">
-           <span class="font-serif font-bold text-xl text-slate-900 leading-none tracking-widest">법무법인 정의</span>
-           <span class="text-[10px] tracking-[0.3em] text-slate-500 uppercase mt-1">Law Firm Justice</span>
+           <span class="font-serif font-bold text-lg text-slate-900 leading-none">법무법인 정의</span>
+           <span class="text-[10px] tracking-widest text-slate-500 mt-1">Law Firm Justice</span>
         </div>
       </div>
-      <div class="hidden md:flex gap-10 font-serif font-bold text-slate-600 text-sm">
+      <div class="hidden md:flex gap-8 font-serif font-bold text-slate-600 text-sm">
         <a href="#about" class="hover:text-amber-600 transition">법인 소개</a>
         <a href="#practice" class="hover:text-amber-600 transition">전문 분야</a>
         <a href="#success" class="hover:text-amber-600 transition">승소 사례</a>
         <a href="#counsel" class="hover:text-amber-600 transition">상담 문의</a>
       </div>
-      <button onclick="document.getElementById('counsel').scrollIntoView({behavior: 'smooth'})"
-              class="px-6 py-2 border border-slate-900 text-slate-900 font-serif font-bold text-sm hover:bg-slate-900 hover:text-white transition">
+      <button class="px-5 py-2 border border-slate-900 text-slate-900 font-serif font-bold text-sm hover:bg-slate-900 hover:text-white transition">
         무료 법률 상담
       </button>
     </div>
   </nav>
 
   <!-- Hero -->
-  <header class="h-screen bg-law-pattern relative flex items-center justify-center overflow-hidden">
+  <header class="min-h-screen bg-law-pattern relative flex items-center justify-center overflow-hidden pt-16">
     <div class="absolute inset-0 bg-gradient-to-b from-slate-900/80 via-transparent to-slate-900"></div>
     
-    <div class="container mx-auto px-6 relative z-10 grid md:grid-cols-2 gap-16 items-center">
-       <div class="text-white space-y-8">
-         <div class="w-20 h-1 bg-amber-600 mb-8"></div>
-         <h1 class="text-5xl md:text-7xl font-serif font-bold leading-tight">
+    <div class="container mx-auto px-6 relative z-10 grid md:grid-cols-2 gap-12 items-center">
+       <div class="text-white space-y-6">
+         <div class="w-16 h-1 bg-amber-600 mb-6"></div>
+         <h1 class="text-4xl md:text-5xl font-serif font-bold leading-tight">
            진실을 향한<br>
            <span class="text-amber-500">흔들리지 않는</span><br>
            변호
          </h1>
-         <p class="text-slate-400 text-lg font-light leading-relaxed max-w-lg">
+         <p class="text-slate-400 text-base font-light leading-relaxed max-w-md">
            복잡한 법률 문제, 혼자 고민하지 마십시오.<br>
            대법원 판사 출신 변호인단이 당신의 권리를 지켜드립니다.<br>
            처음부터 끝까지, 의뢰인의 편에서 싸우겠습니다.
          </p>
          
-         <div class="grid grid-cols-2 gap-8 pt-8 border-t border-white/10">
+         <div class="grid grid-cols-2 gap-6 pt-6 border-t border-white/10">
             <div>
-              <p class="text-3xl font-serif font-bold text-white mb-1">98<span class="text-amber-500 text-xl">%</span></p>
-              <p class="text-xs text-slate-500 uppercase tracking-widest">승소율</p>
+              <p class="text-2xl font-serif font-bold text-white mb-1">98<span class="text-amber-500 text-lg">%</span></p>
+              <p class="text-xs text-slate-500 tracking-widest">승소율</p>
             </div>
             <div>
-              <p class="text-3xl font-serif font-bold text-white mb-1">2,500<span class="text-amber-500 text-xl">+</span></p>
-              <p class="text-xs text-slate-500 uppercase tracking-widest">누적 상담 건수</p>
+              <p class="text-2xl font-serif font-bold text-white mb-1">2,500<span class="text-amber-500 text-lg">+</span></p>
+              <p class="text-xs text-slate-500 tracking-widest">누적 상담 건수</p>
             </div>
          </div>
        </div>
 
-       <div class="relative hidden md:block" data-tilt data-tilt-max="3">
-         <div class="absolute inset-0 border border-amber-600/30 transform translate-x-4 translate-y-4"></div>
-         <img src="https://images.unsplash.com/photo-1507679799987-c73779587ccf?q=80&w=800" class="relative z-10 w-full h-[600px] object-cover filter brightness-75 contrast-125 grayscale hover:grayscale-0 transition duration-1000 shadow-2xl">
+       <div class="relative hidden md:block">
+         <div class="absolute inset-0 border border-amber-600/30 transform translate-x-3 translate-y-3"></div>
+         <img src="https://images.unsplash.com/photo-1507679799987-c73779587ccf?q=80&w=800" alt="변호사" class="relative z-10 w-full h-[500px] object-cover filter brightness-75 grayscale hover:grayscale-0 transition duration-700 shadow-2xl">
          
-         <div class="absolute bottom-10 -left-10 bg-white p-8 shadow-xl max-w-xs z-20 border-l-4 border-amber-600">
-           <p class="font-serif font-bold text-xl text-slate-900 mb-2">"끝까지 책임지겠습니다"</p>
+         <div class="absolute bottom-8 -left-8 bg-white p-6 shadow-xl max-w-xs z-20 border-l-4 border-amber-600">
+           <p class="font-serif font-bold text-lg text-slate-900 mb-1">"끝까지 책임지겠습니다"</p>
            <p class="text-sm text-slate-500">대표변호사 김정의</p>
          </div>
        </div>
     </div>
   </header>
 
-  <!-- Practice Areas (Process UI) -->
-  <section id="practice" class="py-24 bg-white">
+  <!-- Practice Areas -->
+  <section id="practice" class="py-16 md:py-20 bg-white">
     <div class="container mx-auto px-6">
-       <div class="flex flex-col md:flex-row justify-between items-end mb-16 border-b border-slate-200 pb-8">
-         <div class="mb-4 md:mb-0">
-           <span class="text-amber-600 font-bold tracking-widest text-xs uppercase mb-2 block">Our Expertise</span>
-           <h2 class="text-4xl font-serif font-bold text-slate-900">전문 분야</h2>
+       <div class="flex flex-col md:flex-row justify-between items-end mb-12 border-b border-slate-200 pb-6">
+         <div class="mb-3 md:mb-0">
+           <span class="text-amber-600 font-bold tracking-widest text-xs mb-2 block">Our Expertise</span>
+           <h2 class="text-3xl font-serif font-bold text-slate-900">전문 분야</h2>
          </div>
          <p class="text-slate-500 text-sm max-w-md text-right">
            각 분야별 전담 변호사가 사건 초기 대응부터 소송 종결까지<br>
@@ -94,105 +92,103 @@
          </p>
        </div>
 
-       <div class="grid md:grid-cols-3 gap-8">
+       <div class="grid md:grid-cols-3 gap-6">
          <!-- Card 1 -->
-         <div class="group border border-slate-200 p-8 hover:border-amber-600 transition duration-500 cursor-pointer bg-slate-50 hover:bg-white text-center">
-           <div class="w-16 h-16 bg-white border border-slate-200 rounded-full flex items-center justify-center text-3xl mb-6 mx-auto group-hover:scale-110 group-hover:border-amber-600 transition">⚖️</div>
-           <h3 class="font-serif font-bold text-xl mb-4 text-slate-900">민사 소송</h3>
-           <p class="text-slate-500 text-sm leading-relaxed mb-6">
+         <div class="group border border-slate-200 p-6 hover:border-amber-600 transition cursor-pointer bg-slate-50 hover:bg-white text-center">
+           <div class="w-14 h-14 bg-white border border-slate-200 rounded-full flex items-center justify-center text-2xl mb-5 mx-auto group-hover:scale-110 group-hover:border-amber-600 transition">⚖️</div>
+           <h3 class="font-serif font-bold text-lg mb-3 text-slate-900">민사 소송</h3>
+           <p class="text-slate-500 text-sm leading-relaxed mb-4">
              손해배상, 부동산, 채권채무 등<br>
              재산권 분쟁 해결 및 권리 구제
            </p>
-           <span class="text-xs font-bold text-amber-600 uppercase tracking-widest group-hover:underline">View Case</span>
+           <span class="text-xs font-bold text-amber-600 tracking-widest group-hover:underline">사례 보기</span>
          </div>
 
          <!-- Card 2 -->
-         <div class="group border border-slate-200 p-8 hover:border-amber-600 transition duration-500 cursor-pointer bg-slate-50 hover:bg-white text-center">
-           <div class="w-16 h-16 bg-white border border-slate-200 rounded-full flex items-center justify-center text-3xl mb-6 mx-auto group-hover:scale-110 group-hover:border-amber-600 transition">🔨</div>
-           <h3 class="font-serif font-bold text-xl mb-4 text-slate-900">형사 변호</h3>
-           <p class="text-slate-500 text-sm leading-relaxed mb-6">
+         <div class="group border border-slate-200 p-6 hover:border-amber-600 transition cursor-pointer bg-slate-50 hover:bg-white text-center">
+           <div class="w-14 h-14 bg-white border border-slate-200 rounded-full flex items-center justify-center text-2xl mb-5 mx-auto group-hover:scale-110 group-hover:border-amber-600 transition">🔨</div>
+           <h3 class="font-serif font-bold text-lg mb-3 text-slate-900">형사 변호</h3>
+           <p class="text-slate-500 text-sm leading-relaxed mb-4">
              경찰 조사 동석부터 재판까지,<br>
              억울함이 없도록 강력한 변호
            </p>
-           <span class="text-xs font-bold text-amber-600 uppercase tracking-widest group-hover:underline">View Case</span>
+           <span class="text-xs font-bold text-amber-600 tracking-widest group-hover:underline">사례 보기</span>
          </div>
 
          <!-- Card 3 -->
-         <div class="group border border-slate-200 p-8 hover:border-amber-600 transition duration-500 cursor-pointer bg-slate-50 hover:bg-white text-center">
-           <div class="w-16 h-16 bg-white border border-slate-200 rounded-full flex items-center justify-center text-3xl mb-6 mx-auto group-hover:scale-110 group-hover:border-amber-600 transition">🏢</div>
-           <h3 class="font-serif font-bold text-xl mb-4 text-slate-900">기업 법무</h3>
-           <p class="text-slate-500 text-sm leading-relaxed mb-6">
+         <div class="group border border-slate-200 p-6 hover:border-amber-600 transition cursor-pointer bg-slate-50 hover:bg-white text-center">
+           <div class="w-14 h-14 bg-white border border-slate-200 rounded-full flex items-center justify-center text-2xl mb-5 mx-auto group-hover:scale-110 group-hover:border-amber-600 transition">🏢</div>
+           <h3 class="font-serif font-bold text-lg mb-3 text-slate-900">기업 법무</h3>
+           <p class="text-slate-500 text-sm leading-relaxed mb-4">
              계약 검토, M&A, 노무 관리 등<br>
              기업 운영의 리스크 매니지먼트
            </p>
-           <span class="text-xs font-bold text-amber-600 uppercase tracking-widest group-hover:underline">View Case</span>
+           <span class="text-xs font-bold text-amber-600 tracking-widest group-hover:underline">사례 보기</span>
          </div>
        </div>
     </div>
   </section>
 
   <!-- Process -->
-  <section class="py-24 bg-slate-900 text-white border-y border-white/10">
+  <section class="py-16 md:py-20 bg-slate-900 text-white border-y border-white/10">
     <div class="container mx-auto px-6">
-      <h2 class="text-3xl font-serif font-bold text-center mb-16">사건 처리 프로세스</h2>
+      <h2 class="text-2xl font-serif font-bold text-center mb-12">사건 처리 프로세스</h2>
       
-      <div class="grid md:grid-cols-4 gap-8 text-center relative">
-         <div class="hidden md:block absolute top-[2.5rem] left-0 right-0 h-[1px] bg-white/10"></div>
-         
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center relative">
          <div class="relative">
-           <div class="w-20 h-20 bg-slate-800 border border-white/20 rounded-full flex items-center justify-center text-amber-500 font-serif font-bold text-2xl mx-auto mb-6 relative z-10">01</div>
-           <h3 class="font-bold text-lg mb-2">상담 접수</h3>
-           <p class="text-slate-400 text-sm">전화 및 온라인 예약</p>
+           <div class="w-16 h-16 bg-slate-800 border border-white/20 rounded-full flex items-center justify-center text-amber-500 font-serif font-bold text-xl mx-auto mb-5 relative z-10">01</div>
+           <h3 class="font-bold text-base mb-1">상담 접수</h3>
+           <p class="text-slate-400 text-xs">전화 및 온라인 예약</p>
          </div>
 
          <div class="relative">
-           <div class="w-20 h-20 bg-slate-800 border border-white/20 rounded-full flex items-center justify-center text-amber-500 font-serif font-bold text-2xl mx-auto mb-6 relative z-10">02</div>
-           <h3 class="font-bold text-lg mb-2">법률 분석</h3>
-           <p class="text-slate-400 text-sm">사안 검토 및 전략 수립</p>
+           <div class="w-16 h-16 bg-slate-800 border border-white/20 rounded-full flex items-center justify-center text-amber-500 font-serif font-bold text-xl mx-auto mb-5 relative z-10">02</div>
+           <h3 class="font-bold text-base mb-1">법률 분석</h3>
+           <p class="text-slate-400 text-xs">사안 검토 및 전략 수립</p>
          </div>
 
          <div class="relative">
-           <div class="w-20 h-20 bg-slate-800 border border-white/20 rounded-full flex items-center justify-center text-amber-500 font-serif font-bold text-2xl mx-auto mb-6 relative z-10">03</div>
-           <h3 class="font-bold text-lg mb-2">사건 진행</h3>
-           <p class="text-slate-400 text-sm">서면 작성 및 변론</p>
+           <div class="w-16 h-16 bg-slate-800 border border-white/20 rounded-full flex items-center justify-center text-amber-500 font-serif font-bold text-xl mx-auto mb-5 relative z-10">03</div>
+           <h3 class="font-bold text-base mb-1">사건 진행</h3>
+           <p class="text-slate-400 text-xs">서면 작성 및 변론</p>
          </div>
          
          <div class="relative">
-           <div class="w-20 h-20 bg-amber-600 border border-amber-500 rounded-full flex items-center justify-center text-white font-serif font-bold text-2xl mx-auto mb-6 relative z-10 shadow-[0_0_20px_rgba(217,119,6,0.5)]">04</div>
-           <h3 class="font-bold text-lg mb-2 text-amber-500">종결</h3>
-           <p class="text-slate-400 text-sm">판결 및 집행</p>
+           <div class="w-16 h-16 bg-amber-600 border border-amber-500 rounded-full flex items-center justify-center text-white font-serif font-bold text-xl mx-auto mb-5 relative z-10 shadow-lg">04</div>
+           <h3 class="font-bold text-base mb-1 text-amber-500">종결</h3>
+           <p class="text-slate-400 text-xs">판결 및 집행</p>
          </div>
       </div>
     </div>
   </section>
 
   <!-- Counsel Form -->
-  <section id="counsel" class="py-24 bg-white">
-    <div class="container mx-auto px-6 max-w-4xl">
-      <div class="bg-slate-50 border border-slate-200 p-10 md:p-16 text-center shadow-lg">
-        <h2 class="text-3xl font-serif font-bold text-slate-900 mb-6">비공개 법률 상담</h2>
-        <p class="text-slate-500 mb-10 leading-relaxed">
+  <section id="counsel" class="py-16 md:py-20 bg-white">
+    <div class="container mx-auto px-6 max-w-3xl">
+      <div class="bg-slate-50 border border-slate-200 p-8 md:p-12 text-center shadow-lg">
+        <h2 class="text-2xl font-serif font-bold text-slate-900 mb-4">비공개 법률 상담</h2>
+        <p class="text-slate-500 mb-8 leading-relaxed text-sm">
           모든 상담 내용은 변호사법에 따라 철저히 비밀이 보장됩니다.<br>
           간단한 내용을 남겨주시면 전담 변호사가 직접 연락드립니다.
         </p>
 
-        <form class="space-y-6 text-left">
-          <div class="grid md:grid-cols-2 gap-6">
+        <form class="space-y-5 text-left">
+          <div class="grid md:grid-cols-2 gap-5">
             <div>
-               <label class="block text-xs font-bold text-slate-500 uppercase mb-2 tracking-widest">Name</label>
-               <input type="text" class="w-full bg-white border border-slate-300 p-3 outline-none focus:border-amber-600 transition" placeholder="의뢰인 성함">
+               <label class="block text-xs font-bold text-slate-500 mb-2 tracking-widest">이름</label>
+               <input type="text" class="w-full bg-white border border-slate-300 p-3 outline-none focus:border-amber-600 transition text-sm" placeholder="의뢰인 성함">
             </div>
             <div>
-               <label class="block text-xs font-bold text-slate-500 uppercase mb-2 tracking-widest">Phone</label>
-               <input type="tel" class="w-full bg-white border border-slate-300 p-3 outline-none focus:border-amber-600 transition" placeholder="연락처">
+               <label class="block text-xs font-bold text-slate-500 mb-2 tracking-widest">연락처</label>
+               <input type="tel" class="w-full bg-white border border-slate-300 p-3 outline-none focus:border-amber-600 transition text-sm" placeholder="연락처">
             </div>
           </div>
           <div>
-            <label class="block text-xs font-bold text-slate-500 uppercase mb-2 tracking-widest">Message</label>
-            <textarea class="w-full bg-white border border-slate-300 p-3 outline-none focus:border-amber-600 transition h-32 placeholder-slate-300" placeholder="상담 내용을 간략히 적어주세요"></textarea>
+            <label class="block text-xs font-bold text-slate-500 mb-2 tracking-widest">상담 내용</label>
+            <textarea class="w-full bg-white border border-slate-300 p-3 outline-none focus:border-amber-600 transition h-28 placeholder-slate-300 text-sm" placeholder="상담 내용을 간략히 적어주세요"></textarea>
           </div>
           
-          <button type="button" class="w-full py-4 bg-slate-900 text-white font-serif font-bold text-lg hover:bg-amber-600 transition duration-300">
+          <button type="button" class="w-full py-3 bg-slate-900 text-white font-serif font-bold hover:bg-amber-600 transition text-sm">
             상담 신청하기
           </button>
         </form>
@@ -200,13 +196,10 @@
     </div>
   </section>
 
-</div>
+  <!-- Footer -->
+  <footer class="py-10 px-6 bg-slate-900 text-center">
+    <p class="font-serif text-lg text-amber-500 mb-2">법무법인 정의</p>
+    <p class="text-sm text-slate-500">서울시 서초구 서초대로 123 법조빌딩 7층</p>
+  </footer>
 
-<script>
-  VanillaTilt.init(document.querySelectorAll("[data-tilt]"), {
-    max: 5,
-    speed: 400,
-    glare: true,
-    "max-glare": 0.2,
-  });
-</script>
+</div>

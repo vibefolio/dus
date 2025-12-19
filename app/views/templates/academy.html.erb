@@ -1,5 +1,4 @@
 <%# Academy Template - 대치 엘리트 학원 %>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.0/vanilla-tilt.min.js"></script>
 
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=Noto+Sans+KR:wght@300;400;500;700&display=swap');
@@ -9,185 +8,155 @@
 
   .chalkboard {
     background-color: #2F3E46;
-    background-image: 
-        radial-gradient(#4d5b61 1px, transparent 1px),
-        repeating-linear-gradient(45deg, rgba(255,255,255,0.02) 0px, rgba(255,255,255,0.02) 1px, transparent 1px, transparent 10px);
-    background-size: 20px 20px, 100% 100%;
-  }
-  
-  .marquee-container {
-    overflow: hidden;
-    white-space: nowrap;
-  }
-  .marquee-content {
-    display: inline-block;
-    animation: marquee 20s linear infinite;
-  }
-  @keyframes marquee {
-    0% { transform: translateX(0); }
-    100% { transform: translateX(-50%); }
   }
 </style>
 
 <div class="bg-gray-50 text-gray-800 font-sans selection:bg-[#1B4332] selection:text-white">
 
-  <!-- Rolling Banner (Top) -->
-  <div class="bg-[#1B4332] text-white py-2 text-sm font-medium marquee-container border-b border-white/10">
-    <div class="marquee-content px-4">
-      🎉 2024학년도 서울대 의예과 합격 - 김00 학생 🎉 &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp; 
-      🎉 연세대 경영학과 합격 - 이00 학생 🎉 &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp; 
-      🎉 고려대 컴퓨터공학과 합격 - 박00 학생 🎉 &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp; 
-      🎉 카이스트 합격 - 최00 학생 🎉 &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp; 
-      🎉 성균관대 합격 - 정00 학생 🎉 &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp; 
-      🎉 2024학년도 서울대 의예과 합격 - 김00 학생 🎉 &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp; 
-      🎉 연세대 경영학과 합격 - 이00 학생 🎉 &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp; 
-      🎉 고려대 컴퓨터공학과 합격 - 박00 학생 🎉 &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp; 
-      🎉 카이스트 합격 - 최00 학생 🎉 &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp; 
-      🎉 성균관대 합격 - 정00 학생 🎉
-    </div>
+  <!-- Rolling Banner -->
+  <div class="bg-[#1B4332] text-white py-2 text-xs font-medium border-b border-white/10 text-center">
+    🎉 2024학년도 서울대 의예과 합격 - 김OO 학생 | 연세대 경영학과 합격 - 이OO 학생 | 고려대 합격 - 박OO 학생 🎉
   </div>
 
   <!-- Nav -->
   <nav class="sticky top-0 z-50 bg-white border-b border-gray-200 px-6 py-4 shadow-sm">
     <div class="container mx-auto flex justify-between items-center">
       <div class="flex items-center gap-2">
-        <span class="text-3xl text-[#1B4332]">🎓</span>
+        <span class="text-2xl text-[#1B4332]">🎓</span>
         <div>
-           <h1 class="font-serif font-bold text-xl text-[#1B4332] leading-none">대치 엘리트</h1>
-           <span class="text-[10px] text-gray-400 tracking-widest uppercase">Since 2005</span>
+           <h1 class="font-serif font-bold text-lg text-[#1B4332] leading-none">대치 엘리트</h1>
+           <span class="text-[10px] text-gray-400 tracking-widest">Since 2005</span>
         </div>
       </div>
-      <div class="hidden md:flex gap-8 font-bold text-sm text-gray-600">
+      <div class="hidden md:flex gap-6 font-bold text-sm text-gray-600">
         <a href="#about" class="hover:text-[#1B4332] transition">학원 소개</a>
         <a href="#system" class="hover:text-[#1B4332] transition">관리 시스템</a>
         <a href="#class" class="hover:text-[#1B4332] transition">수강 안내</a>
         <a href="#consult" class="hover:text-[#1B4332] transition">입학 상담</a>
       </div>
-      <button onclick="document.getElementById('consult').scrollIntoView({behavior: 'smooth'})"
-              class="px-5 py-2 bg-[#1B4332] text-white rounded font-bold text-sm hover:bg-[#0f2a1e] transition shadow-md">
+      <button class="px-4 py-2 bg-[#1B4332] text-white rounded font-bold text-sm hover:bg-[#0f2a1e] transition shadow-md">
         입학 테스트 신청
       </button>
     </div>
   </nav>
 
-  <!-- Hero with Chalkboard feel -->
-  <header class="chalkboard text-white py-24 px-6 relative overflow-hidden">
-    <div class="container mx-auto grid md:grid-cols-2 gap-12 items-center relative z-10">
-      <div class="space-y-6">
+  <!-- Hero -->
+  <header class="chalkboard text-white py-16 md:py-20 px-6 relative overflow-hidden">
+    <div class="container mx-auto grid md:grid-cols-2 gap-10 items-center relative z-10">
+      <div class="space-y-5">
         <span class="inline-block border border-white/30 bg-white/10 px-3 py-1 rounded text-sm font-medium">✨ 2024 윈터스쿨 모집 중</span>
-        <h2 class="text-5xl md:text-6xl font-serif font-bold leading-tight">
+        <h2 class="text-4xl md:text-5xl font-serif font-bold leading-tight">
           성적은 반드시<br>
-          <span class="text-[#95D5B2] decoration-4 underline underline-offset-8">관리</span>에서 나옵니다.
+          <span class="text-[#95D5B2] underline underline-offset-8">관리</span>에서 나옵니다.
         </h2>
-        <p class="text-gray-300 text-lg leading-relaxed">
+        <p class="text-gray-300 text-base leading-relaxed">
           무조건 열심히 하는 것보다 '제대로' 하는 것이 중요합니다.<br>
           대치동 1타 강사진의 강의와 1:1 밀착 관리 시스템.<br>
           여러분의 꿈을 현실로 만들어 드립니다.
         </p>
         
-        <div class="flex gap-4 pt-4">
-           <div class="bg-white/10 p-4 rounded border border-white/20 backdrop-blur-sm text-center">
-              <p class="text-3xl font-bold text-[#95D5B2]">1등급</p>
+        <div class="flex gap-3 pt-3">
+           <div class="bg-white/10 p-3 rounded border border-white/20 backdrop-blur-sm text-center">
+              <p class="text-2xl font-bold text-[#95D5B2]">1등급</p>
               <p class="text-xs text-gray-300 mt-1">배출 비율 업계 1위</p>
            </div>
-           <div class="bg-white/10 p-4 rounded border border-white/20 backdrop-blur-sm text-center">
-              <p class="text-3xl font-bold text-[#95D5B2]">95%</p>
+           <div class="bg-white/10 p-3 rounded border border-white/20 backdrop-blur-sm text-center">
+              <p class="text-2xl font-bold text-[#95D5B2]">95%</p>
               <p class="text-xs text-gray-300 mt-1">재원생 성적 향상률</p>
            </div>
         </div>
       </div>
       
-      <div class="relative pl-8">
-        <div class="absolute top-4 left-4 w-full h-full border-2 border-[#95D5B2]/30 rounded-lg -z-0"></div>
-        <img src="https://images.unsplash.com/photo-1427504746696-ea3093914d23?q=80&w=800" class="rounded-lg shadow-2xl skew-y-2 transform hover:skew-y-0 transition duration-500 w-full h-[400px] object-cover filter brightness-90">
+      <div class="relative">
+        <img src="https://images.unsplash.com/photo-1427504746696-ea3093914d23?q=80&w=800" alt="학원" class="rounded-lg shadow-2xl w-full h-[350px] object-cover filter brightness-90">
       </div>
     </div>
   </header>
 
-  <!-- System (Tabs/Process) -->
-  <section id="system" class="py-20 bg-white">
+  <!-- System -->
+  <section id="system" class="py-16 md:py-20 bg-white">
     <div class="container mx-auto px-6">
-      <div class="text-center mb-16">
-        <h2 class="text-3xl font-bold font-serif text-[#1B4332] mb-4">독보적인 관리 시스템</h2>
-        <p class="text-gray-500">대치 엘리트만의 4단계 성적 향상 프로세스</p>
+      <div class="text-center mb-12">
+        <h2 class="text-2xl font-bold font-serif text-[#1B4332] mb-3">독보적인 관리 시스템</h2>
+        <p class="text-gray-500 text-sm">대치 엘리트만의 4단계 성적 향상 프로세스</p>
       </div>
 
-      <div class="grid md:grid-cols-4 gap-6">
-        <div class="bg-[#F8F9FA] p-8 rounded-xl border border-gray-100 hover:border-[#1B4332] transition group cursor-pointer text-center">
-          <div class="w-16 h-16 bg-white rounded-full flex items-center justify-center text-3xl shadow-sm mb-6 mx-auto group-hover:bg-[#1B4332] group-hover:text-white transition">📝</div>
-          <h3 class="font-bold text-lg mb-3">Daily Test</h3>
-          <p class="text-sm text-gray-500">매일 수업 전 테스트로<br>전날 학습 내용 완벽 점검</p>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-5">
+        <div class="bg-[#F8F9FA] p-6 rounded-xl border border-gray-100 hover:border-[#1B4332] transition group cursor-pointer text-center">
+          <div class="w-14 h-14 bg-white rounded-full flex items-center justify-center text-2xl shadow-sm mb-4 mx-auto group-hover:bg-[#1B4332] group-hover:text-white transition">📝</div>
+          <h3 class="font-bold text-base mb-2">데일리 테스트</h3>
+          <p class="text-xs text-gray-500">매일 수업 전 테스트로<br>전날 학습 내용 완벽 점검</p>
         </div>
 
-        <div class="bg-[#F8F9FA] p-8 rounded-xl border border-gray-100 hover:border-[#1B4332] transition group cursor-pointer text-center">
-          <div class="w-16 h-16 bg-white rounded-full flex items-center justify-center text-3xl shadow-sm mb-6 mx-auto group-hover:bg-[#1B4332] group-hover:text-white transition">📊</div>
-          <h3 class="font-bold text-lg mb-3">Weakness Check</h3>
-          <p class="text-sm text-gray-500">AI 오답 노트 시스템으로<br>취약 유형 집중 공략</p>
+        <div class="bg-[#F8F9FA] p-6 rounded-xl border border-gray-100 hover:border-[#1B4332] transition group cursor-pointer text-center">
+          <div class="w-14 h-14 bg-white rounded-full flex items-center justify-center text-2xl shadow-sm mb-4 mx-auto group-hover:bg-[#1B4332] group-hover:text-white transition">📊</div>
+          <h3 class="font-bold text-base mb-2">취약점 분석</h3>
+          <p class="text-xs text-gray-500">AI 오답 노트 시스템으로<br>취약 유형 집중 공략</p>
         </div>
 
-        <div class="bg-[#F8F9FA] p-8 rounded-xl border border-gray-100 hover:border-[#1B4332] transition group cursor-pointer text-center">
-          <div class="w-16 h-16 bg-white rounded-full flex items-center justify-center text-3xl shadow-sm mb-6 mx-auto group-hover:bg-[#1B4332] group-hover:text-white transition">👨‍🏫</div>
-          <h3 class="font-bold text-lg mb-3">1:1 Tutoring</h3>
-          <p class="text-sm text-gray-500">수업 후 질의응답 및<br>개별 클리닉 진행</p>
+        <div class="bg-[#F8F9FA] p-6 rounded-xl border border-gray-100 hover:border-[#1B4332] transition group cursor-pointer text-center">
+          <div class="w-14 h-14 bg-white rounded-full flex items-center justify-center text-2xl shadow-sm mb-4 mx-auto group-hover:bg-[#1B4332] group-hover:text-white transition">👨‍🏫</div>
+          <h3 class="font-bold text-base mb-2">1:1 튜터링</h3>
+          <p class="text-xs text-gray-500">수업 후 질의응답 및<br>개별 클리닉 진행</p>
         </div>
 
-        <div class="bg-[#F8F9FA] p-8 rounded-xl border border-gray-100 hover:border-[#1B4332] transition group cursor-pointer text-center">
-          <div class="w-16 h-16 bg-white rounded-full flex items-center justify-center text-3xl shadow-sm mb-6 mx-auto group-hover:bg-[#1B4332] group-hover:text-white transition">📱</div>
-          <h3 class="font-bold text-lg mb-3">Real-time Report</h3>
-          <p class="text-sm text-gray-500">출결 및 테스트 결과<br>학부모 실시간 문자 전송</p>
+        <div class="bg-[#F8F9FA] p-6 rounded-xl border border-gray-100 hover:border-[#1B4332] transition group cursor-pointer text-center">
+          <div class="w-14 h-14 bg-white rounded-full flex items-center justify-center text-2xl shadow-sm mb-4 mx-auto group-hover:bg-[#1B4332] group-hover:text-white transition">📱</div>
+          <h3 class="font-bold text-base mb-2">실시간 리포트</h3>
+          <p class="text-xs text-gray-500">출결 및 테스트 결과<br>학부모 실시간 문자 전송</p>
         </div>
       </div>
     </div>
   </section>
 
   <!-- Class Info -->
-  <section id="class" class="py-20 bg-[#F0F4F2]">
+  <section id="class" class="py-16 md:py-20 bg-[#F0F4F2]">
     <div class="container mx-auto px-6">
-      <h2 class="text-3xl font-bold font-serif text-[#1B4332] mb-12 text-center">수강 과정 안내</h2>
+      <h2 class="text-2xl font-bold font-serif text-[#1B4332] mb-10 text-center">수강 과정 안내</h2>
       
-      <div class="grid md:grid-cols-3 gap-8">
+      <div class="grid md:grid-cols-3 gap-6">
         <!-- Card 1 -->
-        <div class="bg-white rounded-t-xl overflow-hidden shadow hover:shadow-xl transition duration-300">
+        <div class="bg-white rounded-t-xl overflow-hidden shadow hover:shadow-xl transition">
            <div class="h-2 bg-[#2D6A4F]"></div>
-           <div class="p-8">
-             <span class="bg-[#D8F3DC] text-[#1B4332] text-xs font-bold px-2 py-1 rounded mb-4 inline-block">고등부</span>
-             <h3 class="text-2xl font-bold mb-2">수능 집중반</h3>
-             <ul class="text-sm text-gray-600 space-y-3 mb-6 border-t pt-4 mt-2">
+           <div class="p-6">
+             <span class="bg-[#D8F3DC] text-[#1B4332] text-xs font-bold px-2 py-1 rounded mb-3 inline-block">고등부</span>
+             <h3 class="text-xl font-bold mb-2">수능 집중반</h3>
+             <ul class="text-sm text-gray-600 space-y-2 mb-5 border-t pt-3 mt-2">
                <li>✓ 국영수 수능 필수 과목 집중</li>
                <li>✓ EBS 연계 변형 문제 풀이</li>
                <li>✓ 매주 실전 모의고사</li>
              </ul>
-             <button class="w-full py-3 border border-[#1B4332] text-[#1B4332] font-bold rounded hover:bg-[#1B4332] hover:text-white transition">상담 신청</button>
+             <button class="w-full py-2 border border-[#1B4332] text-[#1B4332] font-bold rounded hover:bg-[#1B4332] hover:text-white transition text-sm">상담 신청</button>
            </div>
         </div>
 
         <!-- Card 2 -->
-        <div class="bg-white rounded-t-xl overflow-hidden shadow hover:shadow-xl transition duration-300 transform md:-translate-y-4">
+        <div class="bg-white rounded-t-xl overflow-hidden shadow hover:shadow-xl transition md:-translate-y-3">
            <div class="h-2 bg-[#1B4332]"></div>
-           <div class="p-8">
-             <span class="bg-[#1B4332] text-white text-xs font-bold px-2 py-1 rounded mb-4 inline-block">Best Choice</span>
-             <h3 class="text-2xl font-bold mb-2">의치한 프리미엄반</h3>
-             <ul class="text-sm text-gray-600 space-y-3 mb-6 border-t pt-4 mt-2">
+           <div class="p-6">
+             <span class="bg-[#1B4332] text-white text-xs font-bold px-2 py-1 rounded mb-3 inline-block">Best Choice</span>
+             <h3 class="text-xl font-bold mb-2">의치한 프리미엄반</h3>
+             <ul class="text-sm text-gray-600 space-y-2 mb-5 border-t pt-3 mt-2">
                <li>✓ 상위 1% 최상위권 전용 강좌</li>
                <li>✓ 킬러 문항 집중 훈련</li>
                <li>✓ 의대 입시 컨설팅 무료 제공</li>
              </ul>
-             <button class="w-full py-3 bg-[#1B4332] text-white font-bold rounded hover:bg-[#0f2a1e] transition">상담 신청</button>
+             <button class="w-full py-2 bg-[#1B4332] text-white font-bold rounded hover:bg-[#0f2a1e] transition text-sm">상담 신청</button>
            </div>
         </div>
 
         <!-- Card 3 -->
-        <div class="bg-white rounded-t-xl overflow-hidden shadow hover:shadow-xl transition duration-300">
+        <div class="bg-white rounded-t-xl overflow-hidden shadow hover:shadow-xl transition">
            <div class="h-2 bg-[#40916C]"></div>
-           <div class="p-8">
-             <span class="bg-[#D8F3DC] text-[#1B4332] text-xs font-bold px-2 py-1 rounded mb-4 inline-block">중등부</span>
-             <h3 class="text-2xl font-bold mb-2">특목고 대비반</h3>
-             <ul class="text-sm text-gray-600 space-y-3 mb-6 border-t pt-4 mt-2">
+           <div class="p-6">
+             <span class="bg-[#D8F3DC] text-[#1B4332] text-xs font-bold px-2 py-1 rounded mb-3 inline-block">중등부</span>
+             <h3 class="text-xl font-bold mb-2">특목고 대비반</h3>
+             <ul class="text-sm text-gray-600 space-y-2 mb-5 border-t pt-3 mt-2">
                <li>✓ 내신 만점 관리</li>
                <li>✓ 고등 선행 학습</li>
                <li>✓ 특목/자사고 입시 면접 대비</li>
              </ul>
-             <button class="w-full py-3 border border-[#1B4332] text-[#1B4332] font-bold rounded hover:bg-[#1B4332] hover:text-white transition">상담 신청</button>
+             <button class="w-full py-2 border border-[#1B4332] text-[#1B4332] font-bold rounded hover:bg-[#1B4332] hover:text-white transition text-sm">상담 신청</button>
            </div>
         </div>
       </div>
@@ -195,30 +164,30 @@
   </section>
 
   <!-- Consult Form -->
-  <section id="consult" class="py-20 bg-[#1B4332] text-white">
-     <div class="container mx-auto px-6 max-w-2xl">
-       <div class="text-center mb-10">
-         <h2 class="text-3xl font-serif font-bold mb-4">입학 상담 신청</h2>
-         <p class="text-[#95D5B2]">
+  <section id="consult" class="py-16 md:py-20 bg-[#1B4332] text-white">
+     <div class="container mx-auto px-6 max-w-xl">
+       <div class="text-center mb-8">
+         <h2 class="text-2xl font-serif font-bold mb-3">입학 상담 신청</h2>
+         <p class="text-[#95D5B2] text-sm">
            학생의 현재 성적과 목표 대학을 알려주시면<br>
            전문 컨설턴트가 최적의 로드맵을 제시해드립니다.
          </p>
        </div>
 
-       <form class="bg-white/10 p-8 rounded-xl backdrop-blur-sm border border-white/20">
+       <form class="bg-white/10 p-6 rounded-xl backdrop-blur-sm border border-white/20">
          <div class="grid md:grid-cols-2 gap-4 mb-4">
-            <input type="text" placeholder="학생 이름" class="bg-white/90 border-0 rounded p-4 text-black focus:ring-2 focus:ring-[#95D5B2] outline-none">
-            <input type="tel" placeholder="학부모 연락처" class="bg-white/90 border-0 rounded p-4 text-black focus:ring-2 focus:ring-[#95D5B2] outline-none">
+            <input type="text" placeholder="학생 이름" class="bg-white/90 border-0 rounded p-3 text-black focus:ring-2 focus:ring-[#95D5B2] outline-none text-sm">
+            <input type="tel" placeholder="학부모 연락처" class="bg-white/90 border-0 rounded p-3 text-black focus:ring-2 focus:ring-[#95D5B2] outline-none text-sm">
          </div>
          <div class="grid md:grid-cols-2 gap-4 mb-4">
-            <select class="bg-white/90 border-0 rounded p-4 text-gray-600 focus:ring-2 focus:ring-[#95D5B2] outline-none">
+            <select class="bg-white/90 border-0 rounded p-3 text-gray-600 focus:ring-2 focus:ring-[#95D5B2] outline-none text-sm">
                <option>학년 선택</option>
                <option>예비 고1</option>
                <option>고1</option>
                <option>고2</option>
                <option>고3 / N수</option>
             </select>
-            <select class="bg-white/90 border-0 rounded p-4 text-gray-600 focus:ring-2 focus:ring-[#95D5B2] outline-none">
+            <select class="bg-white/90 border-0 rounded p-3 text-gray-600 focus:ring-2 focus:ring-[#95D5B2] outline-none text-sm">
                <option>희망 계열</option>
                <option>의치한약수</option>
                <option>이공계열</option>
@@ -226,11 +195,17 @@
                <option>예체능</option>
             </select>
          </div>
-         <button class="w-full py-4 bg-[#95D5B2] text-[#1B4332] font-bold text-lg rounded hover:bg-white transition mt-2">
+         <button class="w-full py-3 bg-[#95D5B2] text-[#1B4332] font-bold rounded hover:bg-white transition mt-2 text-sm">
            무료 레벨테스트 예약하기
          </button>
        </form>
      </div>
   </section>
+
+  <!-- Footer -->
+  <footer class="py-10 px-6 bg-[#0f2a1e] text-center">
+    <p class="text-[#95D5B2] font-bold text-lg mb-2">🎓 대치 엘리트 학원</p>
+    <p class="text-sm text-gray-500">서울시 강남구 대치동 123-45</p>
+  </footer>
 
 </div>

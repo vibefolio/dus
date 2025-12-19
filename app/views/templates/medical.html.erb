@@ -1,26 +1,19 @@
 <%# Medical Template - 더 케어 메디컬 센터 %>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.0/vanilla-tilt.min.js"></script>
 
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap');
   
   .font-sans { font-family: 'Noto Sans KR', sans-serif; }
-  
-  .medical-pattern {
-    background-image: radial-gradient(#e0f2fe 1px, transparent 1px);
-    background-size: 20px 20px;
-  }
 </style>
 
 <div class="bg-white text-slate-800 font-sans selection:bg-sky-500 selection:text-white">
 
   <!-- Top Bar -->
-  <div class="bg-sky-900 text-white py-2 px-6 text-xs md:text-sm">
+  <div class="bg-sky-900 text-white py-2 px-6 text-xs">
     <div class="container mx-auto flex justify-between items-center">
       <div class="flex gap-4">
         <span>⏰ 평일 09:00 - 19:00 (점심시간 13:00 - 14:00)</span>
-        <span class="hidden md:inline">|</span>
-        <span class="hidden md:inline">📞 응급센터 24시간 운영</span>
+        <span class="hidden md:inline">| 📞 응급센터 24시간 운영</span>
       </div>
       <div class="flex gap-4">
         <a href="#" class="hover:text-sky-200">로그인</a>
@@ -33,185 +26,178 @@
   <nav class="sticky top-0 z-50 bg-white/95 backdrop-blur border-b border-slate-100 shadow-sm">
     <div class="container mx-auto px-6 py-4 flex justify-between items-center">
       <div class="flex items-center gap-2">
-        <div class="w-10 h-10 bg-sky-600 rounded-lg flex items-center justify-center text-white text-2xl font-bold">+</div>
+        <div class="w-9 h-9 bg-sky-600 rounded-lg flex items-center justify-center text-white text-xl font-bold">+</div>
         <div class="flex flex-col">
-           <span class="text-xl font-bold text-sky-900 leading-none">더 케어</span>
-           <span class="text-xs text-slate-500 uppercase tracking-wider">Medical Center</span>
+           <span class="text-lg font-bold text-sky-900 leading-none">더 케어</span>
+           <span class="text-xs text-slate-500 tracking-wider">Medical Center</span>
         </div>
       </div>
-      <div class="hidden md:flex gap-8 font-bold text-slate-600">
+      <div class="hidden md:flex gap-6 font-bold text-slate-600 text-sm">
         <a href="#about" class="hover:text-sky-600 transition">병원 소개</a>
         <a href="#center" class="hover:text-sky-600 transition">진료 센터</a>
         <a href="#checkup" class="hover:text-sky-600 transition">종합 검진</a>
         <a href="#reserve" class="hover:text-sky-600 transition">진료 예약</a>
       </div>
-      <button onclick="document.getElementById('reserve').scrollIntoView({behavior: 'smooth'})"
-              class="px-6 py-2 bg-sky-600 text-white font-bold rounded hover:bg-sky-700 transition shadow-lg shadow-sky-200">
+      <button class="px-5 py-2 bg-sky-600 text-white font-bold rounded hover:bg-sky-700 transition shadow-lg shadow-sky-200 text-sm">
         간편 예약
       </button>
     </div>
   </nav>
 
   <!-- Hero -->
-  <header class="py-24 px-6 relative overflow-hidden bg-sky-50 lg:h-[600px] flex items-center">
-    <div class="absolute right-0 top-0 w-1/2 h-full bg-sky-100 skew-x-[-10deg] transform translate-x-20 z-0"></div>
-    
-    <div class="container mx-auto grid md:grid-cols-2 gap-12 items-center relative z-10">
-      <div class="space-y-6">
+  <header class="py-16 md:py-20 px-6 relative overflow-hidden bg-sky-50 flex items-center">
+    <div class="container mx-auto grid md:grid-cols-2 gap-10 items-center relative z-10">
+      <div class="space-y-5">
         <span class="text-sky-600 font-bold bg-white px-3 py-1 rounded-full text-sm border border-sky-100 shadow-sm inline-block">
            보건복지부 지정 안심 병원
         </span>
-        <h1 class="text-5xl md:text-6xl font-bold leading-tight text-slate-900">
+        <h1 class="text-4xl md:text-5xl font-bold leading-tight text-slate-900">
           환자 중심의<br>
           <span class="text-sky-600">따뜻한 치유</span>를<br>
           약속합니다.
         </h1>
-        <p class="text-lg text-slate-500 leading-relaxed max-w-md">
+        <p class="text-base text-slate-500 leading-relaxed max-w-md">
           대학병원급 최첨단 장비와 분야별 전문의 협진 시스템.<br>
           가족을 대하는 마음으로 정성을 다해 진료하겠습니다.
         </p>
-        <div class="flex gap-4 pt-4">
-           <button class="px-8 py-4 bg-slate-900 text-white font-bold rounded hover:scale-105 transition shadow-xl">
+        <div class="flex gap-3 pt-3">
+           <button class="px-6 py-3 bg-slate-900 text-white font-bold rounded hover:bg-slate-800 transition shadow-xl text-sm">
              진료과목 보기
            </button>
-           <button class="px-8 py-4 bg-white text-slate-900 border border-slate-200 font-bold rounded hover:border-sky-600 hover:text-sky-600 transition">
+           <button class="px-6 py-3 bg-white text-slate-900 border border-slate-200 font-bold rounded hover:border-sky-600 hover:text-sky-600 transition text-sm">
              의료진 소개
            </button>
         </div>
       </div>
 
-      <div class="relative" data-tilt data-tilt-max="3">
+      <div class="relative">
          <div class="relative rounded-2xl overflow-hidden shadow-2xl border-4 border-white">
-            <img src="https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?q=80&w=800" class="w-full h-[400px] object-cover">
+            <img src="https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?q=80&w=800" alt="더 케어 메디컬" class="w-full h-[350px] object-cover">
             <div class="absolute inset-0 bg-gradient-to-t from-sky-900/60 to-transparent"></div>
-            <div class="absolute bottom-6 left-6 text-white">
-               <p class="font-bold text-2xl">신뢰받는 의료기관</p>
+            <div class="absolute bottom-5 left-5 text-white">
+               <p class="font-bold text-xl">신뢰받는 의료기관</p>
                <p class="text-sm opacity-80">Since 1995</p>
             </div>
          </div>
          
          <!-- Stat Card -->
-         <div class="absolute -bottom-6 -right-6 bg-white p-6 rounded-xl shadow-lg border-l-4 border-sky-500 animate-bounce">
+         <div class="absolute -bottom-5 -right-5 bg-white p-5 rounded-xl shadow-lg border-l-4 border-sky-500">
             <div class="text-xs text-slate-400 font-bold mb-1">누적 진료 건수</div>
-            <div class="text-2xl font-black text-slate-800">500,000+</div>
+            <div class="text-xl font-black text-slate-800">500,000+</div>
          </div>
       </div>
     </div>
   </header>
 
   <!-- Centers Grid -->
-  <section id="center" class="py-24 bg-white">
+  <section id="center" class="py-16 md:py-20 bg-white">
     <div class="container mx-auto px-6">
-       <div class="text-center mb-16">
-          <h2 class="text-3xl font-bold text-slate-900 mb-4">전문 진료 센터</h2>
-          <p class="text-slate-500">각과 전문의가 상주하여 심도 있는 진료를 제공합니다.</p>
+       <div class="text-center mb-12">
+          <h2 class="text-2xl font-bold text-slate-900 mb-3">전문 진료 센터</h2>
+          <p class="text-slate-500 text-sm">각과 전문의가 상주하여 심도 있는 진료를 제공합니다.</p>
        </div>
 
-       <div class="grid md:grid-cols-4 gap-6">
+       <div class="grid grid-cols-2 md:grid-cols-4 gap-5">
           <!-- Item 1 -->
-          <div class="border border-slate-100 p-8 rounded-2xl hover:shadow-xl hover:-translate-y-2 transition duration-300 group cursor-pointer bg-slate-50 hover:bg-white text-center">
-             <div class="w-16 h-16 bg-white rounded-full mx-auto flex items-center justify-center text-3xl mb-4 shadow-sm group-hover:scale-110 transition">🩺</div>
-             <h3 class="font-bold text-lg mb-2 text-slate-800">소화기 내과</h3>
-             <p class="text-sm text-slate-500">위/대장 내시경<br>용종 절제술</p>
+          <div class="border border-slate-100 p-6 rounded-2xl hover:shadow-xl hover:-translate-y-2 transition duration-300 group cursor-pointer bg-slate-50 hover:bg-white text-center">
+             <div class="w-14 h-14 bg-white rounded-full mx-auto flex items-center justify-center text-2xl mb-3 shadow-sm group-hover:scale-110 transition">🩺</div>
+             <h3 class="font-bold text-base mb-1 text-slate-800">소화기 내과</h3>
+             <p class="text-xs text-slate-500">위/대장 내시경<br>용종 절제술</p>
           </div>
           
           <!-- Item 2 -->
-          <div class="border border-slate-100 p-8 rounded-2xl hover:shadow-xl hover:-translate-y-2 transition duration-300 group cursor-pointer bg-slate-50 hover:bg-white text-center">
-             <div class="w-16 h-16 bg-white rounded-full mx-auto flex items-center justify-center text-3xl mb-4 shadow-sm group-hover:scale-110 transition">🦴</div>
-             <h3 class="font-bold text-lg mb-2 text-slate-800">정형외과</h3>
-             <p class="text-sm text-slate-500">관절/척추 클리닉<br>도수 치료</p>
+          <div class="border border-slate-100 p-6 rounded-2xl hover:shadow-xl hover:-translate-y-2 transition duration-300 group cursor-pointer bg-slate-50 hover:bg-white text-center">
+             <div class="w-14 h-14 bg-white rounded-full mx-auto flex items-center justify-center text-2xl mb-3 shadow-sm group-hover:scale-110 transition">🦴</div>
+             <h3 class="font-bold text-base mb-1 text-slate-800">정형외과</h3>
+             <p class="text-xs text-slate-500">관절/척추 클리닉<br>도수 치료</p>
           </div>
           
           <!-- Item 3 -->
-          <div class="border border-slate-100 p-8 rounded-2xl hover:shadow-xl hover:-translate-y-2 transition duration-300 group cursor-pointer bg-slate-50 hover:bg-white text-center">
-             <div class="w-16 h-16 bg-white rounded-full mx-auto flex items-center justify-center text-3xl mb-4 shadow-sm group-hover:scale-110 transition">🧠</div>
-             <h3 class="font-bold text-lg mb-2 text-slate-800">신경과</h3>
-             <p class="text-sm text-slate-500">두통/어지럼증<br>뇌혈관 검사</p>
+          <div class="border border-slate-100 p-6 rounded-2xl hover:shadow-xl hover:-translate-y-2 transition duration-300 group cursor-pointer bg-slate-50 hover:bg-white text-center">
+             <div class="w-14 h-14 bg-white rounded-full mx-auto flex items-center justify-center text-2xl mb-3 shadow-sm group-hover:scale-110 transition">🧠</div>
+             <h3 class="font-bold text-base mb-1 text-slate-800">신경과</h3>
+             <p class="text-xs text-slate-500">두통/어지럼증<br>뇌혈관 검사</p>
           </div>
           
           <!-- Item 4 -->
-          <div class="border border-slate-100 p-8 rounded-2xl hover:shadow-xl hover:-translate-y-2 transition duration-300 group cursor-pointer bg-slate-50 hover:bg-white text-center">
-             <div class="w-16 h-16 bg-white rounded-full mx-auto flex items-center justify-center text-3xl mb-4 shadow-sm group-hover:scale-110 transition">👶</div>
-             <h3 class="font-bold text-lg mb-2 text-slate-800">소아청소년과</h3>
-             <p class="text-sm text-slate-500">영유아 검진<br>예방 접종</p>
+          <div class="border border-slate-100 p-6 rounded-2xl hover:shadow-xl hover:-translate-y-2 transition duration-300 group cursor-pointer bg-slate-50 hover:bg-white text-center">
+             <div class="w-14 h-14 bg-white rounded-full mx-auto flex items-center justify-center text-2xl mb-3 shadow-sm group-hover:scale-110 transition">👶</div>
+             <h3 class="font-bold text-base mb-1 text-slate-800">소아청소년과</h3>
+             <p class="text-xs text-slate-500">영유아 검진<br>예방 접종</p>
           </div>
        </div>
     </div>
   </section>
 
   <!-- Health Checkup Process -->
-  <section id="checkup" class="py-24 bg-slate-900 text-white relative">
+  <section id="checkup" class="py-16 md:py-20 bg-slate-900 text-white relative">
     <div class="container mx-auto px-6">
-       <div class="flex flex-col md:flex-row justify-between items-end mb-16">
+       <div class="flex flex-col md:flex-row justify-between items-end mb-12">
           <div>
-            <span class="text-sky-400 font-bold tracking-widest text-xs uppercase mb-2 block">Health Checkup</span>
-            <h2 class="text-3xl font-bold">VIP 종합 건강검진</h2>
+            <span class="text-sky-400 font-bold tracking-widest text-xs mb-2 block">Health Checkup</span>
+            <h2 class="text-2xl font-bold">VIP 종합 건강검진</h2>
           </div>
-          <p class="text-slate-400 text-sm max-w-md text-right mt-4 md:mt-0">
+          <p class="text-slate-400 text-sm max-w-md text-right mt-3 md:mt-0">
              100세 시대, 건강한 삶을 위한 최고의 투자.<br>
              체계적인 검진 프로그램으로 조기 발견과 예방에 힘씁니다.
           </p>
        </div>
 
-       <div class="grid md:grid-cols-4 gap-8">
-          <div class="p-6 border border-white/10 rounded-xl hover:bg-white/5 transition relative overflow-hidden group">
-             <div class="absolute top-0 right-0 p-4 opacity-10 font-black text-6xl group-hover:opacity-20 transition">01</div>
-             <h3 class="font-bold text-xl mb-3 text-sky-400">Basic</h3>
-             <p class="text-slate-300 text-sm mb-4">기초 혈액검사, X-ray, 소변검사 등 필수 항목</p>
-             <span class="text-lg font-bold">₩ 250,000</span>
+       <div class="grid grid-cols-2 md:grid-cols-4 gap-5">
+          <div class="p-5 border border-white/10 rounded-xl hover:bg-white/5 transition relative overflow-hidden group">
+             <h3 class="font-bold text-lg mb-2 text-sky-400">Basic</h3>
+             <p class="text-slate-300 text-xs mb-3">기초 혈액검사, X-ray, 소변검사 등 필수 항목</p>
+             <span class="text-base font-bold">₩ 250,000</span>
           </div>
           
-          <div class="p-6 border border-white/10 rounded-xl bg-sky-900/50 hover:bg-sky-900/80 transition relative overflow-hidden group transform md:-translate-y-4 shadow-lg border-t-4 border-t-sky-500">
-             <div class="absolute top-0 right-0 p-4 opacity-10 font-black text-6xl group-hover:opacity-20 transition">02</div>
-             <span class="bg-sky-500 text-white text-[10px] px-2 py-1 rounded absolute top-4 right-4">Best</span>
-             <h3 class="font-bold text-xl mb-3 text-white">Premium</h3>
-             <p class="text-sky-100 text-sm mb-4">위/대장 내시경, 초음파(복부/갑상선), CT</p>
-             <span class="text-lg font-bold">₩ 550,000</span>
+          <div class="p-5 border border-white/10 rounded-xl bg-sky-900/50 hover:bg-sky-900/80 transition relative overflow-hidden group transform md:-translate-y-3 shadow-lg border-t-4 border-t-sky-500">
+             <span class="bg-sky-500 text-white text-[10px] px-2 py-1 rounded absolute top-3 right-3">Best</span>
+             <h3 class="font-bold text-lg mb-2 text-white">Premium</h3>
+             <p class="text-sky-100 text-xs mb-3">위/대장 내시경, 초음파(복부/갑상선), CT</p>
+             <span class="text-base font-bold">₩ 550,000</span>
           </div>
           
-          <div class="p-6 border border-white/10 rounded-xl hover:bg-white/5 transition relative overflow-hidden group">
-             <div class="absolute top-0 right-0 p-4 opacity-10 font-black text-6xl group-hover:opacity-20 transition">03</div>
-             <h3 class="font-bold text-xl mb-3 text-sky-400">Platinum</h3>
-             <p class="text-slate-300 text-sm mb-4">MRI, MRA, 심장초음파 등 정밀 검진 포함</p>
-             <span class="text-lg font-bold">₩ 1,200,000</span>
+          <div class="p-5 border border-white/10 rounded-xl hover:bg-white/5 transition relative overflow-hidden group">
+             <h3 class="font-bold text-lg mb-2 text-sky-400">Platinum</h3>
+             <p class="text-slate-300 text-xs mb-3">MRI, MRA, 심장초음파 등 정밀 검진 포함</p>
+             <span class="text-base font-bold">₩ 1,200,000</span>
           </div>
           
-          <div class="p-6 border border-white/10 rounded-xl hover:bg-white/5 transition relative overflow-hidden group">
-             <div class="absolute top-0 right-0 p-4 opacity-10 font-black text-6xl group-hover:opacity-20 transition">04</div>
-             <h3 class="font-bold text-xl mb-3 text-sky-400">Special</h3>
-             <p class="text-slate-300 text-sm mb-4">여성 정밀, 뇌 정밀, 심장 정밀 특화 프로그램</p>
-             <span class="text-lg font-bold">문의</span>
+          <div class="p-5 border border-white/10 rounded-xl hover:bg-white/5 transition relative overflow-hidden group">
+             <h3 class="font-bold text-lg mb-2 text-sky-400">Special</h3>
+             <p class="text-slate-300 text-xs mb-3">여성 정밀, 뇌 정밀, 심장 정밀 특화 프로그램</p>
+             <span class="text-base font-bold">문의</span>
           </div>
        </div>
     </div>
   </section>
 
   <!-- Reservation Form -->
-  <section id="reserve" class="py-24 bg-sky-50">
-     <div class="container mx-auto px-6 max-w-4xl">
-       <div class="bg-white rounded-3xl p-10 md:p-16 shadow-xl relative overflow-hidden">
+  <section id="reserve" class="py-16 md:py-20 bg-sky-50">
+     <div class="container mx-auto px-6 max-w-3xl">
+       <div class="bg-white rounded-2xl p-8 md:p-12 shadow-xl relative overflow-hidden">
           <div class="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-sky-400 to-blue-600"></div>
           
-          <div class="text-center mb-10">
-             <h2 class="text-3xl font-bold text-slate-900 mb-4">빠른 진료 예약</h2>
-             <p class="text-slate-500">
+          <div class="text-center mb-8">
+             <h2 class="text-2xl font-bold text-slate-900 mb-3">빠른 진료 예약</h2>
+             <p class="text-slate-500 text-sm">
                 원하시는 의료진과 시간을 선택하시면<br>
                 예약 확정 메시지를 발송해 드립니다.
              </p>
           </div>
 
-          <form class="grid md:grid-cols-2 gap-6">
+          <form class="grid md:grid-cols-2 gap-5">
              <div>
                 <label class="block font-bold text-sm text-slate-600 mb-2">환자명</label>
-                <input type="text" class="w-full bg-slate-50 border border-slate-200 rounded p-3 outline-none focus:border-sky-500 transition">
+                <input type="text" class="w-full bg-slate-50 border border-slate-200 rounded p-3 outline-none focus:border-sky-500 transition text-sm">
              </div>
              <div>
                 <label class="block font-bold text-sm text-slate-600 mb-2">연락처</label>
-                <input type="tel" class="w-full bg-slate-50 border border-slate-200 rounded p-3 outline-none focus:border-sky-500 transition">
+                <input type="tel" class="w-full bg-slate-50 border border-slate-200 rounded p-3 outline-none focus:border-sky-500 transition text-sm">
              </div>
              <div>
                 <label class="block font-bold text-sm text-slate-600 mb-2">진료과 선택</label>
-                <select class="w-full bg-slate-50 border border-slate-200 rounded p-3 outline-none focus:border-sky-500 transition text-slate-600">
+                <select class="w-full bg-slate-50 border border-slate-200 rounded p-3 outline-none focus:border-sky-500 transition text-slate-600 text-sm">
                    <option>내과</option>
                    <option>정형외과</option>
                    <option>신경과</option>
@@ -220,10 +206,10 @@
              </div>
              <div>
                 <label class="block font-bold text-sm text-slate-600 mb-2">희망 날짜</label>
-                <input type="date" class="w-full bg-slate-50 border border-slate-200 rounded p-3 outline-none focus:border-sky-500 transition text-slate-600">
+                <input type="date" class="w-full bg-slate-50 border border-slate-200 rounded p-3 outline-none focus:border-sky-500 transition text-slate-600 text-sm">
              </div>
              
-             <button type="button" class="md:col-span-2 w-full py-4 bg-sky-600 text-white font-bold rounded hover:bg-sky-700 transition shadow-lg mt-4">
+             <button type="button" class="md:col-span-2 w-full py-3 bg-sky-600 text-white font-bold rounded hover:bg-sky-700 transition shadow-lg mt-3 text-sm">
                 예약 신청하기
              </button>
              <p class="md:col-span-2 text-center text-xs text-slate-400">
@@ -234,11 +220,10 @@
      </div>
   </section>
 
-</div>
+  <!-- Footer -->
+  <footer class="py-10 px-6 bg-slate-900 text-center">
+    <p class="text-lg font-bold text-sky-400 mb-2">더 케어 메디컬 센터</p>
+    <p class="text-sm text-slate-500">서울시 서초구 반포대로 123</p>
+  </footer>
 
-<script>
-  VanillaTilt.init(document.querySelectorAll("[data-tilt]"), {
-    max: 5,
-    speed: 400,
-  });
-</script>
+</div>

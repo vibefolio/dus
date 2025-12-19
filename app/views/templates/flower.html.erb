@@ -1,108 +1,92 @@
 <%# Flower Template - 블룸 앤 가든 %>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.0/vanilla-tilt.min.js"></script>
 
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Noto+Sans+KR:wght@300;400&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700;800&family=Noto+Sans+KR:wght@300;400&display=swap');
   
-  .font-serif { font-family: 'Playfair Display', serif; }
+  .font-serif { font-family: 'Nanum Myeongjo', serif; }
   .font-sans { font-family: 'Noto Sans KR', sans-serif; }
-  
-  .flower-mask {
-    mask-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill='%23FF0066' d='M44.7,-76.4C58.9,-69.2,71.8,-59.1,81.6,-46.6C91.4,-34.1,98.1,-19.2,95.8,-4.9C93.5,9.4,82.2,23.1,71.6,35.1C61,47.1,51.1,57.4,39.4,65.2C27.7,73,14.2,78.3,0.3,77.8C-13.6,77.3,-26.8,71,-39.8,63.6C-52.8,56.2,-65.6,47.7,-75.3,36.2C-85,24.7,-91.6,10.2,-89.9,-3.8C-88.2,-17.8,-78.2,-31.3,-67.2,-42.6C-56.2,-53.9,-44.2,-63,-31.6,-70.9C-19,-78.8,-5.8,-85.5,3.6,-91.7C13,-97.9,30.5,-103.6,44.7,-76.4Z' transform='translate(100 100)' /%3E%3C/svg%3E");
-    mask-size: contain;
-    mask-repeat: no-repeat;
-    mask-position: center;
-  }
 </style>
 
 <div class="bg-stone-50 text-stone-600 font-sans selection:bg-rose-200 selection:text-stone-800">
 
   <!-- Nav -->
-  <nav class="fixed w-full z-50 px-8 py-6 bg-stone-50/80 backdrop-blur-sm border-b border-stone-200">
+  <nav class="fixed w-full z-50 px-6 py-5 bg-stone-50/95 backdrop-blur-sm border-b border-stone-200">
     <div class="container mx-auto flex justify-between items-center">
       <div class="flex items-center gap-2">
-        <span class="text-2xl text-rose-400">❀</span>
-        <span class="font-serif text-xl tracking-widest text-stone-800">Bloom & Garden</span>
+        <span class="text-xl text-rose-400">❀</span>
+        <span class="font-serif text-lg tracking-wide text-stone-800">블룸 앤 가든</span>
       </div>
-      <div class="hidden md:flex gap-10 text-xs font-bold tracking-[0.2em] uppercase text-stone-500">
-        <a href="#about" class="hover:text-rose-400 transition">About</a>
-        <a href="#class" class="hover:text-rose-400 transition">Class</a>
-        <a href="#shop" class="hover:text-rose-400 transition">Shop</a>
-        <a href="#contact" class="hover:text-rose-400 transition">Contact</a>
+      <div class="hidden md:flex gap-8 text-xs font-bold tracking-widest text-stone-500">
+        <a href="#about" class="hover:text-rose-400 transition">소개</a>
+        <a href="#class" class="hover:text-rose-400 transition">클래스</a>
+        <a href="#shop" class="hover:text-rose-400 transition">온라인 샵</a>
+        <a href="#contact" class="hover:text-rose-400 transition">문의</a>
       </div>
-      <div class="flex gap-4">
-        <button class="w-8 h-8 rounded-full border border-stone-300 flex items-center justify-center hover:bg-stone-800 hover:text-white transition">🔍</button>
-        <button class="w-8 h-8 rounded-full border border-stone-300 flex items-center justify-center hover:bg-stone-800 hover:text-white transition">👜</button>
+      <div class="flex gap-3">
+        <button class="w-8 h-8 rounded-full border border-stone-300 flex items-center justify-center hover:bg-stone-800 hover:text-white transition text-sm">🔍</button>
+        <button class="w-8 h-8 rounded-full border border-stone-300 flex items-center justify-center hover:bg-stone-800 hover:text-white transition text-sm">👜</button>
       </div>
     </div>
   </nav>
 
-  <!-- Hero with Organic Mask -->
-  <header class="h-screen flex items-center justify-center relative overflow-hidden pt-20">
-    <div class="absolute top-20 left-10 w-64 h-64 bg-rose-100 rounded-full blur-3xl opacity-50 mix-blend-multiply"></div>
-    <div class="absolute bottom-20 right-10 w-80 h-80 bg-orange-100 rounded-full blur-3xl opacity-50 mix-blend-multiply"></div>
-
-    <div class="container mx-auto grid md:grid-cols-2 gap-12 items-center relative z-10 px-6">
-       <div class="order-2 md:order-1 space-y-8 text-center md:text-left">
-          <p class="font-serif italic text-2xl text-rose-400">Floral Design Studio</p>
-          <h1 class="text-5xl md:text-7xl font-serif leading-tight text-stone-800">
-             Bringing <br>
-             <span class="italic">Nature</span> into <br>
-             Your Life.
+  <!-- Hero -->
+  <header class="min-h-screen flex items-center justify-center relative overflow-hidden pt-20 px-6">
+    <div class="container mx-auto grid md:grid-cols-2 gap-10 items-center relative z-10">
+       <div class="order-2 md:order-1 space-y-6 text-center md:text-left">
+          <p class="font-serif text-xl text-rose-400">플로럴 디자인 스튜디오</p>
+          <h1 class="text-4xl md:text-5xl font-serif leading-tight text-stone-800">
+             자연을<br>당신의 삶에<br>들이다
           </h1>
           <p class="text-stone-500 leading-relaxed font-light max-w-md mx-auto md:mx-0">
              꽃이 주는 위로와 기쁨을 전합니다.<br>
              계절의 아름다움을 담은 프렌치 감성 플라워 샵.
           </p>
           <a href="#shop" class="inline-block border-b border-stone-800 pb-1 text-stone-800 hover:text-rose-400 hover:border-rose-400 transition">
-             View Collection &rarr;
+             컬렉션 보기 →
           </a>
        </div>
 
-       <div class="order-1 md:order-2 relative" data-tilt>
-          <div class="w-full aspect-square relative">
-             <img src="https://images.unsplash.com/photo-1563241527-3004b7be0ee0?q=80&w=800" class="w-full h-full object-cover flower-mask transform scale-105">
-          </div>
-          <div class="absolute -bottom-4 right-10 bg-white p-6 shadow-xl max-w-[200px] hidden md:block rotate-3">
-             <p class="font-serif italic text-lg leading-tight mb-2">"Every flower is a soul blossoming in nature."</p>
+       <div class="order-1 md:order-2 relative">
+          <div class="w-full aspect-square relative rounded-2xl overflow-hidden shadow-2xl">
+             <img src="https://images.unsplash.com/photo-1563241527-3004b7be0ee0?q=80&w=800" alt="플라워 작품" class="w-full h-full object-cover">
           </div>
        </div>
     </div>
   </header>
 
   <!-- Class / Service -->
-  <section id="class" class="py-24 bg-white">
+  <section id="class" class="py-16 md:py-20 bg-white">
     <div class="container mx-auto px-6">
-       <div class="text-center mb-16">
-          <span class="text-rose-400 text-xs font-bold tracking-widest uppercase mb-2 block">Our Services</span>
-          <h2 class="text-4xl font-serif text-stone-800">Flower Class & Order</h2>
+       <div class="text-center mb-12">
+          <span class="text-rose-400 text-xs font-bold tracking-widest mb-2 block">서비스 안내</span>
+          <h2 class="text-3xl font-serif text-stone-800">플라워 클래스 & 주문</h2>
        </div>
 
-       <div class="grid md:grid-cols-3 gap-8">
+       <div class="grid md:grid-cols-3 gap-6">
           <!-- Item 1 -->
           <div class="group cursor-pointer">
-             <div class="overflow-hidden mb-6 aspect-[4/5]">
-                <img src="https://images.unsplash.com/photo-1469334031218-e382a71b716b?q=80&w=600" class="w-full h-full object-cover transition duration-700 group-hover:scale-110">
+             <div class="overflow-hidden mb-5 aspect-[4/5] rounded-lg">
+                <img src="https://images.unsplash.com/photo-1469334031218-e382a71b716b?q=80&w=600" alt="취미반" class="w-full h-full object-cover transition duration-500 group-hover:scale-105">
              </div>
-             <h3 class="font-serif text-2xl mb-2 group-hover:text-rose-400 transition">Hobby Class</h3>
+             <h3 class="font-serif text-xl mb-2 group-hover:text-rose-400 transition">취미반</h3>
              <p class="text-sm text-stone-500 leading-relaxed">일상에 힐링을 주는 취미반.<br>핸드타이드, 센터피스 기초.</p>
           </div>
 
           <!-- Item 2 -->
-          <div class="group cursor-pointer md:mt-12">
-             <div class="overflow-hidden mb-6 aspect-[4/5]">
-                <img src="https://images.unsplash.com/photo-1526047932273-341f2a7631f9?q=80&w=600" class="w-full h-full object-cover transition duration-700 group-hover:scale-110">
+          <div class="group cursor-pointer">
+             <div class="overflow-hidden mb-5 aspect-[4/5] rounded-lg">
+                <img src="https://images.unsplash.com/photo-1526047932273-341f2a7631f9?q=80&w=600" alt="플로리스트 과정" class="w-full h-full object-cover transition duration-500 group-hover:scale-105">
              </div>
-             <h3 class="font-serif text-2xl mb-2 group-hover:text-rose-400 transition">Florist Course</h3>
+             <h3 class="font-serif text-xl mb-2 group-hover:text-rose-400 transition">플로리스트 과정</h3>
              <p class="text-sm text-stone-500 leading-relaxed">전문 플로리스트 양성 과정.<br>창업 실무 및 웨딩 장식.</p>
           </div>
 
           <!-- Item 3 -->
           <div class="group cursor-pointer">
-             <div class="overflow-hidden mb-6 aspect-[4/5]">
-                <img src="https://images.unsplash.com/photo-1507290439931-a861b5a38200?q=80&w=600" class="w-full h-full object-cover transition duration-700 group-hover:scale-110">
+             <div class="overflow-hidden mb-5 aspect-[4/5] rounded-lg">
+                <img src="https://images.unsplash.com/photo-1507290439931-a861b5a38200?q=80&w=600" alt="맞춤 주문" class="w-full h-full object-cover transition duration-500 group-hover:scale-105">
              </div>
-             <h3 class="font-serif text-2xl mb-2 group-hover:text-rose-400 transition">Custom Order</h3>
+             <h3 class="font-serif text-xl mb-2 group-hover:text-rose-400 transition">맞춤 주문</h3>
              <p class="text-sm text-stone-500 leading-relaxed">특별한 날을 위한 맞춤 제작.<br>꽃다발, 꽃바구니, 식물.</p>
           </div>
        </div>
@@ -110,53 +94,53 @@
   </section>
 
   <!-- Shop Grid -->
-  <section id="shop" class="py-24 bg-stone-50">
+  <section id="shop" class="py-16 md:py-20 bg-stone-50">
      <div class="container mx-auto px-6">
-        <div class="flex justify-between items-end mb-12">
-           <h2 class="text-3xl font-serif text-stone-800">Weekly Selection</h2>
-           <a href="#" class="text-sm text-stone-500 hover:text-stone-800 transition">View All &rarr;</a>
+        <div class="flex justify-between items-end mb-10">
+           <h2 class="text-2xl font-serif text-stone-800">이번 주 추천</h2>
+           <a href="#" class="text-sm text-stone-500 hover:text-stone-800 transition">전체 보기 →</a>
         </div>
 
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-5">
            <!-- Product 1 -->
-           <div class="group">
-              <div class="bg-gray-200 aspect-square mb-4 overflow-hidden relative">
-                 <img src="https://images.unsplash.com/photo-1595156486187-578af3579b9e?q=80&w=500" class="w-full h-full object-cover group-hover:scale-105 transition">
-                 <span class="absolute top-2 left-2 bg-white/90 text-[10px] px-2 py-1 uppercase tracking-widest">New</span>
+           <div class="group cursor-pointer">
+              <div class="bg-gray-200 aspect-square mb-3 overflow-hidden relative rounded-lg">
+                 <img src="https://images.unsplash.com/photo-1595156486187-578af3579b9e?q=80&w=500" alt="장미 부케" class="w-full h-full object-cover group-hover:scale-105 transition">
+                 <span class="absolute top-2 left-2 bg-white/90 text-[10px] px-2 py-1 tracking-widest rounded-full font-bold">New</span>
               </div>
-              <h3 class="font-serif text-lg">Rose Bouquet</h3>
-              <p class="text-xs text-stone-500 mb-2">핑크 장미 믹스</p>
+              <h3 class="font-serif text-base">장미 부케</h3>
+              <p class="text-xs text-stone-500 mb-1">핑크 장미 믹스</p>
               <p class="font-bold text-sm">₩45,000</p>
            </div>
            
            <!-- Product 2 -->
-           <div class="group">
-              <div class="bg-gray-200 aspect-square mb-4 overflow-hidden relative">
-                 <img src="https://images.unsplash.com/photo-1588628043685-649728227b2c?q=80&w=500" class="w-full h-full object-cover group-hover:scale-105 transition">
+           <div class="group cursor-pointer">
+              <div class="bg-gray-200 aspect-square mb-3 overflow-hidden relative rounded-lg">
+                 <img src="https://images.unsplash.com/photo-1588628043685-649728227b2c?q=80&w=500" alt="튤립 바구니" class="w-full h-full object-cover group-hover:scale-105 transition">
               </div>
-              <h3 class="font-serif text-lg">Tulip Basket</h3>
-              <p class="text-xs text-stone-500 mb-2">망고 튤립</p>
+              <h3 class="font-serif text-base">튤립 바구니</h3>
+              <p class="text-xs text-stone-500 mb-1">망고 튤립</p>
               <p class="font-bold text-sm">₩55,000</p>
            </div>
            
            <!-- Product 3 -->
-           <div class="group">
-              <div class="bg-gray-200 aspect-square mb-4 overflow-hidden relative">
-                 <img src="https://images.unsplash.com/photo-1606041011872-596597976b25?q=80&w=500" class="w-full h-full object-cover group-hover:scale-105 transition">
+           <div class="group cursor-pointer">
+              <div class="bg-gray-200 aspect-square mb-3 overflow-hidden relative rounded-lg">
+                 <img src="https://images.unsplash.com/photo-1606041011872-596597976b25?q=80&w=500" alt="스몰 화병" class="w-full h-full object-cover group-hover:scale-105 transition">
               </div>
-              <h3 class="font-serif text-lg">Small Vase</h3>
-              <p class="text-xs text-stone-500 mb-2">오늘의 꽃 화병</p>
+              <h3 class="font-serif text-base">스몰 화병</h3>
+              <p class="text-xs text-stone-500 mb-1">오늘의 꽃</p>
               <p class="font-bold text-sm">₩35,000</p>
            </div>
            
            <!-- Product 4 -->
-           <div class="group">
-              <div class="bg-gray-200 aspect-square mb-4 overflow-hidden relative">
-                 <img src="https://images.unsplash.com/photo-1589139257692-0b8180d5dd61?q=80&w=500" class="w-full h-full object-cover group-hover:scale-105 transition">
-                 <span class="absolute top-2 left-2 bg-stone-800 text-white text-[10px] px-2 py-1 uppercase tracking-widest">Sold Out</span>
+           <div class="group cursor-pointer">
+              <div class="bg-gray-200 aspect-square mb-3 overflow-hidden relative rounded-lg">
+                 <img src="https://images.unsplash.com/photo-1589139257692-0b8180d5dd61?q=80&w=500" alt="스페셜 박스" class="w-full h-full object-cover group-hover:scale-105 transition">
+                 <span class="absolute top-2 left-2 bg-stone-800 text-white text-[10px] px-2 py-1 rounded-full tracking-widest font-bold">Sold Out</span>
               </div>
-              <h3 class="font-serif text-lg">Special Box</h3>
-              <p class="text-xs text-stone-500 mb-2">용돈 박스</p>
+              <h3 class="font-serif text-base">스페셜 박스</h3>
+              <p class="text-xs text-stone-500 mb-1">용돈 박스</p>
               <p class="font-bold text-sm">₩60,000</p>
            </div>
         </div>
@@ -164,11 +148,11 @@
   </section>
 
   <!-- Contact -->
-  <section id="contact" class="py-24 bg-white border-t border-stone-100">
-    <div class="container mx-auto px-6 grid md:grid-cols-2 gap-16">
+  <section id="contact" class="py-16 md:py-20 bg-white border-t border-stone-100">
+    <div class="container mx-auto px-6 grid md:grid-cols-2 gap-12">
        <div>
-          <h2 class="text-3xl font-serif text-stone-800 mb-6">Visit Our Studio</h2>
-          <p class="text-stone-500 font-light leading-relaxed mb-8">
+          <h2 class="text-2xl font-serif text-stone-800 mb-5">스튜디오 방문</h2>
+          <p class="text-stone-500 font-light leading-relaxed mb-6">
              서울시 강남구 신사동 가로수길 12-3<br>
              12-3, Sinsa-dong, Gangnam-gu, Seoul
           </p>
@@ -180,21 +164,18 @@
        </div>
        
        <form class="space-y-4">
-          <input type="text" placeholder="Name" class="w-full bg-stone-50 border border-stone-200 p-3 outline-none focus:border-rose-400">
-          <input type="text" placeholder="Contact" class="w-full bg-stone-50 border border-stone-200 p-3 outline-none focus:border-rose-400">
-          <textarea placeholder="Message" class="w-full bg-stone-50 border border-stone-200 p-3 h-32 outline-none focus:border-rose-400"></textarea>
-          <button class="w-full bg-stone-800 text-white py-3 hover:bg-rose-400 transition font-bold text-sm tracking-widest uppercase">Send Message</button>
+          <input type="text" placeholder="이름" class="w-full bg-stone-50 border border-stone-200 p-3 outline-none focus:border-rose-400">
+          <input type="text" placeholder="연락처" class="w-full bg-stone-50 border border-stone-200 p-3 outline-none focus:border-rose-400">
+          <textarea placeholder="메시지" class="w-full bg-stone-50 border border-stone-200 p-3 h-28 outline-none focus:border-rose-400"></textarea>
+          <button class="w-full bg-stone-800 text-white py-3 hover:bg-rose-400 transition font-bold text-sm tracking-widest">메시지 보내기</button>
        </form>
     </div>
   </section>
 
-</div>
+  <!-- Footer -->
+  <footer class="py-10 px-6 bg-stone-50 border-t border-stone-200 text-center">
+    <p class="font-serif text-lg text-stone-800 mb-2">❀ 블룸 앤 가든</p>
+    <p class="text-sm text-stone-500">서울시 강남구 신사동 123-45</p>
+  </footer>
 
-<script>
-  VanillaTilt.init(document.querySelectorAll("[data-tilt]"), {
-    max: 5,
-    speed: 400,
-    glare: true,
-    "max-glare": 0.2,
-  });
-</script>
+</div>

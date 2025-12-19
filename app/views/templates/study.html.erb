@@ -1,186 +1,160 @@
 <%# Study Template - 라이브러리 원 (프리미엄 독서실/스터디카페) %>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.0/vanilla-tilt.min.js"></script>
 
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,400&family=Noto+Sans+KR:wght@300;400;500&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700;800&family=Noto+Sans+KR:wght@300;400;500;700&display=swap');
   
-  .font-serif { font-family: 'Crimson Pro', serif; }
+  .font-serif { font-family: 'Nanum Myeongjo', serif; }
   .font-sans { font-family: 'Noto Sans KR', sans-serif; }
-  
-  .noise-bg {
-    background-color: #1c1c1c;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E");
-  }
 </style>
 
-<div class="bg-[#1c1c1c] text-[#e5e5e5] font-sans selection:bg-[#10b981] selection:text-white">
+<div class="bg-[#1c1c1c] text-[#e5e5e5] font-sans selection:bg-[#10b981]">
 
   <!-- Nav -->
-  <nav class="fixed w-full z-50 px-8 py-6 border-b border-white/5 bg-[#1c1c1c]/90 backdrop-blur-md">
+  <nav class="fixed w-full z-50 px-8 py-5 border-b border-white/5 bg-[#1c1c1c]/95 backdrop-blur-md">
     <div class="container mx-auto flex justify-between items-center">
       <div class="flex items-center gap-3">
-         <div class="w-8 h-8 border border-[#10b981] rounded-full flex items-center justify-center text-[#10b981] font-serif italic text-lg">L</div>
-         <span class="font-serif text-xl tracking-widest text-white">LIBRARY ONE</span>
+         <div class="w-7 h-7 border border-[#10b981] rounded-full flex items-center justify-center text-[#10b981] font-serif font-bold text-sm italic">L</div>
+         <span class="font-serif text-lg tracking-[0.2em] font-bold text-white">LIBRARY ONE</span>
       </div>
       
-      <div class="hidden md:flex gap-10 text-xs font-bold uppercase tracking-[0.2em] text-gray-500">
-        <a href="#space" class="hover:text-[#10b981] transition">Space</a>
-        <a href="#amenity" class="hover:text-[#10b981] transition">Amenity</a>
-        <a href="#price" class="hover:text-[#10b981] transition">Membership</a>
-        <a href="#location" class="hover:text-[#10b981] transition">Location</a>
+      <div class="hidden md:flex gap-10 text-[10px] font-bold uppercase tracking-[0.2em] text-gray-500">
+        <a href="#space" class="hover:text-[#10b981] transition">공간 소개</a>
+        <a href="#amenity" class="hover:text-[#10b981] transition">라이프 케어</a>
+        <a href="#price" class="hover:text-[#10b981] transition">이용권</a>
+        <a href="#location" class="hover:text-[#10b981] transition">오시는 길</a>
       </div>
       
-      <button class="bg-[#10b981] text-[#1c1c1c] px-6 py-2 text-xs font-bold uppercase tracking-widest hover:bg-white transition">
-        Seat Status
+      <button class="bg-[#10b981] text-[#1c1c1c] px-5 py-2 text-[10px] font-bold uppercase tracking-widest hover:bg-white transition">
+        좌석 현황
       </button>
     </div>
   </nav>
 
   <!-- Hero -->
-  <header class="h-screen relative flex items-center justify-center overflow-hidden">
-     <div class="absolute inset-0 z-0">
-        <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=1920" class="w-full h-full object-cover opacity-30">
+  <header class="min-h-screen relative flex items-center justify-center overflow-hidden pt-16">
+     <div class="absolute inset-0 z-0 text-center">
+        <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=1920" alt="스터디카페" class="w-full h-full object-cover opacity-40 grayscale">
         <div class="absolute inset-0 bg-gradient-to-t from-[#1c1c1c] via-transparent to-[#1c1c1c]"></div>
      </div>
      
      <div class="relative z-10 text-center px-6">
-        <p class="text-[#10b981] text-xs tracking-[0.4em] uppercase mb-8 animate-fade-in-up">Premium Study Lounge</p>
-        <h1 class="text-5xl md:text-7xl font-serif leading-tight mb-8">
-           Focus on <br>
-           <span class="italic text-gray-400">Your Future</span>
+        <p class="text-[#10b981] text-[10px] tracking-[0.4em] uppercase mb-8 font-bold">Premium Study Lounge</p>
+        <h1 class="text-4xl md:text-6xl font-serif font-bold leading-tight mb-8">
+           당신의 <span class="italic text-gray-400">꿈이 자라는</span><br>공간을 선사합니다
         </h1>
-        <p class="text-gray-500 font-light leading-relaxed max-w-md mx-auto mb-12">
+        <p class="text-gray-500 font-light leading-relaxed max-w-sm mx-auto mb-10 text-sm">
            오롯이 몰입할 수 있는 완벽한 환경을 제공합니다.<br>
-           최고급 시디즈 의자, 백색 소음기, 공기 청정 시스템 완비.
+           최고급 가구부터 공기 청정 시스템까지 정성을 담았습니다.
         </p>
-        <div class="w-[1px] h-24 bg-white/20 mx-auto animate-pulse"></div>
+        <div class="w-[1px] h-20 bg-white/20 mx-auto"></div>
      </div>
   </header>
 
   <!-- Spaces -->
-  <section id="space" class="py-24 px-6 bg-[#232323]">
-     <div class="container mx-auto">
-        <div class="flex flex-col md:flex-row gap-16 items-start">
-           <div class="md:w-1/3 sticky top-32">
-              <h2 class="text-3xl font-serif text-white mb-8">Our Spaces</h2>
-              <p class="text-gray-500 font-light leading-loose mb-8">
-                 학습 스타일에 맞춘 다양한 좌석 타입을 선택하세요.<br>
-                 탁 트인 개방형 라운지부터,<br>
-                 완벽한 차단의 프라이빗 룸까지.
-              </p>
-              <ul class="space-y-4 text-sm tracking-wider text-gray-400">
-                 <li class="cursor-pointer hover:text-[#10b981] transition flex items-center gap-2">
-                    <span class="w-2 h-[1px] bg-current"></span> Open Library
-                 </li>
-                 <li class="cursor-pointer hover:text-[#10b981] transition flex items-center gap-2">
-                    <span class="w-2 h-[1px] bg-current"></span> Focus Room
-                 </li>
-                 <li class="cursor-pointer hover:text-[#10b981] transition flex items-center gap-2">
-                    <span class="w-2 h-[1px] bg-current"></span> Cafe Lounge
-                 </li>
-              </ul>
+  <section id="space" class="py-20 bg-[#232323] px-6">
+     <div class="container mx-auto max-w-5xl flex flex-col md:flex-row gap-12 items-start">
+        <div class="md:w-1/3">
+           <h2 class="text-2xl font-serif text-white mb-6 border-l-2 border-[#10b981] pl-4">몰입을 위한 공간</h2>
+           <p class="text-gray-500 font-light leading-loose mb-8 text-sm">
+              학습 스타일에 맞춘 다양한 시트 타입을 만나보세요.<br>
+              탁 트인 조망의 개방형 라운지부터,<br>
+              집중력을 높여주는 프라이빗 룸까지 완비했습니다.
+           </p>
+           <ul class="space-y-3 text-[10px] tracking-widest text-gray-400 font-bold uppercase">
+              <li class="flex items-center gap-2 text-[#10b981]"><span class="w-2 h-[1px] bg-current"></span> 오픈 라이브러리</li>
+              <li class="flex items-center gap-2"><span class="w-2 h-[1px] bg-current"></span> 포커스 룸</li>
+              <li class="flex items-center gap-2"><span class="w-2 h-[1px] bg-current"></span> 카페 라운지</li>
+           </ul>
+        </div>
+        
+        <div class="md:w-2/3 grid gap-6">
+           <!-- Item 1 -->
+           <div class="relative overflow-hidden h-72 group shadow-xl">
+              <img src="https://images.unsplash.com/photo-1594914104975-6807cd227fc6?q=80&w=800" alt="오픈형" class="w-full h-full object-cover transition duration-500 group-hover:scale-105 opacity-70">
+              <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex flex-col justify-end p-6">
+                  <h3 class="text-xl font-serif mb-1 italic text-white">Open Library</h3>
+                  <p class="text-[10px] text-gray-400">자유로운 분위기의 개방형 학습 공간</p>
+              </div>
            </div>
            
-           <div class="md:w-2/3 grid gap-8">
-              <!-- Item 1 -->
-              <div class="group relative overflow-hidden h-96 cursor-pointer" data-tilt>
-                 <img src="https://images.unsplash.com/photo-1594914104975-6807cd227fc6?q=80&w=800" class="w-full h-full object-cover transition duration-700 group-hover:scale-105 opacity-80 group-hover:opacity-100">
-                 <div class="absolute bottom-0 left-0 p-8 w-full bg-gradient-to-t from-black/80 to-transparent">
-                    <h3 class="text-2xl font-serif mb-2">Open Library</h3>
-                    <p class="text-xs text-gray-400">자유로운 분위기의 개방형 학습 공간</p>
-                 </div>
-              </div>
-              
-              <!-- Item 2 -->
-              <div class="group relative overflow-hidden h-96 cursor-pointer" data-tilt>
-                 <img src="https://images.unsplash.com/photo-1497215842964-222b430dc094?q=80&w=800" class="w-full h-full object-cover transition duration-700 group-hover:scale-105 opacity-80 group-hover:opacity-100">
-                 <div class="absolute bottom-0 left-0 p-8 w-full bg-gradient-to-t from-black/80 to-transparent">
-                    <h3 class="text-2xl font-serif mb-2">Focus Room</h3>
-                    <p class="text-xs text-gray-400">높은 칸막이로 집중력을 극대화한 독립석</p>
-                 </div>
+           <!-- Item 2 -->
+           <div class="relative overflow-hidden h-72 group shadow-xl">
+              <img src="https://images.unsplash.com/photo-1497215842964-222b430dc094?q=80&w=800" alt="독립석" class="w-full h-full object-cover transition duration-500 group-hover:scale-105 opacity-70">
+              <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex flex-col justify-end p-6">
+                  <h3 class="text-xl font-serif mb-1 italic text-white">Focus Room</h3>
+                  <p class="text-[10px] text-gray-400">높은 칸막이로 집중력을 극대화한 독립 큐브</p>
               </div>
            </div>
         </div>
      </div>
   </section>
 
-  <!-- Amenities (Icon Grid) -->
-  <section id="amenity" class="py-24 px-6 relative border-y border-white/5">
+  <!-- Amenities -->
+  <section id="amenity" class="py-20 px-6 bg-[#1c1c1c] border-y border-white/5">
      <div class="container mx-auto">
-        <h2 class="text-center font-serif text-2xl mb-16 text-gray-400">Amenities</h2>
+        <h2 class="text-center font-serif text-xl mb-12 text-gray-400 uppercase tracking-widest">편의 서비스</h2>
         
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-12 text-center">
-           <div class="group">
-              <div class="w-16 h-16 rounded-full border border-white/10 flex items-center justify-center mx-auto mb-6 group-hover:border-[#10b981] group-hover:text-[#10b981] transition duration-500">
-                 <span class="text-2xl">☕</span>
-              </div>
-              <h4 class="font-bold text-sm mb-2">Premium Coffee</h4>
-              <p class="text-xs text-gray-500">스타벅스 원두 무제한 제공</p>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-10 text-center">
+           <div>
+              <div class="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center mx-auto mb-4 text-xl">☕</div>
+              <h4 class="font-bold text-xs mb-1">프리미엄 원두</h4>
+              <p class="text-[10px] text-gray-500">스타벅스 원두 커피 무제한 제공</p>
            </div>
-           <div class="group">
-              <div class="w-16 h-16 rounded-full border border-white/10 flex items-center justify-center mx-auto mb-6 group-hover:border-[#10b981] group-hover:text-[#10b981] transition duration-500">
-                 <span class="text-2xl">🖨️</span>
-              </div>
-              <h4 class="font-bold text-sm mb-2">Printing Service</h4>
-              <p class="text-xs text-gray-500">흑백/컬러 인쇄 무료</p>
+           <div>
+              <div class="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center mx-auto mb-4 text-xl">🖨️</div>
+              <h4 class="font-bold text-xs mb-1">무선 스마트 프린팅</h4>
+              <p class="text-[10px] text-gray-500">공용 PC 및 고성능 인쇄 시스템</p>
            </div>
-           <div class="group">
-              <div class="w-16 h-16 rounded-full border border-white/10 flex items-center justify-center mx-auto mb-6 group-hover:border-[#10b981] group-hover:text-[#10b981] transition duration-500">
-                 <span class="text-2xl">🔒</span>
-              </div>
-              <h4 class="font-bold text-sm mb-2">Private Locker</h4>
-              <p class="text-xs text-gray-500">개인 사물함 완비</p>
+           <div>
+              <div class="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center mx-auto mb-4 text-xl">🔒</div>
+              <h4 class="font-bold text-xs mb-1">스마트 라커</h4>
+              <p class="text-[10px] text-gray-500">안전한 개인 물품 보관함</p>
            </div>
-           <div class="group">
-              <div class="w-16 h-16 rounded-full border border-white/10 flex items-center justify-center mx-auto mb-6 group-hover:border-[#10b981] group-hover:text-[#10b981] transition duration-500">
-                 <span class="text-2xl">💤</span>
-              </div>
-              <h4 class="font-bold text-sm mb-2">Comfort Zone</h4>
-              <p class="text-xs text-gray-500">안마의자 휴게 공간</p>
+           <div>
+              <div class="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center mx-auto mb-4 text-xl">🏠</div>
+              <h4 class="font-bold text-xs mb-1">공기 질 관리</h4>
+              <p class="text-[10px] text-gray-500">AI 세스코 공기 청정 시스템</p>
            </div>
         </div>
      </div>
   </section>
 
-  <!-- Seat Mockup -->
-  <section id="location" class="py-32 px-6 bg-[#1c1c1c]">
-     <div class="container mx-auto max-w-4xl text-center">
-        <h2 class="text-3xl font-serif mb-12">Real-time Seat Status</h2>
+  <!-- Seat Status -->
+  <section id="location" class="py-20 px-6 bg-[#232323]">
+     <div class="container mx-auto max-w-2xl text-center">
+        <h2 class="text-2xl font-serif mb-10 text-white italic">Real-time Status</h2>
         
-        <div class="bg-[#2a2a2a] p-8 rounded-lg border border-white/5 relative shadow-2xl">
-           <div class="flex justify-between items-center mb-8">
-              <span class="text-xs font-bold text-gray-500 uppercase tracking-widest">Zone A - Quiet</span>
-              <div class="flex gap-4 text-xs">
-                 <span class="flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-[#10b981]"></span> Available</span>
-                 <span class="flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-gray-600"></span> Occupied</span>
+        <div class="bg-[#2a2a2a] p-8 rounded border border-white/5 shadow-2xl">
+           <div class="flex justify-between items-center mb-6">
+              <span class="text-[10px] font-bold text-gray-500 uppercase tracking-widest">A존 - 화이트 노이즈 공간</span>
+              <div class="flex gap-4 text-[9px] uppercase font-bold tracking-tighter">
+                 <span class="flex items-center gap-1.5"><span class="w-1.5 h-1.5 rounded-full bg-[#10b981]"></span> 가능</span>
+                 <span class="flex items-center gap-1.5"><span class="w-1.5 h-1.5 rounded-full bg-gray-600"></span> 사용중</span>
               </div>
            </div>
            
-           <div class="grid grid-cols-6 gap-4 mb-4">
-              <div class="aspect-square bg-[#10b981] rounded-sm opacity-20 border border-[#10b981] flex items-center justify-center text-[#10b981] font-bold text-xs hover:opacity-100 cursor-pointer transition">01</div>
-              <div class="aspect-square bg-gray-700/50 rounded-sm border border-gray-600 flex items-center justify-center text-gray-500 text-xs cursor-not-allowed">02</div>
-              <div class="aspect-square bg-[#10b981] rounded-sm opacity-20 border border-[#10b981] flex items-center justify-center text-[#10b981] font-bold text-xs hover:opacity-100 cursor-pointer transition">03</div>
-              <div class="aspect-square bg-gray-700/50 rounded-sm border border-gray-600 flex items-center justify-center text-gray-500 text-xs cursor-not-allowed">04</div>
-              <div class="aspect-square bg-[#10b981] rounded-sm opacity-20 border border-[#10b981] flex items-center justify-center text-[#10b981] font-bold text-xs hover:opacity-100 cursor-pointer transition">05</div>
-              <div class="aspect-square bg-[#10b981] rounded-sm opacity-20 border border-[#10b981] flex items-center justify-center text-[#10b981] font-bold text-xs hover:opacity-100 cursor-pointer transition">06</div>
+           <div class="grid grid-cols-6 gap-3 mb-3">
+              <div class="aspect-square bg-[#10b981]/10 rounded border border-[#10b981]/30 flex items-center justify-center text-[#10b981] font-bold text-[10px] hover:bg-[#10b981]/30 cursor-pointer transition">01</div>
+              <div class="aspect-square bg-gray-700/30 rounded border border-gray-600/30 flex items-center justify-center text-gray-600 text-[10px]">02</div>
+              <div class="aspect-square bg-[#10b981]/10 rounded border border-[#10b981]/30 flex items-center justify-center text-[#10b981] font-bold text-[10px] hover:bg-[#10b981]/30 cursor-pointer transition">03</div>
+              <div class="aspect-square bg-gray-700/30 rounded border border-gray-600/30 flex items-center justify-center text-gray-600 text-[10px]">04</div>
+              <div class="aspect-square bg-[#10b981]/10 rounded border border-[#10b981]/30 flex items-center justify-center text-[#10b981] font-bold text-[10px] hover:bg-[#10b981]/30 cursor-pointer transition">05</div>
+              <div class="aspect-square bg-[#10b981]/10 rounded border border-[#10b981]/30 flex items-center justify-center text-[#10b981] font-bold text-[10px] hover:bg-[#10b981]/30 cursor-pointer transition">06</div>
            </div>
-           <div class="grid grid-cols-6 gap-4">
-              <div class="aspect-square bg-gray-700/50 rounded-sm border border-gray-600 flex items-center justify-center text-gray-500 text-xs cursor-not-allowed">07</div>
-              <div class="aspect-square bg-gray-700/50 rounded-sm border border-gray-600 flex items-center justify-center text-gray-500 text-xs cursor-not-allowed">08</div>
-              <div class="aspect-square bg-[#10b981] rounded-sm opacity-20 border border-[#10b981] flex items-center justify-center text-[#10b981] font-bold text-xs hover:opacity-100 cursor-pointer transition">09</div>
-              <div class="aspect-square bg-[#10b981] rounded-sm opacity-20 border border-[#10b981] flex items-center justify-center text-[#10b981] font-bold text-xs hover:opacity-100 cursor-pointer transition">10</div>
-              <div class="aspect-square bg-gray-700/50 rounded-sm border border-gray-600 flex items-center justify-center text-gray-500 text-xs cursor-not-allowed">11</div>
-              <div class="aspect-square bg-[#10b981] rounded-sm opacity-20 border border-[#10b981] flex items-center justify-center text-[#10b981] font-bold text-xs hover:opacity-100 cursor-pointer transition">12</div>
+           <div class="grid grid-cols-6 gap-3">
+              <div class="aspect-square bg-gray-700/30 rounded border border-gray-600/30 flex items-center justify-center text-gray-600 text-[10px]">07</div>
+              <div class="aspect-square bg-gray-700/30 rounded border border-gray-600/30 flex items-center justify-center text-gray-600 text-[10px]">08</div>
+              <div class="aspect-square bg-[#10b981]/10 rounded border border-[#10b981]/30 flex items-center justify-center text-[#10b981] font-bold text-[10px] hover:bg-[#10b981]/30 cursor-pointer transition">09</div>
+              <div class="aspect-square bg-[#10b981]/10 rounded border border-[#10b981]/30 flex items-center justify-center text-[#10b981] font-bold text-[10px] hover:bg-[#10b981]/30 cursor-pointer transition">10</div>
+              <div class="aspect-square bg-gray-700/30 rounded border border-gray-600/30 flex items-center justify-center text-gray-600 text-[10px]">11</div>
+              <div class="aspect-square bg-[#10b981]/10 rounded border border-[#10b981]/30 flex items-center justify-center text-[#10b981] font-bold text-[10px] hover:bg-[#10b981]/30 cursor-pointer transition">12</div>
            </div>
         </div>
      </div>
   </section>
+
+  <footer class="py-10 bg-[#1c1c1c] text-center border-t border-white/5">
+     <p class="font-serif text-sm tracking-[0.2em] font-bold opacity-50 mb-4 uppercase">© Library One Korea</p>
+  </footer>
 
 </div>
-
-<script>
-  VanillaTilt.init(document.querySelectorAll("[data-tilt]"), {
-    max: 5,
-    speed: 400,
-  });
-</script>

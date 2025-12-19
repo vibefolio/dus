@@ -1,108 +1,91 @@
 <%# Kinder Template - 드리미 키즈 (유치원/키즈카페) %>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.0/vanilla-tilt.min.js"></script>
 
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@300;400;500;600;700&family=Jua&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Jua&family=Noto+Sans+KR:wght@400;700&display=swap');
   
-  .font-rounded { font-family: 'Fredoka', sans-serif; }
   .font-jua { font-family: 'Jua', sans-serif; }
-  
-  .blob {
-    border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
-    animation: morph 8s ease-in-out infinite;
-  }
-  @keyframes morph {
-    0%, 100% { border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%; }
-    34% { border-radius: 70% 30% 50% 50% / 30% 30% 70% 70%; }
-    67% { border-radius: 100% 60% 60% 100% / 100% 100% 60% 60%; }
-  }
+  .font-sans { font-family: 'Noto Sans KR', sans-serif; }
 </style>
 
-<div class="bg-yellow-50 text-gray-800 font-rounded selection:bg-pink-300 selection:text-white overflow-x-hidden">
+<div class="bg-yellow-50 text-gray-800 font-sans selection:bg-pink-300 selection:text-white overflow-x-hidden">
 
   <!-- Nav -->
   <nav class="fixed w-full z-50 px-6 py-4">
-    <div class="bg-white/90 backdrop-blur rounded-full shadow-lg border-4 border-b-8 border-sky-400 px-6 py-3 flex justify-between items-center max-w-5xl mx-auto">
+    <div class="bg-white/95 backdrop-blur-sm rounded-full shadow-lg border-4 border-b-8 border-sky-400 px-6 py-3 flex justify-between items-center max-w-4xl mx-auto">
       <div class="flex items-center gap-2">
-         <span class="text-3xl">🌈</span>
-         <span class="font-jua text-2xl text-sky-500">드리미 키즈</span>
+         <span class="text-2xl">🌈</span>
+         <span class="font-jua text-xl text-sky-500">드리미 키즈</span>
       </div>
       
-      <div class="hidden md:flex gap-6 font-jua text-lg text-gray-500">
-        <a href="#about" class="hover:text-pink-500 transition">우리원 소개</a>
-        <a href="#program" class="hover:text-green-500 transition">교육 프로그램</a>
+      <div class="hidden md:flex gap-5 font-jua text-base text-gray-500">
+        <a href="#about" class="hover:text-pink-500 transition">소개</a>
+        <a href="#program" class="hover:text-green-500 transition">프로그램</a>
         <a href="#gallery" class="hover:text-yellow-500 transition">활동 사진</a>
         <a href="#contact" class="hover:text-purple-500 transition">오시는 길</a>
       </div>
       
-      <button class="bg-pink-400 text-white font-jua px-6 py-2 rounded-full border-b-4 border-pink-600 hover:translate-y-1 hover:border-b-0 transition active:border-b-0 active:translate-y-1 shadow-md">
+      <button class="bg-pink-400 text-white font-jua px-5 py-2 rounded-full border-b-4 border-pink-600 hover:translate-y-1 hover:border-b-0 transition shadow-md text-sm">
         입학 상담
       </button>
     </div>
   </nav>
 
   <!-- Hero -->
-  <header class="pt-40 pb-20 px-6 relative overflow-hidden bg-yellow-50">
-     <!-- Background Blobs -->
-     <div class="absolute top-20 -left-20 w-96 h-96 bg-pink-200 blob opacity-50 blur-3xl"></div>
-     <div class="absolute bottom-0 -right-20 w-80 h-80 bg-sky-200 blob opacity-50 blur-3xl animate-[morph_10s_infinite_reverse]"></div>
-     
-     <div class="container mx-auto grid md:grid-cols-2 gap-12 items-center relative z-10">
-        <div class="text-center md:text-left space-y-6">
-           <span class="inline-block bg-white text-orange-500 font-jua px-4 py-2 rounded-full border-2 border-orange-300 shadow-sm transform -rotate-2">
+  <header class="pt-32 pb-16 px-6 relative overflow-hidden bg-yellow-50">
+     <div class="container mx-auto grid md:grid-cols-2 gap-10 items-center relative z-10">
+        <div class="text-center md:text-left space-y-5">
+           <span class="inline-block bg-white text-orange-500 font-jua px-4 py-2 rounded-full border-2 border-orange-300 shadow-sm text-sm">
               🎈 창의력이 쑥쑥! 행복이 퐁퐁!
            </span>
-           <h1 class="text-5xl md:text-7xl font-jua text-gray-800 leading-tight">
-              꿈꾸는 아이들의 <br>
-              <span class="text-pink-400 inline-block transform hover:scale-110 transition cursor-default">신나는</span>
-              <span class="text-sky-400 inline-block transform hover:scale-110 transition cursor-default">놀이터</span>
+           <h1 class="text-4xl md:text-5xl font-jua text-gray-800 leading-tight">
+              꿈꾸는 아이들의<br>
+              <span class="text-pink-400">신나는</span>
+              <span class="text-sky-400">놀이터</span>
            </h1>
-           <p class="font-jua text-xl text-gray-500 max-w-lg mx-auto md:mx-0">
-              드리미 키즈는 아이들의 무한한 상상력을 응원합니다.<br>
+           <p class="font-jua text-lg text-gray-500 max-w-md mx-auto md:mx-0">
+              드리미 키즈는 아이들의 무한한 상상력을 응원합니다.
               자연과 함께 뛰어놀며 배우는 행복한 배움터입니다.
            </p>
            
-           <div class="flex gap-4 justify-center md:justify-start pt-4">
-              <button class="bg-green-400 text-white font-jua text-xl px-8 py-4 rounded-3xl border-b-8 border-green-600 hover:translate-y-1 hover:border-b-0 hover:mb-2 transition shadow-xl">
+           <div class="flex gap-3 justify-center md:justify-start pt-4">
+              <button class="bg-green-400 text-white font-jua text-lg px-6 py-3 rounded-2xl border-b-4 border-green-600 hover:translate-y-1 hover:border-b-0 transition shadow-lg">
                  체험 수업 신청
               </button>
-              <button class="bg-white text-gray-600 font-jua text-xl px-8 py-4 rounded-3xl border-b-8 border-gray-200 hover:translate-y-1 hover:border-b-0 hover:mb-2 transition shadow-xl hover:bg-gray-50">
+              <button class="bg-white text-gray-600 font-jua text-lg px-6 py-3 rounded-2xl border-b-4 border-gray-200 hover:translate-y-1 hover:border-b-0 transition shadow-lg">
                  시설 둘러보기
               </button>
            </div>
         </div>
         
-        <div class="relative" data-tilt>
-           <div class="grid grid-cols-2 gap-4">
-              <img src="https://images.unsplash.com/photo-1587652990173-fed31454e2cc?q=80&w=400" class="rounded-[2rem] border-4 border-white shadow-xl transform rotate-3 hover:rotate-0 transition duration-500 object-cover h-48 w-full">
-              <img src="https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?q=80&w=400" class="rounded-[2rem] border-4 border-white shadow-xl transform -rotate-3 hover:rotate-0 transition duration-500 object-cover h-48 w-full mt-8">
-              <img src="https://images.unsplash.com/photo-1566004100631-35d015d6a491?q=80&w=400" class="rounded-[2rem] border-4 border-white shadow-xl transform -rotate-2 hover:rotate-0 transition duration-500 object-cover h-48 w-full">
-              <img src="https://images.unsplash.com/photo-1596464716127-f9a085960edd?q=80&w=400" class="rounded-[2rem] border-4 border-white shadow-xl transform rotate-4 hover:rotate-0 transition duration-500 object-cover h-48 w-full mt-8">
+        <div class="relative">
+           <div class="grid grid-cols-2 gap-3">
+              <img src="https://images.unsplash.com/photo-1587652990173-fed31454e2cc?q=80&w=400" alt="아이들 사진" class="rounded-2xl border-4 border-white shadow-lg object-cover h-40 w-full">
+              <img src="https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?q=80&w=400" alt="놀이 시간" class="rounded-2xl border-4 border-white shadow-lg object-cover h-40 w-full mt-6">
+              <img src="https://images.unsplash.com/photo-1566004100631-35d015d6a491?q=80&w=400" alt="교육 활동" class="rounded-2xl border-4 border-white shadow-lg object-cover h-40 w-full">
+              <img src="https://images.unsplash.com/photo-1596464716127-f9a085960edd?q=80&w=400" alt="야외 활동" class="rounded-2xl border-4 border-white shadow-lg object-cover h-40 w-full mt-6">
            </div>
            
-           <!-- Decorative Stickers -->
-           <div class="absolute -top-4 -right-4 text-6xl animate-bounce">🌞</div>
-           <div class="absolute bottom-10 -left-10 text-5xl animate-pulse">🌱</div>
+           <!-- Decorative -->
+           <div class="absolute -top-4 -right-4 text-5xl">🌞</div>
+           <div class="absolute bottom-10 -left-8 text-4xl">🌱</div>
         </div>
      </div>
   </header>
 
   <!-- Programs -->
-  <section id="program" class="py-20 px-6 bg-white relative">
-     <div class="absolute -top-10 left-0 w-full h-20 bg-repeat-x" style="background-image: url('data:image/svg+xml;utf8,<svg viewBox=%220 0 1200 120%22 preserveAspectRatio=%22none%22 xmlns=%22http://www.w3.org/2000/svg%22><path d=%22M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z%22 fill=%22%23FEFCE8%22></path></svg>'); background-size: cover;"></div>
-     
+  <section id="program" class="py-16 md:py-20 px-6 bg-white">     
      <div class="container mx-auto">
-        <div class="text-center mb-16">
-           <h2 class="text-4xl font-jua text-gray-800 mb-4 inline-block bg-yellow-100 px-6 py-2 rounded-full">우리 아이 성장 프로그램</h2>
-           <p class="text-gray-500 font-jua text-lg">연령별 발달 단계에 맞춘 체계적인 교육과정</p>
+        <div class="text-center mb-12">
+           <h2 class="text-3xl font-jua text-gray-800 mb-3 inline-block bg-yellow-100 px-5 py-2 rounded-full">우리 아이 성장 프로그램</h2>
+           <p class="text-gray-500 font-jua text-base">연령별 발달 단계에 맞춘 체계적인 교육과정</p>
         </div>
         
-        <div class="grid md:grid-cols-3 gap-8">
+        <div class="grid md:grid-cols-3 gap-6">
            <!-- Card 1 -->
-           <div class="bg-pink-50 rounded-[2rem] p-8 border-4 border-white shadow-lg hover:-translate-y-2 transition duration-300">
-              <div class="w-16 h-16 bg-white rounded-full flex items-center justify-center text-4xl mb-6 shadow-sm">🎨</div>
-              <h3 class="text-2xl font-jua text-pink-500 mb-3">창의 미술</h3>
-              <p class="text-gray-600 font-rounded mb-6 leading-relaxed">
+           <div class="bg-pink-50 rounded-2xl p-6 border-4 border-white shadow-lg hover:-translate-y-2 transition">
+              <div class="w-14 h-14 bg-white rounded-full flex items-center justify-center text-3xl mb-4 shadow-sm">🎨</div>
+              <h3 class="text-xl font-jua text-pink-500 mb-2">창의 미술</h3>
+              <p class="text-gray-600 text-sm mb-4 leading-relaxed">
                  다양한 재료를 탐색하고 자유롭게 표현하며
                  예술적 감수성과 창의력을 키웁니다.
               </p>
@@ -113,10 +96,10 @@
            </div>
 
            <!-- Card 2 -->
-           <div class="bg-sky-50 rounded-[2rem] p-8 border-4 border-white shadow-lg hover:-translate-y-2 transition duration-300 mt-8 md:mt-0">
-              <div class="w-16 h-16 bg-white rounded-full flex items-center justify-center text-4xl mb-6 shadow-sm">⚽</div>
-              <h3 class="text-2xl font-jua text-sky-500 mb-3">신체 놀이</h3>
-              <p class="text-gray-600 font-rounded mb-6 leading-relaxed">
+           <div class="bg-sky-50 rounded-2xl p-6 border-4 border-white shadow-lg hover:-translate-y-2 transition">
+              <div class="w-14 h-14 bg-white rounded-full flex items-center justify-center text-3xl mb-4 shadow-sm">⚽</div>
+              <h3 class="text-xl font-jua text-sky-500 mb-2">신체 놀이</h3>
+              <p class="text-gray-600 text-sm mb-4 leading-relaxed">
                  넓은 잔디밭과 실내 체육관에서 마음껏 뛰어놀며
                  기초 체력을 기르고 협동심을 배웁니다.
               </p>
@@ -127,10 +110,10 @@
            </div>
 
            <!-- Card 3 -->
-           <div class="bg-green-50 rounded-[2rem] p-8 border-4 border-white shadow-lg hover:-translate-y-2 transition duration-300">
-              <div class="w-16 h-16 bg-white rounded-full flex items-center justify-center text-4xl mb-6 shadow-sm">🗣️</div>
-              <h3 class="text-2xl font-jua text-green-500 mb-3">이중언어</h3>
-              <p class="text-gray-600 font-rounded mb-6 leading-relaxed">
+           <div class="bg-green-50 rounded-2xl p-6 border-4 border-white shadow-lg hover:-translate-y-2 transition">
+              <div class="w-14 h-14 bg-white rounded-full flex items-center justify-center text-3xl mb-4 shadow-sm">🗣️</div>
+              <h3 class="text-xl font-jua text-green-500 mb-2">이중언어</h3>
+              <p class="text-gray-600 text-sm mb-4 leading-relaxed">
                  원어민 선생님과 함께하는 놀이형 영어를 통해
                  자연스럽게 외국어와 친해지는 시간입니다.
               </p>
@@ -144,24 +127,24 @@
   </section>
 
   <!-- CTA -->
-  <section id="contact" class="py-20 px-6 bg-purple-100 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCIgdmlld0JveD0iMCAwIDQwIDQwIiBvcGFjaXR5PSIwLjEiPjxjaXJjbGUgY3g9IjIwIiBjeT0iMjAiIHI9IjIiIGZpbGw9IiM5MzMzRWEiLz48L3N2Zz4=')]">
+  <section id="contact" class="py-16 px-6 bg-purple-100">
      <div class="container mx-auto text-center">
-        <h2 class="text-4xl font-jua text-purple-600 mb-8">드리미 키즈에서 만나요!</h2>
-        <div class="bg-white rounded-3xl p-8 max-w-2xl mx-auto shadow-xl border-4 border-purple-200">
-           <div class="grid md:grid-cols-2 gap-8 text-left">
+        <h2 class="text-3xl font-jua text-purple-600 mb-6">드리미 키즈에서 만나요!</h2>
+        <div class="bg-white rounded-2xl p-6 md:p-8 max-w-xl mx-auto shadow-xl border-4 border-purple-200">
+           <div class="grid md:grid-cols-2 gap-6 text-left">
               <div>
-                 <h4 class="font-jua text-xl text-gray-700 mb-2">📞 전화 문의</h4>
-                 <p class="font-rounded text-2xl text-purple-500 font-bold mb-6">02-1234-5678</p>
+                 <h4 class="font-jua text-lg text-gray-700 mb-2">📞 전화 문의</h4>
+                 <p class="text-xl text-purple-500 font-bold mb-5">02-1234-5678</p>
                  
-                 <h4 class="font-jua text-xl text-gray-700 mb-2">🚍 셔틀버스 운행</h4>
-                 <p class="font-rounded text-gray-500">마포구 전 지역, 서대문구 일부</p>
+                 <h4 class="font-jua text-lg text-gray-700 mb-2">🚍 셔틀버스 운행</h4>
+                 <p class="text-gray-500 text-sm">마포구 전 지역, 서대문구 일부</p>
               </div>
               <div>
-                 <h4 class="font-jua text-xl text-gray-700 mb-2">⏰ 운영 시간</h4>
-                 <p class="font-rounded text-gray-500 mb-1">평일 08:30 - 19:30</p>
-                 <p class="font-rounded text-gray-500 mb-6">토요 돌봄 09:00 - 13:00</p>
+                 <h4 class="font-jua text-lg text-gray-700 mb-2">⏰ 운영 시간</h4>
+                 <p class="text-gray-500 text-sm mb-1">평일 08:30 - 19:30</p>
+                 <p class="text-gray-500 text-sm mb-5">토요 돌봄 09:00 - 13:00</p>
                  
-                 <button class="w-full bg-yellow-400 text-white font-jua text-lg py-3 rounded-xl hover:bg-yellow-500 transition shadow-md">
+                 <button class="w-full bg-yellow-400 text-white font-jua text-base py-3 rounded-xl hover:bg-yellow-500 transition shadow-md">
                     카카오톡 상담하기
                  </button>
               </div>
@@ -170,12 +153,10 @@
      </div>
   </section>
 
-</div>
+  <!-- Footer -->
+  <footer class="py-8 px-6 bg-purple-600 text-center">
+    <p class="font-jua text-xl text-white mb-2">🌈 드리미 키즈</p>
+    <p class="text-sm text-purple-200">서울시 마포구 연남동 123-45</p>
+  </footer>
 
-<script>
-  VanillaTilt.init(document.querySelectorAll("[data-tilt]"), {
-    max: 10,
-    speed: 400,
-    scale: 1.05
-  });
-</script>
+</div>

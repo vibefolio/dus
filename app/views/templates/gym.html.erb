@@ -1,133 +1,112 @@
-<%# Gym Template - 리라임 휘트니스 %>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.0/vanilla-tilt.min.js"></script>
+<%# Gym Template - 리밋브레이커 %>
 
 <style>
-  .gym-font { font-family: 'Inter', sans-serif; }
-  .clip-diagonal {
-    clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
-  }
-  .clip-diagonal-reverse {
-    clip-path: polygon(0 15%, 100% 0, 100% 100%, 0 100%);
-  }
-  .neon-text {
-    text-shadow: 0 0 10px #c6ff00;
-  }
-  .glitch-hover:hover {
-    animation: glitch 0.3s cubic-bezier(.25, .46, .45, .94) both infinite;
-  }
-  @keyframes glitch {
-    0% { transform: translate(0) }
-    20% { transform: translate(-2px, 2px) }
-    40% { transform: translate(-2px, -2px) }
-    60% { transform: translate(2px, 2px) }
-    80% { transform: translate(2px, -2px) }
-    100% { transform: translate(0) }
-  }
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;700;900&display=swap');
+  
+  .font-sans { font-family: 'Noto Sans KR', sans-serif; }
 </style>
 
-<div class="bg-black text-white gym-font selection:bg-[#c6ff00] selection:text-black">
+<div class="bg-black text-white font-sans selection:bg-[#c6ff00] selection:text-black">
 
   <!-- Nav -->
-  <nav class="fixed w-full z-50 px-6 py-4 flex justify-between items-center bg-black/90 border-b border-[#c6ff00]/20 backdrop-blur">
-    <div class="text-3xl font-black italic tracking-tighter text-white">
-      LIMIT<span class="text-[#c6ff00]">BREAKER</span>
+  <nav class="fixed w-full z-50 px-6 py-4 flex justify-between items-center bg-black/95 border-b border-[#c6ff00]/20 backdrop-blur-sm">
+    <div class="text-2xl font-black tracking-tight text-white">
+      리밋<span class="text-[#c6ff00]">브레이커</span>
     </div>
-    <div class="hidden md:flex gap-8 font-bold uppercase italic text-sm text-gray-400">
-      <a href="#about" class="hover:text-[#c6ff00] transition">About</a>
-      <a href="#trainers" class="hover:text-[#c6ff00] transition">Trainers</a>
-      <a href="#program" class="hover:text-[#c6ff00] transition">Program</a>
-      <a href="#membership" class="hover:text-[#c6ff00] transition">Membership</a>
+    <div class="hidden md:flex gap-6 font-bold text-sm text-gray-400">
+      <a href="#about" class="hover:text-[#c6ff00] transition">소개</a>
+      <a href="#trainers" class="hover:text-[#c6ff00] transition">트레이너</a>
+      <a href="#program" class="hover:text-[#c6ff00] transition">프로그램</a>
+      <a href="#membership" class="hover:text-[#c6ff00] transition">멤버십</a>
     </div>
-    <button onclick="document.getElementById('membership').scrollIntoView({behavior: 'smooth'})"
-            class="px-8 py-2 bg-[#c6ff00] text-black font-black italic uppercase skew-x-[-10deg] hover:bg-white transition transform hover:scale-105">
-      Join Now
+    <button class="px-6 py-2 bg-[#c6ff00] text-black font-black text-sm hover:bg-white transition">
+      가입하기
     </button>
   </nav>
 
   <!-- Hero -->
-  <header class="h-screen relative flex items-center overflow-hidden clip-diagonal">
+  <header class="min-h-screen relative flex items-center overflow-hidden pt-16">
     <div class="absolute inset-0 z-0">
-      <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=1920&auto=format&fit=crop" class="w-full h-full object-cover opacity-60">
+      <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=1920" alt="피트니스 센터" class="w-full h-full object-cover opacity-60">
       <div class="absolute inset-0 bg-gradient-to-r from-black via-black/70 to-transparent"></div>
     </div>
     
-    <div class="container mx-auto px-6 relative z-10 grid md:grid-cols-2">
-      <div class="space-y-6">
-        <h1 class="text-7xl md:text-9xl font-black italic leading-none tracking-tighter mb-4" data-tilt data-tilt-max="5">
-          NO PAIN <br>
-          <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#c6ff00] to-green-500 neon-text">NO GAIN</span>
+    <div class="container mx-auto px-6 relative z-10">
+      <div class="space-y-6 max-w-2xl">
+        <h1 class="text-5xl md:text-7xl font-black leading-tight">
+          고통 없이<br><span class="text-[#c6ff00]">성장 없다</span>
         </h1>
-        <p class="text-xl text-gray-400 max-w-lg leading-relaxed font-light">
-          한계를 뛰어넘을 준비가 되셨습니까? <br>
+        <p class="text-lg text-gray-400 max-w-md leading-relaxed">
+          한계를 뛰어넘을 준비가 되셨습니까?<br>
           최고의 시설과 전문가들이 당신의 변화를 책임집니다.
         </p>
         
-        <div class="flex gap-4 pt-8">
+        <div class="flex gap-6 pt-4">
            <div class="border-l-4 border-[#c6ff00] pl-4">
-             <p class="text-3xl font-black text-white">24/7</p>
-             <p class="text-xs text-gray-500 uppercase">Open Gym</p>
+             <p class="text-2xl font-black text-white">24/7</p>
+             <p class="text-xs text-gray-500">오픈 짐</p>
            </div>
            <div class="border-l-4 border-white pl-4">
-             <p class="text-3xl font-black text-white">50+</p>
-             <p class="text-xs text-gray-500 uppercase">Machines</p>
+             <p class="text-2xl font-black text-white">50+</p>
+             <p class="text-xs text-gray-500">최신 장비</p>
            </div>
         </div>
 
-        <button class="mt-8 px-10 py-4 border-2 border-[#c6ff00] text-[#c6ff00] font-black uppercase tracking-widest hover:bg-[#c6ff00] hover:text-black transition duration-300 glitch-hover">
-          Start Free Trial
+        <button class="mt-6 px-8 py-4 border-2 border-[#c6ff00] text-[#c6ff00] font-black hover:bg-[#c6ff00] hover:text-black transition">
+          무료 체험 시작
         </button>
       </div>
     </div>
   </header>
 
-  <!-- Programs (Process UI) -->
-  <section id="program" class="py-24 bg-[#111] relative">
+  <!-- Programs -->
+  <section id="program" class="py-16 md:py-20 bg-[#111] relative">
     <div class="container mx-auto px-6">
-      <div class="text-center mb-16">
-        <h2 class="text-4xl font-black italic uppercase text-white mb-2">Target Your Goal</h2>
-        <div class="w-24 h-1 bg-[#c6ff00] mx-auto skew-x-[-20deg]"></div>
+      <div class="text-center mb-12">
+        <h2 class="text-3xl font-black text-white mb-2">목표를 설정하세요</h2>
+        <div class="w-20 h-1 bg-[#c6ff00] mx-auto"></div>
       </div>
 
-      <div class="grid md:grid-cols-3 gap-8">
+      <div class="grid md:grid-cols-3 gap-6">
         <!-- Card -->
-        <div class="group relative h-[400px] bg-neutral-900 border border-neutral-800 hover:border-[#c6ff00] transition duration-500 overflow-hidden" data-tilt>
+        <div class="group relative h-[350px] bg-neutral-900 border border-neutral-800 hover:border-[#c6ff00] transition overflow-hidden cursor-pointer">
           <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent z-10"></div>
-          <img src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?q=80&w=800" class="absolute inset-0 w-full h-full object-cover opacity-50 group-hover:opacity-80 transition duration-700 group-hover:scale-110">
+          <img src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?q=80&w=800" alt="머슬업" class="absolute inset-0 w-full h-full object-cover opacity-50 group-hover:opacity-80 transition duration-500 group-hover:scale-105">
           
-          <div class="absolute bottom-0 left-0 p-8 z-20">
-            <h3 class="text-3xl font-black italic text-white mb-2 group-hover:text-[#c6ff00] transition">MUSCLE UP</h3>
-            <p class="text-gray-400 text-sm mb-4 translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition duration-300">
+          <div class="absolute bottom-0 left-0 p-6 z-20">
+            <h3 class="text-2xl font-black text-white mb-2 group-hover:text-[#c6ff00] transition">머슬 업</h3>
+            <p class="text-gray-400 text-sm mb-3 opacity-0 group-hover:opacity-100 transition">
               체계적인 웨이트 트레이닝으로 근육량 증가 및 바디 프로필 준비
             </p>
-            <span class="text-xs font-bold border border-white px-3 py-1 uppercase">Advanced</span>
+            <span class="text-xs font-bold border border-white px-3 py-1">고급</span>
           </div>
         </div>
 
         <!-- Card -->
-        <div class="group relative h-[400px] bg-neutral-900 border border-neutral-800 hover:border-[#c6ff00] transition duration-500 overflow-hidden" data-tilt>
+        <div class="group relative h-[350px] bg-neutral-900 border border-neutral-800 hover:border-[#c6ff00] transition overflow-hidden cursor-pointer">
           <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent z-10"></div>
-          <img src="https://images.unsplash.com/photo-1549476464-37392f717541?q=80&w=800" class="absolute inset-0 w-full h-full object-cover opacity-50 group-hover:opacity-80 transition duration-700 group-hover:scale-110">
+          <img src="https://images.unsplash.com/photo-1549476464-37392f717541?q=80&w=800" alt="크로스핏" class="absolute inset-0 w-full h-full object-cover opacity-50 group-hover:opacity-80 transition duration-500 group-hover:scale-105">
           
-          <div class="absolute bottom-0 left-0 p-8 z-20">
-            <h3 class="text-3xl font-black italic text-white mb-2 group-hover:text-[#c6ff00] transition">CROSSFIT</h3>
-            <p class="text-gray-400 text-sm mb-4 translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition duration-300">
+          <div class="absolute bottom-0 left-0 p-6 z-20">
+            <h3 class="text-2xl font-black text-white mb-2 group-hover:text-[#c6ff00] transition">크로스핏</h3>
+            <p class="text-gray-400 text-sm mb-3 opacity-0 group-hover:opacity-100 transition">
               고강도 기능성 운동으로 심폐지구력과 근력을 동시에 향상
             </p>
-            <span class="text-xs font-bold border border-white px-3 py-1 uppercase">Hardcore</span>
+            <span class="text-xs font-bold border border-white px-3 py-1">하드코어</span>
           </div>
         </div>
 
         <!-- Card -->
-        <div class="group relative h-[400px] bg-neutral-900 border border-neutral-800 hover:border-[#c6ff00] transition duration-500 overflow-hidden" data-tilt>
+        <div class="group relative h-[350px] bg-neutral-900 border border-neutral-800 hover:border-[#c6ff00] transition overflow-hidden cursor-pointer">
           <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent z-10"></div>
-          <img src="https://images.unsplash.com/photo-1534258936925-c48947387603?q=80&w=800" class="absolute inset-0 w-full h-full object-cover opacity-50 group-hover:opacity-80 transition duration-700 group-hover:scale-110">
+          <img src="https://images.unsplash.com/photo-1534258936925-c48947387603?q=80&w=800" alt="다이어트 번" class="absolute inset-0 w-full h-full object-cover opacity-50 group-hover:opacity-80 transition duration-500 group-hover:scale-105">
           
-          <div class="absolute bottom-0 left-0 p-8 z-20">
-            <h3 class="text-3xl font-black italic text-white mb-2 group-hover:text-[#c6ff00] transition">DIET BURN</h3>
-            <p class="text-gray-400 text-sm mb-4 translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition duration-300">
+          <div class="absolute bottom-0 left-0 p-6 z-20">
+            <h3 class="text-2xl font-black text-white mb-2 group-hover:text-[#c6ff00] transition">다이어트 번</h3>
+            <p class="text-gray-400 text-sm mb-3 opacity-0 group-hover:opacity-100 transition">
               인터벌 트레이닝과 식단 관리로 단기간 체지방 감량
             </p>
-            <span class="text-xs font-bold border border-white px-3 py-1 uppercase">Beginner</span>
+            <span class="text-xs font-bold border border-white px-3 py-1">초급</span>
           </div>
         </div>
       </div>
@@ -135,19 +114,19 @@
   </section>
 
   <!-- Trainers -->
-  <section id="trainers" class="py-24 bg-neutral-900 clip-diagonal-reverse pb-40">
+  <section id="trainers" class="py-16 md:py-20 bg-neutral-900">
     <div class="container mx-auto px-6">
-      <h2 class="text-4xl font-black italic text-white mb-12 text-right">MEET THE PROS</h2>
+      <h2 class="text-3xl font-black text-white mb-10 text-center">전문 트레이너</h2>
       
-      <div class="flex flex-col md:flex-row gap-6 justify-center">
+      <div class="grid md:grid-cols-3 gap-6">
         <!-- Trainer 1 -->
-        <div class="w-full md:w-1/3 bg-black border-2 border-transparent hover:border-[#c6ff00] p-6 transition duration-300 group">
-          <div class="h-80 bg-neutral-800 mb-6 overflow-hidden relative grayscale group-hover:grayscale-0 transition duration-500">
-            <img src="https://images.unsplash.com/photo-1567013127542-490d757e51fc?q=80&w=600" class="w-full h-full object-cover">
+        <div class="bg-black border-2 border-transparent hover:border-[#c6ff00] p-5 transition group">
+          <div class="h-64 bg-neutral-800 mb-5 overflow-hidden relative grayscale group-hover:grayscale-0 transition duration-500">
+            <img src="https://images.unsplash.com/photo-1567013127542-490d757e51fc?q=80&w=600" alt="알렉스 강" class="w-full h-full object-cover">
           </div>
-          <h3 class="text-2xl font-black italic text-white">ALEX KANG</h3>
-          <p class="text-[#c6ff00] font-bold text-sm mb-4">HEAD COACH</p>
-          <ul class="text-gray-500 text-sm space-y-2">
+          <h3 class="text-xl font-black text-white">알렉스 강</h3>
+          <p class="text-[#c6ff00] font-bold text-sm mb-3">헤드 코치</p>
+          <ul class="text-gray-500 text-sm space-y-1">
             <li>- NSCA-CPT / CSCS</li>
             <li>- 보디빌딩 국가대표 출신</li>
             <li>- 재활 트레이닝 전문</li>
@@ -155,13 +134,13 @@
         </div>
         
         <!-- Trainer 2 -->
-        <div class="w-full md:w-1/3 bg-black border-2 border-transparent hover:border-[#c6ff00] p-6 transition duration-300 group mt-0 md:-mt-12 z-10 shadow-2xl">
-          <div class="h-80 bg-neutral-800 mb-6 overflow-hidden relative grayscale group-hover:grayscale-0 transition duration-500">
-            <img src="https://images.unsplash.com/photo-1611672585731-fa10603fb9e0?q=80&w=600" class="w-full h-full object-cover">
+        <div class="bg-black border-2 border-transparent hover:border-[#c6ff00] p-5 transition group">
+          <div class="h-64 bg-neutral-800 mb-5 overflow-hidden relative grayscale group-hover:grayscale-0 transition duration-500">
+            <img src="https://images.unsplash.com/photo-1611672585731-fa10603fb9e0?q=80&w=600" alt="사라 이" class="w-full h-full object-cover">
           </div>
-          <h3 class="text-2xl font-black italic text-white">SARAH LEE</h3>
-          <p class="text-[#c6ff00] font-bold text-sm mb-4">PILATES & YOGA</p>
-          <ul class="text-gray-500 text-sm space-y-2">
+          <h3 class="text-xl font-black text-white">사라 이</h3>
+          <p class="text-[#c6ff00] font-bold text-sm mb-3">필라테스 & 요가</p>
+          <ul class="text-gray-500 text-sm space-y-1">
             <li>- STOTT PILATES certified</li>
             <li>- 요가 지도자 자격 1급</li>
             <li>- 체형 교정 전문</li>
@@ -169,13 +148,13 @@
         </div>
 
         <!-- Trainer 3 -->
-        <div class="w-full md:w-1/3 bg-black border-2 border-transparent hover:border-[#c6ff00] p-6 transition duration-300 group">
-          <div class="h-80 bg-neutral-800 mb-6 overflow-hidden relative grayscale group-hover:grayscale-0 transition duration-500">
-            <img src="https://images.unsplash.com/photo-1594381898411-846e7d193883?q=80&w=600" class="w-full h-full object-cover">
+        <div class="bg-black border-2 border-transparent hover:border-[#c6ff00] p-5 transition group">
+          <div class="h-64 bg-neutral-800 mb-5 overflow-hidden relative grayscale group-hover:grayscale-0 transition duration-500">
+            <img src="https://images.unsplash.com/photo-1594381898411-846e7d193883?q=80&w=600" alt="마이크 최" class="w-full h-full object-cover">
           </div>
-          <h3 class="text-2xl font-black italic text-white">MIKE CHOI</h3>
-          <p class="text-[#c6ff00] font-bold text-sm mb-4">CROSSFIT L2</p>
-          <ul class="text-gray-500 text-sm space-y-2">
+          <h3 class="text-xl font-black text-white">마이크 최</h3>
+          <p class="text-[#c6ff00] font-bold text-sm mb-3">크로스핏 L2</p>
+          <ul class="text-gray-500 text-sm space-y-1">
             <li>- CrossFit Level 2 Trainer</li>
             <li>- 파워리프팅 대회 입상</li>
             <li>- 기능성 트레이닝 전문</li>
@@ -185,34 +164,25 @@
     </div>
   </section>
 
-  <!-- Membership (Footer) -->
-  <section id="membership" class="py-24 bg-black relative">
-    <div class="container mx-auto px-6 text-center max-w-4xl">
-      <h2 class="text-5xl font-black italic text-white mb-8 neon-text">JOIN THE MOVEMENT</h2>
-      <p class="text-xl text-gray-400 mb-12">
+  <!-- Membership -->
+  <section id="membership" class="py-16 md:py-20 bg-black relative">
+    <div class="container mx-auto px-6 text-center max-w-3xl">
+      <h2 class="text-4xl font-black text-white mb-6">함께 움직이세요</h2>
+      <p class="text-lg text-gray-400 mb-10">
         오늘 시작하지 않으면 내일도 똑같습니다.<br>
         지금 등록하고 무료 PT 2회를 받아보세요.
       </p>
 
-      <form class="grid md:grid-cols-2 gap-4 bg-neutral-900/50 p-8 border border-neutral-800">
-        <input type="text" placeholder="NAME" class="bg-black border border-neutral-700 p-4 text-white uppercase italic focus:border-[#c6ff00] outline-none">
-        <input type="tel" placeholder="PHONE" class="bg-black border border-neutral-700 p-4 text-white uppercase italic focus:border-[#c6ff00] outline-none">
-        <button type="button" class="md:col-span-2 bg-[#c6ff00] text-black font-black text-xl py-4 uppercase italic tracking-widest hover:bg-white transition skew-x-[-10deg]">
-          Get My Offer
+      <form class="grid md:grid-cols-2 gap-4 bg-neutral-900/50 p-6 border border-neutral-800">
+        <input type="text" placeholder="이름" class="bg-black border border-neutral-700 p-4 text-white focus:border-[#c6ff00] outline-none">
+        <input type="tel" placeholder="연락처" class="bg-black border border-neutral-700 p-4 text-white focus:border-[#c6ff00] outline-none">
+        <button type="button" class="md:col-span-2 bg-[#c6ff00] text-black font-black text-lg py-4 hover:bg-white transition">
+          특별 혜택 받기
         </button>
       </form>
       
-      <p class="text-gray-600 text-xs mt-8">Copyright 2024 LimitBreaker Gym. All rights reserved.</p>
+      <p class="text-gray-600 text-xs mt-6">© 2024 리밋브레이커 짐. All rights reserved.</p>
     </div>
   </section>
 
 </div>
-
-<script>
-  VanillaTilt.init(document.querySelectorAll("[data-tilt]"), {
-    max: 10,
-    speed: 400,
-    glare: true,
-    "max-glare": 0.5,
-  });
-</script>
