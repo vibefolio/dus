@@ -95,12 +95,22 @@
                    class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
 
               <!-- Badge -->
-              <div class="absolute top-4 left-4">
-                <span class="px-3 py-1 bg-white/90 backdrop-blur text-xs font-bold rounded-full uppercase tracking-wider shadow-sm text-slate-800">
+              <!-- Badge -->
+              <div class="absolute top-4 left-4 flex flex-wrap gap-2">
+                <span class="px-3 py-1 bg-white/90 backdrop-blur text-xs font-bold rounded-full uppercase tracking-wider shadow-sm text-slate-800 border border-slate-100">
                   <%= template.category %>
                 </span>
+
+                <% price = template_price_tier(template.category) %>
+                <span class="px-3 py-1 bg-slate-900/90 backdrop-blur text-white text-xs font-bold rounded-full uppercase tracking-wider shadow-sm flex items-center gap-1 border border-slate-800">
+                  <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 2L2 12L12 22L22 12L12 2Z"/>
+                  </svg>
+                  <%= price %>
+                </span>
+
                 <% if template.is_featured %>
-                  <span class="ml-1 px-3 py-1 bg-amber-400 text-white text-xs font-bold rounded-full uppercase tracking-wider shadow-sm">
+                  <span class="px-3 py-1 bg-amber-400 text-white text-xs font-bold rounded-full uppercase tracking-wider shadow-sm shadow-amber-200">
                     BEST
                   </span>
                 <% end %>
