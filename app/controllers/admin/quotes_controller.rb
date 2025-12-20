@@ -36,15 +36,15 @@ class Admin::QuotesController < ApplicationController
 
   def destroy
     @quote.destroy
-    redirect_to admin_quotes_path, notice: "문의 내역이 삭제되었습니다."
+    redirect_to admin_quotes_path, notice: "문의 내역이 삭제되었습니다.", status: :see_other
   end
 
   def bulk_destroy
     if params[:quote_ids].present?
       Quote.where(id: params[:quote_ids]).destroy_all
-      redirect_to admin_quotes_path, notice: "선택한 문의 내역이 삭제되었습니다."
+      redirect_to admin_quotes_path, notice: "선택한 문의 내역이 삭제되었습니다.", status: :see_other
     else
-      redirect_to admin_quotes_path, alert: "삭제할 항목을 선택해주세요."
+      redirect_to admin_quotes_path, alert: "삭제할 항목을 선택해주세요.", status: :see_other
     end
   end
 
