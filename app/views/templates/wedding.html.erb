@@ -14,16 +14,28 @@
   .paper-grain {
     background: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.6' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E");
   }
+
+  .section-padding { padding-top: 100px; padding-bottom: 100px; }
+  
+  /* Accordion Styles */
+  .accordion-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out;
+  }
+  .accordion-toggle.active + .accordion-content {
+    max-height: 300px; /* Approximate height */
+  }
 </style>
 
 <div class="bg-[#FFFCF6] text-[#4A4A4A] font-sans selection:bg-[#E5D5C6] selection:text-white min-h-screen overflow-x-hidden relative">
   <div class="fixed inset-0 paper-grain pointer-events-none"></div>
 
   <!-- Nav -->
-  <nav class="fixed w-full z-50 px-8 py-6 bg-[#FFFCF6]/80 backdrop-blur-md border-b border-[#E5D5C6]/30">
+  <nav class="fixed w-full z-50 px-8 py-6 bg-[#FFFCF6]/90 backdrop-blur-md border-b border-[#E5D5C6]/30 transition-all duration-300" data-aos="fade-down" data-aos-duration="1000">
     <div class="container mx-auto flex justify-between items-center">
       <div class="flex items-center gap-4">
-         <span class="font-serif-elegant font-semibold text-2xl tracking-[0.2em] text-[#8C7B6C] uppercase">Eternal<span class="text-[#E5D5C6]">Vow</span></span>
+         <span class="font-serif-elegant font-semibold text-2xl tracking-[0.2em] text-[#8C7B6C] uppercase cursor-pointer">Eternal<span class="text-[#E5D5C6]">Vow</span></span>
       </div>
       
       <div class="hidden md:flex gap-12 text-[11px] font-sans font-medium tracking-[0.2em] text-[#A6998E] uppercase">
@@ -34,27 +46,27 @@
       
       <div class="flex gap-4 items-center">
          <button onclick="toggleWeddingModal()" class="text-[10px] font-sans font-bold uppercase tracking-[0.2em] text-[#A6998E] hover:text-[#8C7B6C]">Guest Access</button>
-         <button class="bg-[#8C7B6C] text-white px-8 py-2.5 rounded-sm font-serif-elegant font-medium text-sm tracking-widest uppercase hover:bg-[#6D5E52] transition shadow-lg shadow-[#E5D5C6]/50">
+         <button class="bg-[#8C7B6C] text-white px-6 py-2 rounded-sm font-serif-elegant font-medium text-xs tracking-widest uppercase hover:bg-[#6D5E52] transition shadow-lg shadow-[#E5D5C6]/50">
            RSVP
          </button>
       </div>
     </div>
   </nav>
 
-  <!-- Hero -->
+  <!-- Hero with D-Day Counter -->
   <header class="min-h-screen relative flex items-center justify-center pt-24 overflow-hidden">
     <!-- Decorative Border -->
-    <div class="absolute inset-8 border border-[#E5D5C6] pointer-events-none z-20 m-4 md:m-12"></div>
-    <div class="absolute inset-9 border border-[#E5D5C6] pointer-events-none z-20 m-4 md:m-12 opacity-50"></div>
+    <div class="absolute inset-4 md:inset-8 border border-[#E5D5C6] pointer-events-none z-20 m-2 md:m-8" data-aos="fade-in" data-aos-duration="2000" data-aos-delay="500"></div>
+    <div class="absolute inset-5 md:inset-9 border border-[#E5D5C6] pointer-events-none z-20 m-2 md:m-8 opacity-50" data-aos="fade-in" data-aos-duration="2000" data-aos-delay="700"></div>
 
-    <div class="container mx-auto px-6 relative z-10 grid lg:grid-cols-2 gap-20 items-center h-full">
-      <div class="space-y-12 text-center lg:text-left order-2 lg:order-1 flex flex-col justify-center">
+    <div class="container mx-auto px-6 relative z-10 grid lg:grid-cols-2 gap-12 md:gap-20 items-center h-full">
+      <div class="space-y-8 md:space-y-12 text-center lg:text-left order-2 lg:order-1 flex flex-col justify-center" data-aos="fade-right" data-aos-duration="1200">
         <div class="inline-flex items-center gap-3 justify-center lg:justify-start">
            <span class="w-12 h-[1px] bg-[#8C7B6C]"></span>
            <span class="text-[12px] font-serif-elegant font-bold text-[#8C7B6C] uppercase tracking-[0.3em] italic">We Are Getting Married</span>
         </div>
         
-        <h1 class="text-5xl md:text-8xl font-serif-elegant font-light leading-[1.1] text-[#2C2C2C] mobile-title">
+        <h1 class="text-5xl md:text-7xl xl:text-8xl font-serif-elegant font-light leading-[1.1] text-[#2C2C2C] mobile-title">
            Promise of<br>
            <span class="italic text-[#8C7B6C]">Forever</span><br>
            Love.
@@ -62,52 +74,147 @@
         
         <p class="text-[#8C7B6C] text-sm md:text-lg leading-relaxed max-w-md mx-auto lg:mx-0 mobile-desc font-light font-serif-elegant tracking-wide">
            두 사람이 하나 되는 날,<br>
-           소중한 분들을 모시고 사랑의 서약을 맺으려 합니다.
+           소중한 분들을 모시고 사랑의 서약을 맺으려 합니다.<br>
+           저희의 시작을 함께 축복해 주세요.
         </p>
         
-        <div class="pt-8 space-y-2">
-           <p class="font-serif-elegant text-3xl text-[#2C2C2C]">2025. 10. 12.</p>
-           <p class="text-[11px] font-bold text-[#A6998E] tracking-[0.3em] uppercase">Saturday 02:00 PM</p>
-           <p class="text-[11px] font-bold text-[#A6998E] tracking-[0.3em] uppercase">The Raum Art Center</p>
+        <!-- D-Day Counter -->
+        <div class="py-6 flex justify-center lg:justify-start gap-8 border-t border-b border-[#E5D5C6]/50">
+           <div class="text-center">
+              <span class="block text-3xl font-serif-elegant text-[#2C2C2C]" id="days">00</span>
+              <span class="text-[10px] text-[#A6998E] uppercase tracking-widest">Days</span>
+           </div>
+           <div class="text-center">
+              <span class="block text-3xl font-serif-elegant text-[#2C2C2C]" id="hours">00</span>
+              <span class="text-[10px] text-[#A6998E] uppercase tracking-widest">Hours</span>
+           </div>
+           <div class="text-center">
+              <span class="block text-3xl font-serif-elegant text-[#2C2C2C]" id="minutes">00</span>
+              <span class="text-[10px] text-[#A6998E] uppercase tracking-widest">Mins</span>
+           </div>
+           <div class="text-center">
+              <span class="block text-3xl font-serif-elegant text-[#2C2C2C]" id="seconds">00</span>
+              <span class="text-[10px] text-[#A6998E] uppercase tracking-widest">Secs</span>
+           </div>
         </div>
 
-        <div class="pt-8 flex justify-center lg:justify-start">
-            <button class="w-12 h-12 rounded-full border border-[#8C7B6C] flex items-center justify-center text-[#8C7B6C] hover:bg-[#8C7B6C] hover:text-white transition animate-bounce-slow">
-               ↓
-            </button>
+        <div class="space-y-1">
+           <p class="font-serif-elegant text-2xl md:text-3xl text-[#2C2C2C]">2025. 10. 12.</p>
+           <p class="text-[11px] font-bold text-[#A6998E] tracking-[0.3em] uppercase">Saturday 02:00 PM • The Raum Art Center</p>
         </div>
       </div>
       
-      <div class="relative order-1 lg:order-2 h-full flex items-center justify-center py-10">
-         <div class="relative w-[350px] md:w-[450px] aspect-[3/4]">
+      <div class="relative order-1 lg:order-2 h-full flex items-center justify-center py-10" data-aos="fade-left" data-aos-duration="1200">
+         <div class="relative w-[300px] md:w-[450px] aspect-[3/4]">
             <!-- Photo Frame -->
-            <div class="absolute inset-0 border-8 border-white shadow-2xl z-10">
+            <div class="absolute inset-0 border-8 border-white shadow-2xl z-10 transition-transform hover:scale-[1.02] duration-700">
                <img src="https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=800" alt="Wedding Couple" class="w-full h-full object-cover filter brightness-[1.05] contrast-[0.95] sepia-[10%]">
             </div>
             <!-- Background Decoration -->
             <div class="absolute -top-10 -right-10 w-full h-full border border-[#E5D5C6] z-0"></div>
             <div class="absolute -bottom-10 -left-10 w-full h-full bg-[#E5D5C6]/30 z-0"></div>
             
-            <!-- Floral Element (CSS) -->
-            <div class="absolute -bottom-16 -right-12 text-[5rem] opacity-20 rotate-12 pointer-events-none font-serif-elegant">
+            <div class="absolute -bottom-16 -right-12 text-[5rem] opacity-20 rotate-12 pointer-events-none font-serif-elegant text-[#8C7B6C]">
                ❦
             </div>
          </div>
       </div>
     </div>
   </header>
+
+  <!-- Gallery Section -->
+  <section id="gallery" class="section-padding px-6 bg-[#fff]" data-aos="fade-up">
+     <div class="container mx-auto max-w-5xl">
+        <div class="text-center mb-16 space-y-4">
+           <span class="text-[#8C7B6C] font-serif-elegant italic text-lg">Our Moments</span>
+           <h2 class="text-4xl text-[#2C2C2C] font-serif-elegant font-light">Gallery</h2>
+        </div>
+        <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+           <div class="aspect-[3/4] overflow-hidden group cursor-pointer" data-aos="fade-up" data-aos-delay="100">
+              <img src="https://images.unsplash.com/photo-1511285560982-1351cdeb9821?q=80&w=600" class="w-full h-full object-cover transition duration-700 group-hover:scale-110 filter sepia-[20%]" alt="Gallery 1">
+           </div>
+           <div class="aspect-[3/4] overflow-hidden group cursor-pointer" data-aos="fade-up" data-aos-delay="200">
+              <img src="https://images.unsplash.com/photo-1519225448064-511555e19e31?q=80&w=600" class="w-full h-full object-cover transition duration-700 group-hover:scale-110 filter sepia-[20%]" alt="Gallery 2">
+           </div>
+           <div class="aspect-[3/4] overflow-hidden group cursor-pointer" data-aos="fade-up" data-aos-delay="300">
+              <img src="https://images.unsplash.com/photo-1520854221256-17451cc330e7?q=80&w=600" class="w-full h-full object-cover transition duration-700 group-hover:scale-110 filter sepia-[20%]" alt="Gallery 3">
+           </div>
+        </div>
+     </div>
+  </section>
   
-  <style>
-     @keyframes bounce-slow {
-        0%, 100% { transform: translateY(0); }
-        50% { transform: translateY(10px); }
-     }
-     .animate-bounce-slow { animation: bounce-slow 2s infinite ease-in-out; }
-  </style>
+  <!-- Location & Map Buttons -->
+  <section id="location" class="section-padding px-6 bg-[#FFFCF6]" data-aos="fade-up">
+     <div class="container mx-auto max-w-3xl text-center">
+        <div class="mb-12 space-y-4">
+           <span class="text-[#8C7B6C] font-serif-elegant italic text-lg">Location</span>
+           <h2 class="text-4xl text-[#2C2C2C] font-serif-elegant font-light">오시는 길</h2>
+           <p class="text-[#4A4A4A] mt-4 font-light leading-relaxed">
+              서울시 강남구 언주로 564<br>
+              <strong>라움 아트센터 2F 체임버홀</strong>
+           </p>
+        </div>
+        
+        <div class="w-full aspect-video bg-[#E5D5C6]/30 mb-8 flex items-center justify-center text-[#8C7B6C] font-serif-elegant italic border border-[#E5D5C6]">
+           <!-- Placeholder for Map -->
+           Map Area (Google/Naver Map Embed)
+        </div>
+
+        <div class="flex flex-col md:flex-row gap-3 justify-center mb-12">
+           <button class="flex-1 py-3 px-6 bg-[#FAE100] text-[#3C1E1E] rounded-md text-sm font-bold shadow-sm hover:shadow-md transition flex items-center justify-center gap-2">
+              <span class="text-lg">K</span> 카카오내비
+           </button>
+           <button class="flex-1 py-3 px-6 bg-[#00C73C] text-white rounded-md text-sm font-bold shadow-sm hover:shadow-md transition flex items-center justify-center gap-2">
+              <span class="text-lg">N</span> 네이버지도
+           </button>
+           <button class="flex-1 py-3 px-6 bg-[#006CFF] text-white rounded-md text-sm font-bold shadow-sm hover:shadow-md transition flex items-center justify-center gap-2">
+              <span class="text-lg">T</span> 티맵
+           </button>
+        </div>
+     </div>
+  </section>
+
+  <!-- Money Gift (Accordion) -->
+  <section class="section-padding px-6 bg-[#fff]" data-aos="fade-up">
+     <div class="container mx-auto max-w-md">
+        <div class="text-center mb-10">
+           <h2 class="text-2xl text-[#2C2C2C] font-serif-elegant font-light italic mb-2">For Gift</h2>
+           <p class="text-xs text-[#8C7B6C] uppercase tracking-widest">마음 전하실 곳</p>
+        </div>
+        
+        <div class="space-y-4">
+           <div class="border border-[#E5D5C6] rounded-sm overflow-hidden">
+              <button class="accordion-toggle w-full px-6 py-4 flex justify-between items-center bg-[#FFFCF6] hover:bg-[#FDF6EC] transition text-[#4A4A4A] font-medium text-sm" onclick="this.classList.toggle('active')">
+                 <span>신랑측 계좌번호</span>
+                 <span class="text-[#8C7B6C] text-lg">↓</span>
+              </button>
+              <div class="accordion-content bg-white">
+                 <div class="p-6 text-center space-y-3">
+                    <p class="text-sm text-[#8C7B6C]">국민은행 123-456-7890 (홍길동)</p>
+                    <button class="text-xs bg-[#4A4A4A] text-white px-3 py-1 rounded-sm hover:bg-black transition" onclick="navigator.clipboard.writeText('1234567890')">복사하기</button>
+                 </div>
+              </div>
+           </div>
+           
+           <div class="border border-[#E5D5C6] rounded-sm overflow-hidden">
+              <button class="accordion-toggle w-full px-6 py-4 flex justify-between items-center bg-[#FFFCF6] hover:bg-[#FDF6EC] transition text-[#4A4A4A] font-medium text-sm" onclick="this.classList.toggle('active')">
+                 <span>신부측 계좌번호</span>
+                 <span class="text-[#8C7B6C] text-lg">↓</span>
+              </button>
+              <div class="accordion-content bg-white">
+                 <div class="p-6 text-center space-y-3">
+                    <p class="text-sm text-[#8C7B6C]">우리은행 098-765-4321 (김철수)</p>
+                    <button class="text-xs bg-[#4A4A4A] text-white px-3 py-1 rounded-sm hover:bg-black transition" onclick="navigator.clipboard.writeText('0987654321')">복사하기</button>
+                 </div>
+              </div>
+           </div>
+        </div>
+     </div>
+  </section>
 
   <!-- Login Modal -->
   <div id="wedding-modal" class="fixed inset-0 z-[100] hidden items-center justify-center p-4 bg-[#2C2C2C]/10 backdrop-blur-md">
-    <div class="bg-[#FFFCF6] w-full max-w-sm p-14 shadow-[0_20px_50px_rgba(140,123,108,0.15)] relative border border-[#E5D5C6]">
+    <div class="bg-[#FFFCF6] w-full max-w-sm p-14 shadow-[0_20px_50px_rgba(140,123,108,0.15)] relative border border-[#E5D5C6]" data-aos="zoom-in">
       <button onclick="toggleWeddingModal()" class="absolute top-8 right-8 text-[#A6998E] hover:text-[#8C7B6C] transition text-xl font-serif-elegant">&times;</button>
       
       <div class="text-center mb-12">
@@ -145,6 +252,28 @@
       modal.classList.toggle('hidden');
       modal.classList.toggle('flex');
     }
+
+    // Countdown Timer
+    function updateCountdown() {
+       const targetDate = new Date('2025-10-12T14:00:00');
+       const now = new Date();
+       const diff = targetDate - now;
+
+       if (diff > 0) {
+          const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+          const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+          const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+          const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+          document.getElementById('days').innerText = String(days).padStart(2, '0');
+          document.getElementById('hours').innerText = String(hours).padStart(2, '0');
+          document.getElementById('minutes').innerText = String(minutes).padStart(2, '0');
+          document.getElementById('seconds').innerText = String(seconds).padStart(2, '0');
+       }
+    }
+    
+    setInterval(updateCountdown, 1000);
+    updateCountdown();
   </script>
 
 </div>

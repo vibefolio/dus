@@ -224,32 +224,21 @@
       </span>
     </a>
 
+    <!-- AOS Animation Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
     <script>
       function initializeUI() {
-        // 1. Scroll Animations (Intersection Observer)
-        const observerOptions = {
-          root: null,
-          rootMargin: '0px',
-          threshold: 0.1
-        };
-
-        const observer = new IntersectionObserver((entries, observer) => {
-          entries.forEach(entry => {
-            if (entry.isIntersecting) {
-              entry.target.style.animationPlayState = 'running';
-              entry.target.style.opacity = '1';
-              entry.target.style.transform = 'translateY(0)';
-              observer.unobserve(entry.target);
-            }
+        // Initialize AOS
+        if (typeof AOS !== 'undefined') {
+          AOS.init({
+            duration: 800,
+            easing: 'ease-out-cubic',
+            once: true,
+            offset: 50
           });
-        }, observerOptions);
-
-        document.querySelectorAll('.fade-in-section').forEach(section => {
-          section.style.opacity = '0';
-          section.style.transform = 'translateY(20px)';
-          section.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out';
-          observer.observe(section);
-        });
+        }
 
         // 2. Auto-hide Flash Messages (Toast)
         const flashes = document.querySelectorAll('.flash-message');
