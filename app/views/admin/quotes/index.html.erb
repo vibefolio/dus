@@ -4,10 +4,29 @@
 </div>
 
 <% if @quotes.any? %>
+<%= form_tag bulk_destroy_admin_quotes_path, method: :delete, id: "bulk-delete-form" do %>
+  <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--space-4);">
+    <div style="display: flex; gap: var(--space-4); align-items: center;">
+      <label style="display: flex; align-items: center; gap: var(--space-2); cursor: pointer;">
+        <input type="checkbox" id="select-all-quotes" style="width: 16px; height: 16px;">
+        <span style="font-size: var(--text-sm); font-weight: 600;">전체 선택</span>
+      </label>
+      <button type="submit" class="btn btn-sm btn-danger" id="bulk-delete-btn" disabled 
+              data-confirm="선택한 문의 내역을 정말 삭제하시겠습니까?">
+        선택 삭제
+      </button>
+    </div>
+  </div>
+
   <div class="grid grid-2" style="gap: var(--space-6);">
     <% @quotes.each do |quote| %>
-      <div class="card">
-        <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: var(--space-4);">
+      <div class="card quote-card" style="position: relative;">
+        <!-- Checkbox Overlay -->
+        <div style="position: absolute; top: var(--space-4); left: var(--space-4); z-index: 10;">
+          <input type="checkbox" name="quote_ids[]" value="<%= quote.id %>" class="quote-checkbox" style="width: 18px; height: 18px; cursor: pointer;">
+        </div>
+
+        <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: var(--space-4); padding-left: var(--space-8);">
           <div>
             <h3 style="font-size: var(--text-xl); font-weight: 700; margin-bottom: var(--space-2);">
               <%= quote.contact_name %>
@@ -23,7 +42,7 @@
           </span>
         </div>
 
-        <div style="margin-bottom: var(--space-4);">
+        <div style="margin-bottom: var(--space-4); padding-left: var(--space-8);">
           <div style="display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-3); margin-bottom: var(--space-3);">
             <div>
               <p style="font-size: var(--text-xs); color: var(--color-gray-500); margin-bottom: var(--space-1);">이메일</p>
@@ -61,15 +80,43 @@
           <% end %>
         </div>
 
-        <div style="padding-top: var(--space-4); border-top: 1px solid var(--color-gray-200); display: flex; justify-content: space-between; align-items: center;">
+        <div style="padding-top: var(--space-4); border-top: 1px solid var(--color-gray-200); display: flex; justify-content: space-between; align-items: center; padding-left: var(--space-8);">
           <p style="font-size: var(--text-xs); color: var(--color-gray-500);">
             <%= quote.created_at.strftime("%Y-%m-%d %H:%M") %>
           </p>
-          <%= link_to "상세보기", admin_quote_path(quote), class: "btn btn-sm btn-primary" %>
+          <div class="flex gap-2">
+            <%= link_to "삭제", admin_quote_path(quote), data: { turbo_method: :delete, turbo_confirm: "정말 삭제하시겠습니까?" }, class: "btn btn-sm btn-danger" %>
+            <%= link_to "상세보기", admin_quote_path(quote), class: "btn btn-sm btn-primary" %>
+          </div>
         </div>
       </div>
     <% end %>
   </div>
+<% end %>
+
+<script>
+  document.addEventListener('turbo:load', function() {
+    const selectAll = document.getElementById('select-all-quotes');
+    const checkboxes = document.querySelectorAll('.quote-checkbox');
+    const deleteBtn = document.getElementById('bulk-delete-btn');
+
+    function updateDeleteButton() {
+      const anyChecked = Array.from(checkboxes).some(cb => cb.checked);
+      deleteBtn.disabled = !anyChecked;
+    }
+
+    if (selectAll) {
+      selectAll.addEventListener('change', function() {
+        checkboxes.forEach(cb => cb.checked = selectAll.checked);
+        updateDeleteButton();
+      });
+    }
+
+    checkboxes.forEach(cb => {
+      cb.addEventListener('change', updateDeleteButton);
+    });
+  });
+</script>
 <% else %>
   <div class="card text-center" style="padding: var(--space-20);">
     <div style="width: 100px; height: 100px; background: var(--color-gray-100); border-radius: var(--radius-full); display: flex; align-items: center; justify-content: center; margin: 0 auto var(--space-6);">
