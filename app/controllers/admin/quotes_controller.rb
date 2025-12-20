@@ -4,7 +4,7 @@ require "prawn/table"
 class Admin::QuotesController < ApplicationController
   layout "admin"
   before_action :authenticate_admin!
-  before_action :set_quote, only: [ :show ]
+  before_action :set_quote, only: [ :show, :edit, :update, :destroy ]
 
   def index
     @quotes = Quote.order(created_at: :desc)
@@ -23,10 +23,30 @@ class Admin::QuotesController < ApplicationController
     end
   end
 
+  def edit
+  end
+
+  def update
+    if @quote.update(quote_params)
+      redirect_to admin_quote_path(@quote), notice: "문의 상태가 수정되었습니다."
+    else
+      render :edit, status: :unprocessable_entity
+    end
+  end
+
+  def destroy
+    @quote.destroy
+    redirect_to admin_quotes_path, notice: "문의 내역이 삭제되었습니다."
+  end
+
   private
 
   def set_quote
     @quote = Quote.find(params[:id])
+  end
+
+  def quote_params
+    params.require(:quote).permit(:status)
   end
 
   def generate_quote_pdf(quote)

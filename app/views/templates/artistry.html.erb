@@ -1,96 +1,125 @@
-<%# Artistry Template - MUA 진 (JIN Artistry) %>
+<%# Artistry Template - MUA 진 (JIN ARTISTRY) %>
 
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700;800&family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Italiana&family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap');
   
-  .font-serif { font-family: 'Nanum Myeongjo', serif; }
+  .font-gallery { font-family: 'Italiana', serif; }
   .font-sans { font-family: 'Noto Sans KR', sans-serif; }
 
   @media (max-width: 768px) {
-    .mobile-desc { font-size: 14px !important; line-height: 1.6; }
-    .mobile-title { font-size: 36px !important; }
+    .mobile-desc { font-size: 14px !important; line-height: 1.8; }
+    .mobile-title { font-size: 44px !important; }
+  }
+
+  .canvas-texture {
+    background: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E");
   }
 </style>
 
-<div class="bg-[#0c0c0c] text-[#e5e5e5] font-sans selection:bg-[#c9a050] selection:text-black min-h-screen overflow-x-hidden">
+<div class="bg-white text-black font-sans selection:bg-black selection:text-white min-h-screen overflow-x-hidden relative">
+  <div class="fixed inset-0 canvas-texture pointer-events-none"></div>
 
   <!-- Nav -->
-  <nav class="fixed w-full z-50 px-6 py-6 bg-[#0c0c0c]/9 worst backdrop-blur-md border-b border-white/5">
+  <nav class="fixed w-full z-50 px-8 py-8 mix-blend-difference text-white">
     <div class="container mx-auto flex justify-between items-center">
       <div class="flex items-center gap-4">
-         <span class="font-serif text-2xl text-[#c9a050] tracking-[0.4em] font-black uppercase">JIN</span>
+         <span class="font-gallery text-3xl tracking-[0.1em] font-normal">Jin<span class="font-bold">Artistry</span></span>
       </div>
       
-      <div class="hidden md:flex gap-12 text-[10px] font-bold uppercase tracking-[0.4em] text-gray-500">
-        <a href="#work" class="hover:text-[#c9a050] transition">Archives</a>
-        <a href="#about" class="hover:text-[#c9a050] transition">Director</a>
-        <a href="#contact" class="hover:text-[#c9a050] transition">Booking</a>
+      <div class="hidden md:flex gap-16 text-xs font-sans font-bold tracking-[0.2em] uppercase">
+        <a href="#portfolio" class="hover:underline underline-offset-4 decoration-1">Portfolio</a>
+        <a href="#philosophy" class="hover:underline underline-offset-4 decoration-1">Philosophy</a>
+        <a href="#contact" class="hover:underline underline-offset-4 decoration-1">Contact</a>
       </div>
       
       <div class="flex gap-6 items-center">
-         <button onclick="toggleArtistryModal()" class="text-[10px] font-bold uppercase tracking-[0.4em] text-gray-500 hover:text-[#c9a050]">Studio Access</button>
-         <button class="bg-[#c9a050] text-[#0c0c0c] px-6 py-2.5 rounded-sm font-black text-[10px] tracking-widest uppercase hover:bg-white transition shadow-xl shadow-[#c9a050]/10">
-           Inquiry
+         <button onclick="toggleArtistryModal()" class="text-[10px] font-bold uppercase tracking-[0.2em] hover:underline underline-offset-4 decoration-1">Artist Login</button>
+         <button class="border border-white px-6 py-2 rounded-full font-gallery text-sm hover:bg-white hover:text-black transition duration-300">
+           Book Now
          </button>
       </div>
     </div>
   </nav>
 
-  <!-- Hero -->
-  <header class="min-h-screen relative flex items-center justify-center overflow-hidden pt-20">
-    <div class="absolute inset-0 grayscale opacity-30 brightness-[0.4]">
-       <img src="https://images.unsplash.com/photo-1522337660859-02fbefca4702?q=80&w=1920" alt="메이크업" class="w-full h-full object-cover">
+  <!-- Hero with Parallax Feel -->
+  <header class="min-h-screen relative flex items-center justify-center overflow-hidden">
+    <div class="absolute inset-0 z-0">
+        <img src="https://images.unsplash.com/photo-1522337660859-02fbefca4702?q=80&w=1920" alt="Artistic Makeup" class="w-full h-full object-cover filter grayscale contrast-125 brightness-110">
     </div>
-    <div class="absolute inset-0 bg-gradient-to-b from-[#0c0c0c] via-transparent to-[#0c0c0c]"></div>
     
-    <div class="container mx-auto px-6 relative z-10 text-center space-y-10">
-      <div class="w-[1px] h-20 bg-[#c9a050]/50 mx-auto mb-10"></div>
-      <p class="font-serif text-xl md:text-2xl italic tracking-[0.4em] text-[#c9a050]">The Art of Authentic Beauty</p>
-      <h1 class="text-5xl md:text-9xl font-serif leading-none tracking-tighter text-white mobile-title">
-         당신 본연의<br><span class="italic">아름다움을 조각하다.</span>
+    <!-- Heavy Overlay -->
+    <div class="absolute inset-0 bg-white/10 backdrop-grayscale-[0.5]"></div>
+
+    <!-- Center Content -->
+    <div class="container mx-auto px-6 relative z-10 text-center">
+      <div class="inline-block border border-black/30 bg-white/80 backdrop-blur-sm px-6 py-2 mb-8">
+         <span class="text-[10px] font-bold tracking-[0.4em] uppercase text-black">Professional Makeup Direction</span>
+      </div>
+      
+      <h1 class="text-6xl md:text-9xl font-gallery leading-none text-black mobile-title mix-blend-multiply">
+         Pure<br>
+         <span class="italic font-light opacity-60">Authentication.</span>
       </h1>
-      <p class="text-gray-500 text-sm md:text-xl leading-relaxed max-w-2xl mx-auto mobile-desc">
-         정교한 터치와 집요한 탐구. JIN Artistry는 유행을 쫓는 메이크업이 아닌,<br>
-         당신이 가진 고유의 결을 가장 선명하게 빛내줄 밸런스를 제안합니다.
-      </p>
-      <div class="pt-8">
-         <a href="#work" class="inline-flex items-center gap-6 text-white text-[10px] font-black uppercase tracking-[0.4em] group">
-            View Archives <span class="group-hover:translate-x-2 transition text-[#c9a050]">→</span>
-         </a>
+      
+      <div class="mt-12 max-w-lg mx-auto bg-white/70 backdrop-blur-xl p-8 border border-white/40 shadow-2xl">
+         <p class="text-black/80 text-sm md:text-base leading-loose mobile-desc font-medium">
+            가면을 씌우는 것이 아닌, 당신의 고유한 서사를 드러내는 작업.<br>
+            진 아티스트리는 아름다움의 본질을 탐구합니다.
+         </p>
+         <div class="mt-8 flex justify-center gap-8">
+             <a href="#portfolio" class="text-xs font-bold uppercase tracking-[0.2em] border-b border-black pb-1 hover:border-transparent transition">View Works</a>
+             <a href="#contact" class="text-xs font-bold uppercase tracking-[0.2em] border-b border-black pb-1 hover:border-transparent transition">Studio Info</a>
+         </div>
       </div>
     </div>
+    
+    <!-- Floating Abstract Elements -->
+    <div class="absolute top-1/4 left-10 w-20 h-20 bg-black rounded-full mix-blend-overlay opacity-50 animate-float hidden md:block"></div>
+    <div class="absolute bottom-1/4 right-10 w-32 h-32 border border-black rounded-full opacity-30 animate-float-delayed hidden md:block"></div>
   </header>
+  
+  <style>
+     @keyframes float {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(-20px); }
+     }
+     .animate-float { animation: float 6s infinite ease-in-out; }
+     .animate-float-delayed { animation: float 7s infinite ease-in-out 1s; }
+  </style>
 
   <!-- Login Modal -->
-  <div id="artistry-modal" class="fixed inset-0 z-[100] hidden items-center justify-center p-4 bg-black/8 worst backdrop-blur-md">
-    <div class="bg-[#111111] w-full max-w-sm p-12 shadow-2xl relative border border-[#c9a050]/20 rounded-sm">
-      <button onclick="toggleArtistryModal()" class="absolute top-10 right-10 text-gray-500 hover:text-[#c9a050] transition text-2xl font-light">&times;</button>
+  <div id="artistry-modal" class="fixed inset-0 z-[100] hidden items-center justify-center p-4 bg-white/90 backdrop-blur-xl">
+    <div class="bg-white w-full max-w-md p-16 shadow-[0_0_80px_rgba(0,0,0,0.1)] relative border border-black/5">
+      <button onclick="toggleArtistryModal()" class="absolute top-8 right-8 text-black/30 hover:text-black transition text-3xl font-gallery">&times;</button>
       
-      <div class="text-center mb-10">
-        <h2 class="text-xl font-serif tracking-[0.4em] text-white mb-2 font-black uppercase">STUDIO_GATE</h2>
-        <p class="text-[9px] text-[#c9a050] font-bold tracking-[0.3em] uppercase">Private Booking Management</p>
+      <div class="text-center mb-16">
+        <h2 class="text-4xl font-gallery text-black mb-4">Atelier Access</h2>
+        <div class="w-12 h-[1px] bg-black mx-auto"></div>
+        <p class="text-[10px] text-gray-400 font-bold tracking-[0.4em] uppercase mt-4">Private Client Area</p>
       </div>
       
-      <div class="space-y-6">
-        <input type="text" placeholder="CONFIRMATION CODE" class="w-full bg-white/5 border border-white/5 py-5 px-6 outline-none focus:border-[#c9a050] transition text-[11px] font-black tracking-widest text-[#c9a050] uppercase">
-        <button class="w-full bg-[#c9a050] text-[#0c0c0c] py-5 rounded-sm text-[10px] tracking-[0.4em] font-black uppercase hover:bg-white transition shadow-lg">
-           Identify Session
+      <div class="space-y-10">
+        <div class="relative group">
+           <input type="text" placeholder="Passcode" class="w-full bg-transparent border-b border-gray-200 py-4 text-center text-xl font-gallery text-black placeholder-gray-200 outline-none focus:border-black transition">
+        </div>
+        
+        <button class="w-full bg-black text-white py-5 text-[10px] tracking-[0.4em] font-bold uppercase hover:bg-gray-900 transition hover:shadow-xl">
+           Enter Studio
         </button>
-        <div class="flex justify-center gap-10 pt-4">
-           <a href="#" class="text-[9px] text-gray-500 tracking-[0.2em] font-bold uppercase hover:text-white transition font-serif italic">New Client</a>
-           <a href="#" class="text-[9px] text-gray-500 tracking-[0.2em] font-bold uppercase hover:text-white transition font-serif italic">Inquiry</a>
+        
+        <div class="text-center">
+           <a href="#" class="text-[9px] text-gray-400 tracking-[0.2em] uppercase hover:text-black transition border-b border-transparent hover:border-black pb-0.5">Application for Membership</a>
         </div>
       </div>
     </div>
   </div>
 
-  <footer class="py-24 bg-[#0c0c0c] text-center px-6 border-t border-white/5">
-     <div class="inline-flex items-center gap-6 mb-8">
-        <span class="font-serif text-3xl tracking-[0.4em] font-black uppercase text-[#c9a050]">JIN</span>
-        <span class="w-12 h-[1px] bg-white/10"></span>
-        <span class="text-[10px] font-bold text-gray-600 tracking-[0.4em] uppercase">Directors Studio Seoul</span>
+  <footer class="py-24 bg-white text-center px-6 border-t border-black/5">
+     <div class="inline-flex flex-col items-center gap-8 mb-8">
+        <span class="font-gallery text-4xl tracking-tight text-black">Jin<span class="font-bold">Artistry</span></span>
+        <span class="text-[10px] font-bold text-gray-400 tracking-[0.4em] uppercase">Seoul . Paris . New York</span>
      </div>
-     <p class="text-[10px] text-white/5 tracking-[0.6em] uppercase px-6">© 2024 JIN ARTISTRY. ALL RIGHTS RESERVED.</p>
+     <p class="text-[9px] text-gray-300 tracking-[0.4em] uppercase px-6">© 2024 JIN ARTISTRY. ALL RIGHTS RESERVED.</p>
   </footer>
 
   <script>

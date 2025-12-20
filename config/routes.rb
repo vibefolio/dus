@@ -71,7 +71,7 @@ Rails.application.routes.draw do
     root "dashboard#index"
     resources :sessions, only: [:new, :create, :destroy]
     resources :portfolios
-    resources :quotes, only: [ :index, :show ]
+    resources :quotes
     resources :design_templates
   end
 

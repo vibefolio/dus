@@ -10,8 +10,8 @@ class Admin::SessionsController < ApplicationController
 
   def create
     # Hardcoded credentials for simplicity (can be moved to DB later)
-    admin_username = ENV.fetch("ADMIN_USERNAME", "admin")
-    admin_password = ENV.fetch("ADMIN_PASSWORD", "password123")
+    admin_username = ENV.fetch("ADMIN_USERNAME", "admin@designd.co.kr")
+    admin_password = ENV.fetch("ADMIN_PASSWORD", "djemals1234!")
 
     if params[:username] == admin_username && params[:password] == admin_password
       session[:admin_id] = "admin"

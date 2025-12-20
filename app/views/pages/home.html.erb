@@ -261,9 +261,19 @@
                 %>
               </div>
 
-              <!-- Diamond 70 Badge -->
+              <%
+                diamond_score = case template.category
+                                when 'shopping', 'corporate', 'finance', 'medical', 'dental', 'real_estate', 'hotel', 'stay', 'startup', 'ecommerce', 'rental', 'consulting'
+                                  70
+                                when 'fitness', 'gym', 'yoga', 'law', 'tax', 'academy', 'learnhub', 'english', 'dining', 'restaurant', 'seafood', 'rice', 'burger', 'studio', 'wedding', 'cleaning', 'construction', 'interior', 'vet'
+                                  50
+                                else
+                                  30
+                                end
+              %>
+              <!-- Diamond Badge -->
               <div style="position: absolute; top: 12px; right: 12px; background: rgba(0,0,0,0.6); backdrop-filter: blur(4px); padding: 4px 10px; border-radius: 99px; font-size: 11px; font-weight: 800; color: #fff; z-index: 10; border: 1px solid rgba(255,255,255,0.2); display: flex; align-items: center; gap: 4px;">
-                <span style="font-size: 10px;">💎</span> 70
+                <span style="font-size: 10px;">💎</span> <%= diamond_score %>
               </div>
               
               <!-- Hover Overlay -->

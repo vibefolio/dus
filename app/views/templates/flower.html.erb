@@ -1,98 +1,135 @@
-<%# Flower Template - 블룸 앤 가든 (Bloom & Garden) %>
+<%# Flower Template - 블룸 앤 가든 (BLOOM & GARDEN) %>
 
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700;800&family=Noto+Sans+KR:wght@300;400;500;700&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400;1,600&family=Noto+Sans+KR:wght@300;400;500;700&display=swap');
   
-  .font-serif { font-family: 'Nanum Myeongjo', serif; }
+  .font-serif-display { font-family: 'Cormorant Garamond', serif; }
   .font-sans { font-family: 'Noto Sans KR', sans-serif; }
 
   @media (max-width: 768px) {
-    .mobile-desc { font-size: 14px !important; line-height: 1.6; }
-    .mobile-title { font-size: 32px !important; }
+    .mobile-desc { font-size: 14px !important; line-height: 1.8; }
+    .mobile-title { font-size: 40px !important; }
+  }
+
+  .floral-pattern {
+    background-image: radial-gradient(#FBCFE8 2px, transparent 2px);
+    background-size: 40px 40px;
+    opacity: 0.3;
   }
 </style>
 
-<div class="bg-[#fdfcfb] text-[#5c5c5c] font-sans selection:bg-[#f8d7da] selection:text-[#5c5c5c] min-h-screen">
+<div class="bg-[#FFFCF8] text-[#4A4238] font-sans selection:bg-[#F9A8D4] selection:text-white min-h-screen overflow-x-hidden relative">
+  <div class="fixed inset-0 floral-pattern pointer-events-none"></div>
 
   <!-- Nav -->
-  <nav class="fixed w-full z-50 px-6 py-5 bg-[#fdfcfb]/9 worst backdrop-blur-md border-b border-[#f8d7da]/20">
+  <nav class="fixed w-full z-50 px-8 py-6 bg-[#FFFCF8]/80 backdrop-blur-md border-b border-[#F9A8D4]/10">
     <div class="container mx-auto flex justify-between items-center">
-      <div class="flex items-center gap-3">
-        <span class="text-2xl text-[#f1aeb5]">❀</span>
-        <span class="font-serif text-xl text-[#3c3c3c] tracking-tight">BLOOM & GARDEN</span>
+      <div class="flex items-center gap-2">
+        <span class="text-2xl text-[#F472B6]">✤</span>
+        <span class="font-serif-display font-semibold text-2xl tracking-wide text-[#5D5447]">Bloom<span class="italic text-[#F472B6]">&</span>Garden</span>
       </div>
-      <div class="hidden md:flex gap-10 text-[11px] font-bold uppercase tracking-[0.2em] text-[#8c8c8c]">
-        <a href="#class" class="hover:text-[#f1aeb5] transition">Workshop</a>
-        <a href="#shop" class="hover:text-[#f1aeb5] transition">Collection</a>
-        <a href="#contact" class="hover:text-[#f1aeb5] transition">Store</a>
+      
+      <div class="hidden md:flex gap-12 text-[10px] font-bold uppercase tracking-[0.2em] text-[#9CA3AF]">
+        <a href="#workshop" class="hover:text-[#F472B6] transition">Workshop</a>
+        <a href="#bouquet" class="hover:text-[#F472B6] transition">Bouquet</a>
+        <a href="#wedding" class="hover:text-[#F472B6] transition">Wedding</a>
       </div>
+      
       <div class="flex gap-6 items-center">
-         <button onclick="toggleFlowerModal()" class="text-[11px] font-bold uppercase tracking-[0.2em] text-[#8c8c8c] hover:text-[#f1aeb5]">Club</button>
-         <button class="bg-[#3c3c3c] text-white px-6 py-2.5 rounded-sm text-[10px] font-bold uppercase tracking-widest hover:bg-[#f1aeb5] transition shadow-xl">
-           Subscription
+         <button onclick="toggleFlowerModal()" class="text-[10px] font-bold uppercase tracking-[0.2em] text-[#9CA3AF] hover:text-[#F472B6]">My Garden</button>
+         <button class="border border-[#F472B6]/30 text-[#5D5447] px-6 py-2.5 rounded-full font-serif-display font-medium text-sm hover:bg-[#FDF2F8] hover:border-[#F472B6] transition">
+           Subscribe
          </button>
       </div>
     </div>
   </nav>
 
   <!-- Hero -->
-  <header class="min-h-screen flex items-center justify-center relative overflow-hidden pt-20 px-6">
-    <div class="container mx-auto grid md:grid-cols-2 gap-16 items-center relative z-10">
-       <div class="space-y-8">
-          <div class="inline-block px-4 py-1.5 border border-[#f1aeb5]/30 text-[#f1aeb5] text-[10px] uppercase tracking-[0.3em] font-bold rounded-full">Seasonal Flower Studio</div>
-          <h1 class="text-4xl md:text-7xl font-serif leading-none tracking-tighter text-[#3c3c3c] mobile-title">
-             자연의 계절을<br><span class="text-[#f1aeb5] italic">삶의 무드</span>로.
-          </h1>
-          <p class="text-[#8c8c8c] leading-relaxed font-light max-w-md text-sm md:text-lg mobile-desc">
-             꽃이 건네는 다정한 위로와 생기를 전합니다.<br>
-             블룸 앤 가든에서만 만날 수 있는 프렌치 감성의 섬세한 플로럴 큐레이션.
-          </p>
-          <div class="pt-4">
-             <a href="#shop" class="inline-flex items-center gap-4 text-[#3c3c3c] text-[11px] font-bold uppercase tracking-[0.3em] group">
-                Shop Collection <span class="group-hover:translate-x-2 transition">→</span>
-             </a>
-          </div>
-       </div>
+  <header class="min-h-screen relative flex items-center justify-center pt-24 overflow-hidden">
+    <!-- Soft Organic Shapes -->
+    <div class="absolute top-0 right-0 w-[50vw] h-[80vh] bg-[#FFF1F2] rounded-bl-[15rem] -z-10 opacity-70"></div>
+    <div class="absolute bottom-0 left-0 w-[40vw] h-[60vh] bg-[#F3F4F6] rounded-tr-[15rem] -z-10 opacity-50"></div>
 
-       <div class="relative">
-          <div class="absolute -inset-10 bg-[#f1aeb5]/10 rounded-full blur-[100px]"></div>
-          <div class="w-full aspect-[4/5] relative rounded-2xl overflow-hidden shadow-[0_50px_100px_-20px_rgba(241,174,181,0.2)]">
-             <img src="https://images.unsplash.com/photo-1563241527-3004b7be0ee0?q=80&w=800" alt="플라워 작품" class="w-full h-full object-cover grayscale hover:grayscale-0 transition duration-1000">
-          </div>
-       </div>
+    <div class="container mx-auto px-6 relative z-10 grid lg:grid-cols-2 gap-20 items-center">
+      <div class="space-y-10 text-center lg:text-left order-2 lg:order-1">
+        <div class="inline-flex items-center gap-3 justify-center lg:justify-start">
+           <span class="w-8 h-[1px] bg-[#F472B6]"></span>
+           <span class="text-[11px] font-serif-display italic text-[#F472B6] text-lg tracking-wide">French Modern Floristry</span>
+        </div>
+        
+        <h1 class="text-5xl md:text-[6rem] font-serif-display font-light leading-[1] text-[#4A4238] mobile-title">
+           Nature's<br>
+           <span class="italic text-[#F472B6]">Poetry</span> in<br>
+           Your Hands.
+        </h1>
+        
+        <p class="text-[#4A4238]/70 text-sm md:text-lg leading-relaxed max-w-md mx-auto lg:mx-0 mobile-desc font-light">
+           계절의 숨결을 담은 가장 아름다운 순간.<br>
+           블룸 앤 가든에서 당신의 일상에 향기를 더하세요.
+        </p>
+        
+        <div class="flex flex-col sm:flex-row gap-6 justify-center lg:justify-start pt-6">
+           <button class="px-10 py-4 bg-[#5D5447] text-white font-serif-display italic text-lg tracking-wide rounded-sm hover:bg-[#F472B6] transition shadow-xl shadow-[#F9A8D4]/30">
+             Shop Flowers
+           </button>
+           <button class="px-10 py-4 text-[#5D5447] font-serif-display italic text-lg tracking-wide border-b border-[#5D5447]/20 hover:border-[#F472B6] hover:text-[#F472B6] transition">
+             View Class
+           </button>
+        </div>
+      </div>
+      
+      <div class="relative order-1 lg:order-2 flex justify-center">
+         <div class="relative z-10 w-[350px] md:w-[450px] aspect-[3/4]">
+            <div class="absolute inset-0 bg-white p-4 pb-20 shadow-2xl rotate-3 transform transition-transform duration-700 hover:rotate-0">
+               <img src="https://images.unsplash.com/photo-1563241527-3004b7be0ee0?q=80&w=800" alt="Artistic Flower Arrangement" class="w-full h-full object-cover grayscale-[10%] hover:grayscale-0 transition duration-700">
+               <div class="absolute bottom-6 left-0 w-full text-center">
+                  <p class="font-serif-display italic text-2xl text-[#4A4238]">Spring Collection</p>
+                  <p class="text-[9px] uppercase tracking-[0.2em] text-[#9CA3AF] mt-1">Limited Edition</p>
+               </div>
+            </div>
+            
+            <!-- Floating Petals Decoration (CSS Only) -->
+            <div class="absolute -top-10 -right-10 text-4xl opacity-50 animate-bounce delay-700">🌸</div>
+            <div class="absolute bottom-20 -left-10 text-3xl opacity-40 animate-bounce">🍃</div>
+         </div>
+      </div>
     </div>
   </header>
 
   <!-- Login Modal -->
-  <div id="flower-modal" class="fixed inset-0 z-[100] hidden items-center justify-center p-4 bg-[#f1aeb5]/5 backdrop-blur-md">
-    <div class="bg-white w-full max-w-sm p-12 shadow-2xl relative rounded-sm border-t-4 border-[#f1aeb5]">
-      <button onclick="toggleFlowerModal()" class="absolute top-8 right-10 text-[#8c8c8c] hover:text-[#f1aeb5] transition text-2xl font-light">&times;</button>
+  <div id="flower-modal" class="fixed inset-0 z-[100] hidden items-center justify-center p-4 bg-[#5D5447]/10 backdrop-blur-md">
+    <div class="bg-[#FFFCF8] w-full max-w-sm p-14 shadow-2xl relative border border-[#F9A8D4]/20">
+      <button onclick="toggleFlowerModal()" class="absolute top-8 right-8 text-[#9CA3AF] hover:text-[#F472B6] transition text-2xl font-serif-display">&times;</button>
       
       <div class="text-center mb-10">
-        <h2 class="text-xl font-serif text-[#3c3c3c] mb-2 tracking-tighter uppercase">BLOOM_MEMBER</h2>
-        <p class="text-[9px] text-[#f1aeb5] font-bold tracking-[0.2em] uppercase">Workshop & Points Access</p>
+        <h2 class="text-3xl font-serif-display italic text-[#5D5447] mb-2">My Garden</h2>
+        <p class="text-[10px] text-[#F472B6] font-bold tracking-[0.3em] uppercase">Join Our Flower Club</p>
       </div>
       
-      <div class="space-y-6">
-        <input type="text" placeholder="Member ID" class="w-full bg-[#fdfcfb] border border-transparent border-b-[#f8d7da] py-4 px-2 outline-none focus:border-b-[#f1aeb5] transition text-[11px] font-bold tracking-widest text-[#3c3c3c]">
-        <button class="w-full bg-[#3c3c3c] text-white py-4 text-[11px] tracking-widest font-bold uppercase hover:bg-[#f1aeb5] transition shadow-lg">
-           Join the Bloom
+      <div class="space-y-8">
+        <div>
+           <input type="text" placeholder="Garden ID or Email" class="w-full bg-[#FFF1F2] border border-[#FCE7F3] py-4 px-6 text-[12px] font-bold tracking-widest text-[#5D5447] placeholder-[#9CA3AF] uppercase outline-none focus:border-[#F472B6] transition text-center rounded-sm">
+        </div>
+        
+        <button class="w-full bg-[#5D5447] text-white py-4 text-[12px] tracking-[0.2em] font-bold uppercase hover:bg-[#F472B6] transition shadow-lg rounded-sm">
+           Open Gate
         </button>
-        <div class="flex justify-center gap-8 pt-4">
-           <a href="#" class="text-[9px] text-[#8c8c8c] tracking-widest uppercase hover:text-[#f1aeb5] transition">Registration</a>
-           <a href="#" class="text-[9px] text-[#8c8c8c] tracking-widest uppercase hover:text-[#f1aeb5] transition">Inquiry</a>
+        
+        <div class="flex justify-center gap-8 pt-2">
+           <a href="#" class="text-[9px] text-[#9CA3AF] tracking-[0.2em] font-bold uppercase hover:text-[#F472B6] transition">Sign Up</a>
+           <span class="text-[#9CA3AF]/30">|</span>
+           <a href="#" class="text-[9px] text-[#9CA3AF] tracking-[0.2em] font-bold uppercase hover:text-[#F472B6] transition">Forgot?</a>
         </div>
       </div>
     </div>
   </div>
 
-  <footer class="py-20 bg-[#fdfcfb] text-center px-6">
-     <div class="inline-flex items-center gap-4 mb-8">
-        <span class="text-2xl text-[#f1aeb5]">❀</span>
-        <span class="font-serif text-xl text-[#3c3c3c] tracking-tighter">BLOOM & GARDEN</span>
-        <span class="w-8 h-[1px] bg-[#f8d7da]"></span>
+  <footer class="py-24 bg-white text-center px-6 border-t border-[#F3F4F6]">
+     <div class="inline-flex flex-col items-center gap-6 mb-8">
+        <span class="font-serif-display font-semibold text-2xl tracking-wide text-[#5D5447]">Bloom<span class="italic text-[#F472B6]">&</span>Garden</span>
+        <span class="text-[10px] font-bold text-[#9CA3AF] tracking-[0.3em] uppercase">Floral Design Studio</span>
      </div>
-     <p class="text-[10px] text-[#8c8c8c] tracking-[0.5em] uppercase px-6">© 2024 BLOOM & GARDEN SEOUL. ALL RIGHTS RESERVED.</p>
+     <p class="text-[10px] text-[#9CA3AF]/50 tracking-[0.5em] uppercase px-6">© 2024 BLOOM & GARDEN. SEOUL.</p>
   </footer>
 
   <script>
