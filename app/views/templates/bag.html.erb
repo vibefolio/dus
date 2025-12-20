@@ -1,100 +1,128 @@
 <%# Bag Template - 마로캥 (MAROQUIN) %>
 
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700;800&family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,600;1,6..96,400&family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap');
   
-  .font-serif { font-family: 'Nanum Myeongjo', serif; }
+  .font-fashion { font-family: 'Bodoni Moda', serif; }
   .font-sans { font-family: 'Noto Sans KR', sans-serif; }
 
   @media (max-width: 768px) {
-    .mobile-desc { font-size: 14px !important; line-height: 1.6; }
-    .mobile-title { font-size: 36px !important; }
+    .mobile-desc { font-size: 14px !important; line-height: 1.8; }
+    .mobile-title { font-size: 40px !important; }
   }
 
-  .leather-gradient {
-    background: linear-gradient(135deg, #2d1b15 0%, #1a100c 100%);
+  .leather-texture {
+    background: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.08'/%3E%3C/svg%3E");
+    background-color: #2D1B15;
   }
 </style>
 
-<div class="bg-[#1a100c] text-[#d7ccc8] font-sans selection:bg-[#a1887f] selection:text-white min-h-screen overflow-x-hidden">
-
+<div class="bg-[#F5F2EF] text-[#2D1B15] font-sans selection:bg-[#8D6E63] selection:text-white min-h-screen overflow-x-hidden relative">
+  
   <!-- Nav -->
-  <nav class="fixed w-full z-50 px-6 py-6 border-b border-[#a1887f]/10 bg-[#1a100c]/9 worst backdrop-blur-md">
+  <nav class="fixed w-full z-50 px-8 py-6 bg-[#F5F2EF]/90 backdrop-blur-md border-b border-[#2D1B15]/10">
     <div class="container mx-auto flex justify-between items-center">
       <div class="flex items-center gap-4">
-         <span class="font-serif text-2xl text-[#a1887f] tracking-[0.5em] font-black uppercase">MAROQUIN</span>
+         <span class="font-fashion font-semibold text-2xl tracking-[0.1em] text-[#2D1B15]">Maro<span class="italic">quin</span></span>
       </div>
       
-      <div class="hidden md:flex gap-12 text-[10px] font-bold uppercase tracking-[0.4em] text-[#a1887f]/50">
-        <a href="#collection" class="hover:text-[#d7ccc8] transition">Heritage</a>
-        <a href="#atelier" class="hover:text-[#d7ccc8] transition">Atelier</a>
-        <a href="#stores" class="hover:text-[#d7ccc8] transition">Global</a>
+      <div class="hidden md:flex gap-12 text-[11px] font-sans font-medium tracking-[0.2em] text-[#8D6E63] uppercase">
+        <a href="#collection" class="hover:text-[#2D1B15] transition">Collection</a>
+        <a href="#craftsmanship" class="hover:text-[#2D1B15] transition">Craftsmanship</a>
+        <a href="#boutique" class="hover:text-[#2D1B15] transition">Boutique</a>
       </div>
       
-      <div class="flex gap-6 items-center">
-         <button onclick="toggleBagModal()" class="text-[10px] font-bold uppercase tracking-[0.4em] text-[#a1887f]/50 hover:text-[#d7ccc8]">Heritage Archive</button>
-         <button class="bg-[#a1887f] text-[#1a100c] px-6 py-2.5 rounded-sm font-black text-[10px] tracking-widest uppercase hover:bg-white transition shadow-xl">
-           Store Visit
+      <div class="flex gap-4 items-center">
+         <button onclick="toggleBagModal()" class="text-[11px] font-sans font-bold uppercase tracking-[0.2em] text-[#8D6E63] hover:text-[#2D1B15]">VIP Lounge</button>
+         <button class="bg-[#2D1B15] text-[#F5F2EF] px-6 py-2.5 rounded-none font-fashion font-medium text-xs tracking-wide uppercase hover:bg-[#8D6E63] transition shadow-lg">
+           Shop Now
          </button>
       </div>
     </div>
   </nav>
 
   <!-- Hero -->
-  <header class="min-h-screen relative flex items-center justify-center overflow-hidden pt-20">
-    <div class="absolute inset-0">
-       <img src="https://images.unsplash.com/photo-1548036328-c9fa89d128fa?q=80&w=1920" alt="가죽" class="w-full h-full object-cover opacity-30 brightness-[0.7] grayscale">
-    </div>
-    <div class="absolute inset-0 bg-gradient-to-b from-[#1a100c] via-transparent to-[#1a100c]"></div>
+  <header class="min-h-screen relative flex items-center justify-center pt-24 overflow-hidden">
     
-    <div class="container mx-auto px-6 relative z-10 text-center space-y-12">
-      <div class="w-[1px] h-20 bg-[#a1887f]/30 mx-auto mb-10"></div>
-      <p class="font-serif text-xl md:text-2xl italic tracking-[0.3em] text-[#a1887f]">The Essence of Artisanal Leather</p>
-      <h1 class="text-5xl md:text-9xl font-serif leading-none tracking-tighter text-[#efebe9] mobile-title">
-         시간이 빚은,<br><span class="italic text-[#8d6e63]">불멸의 아카이브.</span>
-      </h1>
-      <p class="text-[#a1887f]/80 text-sm md:text-xl leading-relaxed max-w-2xl mx-auto mobile-desc font-light">
-         유행은 흐르지만, 장인 정신은 남습니다. 마로캥은 이탈리아 정통 태닝 공법과 <br>
-         집요한 핸드 스티치를 통해, 당신의 삶과 함께 익어가는 가죽의 깊이를 완성합니다.
-      </p>
-      <div class="pt-8">
-         <a href="#collection" class="inline-flex items-center gap-6 text-[#d7ccc8] text-[10px] font-black uppercase tracking-[0.4em] group">
-            Discover Heritage <span class="group-hover:translate-x-2 transition text-[#8d6e63]">→</span>
-         </a>
+    <div class="container mx-auto px-6 relative z-10 grid lg:grid-cols-2 gap-20 items-center h-full">
+      <div class="space-y-12 text-center lg:text-left order-2 lg:order-1">
+        <div class="inline-flex items-center gap-3 border-b border-[#2D1B15] pb-2">
+           <span class="text-[11px] font-bold text-[#2D1B15] uppercase tracking-[0.2em]">Artisan Leather Goods</span>
+        </div>
+        
+        <h1 class="text-5xl md:text-8xl font-fashion font-normal leading-[1.0] text-[#2D1B15] mobile-title">
+           Time<br>
+           Crafted in<br>
+           <span class="italic text-[#8D6E63]">Leather.</span>
+        </h1>
+        
+        <p class="text-[#8D6E63] text-sm md:text-lg leading-relaxed max-w-md mx-auto lg:mx-0 mobile-desc font-light">
+           시간이 흐를수록 깊어지는 가치.<br>
+           마로캥은 당신의 삶과 함께 익어갑니다.
+        </p>
+        
+        <div class="flex flex-col sm:flex-row gap-6 justify-center lg:justify-start pt-6">
+           <button class="px-10 py-4 bg-[#8D6E63] text-[#F5F2EF] font-fashion text-lg hover:bg-[#2D1B15] transition shadow-xl rounded-none">
+              Explore 2024 F/W
+           </button>
+           <button class="px-10 py-4 border border-[#2D1B15]/30 text-[#2D1B15] font-fashion text-lg hover:border-[#2D1B15] transition rounded-none">
+              Atelier Story
+           </button>
+        </div>
+      </div>
+      
+      <div class="relative order-1 lg:order-2 h-full flex items-center justify-center">
+         <div class="relative w-[400px] h-[500px]">
+             <!-- Leather Texture Background -->
+             <div class="absolute inset-0 leather-texture transform translate-x-6 translate-y-6"></div>
+             
+             <div class="absolute inset-6 border border-[#F5F2EF]/20 z-10"></div>
+             
+             <img src="https://images.unsplash.com/photo-1548036328-c9fa89d128fa?q=80&w=800" alt="Premium Leather Bag" class="w-full h-full object-cover shadow-2xl relative z-20 hover:scale-[1.02] transition duration-700">
+             
+             <div class="absolute top-10 -left-10 bg-[#F5F2EF] p-4 shadow-xl z-30 border border-[#2D1B15]/10 max-w-[150px]">
+                <p class="font-fashion text-sm text-[#2D1B15] font-bold">LIMITED</p>
+                <p class="text-[10px] uppercase text-[#8D6E63] tracking-widest leading-relaxed">Hand-Stitched in Seoul</p>
+             </div>
+         </div>
       </div>
     </div>
   </header>
 
   <!-- Login Modal -->
-  <div id="bag-modal" class="fixed inset-0 z-[100] hidden items-center justify-center p-4 bg-black/8 worst backdrop-blur-md">
-    <div class="bg-[#1a100c] w-full max-w-sm p-12 shadow-2xl relative border border-[#a1887f]/20 rounded-sm">
-      <button onclick="toggleBagModal()" class="absolute top-10 right-10 text-gray-700 hover:text-[#a1887f] transition text-2xl font-light">&times;</button>
+  <div id="bag-modal" class="fixed inset-0 z-[100] hidden items-center justify-center p-4 bg-[#2D1B15]/80 backdrop-blur-sm">
+    <div class="bg-[#F5F2EF] w-full max-w-sm p-14 shadow-2xl relative border border-[#8D6E63]">
+      <button onclick="toggleBagModal()" class="absolute top-8 right-8 text-[#8D6E63] hover:text-[#2D1B15] transition text-2xl font-fashion">&times;</button>
       
-      <div class="text-center mb-10">
-        <h2 class="text-xl font-serif tracking-[0.4em] text-white mb-2 font-black uppercase">HERITAGE_ARCHIVE</h2>
-        <p class="text-[9px] text-[#a1887f] font-bold tracking-[0.3em] uppercase">Private Member Management</p>
+      <div class="text-center mb-12">
+        <h2 class="text-3xl font-fashion text-[#2D1B15] mb-2 italic">VIP Lounge</h2>
+        <p class="text-[10px] text-[#8D6E63] font-bold tracking-[0.3em] uppercase">Private Collection Access</p>
       </div>
       
-      <div class="space-y-6">
-        <input type="text" placeholder="SERIAL NO OR ID" class="w-full bg-white/5 border border-white/5 py-5 px-6 outline-none focus:border-[#a1887f] transition text-[11px] font-black tracking-widest text-white uppercase">
-        <button class="w-full bg-[#a1887f] text-[#1a100c] py-5 rounded-sm text-[10px] tracking-[0.4em] font-black uppercase hover:bg-white transition shadow-lg shadow-[#a1887f]/10">
-           Authorize Session
+      <div class="space-y-8">
+        <div>
+           <input type="text" placeholder="MEMBERSHIP ID" class="w-full bg-transparent border-b border-[#8D6E63] py-3 px-5 outline-none focus:border-[#2D1B15] transition text-sm font-fashion text-[#2D1B15] text-center placeholder-[#8D6E63]/50 tracking-[0.2em]">
+        </div>
+        
+        <button class="w-full bg-[#2D1B15] text-[#F5F2EF] py-4 text-[11px] tracking-[0.3em] font-sans font-bold uppercase hover:bg-[#8D6E63] transition shadow-lg rounded-none">
+           Enter
         </button>
-        <div class="flex justify-center gap-10 pt-4">
-           <a href="#" class="text-[9px] text-gray-600 tracking-[0.2em] font-bold uppercase hover:text-white transition">Authenticity</a>
-           <a href="#" class="text-[9px] text-gray-600 tracking-[0.2em] font-bold uppercase hover:text-white transition">Repair Care</a>
+        
+        <div class="flex justify-center gap-6 pt-2 text-[#8D6E63] text-[10px] tracking-widest uppercase font-sans font-bold">
+           <a href="#" class="hover:text-[#2D1B15] transition">Apply</a>
+           <span>|</span>
+           <a href="#" class="hover:text-[#2D1B15] transition">Concierge</a>
         </div>
       </div>
     </div>
   </div>
 
-  <footer class="py-24 bg-[#1a100c] text-center px-6 border-t border-white/5">
-     <div class="inline-flex items-center gap-6 mb-8">
-        <span class="font-serif text-3xl tracking-[0.5em] font-black uppercase text-[#a1887f]">MAROQUIN</span>
-        <span class="w-12 h-[1px] bg-white/10"></span>
-        <span class="text-[10px] font-bold text-gray-700 tracking-[0.4em] uppercase">Artisans of Sinsa-dong</span>
+  <footer class="py-24 bg-[#F5F2EF] text-center px-6 border-t border-[#2D1B15]/10">
+     <div class="inline-flex flex-col items-center gap-6 mb-8">
+        <span class="font-fashion font-semibold text-3xl tracking-[0.1em] text-[#2D1B15]">Maro<span class="italic text-[#8D6E63]">quin</span></span>
+        <span class="text-[10px] font-bold text-[#8D6E63] tracking-[0.4em] uppercase">Est. 2024</span>
      </div>
-     <p class="text-[10px] text-white/5 tracking-[0.6em] uppercase px-6">© 2024 MAROQUIN LEATHERCRAFT CO. ALL RIGHTS RESERVED.</p>
+     <p class="text-[10px] text-[#8D6E63]/50 tracking-[0.5em] uppercase px-6">© 2024 MAROQUIN. SEOUL.</p>
   </footer>
 
   <script>

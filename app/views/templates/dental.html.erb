@@ -1,151 +1,185 @@
-<%# Dental Template - MUA 진 치과 %>
+<%# Dental Template - MUA 진 치과 (MUA JIN) %>
 
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700;800&family=Noto+Sans+KR:wght@300;400;500;700&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap');
   
-  .font-serif { font-family: 'Nanum Myeongjo', serif; }
+  .font-modern { font-family: 'Plus Jakarta Sans', sans-serif; }
   .font-sans { font-family: 'Noto Sans KR', sans-serif; }
 
   @media (max-width: 768px) {
-    .mobile-desc { font-size: 14px !important; line-height: 1.6; }
-    .mobile-title { font-size: 28px !important; }
+    .mobile-desc { font-size: 14px !important; line-height: 1.8; }
+    .mobile-title { font-size: 36px !important; }
+  }
+
+  .clean-pattern {
+     background-image: radial-gradient(#0D9488 0.5px, transparent 0.5px);
+     background-size: 24px 24px;
+     opacity: 0.05;
   }
 </style>
 
-<div class="bg-white text-[#2c3e50] font-sans selection:bg-teal-600 selection:text-white min-h-screen">
+<div class="bg-white text-[#0F172A] font-sans selection:bg-[#0D9488] selection:text-white min-h-screen overflow-x-hidden relative">
+  <div class="fixed inset-0 clean-pattern pointer-events-none"></div>
 
   <!-- Nav -->
-  <nav class="fixed w-full z-50 px-6 py-4 bg-white/90 backdrop-blur-md border-b border-gray-100 shadow-sm">
-    <div class="container mx-auto flex justify-between items-center text-[#2c3e50]">
-      <div class="flex items-center gap-3">
-        <div class="w-10 h-10 bg-teal-600 rounded-lg flex items-center justify-center text-white font-serif font-bold text-xl">M</div>
-        <div class="flex flex-col">
-           <span class="font-serif font-black text-lg leading-none tracking-tighter">MUA JIN</span>
-           <span class="text-[9px] tracking-[0.2em] font-bold text-teal-600 uppercase">Dental Clinic</span>
-        </div>
+  <nav class="fixed w-full z-50 px-8 py-6 bg-white/90 backdrop-blur-md border-b border-slate-100">
+    <div class="container mx-auto flex justify-between items-center">
+      <div class="flex items-center gap-2">
+         <div class="w-8 h-8 bg-[#0D9488] rounded-tl-xl rounded-br-xl flex items-center justify-center shadow-lg shadow-teal-100">
+            <span class="text-white font-black text-lg">M</span>
+         </div>
+         <span class="font-modern font-bold text-xl tracking-tight text-[#0F172A]">MUA<span class="text-[#0D9488]">JIN</span></span>
       </div>
-      <div class="hidden md:flex gap-8 font-bold text-[11px] uppercase tracking-widest text-[#2c3e50]/60">
-        <a href="#about" class="hover:text-teal-600 transition">Medical Staff</a>
-        <a href="#specialty" class="hover:text-teal-600 transition">Services</a>
-        <a href="#process" class="hover:text-teal-600 transition">Process</a>
+      
+      <div class="hidden md:flex gap-10 text-[13px] font-modern font-semibold text-slate-400">
+         <a href="#about" class="hover:text-[#0D9488] transition">Doctors</a>
+         <a href="#specialty" class="hover:text-[#0D9488] transition">Expertise</a>
+         <a href="#review" class="hover:text-[#0D9488] transition">Reviews</a>
       </div>
+      
       <div class="flex gap-4 items-center">
-         <button onclick="toggleDentalModal()" class="text-[11px] font-bold tracking-widest uppercase text-[#2c3e50]/40 hover:text-teal-600">Login</button>
-         <button class="px-5 py-2.5 bg-teal-600 text-white font-bold rounded-full text-[11px] tracking-widest uppercase hover:bg-teal-700 transition shadow-lg shadow-teal-100">
-           Reservation
+         <button onclick="toggleDentalModal()" class="text-[13px] font-modern font-bold text-[#0D9488] hover:bg-teal-50 px-4 py-2 rounded-lg transition">Check Up</button>
+         <button class="bg-[#0F172A] text-white px-6 py-2.5 rounded-lg font-modern font-bold text-[13px] tracking-wide hover:bg-[#0D9488] transition shadow-xl shadow-slate-200">
+           Book Visit
          </button>
       </div>
     </div>
   </nav>
 
   <!-- Hero -->
-  <header class="pt-32 pb-20 px-6 bg-slate-50 relative overflow-hidden min-h-[700px] flex items-center">
-     <div class="container mx-auto grid md:grid-cols-2 gap-16 items-center relative z-10">
-        <div class="space-y-8">
-          <div class="inline-flex items-center gap-2 text-teal-600 font-bold tracking-widest text-[10px] bg-white px-4 py-1.5 rounded-full shadow-sm border border-teal-100">
-             <span class="w-1.5 h-1.5 rounded-full bg-teal-600 animate-pulse"></span> PRECISE & HONEST CARE
-          </div>
-          <h1 class="text-3xl md:text-5xl font-serif font-bold leading-tight text-[#1a252f] mobile-title">
-            당신의 자연스러운 미소,<br>
-            <span class="text-teal-600">진심을 담아 디자인합니다</span>
-          </h1>
-          <p class="text-sm md:text-base text-gray-500 leading-relaxed max-w-md mobile-desc">
-            과잉 진료 없는 정직한 원칙으로 당신의 평생 구강 건강을 책임집니다.<br>
-            대학병원 출신 전문의의 숙련된 기술과 최첨단 디지털 장비의 만남.
-          </p>
-          
-          <div class="flex flex-col sm:flex-row gap-4">
-            <button class="px-8 py-4 bg-[#1a252f] text-white font-bold rounded-xl hover:bg-teal-700 transition shadow-xl text-xs tracking-widest uppercase">
-              Book Appointment
-            </button>
-            <button class="px-8 py-4 bg-white border border-gray-200 text-gray-600 font-bold rounded-xl hover:border-teal-600 hover:text-teal-600 transition text-xs tracking-widest uppercase">
-              Consultation
-            </button>
-          </div>
-        </div>
+  <header class="min-h-screen relative flex items-center justify-center pt-24 overflow-hidden">
+    <!-- Abstract Shapes -->
+    <div class="absolute top-0 right-0 w-[40vw] h-[80vh] bg-teal-50 rounded-bl-[10rem] -z-10 opacity-60"></div>
+    <div class="absolute bottom-10 left-10 w-64 h-64 bg-slate-50 rounded-full mix-blend-multiply filter blur-3xl opacity-70 animate-pulse"></div>
 
-        <div class="relative">
-           <div class="absolute -inset-4 bg-teal-600/5 rounded-[40px] -rotate-3"></div>
-           <img src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?q=80&w=800" alt="MUA 진 치과" class="rounded-[32px] shadow-2xl w-full h-[500px] object-cover relative z-10">
-           
-           <div class="absolute -bottom-8 -left-8 bg-white p-6 rounded-3xl shadow-2xl z-20 border border-gray-100 hidden md:block">
-              <div class="flex items-center gap-4">
-                 <div class="w-12 h-12 bg-teal-50 rounded-full flex items-center justify-center text-teal-600 text-xl">⭐</div>
-                 <div>
-                    <p class="text-[10px] font-bold text-gray-400 tracking-widest uppercase">Review Rating</p>
-                    <p class="text-xl font-black text-[#1a252f]">4.9 / 5.0</p>
-                 </div>
-              </div>
+    <div class="container mx-auto px-6 relative z-10 grid lg:grid-cols-2 gap-20 items-center">
+      <div class="space-y-10 text-center lg:text-left">
+        <div class="inline-flex items-center gap-3 bg-white px-4 py-2 rounded-full border border-slate-100 shadow-sm">
+           <span class="flex h-2.5 w-2.5 relative">
+              <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-teal-400 opacity-75"></span>
+              <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-[#0D9488]"></span>
+           </span>
+           <span class="text-[11px] font-modern font-bold text-[#0D9488] uppercase tracking-wider">Trusted by 10,000+ Patients</span>
+        </div>
+        
+        <h1 class="text-5xl md:text-7xl font-modern font-bold leading-[1.1] tracking-tight text-[#0F172A] mobile-title">
+           Design Your<br>
+           <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#0D9488] to-[#14B8A6]">Perfect Smile.</span>
+        </h1>
+        
+        <p class="text-slate-500 text-lg md:text-xl leading-relaxed max-w-lg mx-auto lg:mx-0 mobile-desc font-medium">
+           과잉 진료 없는 정직한 원칙, 대학병원 출신 의료진의 정밀한 케어.<br>
+           당신의 미소가 가장 자연스럽게 빛나도록 디자인합니다.
+        </p>
+        
+        <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start pt-4">
+           <button class="px-8 py-4 bg-[#0D9488] text-white font-modern font-bold text-base rounded-xl hover:bg-[#0F766E] transition shadow-lg shadow-teal-100 ring-4 ring-teal-50">
+             Start Consultation
+           </button>
+           <button class="px-8 py-4 bg-white text-[#0F172A] border border-slate-200 font-modern font-bold text-base rounded-xl hover:border-[#0D9488] hover:text-[#0D9488] transition flex items-center justify-center gap-2">
+             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
+             Call Center
+           </button>
+        </div>
+        
+        <!-- Awards -->
+        <div class="pt-8 flex gap-8 justify-center lg:justify-start border-t border-slate-100 max-w-md mx-auto lg:mx-0">
+           <div>
+              <p class="text-2xl font-black text-[#0F172A]">5.0</p>
+              <p class="text-[10px] uppercase font-bold text-slate-400 mt-1">Google Rating</p>
+           </div>
+           <div class="w-px h-10 bg-slate-100"></div>
+           <div>
+              <p class="text-2xl font-black text-[#0F172A]">15<span class="text-lg align-top text-[#0D9488]">+</span></p>
+              <p class="text-[10px] uppercase font-bold text-slate-400 mt-1">Years Exp.</p>
+           </div>
+           <div class="w-px h-10 bg-slate-100"></div>
+           <div>
+              <p class="text-2xl font-black text-[#0F172A]">Top</p>
+              <p class="text-[10px] uppercase font-bold text-slate-400 mt-1">Best Clinic</p>
            </div>
         </div>
-     </div>
-  </header>
-
-  <!-- Medical Staff (Korean Doctor added) -->
-  <section id="about" class="py-24 bg-white px-6">
-    <div class="container mx-auto">
-      <div class="grid md:grid-cols-2 gap-20 items-center max-w-5xl mx-auto">
-        <div class="relative">
-           <img src="https://images.unsplash.com/photo-1559839734-2b71f1e3c77d?q=80&w=600" alt="MUA JIN 대표원장" class="w-full aspect-[3/4] object-cover rounded-3xl shadow-xl">
-           <div class="absolute top-10 -right-10 bg-teal-600 text-white p-8 rounded-2xl shadow-2xl hidden md:block">
-              <p class="text-xs font-bold tracking-widest uppercase opacity-80 mb-2">Chief Director</p>
-              <h3 class="text-2xl font-serif font-bold">임진우 대표원장</h3>
-           </div>
-        </div>
-        <div class="space-y-6">
-           <h2 class="text-3xl font-serif font-bold text-[#1a252f]">실력과 마음이<br>머무는 진료</h2>
-           <p class="text-sm text-gray-500 leading-loose mobile-desc">
-              "치과 치료는 단순히 기술의 전달이 아닙니다. 환자분이 느끼는 두려움에 공감하고, 
-              평생의 미소를 되찾아드리는 과정입니다." <br><br>
-              MUA 진 치과는 환자 한 분 한 분의 이야기에 귀 기울이며, 
-              가장 편안하고 안전한 치료 환경을 제공하기 위해 최선을 다합니다.
-           </p>
-           <ul class="space-y-3 pt-4 border-t border-gray-100">
-              <li class="flex items-center gap-3 text-xs font-bold text-gray-600 tracking-wide text-sm">
-                 <span class="text-teal-600">✓</span> 서울대학교 치의학 대학원 졸업
-              </li>
-              <li class="flex items-center gap-3 text-xs font-bold text-gray-600 tracking-wide text-sm">
-                 <span class="text-teal-600">✓</span> 보건복지부 인증 치과 보철과 전문의
-              </li>
-              <li class="flex items-center gap-3 text-xs font-bold text-gray-600 tracking-wide text-sm">
-                 <span class="text-teal-600">✓</span> 대한구강악안면임플란트학회 정회원
-              </li>
-           </ul>
-        </div>
+      </div>
+      
+      <div class="relative hidden lg:block">
+         <div class="relative z-10 w-full max-w-md mx-auto aspect-[3/4]">
+            <img src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?q=80&w=800" alt="Modern Dental Clinic" class="w-full h-full object-cover rounded-[2rem] shadow-2xl">
+            
+            <!-- Cards -->
+            <div class="absolute top-10 -left-10 bg-white p-5 rounded-2xl shadow-xl flex items-center gap-4 animate-bounce-slow">
+               <div class="w-10 h-10 bg-teal-50 rounded-full flex items-center justify-center text-lg">🦷</div>
+               <div>
+                  <p class="text-[10px] font-bold text-slate-400 uppercase">Treatment</p>
+                  <p class="font-bold text-[#0F172A] text-sm">Pain-Free Implant</p>
+               </div>
+            </div>
+            
+            <div class="absolute bottom-10 -right-10 bg-[#0F172A] p-5 rounded-2xl shadow-xl animate-bounce-delayed">
+               <div class="flex items-center gap-3">
+                  <div class="flex -space-x-2">
+                     <div class="w-8 h-8 rounded-full bg-slate-200 border-2 border-[#0F172A]"></div>
+                     <div class="w-8 h-8 rounded-full bg-slate-300 border-2 border-[#0F172A]"></div>
+                     <div class="w-8 h-8 rounded-full bg-slate-400 border-2 border-[#0F172A]"></div>
+                  </div>
+                  <div class="text-white">
+                     <p class="font-bold text-sm">All Specialists</p>
+                     <p class="text-[10px] opacity-60 uppercase">Certified Doctors</p>
+                  </div>
+               </div>
+            </div>
+         </div>
       </div>
     </div>
-  </section>
+  </header>
+  
+  <style>
+     @keyframes bounce-slow {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(-10px); }
+     }
+     .animate-bounce-slow { animation: bounce-slow 4s infinite ease-in-out; }
+     .animate-bounce-delayed { animation: bounce-slow 4s infinite ease-in-out 2s; }
+  </style>
 
   <!-- Login Modal -->
-  <div id="dental-modal" class="fixed inset-0 z-[100] hidden items-center justify-center p-4 bg-[#1a252f]/60 backdrop-blur-sm">
-    <div class="bg-white w-full max-w-sm rounded-[32px] overflow-hidden shadow-2xl p-10 relative">
-      <button onclick="toggleDentalModal()" class="absolute top-6 right-8 text-gray-300 hover:text-teal-600 transition text-2xl font-light">&times;</button>
+  <div id="dental-modal" class="fixed inset-0 z-[100] hidden items-center justify-center p-4 bg-[#0F172A]/20 backdrop-blur-md">
+    <div class="bg-white w-full max-w-sm p-12 shadow-2xl relative rounded-[2rem]">
+      <button onclick="toggleDentalModal()" class="absolute top-8 right-8 text-slate-300 hover:text-[#0D9488] transition text-2xl font-light">&times;</button>
       
       <div class="text-center mb-10">
-        <h2 class="text-xl font-serif font-black text-[#1a252f] mb-2 tracking-tighter">MUA JIN</h2>
-        <p class="text-[10px] font-bold text-teal-600 tracking-[0.2em] uppercase">Patient Portal</p>
+        <div class="w-16 h-16 bg-[#F0FDFA] rounded-2xl flex items-center justify-center text-3xl mx-auto mb-4 text-[#0D9488]">
+           🏥
+        </div>
+        <h2 class="text-xl font-modern font-bold text-[#0F172A] mb-1">Patient Portal</h2>
+        <p class="text-[11px] text-[#0D9488] font-bold tracking-[0.2em] uppercase">Secure Medical Records</p>
       </div>
       
-      <div class="space-y-4">
-        <input type="text" placeholder="Chart Number or ID" class="w-full bg-slate-50 border border-transparent focus:border-teal-600 rounded-2xl px-5 py-4 outline-none transition text-sm">
-        <button class="w-full bg-[#1a252f] text-white font-bold py-4 rounded-2xl hover:bg-teal-600 transition shadow-lg text-xs tracking-widest uppercase">
-           Sign In
+      <div class="space-y-6">
+        <div>
+           <label class="block text-[11px] font-bold text-slate-400 uppercase tracking-widest mb-2 ml-1">Chart Number</label>
+           <input type="text" placeholder="e.g. 2401-1234" class="w-full bg-slate-50 border border-slate-200 rounded-xl py-3 px-5 outline-none focus:border-[#0D9488] focus:ring-1 focus:ring-[#0D9488] transition text-sm font-bold text-[#0F172A] uppercase">
+        </div>
+        
+        <button class="w-full bg-[#0F172A] text-white py-4 rounded-xl text-[12px] tracking-widest font-bold uppercase hover:bg-[#0D9488] transition shadow-lg shadow-teal-500/20">
+           Access Records
         </button>
-        <div class="flex justify-center gap-5 pt-2">
-           <a href="#" class="text-[10px] font-bold text-gray-400 hover:text-[#1a252f] transition uppercase tracking-widest">New Patient</a>
-           <a href="#" class="text-[10px] font-bold text-gray-400 hover:text-[#1a252f] transition uppercase tracking-widest">Support</a>
+        
+        <div class="flex justify-center gap-6 pt-2 text-[#94A3B8] font-bold text-[11px] uppercase tracking-wide">
+           <a href="#" class="hover:text-[#0D9488] transition">First Visit?</a>
+           <span class="text-slate-200">|</span>
+           <a href="#" class="hover:text-[#0D9488] transition">Need Help</a>
         </div>
       </div>
     </div>
   </div>
 
-  <footer class="py-16 px-6 bg-[#1a252f] text-center">
-     <div class="inline-flex items-center gap-3 mb-8">
-        <span class="font-serif font-black text-2xl text-white tracking-tighter">MUA JIN</span>
-        <span class="w-[1px] h-6 bg-white/20"></span>
-        <span class="text-[10px] font-bold text-teal-500 tracking-widest uppercase">Expert Dental Clinic</span>
+  <footer class="py-20 bg-white text-center px-6 border-t border-slate-100">
+     <div class="inline-flex items-center gap-3 mb-6">
+        <span class="font-modern font-bold text-xl tracking-tight text-[#0F172A]">MUA<span class="text-[#0D9488]">JIN</span></span>
+        <span class="w-px h-4 bg-slate-200"></span>
+        <span class="text-[11px] font-bold text-slate-400 uppercase tracking-widest">Premium Dental Care</span>
      </div>
-     <p class="text-[10px] text-white/40 tracking-[0.3em] uppercase">© 2024 MUA JIN DENTAL CLINIC. ALL RIGHTS RESERVED.</p>
+     <p class="text-[10px] text-slate-300 tracking-widest uppercase px-6">© 2024 MUA JIN Dental Clinic. All Rights Reserved.</p>
   </footer>
 
   <script>

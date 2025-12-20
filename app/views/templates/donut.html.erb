@@ -1,110 +1,157 @@
-<%# Donut Template - 롤링 도넛 (Rolling Donut) %>
+<%# Donut Template - 롤링 도넛 (ROLLING DONUT) %>
 
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Jua&family=Noto+Sans+KR:wght@400;700;900&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@300;400;500;600;700&family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap');
   
-  .font-title { font-family: 'Jua', sans-serif; }
+  .font-rounded { font-family: 'Fredoka', sans-serif; }
   .font-sans { font-family: 'Noto Sans KR', sans-serif; }
 
   @media (max-width: 768px) {
-    .mobile-desc { font-size: 14px !important; line-height: 1.6; }
-    .mobile-title { font-size: 36px !important; }
+    .mobile-desc { font-size: 14px !important; line-height: 1.8; }
+    .mobile-title { font-size: 40px !important; }
+  }
+
+  .sprinkle-pattern {
+    background-image: radial-gradient(#FF61A6 15%, transparent 16%),
+    radial-gradient(#4ECDC4 15%, transparent 16%);
+    background-size: 60px 60px;
+    background-position: 0 0, 30px 30px;
+    opacity: 0.1;
   }
 </style>
 
-<div class="bg-[#FFF9EA] text-[#4A2D29] font-sans selection:bg-[#FF69B4] selection:text-white min-h-screen overflow-x-hidden">
+<div class="bg-[#FFF8F0] text-[#333] font-sans selection:bg-[#FF61A6] selection:text-white min-h-screen overflow-x-hidden relative">
+  <div class="fixed inset-0 sprinkle-pattern pointer-events-none"></div>
 
   <!-- Nav -->
-  <nav class="fixed w-full z-50 px-6 py-5">
-    <div class="container mx-auto flex justify-between items-center bg-white/80 backdrop-blur-lg rounded-[2rem] px-8 py-3 shadow-[0_20px_40px_-15px_rgba(255,105,180,0.1)] border border-[#FF69B4]/10">
-      <div class="flex items-center gap-3">
-         <span class="text-3xl animate-bounce">🍩</span>
-         <span class="font-title text-2xl text-[#FF69B4]">ROLLING DONUT</span>
-      </div>
-      
-      <div class="hidden md:flex gap-10 font-title text-lg text-[#4A2D29]/40">
-        <a href="#menu" class="hover:text-[#FF69B4] transition">도넛 메뉴</a>
-        <a href="#about" class="hover:text-[#FF69B4] transition">우리 이야기</a>
-        <a href="#location" class="hover:text-[#FF69B4] transition">오시는 길</a>
-      </div>
-      
-      <div class="flex gap-4">
-         <button onclick="toggleDonutModal()" class="font-title text-lg text-[#4A2D29]/40 hover:text-[#FF69B4]">클럽로그인</button>
-         <button class="bg-[#FF69B4] text-white font-title text-lg px-6 py-2 rounded-full shadow-[0_8px_0_#D0317C] active:translate-y-1 active:shadow-none transition-all">
-           주문하기
-         </button>
+  <nav class="fixed w-full z-50 px-6 py-4 top-0 left-0">
+    <div class="container mx-auto">
+      <div class="bg-white/90 backdrop-blur-xl border border-[#FF61A6]/10 rounded-[2rem] px-6 py-4 flex justify-between items-center shadow-lg shadow-[#FF61A6]/5">
+        <div class="flex items-center gap-2">
+           <span class="text-3xl animate-bounce">🍩</span>
+           <span class="font-rounded font-bold text-2xl text-[#FF61A6] tracking-tight">Rolling<span class="text-[#4ECDC4]">Donut</span></span>
+        </div>
+        
+        <div class="hidden md:flex gap-8 text-[14px] font-rounded font-semibold text-[#333]/60">
+          <a href="#menu" class="hover:text-[#FF61A6] transition">Menu</a>
+          <a href="#about" class="hover:text-[#FF61A6] transition">Our Story</a>
+          <a href="#stores" class="hover:text-[#FF61A6] transition">Find Us</a>
+        </div>
+        
+        <div class="flex gap-4 items-center">
+           <button onclick="toggleDonutModal()" class="text-[13px] font-rounded font-bold text-[#FF61A6] hover:bg-[#FF61A6]/10 px-4 py-2 rounded-full transition">Jelly Club</button>
+           <button class="bg-[#FF61A6] text-white px-6 py-2.5 rounded-full font-rounded font-bold text-[14px] shadow-[0_4px_0_#D44085] hover:translate-y-1 hover:shadow-none transition-all">
+             Order Pickup
+           </button>
+        </div>
       </div>
     </div>
   </nav>
 
   <!-- Hero -->
-  <header class="min-h-screen relative flex items-center justify-center overflow-hidden pt-20 px-6">
-     <div class="absolute top-20 right-10 text-6xl opacity-10 animate-pulse">✨</div>
-     <div class="absolute bottom-20 left-10 text-6xl opacity-10 animate-pulse delay-700">🥨</div>
-     
-     <div class="container mx-auto grid md:grid-cols-2 gap-16 items-center relative z-10">
-        <div class="space-y-8 text-center md:text-left">
-           <div class="inline-flex items-center gap-2 bg-white px-5 py-2 rounded-full shadow-sm border border-[#FF69B4]/20 text-[#FF69B4] font-title text-lg">
-              🎉 오늘의 신선한 도넛이 구워졌어요! 
-           </div>
-           <h1 class="text-5xl md:text-8xl font-title text-[#4A2D29] leading-none tracking-tighter mobile-title">
-              달콤함이<br><span class="text-[#FF69B4]">몽글몽글</span><br>피어나는 곳.
-           </h1>
-           <p class="text-[#4A2D29]/60 text-lg md:text-2xl leading-relaxed max-w-lg font-title mobile-desc">
-              매일 아침 천천히 구워내는 수제 도넛의 따뜻한 풍미.<br>
-              롤링 도넛에서 일상의 작은 행복을 발견하세요.
-           </p>
-           <div class="pt-4">
-              <button class="bg-[#FFD166] text-[#4A2D29] font-title text-2xl px-12 py-5 rounded-[2rem] shadow-[0_10px_0_#E5B94B] active:translate-y-2 active:shadow-none transition-all">
-                 지금 바로 맛보기
-              </button>
-           </div>
-        </div>
-        
-        <div class="relative">
-           <div class="absolute -inset-10 bg-[#FF69B4]/10 rounded-full blur-[100px]"></div>
-           <div class="relative z-10 flex justify-center">
-              <div class="relative group">
-                 <img src="https://images.unsplash.com/photo-1551024601-bec78aea704b?q=80&w=600" alt="도넛" class="w-80 md:w-[450px] aspect-square object-cover rounded-[4rem] border-8 border-white shadow-2xl rotate-6 group-hover:rotate-0 transition duration-500">
-                 <div class="absolute -bottom-6 -right-6 bg-white p-6 rounded-3xl shadow-xl border border-[#FF69B4]/10 hidden md:block rotate-[-6deg]">
-                    <p class="font-title text-xl text-[#FF69B4]">BEST SELLER</p>
-                    <p class="font-title text-[#4A2D29]/40 uppercase tracking-widest text-sm">Berry Bomb Donut</p>
-                 </div>
-              </div>
-           </div>
-        </div>
-     </div>
+  <header class="min-h-screen relative flex items-center justify-center pt-24 overflow-hidden">
+    <!-- Floating Elements -->
+    <div class="absolute top-[15%] left-[10%] text-6xl animate-float opacity-80 pointer-events-none delay-100">🍬</div>
+    <div class="absolute bottom-[20%] right-[10%] text-6xl animate-float opacity-80 pointer-events-none delay-700">🍩</div>
+    <div class="absolute top-[30%] right-[20%] w-32 h-32 bg-[#4ECDC4]/20 rounded-full blur-[40px] pointer-events-none"></div>
+    <div class="absolute bottom-[10%] left-[20%] w-40 h-40 bg-[#FF61A6]/20 rounded-full blur-[40px] pointer-events-none"></div>
+
+    <div class="container mx-auto px-6 relative z-10 grid lg:grid-cols-2 gap-16 items-center">
+       <div class="space-y-8 text-center lg:text-left order-2 lg:order-1">
+         <div class="inline-flex items-center gap-2 bg-white px-4 py-2 rounded-full shadow-sm border border-[#FF61A6]/20">
+            <span class="w-2 h-2 rounded-full bg-[#FF61A6] animate-pulse"></span>
+            <span class="text-[12px] font-rounded font-bold text-[#FF61A6] uppercase tracking-wide">Freshly Baked Every Morning!</span>
+         </div>
+         
+         <h1 class="text-5xl md:text-7xl font-rounded font-bold leading-[1.1] text-[#333] mobile-title">
+            Happiness is<br>
+            <span class="text-[#FF61A6]">Round</span> & <span class="text-[#4ECDC4]">Sweet.</span>
+         </h1>
+         
+         <p class="text-[#333]/60 text-lg md:text-xl leading-relaxed max-w-lg mx-auto lg:mx-0 mobile-desc font-medium">
+            폭신한 도우 속에 가득 찬 달콤한 크림. 한 입 베어 무는 순간 퍼지는 행복, 롤링 도넛에서 만나보세요.
+         </p>
+         
+         <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start pt-4">
+            <button class="px-8 py-4 bg-[#4ECDC4] text-white font-rounded font-bold text-lg rounded-[1rem] shadow-[0_6px_0_#2DA9A0] hover:translate-y-1 hover:shadow-none transition-all">
+               View Menu
+            </button>
+            <button class="px-8 py-4 bg-white text-[#FF61A6] border-2 border-[#FF61A6]/20 font-rounded font-bold text-lg rounded-[1rem] hover:bg-[#FF61A6]/5 transition">
+               Gift Box
+            </button>
+         </div>
+       </div>
+       
+       <div class="relative order-1 lg:order-2 flex justify-center">
+          <div class="relative group cursor-pointer w-[300px] md:w-[450px]">
+             <img src="https://images.unsplash.com/photo-1551024601-bec78aea704b?q=80&w=800" alt="Tasty Donut" class="w-full h-auto object-cover rounded-[3rem] border-8 border-white shadow-2xl rotate-[5deg] group-hover:rotate-0 transition duration-500">
+             
+             <!-- Badge -->
+             <div class="absolute -bottom-6 -right-6 bg-white p-4 rounded-[1.5rem] shadow-xl border border-[#FF61A6]/10 rotate-[-5deg] animate-bounce-slow">
+                <div class="flex items-center gap-2">
+                   <span class="text-2xl">🏆</span>
+                   <div>
+                      <p class="text-[10px] font-bold text-[#333]/40 uppercase">Best Seller</p>
+                      <p class="font-rounded font-bold text-[#FF61A6]">Strawberry Glaze</p>
+                   </div>
+                </div>
+             </div>
+          </div>
+       </div>
+    </div>
   </header>
 
+   <style>
+      @keyframes float {
+         0%, 100% { transform: translateY(0); }
+         50% { transform: translateY(-20px); }
+      }
+      .animate-float { animation: float 6s ease-in-out infinite; }
+      @keyframes bounce-slow {
+         0%, 100% { transform: translateY(0) rotate(-5deg); }
+         50% { transform: translateY(-5px) rotate(-5deg); }
+      }
+      .animate-bounce-slow { animation: bounce-slow 3s ease-in-out infinite; }
+   </style>
+
   <!-- Login Modal -->
-  <div id="donut-modal" class="fixed inset-0 z-[100] hidden items-center justify-center p-4 bg-[#4A2D29]/20 backdrop-blur-md">
-    <div class="bg-white w-full max-w-sm p-12 shadow-2xl relative rounded-[3rem] border-8 border-[#FF69B4]/5">
-      <button onclick="toggleDonutModal()" class="absolute top-8 right-10 text-[#4A2D29]/20 hover:text-[#FF69B4] transition text-4xl font-light font-title">&times;</button>
+  <div id="donut-modal" class="fixed inset-0 z-[100] hidden items-center justify-center p-4 bg-[#333]/20 backdrop-blur-md">
+    <div class="bg-white w-full max-w-sm p-10 shadow-[0_20px_60px_-15px_rgba(255,97,166,0.3)] relative rounded-[2.5rem] border-4 border-[#FF61A6]/10">
+      <button onclick="toggleDonutModal()" class="absolute top-6 right-6 text-[#333]/20 hover:text-[#FF61A6] transition text-3xl font-rounded font-bold">&times;</button>
       
-      <div class="text-center mb-10">
-        <h2 class="text-3xl font-title text-[#4A2D29] mb-2 tracking-tighter">DOUGHNUT_CLUB</h2>
-        <p class="text-base font-title text-[#FF69B4] tracking-widest uppercase">매일 만나는 달콤한 혜택</p>
+      <div class="text-center mb-8">
+        <div class="w-16 h-16 bg-[#FFF0F6] rounded-full flex items-center justify-center text-3xl mx-auto mb-4 animate-bounce">
+           🦄
+        </div>
+        <h2 class="text-2xl font-rounded font-bold text-[#333] mb-1">Jelly Club</h2>
+        <p class="text-[12px] text-[#FF61A6] font-bold uppercase tracking-wide bg-[#FF61A6]/10 inline-block px-3 py-1 rounded-full">Sweet Rewards Program</p>
       </div>
       
-      <div class="space-y-6">
-        <input type="text" placeholder="휴대폰 번호 또는 이메일" class="w-full bg-[#F8F9FA] border-none rounded-2xl py-5 px-6 outline-none focus:ring-4 focus:ring-[#FF69B4]/10 transition font-title text-xl placeholder-[#4A2D29]/20">
-        <button class="w-full bg-[#FF69B4] text-white py-5 rounded-2xl font-title text-2xl shadow-[0_8px_0_#D0317C] active:translate-y-1 active:shadow-none transition-all">
-           클럽 입장하기
+      <div class="space-y-4">
+        <div>
+           <input type="text" placeholder="Phone Number" class="w-full bg-[#F9FAFB] border-2 border-[#F3F4F6] rounded-2xl py-4 px-6 outline-none focus:border-[#FF61A6] focus:bg-white transition text-[16px] font-rounded font-bold text-[#333] text-center placeholder-[#333]/20">
+        </div>
+        
+        <button class="w-full bg-[#FF61A6] text-white py-4 rounded-2xl font-rounded font-bold text-[18px] shadow-[0_6px_0_#D44085] hover:translate-y-1 hover:shadow-none transition-all">
+           Log In & Get Free Donut
         </button>
-        <p class="text-base text-center text-[#4A2D29]/30 font-title pt-4">
-           첫 가입 시 1+1 쿠폰 즉시 지급
-        </p>
+        
+        <div class="flex justify-center gap-6 pt-4 text-sm font-rounded font-bold text-[#333]/40">
+           <a href="#" class="hover:text-[#FF61A6] transition">Join Club</a>
+           <span>•</span>
+           <a href="#" class="hover:text-[#FF61A6] transition">Lost Password?</a>
+        </div>
       </div>
     </div>
   </div>
 
-  <footer class="py-24 bg-white text-center px-6 border-t border-[#F8F9FA]">
-     <div class="inline-flex items-center gap-4 mb-8">
-        <span class="text-2xl animate-spin-slow">🥨</span>
-        <span class="font-title text-3xl text-[#FF69B4] tracking-tighter">ROLLING DONUT</span>
-        <span class="w-12 h-[2px] bg-[#FFD166]"></span>
+  <footer class="py-20 bg-white text-center px-6 border-t border-[#F3F4F6]">
+     <div class="inline-flex flex-col items-center gap-4 mb-8">
+        <span class="text-4xl">🥨</span>
+        <span class="font-rounded font-bold text-2xl text-[#333]">Rolling<span class="text-[#FF61A6]">Donut</span></span>
+        <p class="text-[12px] font-bold text-[#333]/30 uppercase tracking-widest">Handmade with Love in Seoul</p>
      </div>
-     <p class="text-lg font-title text-[#4A2D29]/30 tracking-widest px-6 uppercase">Handmade with Love | © 2024 ROLLING DONUT CO.</p>
+     <p class="text-[10px] text-[#333]/20 tracking-wider">© 2024 ROLLING DONUT CO. ALL RIGHTS RESERVED.</p>
   </footer>
 
   <script>
@@ -114,13 +161,5 @@
       modal.classList.toggle('flex');
     }
   </script>
-
-  <style>
-    @keyframes spin-slow {
-      from { transform: rotate(0deg); }
-      to { transform: rotate(360deg); }
-    }
-    .animate-spin-slow { animation: spin-slow 12s linear infinite; }
-  </style>
 
 </div>

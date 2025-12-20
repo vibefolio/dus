@@ -1,35 +1,44 @@
-<%# Burger Template - 버거 조인트 (Burger Joint) %>
+<%# Burger Template - 버거 조인트 (BURGER JOINT) %>
 
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700;900&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Anton&family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap');
   
+  .font-display { font-family: 'Anton', sans-serif; }
   .font-sans { font-family: 'Noto Sans KR', sans-serif; }
 
   @media (max-width: 768px) {
-    .mobile-desc { font-size: 14px !important; line-height: 1.6; }
-    .mobile-title { font-size: 36px !important; }
+    .mobile-desc { font-size: 14px !important; line-height: 1.8; }
+    .mobile-title { font-size: 40px !important; }
+  }
+
+  .grunge-texture {
+    background-image: url("https://www.transparenttextures.com/patterns/asfalt-dark.png");
+    opacity: 0.8;
   }
 </style>
 
-<div class="bg-[#0f0f0f] text-[#f8f8f8] font-sans selection:bg-[#ff9f1c] selection:text-black min-h-screen overflow-x-hidden">
+<div class="bg-[#121212] text-white font-sans selection:bg-[#E8482D] selection:text-white min-h-screen overflow-x-hidden relative">
+  <div class="fixed inset-0 grunge-texture pointer-events-none opacity-20"></div>
 
   <!-- Nav -->
-  <nav class="fixed w-full z-50 px-6 py-6 bg-[#0f0f0f]/9 worst backdrop-blur-md border-b border-white/5">
+  <nav class="fixed w-full z-50 px-6 py-6 bg-[#121212]/90 backdrop-blur-md border-b border-white/5">
     <div class="container mx-auto flex justify-between items-center">
       <div class="flex items-center gap-3">
-         <div class="w-10 h-10 bg-[#ff9f1c] rounded-lg flex items-center justify-center text-black font-black text-2xl shadow-[0_0_20px_rgba(255,159,28,0.4)]">B</div>
-         <span class="text-xl font-black tracking-tighter text-white uppercase">BURGER<span class="text-[#ff9f1c]">JOINT</span></span>
+         <div class="w-10 h-10 bg-[#FFB400] skew-x-[-12deg] flex items-center justify-center text-black font-black text-xl shadow-[4px_4px_0px_#E8482D]">
+            B
+         </div>
+         <span class="font-display text-2xl tracking-wide uppercase text-white">BURGER<span class="text-[#FFB400]">JOINT</span></span>
       </div>
       
-      <div class="hidden md:flex gap-10 text-[11px] font-bold uppercase tracking-[0.3em] text-gray-500">
-        <a href="#menu" class="hover:text-[#ff9f1c] transition">The Burgers</a>
-        <a href="#sides" class="hover:text-[#ff9f1c] transition">Sides & Beer</a>
-        <a href="#location" class="hover:text-[#ff9f1c] transition">Locations</a>
+      <div class="hidden md:flex gap-10 text-[11px] font-black uppercase tracking-[0.2em] text-white/40">
+        <a href="#burgers" class="hover:text-[#FFB400] transition">The Menu</a>
+        <a href="#sides" class="hover:text-[#FFB400] transition">Sides</a>
+        <a href="#craft-beer" class="hover:text-[#FFB400] transition">Craft Beer</a>
       </div>
       
-      <div class="flex gap-6 items-center">
-         <button onclick="toggleBurgerModal()" class="text-[11px] font-bold uppercase tracking-[0.3em] text-gray-500 hover:text-[#ff9f1c]">Burger Club</button>
-         <button class="bg-[#ff9f1c] text-black px-6 py-2.5 rounded-sm font-black text-[11px] tracking-widest uppercase hover:bg-white transition shadow-xl">
+      <div class="flex gap-4 items-center">
+         <button onclick="toggleBurgerModal()" class="text-[11px] font-bold uppercase tracking-[0.2em] text-white/40 hover:text-[#FFB400]">Join Club</button>
+         <button class="bg-[#E8482D] text-white px-6 py-2.5 skew-x-[-12deg] font-black text-[12px] tracking-wide uppercase hover:bg-[#FFB400] hover:text-black transition shadow-[4px_4px_0px_black] border border-white/10 active:translate-x-[2px] active:translate-y-[2px] active:shadow-none">
            Order Now
          </button>
       </div>
@@ -37,79 +46,87 @@
   </nav>
 
   <!-- Hero -->
-  <header class="min-h-screen relative flex items-center justify-center overflow-hidden pt-20">
-    <div class="absolute inset-0">
-       <div class="absolute top-20 left-[-5%] w-[40%] h-[40%] bg-[#ff9f1c]/10 rounded-full blur-[120px]"></div>
-       <div class="absolute bottom-20 right-[-5%] w-[40%] h-[40%] bg-[#e71d36]/10 rounded-full blur-[120px]"></div>
-    </div>
+  <header class="min-h-screen relative flex items-center justify-center pt-20 overflow-hidden">
+    <!-- Graffiti elements -->
+    <div class="absolute top-[10%] left-[5%] text-[15rem] font-black text-white/5 font-display rotate-[-15deg] pointer-events-none select-none">TASTY</div>
+    <div class="absolute bottom-[10%] right-[0%] text-[15rem] font-black text-white/5 font-display rotate-[10deg] pointer-events-none select-none">JUICY</div>
     
-    <div class="container mx-auto px-6 relative z-10 grid md:grid-cols-2 gap-16 items-center">
-      <div class="space-y-8 text-center md:text-left">
-        <div class="inline-flex items-center gap-2 bg-[#e71d36] text-white px-4 py-1.5 rounded-sm font-black text-[10px] tracking-widest uppercase shadow-lg shadow-[#e71d36]/20">
-           100% Real Prime Beef
+    <div class="container mx-auto px-6 relative z-10 grid lg:grid-cols-2 gap-12 items-center">
+      <div class="space-y-8 text-center lg:text-left order-2 lg:order-1">
+        <div class="inline-flex items-center gap-2 bg-[#FFB400] text-black px-4 py-1 skew-x-[-12deg] shadow-[4px_4px_0px_#E8482D]">
+           <span class="font-black text-xs uppercase tracking-wider">Premium American Grill</span>
         </div>
-        <h1 class="text-5xl md:text-8xl font-black leading-none tracking-tighter text-white mobile-title">
-           육즙의 축제,<br><span class="text-[#ff9f1c]">폭발하는 미학.</span>
+        
+        <h1 class="text-6xl md:text-[8rem] font-display uppercase leading-[0.85] tracking-wide text-white mobile-title text-shadow-lg">
+           Real<br>
+           <span class="text-[#E8482D]">Meat</span><br>
+           <span class="text-white/20">Lover.</span>
         </h1>
-        <p class="text-gray-400 text-sm md:text-xl leading-relaxed max-w-md mx-auto md:mx-0 mobile-desc">
-           매일 아침 매장에서 정성껏 갈아 만든 패티의 진한 풍미.<br>
-           버거 조인트는 당신의 한 입을 위해 타협 없는 신선함과 투박하지만 본능적인 맛을 제안합니다.
+        
+        <p class="text-white/60 text-sm md:text-xl leading-relaxed max-w-md mx-auto lg:mx-0 mobile-desc font-medium">
+           매일 아침 직접 갈아 만든 100% 소고기 패티의 진한 육즙.<br>
+           타협하지 않는 오리지널 아메리칸 버거의 맛을 경험하세요.
         </p>
-        <div class="pt-4 flex flex-col sm:flex-row gap-6 justify-center md:justify-start">
-           <button class="px-12 py-5 bg-white text-black font-black text-[11px] tracking-widest uppercase hover:bg-[#ff9f1c] transition shadow-2xl">
-              View Menu
+        
+        <div class="flex flex-col sm:flex-row gap-6 justify-center lg:justify-start pt-4">
+           <button class="px-10 py-5 bg-[#FFB400] text-black font-black text-sm uppercase tracking-wide skew-x-[-12deg] hover:bg-white transition shadow-[6px_6px_0px_#E8482D] active:translate-x-[2px] active:translate-y-[2px] active:shadow-none">
+              Explore Menu
            </button>
-           <button class="px-12 py-5 border border-white/10 text-white font-black text-[11px] tracking-widest uppercase hover:bg-white/5 transition backdrop-blur-sm">
-              Our Story
+           <button class="px-10 py-5 border-2 border-white/20 text-white font-black text-sm uppercase tracking-wide skew-x-[-12deg] hover:border-[#FFB400] hover:text-[#FFB400] transition backdrop-blur-sm">
+              Our Location
            </button>
         </div>
       </div>
       
-      <div class="relative">
-         <div class="absolute -inset-10 bg-[#ff9f1c]/5 rounded-full blur-[100px]"></div>
-         <div class="relative z-10">
-            <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?q=80&w=800" alt="육즙 버거" class="w-full drop-shadow-[0_50px_100px_rgba(255,159,28,0.2)] hover:scale-105 transition duration-1000">
-         </div>
-         <div class="absolute -bottom-10 -left-10 bg-[#1a1a1a] p-8 border border-white/5 rounded-2xl shadow-2xl hidden md:block rotate-[-5deg]">
-            <p class="text-[10px] font-black text-[#ff9f1c] uppercase tracking-widest mb-2">Weekly Special</p>
-            <p class="text-xl font-black text-white">THE VOLCANO</p>
-            <p class="text-[9px] font-bold text-gray-500 uppercase tracking-widest mt-1">Extra Spicy Jalapeño</p>
+      <div class="relative order-1 lg:order-2">
+         <div class="relative z-10 w-full max-w-lg mx-auto">
+            <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?q=80&w=1000" alt="Delicious Burger" class="w-full h-auto object-contain transform hover:scale-105 transition duration-500 drop-shadow-[0_20px_50px_rgba(232,72,45,0.3)] filter contrast-125">
+            
+            <!-- Graphic Stickers -->
+            <div class="absolute -top-10 -right-10 bg-[#E8482D] text-white p-6 rounded-full rotate-[15deg] shadow-xl flex flex-col items-center justify-center w-28 h-28 border-4 border-white border-dashed animate-pulse">
+               <span class="text-xs font-black uppercase">Only</span>
+               <span class="text-2xl font-black font-display">$8.99</span>
+            </div>
          </div>
       </div>
     </div>
   </header>
 
   <!-- Login Modal -->
-  <div id="burger-modal" class="fixed inset-0 z-[100] hidden items-center justify-center p-4 bg-black/80 worst backdrop-blur-md">
-    <div class="bg-[#0f0f0f] w-full max-w-sm p-12 shadow-2xl relative border border-white/5 rounded-lg">
-      <button onclick="toggleBurgerModal()" class="absolute top-10 right-10 text-gray-500 hover:text-[#ff9f1c] transition text-2xl font-light">&times;</button>
+  <div id="burger-modal" class="fixed inset-0 z-[100] hidden items-center justify-center p-4 bg-black/90 backdrop-blur-xl">
+    <div class="bg-[#1a1a1a] w-full max-w-sm p-12 shadow-[8px_8px_0px_#E8482D] relative border-2 border-[#333]">
+      <button onclick="toggleBurgerModal()" class="absolute top-6 right-6 text-white/20 hover:text-[#FFB400] transition text-3xl font-black">&times;</button>
       
       <div class="text-center mb-10">
-        <h2 class="text-xl font-black text-white mb-2 tracking-[0.2em] uppercase">BURGER_CLUB</h2>
-        <p class="text-[9px] text-[#ff9f1c] font-bold tracking-[0.3em] uppercase">Join the Meat Lover Society</p>
+        <h2 class="text-4xl font-display uppercase text-white mb-1 tracking-wide">Burger Club</h2>
+        <p class="text-[10px] text-[#FFB400] font-black tracking-[0.2em] uppercase bg-white/5 inline-block px-3 py-1 rounded skew-x-[-12deg]">Join the Meat Society</p>
       </div>
       
       <div class="space-y-6">
-        <input type="text" placeholder="PHONE NO OR EMAIL" class="w-full bg-white/5 border border-white/5 py-5 px-6 outline-none focus:border-[#ff9f1c] transition text-[11px] font-black tracking-widest text-white uppercase">
-        <button class="w-full bg-[#ff9f1c] text-black py-5 rounded-sm text-[10px] tracking-[0.3em] font-black uppercase hover:bg-white transition shadow-lg">
-           Access Membership
+        <div>
+           <label class="block text-[10px] font-black text-[#555] uppercase tracking-widest mb-2 ml-1">Phone Number</label>
+           <input type="text" placeholder="010-0000-0000" class="w-full bg-black border-2 border-[#333] py-4 px-6 outline-none focus:border-[#FFB400] transition text-sm font-black text-white placeholder-white/20 uppercase">
+        </div>
+        
+        <button class="w-full bg-[#E8482D] text-white py-4 text-xs tracking-widest font-black uppercase hover:bg-[#FFB400] hover:text-black transition shadow-[4px_4px_0px_white] active:translate-x-[2px] active:translate-y-[2px] active:shadow-none">
+           Get Coupon & Stamp
         </button>
-        <div class="flex justify-center gap-10 pt-4">
-           <a href="#" class="text-[9px] text-gray-500 tracking-[0.2em] font-bold uppercase hover:text-white transition">New Society</a>
-           <a href="#" class="text-[9px] text-gray-500 tracking-[0.2em] font-bold uppercase hover:text-white transition">Account Help</a>
+        
+        <div class="flex justify-center gap-6 pt-4 border-t border-[#333] mt-2">
+           <a href="#" class="text-[10px] text-[#555] tracking-widest uppercase hover:text-[#FFB400] transition font-bold border-b border-transparent hover:border-[#FFB400]">Check Balance</a>
+           <a href="#" class="text-[10px] text-[#555] tracking-widest uppercase hover:text-[#FFB400] transition font-bold border-b border-transparent hover:border-[#FFB400]">Sign Up</a>
         </div>
       </div>
     </div>
   </div>
 
-  <footer class="py-24 bg-[#0f0f0f] text-center px-6 border-t border-white/5">
-     <div class="inline-flex items-center gap-6 mb-8">
-        <div class="w-10 h-10 bg-[#ff9f1c] rounded-lg flex items-center justify-center text-black font-black text-2xl shadow-lg">B</div>
-        <span class="font-black text-2xl text-white tracking-tighter uppercase">BURGER<span class="text-[#ff9f1c]">JOINT</span></span>
-        <span class="w-[1px] h-6 bg-white/10"></span>
-        <span class="text-[10px] font-bold text-gray-600 tracking-[0.4em] uppercase">Prime Beef Authentic</span>
+  <footer class="py-20 bg-[#121212] text-center px-6 border-t border-white/5">
+     <div class="inline-flex flex-col items-center gap-6 mb-8">
+        <span class="font-display text-4xl text-white tracking-wide uppercase">Burger<span class="text-[#E8482D]">Joint</span></span>
+        <div class="w-12 h-1 bg-[#FFB400]"></div>
+        <span class="text-[10px] font-black text-white/30 tracking-[0.4em] uppercase">Authentic American Taste</span>
      </div>
-     <p class="text-[10px] text-white/5 tracking-[0.6em] uppercase px-6">© 2024 BURGER JOINT FOOD CO. ALL RIGHTS RESERVED.</p>
+     <p class="text-[10px] text-white/20 tracking-[0.6em] uppercase px-6">© 2024 BURGER JOINT. SEOUL.</p>
   </footer>
 
   <script>

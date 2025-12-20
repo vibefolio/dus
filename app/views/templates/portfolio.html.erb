@@ -1,52 +1,44 @@
 <%# Portfolio Template - Jay 디자인 (J.STUDIO) %>
 
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap');
   
+  .font-tech { font-family: 'Manrope', sans-serif; }
   .font-sans { font-family: 'Noto Sans KR', sans-serif; }
 
   @media (max-width: 768px) {
-    .mobile-desc { font-size: 14px !important; line-height: 1.6; }
-    .mobile-title { font-size: 36px !important; }
+    .mobile-desc { font-size: 14px !important; line-height: 1.8; }
+    .mobile-title { font-size: 40px !important; }
   }
 
-  .marquee-box {
-    display: flex;
-    overflow: hidden;
-    user-select: none;
-  }
-  .marquee-content {
-    flex-shrink: 0;
-    display: flex;
-    justify-content: space-around;
-    min-width: 100%;
-    gap: 4rem;
-    animation: scroll 30s linear infinite;
-  }
-  @keyframes scroll {
-    from { transform: translateX(0); }
-    to { transform: translateX(calc(-100% - 4rem)); }
+  .grid-bg {
+    background-size: 50px 50px;
+    background-image: 
+      linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
   }
 </style>
 
-<div class="bg-[#0a0a0a] text-[#f2f2f2] font-sans selection:bg-[#fbff00] selection:text-black min-h-screen overflow-x-hidden">
+<div class="bg-black text-white font-tech selection:bg-[#CCFF00] selection:text-black min-h-screen overflow-x-hidden relative">
+  <div class="fixed inset-0 grid-bg pointer-events-none"></div>
 
   <!-- Nav -->
-  <nav class="fixed w-full z-50 px-6 py-6 border-b border-white/5 bg-[#0a0a0a]/ worst backdrop-blur-md">
+  <nav class="fixed w-full z-50 px-8 py-6 bg-black/80 backdrop-blur-md border-b border-white/5">
     <div class="container mx-auto flex justify-between items-center">
-      <div class="flex items-center gap-4">
-         <span class="font-black text-2xl text-white tracking-widest uppercase italic">J.STUDIO</span>
+      <div class="flex items-center gap-2">
+         <div class="w-2 h-2 bg-[#CCFF00] rounded-full animate-pulse"></div>
+         <span class="font-tech font-bold text-xl tracking-wide text-white">J.Studio</span>
       </div>
       
-      <div class="hidden md:flex gap-12 text-[10px] font-bold uppercase tracking-[0.4em] text-gray-500">
-        <a href="#work" class="hover:text-white transition">Selection</a>
-        <a href="#about" class="hover:text-white transition">Persona</a>
-        <a href="#contact" class="hover:text-white transition">Collaborate</a>
+      <div class="hidden md:flex gap-16 text-[10px] font-tech font-bold tracking-[0.2em] text-[#888] uppercase">
+        <a href="#projects" class="hover:text-[#CCFF00] transition">Selected Work</a>
+        <a href="#approach" class="hover:text-[#CCFF00] transition">Approach</a>
+        <a href="#about" class="hover:text-[#CCFF00] transition">About Me</a>
       </div>
       
-      <div class="flex gap-6 items-center">
-         <button onclick="togglePortfolioModal()" class="text-[10px] font-bold uppercase tracking-[0.4em] text-gray-500 hover:text-white">Project Core</button>
-         <button class="bg-[#fbff00] text-black px-6 py-2.5 rounded-full font-black text-[10px] tracking-widest uppercase hover:bg-white transition shadow-xl shadow-[#fbff00]/10">
+      <div class="flex gap-4 items-center">
+         <button onclick="togglePortfolioModal()" class="text-[10px] font-tech font-bold uppercase tracking-[0.2em] text-[#888] hover:text-[#CCFF00]">Client Access</button>
+         <button class="bg-[#CCFF00] text-black px-6 py-2.5 rounded-full font-tech font-bold text-xs hover:bg-[#B3E600] transition shadow-[0_0_20px_rgba(204,255,0,0.3)]">
            Let's Talk
          </button>
       </div>
@@ -54,63 +46,125 @@
   </nav>
 
   <!-- Hero -->
-  <header class="min-h-screen relative flex flex-col justify-center overflow-hidden pt-20">
-    <div class="absolute inset-0">
-       <div class="absolute top-20 left-[-5%] w-[40%] h-[40%] bg-blue-500/10 rounded-full blur-[120px]"></div>
-       <div class="absolute bottom-20 right-[-5%] w-[40%] h-[40%] bg-purple-500/10 rounded-full blur-[120px]"></div>
-    </div>
-    
-    <div class="container mx-auto px-6 relative z-10 space-y-8">
-      <div class="inline-flex items-center gap-4 text-[#fbff00] font-black bg-white/5 border border-[#fbff00]/20 px-6 py-2 rounded-full text-[10px] tracking-widest uppercase">
-         <span class="animate-pulse">●</span> Based in Seoul / Senior Product Designer
-      </div>
-      <h1 class="text-5xl md:text-9xl font-black leading-none tracking-tighter text-white mobile-title uppercase">
-         디지털 경험의<br><span class="text-transparent bg-clip-text bg-gradient-to-r from-[#fbff00] to-white italic">본능적 가치.</span>
-      </h1>
-      <p class="text-gray-500 text-sm md:text-xl leading-relaxed max-w-2xl mobile-desc font-light">
-         사용자의 무의식 속에 스며드는 직관적인 인터페이스를 연구합니다. J.STUDIO는 단순한 시각화를 넘어, 데이터와 직관이 결합된 지속 가능한 디지털 프로덕트를 제안합니다.
-      </p>
-    </div>
+  <header class="min-h-screen relative flex items-center justify-center pt-24 overflow-hidden">
+    <!-- Glow Effects -->
+    <div class="absolute top-[20%] right-[10%] w-[300px] h-[300px] bg-[#CCFF00] rounded-full blur-[150px] opacity-10"></div>
+    <div class="absolute bottom-[10%] left-[10%] w-[200px] h-[200px] bg-white rounded-full blur-[120px] opacity-5"></div>
 
-    <!-- Scrolling Marquee -->
-    <div class="marquee-box border-y border-white/5 py-8 mt-20 bg-white/5 backdrop-blur-sm">
-      <div class="marquee-content font-black text-2xl md:text-5xl text-gray-800 uppercase tracking-tighter">
-         <span>• UX Research</span> <span>• Interface Design</span> <span>• Prototyping</span> <span>• Brand Identity</span> <span>• Motion Interaction</span>
-         <span>• UX Research</span> <span>• Interface Design</span> <span>• Prototyping</span> <span>• Brand Identity</span> <span>• Motion Interaction</span>
+    <div class="container mx-auto px-6 relative z-10 grid lg:grid-cols-2 gap-20 items-center">
+      <div class="space-y-12">
+        <div class="inline-flex items-center gap-2 border border-white/10 px-4 py-1.5 rounded-full bg-white/5 backdrop-blur-sm">
+           <span class="text-[10px] font-tech font-semibold text-[#CCFF00] uppercase tracking-wide">● Senior Product Designer based in Seoul</span>
+        </div>
+        
+        <h1 class="text-5xl md:text-8xl font-tech font-extrabold leading-[1.0] text-white mobile-title tracking-tight">
+           Crafting<br>
+           Digital<br>
+           <span class="text-[#CCFF00]">Intelligence.</span>
+        </h1>
+        
+        <p class="text-[#888] text-sm md:text-xl leading-relaxed max-w-lg mobile-desc font-light font-sans">
+           데이터와 직관의 교차점에서 사용자 경험을 설계합니다.<br>
+           비즈니스 목표를 달성하는 가장 논리적이고 아름다운 해답을 제안합니다.
+        </p>
+        
+        <div class="flex flex-col sm:flex-row gap-6 pt-6">
+           <button class="px-8 py-4 bg-white text-black font-tech font-bold text-sm rounded-lg hover:bg-[#CCFF00] transition">
+              View Case Studies
+           </button>
+           <button class="px-8 py-4 border border-white/20 text-white font-tech font-bold text-sm rounded-lg hover:border-[#CCFF00] hover:text-[#CCFF00] transition flex items-center gap-2">
+              <span>↓</span> Download Resume
+           </button>
+        </div>
+      </div>
+      
+      <div class="relative hidden lg:block">
+         <div class="grid grid-cols-2 gap-4">
+             <div class="space-y-4 pt-12">
+                 <div class="bg-[#111] p-6 rounded-2xl border border-white/5 hover:border-[#CCFF00]/50 transition group">
+                    <p class="text-[#CCFF00] font-bold text-2xl mb-2">08+</p>
+                    <p class="text-[10px] text-[#888] uppercase tracking-widest group-hover:text-white transition">Years Experience</p>
+                 </div>
+                 <div class="bg-[#111] p-6 rounded-2xl border border-white/5 aspect-square relative overflow-hidden group">
+                    <div class="absolute inset-0 bg-gradient-to-br from-[#CCFF00]/20 to-transparent opacity-0 group-hover:opacity-100 transition duration-500"></div>
+                    <img src="https://images.unsplash.com/photo-1626785774573-4b7993143d2d?q=80&w=800" alt="Work 1" class="w-full h-full object-cover opacity-50 grayscale group-hover:grayscale-0 transition">
+                 </div>
+             </div>
+             <div class="space-y-4">
+                 <div class="bg-[#111] p-6 rounded-2xl border border-white/5 aspect-[3/4] relative overflow-hidden group">
+                    <div class="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent opacity-0 group-hover:opacity-100 transition duration-500"></div>
+                     <img src="https://images.unsplash.com/photo-1611162617474-5b21e879e113?q=80&w=800" alt="Work 2" class="w-full h-full object-cover opacity-50 grayscale group-hover:grayscale-0 transition">
+                 </div>
+                 <div class="bg-[#CCFF00] p-6 rounded-2xl">
+                    <p class="text-black font-bold text-lg">Product<br>Interface<br>System</p>
+                 </div>
+             </div>
+         </div>
       </div>
     </div>
   </header>
+  
+  <!-- Marquee -->
+  <div class="py-6 border-y border-white/5 bg-black/50 backdrop-blur-sm overflow-hidden whitespace-nowrap">
+     <div class="inline-block animate-marquee">
+        <span class="text-[#444] font-tech font-bold text-4xl uppercase mx-8">User Interface</span>
+        <span class="text-[#CCFF00] font-tech font-bold text-4xl uppercase mx-8">•</span>
+        <span class="text-[#444] font-tech font-bold text-4xl uppercase mx-8">Experience Design</span>
+        <span class="text-[#CCFF00] font-tech font-bold text-4xl uppercase mx-8">•</span>
+        <span class="text-[#444] font-tech font-bold text-4xl uppercase mx-8">Interaction</span>
+        <span class="text-[#CCFF00] font-tech font-bold text-4xl uppercase mx-8">•</span>
+        <span class="text-[#444] font-tech font-bold text-4xl uppercase mx-8">Prototyping</span>
+        <span class="text-[#CCFF00] font-tech font-bold text-4xl uppercase mx-8">•</span>
+         <span class="text-[#444] font-tech font-bold text-4xl uppercase mx-8">User Interface</span>
+        <span class="text-[#CCFF00] font-tech font-bold text-4xl uppercase mx-8">•</span>
+        <span class="text-[#444] font-tech font-bold text-4xl uppercase mx-8">Experience Design</span>
+        <span class="text-[#CCFF00] font-tech font-bold text-4xl uppercase mx-8">•</span>
+        <span class="text-[#444] font-tech font-bold text-4xl uppercase mx-8">Interaction</span>
+        <span class="text-[#CCFF00] font-tech font-bold text-4xl uppercase mx-8">•</span>
+        <span class="text-[#444] font-tech font-bold text-4xl uppercase mx-8">Prototyping</span>
+     </div>
+  </div>
+  
+  <style>
+     @keyframes marquee {
+        0% { transform: translateX(0); }
+        100% { transform: translateX(-50%); }
+     }
+     .animate-marquee { display: inline-block; animation: marquee 20s linear infinite; }
+  </style>
 
   <!-- Login Modal -->
-  <div id="portfolio-modal" class="fixed inset-0 z-[100] hidden items-center justify-center p-4 bg-black/ worst backdrop-blur-md">
-    <div class="bg-[#111] w-full max-w-sm p-12 shadow-2xl relative border border-[#fbff00]/20 rounded-lg">
-      <button onclick="togglePortfolioModal()" class="absolute top-10 right-10 text-gray-500 hover:text-[#fbff00] transition text-2xl font-light">&times;</button>
+  <div id="portfolio-modal" class="fixed inset-0 z-[100] hidden items-center justify-center p-4 bg-black/90 backdrop-blur-md">
+    <div class="bg-[#111] w-full max-w-sm p-12 shadow-[0_0_50px_rgba(204,255,0,0.1)] relative border border-white/10 rounded-2xl">
+      <button onclick="togglePortfolioModal()" class="absolute top-8 right-8 text-[#444] hover:text-[#CCFF00] transition text-2xl font-tech">&times;</button>
       
       <div class="text-center mb-10">
-        <h2 class="text-xl font-black text-white mb-2 tracking-[0.4em] uppercase italic">PROJECT_CORE</h2>
-        <p class="text-[9px] text-[#fbff00] font-bold tracking-[0.3em] uppercase">Private Portfolio Access</p>
+        <h2 class="text-2xl font-tech font-bold text-white mb-2">Protected Work</h2>
+        <p class="text-[10px] text-[#888] font-bold tracking-[0.2em] uppercase">Enter Password to View</p>
       </div>
       
       <div class="space-y-6">
-        <input type="password" placeholder="ENTER ACCESS CODE" class="w-full bg-white/5 border border-white/5 py-5 px-6 outline-none focus:border-[#fbff00] transition text-[11px] font-black tracking-widest text-[#fbff00] uppercase">
-        <button class="w-full bg-[#fbff00] text-black py-5 rounded-sm text-[10px] tracking-[0.3em] font-black uppercase hover:bg-white transition shadow-lg shadow-[#fbff00]/10">
-           Request Access
+        <div>
+           <input type="password" placeholder="••••••••" class="w-full bg-[#0a0a0a] border border-white/10 rounded-lg py-4 px-6 outline-none focus:border-[#CCFF00] transition text-lg font-tech font-bold text-white text-center tracking-widest">
+        </div>
+        
+        <button class="w-full bg-[#CCFF00] text-black py-4 rounded-lg text-[11px] tracking-[0.1em] font-bold uppercase hover:bg-[#B3E600] transition">
+           Unlock Project
         </button>
-        <div class="flex justify-center gap-10 pt-4">
-           <a href="#" class="text-[9px] text-gray-500 tracking-[0.2em] font-bold uppercase hover:text-white transition">NDA Policy</a>
-           <a href="#" class="text-[9px] text-gray-500 tracking-[0.2em] font-bold uppercase hover:text-white transition">Contact Me</a>
+        
+        <div class="text-center pt-2">
+           <a href="#" class="text-[10px] text-[#444] tracking-widest uppercase hover:text-[#CCFF00] transition border-b border-[#222] pb-0.5 hover:border-[#CCFF00]">Request Password</a>
         </div>
       </div>
     </div>
   </div>
 
-  <footer class="py-24 bg-[#0a0a0a] text-center px-6 border-t border-white/5">
-     <div class="inline-flex items-center gap-6 mb-8">
-        <span class="italic font-black text-2xl text-white tracking-widest uppercase">J.STUDIO</span>
-        <span class="w-12 h-[1px] bg-white/10"></span>
-        <span class="text-[10px] font-bold text-gray-700 tracking-[0.4em] uppercase">Product Design Archive</span>
+  <footer class="py-24 bg-black text-center px-6 border-t border-white/5">
+     <div class="inline-flex flex-col items-center gap-6 mb-8">
+        <span class="font-tech font-bold text-2xl tracking-[0.05em] text-white">J.Studio</span>
+        <span class="text-[10px] font-bold text-[#444] tracking-[0.3em] uppercase">Digital Product Design</span>
      </div>
-     <p class="text-[10px] text-white/5 tracking-[0.6em] uppercase px-6">© 2024 J.STUDIO DESIGN. ALL RIGHTS RESERVED.</p>
+     <p class="text-[10px] text-[#222] tracking-[0.2em] uppercase px-6">© 2024 JAY DESIGN. SEOUL.</p>
   </footer>
 
   <script>

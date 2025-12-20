@@ -68,6 +68,26 @@
       </p>
     </div>
 
+    <div style="background: var(--color-gray-50); padding: var(--space-6); border-radius: var(--radius-lg); margin-top: var(--space-8); border: 1px solid var(--color-gray-200);">
+      <h3 style="font-size: var(--text-lg); font-weight: 700; margin-bottom: var(--space-4);">관리자 액션</h3>
+      
+      <div style="display: flex; gap: var(--space-8); align-items: end;">
+        <%= form_with model: [:admin, @quote], local: true, style: "flex: 1;" do |f| %>
+          <div style="margin-bottom: var(--space-3);">
+            <%= f.label :status, "처리 상태 변경", style: "display: block; font-size: var(--text-sm); font-weight: 600; margin-bottom: var(--space-2); color: var(--color-gray-700);" %>
+            <div style="display: flex; gap: var(--space-2);">
+              <%= f.select :status, [['대기중', 'pending'], ['처리완료', 'completed']], {}, { style: "padding: var(--space-2) var(--space-4); border-radius: var(--radius-md); border: 1px solid var(--color-gray-300); background: white; width: 200px;" } %>
+              <%= f.submit "상태 업데이트", class: "btn btn-primary" %>
+            </div>
+          </div>
+        <% end %>
+
+        <%= button_to admin_quote_path(@quote), method: :delete, form: { data: { turbo_confirm: "정말 삭제하시겠습니까?" } }, class: "btn btn-danger", style: "background-color: #ef4444; color: white; border: none; padding: var(--space-3) var(--space-6); border-radius: var(--radius-md); font-weight: 600; cursor: pointer;" do %>
+           삭제하기
+        <% end %>
+      </div>
+    </div>
+
     <div style="display: flex; gap: var(--space-4); margin-top: var(--space-8);">
       <button onclick="window.print()" class="btn btn-outline btn-lg">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-right: 8px;">

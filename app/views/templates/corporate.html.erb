@@ -1,126 +1,174 @@
-<%# Corporate Template - 넥서스 그룹 (NEXUS CONSULTING GROUP) %>
+<%# Corporate Template - 넥서스 그룹 (NEXUS GROUP) %>
 
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap');
   
+  .font-display { font-family: 'Manrope', sans-serif; }
   .font-sans { font-family: 'Noto Sans KR', sans-serif; }
 
   @media (max-width: 768px) {
-    .mobile-desc { font-size: 14px !important; line-height: 1.6; }
-    .mobile-title { font-size: 36px !important; }
+    .mobile-desc { font-size: 14px !important; line-height: 1.8; }
+    .mobile-title { font-size: 40px !important; }
+  }
+
+  .grid-pattern {
+    background-size: 40px 40px;
+    background-image:
+      linear-gradient(to right, rgba(17, 24, 39, 0.05) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(17, 24, 39, 0.05) 1px, transparent 1px);
   }
 </style>
 
-<div class="bg-white text-slate-800 font-sans selection:bg-blue-900 selection:text-white min-h-screen overflow-x-hidden">
+<div class="bg-white text-slate-900 font-sans selection:bg-[#0F172A] selection:text-white min-h-screen overflow-x-hidden relative grid-pattern">
 
   <!-- Nav -->
-  <nav class="fixed w-full z-50 px-6 py-6 bg-white/9 worst backdrop-blur-md border-b border-slate-100">
+  <nav class="fixed w-full z-50 px-8 py-6 bg-white/90 backdrop-blur-xl border-b border-slate-100">
     <div class="container mx-auto flex justify-between items-center">
       <div class="flex items-center gap-3">
-         <div class="w-10 h-10 bg-[#001f3f] rounded-xs flex items-center justify-center text-white font-black text-2xl shadow-lg">N</div>
-         <span class="font-black text-xl text-[#001f3f] tracking-tighter uppercase">NEXUS<span class="text-blue-600">GROUP</span></span>
+         <div class="w-8 h-8 bg-[#0F172A] flex items-center justify-center text-white font-extrabold text-sm rounded-sm">
+            N
+         </div>
+         <span class="font-display text-2xl font-bold tracking-tight text-[#0F172A]">NEXUS<span class="text-blue-600">.</span></span>
       </div>
       
-      <div class="hidden md:flex gap-10 text-[11px] font-bold uppercase tracking-[0.3em] text-slate-400">
-        <a href="#about" class="hover:text-blue-600 transition">Intelligence</a>
-        <a href="#business" class="hover:text-blue-600 transition">Sectors</a>
-        <a href="#news" class="hover:text-blue-600 transition">IR Center</a>
+      <div class="hidden md:flex gap-12 text-[11px] font-bold uppercase tracking-[0.1em] text-slate-500">
+        <a href="#solutions" class="hover:text-[#0F172A] transition">Solutions</a>
+        <a href="#platform" class="hover:text-[#0F172A] transition">Platform</a>
+        <a href="#resources" class="hover:text-[#0F172A] transition">Resources</a>
       </div>
       
       <div class="flex gap-6 items-center">
-         <button onclick="toggleCorporateModal()" class="text-[11px] font-bold uppercase tracking-[0.3em] text-slate-400 hover:text-blue-600">Partner Portal</button>
-         <button class="bg-[#001f3f] text-white px-6 py-2.5 rounded-sm font-bold text-[11px] tracking-widest uppercase hover:bg-blue-600 transition shadow-xl">
-           Connect
+         <button onclick="toggleCorporateModal()" class="text-[11px] font-bold uppercase tracking-[0.1em] text-slate-500 hover:text-[#0F172A]">Sign In</button>
+         <button class="bg-[#0F172A] text-white px-6 py-2.5 rounded-sm font-bold text-[11px] tracking-wide hover:bg-blue-600 transition shadow-lg shadow-slate-200">
+           Request Demo
          </button>
       </div>
     </div>
   </nav>
 
   <!-- Hero -->
-  <header class="min-h-screen relative flex items-center justify-center overflow-hidden pt-20">
-    <div class="absolute inset-0">
-       <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=1920" alt="기업" class="w-full h-full object-cover opacity-10 grayscale">
-       <div class="absolute inset-0 bg-gradient-to-r from-white via-white/80 to-transparent"></div>
-    </div>
-    
-    <div class="container mx-auto px-6 relative z-10 grid md:grid-cols-2 gap-16 items-center">
-      <div class="space-y-8">
-        <div class="inline-flex items-center gap-2 text-blue-700 font-bold bg-blue-50 px-4 py-1.5 rounded-sm border border-blue-100 text-[10px] tracking-widest uppercase">
-           Global Strategy & Asset Solutions
+  <header class="min-h-screen relative flex items-center justify-center pt-24 overflow-hidden">
+    <!-- Abstract Tech Elements -->
+    <div class="absolute right-0 top-1/4 w-[600px] h-[600px] bg-gradient-to-bl from-blue-50 to-transparent rounded-full filter blur-3xl opacity-60 pointer-events-none"></div>
+    <div class="absolute left-0 bottom-1/4 w-[500px] h-[500px] bg-gradient-to-tr from-slate-50 to-transparent rounded-full filter blur-3xl opacity-60 pointer-events-none"></div>
+
+    <div class="container mx-auto px-6 relative z-10">
+      <div class="max-w-4xl mx-auto text-center mb-16">
+        <div class="inline-flex items-center gap-2 bg-slate-50 border border-slate-200 px-3 py-1 rounded-full mb-8">
+           <span class="w-2 h-2 rounded-full bg-blue-500 animate-pulse"></span>
+           <span class="text-[10px] font-bold text-slate-600 uppercase tracking-wide">Enterprise Solutions v2.0 Released</span>
         </div>
-        <h1 class="text-5xl md:text-8xl font-black leading-none tracking-tighter text-[#001f3f] mobile-title">
-           데이터의 통찰,<br><span class="text-blue-600 italic">내일의 지표.</span>
+        
+        <h1 class="text-5xl md:text-7xl font-display font-extrabold leading-[1.1] tracking-tight text-[#0F172A] mobile-title mb-8">
+           Powering the future of<br>
+           <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">Enterprise Intelligence.</span>
         </h1>
-        <p class="text-slate-500 text-sm md:text-xl leading-relaxed max-w-md mobile-desc">
-           불확실한 시장 상황 속에서도 흔들리지 않는 가치를 창출합니다. 넥서스 그룹은 글로벌 네트워크와 최첨단 분석 기술을 통해 기업의 지속 가능한 성장을 설계합니다.
+        
+        <p class="text-slate-500 text-lg md:text-xl leading-relaxed max-w-2xl mx-auto mobile-desc mb-10">
+           데이터 기반의 의사결정과 자동화된 워크플로우로 비즈니스 효율성을 극대화하세요. 넥서스는 기업의 디지털 전환을 가속화하는 핵심 엔진입니다.
         </p>
-        <div class="pt-4 flex flex-col sm:flex-row gap-6">
-           <button class="px-12 py-5 bg-[#001f3f] text-white font-black text-[11px] tracking-widest uppercase hover:bg-blue-600 transition shadow-2xl">
-             Explore Vision
+        
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+           <button class="px-8 py-4 bg-[#0F172A] text-white font-bold text-sm rounded-sm hover:bg-blue-600 transition shadow-xl shadow-blue-900/10">
+              Start Free Trial
            </button>
-           <button class="px-12 py-5 border border-slate-200 text-[#001f3f] font-black text-[11px] tracking-widest uppercase hover:bg-slate-50 transition">
-             IR Brochure
+           <button class="px-8 py-4 bg-white border border-slate-200 text-slate-700 font-bold text-sm rounded-sm hover:border-slate-400 transition flex items-center gap-2 justify-center group">
+              <span class="w-6 h-6 rounded-full bg-slate-100 flex items-center justify-center group-hover:bg-blue-50 text-blue-600">▶</span>
+              View Product Tour
            </button>
         </div>
       </div>
-      
-      <div class="relative hidden md:block">
-         <div class="absolute -inset-20 bg-blue-600/5 rounded-full blur-[120px]"></div>
-         <div class="relative z-10 bg-white p-12 border border-slate-100 shadow-2xl rounded-sm">
-            <div class="space-y-10">
-               <div>
-                  <p class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-4">Stock Performance (NXG)</p>
-                  <div class="flex items-end gap-12">
-                     <span class="text-5xl font-black text-[#001f3f]">182.40</span>
-                     <span class="text-xl font-bold text-green-500 mb-1">▲ 3.2%</span>
+
+      <!-- Dashboard Mockup -->
+      <div class="relative max-w-5xl mx-auto perspective-1000">
+         <div class="bg-white rounded-xl shadow-2xl border border-slate-200 overflow-hidden transform rotate-x-12 hover:rotate-x-0 transition duration-1000 origin-bottom">
+            <div class="bg-slate-50 border-b border-slate-100 p-4 flex items-center justify-between">
+               <div class="flex gap-2">
+                  <div class="w-3 h-3 rounded-full bg-slate-200"></div>
+                  <div class="w-3 h-3 rounded-full bg-slate-200"></div>
+                  <div class="w-3 h-3 rounded-full bg-slate-200"></div>
+               </div>
+               <div class="h-2 w-48 bg-slate-200 rounded-full"></div>
+            </div>
+            <div class="p-8 grid md:grid-cols-3 gap-8 bg-white min-h-[400px]">
+               <div class="col-span-2 space-y-6">
+                  <div class="flex justify-between items-end">
+                     <div>
+                        <p class="text-xs text-slate-400 font-bold uppercase">Total Revenue</p>
+                        <p class="text-3xl font-display font-bold text-[#0F172A]">$124,500.00</p>
+                     </div>
+                     <span class="px-2 py-1 bg-green-50 text-green-600 text-xs font-bold rounded">+12.5%</span>
+                  </div>
+                  <div class="h-48 bg-slate-50 rounded-lg w-full flex items-end justify-between p-4 gap-2">
+                     <div class="w-full bg-blue-500/20 h-[40%] rounded-sm"></div>
+                     <div class="w-full bg-blue-500/40 h-[60%] rounded-sm"></div>
+                     <div class="w-full bg-blue-500/30 h-[30%] rounded-sm"></div>
+                     <div class="w-full bg-blue-500/60 h-[80%] rounded-sm"></div>
+                     <div class="w-full bg-blue-600 h-[70%] rounded-sm shadow-lg shadow-blue-500/30"></div>
                   </div>
                </div>
-               <div class="grid grid-cols-2 gap-12 pt-10 border-t border-slate-50">
-                  <div>
-                     <p class="text-[9px] font-bold text-slate-400 uppercase tracking-widest">Global Clients</p>
-                     <p class="text-2xl font-black text-[#001f3f]">500+</p>
+               <div class="space-y-4">
+                  <div class="p-4 rounded-lg border border-slate-100 bg-slate-50">
+                     <p class="text-xs text-slate-400 font-bold uppercase mb-2">Active Users</p>
+                     <p class="text-xl font-bold text-[#0F172A]">2,451</p>
                   </div>
-                  <div>
-                     <p class="text-[9px] font-bold text-slate-400 uppercase tracking-widest">AUM Scale</p>
-                     <p class="text-2xl font-black text-[#001f3f]">$120B+</p>
+                  <div class="p-4 rounded-lg border border-slate-100 bg-slate-50">
+                     <p class="text-xs text-slate-400 font-bold uppercase mb-2">System Status</p>
+                     <div class="flex items-center gap-2 text-green-600 font-bold text-sm"><span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span> Operational</div>
                   </div>
                </div>
             </div>
          </div>
+         <!-- Glow Effect -->
+         <div class="absolute -inset-10 bg-blue-500/20 blur-[80px] -z-10"></div>
       </div>
     </div>
+
+    <style>
+       .perspective-1000 { perspective: 1000px; }
+       .rotate-x-12 { transform: rotateX(20deg) scale(0.95); }
+    </style>
   </header>
 
   <!-- Login Modal -->
-  <div id="corporate-modal" class="fixed inset-0 z-[100] hidden items-center justify-center p-4 bg-slate-900/ worst backdrop-blur-md">
-    <div class="bg-white w-full max-w-sm p-12 shadow-2xl relative border border-slate-100 rounded-sm">
-      <button onclick="toggleCorporateModal()" class="absolute top-10 right-10 text-slate-300 hover:text-blue-600 transition text-2xl font-light">&times;</button>
+  <div id="corporate-modal" class="fixed inset-0 z-[100] hidden items-center justify-center p-4 bg-[#0F172A]/80 backdrop-blur-md">
+    <div class="bg-white w-full max-w-sm p-10 shadow-2xl relative rounded-xl border border-white/20">
+      <button onclick="toggleCorporateModal()" class="absolute top-6 right-6 text-slate-300 hover:text-[#0F172A] transition text-xl">&times;</button>
       
-      <div class="text-center mb-10">
-        <h2 class="text-xl font-black text-[#001f3f] mb-2 tracking-tighter uppercase">PARTNER_ACCESS</h2>
-        <p class="text-[9px] text-blue-600 font-bold tracking-[0.2em] uppercase">Enterprise Collaboration Network</p>
+      <div class="text-center mb-8">
+        <div class="w-12 h-12 bg-[#0F172A] rounded-lg flex items-center justify-center text-white font-bold text-xl mx-auto mb-4 shadow-lg">N</div>
+        <h2 class="text-xl font-display font-bold text-[#0F172A] mb-1">Welcome back</h2>
+        <p class="text-xs text-slate-500">Sign in to your enterprise account</p>
       </div>
       
-      <div class="space-y-6">
-        <input type="text" placeholder="CORPORATE ID" class="w-full bg-slate-50 border-none rounded-sm py-5 px-6 outline-none focus:ring-1 focus:ring-blue-600 transition text-[11px] font-bold tracking-widest uppercase">
-        <button class="w-full bg-[#001f3f] text-white py-5 rounded-sm text-[10px] tracking-widest font-black uppercase hover:bg-blue-600 transition shadow-lg shadow-blue-100">
-           Authorize Session
+      <div class="space-y-4">
+        <div>
+           <label class="block text-[10px] font-bold text-slate-500 uppercase tracking-wide mb-1.5 ml-1">Work Email</label>
+           <input type="email" placeholder="name@company.com" class="w-full bg-slate-50 border border-slate-200 rounded-lg py-3 px-4 outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition text-sm font-medium text-[#0F172A]">
+        </div>
+        <div>
+           <label class="block text-[10px] font-bold text-slate-500 uppercase tracking-wide mb-1.5 ml-1">Password</label>
+           <input type="password" placeholder="••••••••" class="w-full bg-slate-50 border border-slate-200 rounded-lg py-3 px-4 outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition text-sm font-medium text-[#0F172A]">
+        </div>
+        
+        <button class="w-full bg-[#0F172A] text-white py-3.5 rounded-lg text-xs font-bold uppercase tracking-wide hover:bg-blue-600 transition shadow-lg mt-2">
+           Sign In securely
         </button>
-        <div class="flex justify-center gap-10 pt-4">
-           <a href="#" class="text-[9px] text-slate-400 tracking-widest uppercase hover:text-blue-600 transition font-bold">Registration</a>
-           <a href="#" class="text-[9px] text-slate-400 tracking-widest uppercase hover:text-blue-600 transition font-bold">2FA Support</a>
+        
+        <div class="text-center pt-4 border-t border-slate-100 mt-6">
+           <a href="#" class="text-xs text-blue-600 font-bold hover:underline">Forgot your password?</a>
         </div>
       </div>
     </div>
   </div>
 
-  <footer class="py-24 bg-white text-center px-6 border-t border-slate-100">
-     <div class="inline-flex items-center gap-6 mb-8">
-        <span class="font-black text-2xl text-[#001f3f] tracking-tighter uppercase">NEXUS<span class="text-blue-600">GROUP</span></span>
-        <span class="w-12 h-[1px] bg-slate-100"></span>
-        <span class="text-[10px] font-bold text-slate-400 tracking-[0.4em] uppercase">Global Intelligence Network</span>
+  <footer class="py-20 bg-white border-t border-slate-100 text-center px-6">
+     <div class="inline-flex items-center gap-4 mb-6 opacity-50 grayscale hover:grayscale-0 transition duration-500">
+        <span class="font-display font-bold text-lg text-[#0F172A]">NEXUS<span class="text-blue-600">.</span></span>
+        <span class="w-[1px] h-4 bg-slate-300"></span>
+        <span class="text-[10px] font-bold text-slate-500 uppercase tracking-wider">Enterprise Division</span>
      </div>
-     <p class="text-[10px] text-slate-300 tracking-[0.6em] uppercase px-6">© 2024 NEXUS CONSULTING GROUP CO. ALL RIGHTS RESERVED.</p>
+     <p class="text-[10px] text-slate-400 tracking-wider">© 2024 NEXUS INC. SEOUL, KOREA.</p>
   </footer>
 
   <script>
