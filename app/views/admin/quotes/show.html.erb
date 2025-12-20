@@ -11,6 +11,11 @@
         <% if @quote.company_name.present? %>
           <p style="color: var(--color-gray-600); font-size: var(--text-lg);"><%= @quote.company_name %></p>
         <% end %>
+        <% if @quote.preferred_domain.present? %>
+          <p style="color: var(--color-primary); font-size: var(--text-sm); font-weight: 600; margin-top: var(--space-1);">
+            희망 도메인: <%= @quote.preferred_domain %>
+          </p>
+        <% end %>
       </div>
       <span style="display: inline-block; padding: var(--space-2) var(--space-4); background: <%= @quote.status == 'pending' ? 'var(--color-warning)' : 'var(--color-success)' %>; color: white; border-radius: var(--radius-lg); font-size: var(--text-sm); font-weight: 600;">
         <%= @quote.status == 'pending' ? '대기중' : '처리완료' %>

@@ -101,6 +101,10 @@
                   <label class="block text-sm font-bold text-gray-700 mb-2">회사명</label>
                   <%= text_field_tag "quote[company_name]", nil, class: "w-full px-4 py-3.5 rounded-xl bg-gray-50 border border-gray-200 focus:border-emerald-500 focus:ring-2 focus:ring-emerald-100 transition outline-none", placeholder: "회사명 입력" %>
                 </div>
+                <!-- Preferred Domain Field (Added) -->
+                <div class="col-span-2">
+                  <label class="block text-sm font-bold text-gray-700 mb-2">희망 도메인</label>
+                  <%= text_field_tag "quote[preferred_domain]", nil, class: "w-full px-4 py-3.5 rounded-xl bg-gray-50 border border-gray-200 focus:border-emerald-500 focus:ring-2 focus:ring-emerald-100 transition outline-none", placeholder: "example.com (선택사항)" %>
               </div>
 
               <div>
@@ -225,6 +229,11 @@
             <div class="form-group">
               <%= f.label :company_name, "회사/단체명", class: "form-label" %>
               <%= f.text_field :company_name, class: "form-input", placeholder: "(주)디어스" %>
+            </div>
+            
+            <div class="form-group" style="grid-column: span 2;">
+              <%= f.label :preferred_domain, "희망 도메인", class: "form-label" %>
+              <%= f.text_field :preferred_domain, class: "form-input", placeholder: "example.com (선택사항)" %>
             </div>
           </div>
 
