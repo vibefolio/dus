@@ -71,7 +71,11 @@ Rails.application.routes.draw do
     root "dashboard#index"
     resources :sessions, only: [:new, :create, :destroy]
     resources :portfolios
-    resources :quotes
+    resources :quotes do
+      collection do
+        delete :bulk_destroy
+      end
+    end
     resources :design_templates
   end
 
