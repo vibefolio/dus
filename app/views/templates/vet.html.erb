@@ -1,190 +1,126 @@
-<%# Vet Template - 위드펫 동물병원 %>
+<%# Vet Template - 위드 펫 (With Pet) %>
 
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap');
   
   .font-sans { font-family: 'Noto Sans KR', sans-serif; }
+
+  @media (max-width: 768px) {
+    .mobile-desc { font-size: 14px !important; line-height: 1.6; }
+    .mobile-title { font-size: 32px !important; }
+  }
 </style>
 
-<div class="bg-white text-slate-600 font-sans selection:bg-blue-200 selection:text-blue-900">
+<div class="bg-white text-slate-600 font-sans selection:bg-blue-200 selection:text-blue-900 min-h-screen">
 
   <!-- Nav -->
-  <nav class="fixed w-full z-50 px-6 py-4 bg-white/95 backdrop-blur-md border-b border-blue-50">
+  <nav class="fixed w-full z-50 px-6 py-5 bg-white/9 worst backdrop-blur-md border-b border-blue-50">
     <div class="container mx-auto flex justify-between items-center">
-      <div class="flex items-center gap-2 text-xl font-bold text-blue-500">
-         <span class="text-2xl">🐾</span> 위드펫
+      <div class="flex items-center gap-3">
+         <div class="w-10 h-10 bg-blue-500 rounded-xl flex items-center justify-center text-white text-2xl shadow-lg shadow-blue-200">
+            🐾
+         </div>
+         <div class="flex flex-col">
+            <span class="text-xl font-black tracking-tighter text-slate-900 leading-none">WITH PET</span>
+            <span class="text-[9px] font-bold text-blue-500 tracking-[0.2em] uppercase">Animal Medical Center</span>
+         </div>
       </div>
       
-      <div class="hidden md:flex gap-6 font-bold text-slate-400 text-sm">
-        <a href="#about" class="hover:text-blue-500 transition">소개</a>
-        <a href="#services" class="hover:text-blue-500 transition">진료 센터</a>
-        <a href="#team" class="hover:text-blue-500 transition">수의사</a>
-        <a href="#booking" class="hover:text-blue-500 transition">예약</a>
+      <div class="hidden md:flex gap-10 text-[11px] font-bold uppercase tracking-[0.3em] text-slate-400">
+        <a href="#services" class="hover:text-blue-500 transition">Medical</a>
+        <a href="#team" class="hover:text-blue-500 transition">Doctors</a>
+        <a href="#booking" class="hover:text-blue-500 transition">Booking</a>
       </div>
       
-      <div class="flex gap-3">
-         <span class="hidden md:block text-slate-400 text-sm font-bold pt-2">응급: 02-1234-5678</span>
-         <button class="bg-blue-500 text-white px-5 py-2 rounded-full font-bold text-sm hover:bg-blue-600 transition shadow-lg shadow-blue-200">
-           예약하기
+      <div class="flex gap-6 items-center">
+         <button onclick="toggleVetModal()" class="text-[11px] font-bold uppercase tracking-[0.3em] text-slate-400 hover:text-blue-500">Guardian Login</button>
+         <button class="bg-blue-500 text-white px-6 py-2.5 rounded-sm font-bold text-[11px] tracking-widest uppercase hover:bg-slate-900 transition shadow-xl shadow-blue-200">
+           Quick Booking
          </button>
       </div>
     </div>
   </nav>
 
   <!-- Hero -->
-  <header class="pt-24 pb-16 px-6 relative overflow-hidden bg-blue-50">
-     <div class="container mx-auto grid md:grid-cols-2 gap-10 items-center relative z-10">
-        <div class="space-y-5">
-           <div class="inline-block bg-white text-blue-500 px-4 py-1 rounded-full text-xs font-bold shadow-sm border border-blue-100">
-              24시간 응급 진료 가능
+  <header class="min-h-screen relative flex items-center justify-center overflow-hidden pt-20 bg-blue-50/30">
+    <div class="container mx-auto px-6 grid md:grid-cols-2 gap-16 items-center relative z-10">
+      <div class="space-y-8">
+        <div class="inline-flex items-center gap-2 text-blue-600 font-bold bg-white px-4 py-1.5 rounded-full shadow-sm border border-blue-100 text-[10px] tracking-widest uppercase">
+           <span class="w-2 h-2 rounded-full bg-blue-500 animate-pulse"></span> 24/7 Emergency Care
+        </div>
+        <h1 class="text-5xl md:text-7xl font-black leading-none tracking-tighter text-slate-900 mobile-title">
+           가족의 무게만큼,<br><span class="text-blue-500 italic">진심을 담아.</span>
+        </h1>
+        <p class="text-slate-500 text-sm md:text-lg leading-relaxed max-w-md mobile-desc">
+           말하지 못하는 아픔까지 세심하게 살핍니다.<br>
+           위드 펫 메디컬 센터는 아이들의 평생 주치가 되어 건강한 내일을 약속합니다.
+        </p>
+        <div class="flex gap-12 pt-4">
+           <div>
+              <p class="text-3xl font-black text-slate-900">10+</p>
+              <p class="text-[10px] font-bold text-slate-400 tracking-widest uppercase">Years Exp</p>
            </div>
-           <h1 class="text-4xl md:text-5xl font-bold leading-tight text-slate-800">
-              반려동물을<br>
-              <span class="text-blue-500">가족처럼</span><br>
-              치료합니다
-           </h1>
-           <p class="text-slate-500 text-base leading-relaxed max-w-md">
-              반려동물의 평생 주치의, 위드펫 동물병원입니다.<br>
-              최신 의료 장비와 따뜻한 마음으로 아이들의 건강을 지킵니다.
-           </p>
-           
-           <div class="flex gap-6 pt-3">
-              <div class="text-center">
-                 <p class="text-2xl font-bold text-blue-600">10+</p>
-                 <p class="text-xs font-bold text-slate-400 mt-1">경력</p>
-              </div>
-              <div class="text-center">
-                 <p class="text-2xl font-bold text-blue-600">5천+</p>
-                 <p class="text-xs font-bold text-slate-400 mt-1">진료</p>
-              </div>
-              <div class="text-center">
-                 <p class="text-2xl font-bold text-blue-600">24시간</p>
-                 <p class="text-xs font-bold text-slate-400 mt-1">응급</p>
-              </div>
+           <div>
+              <p class="text-3xl font-black text-slate-900">15k</p>
+              <p class="text-[10px] font-bold text-slate-400 tracking-widest uppercase">Patients</p>
            </div>
         </div>
-        
-        <div class="relative">
-           <img src="https://images.unsplash.com/photo-1628009368231-76033527212e?q=80&w=800" alt="동물병원" class="w-full rounded-2xl shadow-2xl relative z-10 border-8 border-white h-[400px] object-cover">
-           
-           <!-- Floating Review Card -->
-           <div class="absolute -bottom-5 -left-5 bg-white p-4 rounded-xl shadow-xl z-20 max-w-xs">
-              <div class="flex items-center gap-2 mb-2">
-                 <div class="text-yellow-400 text-sm">★★★★★</div>
-                 <span class="text-xs font-bold text-slate-400">Google 리뷰</span>
-              </div>
-              <p class="text-sm font-bold text-slate-700">"선생님들이 너무 친절하시고 과잉진료가 없어서 믿음이 가요!"</p>
-           </div>
-        </div>
-     </div>
+      </div>
+      
+      <div class="relative">
+         <div class="absolute -inset-10 bg-blue-500/5 rounded-full blur-[100px]"></div>
+         <div class="relative z-10 rounded-[40px] overflow-hidden shadow-[0_50px_100px_-20px_rgba(59,130,246,0.1)] border-8 border-white">
+            <img src="https://images.unsplash.com/photo-1628009368231-76033527212e?q=80&w=800" alt="동물병원" class="w-full aspect-square object-cover grayscale hover:grayscale-0 transition duration-1000">
+         </div>
+         <div class="absolute -bottom-6 -left-6 bg-white p-6 rounded-2xl shadow-2xl z-20 max-w-[240px] border border-blue-50 hidden md:block">
+            <div class="flex items-center gap-2 mb-2">
+               <div class="text-yellow-400 text-xs">★★★★★</div>
+               <span class="text-[9px] font-bold text-slate-400 uppercase tracking-widest">Verify Review</span>
+            </div>
+            <p class="text-xs font-bold text-slate-700 leading-relaxed">"과잉 진료 없이 아이의 상태를 정확하게 짚어주셔서 항상 믿고 방문해요."</p>
+         </div>
+      </div>
+    </div>
   </header>
 
-  <!-- Service Grid -->
-  <section id="services" class="py-16 md:py-20 px-6 bg-white">
-     <div class="container mx-auto">
-        <div class="text-center mb-12">
-           <h2 class="text-2xl font-bold text-slate-800 mb-3">진료 서비스</h2>
-           <p class="text-slate-500 text-sm">정기 검진부터 외과 수술까지, 전문적인 진료 과목을 소개합니다.</p>
-        </div>
-        
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-5">
-           <!-- Item 1 -->
-           <div class="bg-blue-50 rounded-2xl p-6 hover:bg-blue-500 hover:text-white transition group cursor-pointer text-center">
-              <div class="w-14 h-14 bg-white text-blue-500 rounded-full flex items-center justify-center text-2xl mx-auto mb-4 shadow-sm group-hover:scale-110 transition">🩺</div>
-              <h3 class="text-base font-bold mb-2">일반 진료</h3>
-              <p class="text-xs text-slate-500 group-hover:text-blue-100">기본 신체 검사 및 <br>예방 접종 관리</p>
-           </div>
-           
-           <!-- Item 2 -->
-           <div class="bg-pink-50 rounded-2xl p-6 hover:bg-pink-500 hover:text-white transition group cursor-pointer text-center">
-              <div class="w-14 h-14 bg-white text-pink-500 rounded-full flex items-center justify-center text-2xl mx-auto mb-4 shadow-sm group-hover:scale-110 transition">🦷</div>
-              <h3 class="text-base font-bold mb-2">치과 진료</h3>
-              <p class="text-xs text-slate-500 group-hover:text-pink-100">스케일링, 발치 및 <br>치주 질환 치료</p>
-           </div>
-
-           <!-- Item 3 -->
-           <div class="bg-green-50 rounded-2xl p-6 hover:bg-green-500 hover:text-white transition group cursor-pointer text-center">
-              <div class="w-14 h-14 bg-white text-green-500 rounded-full flex items-center justify-center text-2xl mx-auto mb-4 shadow-sm group-hover:scale-110 transition">🔬</div>
-              <h3 class="text-base font-bold mb-2">외과 수술</h3>
-              <p class="text-xs text-slate-500 group-hover:text-green-100">중성화 수술 및 <br>일반 외과 수술</p>
-           </div>
-
-           <!-- Item 4 -->
-           <div class="bg-orange-50 rounded-2xl p-6 hover:bg-orange-500 hover:text-white transition group cursor-pointer text-center">
-              <div class="w-14 h-14 bg-white text-orange-500 rounded-full flex items-center justify-center text-2xl mx-auto mb-4 shadow-sm group-hover:scale-110 transition">🛁</div>
-              <h3 class="text-base font-bold mb-2">미용 & 스파</h3>
-              <p class="text-xs text-slate-500 group-hover:text-orange-100">전문 미용사의 <br>맞춤형 미용 및 스파</p>
-           </div>
-        </div>
-     </div>
-  </section>
-
-  <!-- Team -->
-  <section id="team" class="py-16 md:py-20 px-6 bg-slate-50">
-     <div class="container mx-auto">
-        <h2 class="text-2xl font-bold text-slate-800 mb-10 text-center">수의사 소개</h2>
-        
-        <div class="grid md:grid-cols-3 gap-6">
-           <!-- Vet 1 -->
-           <div class="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition group">
-              <div class="h-52 overflow-hidden bg-slate-200">
-                 <img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?q=80&w=600" alt="수의사" class="w-full h-full object-cover group-hover:scale-105 transition duration-500 object-top">
-              </div>
-              <div class="p-5 text-center">
-                 <h3 class="text-lg font-bold text-slate-800">김사라 원장</h3>
-                 <p class="text-sm text-blue-500 font-bold mb-3">대표 원장</p>
-                 <p class="text-slate-500 text-xs mb-4">서울대학교 수의학과 졸<br>내과 전문의</p>
-                 <button class="w-full border border-blue-100 text-blue-500 text-xs font-bold py-2 rounded-lg hover:bg-blue-50 transition">예약하기</button>
-              </div>
-           </div>
-
-           <!-- Vet 2 -->
-           <div class="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition group">
-              <div class="h-52 overflow-hidden bg-slate-200">
-                 <img src="https://images.unsplash.com/photo-1622253692010-333f2da6031d?q=80&w=600" alt="수의사" class="w-full h-full object-cover group-hover:scale-105 transition duration-500 object-top">
-              </div>
-              <div class="p-5 text-center">
-                 <h3 class="text-lg font-bold text-slate-800">이제임스 원장</h3>
-                 <p class="text-sm text-pink-500 font-bold mb-3">외과 전문의</p>
-                 <p class="text-slate-500 text-xs mb-4">충북대학교 수의학과 졸<br>외과 전문의</p>
-                 <button class="w-full border border-pink-100 text-pink-500 text-xs font-bold py-2 rounded-lg hover:bg-pink-50 transition">예약하기</button>
-              </div>
-           </div>
-
-           <!-- Vet 3 -->
-           <div class="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition group">
-              <div class="h-52 overflow-hidden bg-slate-200">
-                 <img src="https://images.unsplash.com/photo-1537368910025-700350fe46c7?q=80&w=600" alt="수의사" class="w-full h-full object-cover group-hover:scale-105 transition duration-500 object-top">
-              </div>
-              <div class="p-5 text-center">
-                 <h3 class="text-lg font-bold text-slate-800">박에밀리 원장</h3>
-                 <p class="text-sm text-green-500 font-bold mb-3">피부과 전문의</p>
-                 <p class="text-slate-500 text-xs mb-4">건국대학교 수의학과 졸<br>피부과 전문의</p>
-                 <button class="w-full border border-green-100 text-green-500 text-xs font-bold py-2 rounded-lg hover:bg-green-50 transition">예약하기</button>
-              </div>
-           </div>
-        </div>
-     </div>
-  </section>
-
-  <!-- CTA -->
-  <section id="booking" class="py-16 md:py-20 px-6 bg-blue-600 text-white text-center">
-     <div class="container mx-auto max-w-xl">
-        <h2 class="text-2xl font-bold mb-5">예약하셨나요?</h2>
-        <p class="text-blue-100 mb-6 text-sm">
-           편리하게 온라인으로 예약하고 대기 시간을 줄이세요.<br>
-           처음 방문하시는 고객님께는 무료 건강 체크 쿠폰을 드립니다.
-        </p>
-        <button class="bg-white text-blue-600 px-8 py-3 rounded-full font-bold hover:bg-blue-50 transition shadow-xl text-sm">
-           예약하기
+  <!-- Login Modal -->
+  <div id="vet-modal" class="fixed inset-0 z-[100] hidden items-center justify-center p-4 bg-slate-900/10 backdrop-blur-md">
+    <div class="bg-white w-full max-w-sm p-12 shadow-2xl relative rounded-[2rem] border-t-8 border-blue-500">
+      <button onclick="toggleVetModal()" class="absolute top-8 right-10 text-gray-300 hover:text-blue-500 transition text-2xl font-light">&times;</button>
+      
+      <div class="text-center mb-10">
+        <h2 class="text-xl font-black text-slate-900 mb-2 tracking-tighter uppercase font-sans">GUARDIAN_SIGN</h2>
+        <p class="text-[9px] text-blue-500 font-bold tracking-[0.2em] uppercase">With Pet Medical Records</p>
+      </div>
+      
+      <div class="space-y-6">
+        <input type="text" placeholder="Patient ID (Pet Name)" class="w-full bg-slate-50 border border-gray-100 py-4 px-6 outline-none rounded-xl focus:ring-1 focus:ring-blue-500 transition text-[11px] font-bold uppercase tracking-widest">
+        <button class="w-full bg-blue-500 text-white py-4 rounded-xl text-[11px] tracking-widest font-bold uppercase hover:bg-slate-900 transition shadow-lg shadow-blue-100">
+           Access Records
         </button>
-     </div>
-  </section>
+        <p class="text-[9px] text-center text-gray-400 font-bold uppercase tracking-widest pt-4">
+           검진 결과 및 접종 이력을 확인하세요
+        </p>
+      </div>
+    </div>
+  </div>
 
-  <!-- Footer -->
-  <footer class="py-10 px-6 bg-slate-900 text-center">
-    <p class="text-lg font-bold text-blue-400 mb-2">🐾 위드펫 동물병원</p>
-    <p class="text-sm text-slate-500">서울시 강남구 역삼동 123-45</p>
+  <footer class="py-20 bg-white text-center px-6 border-t border-blue-50">
+     <div class="inline-flex items-center gap-4 mb-8">
+        <span class="text-2xl">🐾</span>
+        <span class="font-black text-2xl text-slate-900 tracking-tighter">WITH PET</span>
+        <span class="w-[1px] h-6 bg-blue-100"></span>
+        <span class="text-[10px] font-bold text-blue-500 tracking-[0.3em] uppercase">Humanity for Animals</span>
+     </div>
+     <p class="text-[10px] text-slate-300 tracking-[0.5em] uppercase px-6">© 2024 WITH PET MEDICAL CENTER. ALL RIGHTS RESERVED.</p>
   </footer>
+
+  <script>
+    function toggleVetModal() {
+      const modal = document.getElementById('vet-modal');
+      modal.classList.toggle('hidden');
+      modal.classList.toggle('flex');
+    }
+  </script>
 
 </div>

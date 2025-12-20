@@ -1,155 +1,151 @@
-<%# Petshop Template - 멍멍살롱 %>
+<%# Petshop Template - 위드 펫 %>
 
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Jua&family=Noto+Sans+KR:wght@400;700&display=swap');
   
   .font-cute { font-family: 'Jua', sans-serif; }
   .font-sans { font-family: 'Noto Sans KR', sans-serif; }
+
+  @media (max-width: 768px) {
+    .mobile-desc { font-size: 14px !important; line-height: 1.5; }
+    .mobile-title { font-size: 28px !important; }
+  }
 </style>
 
-<div class="bg-yellow-50 text-gray-800 font-sans selection:bg-yellow-400 selection:text-white">
+<div class="bg-orange-50 text-gray-800 font-sans selection:bg-orange-400 selection:text-white min-h-screen">
 
   <!-- Nav -->
-  <nav class="fixed w-full z-50 px-6 py-4 bg-white/95 backdrop-blur border-b border-yellow-200 shadow-sm">
+  <nav class="fixed w-full z-50 px-6 py-4 bg-white/95 backdrop-blur-md border-b border-orange-100 shadow-sm">
     <div class="container mx-auto flex justify-between items-center">
       <div class="flex items-center gap-2">
-        <span class="text-2xl">🐶</span>
-        <span class="font-cute text-xl text-yellow-500">멍멍살롱</span>
+        <span class="text-3xl">🐾</span>
+        <span class="font-cute text-2xl text-orange-500 tracking-tighter">위드 펫</span>
       </div>
-      <div class="hidden md:flex gap-6 font-cute text-base text-gray-500">
-        <a href="#about" class="hover:text-yellow-500 transition">소개</a>
-        <a href="#service" class="hover:text-yellow-500 transition">서비스</a>
-        <a href="#hotel" class="hover:text-yellow-500 transition">호텔링</a>
-        <a href="#contact" class="hover:text-yellow-500 transition">예약하기</a>
+      <div class="hidden md:flex gap-8 font-cute text-base text-gray-500">
+        <a href="#about" class="hover:text-orange-500 transition">우리 아이 소개</a>
+        <a href="#service" class="hover:text-orange-500 transition">프리미엄 케어</a>
+        <a href="#gallery" class="hover:text-orange-500 transition">갤러리</a>
       </div>
-      <button class="px-5 py-2 bg-yellow-400 text-white font-cute rounded-full shadow-lg hover:bg-yellow-500 transition text-sm">
-        상담신청
-      </button>
+      <div class="flex gap-4 items-center">
+         <button onclick="togglePetModal()" class="font-cute text-base text-gray-400 hover:text-orange-500">로그인</button>
+         <button class="px-5 py-2 bg-orange-500 text-white font-cute rounded-full shadow-lg hover:bg-orange-600 transition text-sm">
+           예약하기
+         </button>
+      </div>
     </div>
   </nav>
 
   <!-- Hero -->
-  <header class="pt-24 pb-16 px-6 relative overflow-hidden min-h-[600px] flex items-center">
-    <div class="container mx-auto grid md:grid-cols-2 gap-10 items-center relative z-10">
-      <div class="text-center md:text-left space-y-5">
-        <span class="inline-block bg-white text-yellow-500 px-4 py-2 rounded-full font-bold shadow-sm border border-yellow-200 text-sm">
-           🐾 프리미엄 펫 케어샵
-        </span>
-        <h1 class="text-4xl md:text-5xl font-cute leading-tight text-gray-800">
-          반려견을 위한<br>
-          <span class="text-yellow-500">행복한 하루</span>를<br>
-          선물하세요!
+  <header class="pt-32 pb-16 px-6 relative overflow-hidden bg-orange-50 min-h-[600px] flex items-center">
+    <div class="container mx-auto grid md:grid-cols-2 gap-12 items-center relative z-10">
+      <div class="text-center md:text-left space-y-6">
+        <div class="inline-block bg-white text-orange-500 px-4 py-1.5 rounded-full font-bold shadow-sm border border-orange-200 text-[10px] md:text-xs">
+           🐩 전문가가 케어하는 따뜻한 공간
+        </div>
+        <h1 class="text-4xl md:text-6xl font-cute leading-tight text-gray-800 mobile-title">
+          반려견의 일상이<br>
+          <span class="text-orange-500">더욱 행복해지는</span><br>
+          마법 같은 시간
         </h1>
-        <p class="text-base text-gray-500 leading-relaxed font-cute">
-          스트레스 없는 미용부터 편안한 호텔링까지.<br>
-          전문 펫시터와 미용사가 1:1로 케어합니다.
+        <p class="text-sm md:text-xl text-gray-500 leading-relaxed font-cute mobile-desc">
+          스트레스 없는 미용부터 아늑한 호텔링까지.<br>
+          사랑하는 우리 아이의 소중한 하루를 '위드 펫'이 함께합니다.
         </p>
-        <div class="flex gap-3 justify-center md:justify-start pt-3">
-          <button class="px-6 py-3 bg-gray-800 text-white rounded-2xl font-bold shadow-xl hover:bg-gray-700 transition flex items-center gap-2 font-cute text-base">
-             <span class="text-xl">✂️</span> 미용 예약
+        <div class="flex gap-4 justify-center md:justify-start pt-4">
+          <button class="px-8 py-3 bg-gray-800 text-white rounded-2xl font-cute text-sm md:text-base hover:bg-gray-700 transition shadow-xl">
+             ✂️ 미용 문의
           </button>
-          <button class="px-6 py-3 bg-white text-yellow-500 border-2 border-yellow-400 rounded-2xl font-bold hover:bg-yellow-50 transition flex items-center gap-2 font-cute text-base">
-             <span class="text-xl">🏨</span> 호텔 예약
+          <button class="px-8 py-3 bg-white text-orange-500 border-2 border-orange-500 rounded-2xl font-cute text-sm md:text-base hover:bg-orange-50 transition">
+             🏨 호텔 예약
           </button>
         </div>
       </div>
 
       <div class="relative">
-        <div class="absolute inset-0 bg-yellow-300 rounded-3xl transform rotate-6 translate-x-3 translate-y-3"></div>
-        <img src="https://images.unsplash.com/photo-1587300003388-59208cc962cb?q=80&w=800" alt="강아지" class="relative rounded-3xl shadow-2xl w-full h-[400px] object-cover border-4 border-white">
+        <div class="absolute -inset-4 bg-orange-200 rounded-[50px] rotate-3"></div>
+        <img src="https://images.unsplash.com/photo-1516734212186-a967f81ad0d7?q=80&w=800" alt="강아지 미용" class="relative rounded-[40px] shadow-2xl w-full h-[450px] object-cover border-8 border-white">
         
-        <!-- Floating Sticker -->
-        <div class="absolute -top-3 -right-3 bg-white p-3 rounded-full shadow-lg border-2 border-yellow-400 w-20 h-20 flex items-center justify-center rotate-12">
-           <span class="text-center font-cute text-sm leading-tight text-gray-800">첫방문<br><span class="text-red-500">20%</span><br>할인</span>
+        <div class="absolute -top-4 -right-4 bg-yellow-400 text-white p-4 rounded-full shadow-lg rotate-12 font-cute text-center line-tight">
+           <p class="text-xs">신규 회원</p>
+           <p class="text-xl font-bold">20% OFF</p>
         </div>
       </div>
     </div>
   </header>
 
-  <!-- Service Cards -->
-  <section id="service" class="py-16 md:py-20 bg-white">
-    <div class="container mx-auto px-6">
-      <div class="text-center mb-12">
-        <h2 class="text-3xl font-cute text-gray-800 mb-3">어떤 서비스가 필요하신가요?</h2>
-        <p class="text-gray-500 font-cute text-base">댕댕이 맞춤형 풀 케어 서비스</p>
-      </div>
-
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-5">
-        <!-- Card 1 -->
-        <div class="bg-blue-50 p-6 rounded-2xl text-center hover:shadow-xl transition transform hover:-translate-y-2 cursor-pointer group">
-          <div class="w-16 h-16 bg-white rounded-full flex items-center justify-center text-3xl mb-4 mx-auto shadow-sm group-hover:scale-110 transition">🛁</div>
-          <h3 class="font-cute text-xl mb-1 text-gray-800">스파 & 목욕</h3>
-          <p class="text-xs text-gray-500">탄산수 스파로<br>피부 각질 케어</p>
-        </div>
-        <!-- Card 2 -->
-        <div class="bg-pink-50 p-6 rounded-2xl text-center hover:shadow-xl transition transform hover:-translate-y-2 cursor-pointer group">
-          <div class="w-16 h-16 bg-white rounded-full flex items-center justify-center text-3xl mb-4 mx-auto shadow-sm group-hover:scale-110 transition">✂️</div>
-          <h3 class="font-cute text-xl mb-1 text-gray-800">가위컷 미용</h3>
-          <p class="text-xs text-gray-500">견종별 맞춤 스타일링<br>스트레스 최소화</p>
-        </div>
-        <!-- Card 3 -->
-        <div class="bg-green-50 p-6 rounded-2xl text-center hover:shadow-xl transition transform hover:-translate-y-2 cursor-pointer group">
-          <div class="w-16 h-16 bg-white rounded-full flex items-center justify-center text-3xl mb-4 mx-auto shadow-sm group-hover:scale-110 transition">🏨</div>
-          <h3 class="font-cute text-xl mb-1 text-gray-800">펫 호텔</h3>
-          <p class="text-xs text-gray-500">24시간 CCTV<br>넓은 개별 룸</p>
-        </div>
-        <!-- Card 4 -->
-        <div class="bg-purple-50 p-6 rounded-2xl text-center hover:shadow-xl transition transform hover:-translate-y-2 cursor-pointer group">
-          <div class="w-16 h-16 bg-white rounded-full flex items-center justify-center text-3xl mb-4 mx-auto shadow-sm group-hover:scale-110 transition">🎓</div>
-          <h3 class="font-cute text-xl mb-1 text-gray-800">유치원</h3>
-          <p class="text-xs text-gray-500">사회성 기르기 프로그램<br>친구들과 놀이 시간</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Photo Gallery -->
-  <section class="py-16 px-6 bg-yellow-50">
+  <!-- Services -->
+  <section id="service" class="py-24 bg-white px-6">
     <div class="container mx-auto">
-      <h2 class="text-2xl font-cute text-center mb-8">행복한 댕댕이 갤러리 📸</h2>
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
-        <div class="rounded-2xl overflow-hidden h-40 md:h-52 shadow-md group">
-           <img src="https://images.unsplash.com/photo-1591769225440-811ad7d6eca6?q=80&w=400" alt="강아지" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+      <div class="text-center mb-16">
+        <h2 class="text-3xl font-cute text-gray-800 mb-4">위드 펫만의 특별한 케어</h2>
+        <p class="text-gray-400 font-cute text-base">내 가족처럼 정성을 다해 관리합니다.</p>
+      </div>
+      <div class="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+        <div class="bg-orange-50 p-8 rounded-3xl text-center hover:shadow-xl transition group">
+           <img src="https://images.unsplash.com/photo-1516734212186-a967f81ad0d7?q=80&w=400" alt="미용" class="w-24 h-24 rounded-full mx-auto mb-6 object-cover border-4 border-white shadow-md group-hover:scale-110 transition">
+           <h3 class="font-cute text-2xl mb-3">맞춤 스타일링</h3>
+           <p class="text-sm font-cute text-gray-500 mobile-desc">견종의 특징과 아이의 성격을 고려한 <br>스트레스 없는 가위컷 전문 미용</p>
         </div>
-        <div class="rounded-2xl overflow-hidden h-40 md:h-52 shadow-md group">
-           <img src="https://images.unsplash.com/photo-1583511655857-d19b40a7a54e?q=80&w=400" alt="강아지" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+        <div class="bg-blue-50 p-8 rounded-3xl text-center hover:shadow-xl transition group">
+           <img src="https://images.unsplash.com/photo-1541888941295-1e8762df4a8d?q=80&w=400" alt="호텔" class="w-24 h-24 rounded-full mx-auto mb-6 object-cover border-4 border-white shadow-md group-hover:scale-110 transition">
+           <h3 class="font-cute text-2xl mb-3">프리미엄 호텔</h3>
+           <p class="text-sm font-cute text-gray-500 mobile-desc">온도/습도 조절 시스템과 <br>24시간 전문 관리사의 상주로 안심</p>
         </div>
-        <div class="rounded-2xl overflow-hidden h-40 md:h-52 shadow-md group">
-           <img src="https://images.unsplash.com/photo-1548199973-03cce0bbc87b?q=80&w=400" alt="강아지" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
-        </div>
-        <div class="rounded-2xl overflow-hidden h-40 md:h-52 shadow-md group">
-           <img src="https://images.unsplash.com/photo-1517849845537-4d257902454a?q=80&w=400" alt="강아지" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+        <div class="bg-yellow-50 p-8 rounded-3xl text-center hover:shadow-xl transition group">
+           <img src="https://images.unsplash.com/photo-1587300003388-59208cc962cb?q=80&w=400" alt="유치원" class="w-24 h-24 rounded-full mx-auto mb-6 object-cover border-4 border-white shadow-md group-hover:scale-110 transition">
+           <h3 class="font-cute text-2xl mb-3">댕댕 유치원</h3>
+           <p class="text-sm font-cute text-gray-500 mobile-desc">사회성 발달 프로그램과 <br>친구들과의 신나는 놀이 시간</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Booking Form -->
-  <section id="contact" class="py-16 md:py-20 bg-white relative overflow-hidden">
-    <div class="container mx-auto px-6 max-w-lg relative z-10">
-      <div class="bg-white border-4 border-yellow-200 rounded-2xl p-6 md:p-10 text-center shadow-xl">
-        <h2 class="font-cute text-2xl mb-2 text-gray-800">간편 예약하기</h2>
-        <p class="text-gray-500 mb-6 font-cute text-sm">우리 아이 정보를 남겨주세요!</p>
-        
-        <form class="space-y-4">
-          <input type="text" placeholder="보호자님 성함" class="w-full bg-gray-50 border-0 rounded-xl p-3 font-cute outline-none focus:ring-2 focus:ring-yellow-400 text-sm">
-          <input type="tel" placeholder="연락처" class="w-full bg-gray-50 border-0 rounded-xl p-3 font-cute outline-none focus:ring-2 focus:ring-yellow-400 text-sm">
-          <div class="grid grid-cols-2 gap-3">
-             <input type="text" placeholder="반려견 이름" class="w-full bg-gray-50 border-0 rounded-xl p-3 font-cute outline-none focus:ring-2 focus:ring-yellow-400 text-sm">
-             <input type="text" placeholder="견종 / 나이" class="w-full bg-gray-50 border-0 rounded-xl p-3 font-cute outline-none focus:ring-2 focus:ring-yellow-400 text-sm">
-          </div>
-          <button class="w-full bg-yellow-400 text-white font-cute text-base py-3 rounded-xl hover:bg-yellow-500 transition shadow-md">
-            예약 신청 완료
-          </button>
-        </form>
-      </div>
+  <!-- Gallery -->
+  <section id="gallery" class="py-24 bg-orange-50 px-6">
+    <div class="container mx-auto">
+       <div class="text-center mb-16">
+          <h2 class="text-3xl font-cute text-gray-800">우리의 행복한 친구들 🐾</h2>
+       </div>
+       <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+          <img src="https://images.unsplash.com/photo-1537151608828-ea2b11777ee8?q=80&w=400" class="w-full h-64 object-cover rounded-3xl shadow-lg hover:rotate-2 transition">
+          <img src="https://images.unsplash.com/photo-1444212477490-ca40a945171d?q=80&w=400" class="w-full h-64 object-cover rounded-3xl shadow-lg hover:-rotate-2 transition">
+          <img src="https://images.unsplash.com/photo-1583511655857-d19b40a7a54e?q=80&w=400" class="w-full h-64 object-cover rounded-3xl shadow-lg hover:rotate-2 transition">
+          <img src="https://images.unsplash.com/photo-1517849845537-4d257902454a?q=80&w=400" class="w-full h-64 object-cover rounded-3xl shadow-lg hover:-rotate-2 transition">
+       </div>
     </div>
   </section>
 
-  <!-- Footer -->
-  <footer class="py-10 px-6 bg-yellow-100 text-center">
-    <p class="font-cute text-xl text-yellow-600 mb-2">🐶 멍멍살롱</p>
-    <p class="text-sm text-gray-500">서울시 강남구 도곡동 123-45</p>
+  <!-- Login Modal -->
+  <div id="pet-modal" class="fixed inset-0 z-[100] hidden items-center justify-center p-4 bg-orange-900/40 backdrop-blur-sm">
+    <div class="bg-white w-full max-w-sm rounded-[40px] overflow-hidden shadow-2xl p-10 border-8 border-orange-100 relative">
+      <button onclick="togglePetModal()" class="absolute top-4 right-6 text-orange-200 hover:text-orange-500 transition text-4xl font-cute">&times;</button>
+      
+      <div class="text-center mb-8">
+        <div class="text-4xl mb-4">🐾</div>
+        <h2 class="text-2xl font-cute text-orange-500">우리 아이 로그인</h2>
+        <p class="text-xs font-cute text-gray-400 mt-2">반가워요! 산책 지수를 확인해보세요.</p>
+      </div>
+      
+      <div class="space-y-4">
+        <input type="text" placeholder="보호자님 아이디" class="w-full bg-orange-50 border-none px-6 py-4 rounded-3xl font-cute text-lg outline-none focus:ring-2 focus:ring-orange-400">
+        <button class="w-full bg-orange-500 text-white font-cute text-xl py-4 rounded-3xl hover:bg-orange-600 transition shadow-lg">
+           문 열고 들어가기
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <footer class="py-12 px-6 bg-white border-t border-orange-100 text-center">
+    <p class="font-cute text-2xl text-orange-500 mb-2">WITH PET</p>
+    <p class="text-[10px] font-sans font-bold text-gray-300 uppercase tracking-[0.3em]">Premium Pet Lounge | © 2024 WITH PET</p>
   </footer>
+
+  <script>
+    function togglePetModal() {
+      const modal = document.getElementById('pet-modal');
+      modal.classList.toggle('hidden');
+      modal.classList.toggle('flex');
+    }
+  </script>
 
 </div>

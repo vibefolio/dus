@@ -1,190 +1,145 @@
-<%# Finance Template - 와이즈 에셋 (자산운용) %>
+<%# Finance Template - 와이즈 에셋 (Wise Asset) %>
 
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap');
   
   .font-sans { font-family: 'Noto Sans KR', sans-serif; }
+
+  @media (max-width: 768px) {
+    .mobile-desc { font-size: 14px !important; line-height: 1.6; }
+    .mobile-title { font-size: 32px !important; }
+  }
 </style>
 
-<div class="bg-gray-50 text-gray-900 font-sans selection:bg-emerald-600 selection:text-white">
+<div class="bg-white text-[#1a1a1a] font-sans selection:bg-emerald-600 selection:text-white min-h-screen">
 
   <!-- Nav -->
-  <nav class="fixed w-full z-50 bg-white border-b border-gray-200 shadow-sm">
-    <div class="container mx-auto px-6 py-4 flex justify-between items-center">
-      <div class="font-bold text-xl text-emerald-800 tracking-tight flex items-center gap-2">
-         <span class="text-2xl">💹</span> 와이즈 에셋
+  <nav class="fixed w-full z-50 bg-white/9 worst backdrop-blur-md border-b border-gray-100 px-6 py-5">
+    <div class="container mx-auto flex justify-between items-center">
+      <div class="flex items-center gap-3">
+         <div class="w-10 h-10 bg-emerald-700 rounded-lg flex items-center justify-center text-white text-2xl">
+            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20"><path d="M2 10a8 8 0 018-8v8h8a8 8 0 11-16 0z"></path><path d="M12 2.252A8.014 8.014 0 0117.748 8H12V2.252z"></path></svg>
+         </div>
+         <div class="flex flex-col">
+            <span class="text-xl font-black tracking-tighter leading-none">WISE ASSET</span>
+            <span class="text-[9px] font-bold text-emerald-600 tracking-[0.2em] uppercase">Private Wealth</span>
+         </div>
       </div>
-      <div class="hidden md:flex gap-8 text-sm font-bold text-gray-500">
-        <a href="#services" class="hover:text-emerald-700 transition">자산 관리</a>
-        <a href="#fund" class="hover:text-emerald-700 transition">펀드 정보</a>
-        <a href="#insight" class="hover:text-emerald-700 transition">시장 전망</a>
-        <a href="#contact" class="hover:text-emerald-700 transition">전문가 상담</a>
+      
+      <div class="hidden md:flex gap-10 text-[11px] font-bold uppercase tracking-[0.3em] text-gray-400">
+        <a href="#services" class="hover:text-emerald-700 transition">Strategy</a>
+        <a href="#insight" class="hover:text-emerald-700 transition">Market</a>
+        <a href="#contact" class="hover:text-emerald-700 transition">Consult</a>
       </div>
-      <button class="bg-emerald-700 text-white px-5 py-2 rounded font-bold text-sm hover:bg-emerald-800 transition shadow-lg shadow-emerald-700/20">
-        고객 로그인
-      </button>
+      
+      <div class="flex gap-6 items-center">
+         <button onclick="toggleFinanceModal()" class="text-[11px] font-bold uppercase tracking-[0.3em] text-gray-400 hover:text-emerald-700">Client Login</button>
+         <button class="bg-[#1a1a1a] text-white px-6 py-2.5 rounded-sm font-bold text-[11px] tracking-widest uppercase hover:bg-emerald-800 transition shadow-xl">
+           Start Portfolio
+         </button>
+      </div>
     </div>
   </nav>
 
   <!-- Hero -->
-  <header class="pt-32 pb-20 px-6 bg-white relative overflow-hidden">
-    <div class="absolute right-0 top-0 w-1/3 h-full bg-emerald-50 skew-x-[-12deg] transform translate-x-20"></div>
-    
-    <div class="container mx-auto grid md:grid-cols-2 gap-12 items-center relative z-10">
-      <div class="space-y-6">
-        <span class="text-emerald-600 font-bold bg-emerald-100 px-3 py-1 rounded text-xs tracking-wider">안정적인 자산 성장의 파트너</span>
-        <h1 class="text-4xl md:text-6xl font-black leading-tight text-gray-900">
-           지성을 더한 <br>
-           <span class="text-emerald-600">자산 관리의 시작.</span>
+  <header class="pt-40 pb-24 px-6 relative overflow-hidden bg-slate-50 flex items-center">
+    <div class="container mx-auto grid md:grid-cols-2 gap-16 items-center relative z-10">
+      <div class="space-y-8">
+        <div class="inline-flex items-center gap-2 text-emerald-700 font-bold bg-white px-4 py-1.5 rounded-full shadow-sm border border-emerald-100 text-[10px] tracking-widest uppercase">
+           <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span> Data-Driven Management
+        </div>
+        <h1 class="text-4xl md:text-7xl font-black leading-none tracking-tighter text-[#1a1a1a] mobile-title">
+           자산의 가치를 <br>
+           <span class="text-transparent bg-clip-text bg-gradient-to-r from-emerald-600 to-teal-500 italic">지성으로 일구다.</span>
         </h1>
-        <p class="text-gray-500 text-lg leading-relaxed max-w-lg font-light">
-           변동성 높은 시장에서도 흔들리지 않는 투자 원칙.<br>
-           와이즈 에셋만의 데이터 기반 알고리즘으로 안정적인 수익을 창출합니다.
+        <p class="text-gray-500 text-sm md:text-lg leading-relaxed max-w-md mobile-desc">
+           복잡한 시장 속에서도 흔들리지 않는 선명한 투자 원칙.<br>
+           와이즈 에셋은 당신의 자산을 넘어 미래의 안정을 설계합니다.
         </p>
         <div class="flex flex-col sm:flex-row gap-4 pt-4">
-           <button class="px-8 py-4 bg-gray-900 text-white font-bold rounded hover:bg-gray-800 transition">
-             투자 시작하기
+           <button class="px-10 py-4 bg-emerald-700 text-white font-bold rounded-sm hover:bg-emerald-800 transition shadow-2xl text-[11px] tracking-widest uppercase">
+             Build Strategy
            </button>
-           <button class="px-8 py-4 bg-white border border-gray-200 text-gray-900 font-bold rounded hover:border-emerald-600 hover:text-emerald-600 transition">
-             수익률 리포트 보기
+           <button class="px-10 py-4 border border-gray-200 text-gray-400 font-bold rounded-sm hover:border-emerald-600 hover:text-emerald-600 transition text-[11px] tracking-widest uppercase">
+             Yearly Report
            </button>
         </div>
       </div>
       
-      <div class="relative w-full max-w-sm mx-auto">
-         <div class="bg-white p-8 rounded-2xl shadow-2xl border border-gray-100 relative z-10">
-            <div class="flex justify-between items-center mb-6">
+      <div class="relative">
+         <div class="absolute -inset-10 bg-emerald-700/5 rounded-full blur-[100px]"></div>
+         <div class="bg-white p-10 rounded-3xl shadow-[0_50px_100px_-20px_rgba(0,0,0,0.1)] border border-gray-50 relative z-10">
+            <div class="flex justify-between items-center mb-8">
                <div>
-                  <p class="text-xs text-gray-400 font-bold uppercase">총 자산 현황</p>
-                  <h3 class="text-2xl font-bold text-gray-900">₩ 1,240,500,000</h3>
+                  <p class="text-[10px] text-gray-400 font-bold uppercase tracking-widest">Current Portfolio</p>
+                  <h3 class="text-2xl font-black text-[#1a1a1a] mt-1">₩ 1,240,500,000</h3>
                </div>
-               <span class="bg-emerald-100 text-emerald-700 text-xs font-bold px-2 py-1 rounded">+12.4%</span>
+               <span class="bg-emerald-50 text-emerald-600 text-[10px] font-bold px-3 py-1 rounded-full">+12.4%</span>
             </div>
             
-            <!-- Graph Mockup -->
-            <div class="h-32 flex items-end gap-1.5 mb-6">
-               <div class="w-full bg-emerald-100 h-[30%] rounded-t-sm"></div>
-               <div class="w-full bg-emerald-100 h-[45%] rounded-t-sm"></div>
-               <div class="w-full bg-emerald-200 h-[40%] rounded-t-sm"></div>
-               <div class="w-full bg-emerald-300 h-[60%] rounded-t-sm"></div>
-               <div class="w-full bg-emerald-400 h-[55%] rounded-t-sm"></div>
-               <div class="w-full bg-emerald-500 h-[80%] rounded-t-sm"></div>
-               <div class="w-full bg-emerald-500 h-[70%] rounded-t-sm"></div>
-               <div class="w-full bg-emerald-600 h-[90%] rounded-t-sm shadow-[0_0_10px_rgba(5,150,105,0.4)]"></div>
+            <div class="h-40 flex items-end gap-2 mb-8">
+               <div class="flex-1 bg-emerald-50 h-1/4 rounded-t-lg"></div>
+               <div class="flex-1 bg-emerald-100 h-2/5 rounded-t-lg"></div>
+               <div class="flex-1 bg-emerald-200 h-1/3 rounded-t-lg"></div>
+               <div class="flex-1 bg-emerald-300 h-3/5 rounded-t-lg"></div>
+               <div class="flex-1 bg-emerald-400 h-2/4 rounded-t-lg"></div>
+               <div class="flex-1 bg-emerald-500 h-4/5 rounded-t-lg"></div>
+               <div class="flex-1 bg-emerald-600 h-full rounded-t-lg shadow-lg"></div>
             </div>
             
-            <div class="grid grid-cols-2 gap-4">
-               <div class="bg-gray-50 p-3 rounded">
-                  <p class="text-xs text-gray-400">주식 비중</p>
-                  <p class="font-bold text-sm">65%</p>
+            <div class="flex justify-between border-t border-gray-50 pt-6">
+               <div class="text-center">
+                  <p class="text-[10px] text-gray-400 font-bold uppercase tracking-widest">Risk Score</p>
+                  <p class="text-lg font-black text-[#1a1a1a]">Low-Mid</p>
                </div>
-               <div class="bg-gray-50 p-3 rounded">
-                  <p class="text-xs text-gray-400">채권 및 현금</p>
-                  <p class="font-bold text-sm">25%</p>
+               <div class="text-center">
+                  <p class="text-[10px] text-gray-400 font-bold uppercase tracking-widest">Efficiency</p>
+                  <p class="text-lg font-black text-emerald-600">A+</p>
                </div>
             </div>
-         </div>
-         
-         <div class="absolute -right-6 -bottom-6 bg-emerald-600 p-5 rounded-xl shadow-xl text-white hidden md:block z-20">
-             <p class="font-bold text-xs opacity-80 mb-1">연간 목표 수익률</p>
-             <p class="text-2xl font-bold">15.8%</p>
          </div>
       </div>
     </div>
   </header>
 
-  <!-- Services -->
-  <section id="services" class="py-16 md:py-24 bg-gray-50">
-    <div class="container mx-auto px-6">
-       <div class="text-center mb-12">
-          <h2 class="text-3xl font-bold text-gray-900 mb-4">금융 전문 서비스</h2>
-          <p class="text-gray-500 text-sm">개인 투자자부터 법인 고객까지 맞춤형 금융 솔루션을 제공합니다.</p>
-       </div>
-
-       <div class="grid md:grid-cols-3 gap-6">
-          <div class="bg-white p-8 rounded-xl shadow-sm border-t-4 border-emerald-500 transition hover:shadow-lg">
-             <div class="w-12 h-12 bg-emerald-100 rounded flex items-center justify-center text-2xl mb-6">💼</div>
-             <h3 class="text-xl font-bold mb-3 text-gray-900">포트폴리오 관리</h3>
-             <p class="text-sm text-gray-500 leading-relaxed">고객의 투자 성향과 재무 목표를 분석하여 최적의 포트폴리오를 구성하고 지속적으로 관리합니다.</p>
-          </div>
-          
-          <div class="bg-white p-8 rounded-xl shadow-sm border-t-4 border-blue-500 transition hover:shadow-lg">
-             <div class="w-12 h-12 bg-blue-100 rounded flex items-center justify-center text-2xl mb-6">🏠</div>
-             <h3 class="text-xl font-bold mb-3 text-gray-900">고취 은퇴 설계</h3>
-             <p class="text-sm text-gray-500 leading-relaxed">은퇴 후의 안정적인 삶을 위한 연금 자산 관리 및 효율적인 절세 전략을 수립해 드립니다.</p>
-          </div>
-          
-          <div class="bg-white p-8 rounded-xl shadow-sm border-t-4 border-purple-500 transition hover:shadow-lg">
-             <div class="w-12 h-12 bg-purple-100 rounded flex items-center justify-center text-2xl mb-6">🏢</div>
-             <h3 class="text-xl font-bold mb-3 text-gray-900">법인 금융 솔루션</h3>
-             <p class="text-sm text-gray-500 leading-relaxed">법인 잉여 자금 운용, 기업 공개(IPO) 자문 등 기업의 성장을 위한 금융 파트너가 되어드립니다.</p>
-          </div>
-       </div>
+  <!-- Login Modal -->
+  <div id="finance-modal" class="fixed inset-0 z-[100] hidden items-center justify-center p-4 bg-slate-900/60 backdrop-blur-sm">
+    <div class="bg-white w-full max-w-sm p-12 shadow-2xl relative border-t-8 border-emerald-700">
+      <button onclick="toggleFinanceModal()" class="absolute top-6 right-8 text-gray-300 hover:text-emerald-700 transition text-2xl font-light">&times;</button>
+      
+      <div class="text-center mb-10">
+        <h2 class="text-xl font-black text-[#1a1a1a] mb-2 tracking-tighter uppercase">SECURE_GATE</h2>
+        <p class="text-[9px] text-emerald-600 font-bold tracking-[0.2em] uppercase">Wise Asset Asset Management</p>
+      </div>
+      
+      <div class="space-y-6">
+        <input type="text" placeholder="Certificate ID" class="w-full bg-slate-50 border border-gray-100 py-4 px-6 outline-none focus:ring-1 focus:ring-emerald-700 transition text-[11px] font-bold uppercase tracking-widest">
+        <button class="w-full bg-[#1a1a1a] text-white py-4 text-[11px] tracking-widest font-bold uppercase hover:bg-emerald-800 transition shadow-lg">
+           Authenticate Session
+        </button>
+        <div class="flex justify-center gap-6 pt-2">
+           <a href="#" class="text-[9px] text-gray-400 tracking-widest uppercase hover:text-emerald-700 transition">Request Key</a>
+           <a href="#" class="text-[9px] text-gray-400 tracking-widest uppercase hover:text-emerald-700 transition">Recovery</a>
+        </div>
+      </div>
     </div>
-  </section>
+  </div>
 
-  <!-- Market Insight -->
-  <section id="insight" class="py-16 md:py-24 bg-gray-900 text-white relative overflow-hidden">
-     <div class="container mx-auto px-6 relative z-10">
-        <div class="flex justify-between items-center mb-10">
-            <div>
-               <h2 class="text-2xl font-bold uppercase tracking-widest">마켓 인사이트</h2>
-               <p class="text-gray-400 text-sm mt-1">전문가들의 심층적인 시장 분석 리포트</p>
-            </div>
-            <button class="border border-white/30 px-5 py-2 rounded hover:bg-white hover:text-gray-900 transition font-bold text-xs uppercase">전체 보기</button>
-        </div>
-        
-        <div class="grid md:grid-cols-3 gap-6">
-           <article class="bg-gray-800 p-6 rounded-xl transition hover:bg-gray-750 cursor-pointer">
-              <span class="text-emerald-400 text-[10px] font-bold uppercase tracking-wider mb-2 block">주간 리포트</span>
-              <h3 class="text-lg font-bold mb-3">미 연준 금리 인상 종료 시점과 글로벌 증시 전망</h3>
-              <p class="text-gray-400 text-xs mb-5 line-clamp-2">인플레이션 둔화 신호와 함께 정책 전환 기대감이 고조되는 가운데, 하반기 전략을 점검합니다.</p>
-              <div class="flex items-center gap-2 text-[10px] text-gray-500">
-                 <span>2024.12.20</span>
-                 <span>•</span>
-                 <span>세계 경제</span>
-              </div>
-           </article>
-           
-           <article class="bg-gray-800 p-6 rounded-xl transition hover:bg-gray-750 cursor-pointer">
-              <span class="text-blue-400 text-[10px] font-bold uppercase tracking-wider mb-2 block">섹터 분석</span>
-              <h3 class="text-lg font-bold mb-3">AI 반도체 랠리, 거품인가 슈퍼사이클인가?</h3>
-              <p class="text-gray-400 text-xs mb-5 line-clamp-2">생성형 AI 시장의 폭발적인 성장과 함께 주목받는 반도체 섹터의 밸류에이션을 분석합니다.</p>
-              <div class="flex items-center gap-2 text-[10px] text-gray-500">
-                 <span>2024.12.18</span>
-                 <span>•</span>
-                 <span>기술 섹터</span>
-              </div>
-           </article>
-           
-           <article class="bg-gray-800 p-6 rounded-xl transition hover:bg-gray-750 cursor-pointer">
-              <span class="text-purple-400 text-[10px] font-bold uppercase tracking-wider mb-2 block">자산 전략</span>
-              <h3 class="text-lg font-bold mb-3">채권 투자의 적기, 금리 정점에서 기회를 찾다</h3>
-              <p class="text-gray-400 text-xs mb-5 line-clamp-2">고금리 환경이 지속되는 상황에서 장기 채권의 매력도가 부각되고 있습니다. 편입 전략 안내.</p>
-              <div class="flex items-center gap-2 text-[10px] text-gray-500">
-                 <span>2024.12.15</span>
-                 <span>•</span>
-                 <span>채권 시장</span>
-              </div>
-           </article>
-        </div>
+  <footer class="py-20 bg-[#1a1a1a] text-center px-6">
+     <div class="inline-flex items-center gap-4 mb-8">
+        <span class="font-black text-2xl text-white tracking-tighter">WISE ASSET</span>
+        <span class="w-[1px] h-6 bg-white/20"></span>
+        <span class="text-[10px] font-bold text-emerald-500 tracking-[0.3em] uppercase">Private Capital</span>
      </div>
-  </section>
+     <p class="text-[10px] text-white/30 tracking-[0.5em] uppercase">© 2024 WISE ASSET MANAGEMENT. ALL RIGHTS RESERVED.</p>
+  </footer>
 
-  <!-- Footer CTA -->
-  <section id="contact" class="py-16 md:py-24 bg-emerald-900 text-white text-center px-6">
-     <div class="container mx-auto max-w-xl">
-        <h2 class="text-3xl font-bold mb-6">자산 관리의 새로운 지평</h2>
-        <p class="text-emerald-200 mb-10 text-base font-light">
-           성공적인 투자의 첫걸음, 와이즈 에셋 전문 컨설턴트와 상담하세요.
-        </p>
-        <div class="flex flex-col sm:flex-row gap-3 justify-center">
-           <input type="email" placeholder="이메일 주소 입력" class="px-6 py-3 rounded text-gray-900 outline-none w-full sm:w-72 text-sm">
-           <button class="px-8 py-3 bg-emerald-500 font-bold rounded hover:bg-emerald-400 transition shadow-lg text-sm">
-              무료 상담 받기
-           </button>
-        </div>
-     </div>
-  </section>
+  <script>
+    function toggleFinanceModal() {
+      const modal = document.getElementById('finance-modal');
+      modal.classList.toggle('hidden');
+      modal.classList.toggle('flex');
+    }
+  </script>
 
 </div>

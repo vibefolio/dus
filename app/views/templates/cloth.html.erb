@@ -1,149 +1,140 @@
-<%# Cloth Template - 블랑 (미니멀 의류 브랜드) %>
+<%# Cloth Template - 모드 서울 (MODE SEOUL) %>
 
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700;800&family=Noto+Sans+KR:wght@200;300;400&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300&family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap');
   
-  .font-serif { font-family: 'Nanum Myeongjo', serif; }
+  .font-serif-display { font-family: 'Cormorant Garamond', serif; }
   .font-sans { font-family: 'Noto Sans KR', sans-serif; }
-  
-  .vertical-text {
-    writing-mode: vertical-rl;
-    text-orientation: mixed;
+
+  @media (max-width: 768px) {
+    .mobile-desc { font-size: 14px !important; line-height: 1.8; }
+    .mobile-title { font-size: 40px !important; }
   }
-  
-  .hide-scrollbar::-webkit-scrollbar {
-    display: none;
+
+  .fabric-texture {
+    background-image: url("https://www.transparenttextures.com/patterns/woven.png");
+    opacity: 0.05;
   }
 </style>
 
-<div class="bg-[#f5f5f0] text-[#333] font-sans selection:bg-[#333] selection:text-white">
+<div class="bg-[#F5F5F4] text-[#292524] font-sans selection:bg-[#57534E] selection:text-white min-h-screen overflow-x-hidden relative">
+  <div class="fixed inset-0 fabric-texture pointer-events-none"></div>
 
   <!-- Nav -->
-  <nav class="fixed w-full z-50 px-6 py-4 flex justify-between items-center bg-white/95 backdrop-blur-sm border-b border-gray-100">
-    <div class="font-serif text-xl tracking-wider">블랑</div>
-    <div class="hidden md:flex gap-8 text-sm tracking-wide">
-      <a href="#collection" class="hover:text-gray-500 transition">컬렉션</a>
-      <a href="#about" class="hover:text-gray-500 transition">브랜드</a>
-      <a href="#shop" class="hover:text-gray-500 transition">스토어</a>
+  <nav class="fixed w-full z-50 px-8 py-8 md:px-12 bg-[#F5F5F4]/80 backdrop-blur-xl border-b border-[#292524]/5">
+    <div class="container mx-auto flex justify-between items-center">
+      <div class="flex items-center gap-6">
+         <span class="font-serif-display text-3xl tracking-widest font-bold uppercase text-[#292524]">Mode<span class="italic font-light">Seoul</span></span>
+      </div>
+      
+      <div class="hidden md:flex gap-14 text-[10px] font-bold uppercase tracking-[0.3em] text-[#292524]/40">
+        <a href="#lookbook" class="hover:text-[#57534E] transition">Editorial</a>
+        <a href="#shop" class="hover:text-[#57534E] transition">Collection</a>
+        <a href="#archive" class="hover:text-[#57534E] transition">Archive</a>
+      </div>
+      
+      <div class="flex gap-8 items-center">
+         <button onclick="toggleModeModal()" class="text-[10px] font-bold uppercase tracking-[0.3em] text-[#292524]/40 hover:text-[#292524]">Atelier_ID</button>
+         <button class="relative">
+            <span class="text-[10px] font-bold uppercase tracking-[0.3em] hover:text-[#57534E] transition">Cart</span>
+            <span class="absolute -top-1 -right-2 w-1.5 h-1.5 bg-[#57534E] rounded-full"></span>
+         </button>
+      </div>
     </div>
-    <button class="text-sm border border-gray-300 px-4 py-2 hover:bg-black hover:text-white hover:border-black transition">장바구니</button>
   </nav>
 
   <!-- Hero -->
-  <header class="min-h-screen relative flex items-center justify-center pt-16">
-     <div class="absolute inset-0 p-4 md:p-12">
-        <img src="https://images.unsplash.com/photo-1515347619252-60a6bf4fffce?q=80&w=1920" alt="봄 컬렉션" class="w-full h-full object-cover filter brightness-95">
-     </div>
-     <div class="absolute bottom-16 left-6 md:left-16 z-10">
-        <p class="text-xs tracking-widest mb-3 text-gray-600">2024 Spring Summer</p>
-        <h1 class="text-4xl md:text-6xl font-serif leading-tight mb-6">
-           고요함 속<br><span class="text-gray-500">형태</span>
+  <header class="min-h-screen relative flex items-center justify-center pt-24 overflow-hidden">
+    <!-- Abstract Shapes -->
+    <div class="absolute top-[20%] left-[10%] w-[300px] h-[300px] bg-[#E7E5E4] rounded-full mix-blend-multiply filter blur-3xl opacity-50 animate-blob"></div>
+    <div class="absolute top-[20%] right-[10%] w-[300px] h-[300px] bg-[#D6D3D1] rounded-full mix-blend-multiply filter blur-3xl opacity-50 animate-blob animation-delay-2000"></div>
+    
+    <div class="container mx-auto px-6 relative z-10 grid lg:grid-cols-12 gap-12 items-center">
+      <div class="lg:col-span-1 hidden lg:flex flex-col gap-8 items-center text-[10px] font-bold tracking-[0.4em] uppercase text-[#292524]/30 [writing-mode:vertical-rl] rotate-180">
+         <span>Spring / Summer 24</span>
+         <div class="h-24 w-[1px] bg-[#292524]/20"></div>
+         <span>Minimalism</span>
+      </div>
+
+      <div class="lg:col-span-5 relative z-20">
+         <div class="relative overflow-hidden aspect-[3/4]">
+            <img src="https://images.unsplash.com/photo-1441984904996-e0b6ba687e04?q=80&w=1200" alt="Fashion Editorial" class="w-full h-full object-cover grayscale brightness-90 hover:scale-105 transition duration-[1.5s]">
+            <div class="absolute bottom-8 left-8 bg-white/80 backdrop-blur-sm p-6 border border-white/20">
+               <p class="font-serif-display text-2xl italic mb-2">The New Silence</p>
+               <button class="text-[9px] font-bold uppercase tracking-[0.3em] border-b border-black pb-1">View Lookbook</button>
+            </div>
+         </div>
+      </div>
+
+      <div class="lg:col-span-6 space-y-12 text-center lg:text-left pl-0 lg:pl-12">
+        <h1 class="text-6xl md:text-[8rem] font-serif-display leading-[0.9] tracking-tight text-[#292524] mobile-title">
+           Essential<br>
+           <span class="italic font-light text-[#57534E]">Form.</span>
         </h1>
-        <a href="#collection" class="inline-block border border-gray-400 px-6 py-3 text-sm hover:bg-black hover:text-white hover:border-black transition">
-           컬렉션 보기
-        </a>
-     </div>
+        
+        <p class="text-[#292524]/60 text-sm md:text-lg leading-relaxed max-w-md mx-auto lg:mx-0 mobile-desc">
+           서울의 정서, 비워진 미학. 불필요한 것을 덜어내고 본질만을 남긴 모드 서울의 새로운 컬렉션을 확인하세요.
+        </p>
+        
+        <div class="pt-8 flex flex-col sm:flex-row gap-8 justify-center lg:justify-start">
+           <button class="group flex items-center gap-4 text-[11px] font-bold uppercase tracking-[0.4em] text-[#292524] hover:text-[#57534E] transition">
+              <span class="w-12 h-[1px] bg-[#292524] group-hover:w-20 transition-all"></span> Shop Now
+           </button>
+        </div>
+      </div>
+    </div>
   </header>
 
-  <!-- About -->
-  <section id="about" class="py-20 md:py-32 px-6 md:px-16 grid md:grid-cols-2 gap-12 items-center bg-[#f5f5f0]">
-     <div class="space-y-6">
-        <span class="block w-12 h-[1px] bg-black"></span>
-        <h2 class="text-3xl md:text-4xl font-serif leading-relaxed">
-           "조용한 순간을 위한<br><span class="text-gray-500">디자인</span>"
-        </h2>
-        <p class="text-sm font-light leading-loose text-gray-600 max-w-md">
-           불필요한 장식을 배제하고 본질에 집중합니다.
-           최고급 천연 소재와 정교한 테일러링으로
-           시간이 흘러도 변하지 않는 가치를 만듭니다.
-        </p>
-        <div class="grid grid-cols-2 gap-6 pt-6 text-xs tracking-wide text-gray-500">
-           <div>
-              <span class="block text-2xl text-black font-serif mb-1">100%</span>
-              유기농 코튼
-           </div>
-           <div>
-              <span class="block text-2xl text-black font-serif mb-1">핸드메이드</span>
-              서울에서 제작
-           </div>
-        </div>
-     </div>
-     <div class="relative">
-        <div class="absolute top-8 right-8 w-full h-full border border-gray-300 -z-10"></div>
-        <img src="https://images.unsplash.com/photo-1532453288672-3a27e9be9efd?q=80&w=800" alt="작업 모습" class="w-full shadow-lg">
-     </div>
-  </section>
+   <style>
+      @keyframes blob {
+         0% { transform: translate(0px, 0px) scale(1); }
+         33% { transform: translate(30px, -50px) scale(1.1); }
+         66% { transform: translate(-20px, 20px) scale(0.9); }
+         100% { transform: translate(0px, 0px) scale(1); }
+      }
+      .animate-blob { animation: blob 7s infinite; }
+      .animation-delay-2000 { animation-delay: 2s; }
+   </style>
 
-  <!-- Lookbook -->
-  <section id="collection" class="py-20 md:py-24 overflow-x-hidden bg-white">
-     <div class="px-6 md:px-16 mb-12 flex justify-between items-end">
-        <h2 class="text-3xl font-serif">룩북</h2>
-        <span class="text-xs tracking-wide text-gray-500">드래그하여 스크롤 →</span>
-     </div>
-     
-     <div class="flex gap-4 md:gap-6 px-6 md:px-16 overflow-x-auto pb-6 hide-scrollbar snap-x">
-        <!-- Item 1 -->
-        <div class="min-w-[280px] md:min-w-[350px] snap-center group cursor-pointer">
-           <div class="overflow-hidden mb-4 relative">
-              <img src="https://images.unsplash.com/photo-1550614000-4b9519e09966?q=80&w=600" alt="린넨 드레스" class="w-full h-[400px] md:h-[480px] object-cover transition duration-500 group-hover:scale-105">
-              <div class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition flex items-center justify-center">
-                 <span class="text-white font-serif text-xl">Look 01</span>
-              </div>
-           </div>
-           <p class="font-serif text-lg border-b border-gray-200 pb-2 flex justify-between">
-              <span>린넨 드레스</span>
-              <span class="text-sm font-sans font-light">₩ 180,000</span>
-           </p>
+  <!-- Login Modal -->
+  <div id="mode-modal" class="fixed inset-0 z-[100] hidden items-center justify-center p-4 bg-[#292524]/10 backdrop-blur-3xl">
+    <div class="bg-[#F5F5F4] w-full max-w-sm p-16 shadow-2xl relative border border-[#292524]/5">
+      <button onclick="toggleModeModal()" class="absolute top-12 right-12 text-[#292524]/20 hover:text-[#292524] transition text-2xl font-light">&times;</button>
+      
+      <div class="text-center mb-16">
+        <h2 class="text-3xl font-serif-display tracking-wide text-[#292524] mb-2 italic">Atelier Club</h2>
+        <p class="text-[9px] text-[#57534E] font-bold tracking-[0.3em] uppercase">Private Archive Access</p>
+      </div>
+      
+      <div class="space-y-10">
+        <div class="relative group">
+           <input type="text" placeholder="MEMBER CODE" class="w-full bg-transparent border-b border-[#292524]/10 py-4 text-[11px] font-bold tracking-[0.3em] placeholder-[#292524]/20 uppercase outline-none focus:border-[#292524] transition text-center">
         </div>
-        
-        <!-- Item 2 -->
-        <div class="min-w-[280px] md:min-w-[350px] snap-center group cursor-pointer">
-           <div class="overflow-hidden mb-4 relative">
-              <img src="https://images.unsplash.com/photo-1549575917-062e24029283?q=80&w=600" alt="울 가디건" class="w-full h-[400px] md:h-[480px] object-cover transition duration-500 group-hover:scale-105">
-              <div class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition flex items-center justify-center">
-                 <span class="text-white font-serif text-xl">Look 02</span>
-              </div>
-           </div>
-           <p class="font-serif text-lg border-b border-gray-200 pb-2 flex justify-between">
-              <span>울 가디건</span>
-              <span class="text-sm font-sans font-light">₩ 150,000</span>
-           </p>
+        <button class="w-full bg-[#292524] text-white py-6 text-[10px] tracking-[0.4em] font-black uppercase hover:bg-[#57534E] transition shadow-xl">
+           Enter Archive
+        </button>
+        <div class="flex justify-center pt-2">
+           <a href="#" class="text-[9px] text-[#292524]/30 tracking-[0.3em] font-bold uppercase hover:text-[#292524] transition border-b border-transparent hover:border-[#292524]">Apply for Membership</a>
         </div>
-        
-        <!-- Item 3 -->
-        <div class="min-w-[280px] md:min-w-[350px] snap-center group cursor-pointer">
-           <div class="overflow-hidden mb-4 relative">
-              <img src="https://images.unsplash.com/photo-1516762689617-e1cffcef479d?q=80&w=600" alt="와이드 팬츠" class="w-full h-[400px] md:h-[480px] object-cover transition duration-500 group-hover:scale-105">
-              <div class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition flex items-center justify-center">
-                 <span class="text-white font-serif text-xl">Look 03</span>
-              </div>
-           </div>
-           <p class="font-serif text-lg border-b border-gray-200 pb-2 flex justify-between">
-              <span>와이드 팬츠</span>
-              <span class="text-sm font-sans font-light">₩ 120,000</span>
-           </p>
-        </div>
-     </div>
-  </section>
+      </div>
+    </div>
+  </div>
 
-  <!-- Footer -->
-  <footer class="bg-[#1a1a1a] text-white py-16 md:py-20 px-6 md:px-16">
-     <div class="grid md:grid-cols-2 gap-12">
-        <div>
-           <h3 class="font-serif text-2xl mb-6">뉴스레터 구독</h3>
-           <form class="flex border-b border-white/30 pb-3 max-w-sm">
-              <input type="email" placeholder="이메일 주소" class="bg-transparent w-full outline-none placeholder-gray-500 font-light text-sm">
-              <button class="text-xs tracking-wide hover:text-gray-400">구독</button>
-           </form>
-        </div>
-        <div class="flex flex-col justify-between text-xs font-light tracking-wide text-gray-500 md:text-right leading-loose">
-           <p>© 2024 블랑<br>All Rights Reserved</p>
-           <div class="flex gap-4 md:justify-end mt-4">
-             <a href="#" class="hover:text-white">인스타그램</a>
-             <a href="#" class="hover:text-white">카카오톡</a>
-           </div>
-        </div>
+  <footer class="py-32 bg-[#F5F5F4] text-center px-6 border-t border-[#292524]/5">
+     <div class="inline-flex flex-col items-center gap-8 mb-12">
+        <span class="font-serif-display text-4xl tracking-widest uppercase text-[#292524]">Mode Seoul</span>
+        <div class="w-12 h-[1px] bg-[#292524]/20"></div>
+        <span class="text-[10px] font-bold text-[#292524]/30 tracking-[0.4em] uppercase">Minimalism Culture</span>
      </div>
+     <p class="text-[10px] text-[#292524]/20 tracking-[1em] uppercase px-6">© 2024 MODE SEOUL ATELIER. ALL RIGHTS RESERVED.</p>
   </footer>
+
+  <script>
+    function toggleModeModal() {
+      const modal = document.getElementById('mode-modal');
+      modal.classList.toggle('hidden');
+      modal.classList.toggle('flex');
+    }
+  </script>
 
 </div>

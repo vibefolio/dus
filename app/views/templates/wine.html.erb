@@ -5,161 +5,95 @@
   
   .font-serif { font-family: 'Nanum Myeongjo', serif; }
   .font-sans { font-family: 'Noto Sans KR', sans-serif; }
-  
-  .bg-wine-pattern {
-    background-color: #1a0b0f;
-    background-image: repeating-linear-gradient(45deg, rgba(255,255,255,0.02) 0px, rgba(255,255,255,0.02) 1px, transparent 1px, transparent 10px);
+
+  @media (max-width: 768px) {
+    .mobile-desc { font-size: 14px !important; line-height: 1.6; }
+    .mobile-title { font-size: 32px !important; }
   }
 </style>
 
-<div class="bg-[#1a0b0f] text-[#d4af37] font-sans selection:bg-[#722f37] selection:text-white min-h-screen">
+<div class="bg-[#120508] text-[#e5c17e] font-sans selection:bg-[#722f37] selection:text-white min-h-screen">
 
   <!-- Nav -->
-  <nav class="fixed w-full z-50 px-6 py-5 bg-black/90 backdrop-blur border-b border-[#722f37]/30">
+  <nav class="fixed w-full z-50 px-6 py-5 bg-[#120508]/90 backdrop-blur-md border-b border-[#722f37]/20 flex justify-between items-center">
     <div class="container mx-auto flex justify-between items-center">
-      <div class="font-serif text-xl tracking-widest text-[#d4af37]">
-        빈티지 1988
+      <div class="font-serif text-xl tracking-[0.3em] font-bold text-[#e5c17e]">
+        VINTAGE 1988
       </div>
-      <div class="hidden md:flex gap-8 text-xs font-bold tracking-widest text-[#a08040]">
-        <a href="#collection" class="hover:text-white transition">컬렉션</a>
-        <a href="#tasting" class="hover:text-white transition">테이스팅</a>
-        <a href="#membership" class="hover:text-white transition">멤버십</a>
-        <a href="#reserve" class="hover:text-white transition">예약</a>
+      <div class="hidden md:flex gap-10 text-[10px] font-bold tracking-[0.3em] uppercase text-[#a08040]">
+        <a href="#collection" class="hover:text-white transition">Collection</a>
+        <a href="#tasting" class="hover:text-white transition">Tasting</a>
+        <a href="#reserve" class="hover:text-white transition">Booking</a>
+      </div>
+      <div class="flex gap-6 items-center">
+         <button onclick="toggleWineModal()" class="text-[10px] font-bold tracking-[0.3em] uppercase text-[#a08040] hover:text-white">Login</button>
+         <button class="px-5 py-2 border border-[#722f37] text-[#e5c17e] hover:bg-[#722f37] hover:text-white transition font-serif tracking-[0.2em] text-[10px] uppercase">
+           Reserve
+         </button>
       </div>
     </div>
   </nav>
 
   <!-- Hero -->
-  <header class="min-h-screen flex items-center justify-center relative overflow-hidden bg-wine-pattern pt-16">
-    <div class="absolute inset-0 bg-gradient-to-t from-[#1a0b0f] via-transparent to-[#1a0b0f]"></div>
+  <header class="min-h-screen flex items-center justify-center relative overflow-hidden pt-16">
+    <div class="absolute inset-0 grayscale opacity-40">
+       <img src="https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?q=80&w=1920" alt="와이너리" class="w-full h-full object-cover">
+    </div>
+    <div class="absolute inset-0 bg-gradient-to-t from-[#120508] via-transparent to-[#120508] opacity-90"></div>
     
-    <div class="container mx-auto px-6 grid md:grid-cols-2 gap-12 items-center relative z-10">
-      <div class="text-center md:text-left space-y-6">
-        <div class="w-14 h-[1px] bg-[#d4af37] mb-6 mx-auto md:mx-0"></div>
-        <h1 class="text-4xl md:text-5xl font-serif leading-tight text-white mb-3">
-          열정을<br>
-          <span class="text-[#722f37]">담아</span>
-        </h1>
-        <p class="text-gray-400 font-light leading-relaxed max-w-md mx-auto md:mx-0 text-sm">
-          전 세계 500여 종의 프리미엄 와인 컬렉션.<br>
-          소믈리에가 엄선한 최고의 빈티지를 경험하세요.
-        </p>
-        <button class="px-8 py-3 border border-[#d4af37] text-[#d4af37] hover:bg-[#d4af37] hover:text-[#1a0b0f] transition font-serif tracking-widest text-sm">
-          와인 둘러보기
-        </button>
-      </div>
-
-      <div class="relative hidden md:block">
-         <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-48 h-[400px] bg-[#722f37] rounded-full blur-[80px] opacity-30"></div>
-         <img src="https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?q=80&w=800" alt="와인" class="relative z-10 w-full rounded-tr-[80px] rounded-bl-[80px] border border-[#d4af37]/30 shadow-2xl opacity-90 mx-auto max-w-xs h-[400px] object-cover">
-      </div>
+    <div class="container mx-auto px-6 relative z-10 text-center space-y-8">
+       <div class="w-16 h-[1px] bg-[#e5c17e] mx-auto"></div>
+       <h1 class="text-4xl md:text-7xl font-serif leading-tight text-white mobile-title">
+         시간이 빚어낸<br>
+         <span class="text-[#722f37] italic">깊고 고귀한 선율</span>
+       </h1>
+       <p class="text-sm md:text-lg text-gray-400 font-light leading-relaxed max-w-xl mx-auto mobile-desc">
+         당신이 찾던 가장 완벽한 빈티지.<br>
+         소믈리에의 철학이 담긴 특별한 와인 리스트를 만나보세요.
+       </p>
+       <div class="pt-8">
+          <a href="#collection" class="inline-block px-10 py-4 border border-[#e5c17e] text-[#e5c17e] hover:bg-[#e5c17e] hover:text-black transition font-serif tracking-[0.3em] text-[11px] uppercase">
+             Explore Cellar
+          </a>
+       </div>
     </div>
   </header>
 
-  <!-- Wine List -->
-  <section id="collection" class="py-16 md:py-20 border-y border-[#722f37]/20 bg-black/50">
-    <div class="container mx-auto px-6">
-      <div class="flex justify-between items-end mb-12">
-        <div>
-           <h2 class="text-2xl font-serif text-white mb-2">시그니처 컬렉션</h2>
-           <p class="text-gray-500 text-xs">소믈리에 위클리 픽</p>
-        </div>
-        <div class="flex gap-3">
-           <button class="w-9 h-9 border border-[#d4af37] rounded-full text-[#d4af37] hover:bg-[#d4af37] hover:text-black transition text-sm">←</button>
-           <button class="w-9 h-9 border border-[#d4af37] rounded-full text-[#d4af37] hover:bg-[#d4af37] hover:text-black transition text-sm">→</button>
-        </div>
+  <!-- Login Modal -->
+  <div id="wine-modal" class="fixed inset-0 z-[100] hidden items-center justify-center p-4 bg-black/90 backdrop-blur-sm">
+    <div class="bg-[#1a0b0f] w-full max-w-sm p-12 border border-[#722f37]/30 shadow-2xl relative">
+      <button onclick="toggleWineModal()" class="absolute top-6 right-8 text-[#a08040] hover:text-white transition text-2xl font-light">&times;</button>
+      
+      <div class="text-center mb-10 border-b border-[#722f37]/20 pb-8">
+        <h2 class="text-xl font-serif tracking-[0.4em] text-[#e5c17e] mb-2 uppercase">Member Access</h2>
+        <p class="text-[9px] text-[#a08040] tracking-widest uppercase font-bold">Cellar Management System</p>
       </div>
-
-      <div class="grid md:grid-cols-3 gap-6">
-        <!-- Wine 1 -->
-        <div class="bg-[#241014] p-6 border border-[#722f37]/30 hover:border-[#d4af37] transition group relative overflow-hidden">
-           <span class="text-xs font-bold text-[#d4af37] border border-[#d4af37] px-2 py-1 mb-4 inline-block">레드</span>
-           <h3 class="text-xl font-serif text-white mb-1">샤또 마르고</h3>
-           <p class="text-xs text-gray-400 mb-4 tracking-widest">프랑스 • 2015</p>
-           <p class="text-gray-400 text-sm mb-6 line-clamp-2">블랙커런트, 바이올렛, 스파이스의 복합적인 아로마와 실크처럼 부드러운 타닌.</p>
-           <div class="flex justify-between items-center border-t border-white/10 pt-3">
-              <span class="text-lg font-serif text-white">₩ 1,250,000</span>
-              <span class="text-xl text-[#d4af37] cursor-pointer hover:rotate-90 transition">+</span>
-           </div>
-        </div>
-
-        <!-- Wine 2 -->
-        <div class="bg-[#241014] p-6 border border-[#722f37]/30 hover:border-[#d4af37] transition group relative overflow-hidden">
-           <span class="text-xs font-bold text-yellow-500 border border-yellow-500 px-2 py-1 mb-4 inline-block">화이트</span>
-           <h3 class="text-xl font-serif text-white mb-1">오퍼스 원</h3>
-           <p class="text-xs text-gray-400 mb-4 tracking-widest">미국 • 2018</p>
-           <p class="text-gray-400 text-sm mb-6 line-clamp-2">나파 밸리의 최고급 와인. 농축된 과실미와 다크 초콜릿의 긴 여운.</p>
-           <div class="flex justify-between items-center border-t border-white/10 pt-3">
-              <span class="text-lg font-serif text-white">₩ 850,000</span>
-              <span class="text-xl text-[#d4af37] cursor-pointer hover:rotate-90 transition">+</span>
-           </div>
-        </div>
-
-        <!-- Wine 3 -->
-        <div class="bg-[#241014] p-6 border border-[#722f37]/30 hover:border-[#d4af37] transition group relative overflow-hidden">
-           <span class="text-xs font-bold text-pink-400 border border-pink-400 px-2 py-1 mb-4 inline-block">스파클링</span>
-           <h3 class="text-xl font-serif text-white mb-1">돔 페리뇽</h3>
-           <p class="text-xs text-gray-400 mb-4 tracking-widest">프랑스 • 2012</p>
-           <p class="text-gray-400 text-sm mb-6 line-clamp-2">완벽한 균형미. 흰 꽃과 복숭아 향, 섬세한 기포가 주는 청량감.</p>
-           <div class="flex justify-between items-center border-t border-white/10 pt-3">
-              <span class="text-lg font-serif text-white">₩ 420,000</span>
-              <span class="text-xl text-[#d4af37] cursor-pointer hover:rotate-90 transition">+</span>
-           </div>
+      
+      <div class="space-y-6">
+        <input type="email" placeholder="Email Address" class="w-full bg-transparent border-b border-[#722f37]/40 py-3 outline-none focus:border-[#e5c17e] transition text-sm font-light text-white placeholder-gray-600">
+        <button class="w-full bg-[#722f37] text-white py-4 text-[10px] tracking-[0.3em] font-bold uppercase hover:opacity-90 transition">
+           Enter Cellar
+        </button>
+        <div class="flex justify-center gap-6 pt-4">
+           <a href="#" class="text-[9px] text-[#a08040] tracking-widest uppercase hover:text-white transition">Join Club</a>
+           <a href="#" class="text-[9px] text-[#a08040] tracking-widest uppercase hover:text-white transition">Support</a>
         </div>
       </div>
     </div>
-  </section>
+  </div>
 
-  <!-- Reservation -->
-  <section id="reserve" class="py-16 md:py-20 bg-[#1a0b0f] relative overflow-hidden">
-    <div class="container mx-auto px-6 max-w-3xl relative z-10 text-center">
-       <div class="border border-[#d4af37] p-2 inline-block mb-6 rotate-45">
-          <div class="w-3 h-3 bg-[#d4af37]"></div>
-       </div>
-       <h2 class="text-3xl font-serif text-white mb-5">테이블 예약</h2>
-       <p class="text-gray-400 mb-10 font-light text-sm">
-          특별한 저녁을 위한 예약.<br>
-          프라이빗 룸과 단체석이 준비되어 있습니다.
-       </p>
-       
-       <form class="bg-black/50 border border-[#722f37]/50 p-8 md:p-10 backdrop-blur-md">
-          <div class="grid md:grid-cols-2 gap-6 mb-6">
-             <div class="text-left">
-                <label class="block text-xs tracking-widest text-[#a08040] mb-2">날짜</label>
-                <input type="date" class="w-full bg-transparent border-b border-gray-700 py-2 text-white outline-none focus:border-[#d4af37] transition text-sm">
-             </div>
-             <div class="text-left">
-                <label class="block text-xs tracking-widest text-[#a08040] mb-2">시간</label>
-                <select class="w-full bg-transparent border-b border-gray-700 py-2 text-gray-400 outline-none focus:border-[#d4af37] transition text-sm">
-                   <option>18:00</option>
-                   <option>19:00</option>
-                   <option>20:00</option>
-                   <option>21:00</option>
-                </select>
-             </div>
-             <div class="text-left">
-                <label class="block text-xs tracking-widest text-[#a08040] mb-2">인원</label>
-                <select class="w-full bg-transparent border-b border-gray-700 py-2 text-gray-400 outline-none focus:border-[#d4af37] transition text-sm">
-                   <option>2명</option>
-                   <option>3명</option>
-                   <option>4명</option>
-                   <option>5명 이상</option>
-                </select>
-             </div>
-             <div class="text-left">
-                <label class="block text-xs tracking-widest text-[#a08040] mb-2">연락처</label>
-                <input type="tel" placeholder="010-0000-0000" class="w-full bg-transparent border-b border-gray-700 py-2 text-white outline-none focus:border-[#d4af37] transition placeholder-gray-600 text-sm">
-             </div>
-          </div>
-          <button class="px-10 py-3 bg-[#722f37] text-white font-serif tracking-widest hover:bg-[#d4af37] hover:text-black transition text-sm">예약 확인</button>
-       </form>
-    </div>
-  </section>
-
-  <!-- Footer -->
-  <footer class="py-10 px-6 bg-black/80 text-center border-t border-[#722f37]/30">
-    <p class="font-serif text-lg text-[#d4af37] mb-2">빈티지 1988</p>
-    <p class="text-sm text-gray-600">서울시 강남구 청담동 123-45</p>
+  <footer class="py-20 bg-black text-center px-6">
+     <p class="font-serif text-2xl text-[#e5c17e] tracking-[0.4em] mb-4">VINTAGE 1988</p>
+     <div class="w-12 h-[1px] bg-[#722f37] mx-auto mb-8"></div>
+     <p class="text-[10px] text-gray-600 tracking-[0.2em] font-bold uppercase">Heritage & Taste | © 2024 VINTAGE 1988</p>
   </footer>
+
+  <script>
+    function toggleWineModal() {
+      const modal = document.getElementById('wine-modal');
+      modal.classList.toggle('hidden');
+      modal.classList.toggle('flex');
+    }
+  </script>
 
 </div>
