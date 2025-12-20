@@ -1,201 +1,135 @@
-<%# Camping Template - 와일드 캠프 %>
+<%# Camping Template - 와일드 캠프 (WILD CAMP) %>
 
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700;900&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700;800&family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap');
   
+  .font-serif { font-family: 'Nanum Myeongjo', serif; }
   .font-sans { font-family: 'Noto Sans KR', sans-serif; }
-  
-  .camp-hero {
-    background: url('https://images.unsplash.com/photo-1478131143081-80f7f84ca84d?q=80&w=1920&auto=format&fit=crop') no-repeat center center/cover;
+
+  @media (max-width: 768px) {
+    .mobile-desc { font-size: 14px !important; line-height: 1.8; }
+    .mobile-title { font-size: 40px !important; }
+  }
+
+  .topo-pattern {
+    background-image: url("https://www.transparenttextures.com/patterns/black-felt.png");
+    opacity: 0.1;
   }
 </style>
 
-<div class="bg-[#2d3436] text-gray-300 font-sans selection:bg-[#fab1a0] selection:text-[#2d3436]">
+<div class="bg-[#1C1C1E] text-[#E5E5EA] font-sans selection:bg-[#FF4500] selection:text-white min-h-screen overflow-x-hidden relative">
+  <div class="fixed inset-0 topo-pattern pointer-events-none"></div>
 
-  <!-- Navbar -->
-  <nav class="fixed w-full z-50 px-6 py-4 flex justify-between items-center bg-[#2d3436]/95 backdrop-blur border-b border-white/5">
-    <div class="flex items-center gap-2">
-      <span class="text-xl">🔥</span>
-      <span class="font-black text-xl text-white tracking-widest">WILD CAMP</span>
-    </div>
-    <div class="hidden md:flex gap-6 font-bold text-sm text-[#55efc4]">
-      <a href="#about" class="hover:text-white transition">소개</a>
-      <a href="#zones" class="hover:text-white transition">캠핑 존</a>
-      <a href="#gear" class="hover:text-white transition">장비 대여</a>
-      <a href="#reservation" class="hover:text-white transition text-[#fab1a0]">예약</a>
+  <!-- Nav -->
+  <nav class="fixed w-full z-50 px-8 py-8 md:px-12 bg-[#1C1C1E]/80 backdrop-blur-xl border-b border-white/5">
+    <div class="container mx-auto flex justify-between items-center">
+      <div class="flex items-center gap-4">
+         <span class="text-2xl">🔥</span>
+         <span class="font-black text-2xl tracking-[0.2em] uppercase text-white">Wild<span class="text-[#FF4500]">Camp</span></span>
+      </div>
+      
+      <div class="hidden md:flex gap-14 text-[10px] font-bold uppercase tracking-[0.4em] text-white/40">
+        <a href="#zones" class="hover:text-[#FF4500] transition">Basecamp</a>
+        <a href="#gear" class="hover:text-[#FF4500] transition">Gear</a>
+        <a href="#expedition" class="hover:text-[#FF4500] transition">Expedition</a>
+      </div>
+      
+      <div class="flex gap-8 items-center">
+         <button onclick="toggleCampModal()" class="text-[10px] font-bold uppercase tracking-[0.4em] text-white/40 hover:text-[#FF4500]">Explorer_ID</button>
+         <button class="bg-[#FF4500] text-white px-10 py-3.5 rounded-none font-bold text-[10px] tracking-[0.4em] uppercase hover:bg-white hover:text-black transition shadow-2xl">
+           Join Adventure
+         </button>
+      </div>
     </div>
   </nav>
 
-  <!-- Hero Section -->
-  <header class="min-h-screen camp-hero flex items-center justify-center pt-16">
-    <div class="absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-[#2d3436]"></div>
+  <!-- Hero -->
+  <header class="min-h-screen relative flex items-center justify-center pt-20">
+    <div class="absolute inset-0 z-0">
+       <div class="absolute inset-0 bg-gradient-to-t from-[#1C1C1E] via-transparent to-[#1C1C1E]"></div>
+       <img src="https://images.unsplash.com/photo-1523987355523-c7b5b0dd90a7?q=80&w=2400" alt="Camping" class="w-full h-full object-cover grayscale brightness-50 contrast-125">
+    </div>
     
-    <div class="relative z-10 text-center px-6">
-      <div class="inline-block border border-[#55efc4] px-4 py-1 text-[#55efc4] font-bold text-xs tracking-widest mb-5 rounded-full bg-black/50 backdrop-blur">
-        자연이 기다립니다
+    <div class="container mx-auto px-6 relative z-10 grid lg:grid-cols-2 gap-16 items-center">
+      <div class="space-y-12 text-center lg:text-left">
+        <div class="inline-flex items-center gap-4">
+           <span class="w-12 h-[2px] bg-[#FF4500]"></span>
+           <span class="text-[10px] font-bold tracking-[0.6em] uppercase text-[#FF4500]">Raw Nature Experience</span>
+        </div>
+        
+        <h1 class="text-6xl md:text-[7.5rem] font-serif font-black leading-none tracking-tighter text-white mobile-title">
+           야생의 본능,<br><span class="italic text-[#FF4500]">자유의 숨결.</span>
+        </h1>
+        
+        <p class="text-white/40 text-sm md:text-xl leading-[1.8] max-w-lg mx-auto lg:mx-0 mobile-desc">
+           도시의 소음이 멈추는 곳. 타닥거리는 장작 소리와 서늘한 밤공기만이 존재하는 와일드 캠프에서 진짜 나를 마주하십시오.
+        </p>
+        
+        <div class="pt-6 flex flex-col sm:flex-row gap-8 justify-center lg:justify-start">
+           <button class="px-14 py-6 bg-[#FF4500] text-white font-black text-[11px] tracking-[0.4em] uppercase hover:bg-white hover:text-black transition-all shadow-2xl">
+              Start Journey
+           </button>
+           <button class="px-14 py-6 border border-white/10 text-white font-black text-[11px] tracking-[0.4em] uppercase hover:bg-white/5 transition-all">
+              View Sites
+           </button>
+        </div>
       </div>
-      <h1 class="text-4xl md:text-6xl font-black text-white mb-5 leading-tight">
-        와이파이 끊고<br>
-        <span class="text-[#55efc4]">별빛과 연결</span>
-      </h1>
-      <p class="text-lg text-gray-300 max-w-xl mx-auto font-light leading-relaxed">
-        화면은 끄고, 별을 켜세요. <br>
-        도시의 소음 대신 타닥거리는 장작 소리가 당신을 반깁니다.
-      </p>
-      
-      <div class="mt-10">
-        <button class="px-10 py-4 bg-[#55efc4] text-[#2d3436] font-black text-base tracking-widest hover:shadow-lg transition">
-          모험 시작하기
-        </button>
+
+      <div class="relative hidden lg:block">
+         <div class="relative group cursor-pointer">
+            <div class="absolute -top-6 -right-6 w-full h-full border-2 border-[#FF4500]/20 pointer-events-none group-hover:top-0 group-hover:right-0 transition-all duration-500"></div>
+            <img src="https://images.unsplash.com/photo-1478131143081-80f7f84ca84d?q=80&w=1200" alt="Bonfire" class="w-full aspect-square object-cover grayscale brightness-75 group-hover:grayscale-0 transition duration-1000 border border-white/10">
+            <div class="absolute bottom-10 left-10 bg-[#1C1C1E]/90 backdrop-blur-md p-8 border border-white/5">
+               <p class="text-[10px] font-black text-[#FF4500] uppercase tracking-[0.4em] mb-2">Into the Wild</p>
+               <h3 class="font-serif text-3xl font-bold text-white italic">Disconnect to Reconnect.</h3>
+            </div>
+         </div>
       </div>
     </div>
   </header>
 
-  <!-- Info & Safety -->
-  <section id="about" class="py-16 md:py-20 bg-[#2d3436] relative">
-    <div class="container mx-auto px-6">
-      <div class="grid md:grid-cols-2 gap-12 items-center">
-        <div class="space-y-6">
-           <span class="text-[#fab1a0] font-bold tracking-widest text-xs">왜 와일드 캠프인가요?</span>
-           <h2 class="text-3xl md:text-4xl font-black text-white leading-tight">
-             불편함이 주는<br>
-             <span class="text-[#55efc4]">완벽한 자유</span>
-           </h2>
-           <p class="text-base leading-loose">
-             와일드 캠프는 인공적인 시설을 최소화했습니다. <br>
-             하지만 안전과 위생만큼은 타협하지 않습니다. <br>
-             전문 크루가 상주하며 당신의 안전한 야생 체험을 돕습니다.
-           </p>
-           
-           <div class="space-y-5 pt-3">
-             <div class="flex items-start gap-4">
-               <div class="w-11 h-11 bg-[#2d3436] border border-[#55efc4] rounded flex items-center justify-center text-xl shrink-0">🛡️</div>
-               <div>
-                 <h3 class="text-white font-bold text-lg mb-1">안전 우선</h3>
-                 <p class="text-sm">24시간 보안 요원 및 응급 키트 상시 구비</p>
-               </div>
-             </div>
-             <div class="flex items-start gap-4">
-               <div class="w-11 h-11 bg-[#2d3436] border border-[#fab1a0] rounded flex items-center justify-center text-xl shrink-0">🚿</div>
-               <div>
-                 <h3 class="text-white font-bold text-lg mb-1">청결 구역</h3>
-                 <p class="text-sm">5성급 호텔 수준의 공용 샤워실 & 화장실 관리</p>
-               </div>
-             </div>
-           </div>
+  <!-- Login Modal -->
+  <div id="camp-modal" class="fixed inset-0 z-[100] hidden items-center justify-center p-4 bg-black/95 backdrop-blur-2xl">
+    <div class="bg-[#2C2C2E] w-full max-w-sm p-16 shadow-2xl relative border border-[#FF4500]/20">
+      <div class="absolute top-0 left-0 w-full h-[2px] bg-[#FF4500]"></div>
+      <button onclick="toggleCampModal()" class="absolute top-12 right-12 text-white/20 hover:text-[#FF4500] transition text-2xl font-light">&times;</button>
+      
+      <div class="text-center mb-14">
+        <h2 class="text-2xl font-black tracking-[0.4em] text-white mb-3 uppercase italic">EXPLORER_ID</h2>
+        <p class="text-[9px] text-[#FF4500] font-bold tracking-[0.3em] uppercase">Adventure Access Pass</p>
+      </div>
+      
+      <div class="space-y-8">
+        <div class="space-y-3">
+           <p class="text-[9px] font-black text-white/20 uppercase tracking-[0.2em] ml-1">Reservation Code</p>
+           <input type="text" placeholder="WILD-XXXX-XXXX" class="w-full bg-[#1C1C1E] border border-white/5 py-6 px-8 outline-none focus:border-[#FF4500] transition text-[11px] font-bold tracking-[0.2em] text-white uppercase">
         </div>
-        
-        <div class="grid grid-cols-2 gap-3">
-          <img src="https://images.unsplash.com/photo-1523987355523-c7b5b0dd90a7?q=80&w=600" alt="캠핑" class="rounded-lg opacity-80 hover:opacity-100 transition shadow-2xl translate-y-10 h-48 object-cover">
-          <img src="https://images.unsplash.com/photo-1496275068113-fff8c90750d1?q=80&w=600" alt="캠프파이어" class="rounded-lg opacity-80 hover:opacity-100 transition shadow-2xl border-4 border-[#2d3436] h-48 object-cover">
+        <button class="w-full bg-[#FF4500] text-white py-6 text-[10px] tracking-[0.4em] font-black uppercase hover:bg-white hover:text-black transition shadow-xl shadow-[#FF4500]/10">
+           Enter Basecamp
+        </button>
+        <div class="flex justify-center gap-14 pt-4">
+           <a href="#" class="text-[9px] text-white/20 tracking-[0.3em] font-bold uppercase hover:text-[#FF4500] transition">My Gear</a>
+           <a href="#" class="text-[9px] text-white/20 tracking-[0.3em] font-bold uppercase hover:text-[#FF4500] transition">Map</a>
         </div>
       </div>
     </div>
-  </section>
+  </div>
 
-  <!-- Zones -->
-  <section id="zones" class="py-16 md:py-20 bg-[#222]">
-    <div class="container mx-auto px-6">
-      <div class="text-center mb-12">
-        <h2 class="text-3xl font-black text-white mb-3">캠핑 존 선택</h2>
-        <p class="text-gray-500 text-sm">당신의 캠핑 스타일은 무엇인가요?</p>
-      </div>
-
-      <div class="grid md:grid-cols-3 gap-6">
-        <!-- Zone 1 -->
-        <div class="group relative h-[380px] overflow-hidden rounded-2xl cursor-pointer">
-          <img src="https://images.unsplash.com/photo-1533240332313-0db49b459ad6?q=80&w=800" alt="포레스트 존" class="absolute inset-0 w-full h-full object-cover transition duration-500 group-hover:scale-110">
-          <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent flex flex-col justify-end p-6">
-            <h3 class="text-2xl font-black text-white mb-2">포레스트 존</h3>
-            <p class="text-gray-400 text-sm mb-4 opacity-0 group-hover:opacity-100 transition">
-              울창한 편백나무 숲 속, 피톤치드와 함께하는 프라이빗 캠핑
-            </p>
-            <span class="text-[#55efc4] font-bold tracking-widest border border-[#55efc4] self-start px-4 py-2 rounded text-xs">
-              예약하기
-            </span>
-          </div>
-        </div>
-
-        <!-- Zone 2 -->
-        <div class="group relative h-[380px] overflow-hidden rounded-2xl cursor-pointer md:-translate-y-5 shadow-xl z-10">
-          <div class="absolute top-3 right-3 bg-[#fab1a0] text-black font-black px-2 py-1 rounded text-xs z-20">인기</div>
-          <img src="https://images.unsplash.com/photo-1470246973918-29a53295c561?q=80&w=800" alt="레이크 존" class="absolute inset-0 w-full h-full object-cover transition duration-500 group-hover:scale-110">
-          <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent flex flex-col justify-end p-6">
-            <h3 class="text-2xl font-black text-white mb-2">레이크 존</h3>
-            <p class="text-gray-400 text-sm mb-4 opacity-0 group-hover:opacity-100 transition">
-              잔잔한 호수를 바라보며 즐기는 물멍과 카누 체험
-            </p>
-            <span class="text-[#fab1a0] font-bold tracking-widest border border-[#fab1a0] self-start px-4 py-2 rounded text-xs">
-              예약하기
-            </span>
-          </div>
-        </div>
-
-        <!-- Zone 3 -->
-        <div class="group relative h-[380px] overflow-hidden rounded-2xl cursor-pointer">
-          <img src="https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?q=80&w=800" alt="오토 캠프" class="absolute inset-0 w-full h-full object-cover transition duration-500 group-hover:scale-110">
-          <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent flex flex-col justify-end p-6">
-            <h3 class="text-2xl font-black text-white mb-2">오토 캠프</h3>
-            <p class="text-gray-400 text-sm mb-4 opacity-0 group-hover:opacity-100 transition">
-              내 차 바로 옆에 텐트를. 전기 시설 완비된 편리한 오토캠핑
-            </p>
-            <span class="text-white font-bold tracking-widest border border-white self-start px-4 py-2 rounded text-xs">
-              예약하기
-            </span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Reservation -->
-  <section id="reservation" class="py-16 md:py-20 bg-[#2d3436] relative">
-    <div class="container mx-auto px-6">
-      <div class="bg-black/40 backdrop-blur-md border border-white/10 rounded-2xl p-8 md:p-12 max-w-4xl mx-auto shadow-2xl">
-        <div class="text-center mb-10">
-          <h2 class="text-3xl font-black text-white mb-3">탈출 준비 되셨나요?</h2>
-          <p class="text-lg text-[#55efc4]">지금 예약하면 바비큐 세트 무료 제공!</p>
-        </div>
-
-        <form class="space-y-5">
-          <div class="grid md:grid-cols-2 gap-5">
-            <div>
-              <label class="block text-xs font-bold text-gray-400 mb-2">이름</label>
-              <input type="text" class="w-full bg-[#2d3436] border border-gray-600 rounded p-3 text-white focus:border-[#55efc4] outline-none text-sm" placeholder="홍길동">
-            </div>
-             <div>
-              <label class="block text-xs font-bold text-gray-400 mb-2">연락처</label>
-              <input type="tel" class="w-full bg-[#2d3436] border border-gray-600 rounded p-3 text-white focus:border-[#55efc4] outline-none text-sm" placeholder="010-0000-0000">
-            </div>
-          </div>
-          
-          <div class="grid md:grid-cols-3 gap-5">
-             <div>
-              <label class="block text-xs font-bold text-gray-400 mb-2">존 선택</label>
-              <select class="w-full bg-[#2d3436] border border-gray-600 rounded p-3 text-white focus:border-[#55efc4] outline-none text-sm">
-                 <option>포레스트 존</option>
-                 <option>레이크 존</option>
-                 <option>오토 캠프</option>
-              </select>
-            </div>
-            <div class="md:col-span-2">
-              <label class="block text-xs font-bold text-gray-400 mb-2">체크인 날짜</label>
-              <input type="date" class="w-full bg-[#2d3436] border border-gray-600 rounded p-3 text-white focus:border-[#55efc4] outline-none text-gray-400 text-sm">
-            </div>
-          </div>
-
-          <button type="button" class="w-full py-4 bg-[#55efc4] hover:bg-[#fab1a0] text-[#2d3436] font-black text-base tracking-widest rounded transition mt-5">
-            예약 확인
-          </button>
-        </form>
-      </div>
-    </div>
-  </section>
-
-  <!-- Footer -->
-  <footer class="py-10 px-6 bg-[#222] text-center">
-    <p class="text-[#55efc4] font-black text-lg mb-2">🔥 WILD CAMP</p>
-    <p class="text-sm text-gray-600">강원도 홍천군 서면 와일드캠프로 123</p>
+  <footer class="py-32 bg-[#1C1C1E] text-center px-6 border-t border-white/5">
+     <div class="inline-flex items-center gap-10 mb-12">
+        <span class="font-black text-3xl text-white tracking-[0.4em] uppercase italic">WILD<span class="text-[#FF4500]">CAMP</span></span>
+        <div class="w-12 h-[1px] bg-white/10"></div>
+        <span class="text-[10px] font-bold text-white/20 tracking-[0.6em] uppercase">Survival & Leisure</span>
+     </div>
+     <p class="text-[10px] text-white/10 tracking-[1em] uppercase px-6">© 2024 WILD CAMP. ALL RIGHTS RESERVED.</p>
   </footer>
+
+  <script>
+    function toggleCampModal() {
+      const modal = document.getElementById('camp-modal');
+      modal.classList.toggle('hidden');
+      modal.classList.toggle('flex');
+    }
+  </script>
 
 </div>

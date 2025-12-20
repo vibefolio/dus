@@ -1,207 +1,132 @@
-<%# Hotel Template - 그랜드 오션 호텔 %>
+<%# Hotel Template - 그랜드 오션 (GRAND OCEAN) %>
 
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700;800&family=Noto+Sans+KR:wght@300;400&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,700;1,400&family=Nanum+Myeongjo:wght@400;700;800&family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap');
   
+  .font-serif-en { font-family: 'Cormorant Garamond', serif; }
   .font-serif { font-family: 'Nanum Myeongjo', serif; }
   .font-sans { font-family: 'Noto Sans KR', sans-serif; }
+
+  @media (max-width: 768px) {
+    .mobile-desc { font-size: 14px !important; line-height: 1.8; }
+    .mobile-title { font-size: 40px !important; }
+  }
 </style>
 
-<div class="bg-slate-50 text-slate-800 font-sans selection:bg-slate-800 selection:text-white">
+<div class="bg-[#F6F5F2] text-[#1C1C1C] font-sans selection:bg-[#BFA183] selection:text-white min-h-screen overflow-x-hidden">
 
   <!-- Nav -->
-  <nav class="fixed w-full z-50 px-6 py-5 flex justify-between items-center bg-white/95 backdrop-blur-sm border-b border-slate-200">
-    <div class="font-serif text-xl tracking-wide">
-      그랜드 오션
+  <nav class="fixed w-full z-50 px-8 py-8 md:px-12 bg-[#F6F5F2]/80 backdrop-blur-xl border-b border-[#BFA183]/10">
+    <div class="container mx-auto flex justify-between items-center">
+      <div class="flex items-center gap-6">
+         <span class="font-serif-en text-3xl tracking-wide font-bold italic text-[#1C1C1C]">Grand Ocean</span>
+      </div>
+      
+      <div class="hidden md:flex gap-14 text-[10px] font-bold uppercase tracking-[0.3em] text-[#1C1C1C]/40">
+        <a href="#suites" class="hover:text-[#BFA183] transition">Suites</a>
+        <a href="#dining" class="hover:text-[#BFA183] transition">Gastronomy</a>
+        <a href="#spa" class="hover:text-[#BFA183] transition">Wellness</a>
+      </div>
+      
+      <div class="flex gap-8 items-center">
+         <button onclick="toggleHotelModal()" class="text-[10px] font-bold uppercase tracking-[0.3em] text-[#1C1C1C]/40 hover:text-[#BFA183]">Concierge</button>
+         <button class="bg-[#1C1C1C] text-white px-8 py-3 rounded-none font-bold text-[10px] tracking-[0.3em] uppercase hover:bg-[#BFA183] hover:text-white transition shadow-xl">
+           Book Your Stay
+         </button>
+      </div>
     </div>
-    <div class="hidden md:flex gap-10 text-xs font-bold tracking-widest text-slate-600">
-      <a href="#rooms" class="hover:text-slate-900 transition">객실</a>
-      <a href="#dining" class="hover:text-slate-900 transition">다이닝</a>
-      <a href="#facilities" class="hover:text-slate-900 transition">시설</a>
-      <a href="#offers" class="hover:text-slate-900 transition">프로모션</a>
-    </div>
-    <button class="border border-slate-800 px-5 py-2 text-xs font-bold hover:bg-slate-800 hover:text-white transition">
-      예약하기
-    </button>
   </nav>
 
   <!-- Hero -->
-  <header class="min-h-screen relative overflow-hidden flex items-center justify-center text-center pt-16">
-    <div class="absolute inset-0 z-0">
-      <img src="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?q=80&w=1920" alt="그랜드 오션 호텔" class="w-full h-full object-cover">
-      <div class="absolute inset-0 bg-black/30"></div>
-    </div>
-    
-    <div class="relative z-10 text-white px-6">
-      <p class="font-serif text-xl mb-3 text-white/90">럭셔리 체험</p>
-      <h1 class="text-4xl md:text-6xl font-serif tracking-wide mb-6 leading-tight">
-        바다가<br>보이는 휴식처
-      </h1>
-      <p class="max-w-md mx-auto text-white/80 font-light leading-loose text-sm mb-10">
-        푸른 바다와 맞닿은 인피니티 풀, 품격 있는 다이닝.<br>
-        당신의 휴식이 예술이 되는 곳, 그랜드 오션입니다.
-      </p>
-      
-      <div class="inline-flex bg-white text-slate-800 p-1 rounded-lg shadow-xl">
-        <div class="border border-slate-200 px-5 py-3">
-           <span class="block text-[10px] tracking-widest text-slate-400 mb-1">체크인</span>
-           <span class="font-serif text-base">12월 24일</span>
+  <header class="min-h-screen relative flex items-center justify-center pt-20">
+    <div class="container mx-auto px-6 relative z-10 grid lg:grid-cols-12 gap-12 items-center">
+      <div class="lg:col-span-5 space-y-12">
+        <div class="inline-flex items-center gap-4">
+           <span class="w-12 h-[1px] bg-[#BFA183]"></span>
+           <span class="text-[10px] font-bold tracking-[0.6em] uppercase text-[#BFA183]">Signature Hospitality</span>
         </div>
-        <div class="border border-slate-200 px-5 py-3 border-l-0">
-           <span class="block text-[10px] tracking-widest text-slate-400 mb-1">체크아웃</span>
-           <span class="font-serif text-base">12월 26일</span>
+        
+        <h1 class="text-6xl md:text-[5.5rem] font-serif font-black leading-none tracking-tighter text-[#1C1C1C] mobile-title">
+           바다의 깊이,<br><span class="italic text-[#BFA183]">품격의 높이.</span>
+        </h1>
+        
+        <p class="text-[#1C1C1C]/60 text-sm md:text-lg leading-[1.8] max-w-md mobile-desc border-l-2 border-[#1C1C1C]/5 pl-6">
+           그랜드 오션에서 마주하는 압도적인 파노라마. 일상을 벗어나 가장 완벽한 휴식의 시퀀스를 경험하십시오.
+        </p>
+        
+        <div class="pt-6">
+           <div class="bg-white p-2 inline-flex flex-col md:flex-row shadow-2xl shadow-[#BFA183]/10">
+              <div class="px-8 py-4 border-b md:border-b-0 md:border-r border-[#1C1C1C]/5">
+                 <span class="block text-[9px] font-bold tracking-[0.2em] text-[#BFA183] uppercase mb-1">Check In</span>
+                 <span class="font-serif-en text-xl italic font-bold">12. 24</span>
+              </div>
+              <div class="px-8 py-4 border-b md:border-b-0 md:border-r border-[#1C1C1C]/5">
+                 <span class="block text-[9px] font-bold tracking-[0.2em] text-[#BFA183] uppercase mb-1">Check Out</span>
+                 <span class="font-serif-en text-xl italic font-bold">12. 26</span>
+              </div>
+              <button class="px-10 py-4 bg-[#BFA183] text-white text-[10px] font-bold tracking-[0.3em] uppercase hover:bg-[#1C1C1C] transition">
+                Search
+              </button>
+           </div>
         </div>
-        <div class="border border-slate-200 px-5 py-3 border-l-0">
-           <span class="block text-[10px] tracking-widest text-slate-400 mb-1">투숙객</span>
-           <span class="font-serif text-base">성인 2명</span>
-        </div>
-        <button class="px-6 bg-slate-900 text-white font-bold hover:bg-slate-700 transition text-sm">
-          검색
-        </button>
+      </div>
+
+      <div class="lg:col-span-7 relative pl-10 hidden lg:block">
+          <div class="aspect-[16/9] relative z-10">
+             <img src="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?q=80&w=1600" alt="Hotel" class="w-full h-full object-cover grayscale hover:grayscale-0 transition duration-1000">
+             
+             <!-- Floating Badge -->
+             <div class="absolute -bottom-10 -left-10 bg-[#1C1C1C] text-white p-10 max-w-[240px] shadow-2xl">
+                <p class="font-serif-en text-4xl italic mb-2">5 Star</p>
+                <p class="text-[9px] font-bold text-[#BFA183] uppercase tracking-[0.4em]">Luxury Ocean View</p>
+             </div>
+          </div>
+          <!-- Decorative Background -->
+          <div class="absolute -top-10 right-0 w-[80%] h-[120%] bg-[#BFA183]/5 -z-10"></div>
       </div>
     </div>
   </header>
 
-  <!-- Rooms -->
-  <section id="rooms" class="py-20 md:py-28 px-6">
-    <div class="container mx-auto">
-      <div class="flex flex-col md:flex-row justify-between items-end mb-12 px-2">
-        <div>
-           <span class="text-slate-400 text-xs font-bold tracking-widest mb-3 block">객실 안내</span>
-           <h2 class="text-3xl font-serif text-slate-900">객실 & 스위트</h2>
-        </div>
-        <a href="#" class="text-slate-500 hover:text-slate-900 transition text-sm border-b border-slate-300 pb-1 mt-4 md:mt-0">전체 객실 보기 →</a>
+  <!-- Login Modal -->
+  <div id="hotel-modal" class="fixed inset-0 z-[100] hidden items-center justify-center p-4 bg-[#1C1C1C]/60 backdrop-blur-2xl">
+    <div class="bg-white w-full max-w-sm p-16 shadow-2xl relative border-t-8 border-[#BFA183]">
+      <button onclick="toggleHotelModal()" class="absolute top-8 right-8 text-[#1C1C1C]/20 hover:text-[#BFA183] transition text-2xl font-light">&times;</button>
+      
+      <div class="text-center mb-14">
+        <h2 class="text-2xl font-serif-en italic tracking-wide text-[#1C1C1C] mb-3 font-bold">Member's Suite</h2>
+        <p class="text-[9px] text-[#BFA183] font-bold tracking-[0.3em] uppercase">Grand Ocean Privilege</p>
       </div>
-
-      <div class="grid md:grid-cols-2 gap-6">
-         <!-- Room 1 -->
-         <div class="group cursor-pointer">
-            <div class="overflow-hidden mb-5 relative h-[320px] rounded-lg">
-               <img src="https://images.unsplash.com/photo-1618773928121-c32242e63f39?q=80&w=800" alt="디럭스 오션뷰" class="w-full h-full object-cover transition duration-500 group-hover:scale-105">
-               <div class="absolute bottom-0 left-0 bg-white px-6 py-3">
-                  <h3 class="font-serif text-xl">디럭스 오션뷰</h3>
-               </div>
-            </div>
-            <p class="text-slate-500 font-light text-sm leading-relaxed mb-3 pr-8">
-               바다를 한눈에 조망할 수 있는 프라이빗 발코니와 킹 사이즈 베드.<br>
-               최고급 어메니티와 함께하는 아늑한 휴식.
-            </p>
-            <div class="flex gap-3 text-[10px] tracking-widest text-slate-400">
-               <span>42 SQM</span>
-               <span>•</span>
-               <span>킹 베드</span>
-               <span>•</span>
-               <span>오션뷰</span>
-            </div>
-         </div>
-
-         <!-- Room 2 -->
-         <div class="group cursor-pointer">
-            <div class="overflow-hidden mb-5 relative h-[320px] rounded-lg">
-               <img src="https://images.unsplash.com/photo-1578683010236-d716f9a3f461?q=80&w=800" alt="로얄 스위트" class="w-full h-full object-cover transition duration-500 group-hover:scale-105">
-               <div class="absolute bottom-0 left-0 bg-white px-6 py-3">
-                  <h3 class="font-serif text-xl">로얄 스위트</h3>
-               </div>
-            </div>
-            <p class="text-slate-500 font-light text-sm leading-relaxed mb-3 pr-8">
-               넓은 거실과 독립된 침실, 전용 자쿠지를 갖춘 스위트룸.<br>
-               VIP 고객을 위한 버틀러 서비스를 제공합니다.
-            </p>
-            <div class="flex gap-3 text-[10px] tracking-widest text-slate-400">
-               <span>85 SQM</span>
-               <span>•</span>
-               <span>스위트</span>
-               <span>•</span>
-               <span>파노라믹 뷰</span>
-            </div>
-         </div>
+      
+      <div class="space-y-8">
+        <div class="space-y-3">
+           <input type="text" placeholder="MEMBERSHIP NO." class="w-full bg-[#F6F5F2] border-none py-6 px-8 outline-none focus:ring-1 focus:ring-[#BFA183] transition text-[11px] font-bold tracking-widest text-[#1C1C1C]">
+        </div>
+        <button class="w-full bg-[#1C1C1C] text-white py-6 text-[10px] tracking-[0.4em] font-black uppercase hover:bg-[#BFA183] transition shadow-xl">
+           Access Lounge
+        </button>
+        <div class="flex justify-center gap-10 pt-4">
+           <a href="#" class="text-[9px] text-[#1C1C1C]/40 tracking-[0.3em] font-bold uppercase hover:text-[#BFA183] transition italic">Join Club</a>
+           <a href="#" class="text-[9px] text-[#1C1C1C]/40 tracking-[0.3em] font-bold uppercase hover:text-[#BFA183] transition italic">Reservation Lookup</a>
+        </div>
       </div>
     </div>
-  </section>
+  </div>
 
-  <!-- Facilities -->
-  <section id="facilities" class="py-20 md:py-28 bg-slate-900 text-white relative">
-    <div class="container mx-auto px-6 grid md:grid-cols-2 gap-16 items-center">
-       <div class="relative">
-          <img src="https://images.unsplash.com/photo-1571896349842-68c2531b26f5?q=80&w=800" alt="인피니티 풀" class="w-full h-[450px] object-cover rounded-lg brightness-75">
-       </div>
-       
-       <div>
-          <span class="text-slate-400 text-xs font-bold tracking-widest mb-3 block">휴식</span>
-          <h2 class="text-3xl font-serif mb-10">월드 클래스 어메니티</h2>
-          
-          <div class="space-y-10">
-             <div class="flex gap-5">
-                <div class="text-2xl text-slate-400">🏊‍♂️</div>
-                <div>
-                   <h4 class="font-serif text-lg mb-2">인피니티 풀</h4>
-                   <p class="text-slate-400 text-sm font-light leading-relaxed">
-                      사계절 온수풀로 운영되는 인피니티 풀에서<br>
-                      황홀한 일몰을 감상하세요.
-                   </p>
-                </div>
-             </div>
-             
-             <div class="flex gap-5">
-                <div class="text-2xl text-slate-400">🍽️</div>
-                <div>
-                   <h4 class="font-serif text-lg mb-2">파인 다이닝</h4>
-                   <p class="text-slate-400 text-sm font-light leading-relaxed">
-                      미슐랭 스타 셰프가 선보이는<br>
-                      제철 식재료의 감각적인 코스 요리.
-                   </p>
-                </div>
-             </div>
-             
-             <div class="flex gap-5">
-                <div class="text-2xl text-slate-400">🧖‍♀️</div>
-                <div>
-                   <h4 class="font-serif text-lg mb-2">럭셔리 스파</h4>
-                   <p class="text-slate-400 text-sm font-light leading-relaxed">
-                      전문 테라피스트의 손길로<br>
-                      여행의 피로를 씻어내는 힐링 타임.
-                   </p>
-                </div>
-             </div>
-          </div>
-       </div>
-    </div>
-  </section>
-
-  <!-- Special Offers -->
-  <section id="offers" class="py-20 md:py-28 px-6 bg-slate-50">
-     <div class="container mx-auto">
-        <h2 class="text-3xl font-serif text-center mb-12">특별 프로모션</h2>
-        
-        <div class="grid md:grid-cols-3 gap-6">
-           <div class="bg-white p-6 shadow-sm hover:shadow-xl transition text-center group rounded-lg">
-              <span class="text-xs font-bold tracking-widest text-slate-400 mb-3 block">패키지</span>
-              <h3 class="font-serif text-xl mb-3 text-slate-800">베드 & 브렉퍼스트</h3>
-              <p class="text-sm text-slate-500 mb-6 font-light">객실 1박 + 2인 조식 뷔페</p>
-              <button class="w-full py-3 border border-slate-200 text-slate-800 text-xs font-bold hover:bg-slate-800 hover:text-white transition">예약하기</button>
-           </div>
-           
-           <div class="bg-slate-800 p-6 shadow-xl text-center group rounded-lg md:-translate-y-3">
-              <span class="text-xs font-bold tracking-widest text-slate-400 mb-3 block">이벤트</span>
-              <h3 class="font-serif text-xl mb-3 text-white">로맨틱 게이트웨이</h3>
-              <p class="text-sm text-slate-300 mb-6 font-light">오션뷰 스위트 + 샴페인 & 케이크 + 레이트 체크아웃</p>
-              <button class="w-full py-3 bg-white text-slate-800 text-xs font-bold hover:bg-slate-200 transition">예약하기</button>
-           </div>
-           
-           <div class="bg-white p-6 shadow-sm hover:shadow-xl transition text-center group rounded-lg">
-              <span class="text-xs font-bold tracking-widest text-slate-400 mb-3 block">회원</span>
-              <h3 class="font-serif text-xl mb-3 text-slate-800">얼리버드 할인</h3>
-              <p class="text-sm text-slate-500 mb-6 font-light">30일 전 예약 시 15% 할인</p>
-              <button class="w-full py-3 border border-slate-200 text-slate-800 text-xs font-bold hover:bg-slate-800 hover:text-white transition">예약하기</button>
-           </div>
-        </div>
+  <footer class="py-32 bg-[#1C1C1C] text-center px-6">
+     <div class="inline-flex flex-col items-center gap-8 mb-12">
+        <span class="font-serif-en text-4xl text-white tracking-wide italic">Grand Ocean</span>
+        <span class="w-12 h-[1px] bg-white/10"></span>
+        <span class="text-[10px] font-bold text-white/30 tracking-[0.6em] uppercase">The Ultimate Escape</span>
      </div>
-  </section>
-
-  <!-- Footer -->
-  <footer class="py-10 px-6 bg-slate-900 text-center">
-    <p class="font-serif text-lg text-white mb-2">그랜드 오션 호텔</p>
-    <p class="text-sm text-slate-500">부산시 해운대구 해운대해변로 123</p>
+     <p class="text-[10px] text-white/10 tracking-[1em] uppercase px-6">© 2024 GRAND OCEAN HOTEL. ALL RIGHTS RESERVED.</p>
   </footer>
+
+  <script>
+    function toggleHotelModal() {
+      const modal = document.getElementById('hotel-modal');
+      modal.classList.toggle('hidden');
+      modal.classList.toggle('flex');
+    }
+  </script>
 
 </div>

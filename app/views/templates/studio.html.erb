@@ -1,143 +1,104 @@
-<%# Studio Template - 모노크롬 스튜디오 %>
+<%# Studio Template - 모노크롬 (Monochrome) %>
 
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700;800&family=Noto+Sans+KR:wght@300;400&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700;800&family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap');
   
   .font-serif { font-family: 'Nanum Myeongjo', serif; }
   .font-sans { font-family: 'Noto Sans KR', sans-serif; }
-  
-  .masonry-grid {
-    column-count: 2;
-    column-gap: 1rem;
-  }
-  @media (min-width: 768px) {
-    .masonry-grid {
-      column-count: 3;
-    }
-  }
-  .masonry-item {
-    break-inside: avoid;
-    margin-bottom: 1rem;
+
+  @media (max-width: 768px) {
+    .mobile-desc { font-size: 14px !important; line-height: 1.6; }
+    .mobile-title { font-size: 36px !important; }
   }
 </style>
 
-<div class="bg-black text-white font-sans selection:bg-white selection:text-black min-h-screen">
+<div class="bg-black text-[#f2f2f2] font-sans selection:bg-white selection:text-black min-h-screen overflow-x-hidden">
 
   <!-- Nav -->
-  <nav class="fixed w-full z-50 px-6 md:px-8 py-6 bg-black/80 backdrop-blur-sm border-b border-white/10">
-    <div class="flex justify-between items-center">
-      <div class="text-lg font-serif">모노크롬</div>
-      <div class="hidden md:flex gap-8 text-xs tracking-wide">
-        <a href="#portfolio" class="hover:text-gray-400 transition">포트폴리오</a>
-        <a href="#about" class="hover:text-gray-400 transition">아티스트</a>
-        <a href="#contact" class="hover:text-gray-400 transition">문의하기</a>
+  <nav class="fixed w-full z-50 px-6 py-6 bg-black/9 worst backdrop-blur-md border-b border-white/5">
+    <div class="container mx-auto flex justify-between items-center">
+      <div class="flex items-center gap-4">
+         <span class="font-serif text-2xl text-white tracking-[0.5em] font-black uppercase">MONO</span>
+      </div>
+      
+      <div class="hidden md:flex gap-12 text-[10px] font-bold uppercase tracking-[0.4em] text-gray-600">
+        <a href="#archives" class="hover:text-white transition">Archives</a>
+        <a href="#philosophy" class="hover:text-white transition">Vision</a>
+        <a href="#contact" class="hover:text-white transition">Booking</a>
+      </div>
+      
+      <div class="flex gap-6 items-center">
+         <button onclick="toggleStudioModal()" class="text-[10px] font-bold uppercase tracking-[0.4em] text-gray-600 hover:text-white">Client Archive</button>
+         <button class="bg-white text-black px-6 py-2.5 rounded-sm font-black text-[10px] tracking-widest uppercase hover:bg-gray-200 transition shadow-xl">
+           Schedule
+         </button>
       </div>
     </div>
   </nav>
 
   <!-- Hero -->
-  <header class="min-h-screen flex items-center justify-center px-6 relative pt-16">
-    <div class="text-center z-10 w-full">
-      <p class="text-xs tracking-widest mb-4 text-gray-400">Photography Studio</p>
-      <h1 class="text-5xl md:text-7xl font-serif leading-tight mb-8">
-        순간을<br>담다
-      </h1>
-      <div class="w-[1px] h-20 bg-white/20 mx-auto"></div>
+  <header class="min-h-screen relative flex items-center justify-center overflow-hidden pt-20">
+    <div class="absolute inset-0">
+       <img src="https://images.unsplash.com/photo-1471341971476-84d5a7d74d82?q=80&w=1920" alt="스튜디오" class="w-full h-full object-cover grayscale opacity-20 brightness-50">
     </div>
+    <div class="absolute inset-0 bg-gradient-to-b from-black via-transparent to-black"></div>
     
-    <div class="absolute inset-0 z-0 opacity-40">
-       <img src="https://images.unsplash.com/photo-1471341971476-84d5a7d74d82?q=80&w=1920" alt="스튜디오 사진" class="w-full h-full object-cover grayscale">
+    <div class="container mx-auto px-6 relative z-10 text-center space-y-12">
+      <div class="w-[1px] h-20 bg-white/30 mx-auto mb-10"></div>
+      <p class="font-serif text-xl md:text-2xl italic tracking-[0.2em] text-gray-400">Capturing the Essence of Light</p>
+      <h1 class="text-5xl md:text-9xl font-serif leading-none tracking-tighter text-white mobile-title">
+         찰나의 정적,<br><span class="italic">영원한 잔상.</span>
+      </h1>
+      <p class="text-gray-600 text-sm md:text-xl leading-relaxed max-w-2xl mx-auto mobile-desc font-light">
+         빛과 그림자, 그 사이의 가장 정직한 온도. 모노크롬은 인위적인 화려함 대신 <br>
+         피사체 본연의 고유한 서사가 드러나는 찰나를 기록합니다.
+      </p>
+      <div class="pt-8">
+         <a href="#archives" class="inline-flex items-center gap-6 text-white text-[10px] font-black uppercase tracking-[0.4em] group">
+            See the Records <span class="group-hover:translate-x-2 transition">→</span>
+         </a>
+      </div>
     </div>
   </header>
 
-  <!-- About -->
-  <section id="about" class="py-20 md:py-32 px-6 bg-[#0a0a0a]">
-    <div class="container mx-auto grid md:grid-cols-2 gap-12 items-center">
-      <div class="relative">
-        <img src="https://images.unsplash.com/photo-1554048612-387768052bf7?q=80&w=800" alt="포토그래퍼" class="w-full grayscale brightness-75 hover:brightness-100 transition duration-500">
-      </div>
-      <div>
-        <h2 class="text-3xl font-serif mb-6">아티스트 소개</h2>
-        <p class="text-gray-400 font-light leading-loose mb-10">
-          우리는 빛과 그림자, 그 사이의 찰나를 기록합니다.<br>
-          인위적인 연출보다는 피사체 본연의 분위기를 담아내는 것에 집중합니다.<br>
-          당신의 가장 자연스러운 순간이 작품이 됩니다.
-        </p>
-        <div class="grid grid-cols-2 gap-6 border-t border-white/10 pt-6">
-           <div>
-             <span class="text-2xl font-serif">10+</span>
-             <p class="text-xs text-gray-500 mt-1">년 경력</p>
-           </div>
-           <div>
-             <span class="text-2xl font-serif">500+</span>
-             <p class="text-xs text-gray-500 mt-1">포트레이트 촬영</p>
-           </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Portfolio (Masonry) -->
-  <section id="portfolio" class="py-20 md:py-32 px-4 md:px-8 bg-black">
-    <div class="text-center mb-12">
-      <h2 class="text-3xl font-serif">포트폴리오</h2>
-    </div>
-    <div class="masonry-grid">
-      <!-- Item 1 -->
-      <div class="masonry-item group cursor-pointer relative">
-        <img src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?q=80&w=600" alt="인물 사진" class="w-full grayscale group-hover:grayscale-0 transition duration-500">
-        <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition">
-           <span class="font-serif text-xl">인물 사진</span>
-        </div>
-      </div>
-      <!-- Item 2 -->
-      <div class="masonry-item group cursor-pointer relative">
-        <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=600" alt="패션 화보" class="w-full grayscale group-hover:grayscale-0 transition duration-500">
-        <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition">
-           <span class="font-serif text-xl">패션 화보</span>
-        </div>
-      </div>
-      <!-- Item 3 -->
-      <div class="masonry-item group cursor-pointer relative">
-        <img src="https://images.unsplash.com/photo-1542038784456-1ea8e935640e?q=80&w=600" alt="제품 사진" class="w-full grayscale group-hover:grayscale-0 transition duration-500">
-        <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition">
-           <span class="font-serif text-xl">제품 사진</span>
-        </div>
-      </div>
-      <!-- Item 4 -->
-      <div class="masonry-item group cursor-pointer relative">
-        <img src="https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=600" alt="웨딩 사진" class="w-full grayscale group-hover:grayscale-0 transition duration-500">
-        <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition">
-           <span class="font-serif text-xl">웨딩 촬영</span>
-        </div>
-      </div>
-      <!-- Item 5 -->
-      <div class="masonry-item group cursor-pointer relative">
-        <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=600" alt="프로필 사진" class="w-full grayscale group-hover:grayscale-0 transition duration-500">
-        <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition">
-           <span class="font-serif text-xl">프로필</span>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Contact -->
-  <section id="contact" class="py-20 md:py-32 px-6 bg-white text-black text-center">
-    <div class="container mx-auto max-w-xl">
-      <p class="font-serif text-2xl md:text-3xl mb-6">함께 작업해요</p>
-      <p class="text-gray-500 text-sm mb-8">촬영 문의 및 견적은 아래 이메일로 연락주세요.</p>
-      <a href="mailto:contact@monochrome.kr" class="text-lg border-b border-black pb-1 hover:text-gray-500 transition">contact@monochrome.kr</a>
+  <!-- Login Modal -->
+  <div id="studio-modal" class="fixed inset-0 z-[100] hidden items-center justify-center p-4 bg-white/5 worst backdrop-blur-md">
+    <div class="bg-black w-full max-w-sm p-12 shadow-2xl relative border border-white/10 rounded-sm">
+      <button onclick="toggleStudioModal()" class="absolute top-10 right-10 text-gray-500 hover:text-white transition text-2xl font-light">&times;</button>
       
-      <div class="flex justify-center gap-6 mt-12 text-sm text-gray-500">
-        <a href="#" class="hover:text-black transition">인스타그램</a>
-        <a href="#" class="hover:text-black transition">카카오톡</a>
+      <div class="text-center mb-10">
+        <h2 class="text-xl font-serif tracking-[0.4em] text-white mb-2 font-black uppercase">CLIENT_DATA</h2>
+        <p class="text-[9px] text-gray-500 font-bold tracking-[0.3em] uppercase">Private Archive Access</p>
+      </div>
+      
+      <div class="space-y-6">
+        <input type="text" placeholder="ACCESS KEY" class="w-full bg-white/5 border border-white/5 py-5 px-6 outline-none focus:border-white/30 transition text-[11px] font-black tracking-widest text-white uppercase">
+        <button class="w-full bg-white text-black py-5 rounded-sm text-[10px] tracking-[0.4em] font-black uppercase hover:bg-gray-200 transition shadow-lg">
+           Authorize Stream
+        </button>
+        <div class="flex justify-center gap-10 pt-4">
+           <a href="#" class="text-[9px] text-gray-500 tracking-[0.2em] font-bold uppercase hover:text-white transition">New Order</a>
+           <a href="#" class="text-[9px] text-gray-500 tracking-[0.2em] font-bold uppercase hover:text-white transition">Support</a>
+        </div>
       </div>
     </div>
-  </section>
+  </div>
 
-  <!-- Footer -->
-  <footer class="py-8 px-6 bg-black text-center border-t border-white/10">
-    <p class="text-sm text-gray-500">© 2024 모노크롬 스튜디오. All Rights Reserved.</p>
+  <footer class="py-24 bg-black text-center px-6 border-t border-white/5">
+     <div class="inline-flex items-center gap-6 mb-8">
+        <span class="font-serif text-3xl tracking-[0.5em] font-black uppercase">MONO</span>
+        <span class="w-12 h-[1px] bg-white/10"></span>
+        <span class="text-[10px] font-bold text-gray-700 tracking-[0.4em] uppercase">Light & Shadow Archive</span>
+     </div>
+     <p class="text-[10px] text-white/5 tracking-[0.6em] uppercase px-6">© 2024 MONOCHROME STUDIO SEOUL. ALL RIGHTS RESERVED.</p>
   </footer>
+
+  <script>
+    function toggleStudioModal() {
+      const modal = document.getElementById('studio-modal');
+      modal.classList.toggle('hidden');
+      modal.classList.toggle('flex');
+    }
+  </script>
 
 </div>

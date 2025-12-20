@@ -1,186 +1,149 @@
-<%# Learnhub Template - 스킬업 (온라인 강의) %>
+<%# Learnhub Template - 스킬업 (SKILLUP) %>
 
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700;900&family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap');
   
+  .font-inter { font-family: 'Inter', sans-serif; }
   .font-sans { font-family: 'Noto Sans KR', sans-serif; }
+
+  @media (max-width: 768px) {
+    .mobile-desc { font-size: 14px !important; line-height: 1.6; }
+    .mobile-title { font-size: 32px !important; }
+  }
 </style>
 
-<div class="bg-[#0f0e17] text-white font-sans selection:bg-[#2cb67d] selection:text-black">
+<div class="bg-[#0A0A0B] text-white font-sans selection:bg-[#2DD4BF] selection:text-black min-h-screen overflow-x-hidden">
+
+  <!-- Glow Background -->
+  <div class="fixed inset-0 pointer-events-none overflow-hidden">
+    <div class="absolute top-[-10%] right-[-10%] w-[60%] h-[60%] bg-[#2DD4BF]/5 rounded-full blur-[120px]"></div>
+    <div class="absolute bottom-[-10%] left-[-10%] w-[60%] h-[60%] bg-[#6366F1]/5 rounded-full blur-[120px]"></div>
+  </div>
 
   <!-- Nav -->
-  <nav class="fixed w-full z-50 border-b border-white/5 bg-[#0f0e17]/90 backdrop-blur-md shadow-lg">
-    <div class="container mx-auto px-6 h-16 flex justify-between items-center">
-      <a href="#" class="font-black text-xl tracking-tighter text-white uppercase italic">
-        Skill<span class="text-[#2cb67d]">Up</span>
-      </a>
-      
-      <div class="hidden md:flex gap-8 text-sm font-bold text-gray-400">
-        <a href="#" class="hover:text-white transition">카테고리</a>
-        <a href="#" class="hover:text-white transition">강사진</a>
-        <a href="#" class="hover:text-white transition">커뮤니티</a>
-        <a href="#" class="hover:text-white transition">구독형</a>
+  <nav class="fixed w-full z-50 px-6 py-6 bg-[#0A0A0B]/80 backdrop-blur-xl border-b border-white/5">
+    <div class="container mx-auto flex justify-between items-center">
+      <div class="flex items-center gap-2">
+         <div class="w-8 h-8 bg-gradient-to-tr from-[#2DD4BF] to-[#6366F1] rounded-lg"></div>
+         <span class="font-black text-xl tracking-tighter uppercase font-inter">SKILL<span class="text-transparent bg-clip-text bg-gradient-to-r from-[#2DD4BF] to-[#6366F1]">UP</span></span>
       </div>
       
-      <div class="flex gap-4">
-        <button class="text-xs font-bold text-gray-400 hover:text-white">로그인</button>
-        <button class="bg-[#2cb67d] text-black px-4 py-2 rounded text-xs font-bold hover:bg-[#249666] transition">
-          시작하기
-        </button>
+      <div class="hidden md:flex gap-10 text-[11px] font-bold uppercase tracking-[0.2em] text-white/40">
+        <a href="#courses" class="hover:text-[#2DD4BF] transition">Catalog</a>
+        <a href="#mentors" class="hover:text-[#2DD4BF] transition">Expertise</a>
+        <a href="#enterprise" class="hover:text-[#2DD4BF] transition">Enterprise</a>
+      </div>
+      
+      <div class="flex gap-6 items-center">
+         <button onclick="toggleSkillUpModal()" class="text-[11px] font-bold uppercase tracking-[0.2em] text-white/40 hover:text-white transition">Sign In</button>
+         <button class="bg-white text-black px-6 py-2.5 rounded-full font-bold text-[11px] tracking-widest uppercase hover:bg-[#2DD4BF] transition shadow-xl shadow-white/5">
+           Get Started
+         </button>
       </div>
     </div>
   </nav>
 
   <!-- Hero -->
-  <header class="pt-32 pb-16 px-6 relative overflow-hidden bg-[#0f0e17]">
-     <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-80 h-80 bg-[#7f5af0] rounded-full filter blur-[100px] opacity-10 pointer-events-none"></div>
-     
-     <div class="container mx-auto text-center relative z-10 max-w-3xl">
-        <div class="inline-flex items-center gap-2 border border-white/10 bg-white/5 px-4 py-1.5 rounded-full text-xs font-bold text-[#2cb67d] mb-6">
-           <span class="w-1.5 h-1.5 rounded-full bg-[#2cb67d] animate-pulse"></span> 신규 강의: AI 프롬프트 엔지니어링 마스터
+  <header class="min-h-screen relative flex items-center justify-center pt-20">
+    <div class="container mx-auto px-6 relative z-10 grid lg:grid-cols-2 gap-20 items-center">
+      <div class="space-y-10 text-center lg:text-left">
+        <div class="inline-flex items-center gap-2 bg-white/5 border border-white/10 px-4 py-1.5 rounded-full">
+           <span class="flex h-2 w-2 relative">
+             <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#2DD4BF] opacity-75"></span>
+             <span class="relative inline-flex rounded-full h-2 w-2 bg-[#2DD4BF]"></span>
+           </span>
+           <span class="text-[10px] font-bold tracking-widest uppercase text-white/60">Limitless Tech Evolution 2024</span>
         </div>
         
-        <h1 class="text-4xl md:text-6xl font-black leading-tight mb-6">
-           내일의 핵심 스킬을 <br>
-           <span class="text-[#2cb67d]">내 것으로 만드세요.</span>
+        <h1 class="text-5xl md:text-8xl font-black leading-[1.1] tracking-tighter mobile-title">
+           Next Generation<br>
+           <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#2DD4BF] to-[#6366F1]">Skill Mastery.</span>
         </h1>
         
-        <p class="text-gray-400 text-base md:text-lg leading-relaxed max-w-xl mx-auto mb-10 font-light">
-           업계 전문가가 알려주는 실무 중심의 기술 강의.<br>
-           코딩부터 디자인까지, 지금 바로 러닝을 시작하세요.
+        <p class="text-white/40 text-sm md:text-xl leading-relaxed max-w-xl mx-auto lg:mx-0 mobile-desc">
+           단순한 강의가 아닌, 실무의 본질을 전달합니다. 최고의 전문가들이 설계한 커리큘럼으로 당신의 커리어 패스를 재정의하세요.
         </p>
         
-        <div class="flex justify-center">
-           <div class="relative w-full max-w-md">
-              <input type="text" placeholder="어떤 스킬을 배우고 싶으신가요?" class="w-full bg-white/5 border border-white/10 rounded-lg px-6 py-4 outline-none focus:border-[#2cb67d] transition text-white placeholder-gray-500 text-sm">
-              <button class="absolute right-3 top-2.5 bg-[#7f5af0] p-2.5 rounded hover:bg-[#6841e0] transition">
-                 <span class="text-lg">🔍</span>
-              </button>
-           </div>
+        <div class="flex flex-col sm:flex-row gap-6 justify-center lg:justify-start">
+           <button class="px-12 py-5 bg-white text-black font-black text-[11px] tracking-widest uppercase hover:bg-[#2DD4BF] transition-all">
+              Browse Courses
+           </button>
+           <button class="px-12 py-5 border border-white/10 text-white font-black text-[11px] tracking-widest uppercase hover:bg-white/5 transition-all">
+              Enterprise Inquiry
+           </button>
         </div>
-        
-        <div class="mt-12 flex flex-wrap justify-center gap-6 text-gray-600 text-[10px] font-bold uppercase tracking-widest opacity-50">
-           <span>Google Partner</span>
-           <span>Meta Accredited</span>
-           <span>Netflix Approved</span>
+
+        <div class="pt-10 flex items-center justify-center lg:justify-start gap-10 grayscale opacity-40">
+           <span class="text-xs font-black font-inter tracking-widest uppercase italic">Google Partners</span>
+           <span class="text-xs font-black font-inter tracking-widest uppercase italic">AWS Certified</span>
+           <span class="text-xs font-black font-inter tracking-widest uppercase italic">Meta Academy</span>
         </div>
-     </div>
+      </div>
+      
+      <div class="relative hidden lg:block">
+         <div class="absolute -inset-20 bg-[#6366F1]/10 rounded-full blur-[120px]"></div>
+         <div class="relative bg-[#111112] border border-white/10 p-8 rounded-[2.5rem] shadow-2xl">
+            <div class="aspect-video bg-black rounded-2xl overflow-hidden mb-8 border border-white/5 group relative cursor-pointer">
+               <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=1200" alt="Learning" class="w-full h-full object-cover transition duration-700 group-hover:scale-110 opacity-60">
+               <div class="absolute inset-0 flex items-center justify-center">
+                  <div class="w-16 h-16 bg-white/10 backdrop-blur-xl rounded-full flex items-center justify-center border border-white/20 group-hover:scale-110 transition duration-500">
+                     <div class="w-0 h-0 border-t-[8px] border-t-transparent border-l-[14px] border-l-white border-b-[8px] border-b-transparent ml-1"></div>
+                  </div>
+               </div>
+            </div>
+            <div class="space-y-4">
+               <div class="flex justify-between items-center">
+                  <p class="text-[10px] font-bold tracking-widest uppercase text-[#2DD4BF]">Current Lesson</p>
+                  <p class="text-[10px] font-bold tracking-widest uppercase text-white/30 italic">85% Complete</p>
+               </div>
+               <p class="text-xl font-bold tracking-tight">AI Driven Frontend Architecture</p>
+               <div class="h-1 bg-white/5 rounded-full overflow-hidden">
+                  <div class="h-full w-[85%] bg-gradient-to-r from-[#2DD4BF] to-[#6366F1]"></div>
+               </div>
+            </div>
+         </div>
+      </div>
+    </div>
   </header>
 
-  <!-- Categories -->
-  <section class="py-16 md:py-20 border-y border-white/5 bg-[#16161a]">
-     <div class="container mx-auto px-6">
-        <div class="text-center mb-12">
-           <h2 class="text-2xl font-bold mb-3">인기 카테고리</h2>
-           <p class="text-gray-500 text-sm">현재 가장 주목받는 학습 분야입니다.</p>
+  <!-- Login Modal -->
+  <div id="skillup-modal" class="fixed inset-0 z-[100] hidden items-center justify-center p-4 bg-black/95 backdrop-blur-2xl">
+    <div class="bg-[#111112] w-full max-w-sm p-12 shadow-2xl relative rounded-[3rem] border border-white/5">
+      <button onclick="toggleSkillUpModal()" class="absolute top-10 right-10 text-white/20 hover:text-[#2DD4BF] transition text-2xl font-light">&times;</button>
+      
+      <div class="text-center mb-10">
+        <h2 class="text-xl font-inter tracking-[0.4em] text-white mb-2 font-black uppercase">SKILLUP_LOGIN</h2>
+        <p class="text-[9px] text-[#2DD4BF] font-bold tracking-[0.2em] uppercase">Access Universal Curriculum</p>
+      </div>
+      
+      <div class="space-y-6">
+        <input type="text" placeholder="ACCESS KEY / ID" class="w-full bg-white/5 border border-white/10 rounded-2xl py-5 px-6 outline-none focus:ring-1 focus:ring-[#2DD4BF] transition text-[11px] font-bold tracking-widest text-white uppercase placeholder:text-white/20">
+        <button class="w-full bg-white text-black py-5 rounded-2xl text-[10px] tracking-[0.4em] font-black uppercase hover:bg-[#2DD4BF] transition shadow-xl">
+           Establish Session
+        </button>
+        <div class="flex justify-center gap-10 pt-4">
+           <a href="#" class="text-[9px] text-white/30 tracking-[0.2em] font-bold uppercase hover:text-[#2DD4BF] transition">Join Academy</a>
+           <a href="#" class="text-[9px] text-white/30 tracking-[0.2em] font-bold uppercase hover:text-[#2DD4BF] transition">Reset Key</a>
         </div>
-        
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-           <div class="p-6 bg-white/5 border border-white/5 rounded-xl hover:bg-white/10 transition cursor-pointer group">
-              <div class="w-10 h-10 bg-blue-500/20 text-blue-400 rounded-lg flex items-center justify-center text-xl mb-4">💻</div>
-              <h3 class="font-bold text-sm mb-1">웹 개발</h3>
-              <p class="text-[10px] text-gray-500">120+ 강의</p>
-           </div>
-           <div class="p-6 bg-white/5 border border-white/5 rounded-xl hover:bg-white/10 transition cursor-pointer group">
-              <div class="w-10 h-10 bg-purple-500/20 text-purple-400 rounded-lg flex items-center justify-center text-xl mb-4">🎨</div>
-              <h3 class="font-bold text-sm mb-1">UI/UX 디자인</h3>
-              <p class="text-[10px] text-gray-500">85+ 강의</p>
-           </div>
-           <div class="p-6 bg-white/5 border border-white/5 rounded-xl hover:bg-white/10 transition cursor-pointer group">
-              <div class="w-10 h-10 bg-green-500/20 text-green-400 rounded-lg flex items-center justify-center text-xl mb-4">📊</div>
-              <h3 class="font-bold text-sm mb-1">데이터 사이언스</h3>
-              <p class="text-[10px] text-gray-500">90+ 강의</p>
-           </div>
-           <div class="p-6 bg-white/5 border border-white/5 rounded-xl hover:bg-white/10 transition cursor-pointer group">
-              <div class="w-10 h-10 bg-orange-500/20 text-orange-400 rounded-lg flex items-center justify-center text-xl mb-4">🤖</div>
-              <h3 class="font-bold text-sm mb-1">인공지능</h3>
-              <p class="text-[10px] text-gray-500">40+ 강의</p>
-           </div>
-        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="py-24 bg-[#0A0A0B] text-center px-6 border-t border-white/5">
+     <div class="inline-flex items-center gap-6 mb-8">
+        <span class="font-inter text-2xl tracking-[0.5em] font-black uppercase">SKILL<span class="text-white/20">UP</span></span>
+        <span class="w-12 h-[1px] bg-white/10"></span>
+        <span class="text-[10px] font-bold text-white/20 tracking-[0.4em] uppercase">Code · Design · Future</span>
      </div>
-  </section>
-
-  <!-- Featured Courses -->
-  <section class="py-16 md:py-24 px-6 bg-[#0f0e17]">
-     <div class="container mx-auto">
-        <h2 class="text-2xl font-bold mb-10 border-l-4 border-[#2cb67d] pl-4">이달의 추천 강의</h2>
-        
-        <div class="grid md:grid-cols-3 gap-8">
-           <!-- Course 1 -->
-           <div class="bg-[#16161a] rounded-2xl overflow-hidden border border-white/5 hover:border-[#2cb67d] transition group">
-              <div class="relative h-44 overflow-hidden">
-                 <img src="https://images.unsplash.com/photo-1587620962725-abab7fe55159?q=80&w=600" alt="강의" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
-                 <div class="absolute top-3 left-3 bg-black/60 backdrop-blur px-2 py-0.5 rounded text-[10px] font-bold text-white">베스트셀러</div>
-              </div>
-              <div class="p-6">
-                 <div class="flex justify-between items-start mb-2">
-                    <h3 class="font-bold text-base leading-tight group-hover:text-[#2cb67d] transition">프론트엔드 리액트 마스터 클래스</h3>
-                    <span class="bg-[#2cb67d] text-black text-[10px] font-bold px-1.5 py-0.5 rounded">4.8 ★</span>
-                 </div>
-                 <p class="text-gray-500 text-xs mb-5 line-clamp-2 font-light">리액트 기초부터 실전 프로젝트까지, 최신 훅과 리덕스를 완벽하게 습득합니다.</p>
-                 <div class="flex items-center gap-2 mb-5">
-                    <div class="w-6 h-6 rounded-full bg-gray-700"></div>
-                     <span class="text-[10px] font-bold text-gray-400">김지훈 강사</span>
-                 </div>
-                 <div class="flex justify-between items-center border-t border-white/5 pt-4">
-                    <span class="font-bold text-lg text-white">₩ 89,000</span>
-                    <button class="text-xs font-bold text-[#2cb67d] hover:text-white transition">미리보기 →</button>
-                 </div>
-              </div>
-           </div>
-
-           <!-- Course 2 -->
-           <div class="bg-[#16161a] rounded-2xl overflow-hidden border border-white/5 hover:border-[#7f5af0] transition group">
-              <div class="relative h-44 overflow-hidden">
-                 <img src="https://images.unsplash.com/photo-1561070791-2526d30994b5?q=80&w=600" alt="디자인" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
-                 <div class="absolute top-3 left-3 bg-black/60 backdrop-blur px-2 py-0.5 rounded text-[10px] font-bold text-white">신규 개설</div>
-              </div>
-              <div class="p-6">
-                 <div class="flex justify-between items-start mb-2">
-                    <h3 class="font-bold text-base leading-tight group-hover:text-[#7f5af0] transition">2024 UI/UX 디자인 에센셜</h3>
-                    <span class="bg-[#7f5af0] text-white text-[10px] font-bold px-1.5 py-0.5 rounded">4.9 ★</span>
-                 </div>
-                 <p class="text-gray-500 text-xs mb-5 line-clamp-2 font-light">피그마를 활용한 실무 프로토타이핑과 사용자 중심의 디자인 원칙을 배웁니다.</p>
-                 <div class="flex items-center gap-2 mb-5">
-                    <div class="w-6 h-6 rounded-full bg-gray-700"></div>
-                     <span class="text-[10px] font-bold text-gray-400">이지은 강사</span>
-                 </div>
-                 <div class="flex justify-between items-center border-t border-white/5 pt-4">
-                    <span class="font-bold text-lg text-white">₩ 95,000</span>
-                    <button class="text-xs font-bold text-[#7f5af0] hover:text-white transition">미리보기 →</button>
-                 </div>
-              </div>
-           </div>
-
-           <!-- Course 3 -->
-           <div class="bg-[#16161a] rounded-2xl overflow-hidden border border-white/5 hover:border-[#ff8906] transition group">
-              <div class="relative h-44 overflow-hidden">
-                 <img src="https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?q=80&w=600" alt="파이썬" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
-              </div>
-              <div class="p-6">
-                 <div class="flex justify-between items-start mb-2">
-                    <h3 class="font-bold text-base leading-tight group-hover:text-[#ff8906] transition">파이썬 데이터 분석 부트캠프</h3>
-                    <span class="bg-[#ff8906] text-black text-[10px] font-bold px-1.5 py-0.5 rounded">4.7 ★</span>
-                 </div>
-                 <p class="text-gray-500 text-xs mb-5 line-clamp-2 font-light">파이썬 라이브러리를 이용한 데이터 시각화와 머신러닝 입문을 시작하세요.</p>
-                 <div class="flex items-center gap-2 mb-5">
-                    <div class="w-6 h-6 rounded-full bg-gray-700"></div>
-                     <span class="text-[10px] font-bold text-gray-400">박성준 강사</span>
-                 </div>
-                 <div class="flex justify-between items-center border-t border-white/5 pt-4">
-                    <span class="font-bold text-lg text-white">₩ 75,000</span>
-                    <button class="text-xs font-bold text-[#ff8906] hover:text-white transition">미리보기 →</button>
-                 </div>
-              </div>
-           </div>
-        </div>
-     </div>
-  </section>
-
-  <!-- Footer -->
-  <footer class="py-12 bg-[#0f0e17] border-t border-white/5 text-center">
-     <p class="font-bold text-base mb-2">SKILLUP ACADEMY</p>
-     <p class="text-[10px] text-gray-600">대한민국 온라인 강의 리더 | © 2024 SKILLUP</p>
+     <p class="text-[10px] text-white/10 tracking-[0.6em] uppercase">© 2024 SKILLUP ACADEMY. ALL SYSTEMS PROPERLY INITIALIZED.</p>
   </footer>
+
+  <script>
+    function toggleSkillUpModal() {
+      const modal = document.getElementById('skillup-modal');
+      modal.classList.toggle('hidden');
+      modal.classList.toggle('flex');
+    }
+  </script>
 
 </div>

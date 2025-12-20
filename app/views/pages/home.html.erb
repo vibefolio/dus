@@ -243,7 +243,7 @@
                    class="template-thumb">
               
               <!-- Category Badge -->
-              <div style="position: absolute; top: 12px; left: 12px; background: white; padding: 4px 12px; border-radius: 99px; font-size: 12px; font-weight: bold; color: #1a1a1a;">
+              <div style="position: absolute; top: 12px; left: 12px; background: white; padding: 4px 12px; border-radius: 99px; font-size: 11px; font-weight: bold; color: #1a1a1a; z-index: 10; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
                 <%= case template.category
                    when 'beauty' then '뷰티/살롱'
                    when 'dining' then '다이닝/F&B'
@@ -260,6 +260,11 @@
                    end
                 %>
               </div>
+
+              <!-- Diamond 70 Badge -->
+              <div style="position: absolute; top: 12px; right: 12px; background: rgba(0,0,0,0.6); backdrop-filter: blur(4px); padding: 4px 10px; border-radius: 99px; font-size: 11px; font-weight: 800; color: #fff; z-index: 10; border: 1px solid rgba(255,255,255,0.2); display: flex; align-items: center; gap: 4px;">
+                <span style="font-size: 10px;">💎</span> 70
+              </div>
               
               <!-- Hover Overlay -->
               <div class="thumb-overlay" style="position: absolute; inset: 0; background: rgba(0,0,0,0.4); opacity: 0; transition: opacity 0.3s; display: flex; align-items: center; justify-content: center;">
@@ -267,13 +272,13 @@
               </div>
             </div>
             <div style="padding: var(--space-6);">
-              <h3 style="font-size: var(--text-2xl); font-weight: 700; margin-bottom: var(--space-2);"><%= template.title %></h3>
-              <p style="color: var(--color-gray-500); font-size: var(--text-sm); margin-bottom: var(--space-4); line-height: 1.6; min-height: 44px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;">
+              <h3 style="font-size: 1.25rem; font-weight: 800; margin-bottom: var(--space-2); color: #111;"><%= template.title %></h3>
+              <p style="color: var(--color-gray-500); font-size: 14px; margin-bottom: var(--space-4); line-height: 1.6; min-height: 44px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; word-break: keep-all;">
                 <%= template.description %>
               </p>
               <div style="display: flex; gap: 10px;">
-                <button onclick="openLiveDemo('<%= template.preview_url %>', '<%= template.title %>')" class="btn btn-outline btn-sm" style="flex: 1; text-align: center;">둘러보기</button>
-                <%= link_to "제작 의뢰", contact_path(template_id: template.id, template_title: template.title, preview_url: template.preview_url), class: "btn btn-primary btn-sm", style: "flex: 1; text-align: center;" %>
+                <button onclick="openLiveDemo('<%= template.preview_url %>', '<%= template.title %>')" class="btn btn-outline btn-sm" style="flex: 1; text-align: center; font-weight: 700;">둘러보기</button>
+                <%= link_to "제작 의뢰", contact_path(template_id: template.id, template_title: template.title, preview_url: template.preview_url), class: "btn btn-primary btn-sm", style: "flex: 1; text-align: center; font-weight: 700;" %>
               </div>
             </div>
           </div>

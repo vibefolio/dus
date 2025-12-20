@@ -1,201 +1,108 @@
-<%# Startup Template - 노버스 협업툴 %>
+<%# Startup Template - 노버스 (Novus) %>
 
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap');
   
   .font-sans { font-family: 'Noto Sans KR', sans-serif; }
-  
-  .mesh-gradient {
-    background-color: #0f172a;
-    background-image: 
-      radial-gradient(at 0% 0%, hsla(253,16%,7%,1) 0, transparent 50%), 
-      radial-gradient(at 50% 0%, hsla(225,39%,30%,1) 0, transparent 50%), 
-      radial-gradient(at 100% 0%, hsla(339,49%,30%,1) 0, transparent 50%);
+
+  @media (max-width: 768px) {
+    .mobile-desc { font-size: 14px !important; line-height: 1.6; }
+    .mobile-title { font-size: 36px !important; }
   }
 </style>
 
-<div class="bg-slate-900 text-slate-300 font-sans antialiased selection:bg-indigo-500">
+<div class="bg-[#0b0f19] text-[#94a3b8] font-sans antialiased selection:bg-[#6366f1] min-h-screen overflow-x-hidden">
 
   <!-- Nav -->
-  <nav class="fixed w-full z-50 backdrop-blur-lg border-b border-white/5 bg-slate-900/50">
-    <div class="container mx-auto px-6 py-4 flex justify-between items-center">
-      <div class="flex items-center gap-2 font-bold text-white text-xl tracking-tight uppercase">
-        <div class="w-8 h-8 bg-indigo-600 rounded-lg flex items-center justify-center shadow-lg">N</div>
-        Novus
+  <nav class="fixed w-full z-50 px-6 py-6 bg-[#0b0f19]/9 worst backdrop-blur-md border-b border-white/5">
+    <div class="container mx-auto flex justify-between items-center">
+      <div class="flex items-center gap-3">
+         <div class="w-10 h-10 bg-[#6366f1] rounded-xl flex items-center justify-center text-white font-black text-xl shadow-[0_0_20px_rgba(99,102,241,0.4)]">N</div>
+         <span class="text-xl font-black tracking-tight text-white uppercase">NOVUS</span>
       </div>
-      <div class="hidden md:flex gap-8 text-sm font-bold text-slate-400 uppercase">
-        <a href="#features" class="hover:text-white transition">기능</a>
-        <a href="#customers" class="hover:text-white transition">고객사</a>
-        <a href="#pricing" class="hover:text-white transition">요금제</a>
+      
+      <div class="hidden md:flex gap-10 text-[11px] font-bold uppercase tracking-[0.3em] text-[#64748b]">
+        <a href="#features" class="hover:text-white transition">Product</a>
+        <a href="#solutions" class="hover:text-white transition">Solutions</a>
+        <a href="#pricing" class="hover:text-white transition">Pricing</a>
       </div>
-      <div class="flex gap-4">
-        <button class="hidden md:block text-xs font-bold text-slate-400 hover:text-white transition">로그인</button>
-        <button onclick="toggleNovus()" class="bg-white text-slate-900 px-5 py-2 rounded-full text-xs font-bold hover:bg-indigo-50 transition shadow-lg">
-          시작하기
-        </button>
+      
+      <div class="flex gap-6 items-center">
+         <button onclick="toggleNovusModal()" class="text-[11px] font-bold uppercase tracking-[0.3em] text-[#64748b] hover:text-white">Sign In</button>
+         <button class="bg-white text-[#0b0f19] px-6 py-2.5 rounded-sm font-black text-[11px] tracking-widest uppercase hover:bg-[#6366f1] hover:text-white transition shadow-xl">
+           Get Started
+         </button>
       </div>
     </div>
   </nav>
 
   <!-- Hero -->
-  <header class="min-h-screen relative flex flex-col justify-center items-center px-6 overflow-hidden mesh-gradient pt-20">
-    <div class="container mx-auto text-center relative z-10 space-y-8 max-w-4xl">
-      <div class="inline-flex items-center gap-2 bg-white/5 border border-white/10 rounded-full px-4 py-1 text-[10px] font-bold text-indigo-300">
-         신규 기능: AI 어시스턴트 2.0 업데이트 &rarr;
+  <header class="min-h-screen relative flex items-center justify-center overflow-hidden pt-20">
+    <div class="absolute inset-0">
+       <div class="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-[#6366f1]/20 rounded-full blur-[120px]"></div>
+       <div class="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-[#8b5cf6]/20 rounded-full blur-[120px]"></div>
+    </div>
+    
+    <div class="container mx-auto px-6 relative z-10 text-center space-y-12">
+      <div class="inline-flex items-center gap-2 bg-white/5 border border-white/10 rounded-full px-4 py-1.5 text-[10px] font-bold text-[#6366f1] tracking-widest uppercase">
+         <span class="w-1.5 h-1.5 rounded-full bg-[#6366f1] animate-pulse"></span> v2.0 AI Assistant is Live
       </div>
-      
-      <h1 class="text-4xl md:text-6xl font-black text-white leading-tight tracking-tight">
-        더 빠르게 협업하고,<br>
-        <span class="text-indigo-400">함께 성과를 만드세요.</span>
+      <h1 class="text-5xl md:text-8xl font-black leading-none tracking-tighter text-white mobile-title">
+        일하는 방식을<br><span class="text-[#6366f1]">재정의합니다.</span>
       </h1>
-      
-      <p class="text-base md:text-lg text-slate-400 max-w-2xl mx-auto font-light leading-relaxed">
-        복잡한 워크플로우를 간소화하고 팀의 생산성을 극대화하세요.<br>
-        Novus는 차세대 올인원 협업 플랫폼입니다.
+      <p class="text-[#94a3b8] text-sm md:text-xl leading-relaxed max-w-2xl mx-auto mobile-desc">
+        파편화된 워크플로우를 하나로 연결하세요. 노버스는 데이터 중심의 협업을 통해<br>
+        당신의 팀이 단순한 관리를 넘어, 창의적인 혁신에 집중하도록 돕습니다.
       </p>
-      
-      <div class="flex flex-col sm:flex-row gap-4 justify-center pt-6">
-        <button onclick="toggleNovus()" class="bg-indigo-600 text-white px-8 py-3.5 rounded-lg font-bold text-base hover:bg-indigo-500 transition shadow-lg">
-          무료로 시작하기
-        </button>
-        <button class="bg-white/5 border border-white/10 text-white px-8 py-3.5 rounded-lg font-bold text-base hover:bg-white/10 transition backdrop-blur">
-          데모 영상 보기
-        </button>
-      </div>
-
-      <!-- Dashboard Mockup -->
-      <div class="mt-16 mx-auto max-w-4xl relative">
-        <div class="absolute -inset-1 bg-indigo-500/20 rounded-2xl blur-2xl"></div>
-        <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=1200" alt="대시보드" class="relative rounded-xl border border-white/10 shadow-2xl w-full bg-slate-900 object-cover opacity-90 h-64 md:h-auto">
+      <div class="pt-8 flex flex-col sm:flex-row gap-6 justify-center">
+         <button class="px-12 py-5 bg-[#6366f1] text-white font-black text-[11px] tracking-widest uppercase hover:bg-white hover:text-black transition shadow-2xl">
+           Start Free Trial
+         </button>
+         <button class="px-12 py-5 border border-white/10 text-white font-black text-[11px] tracking-widest uppercase hover:bg-white/5 transition backdrop-blur-sm">
+           Watch Demo
+         </button>
       </div>
     </div>
   </header>
 
-  <!-- Features -->
-  <section id="features" class="py-20 bg-slate-900 border-t border-white/5">
-    <div class="container mx-auto px-6">
-      <div class="text-center mb-16">
-        <h2 class="text-3xl font-bold text-white mb-4">강력한 핵심 기능</h2>
-        <p class="text-slate-400 text-sm max-w-xl mx-auto">팀의 성장을 가속화하는 최적의 도구들을 제공합니다.</p>
-      </div>
-
-      <div class="grid md:grid-cols-3 gap-6">
-        <!-- Feature 1 -->
-        <div class="bg-white/5 p-8 rounded-2xl border border-white/5 hover:bg-white/10 transition group">
-          <div class="w-12 h-12 bg-indigo-500/10 rounded-xl flex items-center justify-center text-xl mb-6 text-indigo-400">⚡</div>
-          <h3 class="text-lg font-bold text-white mb-3">압도적인 속도</h3>
-          <p class="text-xs text-slate-500 leading-relaxed font-light italic">
-            지연 없는 실시간 동기화를 경험하세요. 전 세계 어디서든 중단 없는 협업이 가능합니다.
-          </p>
-        </div>
-        <!-- Feature 2 -->
-        <div class="bg-white/5 p-8 rounded-2xl border border-white/5 hover:bg-white/10 transition group">
-          <div class="w-12 h-12 bg-purple-500/10 rounded-xl flex items-center justify-center text-xl mb-6 text-purple-400">🎨</div>
-          <h3 class="text-lg font-bold text-white mb-3">자유로운 워크플로우</h3>
-          <p class="text-xs text-slate-500 leading-relaxed font-light italic">
-            칸반, 간트, 캘린더 등 팀의 방식에 맞춰 프로젝트 뷰를 유연하게 구성할 수 있습니다.
-          </p>
-        </div>
-        <!-- Feature 3 -->
-        <div class="bg-white/5 p-8 rounded-2xl border border-white/5 hover:bg-white/10 transition group">
-          <div class="w-12 h-12 bg-cyan-500/10 rounded-xl flex items-center justify-center text-xl mb-6 text-cyan-400">🤖</div>
-          <h3 class="text-lg font-bold text-white mb-3">AI 자동화</h3>
-          <p class="text-xs text-slate-500 leading-relaxed font-light italic">
-            반복 작업은 AI에게 맡기고 팀원은 의사결정에 더 집중할 수 있는 환경을 만듭니다.
-          </p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Pricing -->
-  <section id="pricing" class="py-20 px-6 bg-slate-900">
-    <div class="container mx-auto max-w-5xl">
-      <div class="text-center mb-16">
-        <h2 class="text-3xl font-bold text-white mb-6">합리적인 플랜</h2>
-        <div class="inline-flex bg-white/5 p-1 rounded-full border border-white/5">
-           <button class="px-6 py-2 rounded-full bg-indigo-600 text-white text-xs font-bold">월 단위 결제</button>
-           <button class="px-6 py-2 rounded-full text-slate-400 text-xs font-bold hover:text-white transition">연 단위 (-20%)</button>
-        </div>
-      </div>
-
-      <div class="grid md:grid-cols-3 gap-6 items-start">
-        <!-- Starter -->
-        <div class="bg-white/5 p-8 rounded-2xl border border-white/5">
-          <h3 class="text-sm font-bold text-slate-500 mb-2">스타터</h3>
-          <div class="text-3xl font-bold text-white mb-6">무료</div>
-          <p class="text-[10px] text-slate-500 mb-8 h-8">개인 프로젝트 및<br>소규모 팀을 위한 플랜</p>
-          <button class="w-full py-3 bg-white/5 text-white font-bold rounded hover:bg-white/10 transition mb-6 text-xs uppercase">시작하기</button>
-          <ul class="space-y-3 text-xs text-slate-400">
-            <li>✓ 최대 5인 참여</li>
-            <li>✓ 기본 리포트 제공</li>
-            <li>✓ 1GB 스토리지</li>
-          </ul>
-        </div>
-        
-        <!-- Pro -->
-        <div class="bg-indigo-600/10 p-8 rounded-2xl border-2 border-indigo-500 relative transform md:-translate-y-4">
-          <div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-indigo-500 text-white text-[9px] font-bold px-3 py-1 rounded-full uppercase">가장 선호하는 플랜</div>
-          <h3 class="text-sm font-bold text-indigo-400 mb-2">프로 팀</h3>
-          <div class="text-3xl font-bold text-white mb-6">₩ 15,000 <span class="text-sm text-slate-500 font-normal">/월</span></div>
-          <p class="text-[10px] text-slate-500 mb-8 h-8">성장하는 팀을 위한<br>무제한 및 지원 기능</p>
-          <button onclick="toggleNovus()" class="w-full py-3 bg-indigo-600 text-white font-bold rounded hover:bg-indigo-500 transition mb-6 shadow-lg text-xs uppercase">무료 체험하기</button>
-          <ul class="space-y-3 text-xs text-slate-200">
-            <li class="flex items-center gap-2">✓ <span class="text-slate-400">멤버 무제한</span></li>
-            <li class="flex items-center gap-2">✓ <span class="text-slate-400">고급 자동화 도구</span></li>
-            <li class="flex items-center gap-2">✓ <span class="text-slate-400">100GB 스토리지</span></li>
-            <li class="flex items-center gap-2">✓ <span class="text-slate-400">우선 지원 서비스</span></li>
-          </ul>
-        </div>
-        
-        <!-- Enterprise -->
-        <div class="bg-white/5 p-8 rounded-2xl border border-white/5">
-          <h3 class="text-sm font-bold text-slate-500 mb-2">엔터프라이즈</h3>
-          <div class="text-3xl font-bold text-white mb-6">별도 문의</div>
-          <p class="text-[10px] text-slate-500 mb-8 h-8">대규모 조직을 위한<br>보안 및 특화 기능</p>
-          <button class="w-full py-3 bg-white/5 text-white font-bold rounded hover:bg-white/10 transition mb-6 text-xs uppercase">문의하기</button>
-          <ul class="space-y-3 text-xs text-slate-400">
-            <li>✓ 커스텀 도메인</li>
-            <li>✓ 전용 보안 관리</li>
-            <li>✓ 무제한 스토리지</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Footer -->
-  <footer class="py-12 bg-slate-900 border-t border-white/5 text-center">
-    <div class="container mx-auto px-6">
-       <p class="font-bold text-white text-base mb-4 tracking-widest uppercase">Novus Platform</p>
-       <p class="text-[10px] text-slate-600">© 2024 NOVUS TECHNOLOGY. All Rights Reserved.</p>
-    </div>
-  </footer>
-
-  <!-- Modal -->
-  <div id="novus-modal" class="fixed inset-0 bg-black/80 backdrop-blur-md z-[60] hidden flex items-center justify-center p-4">
-    <div class="bg-slate-900 w-full max-w-sm p-8 rounded-2xl border border-white/10 relative shadow-2xl">
-      <button onclick="toggleNovus()" class="absolute top-4 right-4 text-slate-500 hover:text-white transition text-2xl font-light">&times;</button>
+  <!-- Login Modal -->
+  <div id="novus-modal" class="fixed inset-0 z-[100] hidden items-center justify-center p-4 bg-[#0b1222]/1 worst backdrop-blur-md">
+    <div class="bg-[#0b0f19] w-full max-w-sm p-12 shadow-2xl relative border border-white/10 rounded-xl">
+      <button onclick="toggleNovusModal()" class="absolute top-8 right-10 text-gray-500 hover:text-white transition text-2xl font-light">&times;</button>
       
-      <div class="text-center mb-6">
-        <div class="w-10 h-10 bg-indigo-600 rounded-lg flex items-center justify-center shadow-lg mx-auto mb-4 text-white font-bold text-lg">N</div>
-        <h2 class="text-xl font-bold text-white mb-1">14일 무료 체험 시작</h2>
-        <p class="text-[10px] text-slate-500 uppercase tracking-widest">신용카드 등록 불필요</p>
+      <div class="text-center mb-10">
+        <h2 class="text-xl font-black text-white mb-2 tracking-[0.2em] uppercase">VISIONARY_ID</h2>
+        <p class="text-[9px] text-[#6366f1] font-bold tracking-[0.3em] uppercase">Private Innovation Network</p>
       </div>
-
-      <form class="space-y-4">
-        <input type="email" placeholder="회사 이메일 입력" class="w-full bg-slate-800 border border-white/10 rounded p-3 text-white focus:border-indigo-500 outline-none transition text-sm">
-        <button class="w-full bg-indigo-600 text-white font-bold py-3 rounded hover:bg-indigo-500 transition shadow-lg text-sm">
-          계정 생성하기
+      
+      <div class="space-y-6">
+        <input type="email" placeholder="Business Email" class="w-full bg-white/5 border border-white/10 py-5 px-6 outline-none focus:ring-1 focus:ring-[#6366f1] transition text-[11px] font-bold tracking-widest text-white uppercase">
+        <button class="w-full bg-[#6366f1] text-white py-5 rounded-sm text-[10px] tracking-[0.3em] font-black uppercase hover:opacity-90 transition shadow-lg">
+           Authorize Session
         </button>
-      </form>
+        <div class="flex justify-center gap-10 pt-4">
+           <a href="#" class="text-[9px] text-gray-500 tracking-[0.2em] font-bold uppercase hover:text-white">Organization</a>
+           <a href="#" class="text-[9px] text-gray-500 tracking-[0.2em] font-bold uppercase hover:text-white">Settings</a>
+        </div>
+      </div>
     </div>
   </div>
 
+  <footer class="py-24 bg-[#0b0f19] text-center px-6 border-t border-white/5">
+     <div class="inline-flex items-center gap-6 mb-12">
+        <span class="text-xl font-black tracking-widest text-white">NOVUS</span>
+        <span class="w-12 h-[1px] bg-white/10"></span>
+        <span class="text-[10px] font-bold text-[#475569] tracking-[0.4em] uppercase">Accelerate Human Potential</span>
+     </div>
+     <p class="text-[10px] text-white/5 tracking-[0.6em] uppercase px-6">© 2024 NOVUS TECHNOLOGY GLOBAL. ALL RIGHTS RESERVED.</p>
+  </footer>
+
   <script>
-    function toggleNovus() {
+    function toggleNovusModal() {
       const modal = document.getElementById('novus-modal');
       modal.classList.toggle('hidden');
+      modal.classList.toggle('flex');
     }
   </script>
+
 </div>

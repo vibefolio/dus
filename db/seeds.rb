@@ -4,217 +4,195 @@
 
 puts "Seeding Design Templates..."
 
-# 템플릿 데이터 정의 (한글 & 로컬 이미지 우선)
+# 템플릿 데이터 정의 (사용자 요청에 맞춘 한글 명칭 및 매칭)
 templates = [
   { 
-    title: "LUMIER", 
-    description: "청담동 하이엔드 살롱 스타일. 고급스러운 세리프 폰트와 인물 중심 레이아웃.", 
+    title: "LUMIER 세미나", 
+    description: "청담동 하이엔드 살롱 컨셉의 뷰티 브랜드 템플릿. 우아한 세리프와 그리드 레이아웃.", 
     category: "beauty", 
     preview_url: "/templates/beauty", 
-    image_url: "/images/templates/beauty_makeup.png",
+    image_url: "https://images.unsplash.com/photo-1560750588-73207b1ef5b8?q=80&w=800",
     is_featured: true 
   },
   { 
-    title: "溫 (ON)", 
-    description: "여백의 미를 살린 모던 오마카세 다이닝 스타일. 갤러리 같은 메뉴 소개 디자인.", 
+    title: "溫 (ON) 다이닝", 
+    description: "여백의 미를 살린 프리미엄 오마카세 다이닝. 고요하고 감각적인 디자인.", 
     category: "dining", 
     preview_url: "/templates/dining", 
-    image_url: "/images/templates/dining_omakase.png",
+    image_url: "https://images.unsplash.com/photo-1559339352-11d035aa65de?q=80&w=800",
     is_featured: true 
   },
   { 
-    title: "Sculpt & Soul", 
-    description: "아티스틱 웰니스 브랜드 스타일. 감각적인 다크 모드와 타이포그래피.", 
+    title: "에테르노 필라테스", 
+    description: "프리미엄 필라테스 스튜디오를 위한 슬릭하고 모던한 디자인. 내면의 균형을 강조.", 
     category: "fitness", 
-    preview_url: "/templates/gym", 
-    image_url: "/images/templates/fitness_gym.png"
+    preview_url: "/templates/sculpt", 
+    image_url: "https://images.unsplash.com/photo-1518310383802-640c2de311b2?q=80&w=800"
   },
   { 
-    title: "Yoga Flow", 
-    description: "호흡이 머무는 곳, 현재. 요가 스튜디오를 위한 평온한 디자인.", 
+    title: "요가 플로우", 
+    description: "심플하고 차분한 무드. 요가 및 명상 센터를 위한 자연 친화적 템플릿.", 
     category: "fitness", 
     preview_url: "/templates/yoga", 
-    image_url: "/images/templates/yoga_flow.png",
+    image_url: "https://images.unsplash.com/photo-1545208393-2160291ba69e?q=80&w=800",
     is_featured: true
   },
   { 
-    title: "Focus Lab", 
-    description: "건축적인 조형미가 돋보이는 스터디 랩 스타일. 집중력을 높이는 미니멀리즘.", 
+    title: "라이브러리 원", 
+    description: "프리미엄 스터디 라운지를 위한 세련된 다크 모드 디자인. 완벽한 몰입을 선사합니다.", 
     category: "space", 
     preview_url: "/templates/study", 
-    image_url: "https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=800"
+    image_url: "https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=800",
+    is_featured: true
   },
   { 
-    title: "Cozy Stay", 
-    description: "제주의 숨은 보석. 바람이 머물고, 마음이 쉬어가는 곳.", 
+    title: "리버사이드 스테이", 
+    description: "감성 숙소와 독채 펜션을 위한 포트폴리오 스타일. 제주 등 여행지 컨셉.", 
     category: "stay", 
-    preview_url: "/templates/pension", 
-    image_url: "/images/templates/cozy_stay.png",
+    preview_url: "/templates/stay", 
+    image_url: "https://images.unsplash.com/photo-1584132967334-10e028bd69f7?q=80&w=800",
     is_featured: true 
   },
   { 
     title: "The Avenue", 
-    description: "큐레이션이 돋보이는 모던 패션 멀티샵. 트렌디한 룩북 스타일.", 
+    description: "큐레이션이 돋보이는 패션 멀티샵. 브랜드 룩북 중심의 트렌디한 구성.", 
     category: "shopping", 
     preview_url: "/templates/shopping", 
-    image_url: "/images/templates/the_avenue.png",
+    image_url: "https://images.unsplash.com/photo-1441986300917-64674bd600d8?q=80&w=800",
     is_featured: true
   },
   { 
-    title: "Novus", 
-    description: "팀워크의 새로운 기준. 복잡한 프로젝트 관리부터 실시간 커뮤니케이션까지.", 
+    title: "Novus 비즈니스", 
+    description: "IT 스타트업 및 SaaS를 위한 올인원 협업 툴 컨셉의 메쉬 그라디언트 디자인.", 
     category: "corporate", 
     preview_url: "/templates/startup", 
-    image_url: "/images/templates/novus_saas.png"
+    image_url: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=800"
   },
   { 
-    title: "Daily Crumb", 
-    description: "따뜻한 베이지톤의 감성 베이커리 스타일. 인스타그램 피드 연동 디자인.", 
+    title: "데일리 크럼", 
+    description: "감성적인 무드의 베이커리. 정성 담긴 빵과 따뜻한 소통을 위한 카페 템플릿.", 
     category: "cafe", 
     preview_url: "/templates/cafe", 
-    image_url: "/images/templates/cafe_baguette.png"
-  },
-  { 
-    title: "SweetSpot", 
-    description: "Life is Sweet! 수제 도넛과 디저트의 달콤한 유혹.", 
-    category: "cafe", 
-    preview_url: "/templates/donut", 
-    image_url: "/images/templates/sweetspot_donut.png",
+    image_url: "https://images.unsplash.com/photo-1509440159596-0249088772ff?q=80&w=800",
     is_featured: true
   },
   { 
-    title: "SaladGreen", 
-    description: "Eat Clean, Live Green. 농장에서 식탁까지, 가장 신선한 재료로 채우는 건강한 한 끼.", 
+    title: "롤링도넛", 
+    description: "팝한 컬러감과 폰트가 돋보이는 디저트 샵 전용 템플릿. 'Life is Sweet'.", 
+    category: "cafe", 
+    preview_url: "/templates/donut", 
+    image_url: "https://images.unsplash.com/photo-1506152983158-b4a74a01c721?q=80&w=800",
+    is_featured: true
+  },
+  { 
+    title: "그린스 앤 그레인", 
+    description: "가장 신선한 샐러드와 건강을 한 그릇에 담은 다목적 다이닝 템플릿.", 
     category: "dining", 
     preview_url: "/templates/salad", 
-    image_url: "/images/templates/salad_green.png"
+    image_url: "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?q=80&w=800"
   },
   { 
-    title: "ARCHIVE", 
-    description: "크리에이터를 위한 다크모드 그리드 갤러리. 작품에만 집중할 수 있는 디자인.", 
+    title: "에이전시X", 
+    description: "디지털 혁신을 주도하는 크리에이티브 스튜디오 포트폴리오. 파격적인 무드.", 
     category: "portfolio", 
-    preview_url: "/templates/portfolio", 
-    image_url: "/images/templates/portfolio_gallery.png"
+    preview_url: "/templates/agency", 
+    image_url: "https://images.unsplash.com/photo-1550745165-9bc0b252726f?q=80&w=800",
+    is_featured: true
   },
   { 
-    title: "Pure Clinic", 
-    description: "깨끗하고 전문적인 느낌의 클리닉 스타일. 신뢰감을 주는 의료진 소개 섹션.", 
+    title: "미소라인 의원", 
+    description: "신뢰감을 주는 화이트 톤의 메디컬 클리닉. 전문 의료진과 시술 정보를 한눈에.", 
     category: "medical", 
     preview_url: "/templates/medical", 
-    image_url: "/images/templates/skin_clinic_hero.png"
+    image_url: "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?q=80&w=800",
+    is_featured: true
   },
   { 
     title: "법무법인 정의", 
-    description: "당신의 권리를 지키는 든든한 법률 파트너. 무료 법률 상담 제공.", 
+    description: "무게감 있는 전통적인 법률 전문가 그룹 템플릿. 신뢰와 권위를 강조.", 
     category: "law", 
     preview_url: "/templates/law", 
-    image_url: "/images/templates/justice_law.png"
-  },
-  { 
-    title: "Grand Hotel", 
-    description: "A Sanctuary of Elegance. 도심 속 완벽한 휴식처, 그랜드 호텔.", 
-    category: "stay", 
-    preview_url: "/templates/hotel", 
-    image_url: "/images/templates/hotel_grand.png"
-  },
-  { 
-    title: "클린 싹싹", 
-    description: "건물위생관리업 정식 등록업체. 신뢰감을 주는 블루톤의 전문 청소업체 템플릿.", 
-    category: "space", 
-    preview_url: "/templates/cleaning", 
-    image_url: "/images/templates/cleaning_main.png",
+    image_url: "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?q=80&w=800",
     is_featured: true
   },
   { 
-    title: "Flower & Garden", 
-    description: "Bloom Where You Are. 계절의 가장 아름다운 순간을 꽃으로 전합니다.", 
-    category: "shopping", 
-    preview_url: "/templates/flower", 
-    image_url: "/images/templates/flower_garden.png"
+    title: "그랜드 오션", 
+    description: "바다가 보이는 프리미엄 호텔 템플릿. 시원한 레이아웃과 감성적인 무드.", 
+    category: "stay", 
+    preview_url: "/templates/hotel", 
+    image_url: "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?q=80&w=800",
+    is_featured: true
   },
   { 
-    title: "Rent-All", 
-    description: "쉽고 빠른 렌터카 예약. 직관적인 검색 바와 차량 상세 정보 카드.", 
-    category: "corporate", 
-    preview_url: "/templates/rental", 
-    image_url: "https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?q=80&w=800"
+    title: "클린싹싹", 
+    description: "신뢰감을 주는 전문 청소 서비스 템플릿. 깔끔한 블루톤과 직관적인 서비스 소개.", 
+    category: "space", 
+    preview_url: "/templates/cleaning", 
+    image_url: "https://images.unsplash.com/photo-1581578731548-c64695cc6958?q=80&w=800",
+    is_featured: true
   },
   { 
-    title: "Invest Future", 
-    description: "성공적인 자산 관리 파트너. 신뢰를 주는 차분한 블루 그레이 톤.", 
+    title: "와이즈 에셋", 
+    description: "성공적인 자산을 위한 금융 파트너. 정제된 레이아웃과 안정감을 주는 디자인.", 
     category: "finance", 
     preview_url: "/templates/finance", 
-    image_url: "/images/templates/finance_invest.png"
+    image_url: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=800",
+    is_featured: true
   },
   { 
-    title: "Code Academy", 
-    description: "당신의 아이디어를 <Code>로 실현하세요. 체계적인 커리큘럼과 현업 멘토링.", 
+    title: "대치 엘리트", 
+    description: "최고의 입시 및 코딩 교육 아카데미를 위한 클래식 세리프 디자인.", 
     category: "academy", 
     preview_url: "/templates/academy", 
-    image_url: "/images/templates/code_academy.png"
+    image_url: "https://images.unsplash.com/photo-1501504905252-473c47e087f8?q=80&w=800",
+    is_featured: true
   },
   { 
-    title: "Little Star", 
-    description: "Play, Learn & Grow! 신나는 놀이 속에서 자연스럽게 영어를 배워요.", 
-    category: "kinder", 
-    preview_url: "/templates/kinder", 
-    image_url: "/images/templates/little_star.png"
-  },
-  { 
-    title: "Dental Care", 
-    description: "편안하고 믿을 수 있는 치과. 예약 시스템과 시술 전후 비교 갤러리.", 
+    title: "MUA 진 치과", 
+    description: "전문 의료진 정보와 차별화된 예약 시스템을 갖춘 현대적 치과 템플릿.", 
     category: "medical", 
     preview_url: "/templates/dental", 
-    image_url: "https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?q=80&w=800"
+    image_url: "https://images.unsplash.com/photo-1629909613654-28e377c37b09?q=80&w=800",
+    is_featured: true
   },
   { 
-    title: "Happy Vet", 
-    description: "24시간 동물의료센터. 반려동물 집사를 위한 친근한 디자인과 정보 제공.", 
+    title: "위드 펫", 
+    description: "반려동물을 위한 24시간 토탈 케어 솔루션. 따뜻하고 친근한 디자인.", 
     category: "medical", 
     preview_url: "/templates/vet", 
-    image_url: "https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?q=80&w=800"
+    image_url: "https://images.unsplash.com/photo-1583337130417-3346a1be7dee?q=80&w=800",
+    is_featured: true
   },
   { 
-    title: "Tax Partner", 
-    description: "Save More, Worry Less. 복잡한 세금, 전문가에게 맡기세요.", 
-    category: "law", 
-    preview_url: "/templates/tax", 
-    image_url: "/images/templates/tax_partner.png"
-  },
-  { 
-    title: "Wild Camp", 
-    description: "자연 속 힐링을 위한 감성 캠핑장. 아웃도어 기어 렌탈 및 사이트 예약.", 
-    category: "stay", 
-    preview_url: "/templates/camping", 
-    image_url: "/images/templates/camping_tent.png"
-  },
-  { 
-    title: "Minimal Studio", 
-    description: "Less is More. 옷의 질감과 실루엣을 강조하는 심플한 UI.", 
-    category: "shopping", 
-    preview_url: "/templates/cloth", 
-    image_url: "/images/templates/minimal_studio.png"
-  },
-  { 
-    title: "Urban Kicks", 
-    description: "Run The Streets. 스트릿 스타일 스니커즈 편집샵. 한정판 드롭 타이머와 응모 시스템.", 
+    title: "어반 킥스", 
+    description: "스트릿 스니커즈 편집샵. 강렬한 대비와 역동적인 레이아웃의 쇼핑몰.", 
     category: "shopping", 
     preview_url: "/templates/shoe", 
-    image_url: "/images/templates/urban_kicks.png"
+    image_url: "https://images.unsplash.com/photo-1552346154-21d32810aba3?q=80&w=800",
+    is_featured: true
   },
   { 
-    title: "L'Atelier", 
-    description: "The Art of Leather. 최상급 이탈리아 가죽과 장인의 손길로 완성된 불변의 가치.", 
-    category: "shopping", 
-    preview_url: "/templates/bag", 
-    image_url: "/images/templates/leather_atelier.png"
+    title: "SKILLUP", 
+    description: "내일의 성장을 위한 온라인 강의 플랫폼. 직관적인 카테고리 구성.", 
+    category: "academy", 
+    preview_url: "/templates/learnhub", 
+    image_url: "https://images.unsplash.com/photo-1501504905252-473c47e087f8?q=80&w=800",
+    is_featured: true
+  },
+  { 
+    title: "빈티지 1988", 
+    description: "열정과 시간이 빚어낸 고귀한 와인 컬렉션을 위한 럭셔리 템플릿.", 
+    category: "dining", 
+    preview_url: "/templates/wine", 
+    image_url: "https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?q=80&w=800",
+    is_featured: true
   }
 ]
 
-# 기존 데이터 모두 업데이트
+# 기존 데이터 업데이트 및 카테고리 매칭 교정
 templates.each do |t|
   template = DesignTemplate.find_or_initialize_by(preview_url: t[:preview_url])
-  puts "Migrating Template: #{t[:title]}"
+  puts "Updating Template: #{t[:title]}"
   template.update!(
     title: t[:title],
     description: t[:description],

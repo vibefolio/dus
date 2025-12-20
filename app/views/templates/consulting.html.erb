@@ -1,183 +1,146 @@
-<%# Consulting Template - 비저너리 파트너스 (경영 컨설팅) %>
+<%# Consulting Template - 비저너리 파트너스 (VISIONARY PARTNERS) %>
 
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700;800&family=Noto+Sans+KR:wght@300;400;700&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700;800&family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap');
   
   .font-serif { font-family: 'Nanum Myeongjo', serif; }
   .font-sans { font-family: 'Noto Sans KR', sans-serif; }
-  
-  .bg-pattern {
-    background-color: #0f172a;
-    background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%231e293b' fill-opacity='0.4'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+
+  @media (max-width: 768px) {
+    .mobile-desc { font-size: 14px !important; line-height: 1.8; }
+    .mobile-title { font-size: 40px !important; }
   }
 </style>
 
-<div class="bg-white text-slate-800 font-sans selection:bg-slate-900 selection:text-white">
+<div class="bg-white text-[#111827] font-sans selection:bg-[#F59E0B] selection:text-white min-h-screen overflow-x-hidden">
 
   <!-- Nav -->
-  <nav class="fixed w-full z-50 px-6 py-5 bg-white/95 backdrop-blur-sm border-b border-slate-100">
+  <nav class="fixed w-full z-50 px-8 py-6 bg-white/90 backdrop-blur-xl border-b border-[#F59E0B]/20">
     <div class="container mx-auto flex justify-between items-center">
-      <div class="font-serif text-xl font-bold text-slate-900">
-         비저너리<br><span class="text-xs font-sans font-normal text-slate-500">파트너스</span>
+      <div class="flex items-center gap-4">
+         <div class="w-2 h-8 bg-[#F59E0B]"></div>
+         <div class="flex flex-col">
+            <span class="font-serif text-xl font-bold tracking-tight text-[#111827] leading-none">VISIONARY</span>
+            <span class="text-[9px] font-bold tracking-[0.2em] uppercase text-[#F59E0B] mt-0.5">Partners Group</span>
+         </div>
       </div>
       
-      <div class="hidden md:flex gap-10 text-sm font-bold text-slate-500">
-        <a href="#expertise" class="hover:text-slate-900 transition">전문분야</a>
-        <a href="#cases" class="hover:text-slate-900 transition">성공사례</a>
-        <a href="#insight" class="hover:text-slate-900 transition">인사이트</a>
+      <div class="hidden md:flex gap-14 text-[11px] font-bold uppercase tracking-[0.2em] text-[#111827]/40">
+        <a href="#strategy" class="hover:text-[#F59E0B] transition">Strategy</a>
+        <a href="#digital" class="hover:text-[#F59E0B] transition">Digital</a>
+        <a href="#cases" class="hover:text-[#F59E0B] transition">Performance</a>
       </div>
       
-      <button class="border border-slate-300 px-5 py-2 text-sm font-bold hover:bg-slate-900 hover:text-white hover:border-slate-900 transition">
-         문의하기
-      </button>
+      <div class="flex gap-8 items-center">
+         <button onclick="toggleConsultModal()" class="text-[11px] font-bold uppercase tracking-[0.2em] text-[#111827]/40 hover:text-[#F59E0B]">Partner Access</button>
+         <button class="bg-[#111827] text-white px-8 py-3 rounded-none font-bold text-[11px] tracking-widest uppercase hover:bg-[#F59E0B] transition shadow-xl">
+           Get Inquiry
+         </button>
+      </div>
     </div>
   </nav>
 
   <!-- Hero -->
-  <header class="min-h-screen relative flex items-center justify-center bg-pattern text-white overflow-hidden pt-16">
-     <div class="absolute inset-0 opacity-20">
-        <img src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?q=80&w=1920" alt="컨설팅 회의" class="w-full h-full object-cover grayscale">
-     </div>
-     
-     <div class="container mx-auto px-6 relative z-10 max-w-4xl text-center">
-        <p class="text-slate-400 text-sm tracking-widest mb-6">Global Strategy Firm</p>
-        <h1 class="text-4xl md:text-6xl font-serif leading-tight mb-6">
-           비즈니스의<br><span class="text-slate-300">새로운 시대</span>를<br>정의합니다
+  <header class="min-h-screen relative flex items-center justify-center pt-20">
+    <div class="absolute inset-0 bg-[#F3F4F6] -z-20"></div>
+    <div class="absolute right-0 top-0 w-[40%] h-full bg-[#E5E7EB] -z-10 hidden lg:block"></div>
+    
+    <div class="container mx-auto px-6 relative z-10 grid lg:grid-cols-2 gap-20 items-center">
+      <div class="space-y-12 text-center lg:text-left">
+        <div class="inline-flex items-center gap-4">
+           <span class="w-12 h-[2px] bg-[#F59E0B]"></span>
+           <span class="text-[10px] font-bold tracking-[0.4em] uppercase text-[#F59E0B]">Global Strategy Excellence</span>
+        </div>
+        
+        <h1 class="text-5xl md:text-7xl font-serif font-black leading-[1.2] tracking-tight text-[#111827] mobile-title">
+           관점의 전환,<br>
+           <span class="italic text-transparent bg-clip-text bg-gradient-to-r from-[#F59E0B] to-[#111827]">성장의 가속화.</span>
         </h1>
-        <p class="text-slate-400 font-light leading-loose max-w-lg mx-auto mb-10">
-           불확실성의 시대, 명확한 비전과 실행 가능한 전략으로
-           기업의 근본적인 변화를 이끌어냅니다.
+        
+        <p class="text-[#374151] text-sm md:text-lg leading-relaxed max-w-lg mx-auto lg:mx-0 mobile-desc">
+           변화의 핵심을 꿰뚫는 통찰과 데이터 기반의 실행 전략. 비저너리 파트너스는 귀하의 비즈니스를 승리로 이끄는 가장 확실한 로드맵입니다.
         </p>
-        <a href="#expertise" class="inline-block text-sm border-b border-white pb-1 hover:text-slate-300 transition">
-           솔루션 살펴보기 →
-        </a>
-     </div>
+        
+        <div class="pt-6 flex flex-col sm:flex-row gap-6 justify-center lg:justify-start">
+           <button class="px-12 py-5 bg-[#F59E0B] text-white font-bold text-[11px] tracking-widest uppercase hover:bg-[#111827] transition shadow-xl">
+              Our Solutions
+           </button>
+           <button class="px-12 py-5 border border-[#111827]/20 text-[#111827] font-bold text-[11px] tracking-widest uppercase hover:bg-white transition">
+              Client Stories
+           </button>
+        </div>
+
+        <div class="pt-10 flex gap-12 border-t border-[#111827]/10 items-center justify-center lg:justify-start opacity-70 grayscale">
+            <span class="font-serif font-bold text-xl text-[#111827]">SAMSUNG</span>
+            <span class="font-serif font-bold text-xl text-[#111827]">Hyundai</span>
+            <span class="font-serif font-bold text-xl text-[#111827]">SK</span>
+            <span class="font-serif font-bold text-xl text-[#111827]">LG</span>
+        </div>
+      </div>
+      
+      <div class="relative hidden lg:block">
+         <div class="relative z-10 bg-white p-12 shadow-2xl border-t-8 border-[#F59E0B]">
+            <div class="aspect-[4/3] bg-gray-100 mb-8 overflow-hidden relative group">
+               <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=1200" alt="Strategy Meeting" class="w-full h-full object-cover transition duration-700 group-hover:scale-110 grayscale group-hover:grayscale-0">
+            </div>
+            <div class="flex justify-between items-end">
+               <div>
+                  <p class="text-[10px] font-bold text-[#F59E0B] uppercase tracking-[0.2em] mb-2">Latest Insight</p>
+                  <h3 class="text-2xl font-serif font-bold text-[#111827] mb-2">Future of DX</h3>
+                  <p class="text-xs text-gray-500 max-w-xs">디지털 전환 시대, 기업이 갖춰야 할 5가지 핵심 역량 보고서</p>
+               </div>
+               <button class="w-12 h-12 bg-[#111827] text-white flex items-center justify-center hover:bg-[#F59E0B] transition">
+                  <span class="text-xl">→</span>
+               </button>
+            </div>
+         </div>
+         <!-- Decorative Elements -->
+         <div class="absolute -bottom-10 -right-10 w-40 h-40 border-r-8 border-b-8 border-[#111827]/10"></div>
+      </div>
+    </div>
   </header>
 
-  <!-- Expertise -->
-  <section id="expertise" class="py-20 md:py-24 px-6 bg-slate-50">
-    <div class="container mx-auto">
-       <div class="grid md:grid-cols-2 gap-12 mb-12">
-          <div>
-             <h2 class="text-3xl font-serif mb-4 text-slate-900">전문 분야</h2>
-             <div class="w-12 h-1 bg-slate-900"></div>
-          </div>
-          <div>
-             <p class="text-slate-600 font-light leading-relaxed">
-                우리는 산업별 깊이 있는 통찰력과 데이터 기반의 분석을 결합하여
-                고객이 직면한 가장 복잡한 문제들을 해결합니다.
-             </p>
-          </div>
-       </div>
-       
-       <div class="grid md:grid-cols-3 gap-0 border border-slate-200 bg-white shadow-sm">
-          <!-- Item 1 -->
-          <div class="p-8 border-r border-b border-slate-200 hover:bg-slate-900 hover:text-white transition group cursor-pointer">
-             <span class="text-2xl mb-4 block font-serif text-slate-300 group-hover:text-white/50">01</span>
-             <h3 class="text-lg font-bold mb-3">전략 수립</h3>
-             <p class="text-sm text-slate-500 group-hover:text-slate-300 leading-relaxed">
-                기업 성장 전략,<br>신사업 개발 및 포트폴리오 최적화.
-             </p>
-          </div>
-          <!-- Item 2 -->
-          <div class="p-8 border-r border-b border-slate-200 hover:bg-slate-900 hover:text-white transition group cursor-pointer">
-             <span class="text-2xl mb-4 block font-serif text-slate-300 group-hover:text-white/50">02</span>
-             <h3 class="text-lg font-bold mb-3">M&A</h3>
-             <p class="text-sm text-slate-500 group-hover:text-slate-300 leading-relaxed">
-                인수합병 전략 수립,<br>실사 및 합병 후 통합(PMI).
-             </p>
-          </div>
-          <!-- Item 3 -->
-          <div class="p-8 border-b border-slate-200 hover:bg-slate-900 hover:text-white transition group cursor-pointer">
-             <span class="text-2xl mb-4 block font-serif text-slate-300 group-hover:text-white/50">03</span>
-             <h3 class="text-lg font-bold mb-3">디지털 혁신</h3>
-             <p class="text-sm text-slate-500 group-hover:text-slate-300 leading-relaxed">
-                디지털 트랜스포메이션,<br>AI 도입 및 데이터 플랫폼 구축.
-             </p>
-          </div>
-          <!-- Item 4 -->
-          <div class="p-8 border-r border-slate-200 hover:bg-slate-900 hover:text-white transition group cursor-pointer">
-             <span class="text-2xl mb-4 block font-serif text-slate-300 group-hover:text-white/50">04</span>
-             <h3 class="text-lg font-bold mb-3">운영 혁신</h3>
-             <p class="text-sm text-slate-500 group-hover:text-slate-300 leading-relaxed">
-                공급망 관리(SCM),<br>운영 효율화 및 비용 절감.
-             </p>
-          </div>
-          <!-- Item 5 -->
-          <div class="p-8 border-r border-slate-200 hover:bg-slate-900 hover:text-white transition group cursor-pointer">
-             <span class="text-2xl mb-4 block font-serif text-slate-300 group-hover:text-white/50">05</span>
-             <h3 class="text-lg font-bold mb-3">조직 설계</h3>
-             <p class="text-sm text-slate-500 group-hover:text-slate-300 leading-relaxed">
-                조직 설계 및 성과 관리,<br>리더십 개발 및 문화 혁신.
-             </p>
-          </div>
-          <!-- Item 6 -->
-          <div class="p-8 hover:bg-slate-900 hover:text-white transition group cursor-pointer flex items-center justify-center">
-             <span class="text-sm font-bold border-b border-current pb-1">전체 서비스 보기 →</span>
-          </div>
-       </div>
-    </div>
-  </section>
-
-  <!-- Case Study -->
-  <section id="cases" class="py-20 md:py-24 px-6 bg-white">
-     <div class="container mx-auto">
-        <h2 class="text-3xl font-serif mb-10 text-center text-slate-900">성공 사례</h2>
-        
-        <div class="grid md:grid-cols-2 gap-8">
-            <!-- Case 1 -->
-            <div class="group cursor-pointer">
-               <div class="overflow-hidden mb-5 relative">
-                  <img src="https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?q=80&w=800" alt="디지털 트랜스포메이션" class="w-full h-[250px] md:h-[300px] object-cover transition duration-500 group-hover:scale-105 grayscale hover:grayscale-0">
-                  <div class="absolute bottom-0 left-0 bg-white p-3">
-                     <span class="text-xs font-bold text-blue-900">Tech</span>
-                  </div>
-               </div>
-               <h3 class="text-xl font-serif mb-2 group-hover:text-blue-900 transition">글로벌 리테일러 디지털 트랜스포메이션</h3>
-               <p class="text-slate-500 font-light leading-relaxed text-sm mb-3">
-                  오프라인 중심의 유통 기업을 옴니채널 플랫폼으로 전환하여
-                  온라인 매출 300% 성장을 달성.
-               </p>
-               <span class="text-xs font-bold border-b border-slate-900 pb-1">사례 읽기</span>
-            </div>
-
-            <!-- Case 2 -->
-            <div class="group cursor-pointer">
-               <div class="overflow-hidden mb-5 relative">
-                  <img src="https://images.unsplash.com/photo-1556740738-b6a63e27c4df?q=80&w=800" alt="합병 후 통합" class="w-full h-[250px] md:h-[300px] object-cover transition duration-500 group-hover:scale-105 grayscale hover:grayscale-0">
-                  <div class="absolute bottom-0 left-0 bg-white p-3">
-                     <span class="text-xs font-bold text-blue-900">Finance</span>
-                  </div>
-               </div>
-               <h3 class="text-xl font-serif mb-2 group-hover:text-blue-900 transition">대형 금융사 합병 후 통합 전략</h3>
-               <p class="text-slate-500 font-light leading-relaxed text-sm mb-3">
-                  조직 및 IT 시스템 통합을 통해
-                  시너지 효과 극대화, 운영 비용 20% 절감.
-               </p>
-               <span class="text-xs font-bold border-b border-slate-900 pb-1">사례 읽기</span>
-            </div>
+  <!-- Login Modal -->
+  <div id="consult-modal" class="fixed inset-0 z-[100] hidden items-center justify-center p-4 bg-[#111827]/90 backdrop-blur-xl">
+    <div class="bg-white w-full max-w-sm p-14 shadow-2xl relative border-l-8 border-[#F59E0B]">
+      <button onclick="toggleConsultModal()" class="absolute top-8 right-8 text-[#111827]/30 hover:text-[#F59E0B] transition text-2xl font-light">&times;</button>
+      
+      <div class="text-center mb-12">
+        <h2 class="text-xl font-serif font-black tracking-tight text-[#111827] mb-2 uppercase">PARTNER_PORTAL</h2>
+        <p class="text-[9px] text-[#F59E0B] font-bold tracking-[0.2em] uppercase">Confidential Data Room</p>
+      </div>
+      
+      <div class="space-y-8">
+        <div class="space-y-2">
+            <p class="text-[9px] font-bold text-[#111827]/40 uppercase tracking-widest ml-1">Access Code</p>
+            <input type="password" placeholder="********" class="w-full bg-[#F3F4F6] border border-[#111827]/5 py-5 px-6 outline-none focus:border-[#F59E0B] transition text-[11px] font-bold uppercase tracking-widest text-[#111827]">
         </div>
-     </div>
-  </section>
-
-  <!-- Quote -->
-  <section id="insight" class="py-20 md:py-32 px-6 bg-slate-900 text-white text-center">
-    <div class="container mx-auto max-w-2xl">
-       <span class="text-5xl font-serif opacity-30">"</span>
-       <h3 class="text-2xl md:text-4xl font-serif leading-relaxed mb-6">
-          미래를 예측하는 가장 좋은 방법은<br>직접 만드는 것이다.
-       </h3>
-       <p class="text-slate-400 text-base font-light mb-8">피터 드러커</p>
-       <button class="bg-white text-slate-900 px-8 py-3 text-sm font-bold hover:bg-slate-200 transition">
-          파트너가 되세요
-       </button>
+        <button class="w-full bg-[#111827] text-white py-5 text-[10px] tracking-[0.4em] font-black uppercase hover:bg-[#F59E0B] transition shadow-xl">
+           Secure Connect
+        </button>
+        <div class="flex justify-center gap-10 pt-4">
+           <a href="#" class="text-[9px] text-[#111827]/40 tracking-[0.2em] font-bold uppercase hover:text-[#F59E0B] transition">Request Access</a>
+           <a href="#" class="text-[9px] text-[#111827]/40 tracking-[0.2em] font-bold uppercase hover:text-[#F59E0B] transition">Support</a>
+        </div>
+      </div>
     </div>
-  </section>
+  </div>
 
-  <!-- Footer -->
-  <footer class="py-10 px-6 bg-slate-900 border-t border-slate-800 text-center">
-    <p class="font-serif text-lg text-white mb-2">비저너리 파트너스</p>
-    <p class="text-sm text-slate-500">서울시 강남구 테헤란로 123</p>
+  <footer class="py-24 bg-[#111827] text-center px-6">
+     <div class="inline-flex items-center gap-6 mb-8">
+        <span class="font-serif font-black text-2xl text-white tracking-widest">VISIONARY</span>
+        <span class="w-12 h-[1px] bg-white/20"></span>
+        <span class="text-[10px] font-bold text-white/40 tracking-[0.4em] uppercase">Partners Group</span>
+     </div>
+     <p class="text-[10px] text-white/20 tracking-[0.6em] uppercase px-6">© 2024 VISIONARY PARTNERS. SEOUL HQ.</p>
   </footer>
+
+  <script>
+    function toggleConsultModal() {
+      const modal = document.getElementById('consult-modal');
+      modal.classList.toggle('hidden');
+      modal.classList.toggle('flex');
+    }
+  </script>
 
 </div>

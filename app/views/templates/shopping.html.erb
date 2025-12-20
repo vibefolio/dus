@@ -1,170 +1,150 @@
-<%# Shopping Template - 모드 서울 (종합 패션몰) %>
+<%# Shopping Template - 에비뉴 (THE AVENUE) %>
 
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700;800&family=Noto+Sans+KR:wght@300;400;500;700&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;0,6..96,600;0,6..96,700;0,6..96,800;0,6..96,900;1,6..96,400&family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap');
   
-  .font-serif { font-family: 'Nanum Myeongjo', serif; }
+  .font-serif-modern { font-family: 'Bodoni Moda', serif; }
   .font-sans { font-family: 'Noto Sans KR', sans-serif; }
-  
-  .marquee-container {
-    overflow: hidden;
-    white-space: nowrap;
+
+  @media (max-width: 768px) {
+    .mobile-desc { font-size: 14px !important; line-height: 1.8; }
+    .mobile-title { font-size: 40px !important; }
   }
-  .marquee-content {
-    display: inline-block;
-    animation: marquee 20s linear infinite;
-  }
-  @keyframes marquee {
-    0% { transform: translateX(0); }
-    100% { transform: translateX(-50%); }
-  }
+
+  /* Smooth scroll behavior */
+  html { scroll-behavior: smooth; }
 </style>
 
-<div class="bg-white text-black font-sans selection:bg-black selection:text-white">
+<div class="bg-white text-black font-sans selection:bg-black selection:text-white min-h-screen overflow-x-hidden">
 
   <!-- Promo Bar -->
-  <div class="bg-black text-white text-xs py-2 text-center tracking-wide">
-    10만원 이상 무료배송 + 신상품 30% 할인
+  <div class="bg-black text-white text-[9px] py-2 text-center tracking-[0.4em] uppercase font-bold relative z-50">
+     <span class="animate-pulse">Seasonal Archive Sale • Up to 50% Off</span>
   </div>
 
   <!-- Nav -->
-  <nav class="sticky top-0 z-50 bg-white/95 backdrop-blur-sm border-b border-gray-100">
-    <div class="container mx-auto px-6 h-16 flex justify-between items-center">
-      <div class="flex gap-4">
-         <button class="text-xl hover:text-gray-500">☰</button>
-         <button class="hidden md:block text-sm font-medium hover:text-gray-500">검색</button>
+  <nav class="sticky top-0 z-40 bg-white/80 backdrop-blur-xl border-b border-black/5 transition-all duration-300">
+    <div class="container mx-auto px-6 py-6 flex justify-between items-center relative">
+      <div class="hidden md:flex gap-10 text-[10px] font-bold tracking-[0.2em] uppercase text-black/40">
+         <a href="#new" class="hover:text-black transition">Editorial</a>
+         <a href="#collection" class="hover:text-black transition">Collections</a>
       </div>
       
-      <a href="#" class="font-serif text-2xl tracking-wider absolute left-1/2 -translate-x-1/2">모드 서울</a>
+      <a href="#" class="font-serif-modern text-3xl md:text-4xl tracking-[0.1em] font-black absolute left-1/2 -translate-x-1/2 uppercase">Avenue</a>
       
-      <div class="flex gap-5 text-sm font-medium">
-         <a href="#" class="hidden md:block hover:text-gray-500">로그인</a>
-         <a href="#" class="hover:text-gray-500">장바구니 (0)</a>
+      <div class="flex gap-8 text-[10px] font-bold tracking-[0.2em] uppercase text-black/40 items-center">
+         <button onclick="toggleAvenueModal()" class="hover:text-black transition">Account</button>
+         <button class="hover:text-black transition flex items-center gap-2">
+            Bag <span class="bg-black text-white w-4 h-4 rounded-full flex items-center justify-center text-[8px] font-bold">0</span>
+         </button>
       </div>
     </div>
   </nav>
 
   <!-- Hero -->
-  <header class="relative h-[70vh] md:h-[80vh] overflow-hidden bg-gray-100">
-    <img src="https://images.unsplash.com/photo-1483985988355-763728e1935b?q=80&w=1920" alt="패션 쇼핑" class="w-full h-full object-cover">
-    
-    <div class="absolute inset-0 flex flex-col justify-center items-center text-center text-white bg-black/20">
-      <p class="font-serif text-xl mb-3">2024 봄/여름</p>
-      <h1 class="text-5xl md:text-7xl font-serif mb-8 tracking-wide">
-        어반<br>컬렉션
-      </h1>
-      <button class="bg-white text-black px-8 py-3 text-sm font-bold tracking-wide hover:bg-black hover:text-white transition">
-        쇼핑하기
-      </button>
+  <header class="h-screen relative overflow-hidden flex items-center justify-center">
+    <!-- Video Background Concept -->
+    <div class="absolute inset-0 z-0">
+       <img src="https://images.unsplash.com/photo-1483985988355-763728e1935b?q=80&w=2400" alt="Fashion" class="w-full h-full object-cover grayscale brightness-90 animate-subtle-zoom">
+       <!-- You would typically use a video here for a real luxury site -->
+       <div class="absolute inset-0 bg-black/10"></div>
     </div>
+    
+    <div class="relative z-10 text-center text-white space-y-12 px-6 max-w-4xl mx-auto">
+      <div class="inline-block border border-white/30 px-6 py-2 backdrop-blur-md">
+         <p class="font-serif-modern text-lg md:text-xl italic tracking-widest">Fall / Winter 2024</p>
+      </div>
+      
+      <h1 class="text-6xl md:text-[8rem] font-serif-modern leading-[0.9] tracking-tight uppercase mobile-title">
+        Urban<br><span class="italic font-light">Elegance.</span>
+      </h1>
+      
+      <p class="text-white/80 text-sm md:text-lg leading-relaxed max-w-lg mx-auto font-sans font-light mobile-desc border-t border-white/20 pt-8 mt-8">
+         도시의 감각을 재해석한 새로운 컬렉션. 섬세한 디테일과 과감한 실루엣의 조화를 만나보세요.
+      </p>
+      
+      <div class="pt-8 flex flex-col sm:flex-row gap-6 justify-center">
+         <button class="bg-white text-black px-16 py-5 text-[10px] font-bold tracking-[0.4em] uppercase hover:bg-black hover:text-white transition duration-500 shadow-2xl">
+           Shop Women
+         </button>
+         <button class="border border-white text-white px-16 py-5 text-[10px] font-bold tracking-[0.4em] uppercase hover:bg-white hover:text-black transition duration-500 backdrop-blur-sm">
+           Shop Men
+         </button>
+      </div>
+    </div>
+    
+    <style>
+       @keyframes subtle-zoom {
+          0% { transform: scale(1); }
+          100% { transform: scale(1.05); }
+       }
+       .animate-subtle-zoom { animation: subtle-zoom 20s infinite alternate ease-in-out; }
+    </style>
   </header>
 
-  <!-- Categories Marquee -->
-  <div class="py-8 border-b border-gray-100 overflow-hidden">
-    <div class="marquee-container">
-      <div class="marquee-content text-4xl md:text-6xl font-serif text-gray-200 hover:text-gray-400 transition">
-        신상품 &nbsp;&nbsp; 베스트셀러 &nbsp;&nbsp; 코트 & 자켓 &nbsp;&nbsp; 드레스 &nbsp;&nbsp; 액세서리 &nbsp;&nbsp; 슈즈 &nbsp;&nbsp; 
-        신상품 &nbsp;&nbsp; 베스트셀러 &nbsp;&nbsp; 코트 & 자켓 &nbsp;&nbsp; 드레스 &nbsp;&nbsp; 액세서리 &nbsp;&nbsp; 슈즈 &nbsp;&nbsp;
-      </div>
-    </div>
-  </div>
-
-  <!-- Featured Collection Grid -->
-  <section class="py-16 md:py-24 px-6">
-    <div class="container mx-auto">
-      <div class="flex justify-between items-end mb-10">
-        <h2 class="text-2xl md:text-3xl font-serif">추천 상품</h2>
-        <a href="#" class="text-sm font-bold border-b border-black pb-1 hover:text-gray-500 transition">전체 보기</a>
-      </div>
-
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
-        <!-- Item 1 -->
-        <div class="group cursor-pointer">
-           <div class="relative overflow-hidden mb-3 aspect-[3/4]">
-              <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?q=80&w=600" alt="실크 블라우스" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
-              <div class="absolute bottom-3 left-3 bg-white px-2 py-1 text-xs font-bold">NEW</div>
-           </div>
-           <h3 class="font-serif text-base mb-1">실크 블라우스</h3>
-           <p class="text-xs text-gray-500 mb-1">아이보리 / 블랙</p>
-           <p class="font-bold text-sm">₩ 89,000</p>
-        </div>
-
-        <!-- Item 2 -->
-        <div class="group cursor-pointer">
-           <div class="relative overflow-hidden mb-3 aspect-[3/4]">
-              <img src="https://images.unsplash.com/photo-1539109136881-3be0616acf4b?q=80&w=600" alt="울 코트" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
-           </div>
-           <h3 class="font-serif text-base mb-1">울 코트</h3>
-           <p class="text-xs text-gray-500 mb-1">카멜 / 네이비</p>
-           <p class="font-bold text-sm">₩ 245,000</p>
-        </div>
-
-        <!-- Item 3 -->
-        <div class="group cursor-pointer">
-           <div class="relative overflow-hidden mb-3 aspect-[3/4]">
-              <img src="https://images.unsplash.com/photo-1550614000-4b9519e09966?q=80&w=600" alt="플리츠 드레스" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
-              <div class="absolute bottom-3 left-3 bg-black text-white px-2 py-1 text-xs font-bold">SALE</div>
-           </div>
-           <h3 class="font-serif text-base mb-1">플리츠 드레스</h3>
-           <p class="text-xs text-gray-500 mb-1">핑크 / 그린</p>
-           <p class="font-bold text-sm"><span class="line-through text-gray-400 mr-2">₩ 120,000</span>₩ 84,000</p>
-        </div>
-        
-        <!-- Item 4 -->
-        <div class="group cursor-pointer">
-           <div class="relative overflow-hidden mb-3 aspect-[3/4]">
-              <img src="https://images.unsplash.com/photo-1552874869-5c39ec53fc2a?q=80&w=600" alt="린넨 수트" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
-           </div>
-           <h3 class="font-serif text-base mb-1">린넨 수트</h3>
-           <p class="text-xs text-gray-500 mb-1">베이지 / 화이트</p>
-           <p class="font-bold text-sm">₩ 189,000</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Big Banner / Lookbook -->
-  <section class="py-8">
-     <div class="grid md:grid-cols-2">
-        <div class="relative h-[400px] md:h-[500px] overflow-hidden group">
-           <img src="https://images.unsplash.com/photo-1532453288672-3a27e9be9efd?q=80&w=800" alt="미니멀 에센셜" class="w-full h-full object-cover transition duration-500 group-hover:scale-105 brightness-90">
-           <div class="absolute inset-0 flex flex-col justify-center items-center text-white">
-              <h3 class="text-3xl font-serif mb-3">미니멀 에센셜</h3>
-              <a href="#" class="border-b border-white pb-1 text-sm tracking-wide hover:opacity-70">쇼핑하기</a>
+  <!-- Category Grid (Teaser) -->
+  <section class="grid grid-cols-1 md:grid-cols-2">
+     <div class="h-[600px] relative group overflow-hidden cursor-pointer">
+        <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?q=80&w=1200" class="w-full h-full object-cover transition duration-1000 group-hover:scale-105" alt="New Arrivals">
+        <div class="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition duration-500 flex items-center justify-center">
+           <div class="text-center">
+              <h3 class="text-4xl font-serif-modern text-white italic mb-4 translate-y-8 group-hover:translate-y-0 transition duration-500 opacity-0 group-hover:opacity-100">New Arrivals</h3>
+              <span class="text-white text-[10px] font-bold tracking-[0.4em] uppercase border-b border-white pb-1">Discover</span>
            </div>
         </div>
-        <div class="relative h-[400px] md:h-[500px] overflow-hidden group">
-           <img src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?q=80&w=800" alt="여름 휴가" class="w-full h-full object-cover transition duration-500 group-hover:scale-105 brightness-90">
-           <div class="absolute inset-0 flex flex-col justify-center items-center text-white">
-              <h3 class="text-3xl font-serif mb-3">여름 휴가</h3>
-              <a href="#" class="border-b border-white pb-1 text-sm tracking-wide hover:opacity-70">스윔웨어</a>
+     </div>
+     <div class="h-[600px] relative group overflow-hidden cursor-pointer">
+        <img src="https://images.unsplash.com/photo-1529139574466-a302d2052574?q=80&w=1200" class="w-full h-full object-cover transition duration-1000 group-hover:scale-105" alt="Accessories">
+         <div class="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition duration-500 flex items-center justify-center">
+           <div class="text-center">
+              <h3 class="text-4xl font-serif-modern text-white italic mb-4 translate-y-8 group-hover:translate-y-0 transition duration-500 opacity-0 group-hover:opacity-100">Accessories</h3>
+              <span class="text-white text-[10px] font-bold tracking-[0.4em] uppercase border-b border-white pb-1">Discover</span>
            </div>
         </div>
      </div>
   </section>
 
-  <!-- Newsletter -->
-  <section class="py-16 md:py-24 bg-gray-50 text-center px-6">
-    <div class="container mx-auto max-w-md">
-       <h2 class="text-2xl font-serif mb-2">뉴스레터 구독</h2>
-       <p class="text-gray-500 text-sm mb-8">신규 가입 시 10% 할인 쿠폰을 드립니다.</p>
-       <div class="flex border-b border-black pb-2">
-          <input type="email" placeholder="이메일 주소를 입력하세요" class="w-full bg-transparent outline-none placeholder-gray-400 text-sm">
-          <button class="text-sm font-bold hover:text-gray-500">구독</button>
-       </div>
-    </div>
-  </section>
-
-  <!-- Footer -->
-  <footer class="py-10 px-6 bg-black text-white">
-    <div class="container mx-auto text-center">
-      <p class="font-serif text-xl mb-2">모드 서울</p>
-      <p class="text-sm text-gray-500">서울시 강남구 청담동 123-45</p>
-      <div class="flex justify-center gap-4 mt-4 text-sm text-gray-500">
-        <a href="#" class="hover:text-white">인스타그램</a>
-        <a href="#" class="hover:text-white">카카오톡</a>
+  <!-- Login Modal -->
+  <div id="avenue-modal" class="fixed inset-0 z-[100] hidden items-center justify-center p-4 bg-white/80 backdrop-blur-2xl">
+    <div class="bg-white w-full max-w-sm p-16 shadow-2xl relative border border-black/5">
+      <button onclick="toggleAvenueModal()" class="absolute top-8 right-8 text-black/20 hover:text-black transition text-3xl font-light">&times;</button>
+      
+      <div class="text-center mb-14">
+        <h2 class="text-3xl font-serif-modern tracking-wide text-black mb-2 italic">Avenue Club</h2>
+        <p class="font-sans text-[9px] text-black/40 tracking-[0.3em] uppercase font-bold">Exclusive Member Access</p>
+      </div>
+      
+      <div class="space-y-8">
+        <div class="relative group">
+           <input type="email" placeholder="EMAIL ADDRESS" class="w-full bg-transparent border-b border-black/10 py-4 text-[11px] font-bold tracking-[0.2em] placeholder-black/30 uppercase outline-none focus:border-black transition">
+           <span class="absolute bottom-0 left-0 w-0 h-[1px] bg-black transition-all duration-500 group-hover:w-full"></span>
+        </div>
+        <button class="w-full bg-black text-white py-5 text-[10px] tracking-[0.4em] font-black uppercase hover:bg-gray-900 transition shadow-xl">
+           Sign In
+        </button>
+        <div class="flex justify-between pt-4 border-t border-black/5">
+           <a href="#" class="text-[9px] text-black/40 tracking-[0.2em] font-bold uppercase hover:text-black transition">Create Account</a>
+           <a href="#" class="text-[9px] text-black/40 tracking-[0.2em] font-bold uppercase hover:text-black transition">Assistance</a>
+        </div>
       </div>
     </div>
+  </div>
+
+  <footer class="py-32 bg-white text-black border-t border-black/5 text-center">
+     <div class="inline-flex flex-col items-center gap-8 mb-12">
+        <span class="font-serif-modern text-5xl tracking-[0.1em] uppercase">Avenue</span>
+        <div class="w-12 h-[1px] bg-black"></div>
+        <span class="text-[10px] font-bold text-black/40 tracking-[0.4em] uppercase">The Art of Luxury Retail</span>
+     </div>
+     <p class="text-[10px] text-black/20 tracking-[0.8em] uppercase px-6">© 2024 THE AVENUE. SEOUL.</p>
   </footer>
+
+  <script>
+    function toggleAvenueModal() {
+      const modal = document.getElementById('avenue-modal');
+      modal.classList.toggle('hidden');
+      modal.classList.toggle('flex');
+    }
+  </script>
 
 </div>

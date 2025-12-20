@@ -1,10 +1,15 @@
-<%# Portfolio Template - Jay 디자인 (UX/UI 포트폴리오) %>
+<%# Portfolio Template - Jay 디자인 (J.STUDIO) %>
 
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap');
   
   .font-sans { font-family: 'Noto Sans KR', sans-serif; }
-  
+
+  @media (max-width: 768px) {
+    .mobile-desc { font-size: 14px !important; line-height: 1.6; }
+    .mobile-title { font-size: 36px !important; }
+  }
+
   .marquee-box {
     display: flex;
     overflow: hidden;
@@ -15,134 +20,105 @@
     display: flex;
     justify-content: space-around;
     min-width: 100%;
-    gap: 2rem;
-    animation: scroll 20s linear infinite;
+    gap: 4rem;
+    animation: scroll 30s linear infinite;
   }
   @keyframes scroll {
     from { transform: translateX(0); }
-    to { transform: translateX(calc(-100% - 2rem)); }
+    to { transform: translateX(calc(-100% - 4rem)); }
   }
 </style>
 
-<div class="bg-black text-white font-sans selection:bg-[#fbff00] selection:text-black overflow-x-hidden">
+<div class="bg-[#0a0a0a] text-[#f2f2f2] font-sans selection:bg-[#fbff00] selection:text-black min-h-screen overflow-x-hidden">
 
   <!-- Nav -->
-  <nav class="fixed w-full z-50 px-6 py-5 bg-black/90 backdrop-blur-sm border-b border-white/10">
-     <div class="flex justify-between items-center">
-        <a href="#" class="font-black text-lg border border-white px-4 py-1 hover:bg-white hover:text-black transition">Jay.D</a>
-        
-        <div class="hidden md:flex gap-10 text-sm font-bold">
-           <a href="#work" class="hover:text-gray-400 transition">프로젝트</a>
-           <a href="#about" class="hover:text-gray-400 transition">소개</a>
-           <a href="#contact" class="hover:text-gray-400 transition">연락</a>
-        </div>
-        
-        <a href="mailto:hello@jay.design" class="hidden md:block text-xs font-bold hover:text-[#fbff00] transition">hello@jay.design</a>
-     </div>
+  <nav class="fixed w-full z-50 px-6 py-6 border-b border-white/5 bg-[#0a0a0a]/ worst backdrop-blur-md">
+    <div class="container mx-auto flex justify-between items-center">
+      <div class="flex items-center gap-4">
+         <span class="font-black text-2xl text-white tracking-widest uppercase italic">J.STUDIO</span>
+      </div>
+      
+      <div class="hidden md:flex gap-12 text-[10px] font-bold uppercase tracking-[0.4em] text-gray-500">
+        <a href="#work" class="hover:text-white transition">Selection</a>
+        <a href="#about" class="hover:text-white transition">Persona</a>
+        <a href="#contact" class="hover:text-white transition">Collaborate</a>
+      </div>
+      
+      <div class="flex gap-6 items-center">
+         <button onclick="togglePortfolioModal()" class="text-[10px] font-bold uppercase tracking-[0.4em] text-gray-500 hover:text-white">Project Core</button>
+         <button class="bg-[#fbff00] text-black px-6 py-2.5 rounded-full font-black text-[10px] tracking-widest uppercase hover:bg-white transition shadow-xl shadow-[#fbff00]/10">
+           Let's Talk
+         </button>
+      </div>
+    </div>
   </nav>
 
-  <!-- Hero with Marquee -->
-  <header class="min-h-screen flex flex-col justify-center relative pt-20">
-     <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] md:w-[500px] h-[300px] md:h-[500px] bg-gradient-to-r from-purple-600 to-blue-600 rounded-full blur-[100px] opacity-30"></div>
-     
-     <div class="container mx-auto px-6 relative z-10">
-        <p class="text-gray-400 text-sm font-medium mb-4">서울 기반 프로덕트 디자이너</p>
-        <h1 class="text-5xl md:text-7xl font-black leading-tight mb-10">
-           디지털<br><span class="text-[#fbff00]">경험</span>을<br>창조합니다
-        </h1>
-     </div>
-     
-     <!-- Scrolling Marquee -->
-     <div class="marquee-box border-y border-white/20 py-3 mt-auto mb-8 bg-white/5 backdrop-blur-sm">
-        <div class="marquee-content font-bold text-2xl md:text-3xl text-gray-500">
-           <span>• UX 리서치</span> <span>• UI 디자인</span> <span>• 프로토타이핑</span> <span>• 인터랙션</span> <span>• 브랜딩</span> <span>• 모션</span>
-           <span>• UX 리서치</span> <span>• UI 디자인</span> <span>• 프로토타이핑</span> <span>• 인터랙션</span> <span>• 브랜딩</span> <span>• 모션</span>
-        </div>
-     </div>
+  <!-- Hero -->
+  <header class="min-h-screen relative flex flex-col justify-center overflow-hidden pt-20">
+    <div class="absolute inset-0">
+       <div class="absolute top-20 left-[-5%] w-[40%] h-[40%] bg-blue-500/10 rounded-full blur-[120px]"></div>
+       <div class="absolute bottom-20 right-[-5%] w-[40%] h-[40%] bg-purple-500/10 rounded-full blur-[120px]"></div>
+    </div>
+    
+    <div class="container mx-auto px-6 relative z-10 space-y-8">
+      <div class="inline-flex items-center gap-4 text-[#fbff00] font-black bg-white/5 border border-[#fbff00]/20 px-6 py-2 rounded-full text-[10px] tracking-widest uppercase">
+         <span class="animate-pulse">●</span> Based in Seoul / Senior Product Designer
+      </div>
+      <h1 class="text-5xl md:text-9xl font-black leading-none tracking-tighter text-white mobile-title uppercase">
+         디지털 경험의<br><span class="text-transparent bg-clip-text bg-gradient-to-r from-[#fbff00] to-white italic">본능적 가치.</span>
+      </h1>
+      <p class="text-gray-500 text-sm md:text-xl leading-relaxed max-w-2xl mobile-desc font-light">
+         사용자의 무의식 속에 스며드는 직관적인 인터페이스를 연구합니다. J.STUDIO는 단순한 시각화를 넘어, 데이터와 직관이 결합된 지속 가능한 디지털 프로덕트를 제안합니다.
+      </p>
+    </div>
+
+    <!-- Scrolling Marquee -->
+    <div class="marquee-box border-y border-white/5 py-8 mt-20 bg-white/5 backdrop-blur-sm">
+      <div class="marquee-content font-black text-2xl md:text-5xl text-gray-800 uppercase tracking-tighter">
+         <span>• UX Research</span> <span>• Interface Design</span> <span>• Prototyping</span> <span>• Brand Identity</span> <span>• Motion Interaction</span>
+         <span>• UX Research</span> <span>• Interface Design</span> <span>• Prototyping</span> <span>• Brand Identity</span> <span>• Motion Interaction</span>
+      </div>
+    </div>
   </header>
 
-  <!-- Selected Work Grid -->
-  <section id="work" class="py-16 md:py-24 px-6">
-     <div class="container mx-auto">
-        <h2 class="text-3xl font-black mb-12 text-center">선택된 프로젝트</h2>
-        <div class="grid gap-16 md:gap-24">
-           <!-- Project 1 -->
-           <div class="group relative cursor-pointer grid md:grid-cols-2 gap-6 items-center">
-              <div class="order-2 md:order-1">
-                 <span class="text-[#fbff00] font-bold text-sm mb-3 block">01</span>
-                 <h2 class="text-3xl md:text-4xl font-black mb-4 group-hover:text-[#fbff00] transition">핀테크 앱<br>리디자인</h2>
-                 <p class="text-gray-400 text-base mb-6 max-w-md">
-                    금융 앱의 복잡한 사용자 경험을 단순화하고, MZ세대를 타겟으로 한 직관적인 인터페이스 설계.
-                 </p>
-                 <div class="flex flex-wrap gap-2 text-xs font-bold text-gray-500">
-                    <span class="border border-gray-700 px-3 py-1 rounded-full">모바일 앱</span>
-                    <span class="border border-gray-700 px-3 py-1 rounded-full">금융</span>
-                    <span class="border border-gray-700 px-3 py-1 rounded-full">2023</span>
-                 </div>
-              </div>
-              <div class="order-1 md:order-2 overflow-hidden rounded-lg">
-                 <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=800" alt="핀테크 앱 리디자인" class="w-full h-[250px] md:h-[350px] object-cover transition duration-500 group-hover:scale-105 filter grayscale group-hover:grayscale-0">
-              </div>
-           </div>
-
-           <!-- Project 2 -->
-           <div class="group relative cursor-pointer grid md:grid-cols-2 gap-6 items-center">
-              <div class="md:text-right overflow-hidden rounded-lg order-1">
-                 <img src="https://images.unsplash.com/photo-1611162617474-5b21e879e113?q=80&w=800" alt="이커머스 대시보드" class="w-full h-[250px] md:h-[350px] object-cover transition duration-500 group-hover:scale-105 filter grayscale group-hover:grayscale-0">
-              </div>
-              <div class="order-2">
-                 <span class="text-[#fbff00] font-bold text-sm mb-3 block md:text-right">02</span>
-                 <h2 class="text-3xl md:text-4xl font-black mb-4 group-hover:text-[#fbff00] transition md:text-right">이커머스<br>대시보드</h2>
-                 <p class="text-gray-400 text-base mb-6 max-w-md ml-auto md:text-right">
-                    셀러들이 판매 데이터를 한눈에 파악하고 관리할 수 있도록 돕는 B2B 대시보드 시스템 구축.
-                 </p>
-                 <div class="flex flex-wrap gap-2 text-xs font-bold text-gray-500 justify-start md:justify-end">
-                    <span class="border border-gray-700 px-3 py-1 rounded-full">웹 플랫폼</span>
-                    <span class="border border-gray-700 px-3 py-1 rounded-full">B2B</span>
-                    <span class="border border-gray-700 px-3 py-1 rounded-full">2024</span>
-                 </div>
-              </div>
-           </div>
-
-           <!-- Project 3 -->
-           <div class="group relative cursor-pointer grid md:grid-cols-2 gap-6 items-center">
-              <div class="order-2 md:order-1">
-                 <span class="text-[#fbff00] font-bold text-sm mb-3 block">03</span>
-                 <h2 class="text-3xl md:text-4xl font-black mb-4 group-hover:text-[#fbff00] transition">스마트홈<br>인터페이스</h2>
-                 <p class="text-gray-400 text-base mb-6 max-w-md">
-                    IoT 기기를 제어하는 스마트 홈 허브 인터페이스 디자인. 음성 인식 및 터치 인터랙션 최적화.
-                 </p>
-                 <div class="flex flex-wrap gap-2 text-xs font-bold text-gray-500">
-                    <span class="border border-gray-700 px-3 py-1 rounded-full">IoT</span>
-                    <span class="border border-gray-700 px-3 py-1 rounded-full">인터페이스</span>
-                    <span class="border border-gray-700 px-3 py-1 rounded-full">2023</span>
-                 </div>
-              </div>
-              <div class="order-1 md:order-2 overflow-hidden rounded-lg">
-                 <img src="https://images.unsplash.com/photo-1558002038-109155714297?q=80&w=800" alt="스마트홈 인터페이스" class="w-full h-[250px] md:h-[350px] object-cover transition duration-500 group-hover:scale-105 filter grayscale group-hover:grayscale-0">
-              </div>
-           </div>
+  <!-- Login Modal -->
+  <div id="portfolio-modal" class="fixed inset-0 z-[100] hidden items-center justify-center p-4 bg-black/ worst backdrop-blur-md">
+    <div class="bg-[#111] w-full max-w-sm p-12 shadow-2xl relative border border-[#fbff00]/20 rounded-lg">
+      <button onclick="togglePortfolioModal()" class="absolute top-10 right-10 text-gray-500 hover:text-[#fbff00] transition text-2xl font-light">&times;</button>
+      
+      <div class="text-center mb-10">
+        <h2 class="text-xl font-black text-white mb-2 tracking-[0.4em] uppercase italic">PROJECT_CORE</h2>
+        <p class="text-[9px] text-[#fbff00] font-bold tracking-[0.3em] uppercase">Private Portfolio Access</p>
+      </div>
+      
+      <div class="space-y-6">
+        <input type="password" placeholder="ENTER ACCESS CODE" class="w-full bg-white/5 border border-white/5 py-5 px-6 outline-none focus:border-[#fbff00] transition text-[11px] font-black tracking-widest text-[#fbff00] uppercase">
+        <button class="w-full bg-[#fbff00] text-black py-5 rounded-sm text-[10px] tracking-[0.3em] font-black uppercase hover:bg-white transition shadow-lg shadow-[#fbff00]/10">
+           Request Access
+        </button>
+        <div class="flex justify-center gap-10 pt-4">
+           <a href="#" class="text-[9px] text-gray-500 tracking-[0.2em] font-bold uppercase hover:text-white transition">NDA Policy</a>
+           <a href="#" class="text-[9px] text-gray-500 tracking-[0.2em] font-bold uppercase hover:text-white transition">Contact Me</a>
         </div>
-     </div>
-  </section>
+      </div>
+    </div>
+  </div>
 
-  <!-- CTA -->
-  <section id="contact" class="py-20 md:py-32 flex flex-col justify-center items-center text-center px-6 relative overflow-hidden bg-[#111]">
-     <a href="mailto:hello@jay.design" class="group relative z-10">
-        <span class="font-black text-4xl md:text-6xl text-[#fbff00] block">함께 작업해요</span>
-     </a>
-     
-     <p class="text-gray-500 mt-6 mb-4">아이디어가 있으신가요? 함께 멋진 것을 만들어 봐요.</p>
-     
-     <div class="flex gap-6 mt-10">
-        <a href="#" class="text-xs font-bold hover:text-[#fbff00] transition">LinkedIn</a>
-        <a href="#" class="text-xs font-bold hover:text-[#fbff00] transition">Behance</a>
-        <a href="#" class="text-xs font-bold hover:text-[#fbff00] transition">Instagram</a>
+  <footer class="py-24 bg-[#0a0a0a] text-center px-6 border-t border-white/5">
+     <div class="inline-flex items-center gap-6 mb-8">
+        <span class="italic font-black text-2xl text-white tracking-widest uppercase">J.STUDIO</span>
+        <span class="w-12 h-[1px] bg-white/10"></span>
+        <span class="text-[10px] font-bold text-gray-700 tracking-[0.4em] uppercase">Product Design Archive</span>
      </div>
-     
-     <div class="absolute bottom-6 left-0 w-full text-center text-xs text-gray-600">
-        © 2024 Jay Design. All Rights Reserved.
-     </div>
-  </section>
+     <p class="text-[10px] text-white/5 tracking-[0.6em] uppercase px-6">© 2024 J.STUDIO DESIGN. ALL RIGHTS RESERVED.</p>
+  </footer>
+
+  <script>
+    function togglePortfolioModal() {
+      const modal = document.getElementById('portfolio-modal');
+      modal.classList.toggle('hidden');
+      modal.classList.toggle('flex');
+    }
+  </script>
 
 </div>
