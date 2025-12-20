@@ -11,10 +11,10 @@ gem "propshaft"
 # gem "puma", ">= 5.0"
 
 # Use PostgreSQL in production
-group :production do
-  gem "pg", "~> 1.1"
-  gem "puma", ">= 5.0"
-end
+# group :production do
+#   gem "pg", "~> 1.1"
+#   gem "puma", ">= 5.0"
+# end
 
 # Use SQLite in development and test
 group :development, :test do

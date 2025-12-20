@@ -104,6 +104,6 @@ class PagesController < ApplicationController
   private
 
   def quote_params
-    params.require(:quote).permit(:contact_name, :company_name, :email, :phone, :project_type, :budget, :message)
+    params.require(:quote).permit(:contact_name, :company_name, :email, :phone, :project_type, :budget, :message, :preferred_domain)
   end
 end
