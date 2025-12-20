@@ -17,12 +17,46 @@
       linear-gradient(to right, rgba(17, 24, 39, 0.05) 1px, transparent 1px),
       linear-gradient(to bottom, rgba(17, 24, 39, 0.05) 1px, transparent 1px);
   }
+
+  /* Marquee Animation */
+  .marquee-container {
+    overflow: hidden;
+    white-space: nowrap;
+    position: relative;
+  }
+  .marquee-content {
+    display: inline-block;
+    animation: marquee 30s linear infinite;
+  }
+  @keyframes marquee {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
 </style>
 
 <div class="bg-white text-slate-900 font-sans selection:bg-[#0F172A] selection:text-white min-h-screen overflow-x-hidden relative grid-pattern">
 
+  <!-- Ticker (Hiring) -->
+  <div class="bg-[#0F172A] text-white text-[10px] md:text-xs font-bold py-2 px-4 text-center tracking-wide relative overflow-hidden">
+     <div class="marquee-container">
+        <div class="marquee-content">
+           <span class="mx-4">🚀 NOW HIRING: Senior Backend Engineer</span>
+           <span class="mx-4">•</span>
+           <span class="mx-4">New Offices Opened in Singapore</span>
+           <span class="mx-4">•</span>
+           <span class="mx-4">NEXUS Series A Funding Complete</span>
+           <span class="mx-4">•</span>
+           <span class="mx-4">🚀 NOW HIRING: Senior Backend Engineer</span>
+           <span class="mx-4">•</span>
+           <span class="mx-4">New Offices Opened in Singapore</span>
+           <span class="mx-4">•</span>
+           <span class="mx-4">NEXUS Series A Funding Complete</span>
+        </div>
+     </div>
+  </div>
+
   <!-- Nav -->
-  <nav class="fixed w-full z-50 px-8 py-6 bg-white/90 backdrop-blur-xl border-b border-slate-100">
+  <nav class="fixed w-full z-50 px-8 py-6 bg-white/90 backdrop-blur-xl border-b border-slate-100 top-8" data-aos="fade-down" data-aos-duration="1000">
     <div class="container mx-auto flex justify-between items-center">
       <div class="flex items-center gap-3">
          <div class="w-8 h-8 bg-[#0F172A] flex items-center justify-center text-white font-extrabold text-sm rounded-sm">
@@ -47,13 +81,13 @@
   </nav>
 
   <!-- Hero -->
-  <header class="min-h-screen relative flex items-center justify-center pt-24 overflow-hidden">
+  <header class="min-h-screen relative flex items-center justify-center pt-32 overflow-hidden">
     <!-- Abstract Tech Elements -->
-    <div class="absolute right-0 top-1/4 w-[600px] h-[600px] bg-gradient-to-bl from-blue-50 to-transparent rounded-full filter blur-3xl opacity-60 pointer-events-none"></div>
-    <div class="absolute left-0 bottom-1/4 w-[500px] h-[500px] bg-gradient-to-tr from-slate-50 to-transparent rounded-full filter blur-3xl opacity-60 pointer-events-none"></div>
+    <div class="absolute right-0 top-1/4 w-[600px] h-[600px] bg-gradient-to-bl from-blue-50 to-transparent rounded-full filter blur-3xl opacity-60 pointer-events-none" data-aos="zoom-in" data-aos-duration="2000"></div>
+    <div class="absolute left-0 bottom-1/4 w-[500px] h-[500px] bg-gradient-to-tr from-slate-50 to-transparent rounded-full filter blur-3xl opacity-60 pointer-events-none" data-aos="zoom-in" data-aos-duration="2000" data-aos-delay="500"></div>
 
     <div class="container mx-auto px-6 relative z-10">
-      <div class="max-w-4xl mx-auto text-center mb-16">
+      <div class="max-w-4xl mx-auto text-center mb-16" data-aos="fade-up" data-aos-duration="1200">
         <div class="inline-flex items-center gap-2 bg-slate-50 border border-slate-200 px-3 py-1 rounded-full mb-8">
            <span class="w-2 h-2 rounded-full bg-blue-500 animate-pulse"></span>
            <span class="text-[10px] font-bold text-slate-600 uppercase tracking-wide">Enterprise Solutions v2.0 Released</span>
@@ -69,7 +103,7 @@
         </p>
         
         <div class="flex flex-col sm:flex-row gap-4 justify-center">
-           <button class="px-8 py-4 bg-[#0F172A] text-white font-bold text-sm rounded-sm hover:bg-blue-600 transition shadow-xl shadow-blue-900/10">
+           <button class="px-8 py-4 bg-[#0F172A] text-white font-bold text-sm rounded-sm hover:bg-blue-600 transition shadow-xl shadow-blue-900/10 hover:-translate-y-1 transform duration-300">
               Start Free Trial
            </button>
            <button class="px-8 py-4 bg-white border border-slate-200 text-slate-700 font-bold text-sm rounded-sm hover:border-slate-400 transition flex items-center gap-2 justify-center group">
@@ -80,7 +114,7 @@
       </div>
 
       <!-- Dashboard Mockup -->
-      <div class="relative max-w-5xl mx-auto perspective-1000">
+      <div class="relative max-w-5xl mx-auto perspective-1000" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="200">
          <div class="bg-white rounded-xl shadow-2xl border border-slate-200 overflow-hidden transform rotate-x-12 hover:rotate-x-0 transition duration-1000 origin-bottom">
             <div class="bg-slate-50 border-b border-slate-100 p-4 flex items-center justify-between">
                <div class="flex gap-2">
@@ -95,24 +129,26 @@
                   <div class="flex justify-between items-end">
                      <div>
                         <p class="text-xs text-slate-400 font-bold uppercase">Total Revenue</p>
-                        <p class="text-3xl font-display font-bold text-[#0F172A]">$124,500.00</p>
+                        <p class="text-3xl font-display font-bold text-[#0F172A]" id="revenue">$0</p>
                      </div>
                      <span class="px-2 py-1 bg-green-50 text-green-600 text-xs font-bold rounded">+12.5%</span>
                   </div>
                   <div class="h-48 bg-slate-50 rounded-lg w-full flex items-end justify-between p-4 gap-2">
-                     <div class="w-full bg-blue-500/20 h-[40%] rounded-sm"></div>
-                     <div class="w-full bg-blue-500/40 h-[60%] rounded-sm"></div>
-                     <div class="w-full bg-blue-500/30 h-[30%] rounded-sm"></div>
-                     <div class="w-full bg-blue-500/60 h-[80%] rounded-sm"></div>
-                     <div class="w-full bg-blue-600 h-[70%] rounded-sm shadow-lg shadow-blue-500/30"></div>
+                     <div class="w-full bg-blue-500/20 h-[40%] rounded-sm hover:h-[45%] transition-all duration-500"></div>
+                     <div class="w-full bg-blue-500/40 h-[60%] rounded-sm hover:h-[65%] transition-all duration-500"></div>
+                     <div class="w-full bg-blue-500/30 h-[30%] rounded-sm hover:h-[35%] transition-all duration-500"></div>
+                     <div class="w-full bg-blue-500/60 h-[80%] rounded-sm hover:h-[85%] transition-all duration-500"></div>
+                     <div class="w-full bg-blue-600 h-[70%] rounded-sm shadow-lg shadow-blue-500/30 hover:h-[75%] transition-all duration-500 relative group">
+                        <div class="absolute -top-10 left-1/2 -translate-x-1/2 bg-[#0F172A] text-white text-[10px] py-1 px-2 rounded opacity-0 group-hover:opacity-100 transition">Record</div>
+                     </div>
                   </div>
                </div>
                <div class="space-y-4">
-                  <div class="p-4 rounded-lg border border-slate-100 bg-slate-50">
+                  <div class="p-4 rounded-lg border border-slate-100 bg-slate-50 hover:border-blue-200 transition duration-300">
                      <p class="text-xs text-slate-400 font-bold uppercase mb-2">Active Users</p>
-                     <p class="text-xl font-bold text-[#0F172A]">2,451</p>
+                     <p class="text-xl font-bold text-[#0F172A]" id="users">0</p>
                   </div>
-                  <div class="p-4 rounded-lg border border-slate-100 bg-slate-50">
+                  <div class="p-4 rounded-lg border border-slate-100 bg-slate-50 hover:border-blue-200 transition duration-300">
                      <p class="text-xs text-slate-400 font-bold uppercase mb-2">System Status</p>
                      <div class="flex items-center gap-2 text-green-600 font-bold text-sm"><span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span> Operational</div>
                   </div>
@@ -120,7 +156,33 @@
             </div>
          </div>
          <!-- Glow Effect -->
-         <div class="absolute -inset-10 bg-blue-500/20 blur-[80px] -z-10"></div>
+         <div class="absolute -inset-10 bg-blue-500/20 blur-[80px] -z-10 animate-pulse"></div>
+      </div>
+      
+      <!-- Partner Marquee -->
+      <div class="mt-20 border-t border-slate-100 pt-10 overflow-hidden" data-aos="fade-in" data-aos-delay="800">
+         <p class="text-center text-xs font-bold text-slate-400 uppercase tracking-widest mb-8">Trusted by Industry Leaders</p>
+         <div class="marquee-container opacity-50 grayscale hover:grayscale-0 transition duration-500">
+            <div class="marquee-content text-2xl font-display font-bold text-slate-300 gap-12 flex items-center">
+               <span>ACME Corp</span>
+               <span>Stark Ind</span>
+               <span>Wayne Ent</span>
+               <span>Cyberdyne</span>
+               <span>Massive Dynamic</span>
+               <span>Umbrella Corp</span>
+               <span>Globex</span>
+               <span>InGen</span>
+               <!-- Duplicate for seamless loop -->
+               <span>ACME Corp</span>
+               <span>Stark Ind</span>
+               <span>Wayne Ent</span>
+               <span>Cyberdyne</span>
+               <span>Massive Dynamic</span>
+               <span>Umbrella Corp</span>
+               <span>Globex</span>
+               <span>InGen</span>
+            </div>
+         </div>
       </div>
     </div>
 
@@ -132,7 +194,7 @@
 
   <!-- Login Modal -->
   <div id="corporate-modal" class="fixed inset-0 z-[100] hidden items-center justify-center p-4 bg-[#0F172A]/80 backdrop-blur-md">
-    <div class="bg-white w-full max-w-sm p-10 shadow-2xl relative rounded-xl border border-white/20">
+    <div class="bg-white w-full max-w-sm p-10 shadow-2xl relative rounded-xl border border-white/20" data-aos="zoom-in">
       <button onclick="toggleCorporateModal()" class="absolute top-6 right-6 text-slate-300 hover:text-[#0F172A] transition text-xl">&times;</button>
       
       <div class="text-center mb-8">
@@ -177,6 +239,32 @@
       modal.classList.toggle('hidden');
       modal.classList.toggle('flex');
     }
+
+    // Number Counting Animation
+    function animateValue(obj, start, end, duration, prefix = "") {
+       let startTimestamp = null;
+       const step = (timestamp) => {
+          if (!startTimestamp) startTimestamp = timestamp;
+          const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+          obj.innerHTML = prefix + Math.floor(progress * (end - start) + start).toLocaleString();
+          if (progress < 1) {
+             window.requestAnimationFrame(step);
+          } else {
+             obj.innerHTML = prefix + end.toLocaleString() + (prefix === "$" ? ".00" : ""); // Format at end
+          }
+       };
+       window.requestAnimationFrame(step);
+    }
+
+    // Trigger animation when visible
+    document.addEventListener('DOMContentLoaded', () => {
+       setTimeout(() => {
+          const rev = document.getElementById("revenue");
+          const users = document.getElementById("users");
+          if(rev) animateValue(rev, 0, 124500, 2000, "$");
+          if(users) animateValue(users, 0, 2451, 2000);
+       }, 1000);
+    });
   </script>
 
 </div>
