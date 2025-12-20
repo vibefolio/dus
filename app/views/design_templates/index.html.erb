@@ -101,19 +101,27 @@
                   <%= template.category %>
                 </span>
 
-                <% price = template_price_tier(template.category) %>
-                <span class="px-3 py-1 bg-slate-900/90 backdrop-blur text-white text-xs font-bold rounded-full uppercase tracking-wider shadow-sm flex items-center gap-1 border border-slate-800">
-                  <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M12 2L2 12L12 22L22 12L12 2Z"/>
-                  </svg>
-                  <%= price %>
-                </span>
-
                 <% if template.is_featured %>
                   <span class="px-3 py-1 bg-amber-400 text-white text-xs font-bold rounded-full uppercase tracking-wider shadow-sm shadow-amber-200">
                     BEST
                   </span>
                 <% end %>
+              </div>
+
+              <%
+                # Diamond Score Logic
+                diamond_score = case template.category
+                                when 'shopping', 'corporate', 'finance', 'medical', 'dental', 'real_estate', 'hotel', 'stay', 'startup', 'ecommerce', 'rental', 'consulting'
+                                  70
+                                when 'fitness', 'gym', 'yoga', 'law', 'tax', 'academy', 'learnhub', 'english', 'dining', 'restaurant', 'seafood', 'rice', 'burger', 'studio', 'wedding', 'cleaning', 'construction', 'interior', 'vet', 'bag', 'shoes', 'cloth', 'artistry', 'portfolio'
+                                  50
+                                else
+                                  30
+                                end
+              %>
+              <!-- Diamond Badge (Right) -->
+              <div style="position: absolute; top: 16px; right: 16px; background: rgba(0,0,0,0.6); backdrop-filter: blur(4px); padding: 4px 10px; border-radius: 99px; font-size: 11px; font-weight: 800; color: #fff; z-index: 10; border: 1px solid rgba(255,255,255,0.2); display: flex; align-items: center; gap: 4px;">
+                <span style="font-size: 10px;">💎</span> <%= diamond_score %>
               </div>
               
               <!-- Hover Overlay -->
