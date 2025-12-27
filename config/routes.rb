@@ -1,10 +1,13 @@
 Rails.application.routes.draw do
   resources :orders do
     collection do
-      get 'success'
       get 'fail'
     end
   end
+  
+  # Design System (Dev Rule)
+  get 'design_system', to: 'design_system#index'
+
   resources :products
   # 메인 페이지
   # Design Template Previews
@@ -41,6 +44,7 @@ Rails.application.routes.draw do
   get 'templates/dental', to: 'templates#dental'
   get 'templates/vet', to: 'templates#vet'
   get 'templates/tax', to: 'templates#tax'
+  get 'templates/accounting', to: 'templates#accounting'
   get 'templates/camping', to: 'templates#camping'
   get 'templates/studio', to: 'templates#studio'
   get 'templates/petshop', to: 'templates#petshop'

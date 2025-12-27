@@ -7,7 +7,7 @@ class TemplatesController < ApplicationController
     beauty dining gym study stay corporate ecommerce cafe portfolio 
     medical law wedding cleaning agency consulting academy sculpt yoga 
     nail barber flower burger wine salad dessert donut kinder startup 
-    rental finance dental vet tax camping studio petshop hotel pension 
+    rental finance dental vet tax accounting camping studio petshop hotel pension 
     cloth shoe bag shopping learnhub english artistry
   ].each do |template_name|
     define_method(template_name) do
