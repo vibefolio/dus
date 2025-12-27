@@ -140,6 +140,14 @@ templates = [
     is_featured: true
   },
   { 
+    title: "K-Accounting", 
+    description: "공인회계사회 스타일의 신뢰감 있는 회계/세무 법인 전용 템플릿. 정보 중심의 UI.", 
+    category: "finance", 
+    preview_url: "/templates/accounting", 
+    image_url: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&w=800",
+    is_featured: true
+  },
+  { 
     title: "대치 엘리트", 
     description: "최고의 입시 및 코딩 교육 아카데미를 위한 클래식 세리프 디자인.", 
     category: "academy", 
