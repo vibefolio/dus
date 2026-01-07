@@ -37,13 +37,23 @@
       </div>
       
       <div class="flex gap-4 items-center">
+         <button class="mobile-menu-trigger md:hidden text-2xl mr-4 focus:outline-none" style="color: #1E3A8A;">
+           <i class="fas fa-bars"></i>
+         </button>
+
          <button onclick="toggleVetModal()" class="text-[14px] font-soft font-bold text-[#60A5FA] hover:text-[#1E3A8A] bg-white px-4 py-2 rounded-xl shadow-sm border border-[#BFDBFE] hover:shadow-md transition">My Pet</button>
          <button class="bg-[#3B82F6] text-white px-6 py-2.5 rounded-xl font-soft font-bold text-[14px] hover:bg-[#2563EB] transition shadow-lg shadow-blue-300">
            Book Appointment
          </button>
       </div>
     </div>
-  </nav>
+
+      <%= render partial: 'templates/shared/mobile_menu', locals: {
+          links: [{text: 'About', href: '#about'}, {text: 'Services', href: '#services'}, {text: 'Emergency', href: '#emergency'}],
+          primary_color: '#1E3A8A',
+          bg_color: '#ffffff'
+      } %>
+    </nav>
 
   <!-- Hero -->
   <header class="min-h-screen relative flex items-center justify-center pt-24 overflow-hidden">

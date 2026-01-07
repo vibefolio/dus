@@ -51,7 +51,13 @@
         <a href="#" class="hover:text-[#005BAC] py-7 border-b-2 border-transparent hover:border-[#005BAC] transition">업무분야</a>
         <a href="#" class="hover:text-[#005BAC] py-7 border-b-2 border-transparent hover:border-[#005BAC] transition">정보센터</a>
         <a href="#" class="hover:text-[#005BAC] py-7 border-b-2 border-transparent hover:border-[#005BAC] transition">상담신청</a>
-      </nav>
+
+      <%= render partial: 'templates/shared/mobile_menu', locals: {
+          links: [],
+          primary_color: '#005BAC',
+          bg_color: '#ffffff'
+      } %>
+    </nav>
 
       <!-- Mobile Menu Button -->
       <button class="lg:hidden text-slate-700 text-2xl">

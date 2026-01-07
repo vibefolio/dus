@@ -34,13 +34,23 @@
       </div>
       
       <div class="flex gap-4 items-center">
+         <button class="mobile-menu-trigger md:hidden text-2xl mr-4 focus:outline-none" style="color: #E5E5E5;">
+           <i class="fas fa-bars"></i>
+         </button>
+
          <button onclick="toggleStudioModal()" class="text-[10px] font-film font-bold uppercase tracking-[0.2em] text-[#737373] hover:text-white">Client Login</button>
          <button class="bg-white text-black px-6 py-2.5 rounded-sm font-film font-bold text-[10px] tracking-widest uppercase hover:bg-[#D4D4D4] transition shadow-[0_0_15px_rgba(255,255,255,0.1)]">
            Inquiry
          </button>
       </div>
     </div>
-  </nav>
+
+      <%= render partial: 'templates/shared/mobile_menu', locals: {
+          links: [{text: 'Portfolio', href: '#portfolio'}, {text: 'About', href: '#about'}, {text: 'Contact', href: '#contact'}],
+          primary_color: '#E5E5E5',
+          bg_color: '#ffffff'
+      } %>
+    </nav>
 
   <!-- Hero -->
   <header class="min-h-screen relative flex items-center justify-center pt-24 overflow-hidden">

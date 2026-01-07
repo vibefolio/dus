@@ -35,13 +35,23 @@
       </div>
       
       <div class="flex gap-6 items-center">
+         <button class="mobile-menu-trigger md:hidden text-2xl mr-4 focus:outline-none" style="color: #2DD4BF;">
+           <i class="fas fa-bars"></i>
+         </button>
+
          <button onclick="toggleSkillUpModal()" class="text-[11px] font-bold uppercase tracking-[0.2em] text-white/40 hover:text-white transition">Sign In</button>
          <button class="bg-white text-black px-6 py-2.5 rounded-full font-bold text-[11px] tracking-widest uppercase hover:bg-[#2DD4BF] transition shadow-xl shadow-white/5">
            Get Started
          </button>
       </div>
     </div>
-  </nav>
+
+      <%= render partial: 'templates/shared/mobile_menu', locals: {
+          links: [{text: 'Catalog', href: '#courses'}, {text: 'Expertise', href: '#mentors'}, {text: 'Enterprise', href: '#enterprise'}],
+          primary_color: '#2DD4BF',
+          bg_color: '#ffffff'
+      } %>
+    </nav>
 
   <!-- Hero -->
   <header class="min-h-screen relative flex items-center justify-center pt-20">

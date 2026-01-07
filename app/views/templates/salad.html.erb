@@ -39,13 +39,23 @@
       </div>
       
       <div class="flex gap-4 items-center">
+         <button class="mobile-menu-trigger md:hidden text-2xl mr-4 focus:outline-none" style="color: #14532D;">
+           <i class="fas fa-bars"></i>
+         </button>
+
          <button onclick="toggleSaladModal()" class="text-[13px] font-brand font-bold text-[#166534] hover:bg-[#22C55E]/10 px-4 py-2 rounded-full transition">Fresh Club</button>
          <button class="bg-[#166534] text-white px-6 py-2.5 rounded-full font-brand font-bold text-[13px] hover:bg-[#14532D] transition shadow-lg shadow-[#166534]/20 hover:scale-105 active:scale-95 duration-200">
            Order Now
          </button>
       </div>
     </div>
-  </nav>
+
+      <%= render partial: 'templates/shared/mobile_menu', locals: {
+          links: [{text: 'Signature Bowls', href: '#signature'}, {text: 'Make Your Own', href: '#custom'}, {text: 'Daily Plan', href: '#subscription'}],
+          primary_color: '#14532D',
+          bg_color: '#ffffff'
+      } %>
+    </nav>
 
   <!-- Hero -->
   <header class="min-h-screen relative flex items-center justify-center pt-24 overflow-hidden">

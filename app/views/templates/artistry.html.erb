@@ -33,13 +33,23 @@
       </div>
       
       <div class="flex gap-6 items-center">
+         <button class="mobile-menu-trigger md:hidden text-2xl mr-4 focus:outline-none" style="color: #333;">
+           <i class="fas fa-bars"></i>
+         </button>
+
          <button onclick="toggleArtistryModal()" class="text-[10px] font-bold uppercase tracking-[0.2em] hover:underline underline-offset-4 decoration-1">Artist Login</button>
          <button class="border border-white px-6 py-2 rounded-full font-gallery text-sm hover:bg-white hover:text-black transition duration-300">
            Book Now
          </button>
       </div>
     </div>
-  </nav>
+
+      <%= render partial: 'templates/shared/mobile_menu', locals: {
+          links: [{text: 'Portfolio', href: '#portfolio'}, {text: 'Philosophy', href: '#philosophy'}, {text: 'Contact', href: '#contact'}],
+          primary_color: '#333',
+          bg_color: '#ffffff'
+      } %>
+    </nav>
 
   <!-- Hero with Parallax Feel -->
   <header class="min-h-screen relative flex items-center justify-center overflow-hidden">

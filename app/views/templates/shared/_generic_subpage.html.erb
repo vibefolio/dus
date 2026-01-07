@@ -1,0 +1,60 @@
+<%# Generic Subpage Layout %>
+<div class="min-h-screen bg-white" style="font-family: <%= @theme[:font_family] %>">
+
+  <%# Header / Nav Stub (In reality, we might want to include the actual template's nav if possible, but that's hard dynamically) %>
+  <header class="py-6 px-6 border-b" style="border-color: <%= @theme[:primary_color] %>20">
+    <div class="container mx-auto flex justify-between items-center">
+      <h1 class="text-2xl font-bold uppercase" style="color: <%= @theme[:primary_color] %>">
+        <%= @template_name %>
+      </h1>
+      <%= link_to "Back to Home", template_show_path(template_name: @template_name), class: "text-sm font-medium hover:underline", style: "color: #{@theme[:secondary_color]}" %>
+    </div>
+  </header>
+
+  <main class="container mx-auto px-6 py-12">
+    <div class="max-w-4xl mx-auto">
+      <span class="inline-block px-3 py-1 text-xs font-bold tracking-widest uppercase rounded-full mb-6"
+            style="background-color: <%= @theme[:primary_color] %>10; color: <%= @theme[:primary_color] %>">
+        <%= @template_name %> Subpage
+      </span>
+
+      <h2 class="text-4xl md:text-5xl font-black mb-8" style="color: <%= @theme[:primary_color] %>">
+        <%= @sub_page_title %>
+      </h2>
+
+      <div class="prose max-w-none text-lg leading-relaxed" style="color: <%= @theme[:secondary_color] %>">
+        <p class="mb-6">
+          This is a generated subpage for the <strong><%= @template_name.titleize %></strong> template.
+          The content here reflects the requested section: <em><%= @sub_page_title %></em>.
+        </p>
+
+        <div class="grid md:grid-cols-2 gap-8 my-12">
+           <div class="bg-gray-50 p-8 rounded-2xl">
+              <h3 class="text-xl font-bold mb-4" style="color: <%= @theme[:primary_color] %>">Feature 01</h3>
+              <p>Detailed description of the first feature related to <%= @sub_page_title %>.</p>
+           </div>
+           <div class="bg-gray-50 p-8 rounded-2xl">
+              <h3 class="text-xl font-bold mb-4" style="color: <%= @theme[:primary_color] %>">Feature 02</h3>
+              <p>Detailed description of the second feature related to <%= @sub_page_title %>.</p>
+           </div>
+        </div>
+
+        <p>
+          We are committed to providing high-quality service and design excellence.
+          Contact us for more details about this section.
+        </p>
+      </div>
+
+      <div class="mt-16 pt-8 border-t" style="border-color: <%= @theme[:primary_color] %>10">
+        <button class="px-8 py-4 text-white font-bold uppercase tracking-widest rounded-lg transition hover:opacity-90 shadow-lg"
+                style="background-color: <%= @theme[:primary_color] %>">
+          Contact Us
+        </button>
+      </div>
+    </div>
+  </main>
+
+  <footer class="py-12 text-center text-sm opacity-50">
+    &copy; <%= Time.current.year %> <%= @template_name.titleize %>. All Rights Reserved.
+  </footer>
+</div>

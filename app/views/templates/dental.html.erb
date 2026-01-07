@@ -38,13 +38,23 @@
       </div>
       
       <div class="flex gap-4 items-center">
+         <button class="mobile-menu-trigger md:hidden text-2xl mr-4 focus:outline-none" style="color: #0F172A;">
+           <i class="fas fa-bars"></i>
+         </button>
+
          <button onclick="toggleDentalModal()" class="text-[13px] font-modern font-bold text-[#0D9488] hover:bg-teal-50 px-4 py-2 rounded-lg transition">Check Up</button>
          <button class="bg-[#0F172A] text-white px-6 py-2.5 rounded-lg font-modern font-bold text-[13px] tracking-wide hover:bg-[#0D9488] transition shadow-xl shadow-slate-200">
            Book Visit
          </button>
       </div>
     </div>
-  </nav>
+
+      <%= render partial: 'templates/shared/mobile_menu', locals: {
+          links: [{text: 'Doctors', href: '#about'}, {text: 'Expertise', href: '#specialty'}, {text: 'Reviews', href: '#review'}],
+          primary_color: '#0F172A',
+          bg_color: '#ffffff'
+      } %>
+    </nav>
 
   <!-- Hero -->
   <header class="min-h-screen relative flex items-center justify-center pt-24 overflow-hidden">

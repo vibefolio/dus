@@ -41,13 +41,23 @@
       </div>
       
       <div class="flex gap-6 items-center">
+         <button class="mobile-menu-trigger md:hidden text-2xl mr-4 focus:outline-none" style="color: #333;">
+           <i class="fas fa-bars"></i>
+         </button>
+
          <button onclick="toggleTaxModal()" class="text-[11px] font-bold uppercase tracking-widest text-slate-500 hover:text-blue-900 font-mono">Client Portal</button>
          <button class="bg-blue-900 text-white px-6 py-2.5 rounded-sm font-bold text-[11px] tracking-widest uppercase hover:bg-slate-800 transition shadow-lg shadow-blue-900/20 font-mono">
            Free Inquiry
          </button>
       </div>
     </div>
-  </nav>
+
+      <%= render partial: 'templates/shared/mobile_menu', locals: {
+          links: [{text: 'Audit', href: '#audit'}, {text: 'Taxation', href: '#tax'}, {text: 'Consulting', href: '#consulting'}],
+          primary_color: '#333',
+          bg_color: '#ffffff'
+      } %>
+    </nav>
 
   <!-- Hero -->
   <header class="min-h-screen relative flex items-center justify-center pt-24 overflow-hidden">
