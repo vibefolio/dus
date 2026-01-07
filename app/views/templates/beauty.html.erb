@@ -28,10 +28,6 @@
       </div>
       
       <div class="flex gap-8 items-center">
-         <button class="mobile-menu-trigger md:hidden text-2xl mr-4 focus:outline-none" style="color: #5D5552;">
-           <i class="fas fa-bars"></i>
-         </button>
-
          <button onclick="toggleBeautyModal()" class="text-[10px] font-bold uppercase tracking-[0.4em] text-[#5D5552]/40 hover:text-[#CFB997]">Member_ID</button>
          <button class="bg-[#CFB997] text-white px-10 py-3.5 rounded-full font-bold text-[10px] tracking-[0.4em] uppercase hover:bg-[#5D5552] transition shadow-2xl shadow-[#CFB997]/20">
            Reservation
@@ -39,23 +35,18 @@
       </div>
     </div>
 
-      <%= render partial: 'templates/shared/mobile_menu', locals: {
-          links: [{text: 'Essence', href: '#about'}, {text: 'Ritual', href: '#ritual'}, {text: 'Suites', href: '#suites'}],
-          primary_color: '#5D5552',
-          bg_color: '#ffffff'
-      } %>
-    </nav>
+      </nav>
 
   <!-- Hero -->
   <header class="min-h-screen relative flex items-center justify-center pt-20">
-    <div class="container mx-auto px-6 relative z-10 grid lg:grid-cols-2 gap-20 items-center">
+    <div class="container mx-auto px-6 relative z-10 grid lg:grid-cols-2 gap-8 md:p-20 items-center">
       <div class="space-y-12 text-center lg:text-left">
         <div class="inline-flex items-center gap-4">
            <span class="w-12 h-[1px] bg-[#CFB997]"></span>
            <span class="text-[10px] font-bold tracking-[0.6em] uppercase text-[#CFB997]">Premium Aesthetic Spa</span>
         </div>
         
-        <h1 class="text-6xl md:text-[8rem] font-serif font-black leading-none tracking-tighter text-[#5D5552] mobile-title">
+        <h1 class="text-4xl md:text-6xl md:text-[8rem] font-serif font-black leading-none tracking-tighter text-[#5D5552] mobile-title">
            내면의 빛을<br><span class="italic text-[#CFB997]">조각하다.</span>
         </h1>
         
@@ -74,7 +65,7 @@
       </div>
 
       <div class="relative">
-         <div class="absolute -top-20 -right-20 w-80 h-80 bg-[#CFB997]/10 rounded-full blur-[120px]"></div>
+         <div class="absolute -top-8 md:p-20 -right-20 w-80 h-80 bg-[#CFB997]/10 rounded-full blur-[120px]"></div>
          <div class="relative bg-white p-6 rounded-[220px_220px_20px_20px] shadow-2xl border border-[#CFB997]/5">
             <img src="https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?q=80&w=1200" alt="Spa" class="w-full aspect-[4/5] object-cover rounded-[210px_210px_10px_10px] brightness-105 contrast-95">
             <div class="absolute -bottom-10 -left-10 bg-white p-12 rounded-3xl shadow-2xl border border-[#CFB997]/10 max-w-[280px]">
@@ -88,7 +79,7 @@
 
   <!-- Login Modal -->
   <div id="beauty-modal" class="fixed inset-0 z-[100] hidden items-center justify-center p-4 bg-[#5D5552]/20 backdrop-blur-3xl">
-    <div class="bg-white w-full max-w-sm p-16 shadow-2xl relative rounded-[4rem] border border-[#CFB997]/10">
+    <div class="bg-white w-full max-w-sm p-6 md:p-16 shadow-2xl relative rounded-[4rem] border border-[#CFB997]/10">
       <button onclick="toggleBeautyModal()" class="absolute top-12 right-12 text-[#5D5552]/20 hover:text-[#CFB997] transition text-2xl font-light">&times;</button>
       
       <div class="text-center mb-14">
@@ -112,7 +103,7 @@
     </div>
   </div>
 
-  <footer class="py-32 bg-[#FFFDFB] text-center px-6 border-t border-[#CFB997]/10">
+  <footer class="py-16 md:py-32 bg-[#FFFDFB] text-center px-6 border-t border-[#CFB997]/10">
      <div class="inline-flex items-center gap-10 mb-12">
         <span class="font-serif text-3xl tracking-[0.6em] font-black uppercase text-[#CFB997]">LUMIER</span>
         <span class="w-16 h-[1px] bg-[#CFB997]/20"></span>

@@ -1,0 +1,232 @@
+{
+  "academy": {
+    "primary_color": "#1B4332",
+    "secondary_color": "#1b4332",
+    "font_family": "serif"
+  },
+  "accounting": {
+    "primary_color": "#005BAC",
+    "secondary_color": "#f1f5f9",
+    "font_family": "sans-serif"
+  },
+  "agency": {
+    "primary_color": "#BEF264",
+    "secondary_color": "#050505",
+    "font_family": "sans-serif"
+  },
+  "artistry": {
+    "primary_color": "#333333",
+    "secondary_color": "#666666",
+    "font_family": "sans-serif"
+  },
+  "bag": {
+    "primary_color": "#2D1B15",
+    "secondary_color": "#8D6E63",
+    "font_family": "sans-serif"
+  },
+  "barber": {
+    "primary_color": "#B8860B",
+    "secondary_color": "#121212",
+    "font_family": "serif"
+  },
+  "beauty": {
+    "primary_color": "#CFB997",
+    "secondary_color": "#5D5552",
+    "font_family": "serif"
+  },
+  "burger": {
+    "primary_color": "#FFB400",
+    "secondary_color": "#E8482D",
+    "font_family": "sans-serif"
+  },
+  "cafe": {
+    "primary_color": "#433D3C",
+    "secondary_color": "#8B735B",
+    "font_family": "serif"
+  },
+  "camping": {
+    "primary_color": "#FF4500",
+    "secondary_color": "#1C1C1E",
+    "font_family": "serif"
+  },
+  "cleaning": {
+    "primary_color": "#2563EB",
+    "secondary_color": "#0F172A",
+    "font_family": "sans-serif"
+  },
+  "cloth": {
+    "primary_color": "#292524",
+    "secondary_color": "#57534E",
+    "font_family": "serif"
+  },
+  "consulting": {
+    "primary_color": "#111827",
+    "secondary_color": "#F59E0B",
+    "font_family": "serif"
+  },
+  "corporate": {
+    "primary_color": "#0F172A",
+    "secondary_color": "#666666",
+    "font_family": "sans-serif"
+  },
+  "dental": {
+    "primary_color": "#0D9488",
+    "secondary_color": "#0F172A",
+    "font_family": "sans-serif"
+  },
+  "dessert": {
+    "primary_color": "#E6A4B4",
+    "secondary_color": "#5D4037",
+    "font_family": "serif"
+  },
+  "dining": {
+    "primary_color": "#BE123C",
+    "secondary_color": "#18181B",
+    "font_family": "serif"
+  },
+  "donut": {
+    "primary_color": "#FF61A6",
+    "secondary_color": "#4ECDC4",
+    "font_family": "sans-serif"
+  },
+  "ecommerce": {
+    "primary_color": "#e5e7eb",
+    "secondary_color": "#666666",
+    "font_family": "serif"
+  },
+  "english": {
+    "primary_color": "#333333",
+    "secondary_color": "#666666",
+    "font_family": "sans-serif"
+  },
+  "finance": {
+    "primary_color": "#333333",
+    "secondary_color": "#666666",
+    "font_family": "sans-serif"
+  },
+  "flower": {
+    "primary_color": "#F472B6",
+    "secondary_color": "#5D5447",
+    "font_family": "serif"
+  },
+  "gym": {
+    "primary_color": "#EAB308",
+    "secondary_color": "#18181B",
+    "font_family": "sans-serif"
+  },
+  "hotel": {
+    "primary_color": "#BFA183",
+    "secondary_color": "#1C1C1C",
+    "font_family": "serif"
+  },
+  "kinder": {
+    "primary_color": "#FF6B6B",
+    "secondary_color": "#FCD34D",
+    "font_family": "sans-serif"
+  },
+  "law": {
+    "primary_color": "#2C3E50",
+    "secondary_color": "#F9F9FB",
+    "font_family": "serif"
+  },
+  "learnhub": {
+    "primary_color": "#2DD4BF",
+    "secondary_color": "#6366F1",
+    "font_family": "sans-serif"
+  },
+  "medical": {
+    "primary_color": "#333333",
+    "secondary_color": "#666666",
+    "font_family": "serif"
+  },
+  "nail": {
+    "primary_color": "#FF00FF",
+    "secondary_color": "#00FFFF",
+    "font_family": "sans-serif"
+  },
+  "pension": {
+    "primary_color": "#786C5E",
+    "secondary_color": "#4A4238",
+    "font_family": "sans-serif"
+  },
+  "petshop": {
+    "primary_color": "#F97316",
+    "secondary_color": "#431407",
+    "font_family": "sans-serif"
+  },
+  "portfolio": {
+    "primary_color": "#CCFF00",
+    "secondary_color": "#B3E600",
+    "font_family": "sans-serif"
+  },
+  "rental": {
+    "primary_color": "#333333",
+    "secondary_color": "#666666",
+    "font_family": "sans-serif"
+  },
+  "salad": {
+    "primary_color": "#166534",
+    "secondary_color": "#22C55E",
+    "font_family": "sans-serif"
+  },
+  "sculpt": {
+    "primary_color": "#D4A373",
+    "secondary_color": "#1A1A1A",
+    "font_family": "serif"
+  },
+  "shoe": {
+    "primary_color": "#CCFF00",
+    "secondary_color": "#050505",
+    "font_family": "sans-serif"
+  },
+  "shopping": {
+    "primary_color": "#333333",
+    "secondary_color": "#666666",
+    "font_family": "serif"
+  },
+  "startup": {
+    "primary_color": "#6366F1",
+    "secondary_color": "#1E293B",
+    "font_family": "sans-serif"
+  },
+  "stay": {
+    "primary_color": "#1A1A1A",
+    "secondary_color": "#F2F1EE",
+    "font_family": "serif"
+  },
+  "studio": {
+    "primary_color": "#737373",
+    "secondary_color": "#525252",
+    "font_family": "sans-serif"
+  },
+  "study": {
+    "primary_color": "#4A5D44",
+    "secondary_color": "#8C8C85",
+    "font_family": "sans-serif"
+  },
+  "tax": {
+    "primary_color": "#e5e7eb",
+    "secondary_color": "#666666",
+    "font_family": "sans-serif"
+  },
+  "vet": {
+    "primary_color": "#1E3A8A",
+    "secondary_color": "#3B82F6",
+    "font_family": "sans-serif"
+  },
+  "wedding": {
+    "primary_color": "#8C7B6C",
+    "secondary_color": "#E5D5C6",
+    "font_family": "serif"
+  },
+  "wine": {
+    "primary_color": "#E0C097",
+    "secondary_color": "#722F37",
+    "font_family": "serif"
+  },
+  "yoga": {
+    "primary_color": "#4A4843",
+    "secondary_color": "#8B9178",
+    "font_family": "serif"
+  }
+}

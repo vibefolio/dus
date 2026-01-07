@@ -30,10 +30,6 @@
       </div>
       
       <div class="flex gap-8 items-center">
-         <button class="mobile-menu-trigger md:hidden text-2xl mr-4 focus:outline-none" style="color: #1A1A1A;">
-           <i class="fas fa-bars"></i>
-         </button>
-
          <button onclick="toggleStayModal()" class="text-[10px] font-bold uppercase tracking-[0.4em] text-[#1A1A1A]/40 hover:text-[#1A1A1A]">My Reservation</button>
          <button class="bg-[#1A1A1A] text-white px-10 py-3.5 rounded-none font-bold text-[10px] tracking-[0.4em] uppercase hover:bg-[#4A4E4D] transition shadow-2xl">
            Reserve
@@ -41,12 +37,7 @@
       </div>
     </div>
 
-      <%= render partial: 'templates/shared/mobile_menu', locals: {
-          links: [{text: 'About', href: '#about'}, {text: 'Suites', href: '#suites'}, {text: 'Dining', href: '#dining'}],
-          primary_color: '#1A1A1A',
-          bg_color: '#ffffff'
-      } %>
-    </nav>
+      </nav>
 
   <!-- Hero -->
   <header class="min-h-screen relative flex items-center justify-center pt-20">
@@ -61,7 +52,7 @@
          <span class="text-[10px] font-bold tracking-[0.8em] uppercase text-white/60">Nature Intertwined with Luxury</span>
       </div>
       
-      <h1 class="text-6xl md:text-[8rem] font-serif font-black leading-none tracking-tighter text-white mobile-title">
+      <h1 class="text-4xl md:text-6xl md:text-[8rem] font-serif font-black leading-none tracking-tighter text-white mobile-title">
          물결이 머무는,<br><span class="italic text-white/80">완벽한 고요.</span>
       </h1>
       
@@ -79,7 +70,7 @@
 
   <!-- Login Modal -->
   <div id="stay-modal" class="fixed inset-0 z-[100] hidden items-center justify-center p-4 bg-[#1A1A1A]/80 backdrop-blur-2xl">
-    <div class="bg-[#F2F1EE] w-full max-w-sm p-16 shadow-2xl relative border border-[#1A1A1A]/5">
+    <div class="bg-[#F2F1EE] w-full max-w-sm p-6 md:p-16 shadow-2xl relative border border-[#1A1A1A]/5">
       <button onclick="toggleStayModal()" class="absolute top-12 right-12 text-[#1A1A1A]/20 hover:text-[#1A1A1A] transition text-2xl font-light">&times;</button>
       
       <div class="text-center mb-12">
@@ -103,7 +94,7 @@
     </div>
   </div>
 
-  <footer class="py-32 bg-[#1A1A1A] text-center px-6">
+  <footer class="py-16 md:py-32 bg-[#1A1A1A] text-center px-6">
      <div class="inline-flex items-center gap-10 mb-12">
         <span class="font-serif text-3xl text-white tracking-[0.8em] font-black uppercase">RIVERSIDE</span>
         <span class="w-[1px] h-10 bg-white/10"></span>

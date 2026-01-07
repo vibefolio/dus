@@ -38,11 +38,7 @@
         </div>
         
         <div class="flex gap-4 items-center">
-         <button class="mobile-menu-trigger md:hidden text-2xl mr-4 focus:outline-none" style="color: #431407;">
-           <i class="fas fa-bars"></i>
-         </button>
-
-           <button onclick="togglePetModal()" class="text-[14px] font-rounded font-bold text-[#F97316] bg-[#FFEDD5] px-4 py-2 rounded-full hover:bg-[#FED7AA] transition">My Pet</button>
+         <button onclick="togglePetModal()" class="text-[14px] font-rounded font-bold text-[#F97316] bg-[#FFEDD5] px-4 py-2 rounded-full hover:bg-[#FED7AA] transition">My Pet</button>
            <button class="bg-[#F97316] text-white px-6 py-2.5 rounded-full font-rounded font-bold text-[14px] shadow-[0_4px_0_#EA580C] hover:translate-y-1 hover:shadow-none transition-all">
              Book Now
            </button>
@@ -50,29 +46,24 @@
       </div>
     </div>
 
-      <%= render partial: 'templates/shared/mobile_menu', locals: {
-          links: [{text: 'Grooming', href: '#grooming'}, {text: 'Hotel', href: '#hotel'}, {text: 'Happy Tails', href: '#gallery'}],
-          primary_color: '#431407',
-          bg_color: '#ffffff'
-      } %>
-    </nav>
+      </nav>
 
   <!-- Hero -->
   <header class="min-h-screen relative flex items-center justify-center pt-24 overflow-hidden">
     <!-- Floating Bones -->
-    <div class="absolute top-[20%] left-[8%] text-5xl animate-float opacity-80 cursor-pointer hover:rotate-12 transition">🦴</div>
-    <div class="absolute bottom-[25%] right-[8%] text-5xl animate-float animation-delay-2000 opacity-80 cursor-pointer hover:-rotate-12 transition">🎾</div>
+    <div class="absolute top-[20%] left-[8%] text-3xl md:text-5xl animate-float opacity-80 cursor-pointer hover:rotate-12 transition">🦴</div>
+    <div class="absolute bottom-[25%] right-[8%] text-3xl md:text-5xl animate-float animation-delay-2000 opacity-80 cursor-pointer hover:-rotate-12 transition">🎾</div>
     
     <div class="absolute top-0 right-0 w-[50%] h-[100%] bg-[#FFEDD5] rounded-l-[15rem] -z-10 opacity-60"></div>
 
-    <div class="container mx-auto px-6 relative z-10 grid lg:grid-cols-2 gap-16 items-center">
+    <div class="container mx-auto px-6 relative z-10 grid lg:grid-cols-2 gap-6 md:p-16 items-center">
        <div class="space-y-8 text-center lg:text-left order-2 lg:order-1">
          <div class="inline-flex items-center gap-2 bg-white px-4 py-2 rounded-full border border-[#F97316]/30 shadow-sm text-[#EA580C] font-rounded font-bold text-sm tracking-wide">
             <span class="w-2 h-2 rounded-full bg-[#EA580C] animate-pulse"></span>
             Happy Tail Guarantee
          </div>
          
-         <h1 class="text-5xl md:text-7xl font-rounded font-bold leading-[1.1] text-[#431407] mobile-title">
+         <h1 class="text-3xl md:text-5xl md:text-7xl font-rounded font-bold leading-[1.1] text-[#431407] mobile-title">
             Making<br>
             <span class="text-[#F97316]">Tails Wag</span><br>
             Everyday!
@@ -169,7 +160,7 @@
     </div>
   </div>
 
-  <footer class="py-20 bg-white text-center px-6 border-t border-[#FFF7ED]">
+  <footer class="py-12 md:py-20 bg-white text-center px-6 border-t border-[#FFF7ED]">
      <div class="inline-flex flex-col items-center gap-4 mb-8">
         <span class="text-4xl">🐕</span>
         <span class="font-rounded font-bold text-2xl text-[#431407]">With<span class="text-[#F97316]">Pet</span></span>

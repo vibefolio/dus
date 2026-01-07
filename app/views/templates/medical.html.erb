@@ -77,10 +77,6 @@
       </div>
       
       <div class="flex gap-6 items-center">
-         <button class="mobile-menu-trigger md:hidden text-2xl mr-4 focus:outline-none" style="color: #333;">
-           <i class="fas fa-bars"></i>
-         </button>
-
          <button onclick="toggleMedicalModal()" class="text-[11px] font-bold uppercase tracking-[0.2em] text-slate-400 hover:text-cyan-600">Patient Portal</button>
          <button class="bg-slate-900 text-white px-6 py-2.5 rounded-lg font-bold text-[11px] tracking-widest uppercase hover:bg-cyan-600 transition shadow-xl shadow-slate-200">
            Appointment
@@ -88,18 +84,13 @@
       </div>
     </div>
 
-      <%= render partial: 'templates/shared/mobile_menu', locals: {
-          links: [{text: 'Center', href: '#about'}, {text: 'Specialty', href: '#specialty'}, {text: 'Philosophy', href: '#story'}],
-          primary_color: '#333',
-          bg_color: '#ffffff'
-      } %>
-    </nav>
+      </nav>
 
   <!-- Hero with Quick Consult Form -->
   <header class="min-h-screen relative flex flex-col justify-center pt-32 pb-20">
     <div class="absolute top-0 right-0 w-[50%] h-[80%] bg-cyan-50/50 rounded-bl-[10rem] -z-10" data-aos="fade-left" data-aos-duration="1500" data-aos-delay="300"></div>
     
-    <div class="container mx-auto px-6 relative z-10 grid lg:grid-cols-2 gap-16 items-center mb-16">
+    <div class="container mx-auto px-6 relative z-10 grid lg:grid-cols-2 gap-6 md:p-16 items-center mb-16">
       <div class="space-y-10 text-center lg:text-left" data-aos="fade-right" data-aos-duration="1200">
         <div class="inline-flex items-center gap-2 bg-white border border-cyan-100 px-4 py-1.5 rounded-full shadow-sm">
            <span class="w-2 h-2 rounded-full bg-cyan-500 animate-pulse"></span>
@@ -175,7 +166,7 @@
   </header>
 
   <!-- Before & After Slider Section -->
-  <section class="py-20 bg-slate-50" data-aos="fade-up">
+  <section class="py-12 md:py-20 bg-slate-50" data-aos="fade-up">
      <div class="container mx-auto px-6 max-w-4xl text-center">
         <div class="mb-12">
            <span class="text-cyan-600 font-bold text-xs tracking-widest uppercase block mb-3">Proven Results</span>
@@ -231,7 +222,7 @@
     </div>
   </div>
 
-  <footer class="py-24 bg-white text-center px-6 border-t border-slate-100">
+  <footer class="py-12 md:py-24 bg-white text-center px-6 border-t border-slate-100">
      <div class="inline-flex items-center gap-6 mb-8">
         <span class="font-black text-xl tracking-tighter uppercase text-slate-900">MISO<span class="text-cyan-600">LINE</span></span>
         <span class="w-12 h-[1px] bg-slate-100"></span>

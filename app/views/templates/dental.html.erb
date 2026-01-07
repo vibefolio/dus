@@ -38,10 +38,6 @@
       </div>
       
       <div class="flex gap-4 items-center">
-         <button class="mobile-menu-trigger md:hidden text-2xl mr-4 focus:outline-none" style="color: #0F172A;">
-           <i class="fas fa-bars"></i>
-         </button>
-
          <button onclick="toggleDentalModal()" class="text-[13px] font-modern font-bold text-[#0D9488] hover:bg-teal-50 px-4 py-2 rounded-lg transition">Check Up</button>
          <button class="bg-[#0F172A] text-white px-6 py-2.5 rounded-lg font-modern font-bold text-[13px] tracking-wide hover:bg-[#0D9488] transition shadow-xl shadow-slate-200">
            Book Visit
@@ -49,12 +45,7 @@
       </div>
     </div>
 
-      <%= render partial: 'templates/shared/mobile_menu', locals: {
-          links: [{text: 'Doctors', href: '#about'}, {text: 'Expertise', href: '#specialty'}, {text: 'Reviews', href: '#review'}],
-          primary_color: '#0F172A',
-          bg_color: '#ffffff'
-      } %>
-    </nav>
+      </nav>
 
   <!-- Hero -->
   <header class="min-h-screen relative flex items-center justify-center pt-24 overflow-hidden">
@@ -62,7 +53,7 @@
     <div class="absolute top-0 right-0 w-[40vw] h-[80vh] bg-teal-50 rounded-bl-[10rem] -z-10 opacity-60"></div>
     <div class="absolute bottom-10 left-10 w-64 h-64 bg-slate-50 rounded-full mix-blend-multiply filter blur-3xl opacity-70 animate-pulse"></div>
 
-    <div class="container mx-auto px-6 relative z-10 grid lg:grid-cols-2 gap-20 items-center">
+    <div class="container mx-auto px-6 relative z-10 grid lg:grid-cols-2 gap-8 md:p-20 items-center">
       <div class="space-y-10 text-center lg:text-left">
         <div class="inline-flex items-center gap-3 bg-white px-4 py-2 rounded-full border border-slate-100 shadow-sm">
            <span class="flex h-2.5 w-2.5 relative">
@@ -72,7 +63,7 @@
            <span class="text-[11px] font-modern font-bold text-[#0D9488] uppercase tracking-wider">Trusted by 10,000+ Patients</span>
         </div>
         
-        <h1 class="text-5xl md:text-7xl font-modern font-bold leading-[1.1] tracking-tight text-[#0F172A] mobile-title">
+        <h1 class="text-3xl md:text-5xl md:text-7xl font-modern font-bold leading-[1.1] tracking-tight text-[#0F172A] mobile-title">
            Design Your<br>
            <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#0D9488] to-[#14B8A6]">Perfect Smile.</span>
         </h1>
@@ -183,7 +174,7 @@
     </div>
   </div>
 
-  <footer class="py-20 bg-white text-center px-6 border-t border-slate-100">
+  <footer class="py-12 md:py-20 bg-white text-center px-6 border-t border-slate-100">
      <div class="inline-flex items-center gap-3 mb-6">
         <span class="font-modern font-bold text-xl tracking-tight text-[#0F172A]">MUA<span class="text-[#0D9488]">JIN</span></span>
         <span class="w-px h-4 bg-slate-200"></span>

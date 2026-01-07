@@ -1,60 +1,134 @@
 <%# Generic Subpage Layout %>
-<div class="min-h-screen bg-white" style="font-family: <%= @theme[:font_family] %>">
+<%
+  primary_color = @theme["primary_color"]
+  bg_color = @theme["bg_color"]
+  text_color = @theme["text_color"]
+  font_css = @theme["font_css"]
+%>
 
-  <%# Header / Nav Stub (In reality, we might want to include the actual template's nav if possible, but that's hard dynamically) %>
-  <header class="py-6 px-6 border-b" style="border-color: <%= @theme[:primary_color] %>20">
-    <div class="container mx-auto flex justify-between items-center">
-      <h1 class="text-2xl font-bold uppercase" style="color: <%= @theme[:primary_color] %>">
+<div class="min-h-screen" style="font-family: <%= font_css %>; background-color: <%= bg_color %>; color: <%= text_color %>;">
+
+  <%# Navigation Bar (Simplified) %>
+  <nav class="border-b" style="border-color: <%= primary_color %>20;">
+    <div class="container mx-auto px-6 py-6 flex justify-between items-center">
+      <a href="<%= template_show_path(template_name: @template_name) %>" class="text-xl font-bold uppercase tracking-widest" style="color: <%= primary_color %>">
         <%= @template_name %>
-      </h1>
-      <%= link_to "Back to Home", template_show_path(template_name: @template_name), class: "text-sm font-medium hover:underline", style: "color: #{@theme[:secondary_color]}" %>
+      </a>
+
+      <div class="hidden md:flex gap-8 text-sm font-bold uppercase tracking-widest opacity-60">
+        <span>About</span>
+        <span>Service</span>
+        <span>Contact</span>
+      </div>
+
+      <a href="<%= template_show_path(template_name: @template_name) %>" class="text-sm font-bold opacity-50 hover:opacity-100 transition">
+        &larr; Back
+      </a>
+    </div>
+  </nav>
+
+  <%# Hero Section %>
+  <header class="py-20 md:py-32 px-6 border-b relative overflow-hidden" style="border-color: <%= primary_color %>10;">
+    <!-- Abstract Background Shape -->
+    <div class="absolute top-0 right-0 w-1/2 h-full opacity-5 pointer-events-none"
+         style="background: radial-gradient(circle at center, <%= primary_color %>, transparent 70%); filter: blur(60px);"></div>
+
+    <div class="container mx-auto relative z-10">
+      <div class="max-w-3xl">
+        <span class="inline-block px-3 py-1 text-xs font-bold tracking-[0.2em] uppercase mb-6 rounded-full border"
+              style="color: <%= primary_color %>; border-color: <%= primary_color %>40;">
+          <%= @template_name %> / <%= @sub_page_title %>
+        </span>
+
+        <h1 class="text-4xl md:text-6xl font-black mb-6 leading-tight" style="color: <%= primary_color %>">
+          <%= @sub_page_title %>
+        </h1>
+
+        <p class="text-lg md:text-xl opacity-70 leading-relaxed max-w-2xl">
+          We provide exceptional services tailored to your needs.
+          Discover the quality and precision that defines the <%= @template_name.titleize %> experience.
+        </p>
+      </div>
     </div>
   </header>
 
-  <main class="container mx-auto px-6 py-12">
-    <div class="max-w-4xl mx-auto">
-      <span class="inline-block px-3 py-1 text-xs font-bold tracking-widest uppercase rounded-full mb-6"
-            style="background-color: <%= @theme[:primary_color] %>10; color: <%= @theme[:primary_color] %>">
-        <%= @template_name %> Subpage
-      </span>
-
-      <h2 class="text-4xl md:text-5xl font-black mb-8" style="color: <%= @theme[:primary_color] %>">
-        <%= @sub_page_title %>
-      </h2>
-
-      <div class="prose max-w-none text-lg leading-relaxed" style="color: <%= @theme[:secondary_color] %>">
-        <p class="mb-6">
-          This is a generated subpage for the <strong><%= @template_name.titleize %></strong> template.
-          The content here reflects the requested section: <em><%= @sub_page_title %></em>.
-        </p>
-
-        <div class="grid md:grid-cols-2 gap-8 my-12">
-           <div class="bg-gray-50 p-8 rounded-2xl">
-              <h3 class="text-xl font-bold mb-4" style="color: <%= @theme[:primary_color] %>">Feature 01</h3>
-              <p>Detailed description of the first feature related to <%= @sub_page_title %>.</p>
-           </div>
-           <div class="bg-gray-50 p-8 rounded-2xl">
-              <h3 class="text-xl font-bold mb-4" style="color: <%= @theme[:primary_color] %>">Feature 02</h3>
-              <p>Detailed description of the second feature related to <%= @sub_page_title %>.</p>
-           </div>
+  <main class="container mx-auto px-6 py-20">
+    <div class="grid md:grid-cols-12 gap-12">
+      <!-- Sidebar -->
+      <aside class="md:col-span-3 hidden md:block">
+        <div class="sticky top-12 space-y-2">
+           <p class="text-xs font-bold uppercase tracking-widest opacity-40 mb-4">Contents</p>
+           <% ["Overview", "Key Features", "Details", "Contact"].each do |item| %>
+             <div class="py-2 border-l-2 pl-4 text-sm font-medium transition cursor-pointer hover:opacity-100 opacity-60"
+                  style="border-color: <%= item == 'Overview' ? primary_color : 'transparent' %>; color: <%= item == 'Overview' ? primary_color : 'inherit' %>">
+               <%= item %>
+             </div>
+           <% end %>
         </div>
+      </aside>
 
-        <p>
-          We are committed to providing high-quality service and design excellence.
-          Contact us for more details about this section.
-        </p>
-      </div>
+      <!-- Content -->
+      <div class="md:col-span-9 space-y-20">
 
-      <div class="mt-16 pt-8 border-t" style="border-color: <%= @theme[:primary_color] %>10">
-        <button class="px-8 py-4 text-white font-bold uppercase tracking-widest rounded-lg transition hover:opacity-90 shadow-lg"
-                style="background-color: <%= @theme[:primary_color] %>">
-          Contact Us
-        </button>
+        <!-- Section 1 -->
+        <section>
+          <h2 class="text-2xl md:text-3xl font-bold mb-8 flex items-center gap-4">
+            <span class="w-8 h-[1px]" style="background-color: <%= primary_color %>"></span>
+            Overview
+          </h2>
+          <div class="prose max-w-none text-lg leading-relaxed opacity-80">
+            <p>
+              This section provides a comprehensive overview of <strong><%= @sub_page_title %></strong>.
+              Designed with the core values of the <%= @template_name %> brand, we ensure that every detail meets the highest standards.
+              Whether you are looking for innovation, stability, or creativity, our solution is crafted to exceed expectations.
+            </p>
+          </div>
+        </section>
+
+        <!-- Section 2: Features Grid -->
+        <section>
+           <h2 class="text-2xl md:text-3xl font-bold mb-12 flex items-center gap-4">
+            <span class="w-8 h-[1px]" style="background-color: <%= primary_color %>"></span>
+            Key Features
+          </h2>
+
+          <div class="grid md:grid-cols-2 gap-8">
+            <% 3.times do |i| %>
+              <div class="p-8 rounded-2xl border transition hover:-translate-y-1 hover:shadow-lg"
+                   style="border-color: <%= primary_color %>20; background-color: <%= primary_color %>05;">
+                <div class="w-12 h-12 mb-6 rounded-full flex items-center justify-center text-xl font-bold"
+                     style="background-color: <%= primary_color %>; color: <%= bg_color %>">
+                  <%= i + 1 %>
+                </div>
+                <h3 class="text-xl font-bold mb-3">Feature Point <%= i + 1 %></h3>
+                <p class="opacity-70 text-sm leading-relaxed">
+                  Detailed explanation of this feature. It enhances the user experience and provides tangible value to your business.
+                </p>
+              </div>
+            <% end %>
+          </div>
+        </section>
+
+        <!-- CTA -->
+        <section class="py-16 px-8 md:px-16 rounded-3xl text-center relative overflow-hidden"
+                 style="background-color: <%= primary_color %>; color: <%= bg_color %>;">
+           <div class="relative z-10">
+             <h2 class="text-2xl md:text-4xl font-black mb-6">Ready to get started?</h2>
+             <p class="mb-8 opacity-80 max-w-xl mx-auto">
+               Take the next step with <%= @template_name.titleize %>. Contact us today for a consultation.
+             </p>
+             <button class="px-8 py-4 bg-white text-black font-bold uppercase tracking-widest rounded-full hover:bg-opacity-90 transition shadow-xl"
+                     style="color: <%= primary_color %>">
+               Contact Us
+             </button>
+           </div>
+        </section>
+
       </div>
     </div>
   </main>
 
-  <footer class="py-12 text-center text-sm opacity-50">
+  <footer class="py-12 border-t text-center text-xs font-bold uppercase tracking-widest opacity-30" style="border-color: <%= primary_color %>20;">
     &copy; <%= Time.current.year %> <%= @template_name.titleize %>. All Rights Reserved.
   </footer>
 </div>

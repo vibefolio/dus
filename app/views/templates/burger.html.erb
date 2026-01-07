@@ -37,10 +37,6 @@
       </div>
       
       <div class="flex gap-4 items-center">
-         <button class="mobile-menu-trigger md:hidden text-2xl mr-4 focus:outline-none" style="color: #FFB400;">
-           <i class="fas fa-bars"></i>
-         </button>
-
          <button onclick="toggleBurgerModal()" class="text-[11px] font-bold uppercase tracking-[0.2em] text-white/40 hover:text-[#FFB400]">Join Club</button>
          <button class="bg-[#E8482D] text-white px-6 py-2.5 skew-x-[-12deg] font-black text-[12px] tracking-wide uppercase hover:bg-[#FFB400] hover:text-black transition shadow-[4px_4px_0px_black] border border-white/10 active:translate-x-[2px] active:translate-y-[2px] active:shadow-none">
            Order Now
@@ -48,18 +44,13 @@
       </div>
     </div>
 
-      <%= render partial: 'templates/shared/mobile_menu', locals: {
-          links: [{text: 'The Menu', href: '#burgers'}, {text: 'Sides', href: '#sides'}, {text: 'Craft Beer', href: '#craft-beer'}],
-          primary_color: '#FFB400',
-          bg_color: '#ffffff'
-      } %>
-    </nav>
+      </nav>
 
   <!-- Hero -->
   <header class="min-h-screen relative flex items-center justify-center pt-20 overflow-hidden">
     <!-- Graffiti elements -->
-    <div class="absolute top-[10%] left-[5%] text-[15rem] font-black text-white/5 font-display rotate-[-15deg] pointer-events-none select-none">TASTY</div>
-    <div class="absolute bottom-[10%] right-[0%] text-[15rem] font-black text-white/5 font-display rotate-[10deg] pointer-events-none select-none">JUICY</div>
+    <div class="absolute top-[10%] left-[5%] text-5xl md:text-[15rem] font-black text-white/5 font-display rotate-[-15deg] pointer-events-none select-none">TASTY</div>
+    <div class="absolute bottom-[10%] right-[0%] text-5xl md:text-[15rem] font-black text-white/5 font-display rotate-[10deg] pointer-events-none select-none">JUICY</div>
     
     <div class="container mx-auto px-6 relative z-10 grid lg:grid-cols-2 gap-12 items-center">
       <div class="space-y-8 text-center lg:text-left order-2 lg:order-1">
@@ -67,7 +58,7 @@
            <span class="font-black text-xs uppercase tracking-wider">Premium American Grill</span>
         </div>
         
-        <h1 class="text-6xl md:text-[8rem] font-display uppercase leading-[0.85] tracking-wide text-white mobile-title text-shadow-lg">
+        <h1 class="text-4xl md:text-6xl md:text-[8rem] font-display uppercase leading-[0.85] tracking-wide text-white mobile-title text-shadow-lg">
            Real<br>
            <span class="text-[#E8482D]">Meat</span><br>
            <span class="text-white/20">Lover.</span>
@@ -130,7 +121,7 @@
     </div>
   </div>
 
-  <footer class="py-20 bg-[#121212] text-center px-6 border-t border-white/5">
+  <footer class="py-12 md:py-20 bg-[#121212] text-center px-6 border-t border-white/5">
      <div class="inline-flex flex-col items-center gap-6 mb-8">
         <span class="font-display text-4xl text-white tracking-wide uppercase">Burger<span class="text-[#E8482D]">Joint</span></span>
         <div class="w-12 h-1 bg-[#FFB400]"></div>

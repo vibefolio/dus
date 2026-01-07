@@ -72,10 +72,6 @@
       </div>
       
       <div class="flex gap-6 items-center">
-         <button class="mobile-menu-trigger md:hidden text-2xl mr-4 focus:outline-none" style="color: #0F172A;">
-           <i class="fas fa-bars"></i>
-         </button>
-
          <button onclick="toggleCorporateModal()" class="text-[11px] font-bold uppercase tracking-[0.1em] text-slate-500 hover:text-[#0F172A]">Sign In</button>
          <button class="bg-[#0F172A] text-white px-6 py-2.5 rounded-sm font-bold text-[11px] tracking-wide hover:bg-blue-600 transition shadow-lg shadow-slate-200">
            Request Demo
@@ -83,12 +79,7 @@
       </div>
     </div>
 
-      <%= render partial: 'templates/shared/mobile_menu', locals: {
-          links: [{text: 'Solutions', href: '#solutions'}, {text: 'Platform', href: '#platform'}, {text: 'Resources', href: '#resources'}],
-          primary_color: '#0F172A',
-          bg_color: '#ffffff'
-      } %>
-    </nav>
+      </nav>
 
   <!-- Hero -->
   <header class="min-h-screen relative flex items-center justify-center pt-32 overflow-hidden">
@@ -103,7 +94,7 @@
            <span class="text-[10px] font-bold text-slate-600 uppercase tracking-wide">Enterprise Solutions v2.0 Released</span>
         </div>
         
-        <h1 class="text-5xl md:text-7xl font-display font-extrabold leading-[1.1] tracking-tight text-[#0F172A] mobile-title mb-8">
+        <h1 class="text-3xl md:text-5xl md:text-7xl font-display font-extrabold leading-[1.1] tracking-tight text-[#0F172A] mobile-title mb-8">
            Powering the future of<br>
            <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">Enterprise Intelligence.</span>
         </h1>
@@ -234,7 +225,7 @@
     </div>
   </div>
 
-  <footer class="py-20 bg-white border-t border-slate-100 text-center px-6">
+  <footer class="py-12 md:py-20 bg-white border-t border-slate-100 text-center px-6">
      <div class="inline-flex items-center gap-4 mb-6 opacity-50 grayscale hover:grayscale-0 transition duration-500">
         <span class="font-display font-bold text-lg text-[#0F172A]">NEXUS<span class="text-blue-600">.</span></span>
         <span class="w-[1px] h-4 bg-slate-300"></span>

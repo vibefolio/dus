@@ -35,10 +35,6 @@
       </div>
       
       <div class="flex gap-6 items-center">
-         <button class="mobile-menu-trigger md:hidden text-2xl mr-4 focus:outline-none" style="color: #5D4037;">
-           <i class="fas fa-bars"></i>
-         </button>
-
          <button onclick="toggleDessertModal()" class="text-[11px] font-bold uppercase tracking-[0.2em] text-[#5D4037]/40 hover:text-[#E6A4B4]">My Sweet</button>
          <button class="bg-[#E6A4B4] text-white px-8 py-3 rounded-sm font-serif-elegant font-italic text-[13px] tracking-widest hover:bg-[#5D4037] transition shadow-lg shadow-[#E6A4B4]/20">
            Pre Order
@@ -46,12 +42,7 @@
       </div>
     </div>
 
-      <%= render partial: 'templates/shared/mobile_menu', locals: {
-          links: [{text: 'Patisserie', href: '#patisserie'}, {text: 'Atelier', href: '#atelier'}, {text: 'Gifts', href: '#gifts'}],
-          primary_color: '#5D4037',
-          bg_color: '#ffffff'
-      } %>
-    </nav>
+      </nav>
 
   <!-- Hero -->
   <header class="min-h-screen relative flex items-center justify-center pt-20 overflow-hidden">
@@ -59,14 +50,14 @@
     <div class="absolute top-0 right-0 w-[60%] h-[80%] bg-gradient-to-bl from-[#FFF0F5] to-transparent rounded-bl-[10rem] -z-10"></div>
     <div class="absolute bottom-0 left-0 w-[40%] h-[60%] bg-[#F5E6EA] rounded-tr-[10rem] -z-10 opacity-50"></div>
 
-    <div class="container mx-auto px-6 relative z-10 grid lg:grid-cols-2 gap-20 items-center">
+    <div class="container mx-auto px-6 relative z-10 grid lg:grid-cols-2 gap-8 md:p-20 items-center">
       <div class="space-y-12 text-center lg:text-left">
         <div class="inline-flex items-center gap-3">
            <span class="w-8 h-[1px] bg-[#E6A4B4]"></span>
            <span class="text-[11px] font-serif-elegant italic text-[#E6A4B4] tracking-widest">Handcrafted in Seoul</span>
         </div>
         
-        <h1 class="text-6xl md:text-[7rem] font-serif-elegant leading-[1.1] text-[#5D4037] mobile-title">
+        <h1 class="text-4xl md:text-6xl md:text-[7rem] font-serif-elegant leading-[1.1] text-[#5D4037] mobile-title">
            Sweetness<br>
            <span class="italic text-[#E6A4B4]">Redefined.</span>
         </h1>
@@ -129,7 +120,7 @@
     </div>
   </div>
 
-  <footer class="py-24 bg-[#FDFBF7] text-center px-6 border-t border-[#E6A4B4]/10">
+  <footer class="py-12 md:py-24 bg-[#FDFBF7] text-center px-6 border-t border-[#E6A4B4]/10">
      <div class="inline-flex flex-col items-center gap-6 mb-8">
         <span class="font-serif-elegant font-bold text-3xl text-[#5D4037] tracking-wider uppercase">Sucre<span class="text-[#E6A4B4]">.</span></span>
         <div class="w-8 h-[1px] bg-[#5D4037]/20"></div>

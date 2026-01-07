@@ -38,11 +38,7 @@
         </div>
         
         <div class="flex gap-4 items-center">
-         <button class="mobile-menu-trigger md:hidden text-2xl mr-4 focus:outline-none" style="color: #4B5563;">
-           <i class="fas fa-bars"></i>
-         </button>
-
-           <button onclick="toggleParentModal()" class="text-[14px] font-rounded font-bold text-[#FF6B6B] bg-[#FFF5F5] px-4 py-2 rounded-full hover:bg-[#FFE4E6] transition">Parent Login</button>
+         <button onclick="toggleParentModal()" class="text-[14px] font-rounded font-bold text-[#FF6B6B] bg-[#FFF5F5] px-4 py-2 rounded-full hover:bg-[#FFE4E6] transition">Parent Login</button>
            <button class="bg-[#4ADE80] text-white px-6 py-2.5 rounded-full font-rounded font-bold text-[14px] shadow-[0_4px_0_#16A34A] hover:translate-y-1 hover:shadow-none transition-all">
              Visit Us
            </button>
@@ -50,29 +46,24 @@
       </div>
     </div>
 
-      <%= render partial: 'templates/shared/mobile_menu', locals: {
-          links: [{text: 'Our Story', href: '#about'}, {text: 'Classes', href: '#class'}, {text: 'Events', href: '#events'}],
-          primary_color: '#4B5563',
-          bg_color: '#ffffff'
-      } %>
-    </nav>
+      </nav>
 
   <!-- Hero -->
   <header class="min-h-screen relative flex items-center justify-center pt-24 overflow-hidden">
     <!-- Floating Icons -->
-    <div class="absolute top-[15%] left-[10%] text-6xl animate-wiggle cursor-pointer hover:scale-110 transition">🎨</div>
-    <div class="absolute bottom-[20%] right-[10%] text-6xl animate-wiggle animation-delay-2000 cursor-pointer hover:scale-110 transition">🚀</div>
+    <div class="absolute top-[15%] left-[10%] text-4xl md:text-6xl animate-wiggle cursor-pointer hover:scale-110 transition">🎨</div>
+    <div class="absolute bottom-[20%] right-[10%] text-4xl md:text-6xl animate-wiggle animation-delay-2000 cursor-pointer hover:scale-110 transition">🚀</div>
     <div class="absolute top-[30%] right-[20%] w-32 h-32 bg-[#FF6B6B]/10 rounded-full blur-[40px]"></div>
     <div class="absolute bottom-[10%] left-[20%] w-40 h-40 bg-[#FCD34D]/10 rounded-full blur-[40px]"></div>
 
-    <div class="container mx-auto px-6 relative z-10 grid lg:grid-cols-2 gap-16 items-center">
+    <div class="container mx-auto px-6 relative z-10 grid lg:grid-cols-2 gap-6 md:p-16 items-center">
        <div class="space-y-8 text-center lg:text-left order-2 lg:order-1">
          <div class="inline-flex items-center gap-2 bg-white px-4 py-2 rounded-full border-2 border-[#FCD34D] shadow-sm transform -rotate-2">
             <span class="text-xl">🌟</span>
             <span class="text-[13px] font-rounded font-bold text-[#F59E0B] uppercase tracking-wide">Where Fun Meets Learning!</span>
          </div>
          
-         <h1 class="text-5xl md:text-7xl font-rounded font-bold leading-[1.1] text-[#1F2937] mobile-title">
+         <h1 class="text-3xl md:text-5xl md:text-7xl font-rounded font-bold leading-[1.1] text-[#1F2937] mobile-title">
             Dream Big,<br>
             <span class="text-[#FF6B6B]">Play</span> & <span class="text-[#4ADE80]">Grow.</span>
          </h1>
@@ -171,7 +162,7 @@
     </div>
   </div>
 
-  <footer class="py-20 bg-white text-center px-6 border-t border-[#F3F4F6]">
+  <footer class="py-12 md:py-20 bg-white text-center px-6 border-t border-[#F3F4F6]">
      <div class="inline-flex flex-col items-center gap-4 mb-8">
         <span class="text-4xl">🎈</span>
         <span class="font-rounded font-bold text-2xl text-[#4B5563]">Little<span class="text-[#FF6B6B]">Star</span></span>

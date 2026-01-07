@@ -38,10 +38,6 @@
       </div>
       
       <div class="flex gap-4 items-center">
-         <button class="mobile-menu-trigger md:hidden text-2xl mr-4 focus:outline-none" style="color: #4A4238;">
-           <i class="fas fa-bars"></i>
-         </button>
-
          <button onclick="togglePensionModal()" class="text-[12px] font-sans font-bold uppercase tracking-[0.2em] text-[#9A8C7D] hover:text-[#4A4238]">Reservation</button>
          <button class="bg-[#786C5E] text-[#F7F5F2] px-6 py-2.5 rounded-sm font-classic italic text-sm hover:bg-[#5D5348] transition shadow-lg shadow-[#786C5E]/20">
            Check Availability
@@ -49,12 +45,7 @@
       </div>
     </div>
 
-      <%= render partial: 'templates/shared/mobile_menu', locals: {
-          links: [{text: 'Rooms', href: '#stay'}, {text: 'Amenities', href: '#amenities'}, {text: 'Find Us', href: '#location'}],
-          primary_color: '#4A4238',
-          bg_color: '#ffffff'
-      } %>
-    </nav>
+      </nav>
 
   <!-- Hero -->
   <header class="min-h-screen relative flex items-center justify-center pt-24 overflow-hidden">
@@ -62,13 +53,13 @@
     <div class="absolute top-0 right-0 w-[50vw] h-full bg-[#EBE8E3] -z-10" data-aos="fade-left" data-aos-duration="1500" data-aos-delay="300"></div>
     <div class="absolute bottom-10 left-10 w-full h-[1px] bg-[#786C5E]/10"></div>
 
-    <div class="container mx-auto px-6 relative z-10 grid lg:grid-cols-2 gap-20 items-center h-full">
+    <div class="container mx-auto px-6 relative z-10 grid lg:grid-cols-2 gap-8 md:p-20 items-center h-full">
       <div class="space-y-12 text-center lg:text-left order-2 lg:order-1" data-aos="fade-right" data-aos-duration="1200">
         <div class="inline-flex items-center gap-3 border-l-2 border-[#786C5E] pl-4">
            <span class="text-[11px] font-bold text-[#786C5E] uppercase tracking-[0.3em]">Private Sanctuary</span>
         </div>
         
-        <h1 class="text-5xl md:text-7xl font-classic font-normal leading-[1.1] text-[#2C2822] mobile-title">
+        <h1 class="text-3xl md:text-5xl md:text-7xl font-classic font-normal leading-[1.1] text-[#2C2822] mobile-title">
            Listen to<br>
            the <span class="italic text-[#786C5E]">Silence</span> of<br>
            Nature.
@@ -117,7 +108,7 @@
   </header>
 
   <!-- Horizontal Scroll Gallery (Rooms) -->
-  <section class="py-20 px-6 overflow-hidden">
+  <section class="py-12 md:py-20 px-6 overflow-hidden">
      <div class="container mx-auto">
         <div class="mb-12 text-center md:text-left" data-aos="fade-up">
            <h2 class="text-3xl font-classic text-[#4A4238] italic mb-2">Our Rooms</h2>
@@ -154,13 +145,13 @@
   </section>
 
   <!-- Instagram Grid -->
-  <section class="py-20 bg-white" data-aos="fade-up">
+  <section class="py-12 md:py-20 bg-white" data-aos="fade-up">
      <div class="container mx-auto px-6 text-center">
         <div class="mb-10">
            <i class="block text-2xl mb-2">@riverside_stay</i>
            <p class="text-xs text-[#9A8C7D] uppercase tracking-widest">Share your moments</p>
         </div>
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-2">
+        <div class="grid grid-cols-1 md:grid-cols-2 md:grid-cols-4 gap-2">
            <div class="aspect-square bg-gray-100 overflow-hidden cursor-pointer group">
               <img src="https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?q=80&w=400" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
            </div>
@@ -217,7 +208,7 @@
     </div>
   </div>
 
-  <footer class="py-20 bg-[#F7F5F2] text-center px-6 border-t border-[#786C5E]/10 pb-32 md:pb-20">
+  <footer class="py-12 md:py-20 bg-[#F7F5F2] text-center px-6 border-t border-[#786C5E]/10 pb-32 md:pb-20">
      <div class="inline-flex flex-col items-center gap-6 mb-8">
         <span class="font-classic font-bold text-2xl tracking-[0.1em] text-[#4A4238]">River<span class="text-[#786C5E]">side</span></span>
         <span class="text-[10px] font-bold text-[#9A8C7D] tracking-[0.3em] uppercase">Nature Retreat</span>

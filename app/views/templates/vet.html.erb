@@ -37,10 +37,6 @@
       </div>
       
       <div class="flex gap-4 items-center">
-         <button class="mobile-menu-trigger md:hidden text-2xl mr-4 focus:outline-none" style="color: #1E3A8A;">
-           <i class="fas fa-bars"></i>
-         </button>
-
          <button onclick="toggleVetModal()" class="text-[14px] font-soft font-bold text-[#60A5FA] hover:text-[#1E3A8A] bg-white px-4 py-2 rounded-xl shadow-sm border border-[#BFDBFE] hover:shadow-md transition">My Pet</button>
          <button class="bg-[#3B82F6] text-white px-6 py-2.5 rounded-xl font-soft font-bold text-[14px] hover:bg-[#2563EB] transition shadow-lg shadow-blue-300">
            Book Appointment
@@ -48,12 +44,7 @@
       </div>
     </div>
 
-      <%= render partial: 'templates/shared/mobile_menu', locals: {
-          links: [{text: 'About', href: '#about'}, {text: 'Services', href: '#services'}, {text: 'Emergency', href: '#emergency'}],
-          primary_color: '#1E3A8A',
-          bg_color: '#ffffff'
-      } %>
-    </nav>
+      </nav>
 
   <!-- Hero -->
   <header class="min-h-screen relative flex items-center justify-center pt-24 overflow-hidden">
@@ -61,14 +52,14 @@
     <div class="absolute top-[10%] left-[10%] w-[500px] h-[500px] bg-[#BFDBFE] rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob"></div>
     <div class="absolute top-[10%] right-[10%] w-[500px] h-[500px] bg-[#E0F2FE] rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob animation-delay-2000"></div>
 
-    <div class="container mx-auto px-6 relative z-10 grid lg:grid-cols-2 gap-20 items-center">
+    <div class="container mx-auto px-6 relative z-10 grid lg:grid-cols-2 gap-8 md:p-20 items-center">
       <div class="space-y-10 text-center lg:text-left order-2 lg:order-1">
         <div class="inline-flex items-center gap-2 bg-white px-4 py-2 rounded-full shadow-sm border border-[#BFDBFE]">
            <span class="w-2 h-2 rounded-full bg-[#3B82F6] animate-pulse"></span>
            <span class="text-[12px] font-soft font-bold text-[#3B82F6] uppercase tracking-wide">24/7 Professional Medical Care</span>
         </div>
         
-        <h1 class="text-5xl md:text-7xl font-soft font-extrabold leading-[1.1] text-[#1E3A8A] mobile-title">
+        <h1 class="text-3xl md:text-5xl md:text-7xl font-soft font-extrabold leading-[1.1] text-[#1E3A8A] mobile-title">
            Compassionate<br>
            Care for Your<br>
            <span class="text-[#3B82F6]">Best Friend.</span>
@@ -155,7 +146,7 @@
     </div>
   </div>
 
-  <footer class="py-20 bg-white text-center px-6 border-t border-[#F0F9FF]">
+  <footer class="py-12 md:py-20 bg-white text-center px-6 border-t border-[#F0F9FF]">
      <div class="inline-flex flex-col items-center gap-4 mb-6">
         <span class="text-3xl">🐾</span>
         <span class="font-soft font-bold text-xl text-[#1E3A8A]">With<span class="text-[#3B82F6]">Pet</span></span>

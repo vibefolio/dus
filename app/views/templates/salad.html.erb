@@ -39,10 +39,6 @@
       </div>
       
       <div class="flex gap-4 items-center">
-         <button class="mobile-menu-trigger md:hidden text-2xl mr-4 focus:outline-none" style="color: #14532D;">
-           <i class="fas fa-bars"></i>
-         </button>
-
          <button onclick="toggleSaladModal()" class="text-[13px] font-brand font-bold text-[#166534] hover:bg-[#22C55E]/10 px-4 py-2 rounded-full transition">Fresh Club</button>
          <button class="bg-[#166534] text-white px-6 py-2.5 rounded-full font-brand font-bold text-[13px] hover:bg-[#14532D] transition shadow-lg shadow-[#166534]/20 hover:scale-105 active:scale-95 duration-200">
            Order Now
@@ -50,12 +46,7 @@
       </div>
     </div>
 
-      <%= render partial: 'templates/shared/mobile_menu', locals: {
-          links: [{text: 'Signature Bowls', href: '#signature'}, {text: 'Make Your Own', href: '#custom'}, {text: 'Daily Plan', href: '#subscription'}],
-          primary_color: '#14532D',
-          bg_color: '#ffffff'
-      } %>
-    </nav>
+      </nav>
 
   <!-- Hero -->
   <header class="min-h-screen relative flex items-center justify-center pt-24 overflow-hidden">
@@ -64,14 +55,14 @@
     <div class="absolute top-[10%] left-[5%] w-[500px] h-[500px] bg-[#FEF3C7] rounded-full mix-blend-multiply filter blur-3xl opacity-70 animate-blob animation-delay-2000"></div>
     <div class="absolute -bottom-[10%] left-[20%] w-[500px] h-[500px] bg-[#E0E7FF] rounded-full mix-blend-multiply filter blur-3xl opacity-70 animate-blob animation-delay-4000"></div>
 
-    <div class="container mx-auto px-6 relative z-10 grid lg:grid-cols-2 gap-16 items-center">
+    <div class="container mx-auto px-6 relative z-10 grid lg:grid-cols-2 gap-6 md:p-16 items-center">
       <div class="space-y-10 text-center lg:text-left order-2 lg:order-1">
         <div class="inline-flex items-center gap-2 bg-white px-3 py-1.5 rounded-full shadow-sm border border-[#22C55E]/20">
            <span class="w-2 h-2 rounded-full bg-[#22C55E] animate-pulse"></span>
            <span class="text-[11px] font-brand font-bold text-[#166534] uppercase tracking-wide">Farm to Bowl &nbsp;|&nbsp; 100% Organic</span>
         </div>
         
-        <h1 class="text-5xl md:text-7xl font-brand font-bold leading-[1.05] tracking-tight text-[#052E16] mobile-title">
+        <h1 class="text-3xl md:text-5xl md:text-7xl font-brand font-bold leading-[1.05] tracking-tight text-[#052E16] mobile-title">
            Eat Smart,<br>
            Fill with <span class="text-[#22C55E]">Nature.</span>
         </h1>
@@ -166,7 +157,7 @@
     </div>
   </div>
 
-  <footer class="py-20 bg-white text-center px-6 border-t border-[#F0FDF4]">
+  <footer class="py-12 md:py-20 bg-white text-center px-6 border-t border-[#F0FDF4]">
      <div class="inline-flex items-center gap-4 mb-6">
         <span class="font-brand font-bold text-xl tracking-tight text-[#166534]">Greens<span class="text-[#22C55E] font-medium">&</span>Grain</span>
      </div>

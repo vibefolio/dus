@@ -35,10 +35,6 @@
       </div>
       
       <div class="flex gap-6 items-center">
-         <button class="mobile-menu-trigger md:hidden text-2xl mr-4 focus:outline-none" style="color: #333;">
-           <i class="fas fa-bars"></i>
-         </button>
-
          <button onclick="toggleEcommerceModal()" class="text-[11px] font-sans font-bold uppercase tracking-[0.1em] text-slate-500 hover:text-slate-900">Sign In</button>
          <button class="relative p-2 text-slate-900 hover:text-slate-500 transition group">
            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
@@ -52,12 +48,7 @@
       </div>
     </div>
 
-      <%= render partial: 'templates/shared/mobile_menu', locals: {
-          links: [{text: 'New In', href: '#new'}, {text: 'Furniture', href: '#furniture'}, {text: 'Home Decor', href: '#decor'}],
-          primary_color: '#333',
-          bg_color: '#ffffff'
-      } %>
-    </nav>
+      </nav>
 
   <!-- Hero with Clean Grid Layout -->
   <header class="min-h-screen pt-24 pb-12 px-6 flex items-center">
@@ -68,7 +59,7 @@
             <span class="text-[10px] font-bold text-slate-600 uppercase tracking-widest">Autumn / Winter 2024</span>
          </div>
          
-         <h1 class="text-5xl md:text-8xl font-brand leading-[1.05] text-slate-900 mobile-title">
+         <h1 class="text-3xl md:text-5xl md:text-8xl font-brand leading-[1.05] text-slate-900 mobile-title">
             Modern<br>
             Living<br>
             <span class="italic text-slate-400">Essentials.</span>
@@ -89,7 +80,7 @@
          </div>
       </div>
       
-      <div class="order-1 lg:order-2 grid grid-cols-2 gap-4 h-full items-center">
+      <div class="order-1 lg:order-2 grid grid-cols-1 md:grid-cols-2 gap-4 h-full items-center">
          <div class="space-y-4 translate-y-8" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="200">
             <div class="relative group cursor-pointer overflow-hidden">
                <!-- Main Image -->
@@ -140,8 +131,8 @@
   </header>
   
   <!-- Categories -->
-  <section class="py-20 border-t border-slate-100" data-aos="fade-up">
-     <div class="container mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-4">
+  <section class="py-12 md:py-20 border-t border-slate-100" data-aos="fade-up">
+     <div class="container mx-auto px-6 grid grid-cols-1 md:grid-cols-2 md:grid-cols-4 gap-4">
         <div class="text-center group cursor-pointer" data-aos="fade-up" data-aos-delay="100">
            <div class="w-full aspect-square bg-slate-50 rounded-full mb-4 overflow-hidden relative">
               <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?q=80&w=400" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
@@ -202,7 +193,7 @@
     </div>
   </div>
 
-  <footer class="py-20 bg-white text-center px-6 border-t border-slate-100">
+  <footer class="py-12 md:py-20 bg-white text-center px-6 border-t border-slate-100">
      <div class="inline-flex flex-col items-center gap-6 mb-8">
         <span class="font-brand font-bold text-2xl tracking-[0.05em] text-slate-900">Hayden<span class="text-slate-400">Home</span></span>
         <span class="text-[10px] font-bold text-slate-400 tracking-[0.3em] uppercase">Modern Living Curator</span>

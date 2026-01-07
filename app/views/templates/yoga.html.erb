@@ -34,10 +34,6 @@
       </div>
       
       <div class="flex gap-8 items-center">
-         <button class="mobile-menu-trigger md:hidden text-2xl mr-4 focus:outline-none" style="color: #4A4843;">
-           <i class="fas fa-bars"></i>
-         </button>
-
          <button onclick="toggleYogaModal()" class="text-[10px] font-bold uppercase tracking-[0.3em] text-[#4A4843]/40 hover:text-[#8B9178]">Member ID</button>
          <button class="bg-[#8B9178] text-white px-8 py-3 rounded-full font-bold text-[10px] tracking-[0.3em] uppercase hover:bg-[#4A4843] transition shadow-lg shadow-[#8B9178]/20">
            Book Mat
@@ -45,12 +41,7 @@
       </div>
     </div>
 
-      <%= render partial: 'templates/shared/mobile_menu', locals: {
-          links: [{text: 'Mindfulness', href: '#mind'}, {text: 'Asana', href: '#body'}, {text: 'Sanctuary', href: '#studio'}],
-          primary_color: '#4A4843',
-          bg_color: '#ffffff'
-      } %>
-    </nav>
+      </nav>
 
   <!-- Hero -->
   <header class="min-h-screen relative flex items-center justify-center pt-20">
@@ -58,14 +49,14 @@
     <div class="absolute top-[20%] left-[10%] w-[500px] h-[500px] bg-[#E2E1D9] rounded-[30%_70%_70%_30%/30%_30%_70%_70%] mix-blend-multiply filter blur-2xl opacity-70 animate-morph-slow"></div>
     <div class="absolute bottom-[10%] right-[10%] w-[400px] h-[400px] bg-[#D4D3CB] rounded-[70%_30%_30%_70%/60%_40%_60%_40%] mix-blend-multiply filter blur-2xl opacity-70 animate-morph-slower"></div>
 
-    <div class="container mx-auto px-6 relative z-10 grid lg:grid-cols-2 gap-20 items-center">
+    <div class="container mx-auto px-6 relative z-10 grid lg:grid-cols-2 gap-8 md:p-20 items-center">
       <div class="space-y-12 text-center lg:text-left">
         <div class="inline-flex items-center gap-4">
            <span class="w-12 h-[1px] bg-[#8B9178]"></span>
            <span class="text-[10px] font-bold tracking-[0.4em] uppercase text-[#8B9178]">Balance of Life</span>
         </div>
         
-        <h1 class="text-6xl md:text-[8rem] font-serif-flow font-light leading-[0.9] tracking-tight text-[#4A4843] mobile-title">
+        <h1 class="text-4xl md:text-6xl md:text-[8rem] font-serif-flow font-light leading-[0.9] tracking-tight text-[#4A4843] mobile-title">
            Breathe,<br><span class="italic text-[#8B9178]">Become.</span>
         </h1>
         
@@ -107,7 +98,7 @@
 
   <!-- Login Modal -->
   <div id="yoga-modal" class="fixed inset-0 z-[100] hidden items-center justify-center p-4 bg-[#4A4843]/10 backdrop-blur-xl">
-    <div class="bg-[#F0EFEB] w-full max-w-sm p-16 shadow-2xl relative rounded-[3rem] border border-[#8B9178]/10">
+    <div class="bg-[#F0EFEB] w-full max-w-sm p-6 md:p-16 shadow-2xl relative rounded-[3rem] border border-[#8B9178]/10">
       <button onclick="toggleYogaModal()" class="absolute top-10 right-10 text-[#4A4843]/30 hover:text-[#8B9178] transition text-2xl font-light">&times;</button>
       
       <div class="text-center mb-14">
@@ -131,7 +122,7 @@
     </div>
   </div>
 
-  <footer class="py-24 bg-[#F0EFEB] text-center px-6 border-t border-[#4A4843]/5">
+  <footer class="py-12 md:py-24 bg-[#F0EFEB] text-center px-6 border-t border-[#4A4843]/5">
      <div class="inline-flex flex-col items-center gap-6 mb-8">
         <span class="font-serif-flow text-3xl text-[#4A4843] tracking-wide italic">YogaFlow</span>
         <div class="w-12 h-[1px] bg-[#4A4843]/10"></div>

@@ -34,10 +34,6 @@
       </div>
       
       <div class="flex gap-4 items-center">
-         <button class="mobile-menu-trigger md:hidden text-2xl mr-4 focus:outline-none" style="color: #E5E5E5;">
-           <i class="fas fa-bars"></i>
-         </button>
-
          <button onclick="toggleStudioModal()" class="text-[10px] font-film font-bold uppercase tracking-[0.2em] text-[#737373] hover:text-white">Client Login</button>
          <button class="bg-white text-black px-6 py-2.5 rounded-sm font-film font-bold text-[10px] tracking-widest uppercase hover:bg-[#D4D4D4] transition shadow-[0_0_15px_rgba(255,255,255,0.1)]">
            Inquiry
@@ -45,12 +41,7 @@
       </div>
     </div>
 
-      <%= render partial: 'templates/shared/mobile_menu', locals: {
-          links: [{text: 'Portfolio', href: '#portfolio'}, {text: 'About', href: '#about'}, {text: 'Contact', href: '#contact'}],
-          primary_color: '#E5E5E5',
-          bg_color: '#ffffff'
-      } %>
-    </nav>
+      </nav>
 
   <!-- Hero -->
   <header class="min-h-screen relative flex items-center justify-center pt-24 overflow-hidden">
@@ -58,13 +49,13 @@
     <div class="absolute top-0 right-[20%] w-[1px] h-[150%] bg-gradient-to-b from-white/20 via-transparent to-transparent rotate-[15deg] blur-[1px]"></div>
     <div class="absolute top-0 left-[20%] w-[1px] h-[150%] bg-gradient-to-b from-white/10 via-transparent to-transparent rotate-[-15deg] blur-[1px]"></div>
 
-    <div class="container mx-auto px-6 relative z-10 grid lg:grid-cols-2 gap-20 items-center">
+    <div class="container mx-auto px-6 relative z-10 grid lg:grid-cols-2 gap-8 md:p-20 items-center">
       <div class="space-y-12 text-center lg:text-left">
         <div class="inline-flex items-center gap-3 border-b border-white/20 pb-2">
            <span class="text-[10px] font-film text-white uppercase tracking-[0.3em]">Artistic Photography</span>
         </div>
         
-        <h1 class="text-5xl md:text-8xl font-film font-normal leading-[1.1] text-white mobile-title tracking-tight">
+        <h1 class="text-3xl md:text-5xl md:text-8xl font-film font-normal leading-[1.1] text-white mobile-title tracking-tight">
            Capture<br>
            the <span class="italic text-[#737373]">Soul.</span>
         </h1>
@@ -127,7 +118,7 @@
     </div>
   </div>
 
-  <footer class="py-24 bg-[#1C1C1C] text-center px-6 border-t border-white/5">
+  <footer class="py-12 md:py-24 bg-[#1C1C1C] text-center px-6 border-t border-white/5">
      <div class="inline-flex flex-col items-center gap-6 mb-8">
         <span class="font-film font-bold text-2xl tracking-[0.3em] text-white">MONO<span class="text-[#525252]">CHROME</span></span>
         <span class="text-[10px] font-bold text-[#525252] tracking-[0.5em] uppercase">Fine Art Photography</span>

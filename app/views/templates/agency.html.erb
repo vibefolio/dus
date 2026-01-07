@@ -35,10 +35,6 @@
       </div>
       
       <div class="flex gap-8 items-center">
-         <button class="mobile-menu-trigger md:hidden text-2xl mr-4 focus:outline-none" style="color: #BEF264;">
-           <i class="fas fa-bars"></i>
-         </button>
-
          <button onclick="toggleAgencyModal()" class="text-[10px] font-bold uppercase tracking-[0.4em] text-white/40 hover:text-white">Admin_X</button>
          <button class="bg-[#BEF264] text-black px-8 py-3 rounded-none font-bold text-[10px] tracking-[0.4em] uppercase hover:bg-white transition-all">
            Initiate Project
@@ -46,12 +42,7 @@
       </div>
     </div>
 
-      <%= render partial: 'templates/shared/mobile_menu', locals: {
-          links: [{text: 'Artifacts', href: '#projects'}, {text: 'Our_Vision', href: '#vision'}, {text: 'X_Lab', href: '#lab'}],
-          primary_color: '#BEF264',
-          bg_color: '#ffffff'
-      } %>
-    </nav>
+      </nav>
 
   <!-- Hero -->
   <header class="min-h-screen relative flex items-center pt-24 overflow-hidden">
@@ -66,7 +57,7 @@
            Breaking the digital ceiling
         </div>
         
-        <h1 class="text-6xl md:text-[10rem] font-inter font-black leading-[0.9] tracking-tighter mobile-title">
+        <h1 class="text-4xl md:text-6xl md:text-[10rem] font-inter font-black leading-[0.9] tracking-tighter mobile-title">
            EVOLVE<br>THE<br><span class="italic text-transparent bg-clip-text bg-gradient-to-r from-[#BEF264] to-emerald-500">SYSTEM.</span>
         </h1>
         
@@ -140,7 +131,7 @@
     </div>
   </div>
 
-  <footer class="py-32 bg-[#050505] text-center px-6 relative z-10 border-t border-white/5">
+  <footer class="py-16 md:py-32 bg-[#050505] text-center px-6 relative z-10 border-t border-white/5">
      <div class="inline-flex items-center gap-10 mb-12">
         <span class="font-inter text-3xl tracking-tighter font-black uppercase text-white/10 italic">AGENCY<span class="text-white/5">X</span></span>
         <div class="w-12 h-[1px] bg-white/5"></div>
