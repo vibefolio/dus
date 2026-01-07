@@ -29,13 +29,23 @@
       </div>
       
       <div class="flex gap-8 items-center">
+         <button class="mobile-menu-trigger md:hidden text-2xl mr-4 focus:outline-none" style="color: #1C1C1C;">
+           <i class="fas fa-bars"></i>
+         </button>
+
          <button onclick="toggleHotelModal()" class="text-[10px] font-bold uppercase tracking-[0.3em] text-[#1C1C1C]/40 hover:text-[#BFA183]">Concierge</button>
          <button class="bg-[#1C1C1C] text-white px-8 py-3 rounded-none font-bold text-[10px] tracking-[0.3em] uppercase hover:bg-[#BFA183] hover:text-white transition shadow-xl">
            Book Your Stay
          </button>
       </div>
     </div>
-  </nav>
+
+      <%= render partial: 'templates/shared/mobile_menu', locals: {
+          links: [{text: 'Suites', href: '#suites'}, {text: 'Gastronomy', href: '#dining'}, {text: 'Wellness', href: '#spa'}],
+          primary_color: '#1C1C1C',
+          bg_color: '#ffffff'
+      } %>
+    </nav>
 
   <!-- Hero -->
   <header class="min-h-screen relative flex items-center justify-center pt-20">

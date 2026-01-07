@@ -32,13 +32,23 @@
       </div>
       
       <div class="flex gap-8 items-center">
+         <button class="mobile-menu-trigger md:hidden text-2xl mr-4 focus:outline-none" style="color: #111827;">
+           <i class="fas fa-bars"></i>
+         </button>
+
          <button onclick="toggleConsultModal()" class="text-[11px] font-bold uppercase tracking-[0.2em] text-[#111827]/40 hover:text-[#F59E0B]">Partner Access</button>
          <button class="bg-[#111827] text-white px-8 py-3 rounded-none font-bold text-[11px] tracking-widest uppercase hover:bg-[#F59E0B] transition shadow-xl">
            Get Inquiry
          </button>
       </div>
     </div>
-  </nav>
+
+      <%= render partial: 'templates/shared/mobile_menu', locals: {
+          links: [{text: 'Strategy', href: '#strategy'}, {text: 'Digital', href: '#digital'}, {text: 'Performance', href: '#cases'}],
+          primary_color: '#111827',
+          bg_color: '#ffffff'
+      } %>
+    </nav>
 
   <!-- Hero -->
   <header class="min-h-screen relative flex items-center justify-center pt-20">

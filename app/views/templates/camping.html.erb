@@ -35,13 +35,23 @@
       </div>
       
       <div class="flex gap-8 items-center">
+         <button class="mobile-menu-trigger md:hidden text-2xl mr-4 focus:outline-none" style="color: #E5E5EA;">
+           <i class="fas fa-bars"></i>
+         </button>
+
          <button onclick="toggleCampModal()" class="text-[10px] font-bold uppercase tracking-[0.4em] text-white/40 hover:text-[#FF4500]">Explorer_ID</button>
          <button class="bg-[#FF4500] text-white px-10 py-3.5 rounded-none font-bold text-[10px] tracking-[0.4em] uppercase hover:bg-white hover:text-black transition shadow-2xl">
            Join Adventure
          </button>
       </div>
     </div>
-  </nav>
+
+      <%= render partial: 'templates/shared/mobile_menu', locals: {
+          links: [{text: 'Basecamp', href: '#zones'}, {text: 'Gear', href: '#gear'}, {text: 'Expedition', href: '#expedition'}],
+          primary_color: '#E5E5EA',
+          bg_color: '#ffffff'
+      } %>
+    </nav>
 
   <!-- Hero -->
   <header class="min-h-screen relative flex items-center justify-center pt-20">

@@ -37,13 +37,23 @@
       </div>
       
       <div class="flex gap-6 items-center">
+         <button class="mobile-menu-trigger md:hidden text-2xl mr-4 focus:outline-none" style="color: #E0C097;">
+           <i class="fas fa-bars"></i>
+         </button>
+
          <button onclick="toggleWineModal()" class="text-[10px] font-serif-display font-bold tracking-[0.3em] text-[#E0C097]/50 hover:text-[#E0C097]">Member's Cave</button>
          <button class="bg-[#722F37] text-white px-8 py-3 font-serif-display font-bold text-[11px] tracking-[0.2em] hover:bg-[#8B3A44] transition shadow-[0_0_20px_rgba(114,47,55,0.4)] border border-[#E0C097]/10">
            Reserve
          </button>
       </div>
     </div>
-  </nav>
+
+      <%= render partial: 'templates/shared/mobile_menu', locals: {
+          links: [{text: 'Collection', href: '#collection'}, {text: 'Vineyard', href: '#vineyard'}, {text: 'Tasting', href: '#tasting'}],
+          primary_color: '#E0C097',
+          bg_color: '#ffffff'
+      } %>
+    </nav>
 
   <!-- Hero -->
   <header class="min-h-screen relative flex items-center justify-center pt-24 overflow-hidden">

@@ -37,13 +37,23 @@
       </div>
       
       <div class="flex gap-6 items-center">
+         <button class="mobile-menu-trigger md:hidden text-2xl mr-4 focus:outline-none" style="color: #333;">
+           <i class="fas fa-bars"></i>
+         </button>
+
          <button onclick="toggleEnglishModal()" class="text-[11px] font-bold uppercase tracking-[0.2em] text-slate-400 hover:text-blue-600">LMS Portal</button>
          <button class="bg-slate-900 text-white px-8 py-3 rounded-lg font-bold text-[11px] tracking-widest uppercase hover:bg-blue-600 transition shadow-xl shadow-slate-200">
            Free Level Test
          </button>
       </div>
     </div>
-  </nav>
+
+      <%= render partial: 'templates/shared/mobile_menu', locals: {
+          links: [{text: 'About', href: '#about'}, {text: 'Programs', href: '#programs'}, {text: 'Teachers', href: '#teachers'}],
+          primary_color: '#333',
+          bg_color: '#ffffff'
+      } %>
+    </nav>
 
   <!-- Hero -->
   <header class="min-h-screen relative flex items-center justify-center pt-20">

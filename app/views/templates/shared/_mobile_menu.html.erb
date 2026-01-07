@@ -1,0 +1,58 @@
+<%# Mobile Menu Partial %>
+<%# Expects locals: links (array of {text, href}), primary_color, bg_color %>
+<%
+  primary_color ||= '#333'
+  bg_color ||= '#fff'
+%>
+
+<div id="mobile-menu-overlay" class="fixed inset-0 z-[100] bg-white hidden flex-col transition-opacity duration-300 opacity-0 pointer-events-none" style="background-color: <%= bg_color %>;">
+  <!-- Header inside Mobile Menu -->
+  <div class="flex justify-end p-8">
+    <button id="close-mobile-menu" class="text-3xl focus:outline-none" style="color: <%= primary_color %>;">
+      &times;
+    </button>
+  </div>
+
+  <!-- Links -->
+  <div class="flex-1 flex flex-col items-center justify-center space-y-8">
+    <% if defined?(links) && links.any? %>
+      <% links.each do |link| %>
+        <a href="<%= link[:href] %>" class="text-2xl font-bold uppercase tracking-widest hover:opacity-50 transition" style="color: <%= primary_color %>;">
+          <%= link[:text] %>
+        </a>
+      <% end %>
+    <% else %>
+      <a href="#about" class="text-2xl font-bold uppercase tracking-widest hover:opacity-50 transition" style="color: <%= primary_color %>;">About</a>
+      <a href="#services" class="text-2xl font-bold uppercase tracking-widest hover:opacity-50 transition" style="color: <%= primary_color %>;">Services</a>
+      <a href="#contact" class="text-2xl font-bold uppercase tracking-widest hover:opacity-50 transition" style="color: <%= primary_color %>;">Contact</a>
+    <% end %>
+  </div>
+</div>
+
+<script>
+  (function() {
+    const overlay = document.getElementById('mobile-menu-overlay');
+    const closeBtn = document.getElementById('close-mobile-menu');
+    const openBtns = document.querySelectorAll('.mobile-menu-trigger'); // Add this class to hamburger button
+
+    function openMenu() {
+      overlay.classList.remove('hidden');
+      // Force reflow
+      void overlay.offsetWidth;
+      overlay.classList.remove('opacity-0', 'pointer-events-none');
+    }
+
+    function closeMenu() {
+      overlay.classList.add('opacity-0', 'pointer-events-none');
+      setTimeout(() => {
+        overlay.classList.add('hidden');
+      }, 300);
+    }
+
+    if (closeBtn) closeBtn.addEventListener('click', closeMenu);
+
+    openBtns.forEach(btn => {
+      btn.addEventListener('click', openMenu);
+    });
+  })();
+</script>
