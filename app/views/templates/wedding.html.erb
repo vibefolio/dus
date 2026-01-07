@@ -45,10 +45,6 @@
       </div>
       
       <div class="flex gap-4 items-center">
-         <button class="mobile-menu-trigger md:hidden text-2xl mr-4 focus:outline-none" style="color: #4A4A4A;">
-           <i class="fas fa-bars"></i>
-         </button>
-
          <button onclick="toggleWeddingModal()" class="text-[10px] font-sans font-bold uppercase tracking-[0.2em] text-[#A6998E] hover:text-[#8C7B6C]">Guest Access</button>
          <button class="bg-[#8C7B6C] text-white px-6 py-2 rounded-sm font-serif-elegant font-medium text-xs tracking-widest uppercase hover:bg-[#6D5E52] transition shadow-lg shadow-[#E5D5C6]/50">
            RSVP
@@ -56,12 +52,7 @@
       </div>
     </div>
 
-      <%= render partial: 'templates/shared/mobile_menu', locals: {
-          links: [{text: 'Invitation', href: '#invitation'}, {text: 'Gallery', href: '#gallery'}, {text: 'Location', href: '#location'}],
-          primary_color: '#4A4A4A',
-          bg_color: '#ffffff'
-      } %>
-    </nav>
+      </nav>
 
   <!-- Hero with D-Day Counter -->
   <header class="min-h-screen relative flex items-center justify-center pt-24 overflow-hidden">
@@ -69,14 +60,14 @@
     <div class="absolute inset-4 md:inset-8 border border-[#E5D5C6] pointer-events-none z-20 m-2 md:m-8" data-aos="fade-in" data-aos-duration="2000" data-aos-delay="500"></div>
     <div class="absolute inset-5 md:inset-9 border border-[#E5D5C6] pointer-events-none z-20 m-2 md:m-8 opacity-50" data-aos="fade-in" data-aos-duration="2000" data-aos-delay="700"></div>
 
-    <div class="container mx-auto px-6 relative z-10 grid lg:grid-cols-2 gap-12 md:gap-20 items-center h-full">
+    <div class="container mx-auto px-6 relative z-10 grid lg:grid-cols-2 gap-12 md:gap-8 md:p-20 items-center h-full">
       <div class="space-y-8 md:space-y-12 text-center lg:text-left order-2 lg:order-1 flex flex-col justify-center" data-aos="fade-right" data-aos-duration="1200">
         <div class="inline-flex items-center gap-3 justify-center lg:justify-start">
            <span class="w-12 h-[1px] bg-[#8C7B6C]"></span>
            <span class="text-[12px] font-serif-elegant font-bold text-[#8C7B6C] uppercase tracking-[0.3em] italic">We Are Getting Married</span>
         </div>
         
-        <h1 class="text-5xl md:text-7xl xl:text-8xl font-serif-elegant font-light leading-[1.1] text-[#2C2C2C] mobile-title">
+        <h1 class="text-3xl md:text-5xl md:text-7xl xl:text-8xl font-serif-elegant font-light leading-[1.1] text-[#2C2C2C] mobile-title">
            Promise of<br>
            <span class="italic text-[#8C7B6C]">Forever</span><br>
            Love.
@@ -124,7 +115,7 @@
             <div class="absolute -top-10 -right-10 w-full h-full border border-[#E5D5C6] z-0"></div>
             <div class="absolute -bottom-10 -left-10 w-full h-full bg-[#E5D5C6]/30 z-0"></div>
             
-            <div class="absolute -bottom-16 -right-12 text-[5rem] opacity-20 rotate-12 pointer-events-none font-serif-elegant text-[#8C7B6C]">
+            <div class="absolute -bottom-16 -right-12 text-4xl md:text-[5rem] opacity-20 rotate-12 pointer-events-none font-serif-elegant text-[#8C7B6C]">
                ❦
             </div>
          </div>
@@ -139,7 +130,7 @@
            <span class="text-[#8C7B6C] font-serif-elegant italic text-lg">Our Moments</span>
            <h2 class="text-4xl text-[#2C2C2C] font-serif-elegant font-light">Gallery</h2>
         </div>
-        <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+        <div class="grid grid-cols-1 md:grid-cols-2 md:grid-cols-3 gap-4">
            <div class="aspect-[3/4] overflow-hidden group cursor-pointer" data-aos="fade-up" data-aos-delay="100">
               <img src="https://images.unsplash.com/photo-1511285560982-1351cdeb9821?q=80&w=600" class="w-full h-full object-cover transition duration-700 group-hover:scale-110 filter sepia-[20%]" alt="Gallery 1">
            </div>
@@ -248,7 +239,7 @@
     </div>
   </div>
 
-  <footer class="py-24 bg-[#FFFCF6] text-center px-6 border-t border-[#E5D5C6]/50">
+  <footer class="py-12 md:py-24 bg-[#FFFCF6] text-center px-6 border-t border-[#E5D5C6]/50">
      <div class="inline-flex flex-col items-center gap-6 mb-8">
         <span class="font-serif-elegant text-3xl tracking-[0.2em] text-[#8C7B6C] uppercase">Eternal<span class="text-[#E5D5C6] italic">Vow</span></span>
         <span class="text-[10px] font-bold text-[#A6998E] tracking-[0.4em] uppercase">Premium Wedding Service</span>

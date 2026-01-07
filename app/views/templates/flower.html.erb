@@ -36,10 +36,6 @@
       </div>
       
       <div class="flex gap-6 items-center">
-         <button class="mobile-menu-trigger md:hidden text-2xl mr-4 focus:outline-none" style="color: #4A4238;">
-           <i class="fas fa-bars"></i>
-         </button>
-
          <button onclick="toggleFlowerModal()" class="text-[10px] font-bold uppercase tracking-[0.2em] text-[#9CA3AF] hover:text-[#F472B6]">My Garden</button>
          <button class="border border-[#F472B6]/30 text-[#5D5447] px-6 py-2.5 rounded-full font-serif-display font-medium text-sm hover:bg-[#FDF2F8] hover:border-[#F472B6] transition">
            Subscribe
@@ -47,12 +43,7 @@
       </div>
     </div>
 
-      <%= render partial: 'templates/shared/mobile_menu', locals: {
-          links: [{text: 'Workshop', href: '#workshop'}, {text: 'Bouquet', href: '#bouquet'}, {text: 'Wedding', href: '#wedding'}],
-          primary_color: '#4A4238',
-          bg_color: '#ffffff'
-      } %>
-    </nav>
+      </nav>
 
   <!-- Hero -->
   <header class="min-h-screen relative flex items-center justify-center pt-24 overflow-hidden">
@@ -60,14 +51,14 @@
     <div class="absolute top-0 right-0 w-[50vw] h-[80vh] bg-[#FFF1F2] rounded-bl-[15rem] -z-10 opacity-70"></div>
     <div class="absolute bottom-0 left-0 w-[40vw] h-[60vh] bg-[#F3F4F6] rounded-tr-[15rem] -z-10 opacity-50"></div>
 
-    <div class="container mx-auto px-6 relative z-10 grid lg:grid-cols-2 gap-20 items-center">
+    <div class="container mx-auto px-6 relative z-10 grid lg:grid-cols-2 gap-8 md:p-20 items-center">
       <div class="space-y-10 text-center lg:text-left order-2 lg:order-1">
         <div class="inline-flex items-center gap-3 justify-center lg:justify-start">
            <span class="w-8 h-[1px] bg-[#F472B6]"></span>
            <span class="text-[11px] font-serif-display italic text-[#F472B6] text-lg tracking-wide">French Modern Floristry</span>
         </div>
         
-        <h1 class="text-5xl md:text-[6rem] font-serif-display font-light leading-[1] text-[#4A4238] mobile-title">
+        <h1 class="text-3xl md:text-5xl md:text-[6rem] font-serif-display font-light leading-[1] text-[#4A4238] mobile-title">
            Nature's<br>
            <span class="italic text-[#F472B6]">Poetry</span> in<br>
            Your Hands.
@@ -134,7 +125,7 @@
     </div>
   </div>
 
-  <footer class="py-24 bg-white text-center px-6 border-t border-[#F3F4F6]">
+  <footer class="py-12 md:py-24 bg-white text-center px-6 border-t border-[#F3F4F6]">
      <div class="inline-flex flex-col items-center gap-6 mb-8">
         <span class="font-serif-display font-semibold text-2xl tracking-wide text-[#5D5447]">Bloom<span class="italic text-[#F472B6]">&</span>Garden</span>
         <span class="text-[10px] font-bold text-[#9CA3AF] tracking-[0.3em] uppercase">Floral Design Studio</span>

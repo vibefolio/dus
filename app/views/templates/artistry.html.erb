@@ -26,17 +26,13 @@
          <span class="font-gallery text-3xl tracking-[0.1em] font-normal">Jin<span class="font-bold">Artistry</span></span>
       </div>
       
-      <div class="hidden md:flex gap-16 text-xs font-sans font-bold tracking-[0.2em] uppercase">
+      <div class="hidden md:flex gap-6 md:p-16 text-xs font-sans font-bold tracking-[0.2em] uppercase">
         <a href="#portfolio" class="hover:underline underline-offset-4 decoration-1">Portfolio</a>
         <a href="#philosophy" class="hover:underline underline-offset-4 decoration-1">Philosophy</a>
         <a href="#contact" class="hover:underline underline-offset-4 decoration-1">Contact</a>
       </div>
       
       <div class="flex gap-6 items-center">
-         <button class="mobile-menu-trigger md:hidden text-2xl mr-4 focus:outline-none" style="color: #333;">
-           <i class="fas fa-bars"></i>
-         </button>
-
          <button onclick="toggleArtistryModal()" class="text-[10px] font-bold uppercase tracking-[0.2em] hover:underline underline-offset-4 decoration-1">Artist Login</button>
          <button class="border border-white px-6 py-2 rounded-full font-gallery text-sm hover:bg-white hover:text-black transition duration-300">
            Book Now
@@ -44,12 +40,7 @@
       </div>
     </div>
 
-      <%= render partial: 'templates/shared/mobile_menu', locals: {
-          links: [{text: 'Portfolio', href: '#portfolio'}, {text: 'Philosophy', href: '#philosophy'}, {text: 'Contact', href: '#contact'}],
-          primary_color: '#333',
-          bg_color: '#ffffff'
-      } %>
-    </nav>
+      </nav>
 
   <!-- Hero with Parallax Feel -->
   <header class="min-h-screen relative flex items-center justify-center overflow-hidden">
@@ -66,7 +57,7 @@
          <span class="text-[10px] font-bold tracking-[0.4em] uppercase text-black">Professional Makeup Direction</span>
       </div>
       
-      <h1 class="text-6xl md:text-9xl font-gallery leading-none text-black mobile-title mix-blend-multiply">
+      <h1 class="text-4xl md:text-6xl md:text-9xl font-gallery leading-none text-black mobile-title mix-blend-multiply">
          Pure<br>
          <span class="italic font-light opacity-60">Authentication.</span>
       </h1>
@@ -99,7 +90,7 @@
 
   <!-- Login Modal -->
   <div id="artistry-modal" class="fixed inset-0 z-[100] hidden items-center justify-center p-4 bg-white/90 backdrop-blur-xl">
-    <div class="bg-white w-full max-w-md p-16 shadow-[0_0_80px_rgba(0,0,0,0.1)] relative border border-black/5">
+    <div class="bg-white w-full max-w-md p-6 md:p-16 shadow-[0_0_80px_rgba(0,0,0,0.1)] relative border border-black/5">
       <button onclick="toggleArtistryModal()" class="absolute top-8 right-8 text-black/30 hover:text-black transition text-3xl font-gallery">&times;</button>
       
       <div class="text-center mb-16">
@@ -124,7 +115,7 @@
     </div>
   </div>
 
-  <footer class="py-24 bg-white text-center px-6 border-t border-black/5">
+  <footer class="py-12 md:py-24 bg-white text-center px-6 border-t border-black/5">
      <div class="inline-flex flex-col items-center gap-8 mb-8">
         <span class="font-gallery text-4xl tracking-tight text-black">Jin<span class="font-bold">Artistry</span></span>
         <span class="text-[10px] font-bold text-gray-400 tracking-[0.4em] uppercase">Seoul . Paris . New York</span>

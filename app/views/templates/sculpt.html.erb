@@ -29,10 +29,6 @@
       </div>
       
       <div class="flex gap-8 items-center">
-         <button class="mobile-menu-trigger md:hidden text-2xl mr-4 focus:outline-none" style="color: #1A1A1A;">
-           <i class="fas fa-bars"></i>
-         </button>
-
          <button onclick="toggleSculptModal()" class="text-[10px] font-bold uppercase tracking-[0.4em] text-[#1A1A1A]/40 hover:text-[#D4A373]">Member ID</button>
          <button class="bg-[#1A1A1A] text-white px-8 py-3 rounded-full font-bold text-[10px] tracking-[0.3em] uppercase hover:bg-[#D4A373] transition shadow-2xl">
            Reserve
@@ -40,18 +36,13 @@
       </div>
     </div>
 
-      <%= render partial: 'templates/shared/mobile_menu', locals: {
-          links: [{text: 'Studio', href: '#about'}, {text: 'Sequence', href: '#program'}, {text: 'Retreat', href: '#membership'}],
-          primary_color: '#1A1A1A',
-          bg_color: '#ffffff'
-      } %>
-    </nav>
+      </nav>
 
   <!-- Hero -->
   <header class="min-h-screen relative flex items-center justify-center pt-20">
-    <div class="container mx-auto px-6 relative z-10 grid lg:grid-cols-2 gap-16 items-center">
+    <div class="container mx-auto px-6 relative z-10 grid lg:grid-cols-2 gap-6 md:p-16 items-center">
       <div class="order-2 lg:order-1 relative">
-         <div class="absolute -top-20 -left-20 w-64 h-64 bg-[#D4A373]/5 rounded-full blur-[100px]"></div>
+         <div class="absolute -top-8 md:p-20 -left-20 w-64 h-64 bg-[#D4A373]/5 rounded-full blur-[100px]"></div>
          <div class="relative group">
             <img src="https://images.unsplash.com/photo-1518310383802-640c2de311b2?q=80&w=1200" alt="Pilates" class="w-full aspect-[3/4] object-cover rounded-[5rem_2rem_5rem_2rem] shadow-2xl grayscale brightness-90 group-hover:grayscale-0 transition duration-1000">
             <div class="absolute -bottom-8 -right-8 bg-white p-10 rounded-2xl shadow-2xl border border-[#D4A373]/10">
@@ -70,7 +61,7 @@
            <span class="text-[10px] font-bold tracking-[0.5em] uppercase text-[#D4A373]">The Art of Pilates</span>
         </div>
         
-        <h1 class="text-6xl md:text-[7rem] font-serif font-black leading-none tracking-tighter mobile-title">
+        <h1 class="text-4xl md:text-6xl md:text-[7rem] font-serif font-black leading-none tracking-tighter mobile-title">
            가장 우아한<br><span class="italic text-[#D4A373]">무브먼트.</span>
         </h1>
         
@@ -116,7 +107,7 @@
     </div>
   </div>
 
-  <footer class="py-32 bg-white text-center px-6 border-t border-[#D4A373]/10">
+  <footer class="py-16 md:py-32 bg-white text-center px-6 border-t border-[#D4A373]/10">
      <div class="inline-flex items-center gap-8 mb-10">
         <span class="font-serif text-3xl tracking-[0.5em] font-black uppercase">ETERNO</span>
         <span class="w-16 h-[1px] bg-[#D4A373]/20"></span>

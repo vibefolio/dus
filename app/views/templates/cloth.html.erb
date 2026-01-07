@@ -34,10 +34,6 @@
       </div>
       
       <div class="flex gap-8 items-center">
-         <button class="mobile-menu-trigger md:hidden text-2xl mr-4 focus:outline-none" style="color: #292524;">
-           <i class="fas fa-bars"></i>
-         </button>
-
          <button onclick="toggleModeModal()" class="text-[10px] font-bold uppercase tracking-[0.3em] text-[#292524]/40 hover:text-[#292524]">Atelier_ID</button>
          <button class="relative">
             <span class="text-[10px] font-bold uppercase tracking-[0.3em] hover:text-[#57534E] transition">Cart</span>
@@ -46,12 +42,7 @@
       </div>
     </div>
 
-      <%= render partial: 'templates/shared/mobile_menu', locals: {
-          links: [{text: 'Editorial', href: '#lookbook'}, {text: 'Collection', href: '#shop'}, {text: 'Archive', href: '#archive'}],
-          primary_color: '#292524',
-          bg_color: '#ffffff'
-      } %>
-    </nav>
+      </nav>
 
   <!-- Hero -->
   <header class="min-h-screen relative flex items-center justify-center pt-24 overflow-hidden">
@@ -77,7 +68,7 @@
       </div>
 
       <div class="lg:col-span-6 space-y-12 text-center lg:text-left pl-0 lg:pl-12">
-        <h1 class="text-6xl md:text-[8rem] font-serif-display leading-[0.9] tracking-tight text-[#292524] mobile-title">
+        <h1 class="text-4xl md:text-6xl md:text-[8rem] font-serif-display leading-[0.9] tracking-tight text-[#292524] mobile-title">
            Essential<br>
            <span class="italic font-light text-[#57534E]">Form.</span>
         </h1>
@@ -108,7 +99,7 @@
 
   <!-- Login Modal -->
   <div id="mode-modal" class="fixed inset-0 z-[100] hidden items-center justify-center p-4 bg-[#292524]/10 backdrop-blur-3xl">
-    <div class="bg-[#F5F5F4] w-full max-w-sm p-16 shadow-2xl relative border border-[#292524]/5">
+    <div class="bg-[#F5F5F4] w-full max-w-sm p-6 md:p-16 shadow-2xl relative border border-[#292524]/5">
       <button onclick="toggleModeModal()" class="absolute top-12 right-12 text-[#292524]/20 hover:text-[#292524] transition text-2xl font-light">&times;</button>
       
       <div class="text-center mb-16">
@@ -130,7 +121,7 @@
     </div>
   </div>
 
-  <footer class="py-32 bg-[#F5F5F4] text-center px-6 border-t border-[#292524]/5">
+  <footer class="py-16 md:py-32 bg-[#F5F5F4] text-center px-6 border-t border-[#292524]/5">
      <div class="inline-flex flex-col items-center gap-8 mb-12">
         <span class="font-serif-display text-4xl tracking-widest uppercase text-[#292524]">Mode Seoul</span>
         <div class="w-12 h-[1px] bg-[#292524]/20"></div>
