@@ -1,8 +1,4 @@
 <%# Mobile Menu Overlay (Pure White Full Screen) %>
-<%# Expects locals: links (array of {text, href}), or extracts them via JS if not passed.
-    However, for static templates, we might not have 'links' passed easily.
-    We will rely on JS to populate the links from the desktop menu if 'links' is empty.
-%>
 <%
   primary_color = @theme ? @theme["primary_color"] : "#333333"
   font_css = @theme ? @theme["font_css"] : "sans-serif"
@@ -18,15 +14,7 @@
 
   <!-- Links Container -->
   <div class="flex-1 flex flex-col items-center justify-center space-y-8 p-6 overflow-y-auto" id="mobile-menu-links-container">
-    <% if defined?(links) && links.any? %>
-      <% links.each do |link| %>
-        <a href="<%= link[:href] %>" class="text-2xl font-bold uppercase tracking-widest hover:opacity-50 transition mobile-menu-link" style="color: <%= primary_color %>;">
-          <%= link[:text] %>
-        </a>
-      <% end %>
-    <% else %>
-      <!-- Fallback or JS populated placeholder -->
-    <% end %>
+    <!-- Links and CTAs will be populated here by JS -->
   </div>
 </div>
 
@@ -34,20 +22,17 @@
   (function() {
     const overlay = document.getElementById('mobile-menu-overlay');
     const closeBtn = document.getElementById('close-mobile-menu');
-    const openBtns = document.querySelectorAll('.mobile-menu-trigger');
     const linksContainer = document.getElementById('mobile-menu-links-container');
+    const primaryColor = "<%= primary_color %>";
 
-    // Function to populate links from desktop menu if empty
     function populateLinks() {
-      if (linksContainer.children.length > 0 && !linksContainer.innerHTML.trim() === "") return;
+      // Clear container first to avoid duplicates
+      linksContainer.innerHTML = '';
 
-      // Attempt to find desktop nav links.
-      // Heuristic: Look for <nav> -> hidden md:flex -> a tags
+      // 1. Scrape Nav Links (from hidden desktop nav)
       const desktopNav = document.querySelector('nav .hidden.md\\:flex');
       if (desktopNav) {
-        const links = desktopNav.querySelectorAll('a, span'); // Sometimes spans are used for non-links
-        linksContainer.innerHTML = ''; // Clear fallback
-
+        const links = desktopNav.querySelectorAll('a, span');
         links.forEach(link => {
           const href = link.getAttribute('href') || '#';
           const text = link.textContent.trim();
@@ -56,11 +41,53 @@
             const a = document.createElement('a');
             a.href = href;
             a.textContent = text;
-            a.className = "text-2xl font-bold uppercase tracking-widest hover:opacity-50 transition mobile-menu-link block text-center";
-            a.style.color = "<%= primary_color %>";
+            a.className = "text-2xl font-semibold uppercase tracking-widest hover:opacity-50 transition mobile-menu-link block text-center mb-4";
+            a.style.color = primaryColor;
             a.addEventListener('click', closeMenu);
             linksContainer.appendChild(a);
           }
+        });
+      }
+
+      // 2. Scrape CTA Buttons (marked with data-mobile-menu-copy)
+      const ctaElements = document.querySelectorAll('[data-mobile-menu-copy="true"]');
+      if (ctaElements.length > 0) {
+        // Add a separator
+        const separator = document.createElement('div');
+        separator.className = "w-12 h-[1px] bg-gray-200 my-6";
+        linksContainer.appendChild(separator);
+
+        ctaElements.forEach(cta => {
+          // Clone the element to preserve type (button vs a)
+          // But we want to style it to fit the mobile menu (big text)
+          // OR keep it as a button but make it larger?
+          // User requested "menu list style".
+
+          const clone = cta.cloneNode(true);
+
+          // Strip positioning/sizing classes that might conflict
+          clone.classList.remove('hidden', 'md:block', 'md:flex', 'md:text-sm', 'text-xs', 'py-2', 'px-3');
+
+          // Apply mobile menu styles
+          clone.classList.add('text-xl', 'font-bold', 'uppercase', 'tracking-widest', 'py-3', 'px-8', 'rounded-lg', 'mt-4');
+
+          // If it was a button with solid bg, keep it?
+          // Let's ensure it looks good.
+          clone.style.display = 'inline-block';
+          clone.style.margin = '10px 0';
+
+          // Ensure click events work (cloneNode copies inline onclick, but not addEventListener)
+          // If the original had inline onclick, it works.
+          // If it triggered something via ID, ID must be unique. Duplicate IDs are bad.
+          // Remove ID from clone to avoid conflict? But if JS targets ID...
+          // Let's assume standard behavior.
+
+          // If it's a link styled as button
+          if (clone.tagName === 'A') {
+             clone.addEventListener('click', closeMenu);
+          }
+
+          linksContainer.appendChild(clone);
         });
       }
     }
@@ -68,10 +95,9 @@
     function openMenu() {
       populateLinks();
       overlay.classList.remove('hidden');
-      // Force reflow
-      void overlay.offsetWidth;
+      void overlay.offsetWidth; // Force reflow
       overlay.classList.remove('opacity-0', 'pointer-events-none');
-      document.body.style.overflow = 'hidden'; // Prevent scrolling bg
+      document.body.style.overflow = 'hidden';
     }
 
     function closeMenu() {
@@ -79,13 +105,12 @@
       document.body.style.overflow = '';
       setTimeout(() => {
         overlay.classList.add('hidden');
+        linksContainer.innerHTML = ''; // Clean up
       }, 300);
     }
 
     if (closeBtn) closeBtn.addEventListener('click', closeMenu);
 
-    // Attach to existing triggers if any (injected by script)
-    // We use delegation or just re-query? Re-query is fine.
     document.addEventListener('click', function(e) {
       if (e.target.closest('.mobile-menu-trigger')) {
         openMenu();
