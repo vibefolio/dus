@@ -11,54 +11,55 @@ class TemplatesController < ApplicationController
     cloth shoe bag shopping learnhub english artistry
   ]
 
-  # Theme Data Loaded from Extraction (Simplified for inclusion)
+  # Theme Data Loaded from Extraction (Advanced)
+  # In a real app, this would be in a DB or YAML file.
   THEMES = {
-    "academy" => { "primary_color" => "#1B4332", "font_family" => "serif" },
-    "accounting" => { "primary_color" => "#005BAC", "font_family" => "sans-serif" },
-    "agency" => { "primary_color" => "#BEF264", "bg_color" => "#050505", "text_color" => "#ffffff", "font_family" => "sans-serif" },
-    "artistry" => { "primary_color" => "#333333", "font_family" => "sans-serif" },
-    "bag" => { "primary_color" => "#2D1B15", "font_family" => "sans-serif" },
-    "barber" => { "primary_color" => "#B8860B", "bg_color" => "#121212", "text_color" => "#ffffff", "font_family" => "serif" },
-    "beauty" => { "primary_color" => "#CFB997", "font_family" => "serif" },
-    "burger" => { "primary_color" => "#E8482D", "font_family" => "sans-serif" },
-    "cafe" => { "primary_color" => "#8B735B", "font_family" => "serif" },
-    "camping" => { "primary_color" => "#FF4500", "font_family" => "serif" },
-    "cleaning" => { "primary_color" => "#2563EB", "font_family" => "sans-serif" },
-    "cloth" => { "primary_color" => "#57534E", "font_family" => "serif" },
-    "consulting" => { "primary_color" => "#111827", "font_family" => "serif" },
-    "corporate" => { "primary_color" => "#0F172A", "font_family" => "sans-serif" },
-    "dental" => { "primary_color" => "#0D9488", "font_family" => "sans-serif" },
-    "dessert" => { "primary_color" => "#E6A4B4", "font_family" => "serif" },
-    "dining" => { "primary_color" => "#BE123C", "bg_color" => "#18181B", "text_color" => "#ffffff", "font_family" => "serif" },
-    "donut" => { "primary_color" => "#FF61A6", "font_family" => "sans-serif" },
-    "ecommerce" => { "primary_color" => "#333333", "font_family" => "serif" },
-    "english" => { "primary_color" => "#333333", "font_family" => "sans-serif" },
-    "finance" => { "primary_color" => "#333333", "font_family" => "sans-serif" },
-    "flower" => { "primary_color" => "#F472B6", "font_family" => "serif" },
-    "gym" => { "primary_color" => "#EAB308", "bg_color" => "#18181B", "text_color" => "#ffffff", "font_family" => "sans-serif" },
-    "hotel" => { "primary_color" => "#BFA183", "font_family" => "serif" },
-    "kinder" => { "primary_color" => "#FF6B6B", "font_family" => "sans-serif" },
-    "law" => { "primary_color" => "#2C3E50", "font_family" => "serif" },
-    "learnhub" => { "primary_color" => "#6366F1", "font_family" => "sans-serif" },
-    "medical" => { "primary_color" => "#0ea5e9", "font_family" => "serif" },
-    "nail" => { "primary_color" => "#FF00FF", "font_family" => "sans-serif" },
-    "pension" => { "primary_color" => "#786C5E", "font_family" => "sans-serif" },
-    "petshop" => { "primary_color" => "#F97316", "font_family" => "sans-serif" },
-    "portfolio" => { "primary_color" => "#CCFF00", "bg_color" => "#000000", "text_color" => "#ffffff", "font_family" => "sans-serif" },
-    "rental" => { "primary_color" => "#333333", "font_family" => "sans-serif" },
-    "salad" => { "primary_color" => "#166534", "font_family" => "sans-serif" },
-    "sculpt" => { "primary_color" => "#D4A373", "bg_color" => "#1A1A1A", "text_color" => "#ffffff", "font_family" => "serif" },
-    "shoe" => { "primary_color" => "#CCFF00", "bg_color" => "#050505", "text_color" => "#ffffff", "font_family" => "sans-serif" },
-    "shopping" => { "primary_color" => "#333333", "font_family" => "serif" },
-    "startup" => { "primary_color" => "#6366F1", "font_family" => "sans-serif" },
-    "stay" => { "primary_color" => "#1A1A1A", "font_family" => "serif" },
-    "studio" => { "primary_color" => "#737373", "font_family" => "sans-serif" },
-    "study" => { "primary_color" => "#4A5D44", "font_family" => "sans-serif" },
-    "tax" => { "primary_color" => "#1e3a8a", "font_family" => "sans-serif" },
-    "vet" => { "primary_color" => "#1E3A8A", "font_family" => "sans-serif" },
-    "wedding" => { "primary_color" => "#8C7B6C", "font_family" => "serif" },
-    "wine" => { "primary_color" => "#E0C097", "bg_color" => "#1a1a1a", "text_color" => "#ffffff", "font_family" => "serif" },
-    "yoga" => { "primary_color" => "#8B9178", "font_family" => "serif" }
+    "academy" => { "primary_color" => "#1B4332", "font_family" => "serif", "radius" => "rounded-full" },
+    "accounting" => { "primary_color" => "#005BAC", "font_family" => "sans-serif", "radius" => "rounded-full" },
+    "agency" => { "primary_color" => "#BEF264", "bg_color" => "#050505", "text_color" => "#ffffff", "font_family" => "sans-serif", "radius" => "rounded-full" },
+    "artistry" => { "primary_color" => "#333333", "font_family" => "sans-serif", "radius" => "rounded-full" },
+    "bag" => { "primary_color" => "#2D1B15", "font_family" => "sans-serif", "radius" => "rounded-none" },
+    "barber" => { "primary_color" => "#B8860B", "bg_color" => "#121212", "text_color" => "#ffffff", "font_family" => "serif", "radius" => "rounded-none" },
+    "beauty" => { "primary_color" => "#CFB997", "font_family" => "serif", "radius" => "rounded-full" },
+    "burger" => { "primary_color" => "#E8482D", "font_family" => "sans-serif", "radius" => "rounded-full" },
+    "cafe" => { "primary_color" => "#8B735B", "font_family" => "serif", "radius" => "rounded-full" },
+    "camping" => { "primary_color" => "#FF4500", "font_family" => "serif", "radius" => "rounded-none" },
+    "cleaning" => { "primary_color" => "#2563EB", "font_family" => "sans-serif", "radius" => "rounded-full" },
+    "cloth" => { "primary_color" => "#57534E", "font_family" => "serif", "radius" => "rounded-full" },
+    "consulting" => { "primary_color" => "#111827", "font_family" => "serif", "radius" => "rounded-none" },
+    "corporate" => { "primary_color" => "#0F172A", "font_family" => "sans-serif", "radius" => "rounded-full" },
+    "dental" => { "primary_color" => "#0D9488", "font_family" => "sans-serif", "radius" => "rounded-full" },
+    "dessert" => { "primary_color" => "#E6A4B4", "font_family" => "serif", "radius" => "rounded-lg" },
+    "dining" => { "primary_color" => "#BE123C", "bg_color" => "#18181B", "text_color" => "#ffffff", "font_family" => "serif", "radius" => "rounded-none" },
+    "donut" => { "primary_color" => "#FF61A6", "font_family" => "sans-serif", "radius" => "rounded-full" },
+    "ecommerce" => { "primary_color" => "#333333", "font_family" => "serif", "radius" => "rounded-full" },
+    "english" => { "primary_color" => "#333333", "font_family" => "sans-serif", "radius" => "rounded-full" },
+    "finance" => { "primary_color" => "#333333", "font_family" => "sans-serif", "radius" => "rounded-full" },
+    "flower" => { "primary_color" => "#F472B6", "font_family" => "serif", "radius" => "rounded-full" },
+    "gym" => { "primary_color" => "#EAB308", "bg_color" => "#18181B", "text_color" => "#ffffff", "font_family" => "sans-serif", "radius" => "rounded-lg" },
+    "hotel" => { "primary_color" => "#BFA183", "font_family" => "serif", "radius" => "rounded-none" },
+    "kinder" => { "primary_color" => "#FF6B6B", "font_family" => "sans-serif", "radius" => "rounded-full" },
+    "law" => { "primary_color" => "#2C3E50", "font_family" => "serif", "radius" => "rounded-full" },
+    "learnhub" => { "primary_color" => "#6366F1", "font_family" => "sans-serif", "radius" => "rounded-full" },
+    "medical" => { "primary_color" => "#0ea5e9", "font_family" => "serif", "radius" => "rounded-full" },
+    "nail" => { "primary_color" => "#FF00FF", "font_family" => "sans-serif", "radius" => "rounded-full" },
+    "pension" => { "primary_color" => "#786C5E", "font_family" => "sans-serif", "radius" => "rounded-lg" },
+    "petshop" => { "primary_color" => "#F97316", "font_family" => "sans-serif", "radius" => "rounded-full" },
+    "portfolio" => { "primary_color" => "#CCFF00", "bg_color" => "#000000", "text_color" => "#ffffff", "font_family" => "sans-serif", "radius" => "rounded-full" },
+    "rental" => { "primary_color" => "#333333", "font_family" => "sans-serif", "radius" => "rounded-full" },
+    "salad" => { "primary_color" => "#166534", "font_family" => "sans-serif", "radius" => "rounded-full" },
+    "sculpt" => { "primary_color" => "#D4A373", "bg_color" => "#1A1A1A", "text_color" => "#ffffff", "font_family" => "serif", "radius" => "rounded-full" },
+    "shoe" => { "primary_color" => "#CCFF00", "bg_color" => "#050505", "text_color" => "#ffffff", "font_family" => "sans-serif", "radius" => "rounded-full" },
+    "shopping" => { "primary_color" => "#333333", "font_family" => "serif", "radius" => "rounded-full" },
+    "startup" => { "primary_color" => "#6366F1", "font_family" => "sans-serif", "radius" => "rounded-full" },
+    "stay" => { "primary_color" => "#1A1A1A", "font_family" => "serif", "radius" => "rounded-none" },
+    "studio" => { "primary_color" => "#737373", "font_family" => "sans-serif", "radius" => "rounded-lg" },
+    "study" => { "primary_color" => "#4A5D44", "font_family" => "sans-serif", "radius" => "rounded-full" },
+    "tax" => { "primary_color" => "#1e3a8a", "font_family" => "sans-serif", "radius" => "rounded-full" },
+    "vet" => { "primary_color" => "#1E3A8A", "font_family" => "sans-serif", "radius" => "rounded-full" },
+    "wedding" => { "primary_color" => "#8C7B6C", "font_family" => "serif", "radius" => "rounded-lg" },
+    "wine" => { "primary_color" => "#E0C097", "bg_color" => "#1a1a1a", "text_color" => "#ffffff", "font_family" => "serif", "radius" => "rounded-full" },
+    "yoga" => { "primary_color" => "#8B9178", "font_family" => "serif", "radius" => "rounded-full" }
   }
 
   def show
@@ -104,7 +105,8 @@ class TemplatesController < ApplicationController
       "primary_color" => "#333333",
       "bg_color" => "#ffffff",
       "text_color" => "#1f2937",
-      "font_family" => "sans-serif"
+      "font_family" => "sans-serif",
+      "radius" => "rounded-lg"
     }
 
     if THEMES.key?(template_name)
@@ -114,6 +116,7 @@ class TemplatesController < ApplicationController
     # Ensure bg_color and text_color exist if not provided
     theme["bg_color"] ||= "#ffffff"
     theme["text_color"] ||= "#1f2937"
+    theme["radius"] ||= "rounded-lg"
 
     # Normalize font-family for Tailwind/CSS
     if theme["font_family"] == "serif"
