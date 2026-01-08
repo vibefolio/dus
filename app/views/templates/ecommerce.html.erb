@@ -23,7 +23,7 @@
 
   <!-- Nav -->
   <nav class="fixed w-full z-50 px-8 py-6 bg-white/90 backdrop-blur-md border-b border-slate-100 transition-all duration-300" data-aos="fade-down" data-aos-duration="1000">
-    <div class="container mx-auto flex justify-between items-center">
+    <div class="container mx-auto px-4 md:px-6 flex justify-between items-center flex-nowrap">
       <div class="flex items-center gap-1">
          <span class="font-brand text-2xl tracking-[0.05em] text-slate-900 font-semibold cursor-pointer">Hayden<span class="text-slate-400">Home</span></span>
       </div>
@@ -33,8 +33,12 @@
         <a href="#furniture" class="hover:text-slate-900 transition">Furniture</a>
         <a href="#decor" class="hover:text-slate-900 transition">Home Decor</a>
       </div>
+           <button class="mobile-menu-trigger md:hidden ml-auto text-2xl focus:outline-none" style="color: inherit;">
+             <i class="fas fa-bars"></i>
+           </button>
+
       
-      <div class="flex gap-10 items-center">
+      <div class="flex-nowrap shrink-0 flex gap-10 items-center">
          <button onclick="toggleEcommerceModal()" class="text-[11px] font-sans font-semibold uppercase tracking-[0.1em] text-slate-500 hover:text-slate-900">Sign In</button>
          <button class="relative p-2 text-slate-900 hover:text-slate-500 transition group">
            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
@@ -48,7 +52,7 @@
       </div>
     </div>
 
-      </nav>
+      <%= render partial: 'templates/shared/mobile_menu_overlay' %></nav>
 
   <!-- Hero with Clean Grid Layout -->
   <header class="min-h-screen pt-24 pb-12 px-6 flex items-center">

@@ -16,7 +16,7 @@
 
   <!-- Nav -->
   <nav class="fixed w-full z-50 px-8 py-12 md:px-12 bg-[#FFFDFB]/60 backdrop-blur-2xl border-b border-[#CFB997]/10">
-    <div class="container mx-auto flex justify-between items-center">
+    <div class="container mx-auto px-4 md:px-6 flex justify-between items-center flex-nowrap">
       <div class="flex items-center gap-10">
          <span class="font-serif text-2xl tracking-[0.5em] font-semibold uppercase text-[#CFB997]">LUMIER</span>
       </div>
@@ -27,15 +27,19 @@
         <a href="#suites" class="hover:text-[#CFB997] transition">Suites</a>
       </div>
       
-      <div class="flex gap-12 items-center">
+      <div class="flex-nowrap shrink-0 flex gap-12 items-center">
          <button onclick="toggleBeautyModal()" class="text-[10px] font-semibold uppercase tracking-[0.4em] text-[#5D5552]/40 hover:text-[#CFB997]">Member_ID</button>
          <button class="bg-[#CFB997] text-white px-10 py-3.5 rounded-lg font-semibold text-[10px] tracking-[0.4em] uppercase hover:bg-[#5D5552] transition shadow-2xl shadow-[#CFB997]/20">
            Reservation
          </button>
+         <button class="mobile-menu-trigger md:hidden ml-2 sm:ml-4 text-2xl focus:outline-none" style="color: inherit;">
+           <i class="fas fa-bars"></i>
+         </button>
+
       </div>
     </div>
 
-      </nav>
+      <%= render partial: 'templates/shared/mobile_menu_overlay' %></nav>
 
   <!-- Hero -->
   <header class="min-h-screen relative flex items-center justify-center pt-20">

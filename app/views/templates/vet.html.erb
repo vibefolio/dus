@@ -22,9 +22,9 @@
 
   <!-- Nav -->
   <nav class="fixed w-full z-50 px-8 py-6 bg-[#F0F9FF]/80 backdrop-blur-xl border-b border-[#BFDBFE]/50">
-    <div class="container mx-auto flex justify-between items-center">
+    <div class="container mx-auto px-4 md:px-6 flex justify-between items-center flex-nowrap">
       <div class="flex items-center gap-2">
-         <div class="w-8 h-8 md:w-10 md:h-10 bg-white rounded-xl flex items-center justify-center text-lg md:text-2xl shadow-sm border border-[#BFDBFE]">
+         <div class="w-8 h-8 max-h-8 max-w-[35%] shrink object-contain md:w-10 md:h-10 bg-white rounded-xl flex items-center justify-center text-lg md:text-2xl shadow-sm border border-[#BFDBFE]">
             🩺
          </div>
          <span class="font-soft font-semibold text-xl tracking-wide text-[#1E3A8A]">With<span class="text-[#3B82F6]">Pet</span></span>
@@ -35,16 +35,20 @@
         <a href="#services" class="hover:text-[#1E3A8A] transition">Services</a>
         <a href="#emergency" class="hover:text-[#1E3A8A] transition text-red-400">Emergency</a>
       </div>
+           <button class="mobile-menu-trigger md:hidden ml-auto text-2xl focus:outline-none" style="color: inherit;">
+             <i class="fas fa-bars"></i>
+           </button>
+
       
-      <div class="flex gap-6 items-center">
+      <div class="flex-nowrap shrink-0 flex gap-6 items-center">
          <button onclick="toggleVetModal()" class="text-[14px] font-soft font-semibold text-[#60A5FA] hover:text-[#1E3A8A] bg-white px-4 py-2 rounded-xl shadow-sm border border-[#BFDBFE] hover:shadow-md transition">My Pet</button>
-         <button class="bg-[#3B82F6] text-white px-6 py-2.5 rounded-xl font-soft font-semibold text-[14px] hover:bg-[#2563EB] transition shadow-lg shadow-blue-300">
+         <button class="bg-[#3B82F6] text-white px-3 py-2 text-xs md:text-sm md:px-6 md:py-2.5 whitespace-nowrap rounded-xl font-soft font-semibold text-[14px] hover:bg-[#2563EB] transition shadow-lg shadow-blue-300">
            Book Appointment
          </button>
       </div>
     </div>
 
-      </nav>
+      <%= render partial: 'templates/shared/mobile_menu_overlay' %></nav>
 
   <!-- Hero -->
   <header class="min-h-screen relative flex items-center justify-center pt-24 overflow-hidden">

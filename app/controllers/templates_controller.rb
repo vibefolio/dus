@@ -12,7 +12,6 @@ class TemplatesController < ApplicationController
   ]
 
   # Theme Data Loaded from Extraction (Advanced)
-  # Refined for "Agency" vibe: Radius default reduced to rounded-lg
   THEMES = {
     "academy" => { "primary_color" => "#1B4332", "font_family" => "serif", "radius" => "rounded-lg" },
     "accounting" => { "primary_color" => "#005BAC", "font_family" => "sans-serif", "radius" => "rounded-lg" },
@@ -66,6 +65,8 @@ class TemplatesController < ApplicationController
     template_name = params[:template_name]
     if VALID_TEMPLATES.include?(template_name)
       if template_exists?(template_name)
+        # Set theme data for the main template view as well
+        @theme = get_theme_data(template_name)
         render template_name
       else
         render template_name
@@ -84,6 +85,7 @@ class TemplatesController < ApplicationController
     specific_template = "#{template_name}_#{sub_page}"
 
     if template_exists?(specific_template)
+      @theme = get_theme_data(template_name) # Ensure theme is available for specific subpages too if needed
       render specific_template
     else
       @template_name = template_name

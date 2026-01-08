@@ -22,7 +22,7 @@
 
   <!-- Nav -->
   <nav class="fixed w-full z-50 px-8 py-12 md:px-12 bg-[#1C1C1E]/80 backdrop-blur-xl border-b border-white/5">
-    <div class="container mx-auto flex justify-between items-center">
+    <div class="container mx-auto px-4 md:px-6 flex justify-between items-center flex-nowrap">
       <div class="flex items-center gap-6">
          <span class="text-2xl">🔥</span>
          <span class="font-semibold text-2xl tracking-[0.2em] uppercase text-white">Wild<span class="text-[#FF4500]">Camp</span></span>
@@ -33,8 +33,12 @@
         <a href="#gear" class="hover:text-[#FF4500] transition">Gear</a>
         <a href="#expedition" class="hover:text-[#FF4500] transition">Expedition</a>
       </div>
+           <button class="mobile-menu-trigger md:hidden ml-auto text-2xl focus:outline-none" style="color: inherit;">
+             <i class="fas fa-bars"></i>
+           </button>
+
       
-      <div class="flex gap-12 items-center">
+      <div class="flex-nowrap shrink-0 flex gap-12 items-center">
          <button onclick="toggleCampModal()" class="text-[10px] font-semibold uppercase tracking-[0.4em] text-white/40 hover:text-[#FF4500]">Explorer_ID</button>
          <button class="bg-[#FF4500] text-white px-10 py-3.5 rounded-none font-semibold text-[10px] tracking-[0.4em] uppercase hover:bg-white hover:text-slate-900 transition shadow-2xl">
            Join Adventure
@@ -42,7 +46,7 @@
       </div>
     </div>
 
-      </nav>
+      <%= render partial: 'templates/shared/mobile_menu_overlay' %></nav>
 
   <!-- Hero -->
   <header class="min-h-screen relative flex items-center justify-center pt-20">

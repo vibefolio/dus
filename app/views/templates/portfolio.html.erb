@@ -24,7 +24,7 @@
 
   <!-- Nav -->
   <nav class="fixed w-full z-50 px-8 py-6 bg-slate-950/80 backdrop-blur-md border-b border-white/5">
-    <div class="container mx-auto flex justify-between items-center">
+    <div class="container mx-auto px-4 md:px-6 flex justify-between items-center flex-nowrap">
       <div class="flex items-center gap-2">
          <div class="w-2 h-2 bg-[#CCFF00] rounded-full animate-pulse"></div>
          <span class="font-tech font-semibold text-xl tracking-wide text-white">J.Studio</span>
@@ -35,16 +35,20 @@
         <a href="#approach" class="hover:text-[#CCFF00] transition">Approach</a>
         <a href="#about" class="hover:text-[#CCFF00] transition">About Me</a>
       </div>
+           <button class="mobile-menu-trigger md:hidden ml-auto text-2xl focus:outline-none" style="color: inherit;">
+             <i class="fas fa-bars"></i>
+           </button>
+
       
-      <div class="flex gap-6 items-center">
+      <div class="flex-nowrap shrink-0 flex gap-6 items-center">
          <button onclick="togglePortfolioModal()" class="text-[10px] font-tech font-semibold uppercase tracking-[0.2em] text-[#888] hover:text-[#CCFF00]">Client Access</button>
-         <button class="bg-[#CCFF00] text-slate-900 px-6 py-2.5 rounded-lg font-tech font-semibold text-xs hover:bg-[#B3E600] transition shadow-[0_0_20px_rgba(204,255,0,0.3)]">
+         <button class="bg-[#CCFF00] text-slate-900 px-3 py-2 text-xs md:text-sm md:px-6 md:py-2.5 whitespace-nowrap rounded-lg font-tech font-semibold text-xs hover:bg-[#B3E600] transition shadow-[0_0_20px_rgba(204,255,0,0.3)]">
            Let's Talk
          </button>
       </div>
     </div>
 
-      </nav>
+      <%= render partial: 'templates/shared/mobile_menu_overlay' %></nav>
 
   <!-- Hero -->
   <header class="min-h-screen relative flex items-center justify-center pt-24 overflow-hidden">

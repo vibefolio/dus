@@ -1,0 +1,95 @@
+<%# Mobile Menu Overlay (Pure White Full Screen) %>
+<%# Expects locals: links (array of {text, href}), or extracts them via JS if not passed.
+    However, for static templates, we might not have 'links' passed easily.
+    We will rely on JS to populate the links from the desktop menu if 'links' is empty.
+%>
+<%
+  primary_color = @theme ? @theme["primary_color"] : "#333333"
+  font_css = @theme ? @theme["font_css"] : "sans-serif"
+%>
+
+<div id="mobile-menu-overlay" class="fixed inset-0 z-[100] bg-white hidden flex-col transition-opacity duration-300 opacity-0 pointer-events-none font-sans" style="font-family: <%= font_css %>;">
+  <!-- Header inside Mobile Menu -->
+  <div class="flex justify-end p-6">
+    <button id="close-mobile-menu" class="text-4xl focus:outline-none hover:opacity-70 transition p-2" style="color: <%= primary_color %>;">
+      &times;
+    </button>
+  </div>
+
+  <!-- Links Container -->
+  <div class="flex-1 flex flex-col items-center justify-center space-y-8 p-6 overflow-y-auto" id="mobile-menu-links-container">
+    <% if defined?(links) && links.any? %>
+      <% links.each do |link| %>
+        <a href="<%= link[:href] %>" class="text-2xl font-bold uppercase tracking-widest hover:opacity-50 transition mobile-menu-link" style="color: <%= primary_color %>;">
+          <%= link[:text] %>
+        </a>
+      <% end %>
+    <% else %>
+      <!-- Fallback or JS populated placeholder -->
+    <% end %>
+  </div>
+</div>
+
+<script>
+  (function() {
+    const overlay = document.getElementById('mobile-menu-overlay');
+    const closeBtn = document.getElementById('close-mobile-menu');
+    const openBtns = document.querySelectorAll('.mobile-menu-trigger');
+    const linksContainer = document.getElementById('mobile-menu-links-container');
+
+    // Function to populate links from desktop menu if empty
+    function populateLinks() {
+      if (linksContainer.children.length > 0 && !linksContainer.innerHTML.trim() === "") return;
+
+      // Attempt to find desktop nav links.
+      // Heuristic: Look for <nav> -> hidden md:flex -> a tags
+      const desktopNav = document.querySelector('nav .hidden.md\\:flex');
+      if (desktopNav) {
+        const links = desktopNav.querySelectorAll('a, span'); // Sometimes spans are used for non-links
+        linksContainer.innerHTML = ''; // Clear fallback
+
+        links.forEach(link => {
+          const href = link.getAttribute('href') || '#';
+          const text = link.textContent.trim();
+
+          if (text) {
+            const a = document.createElement('a');
+            a.href = href;
+            a.textContent = text;
+            a.className = "text-2xl font-bold uppercase tracking-widest hover:opacity-50 transition mobile-menu-link block text-center";
+            a.style.color = "<%= primary_color %>";
+            a.addEventListener('click', closeMenu);
+            linksContainer.appendChild(a);
+          }
+        });
+      }
+    }
+
+    function openMenu() {
+      populateLinks();
+      overlay.classList.remove('hidden');
+      // Force reflow
+      void overlay.offsetWidth;
+      overlay.classList.remove('opacity-0', 'pointer-events-none');
+      document.body.style.overflow = 'hidden'; // Prevent scrolling bg
+    }
+
+    function closeMenu() {
+      overlay.classList.add('opacity-0', 'pointer-events-none');
+      document.body.style.overflow = '';
+      setTimeout(() => {
+        overlay.classList.add('hidden');
+      }, 300);
+    }
+
+    if (closeBtn) closeBtn.addEventListener('click', closeMenu);
+
+    // Attach to existing triggers if any (injected by script)
+    // We use delegation or just re-query? Re-query is fine.
+    document.addEventListener('click', function(e) {
+      if (e.target.closest('.mobile-menu-trigger')) {
+        openMenu();
+      }
+    });
+  })();
+</script>

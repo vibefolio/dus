@@ -22,7 +22,7 @@
 
   <!-- Nav -->
   <nav class="fixed w-full z-50 px-8 py-12 md:px-12 bg-[#F5F5F4]/80 backdrop-blur-xl border-b border-[#292524]/5">
-    <div class="container mx-auto flex justify-between items-center">
+    <div class="container mx-auto px-4 md:px-6 flex justify-between items-center flex-nowrap">
       <div class="flex items-center gap-10">
          <span class="font-serif-display text-2xl tracking-wide font-semibold uppercase text-[#292524]">Mode<span class="italic font-light">Seoul</span></span>
       </div>
@@ -32,8 +32,12 @@
         <a href="#shop" class="hover:text-[#57534E] transition">Collection</a>
         <a href="#archive" class="hover:text-[#57534E] transition">Archive</a>
       </div>
+           <button class="mobile-menu-trigger md:hidden ml-auto text-2xl focus:outline-none" style="color: inherit;">
+             <i class="fas fa-bars"></i>
+           </button>
+
       
-      <div class="flex gap-12 items-center">
+      <div class="flex-nowrap shrink-0 flex gap-12 items-center">
          <button onclick="toggleModeModal()" class="text-[10px] font-semibold uppercase tracking-[0.3em] text-[#292524]/40 hover:text-[#292524]">Atelier_ID</button>
          <button class="relative">
             <span class="text-[10px] font-semibold uppercase tracking-[0.3em] hover:text-[#57534E] transition">Cart</span>
@@ -42,7 +46,7 @@
       </div>
     </div>
 
-      </nav>
+      <%= render partial: 'templates/shared/mobile_menu_overlay' %></nav>
 
   <!-- Hero -->
   <header class="min-h-screen relative flex items-center justify-center pt-24 overflow-hidden">

@@ -23,7 +23,7 @@
 
   <!-- Nav -->
   <nav class="fixed w-full z-50 px-8 py-6 bg-[#FFFCF8]/80 backdrop-blur-md border-b border-[#F9A8D4]/10">
-    <div class="container mx-auto flex justify-between items-center">
+    <div class="container mx-auto px-4 md:px-6 flex justify-between items-center flex-nowrap">
       <div class="flex items-center gap-2">
         <span class="text-2xl text-[#F472B6]">✤</span>
         <span class="font-serif-display font-semibold text-2xl tracking-wide text-[#5D5447]">Bloom<span class="italic text-[#F472B6]">&</span>Garden</span>
@@ -34,16 +34,20 @@
         <a href="#bouquet" class="hover:text-[#F472B6] transition">Bouquet</a>
         <a href="#wedding" class="hover:text-[#F472B6] transition">Wedding</a>
       </div>
+           <button class="mobile-menu-trigger md:hidden ml-auto text-2xl focus:outline-none" style="color: inherit;">
+             <i class="fas fa-bars"></i>
+           </button>
+
       
-      <div class="flex gap-10 items-center">
+      <div class="flex-nowrap shrink-0 flex gap-10 items-center">
          <button onclick="toggleFlowerModal()" class="text-[10px] font-semibold uppercase tracking-[0.2em] text-[#9CA3AF] hover:text-[#F472B6]">My Garden</button>
-         <button class="border border-[#F472B6]/30 text-[#5D5447] px-6 py-2.5 rounded-lg font-serif-display font-medium text-sm hover:bg-[#FDF2F8] hover:border-[#F472B6] transition">
+         <button class="border border-[#F472B6]/30 text-[#5D5447] px-3 py-2 text-xs md:text-sm md:px-6 md:py-2.5 whitespace-nowrap rounded-lg font-serif-display font-medium text-sm hover:bg-[#FDF2F8] hover:border-[#F472B6] transition">
            Subscribe
          </button>
       </div>
     </div>
 
-      </nav>
+      <%= render partial: 'templates/shared/mobile_menu_overlay' %></nav>
 
   <!-- Hero -->
   <header class="min-h-screen relative flex items-center justify-center pt-24 overflow-hidden">

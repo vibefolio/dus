@@ -36,10 +36,10 @@
 
   <!-- Nav -->
   <nav class="fixed w-full z-50 px-3 md:px-6 py-6 bg-white/9 worst backdrop-blur-md border-b border-slate-100 mt-[36px]">
-    <div class="container mx-auto flex justify-between items-center">
+    <div class="container mx-auto px-4 md:px-6 flex justify-between items-center flex-nowrap">
       <div class="flex items-center gap-3">
-         <div class="w-8 h-8 md:w-10 md:h-10 bg-[#1B4332] rounded-xs flex items-center justify-center text-white font-serif font-semibold text-lg md:text-2xl shadow-lg">E</div>
-         <span class="font-semibold text-base md:text-xl text-[#1B4332] tracking-tight uppercase">ELITE<span class="text-emerald-600">ACADEMY</span></span>
+         <div class="w-8 h-8 max-h-8 max-w-[35%] shrink object-contain md:w-10 md:h-10 bg-[#1B4332] rounded-xs flex items-center justify-center text-white font-serif font-semibold text-lg md:text-2xl shadow-lg">E</div>
+         <span class="font-semibold text-base md:text-xl shrink truncate text-[#1B4332] tracking-tight uppercase">ELITE<span class="text-emerald-600">ACADEMY</span></span>
       </div>
       
       <div class="hidden md:flex gap-14 text-[11px] font-semibold uppercase tracking-[0.3em] text-slate-400">
@@ -48,15 +48,19 @@
         <a href="#admission" class="hover:text-[#1B4332] transition">Admission</a>
       </div>
       
-      <div class="flex gap-10 items-center">
+      <div class="flex-nowrap shrink-0 flex gap-10 items-center">
          <button onclick="toggleAcademyModal()" class="text-[11px] font-semibold uppercase tracking-[0.3em] text-slate-400 hover:text-[#1B4332]">Student LMS</button>
-         <button class="bg-[#1B4332] text-white px-6 py-2.5 rounded-sm font-semibold text-[11px] tracking-wide uppercase hover:bg-slate-900 transition shadow-xl">
+         <button class="bg-[#1B4332] text-white px-3 py-2 text-xs md:text-sm md:px-6 md:py-2.5 whitespace-nowrap rounded-sm font-semibold text-[11px] tracking-wide uppercase hover:bg-slate-900 transition shadow-xl">
            Counseling
          </button>
+         <button class="mobile-menu-trigger md:hidden ml-2 sm:ml-4 text-2xl focus:outline-none" style="color: inherit;">
+           <i class="fas fa-bars"></i>
+         </button>
+
       </div>
     </div>
 
-      </nav>
+      <%= render partial: 'templates/shared/mobile_menu_overlay' %></nav>
 
   <!-- Hero -->
   <header class="min-h-screen relative flex items-center justify-center overflow-hidden pt-32 relative overflow-hidden">

@@ -22,7 +22,7 @@
 
   <!-- Nav -->
   <nav class="fixed w-full z-50 px-3 md:px-6 py-6 border-b border-white/5 bg-[#050505]/80 backdrop-blur-xl">
-    <div class="container mx-auto flex justify-between items-center">
+    <div class="container mx-auto px-4 md:px-6 flex justify-between items-center flex-nowrap">
       <div class="flex items-center gap-3 group cursor-pointer">
          <div class="w-2 h-2 bg-[#BEF264] rounded-full group-hover:animate-ping"></div>
          <span class="font-inter font-semibold text-2xl tracking-tight uppercase italic">AGENCY<span class="text-[#BEF264]">X</span></span>
@@ -33,16 +33,20 @@
         <a href="#vision" class="hover:text-[#BEF264] transition">Our_Vision</a>
         <a href="#lab" class="hover:text-[#BEF264] transition">X_Lab</a>
       </div>
+           <button class="mobile-menu-trigger md:hidden ml-auto text-2xl focus:outline-none" style="color: inherit;">
+             <i class="fas fa-bars"></i>
+           </button>
+
       
-      <div class="flex gap-12 items-center">
+      <div class="flex-nowrap shrink-0 flex gap-12 items-center">
          <button onclick="toggleAgencyModal()" class="text-[10px] font-semibold uppercase tracking-[0.4em] text-white/40 hover:text-white">Admin_X</button>
-         <button class="bg-[#BEF264] text-slate-900 px-8 py-3 rounded-none font-semibold text-[10px] tracking-[0.4em] uppercase hover:bg-white transition-all">
+         <button class="bg-[#BEF264] text-slate-900 px-4 py-2 text-xs md:text-base md:px-8 md:py-3 whitespace-nowrap rounded-none font-semibold text-[10px] tracking-[0.4em] uppercase hover:bg-white transition-all">
            Initiate Project
          </button>
       </div>
     </div>
 
-      </nav>
+      <%= render partial: 'templates/shared/mobile_menu_overlay' %></nav>
 
   <!-- Hero -->
   <header class="min-h-screen relative flex items-center pt-24 overflow-hidden">
