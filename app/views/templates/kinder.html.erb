@@ -22,10 +22,10 @@
 
   <!-- Nav -->
   <nav class="fixed w-full z-50 px-3 md:px-6 py-4 top-0">
-    <div class="container mx-auto">
-      <div class="bg-white/90 backdrop-blur-xl border-b-4 border-[#FCD34D] rounded-full px-8 py-3 flex justify-between items-center shadow-lg shadow-[#FCD34D]/10">
+    <div class="container mx-auto px-4 md:px-6 flex items-center justify-between flex-nowrap">
+      <div class="bg-white/90 backdrop-blur-xl border-b-4 border-[#FCD34D] rounded-full px-4 py-2 text-xs md:text-base md:px-8 md:py-3 whitespace-nowrap flex justify-between items-center shadow-lg shadow-[#FCD34D]/10">
         <div class="flex items-center gap-3">
-           <div class="w-8 h-8 md:w-10 md:h-10 bg-[#FF6B6B] rounded-full flex items-center justify-center text-lg md:text-2xl shadow-sm animate-bounce">
+           <div class="w-8 h-8 max-h-8 max-w-[35%] shrink object-contain md:w-10 md:h-10 bg-[#FF6B6B] rounded-full flex items-center justify-center text-lg md:text-2xl shadow-sm animate-bounce">
               🎈
            </div>
            <span class="font-rounded font-semibold text-lg md:text-2xl text-[#4B5563] tracking-tight">Little<span class="text-[#FF6B6B]">Star</span></span>
@@ -36,17 +36,21 @@
           <a href="#class" class="hover:text-[#4ADE80] transition">Classes</a>
           <a href="#events" class="hover:text-[#FCD34D] transition">Events</a>
         </div>
+           <button class="mobile-menu-trigger md:hidden ml-auto text-2xl focus:outline-none" style="color: inherit;">
+             <i class="fas fa-bars"></i>
+           </button>
+
         
-        <div class="flex gap-6 items-center">
+        <div class="flex-nowrap shrink-0 flex gap-6 items-center">
          <button onclick="toggleParentModal()" class="text-[14px] font-rounded font-semibold text-[#FF6B6B] bg-[#FFF5F5] px-4 py-2 rounded-lg hover:bg-[#FFE4E6] transition">Parent Login</button>
-           <button class="bg-[#4ADE80] text-white px-6 py-2.5 rounded-lg font-rounded font-semibold text-[14px] shadow-[0_4px_0_#16A34A] hover:translate-y-1 hover:shadow-none transition-all">
+           <button class="bg-[#4ADE80] text-white px-3 py-2 text-xs md:text-sm md:px-6 md:py-2.5 whitespace-nowrap rounded-lg font-rounded font-semibold text-[14px] shadow-[0_4px_0_#16A34A] hover:translate-y-1 hover:shadow-none transition-all">
              Visit Us
            </button>
         </div>
       </div>
     </div>
 
-      </nav>
+      <%= render partial: 'templates/shared/mobile_menu_overlay' %></nav>
 
   <!-- Hero -->
   <header class="min-h-screen relative flex items-center justify-center pt-24 overflow-hidden">

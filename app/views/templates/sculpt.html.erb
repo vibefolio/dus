@@ -16,7 +16,7 @@
 
   <!-- Nav -->
   <nav class="fixed w-full z-50 px-8 py-12 md:px-12 bg-[#F9F8F6]/80 backdrop-blur-xl border-b border-[#D4A373]/10">
-    <div class="container mx-auto flex justify-between items-center">
+    <div class="container mx-auto px-4 md:px-6 flex justify-between items-center flex-nowrap">
       <div class="flex items-center gap-6">
          <div class="w-[1px] h-6 bg-[#D4A373]"></div>
          <span class="font-serif text-2xl tracking-[0.5em] font-semibold uppercase">ETERNO</span>
@@ -27,16 +27,20 @@
         <a href="#program" class="hover:text-[#D4A373] transition">Sequence</a>
         <a href="#membership" class="hover:text-[#D4A373] transition">Retreat</a>
       </div>
+           <button class="mobile-menu-trigger md:hidden ml-auto text-2xl focus:outline-none" style="color: inherit;">
+             <i class="fas fa-bars"></i>
+           </button>
+
       
-      <div class="flex gap-12 items-center">
+      <div class="flex-nowrap shrink-0 flex gap-12 items-center">
          <button onclick="toggleSculptModal()" class="text-[10px] font-semibold uppercase tracking-[0.4em] text-[#1A1A1A]/40 hover:text-[#D4A373]">Member ID</button>
-         <button class="bg-[#1A1A1A] text-white px-8 py-3 rounded-lg font-semibold text-[10px] tracking-[0.3em] uppercase hover:bg-[#D4A373] transition shadow-2xl">
+         <button class="bg-[#1A1A1A] text-white px-4 py-2 text-xs md:text-base md:px-8 md:py-3 whitespace-nowrap rounded-lg font-semibold text-[10px] tracking-[0.3em] uppercase hover:bg-[#D4A373] transition shadow-2xl">
            Reserve
          </button>
       </div>
     </div>
 
-      </nav>
+      <%= render partial: 'templates/shared/mobile_menu_overlay' %></nav>
 
   <!-- Hero -->
   <header class="min-h-screen relative flex items-center justify-center pt-20">

@@ -23,7 +23,7 @@
 
   <!-- Nav -->
   <nav class="fixed w-full z-50 px-3 md:px-6 py-6 border-b border-white/10 bg-slate-950/90 backdrop-blur-xl">
-    <div class="container mx-auto flex justify-between items-center">
+    <div class="container mx-auto px-4 md:px-6 flex justify-between items-center flex-nowrap">
       <div class="flex items-center gap-2">
          <span class="font-display text-3xl tracking-wide uppercase text-white italic">HYPE<span class="text-[#CCFF00]">BEAST</span></span>
       </div>
@@ -33,18 +33,22 @@
         <a href="#market" class="hover:text-[#CCFF00] transition">Marketplace</a>
         <a href="#culture" class="hover:text-[#CCFF00] transition">Culture</a>
       </div>
+           <button class="mobile-menu-trigger md:hidden ml-auto text-2xl focus:outline-none" style="color: inherit;">
+             <i class="fas fa-bars"></i>
+           </button>
+
       
-      <div class="flex gap-10 items-center">
+      <div class="flex-nowrap shrink-0 flex gap-10 items-center">
          <button onclick="toggleShoeModal()" class="text-[11px] font-semibold uppercase tracking-[0.2em] text-white/40 hover:text-white">Sign In</button>
          <div class="relative cursor-pointer group">
-             <div class="bg-[#CCFF00] text-slate-900 w-8 h-8 flex items-center justify-center font-semibold text-xs skew-x-[-10deg] group-hover:scale-110 transition">
+             <div class="bg-[#CCFF00] text-slate-900 w-8 h-8 max-h-8 max-w-[35%] shrink object-contain flex items-center justify-center font-semibold text-xs skew-x-[-10deg] group-hover:scale-110 transition">
                  0
              </div>
          </div>
       </div>
     </div>
 
-      </nav>
+      <%= render partial: 'templates/shared/mobile_menu_overlay' %></nav>
 
   <!-- Hero -->
   <header class="min-h-screen relative flex items-center justify-center pt-24 overflow-hidden">

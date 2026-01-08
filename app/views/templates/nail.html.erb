@@ -28,7 +28,7 @@
 
   <!-- Nav -->
   <nav class="fixed w-full z-50 px-8 py-6 bg-slate-950/80 backdrop-blur-md border-b border-[#FF00FF]/20">
-    <div class="container mx-auto flex justify-between items-center">
+    <div class="container mx-auto px-4 md:px-6 flex justify-between items-center flex-nowrap">
       <div class="flex items-center gap-2">
          <span class="text-[#00FFFF] text-2xl animate-pulse">✦</span>
          <span class="font-cyber font-semibold text-lg tracking-wide text-white">Neon<span class="text-[#FF00FF]">Nail</span></span>
@@ -39,8 +39,12 @@
         <a href="#artists" class="hover:text-[#00FFFF] transition">Artists</a>
         <a href="#price" class="hover:text-[#00FFFF] transition">Price</a>
       </div>
+           <button class="mobile-menu-trigger md:hidden ml-auto text-2xl focus:outline-none" style="color: inherit;">
+             <i class="fas fa-bars"></i>
+           </button>
+
       
-      <div class="flex gap-6 items-center">
+      <div class="flex-nowrap shrink-0 flex gap-6 items-center">
          <button onclick="toggleNailModal()" class="text-[10px] font-cyber font-semibold uppercase tracking-[0.2em] text-[#FF00FF]/60 hover:text-[#00FFFF]">Membership</button>
          <button class="border border-[#00FFFF] text-[#00FFFF] px-6 py-2 rounded-none font-cyber font-semibold text-[10px] hover:bg-[#00FFFF] hover:text-slate-900 transition shadow-[0_0_15px_#00FFFF]">
            Book Now
@@ -48,7 +52,7 @@
       </div>
     </div>
 
-      </nav>
+      <%= render partial: 'templates/shared/mobile_menu_overlay' %></nav>
 
   <!-- Hero -->
   <header class="min-h-screen relative flex items-center justify-center pt-24 overflow-hidden">

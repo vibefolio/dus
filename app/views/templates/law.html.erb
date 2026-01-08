@@ -16,9 +16,9 @@
 
   <!-- Nav -->
   <nav class="fixed w-full z-50 px-8 py-6 bg-[#F9F9FB]/90 backdrop-blur-xl border-b border-[#2C3E50]/10">
-    <div class="container mx-auto flex justify-between items-center">
+    <div class="container mx-auto px-4 md:px-6 flex justify-between items-center flex-nowrap">
       <div class="flex items-center gap-6">
-         <div class="w-8 h-8 md:w-10 md:h-10 bg-[#2C3E50] flex items-center justify-center text-white font-serif font-semibold text-xl shadow-lg">正</div>
+         <div class="w-8 h-8 max-h-8 max-w-[35%] shrink object-contain md:w-10 md:h-10 bg-[#2C3E50] flex items-center justify-center text-white font-serif font-semibold text-xl shadow-lg">正</div>
          <div class="flex flex-col">
             <span class="font-serif text-xl font-semibold tracking-tight text-[#2C3E50] leading-none">법무법인 정의</span>
             <span class="text-[9px] font-semibold tracking-[0.2em] uppercase text-[#2C3E50]/60 mt-0.5">Justice Law Firm</span>
@@ -30,16 +30,20 @@
         <a href="#attorneys" class="hover:text-[#2C3E50] transition">Attorneys</a>
         <a href="#case" class="hover:text-[#2C3E50] transition">Case Study</a>
       </div>
+           <button class="mobile-menu-trigger md:hidden ml-auto text-2xl focus:outline-none" style="color: inherit;">
+             <i class="fas fa-bars"></i>
+           </button>
+
       
-      <div class="flex gap-12 items-center">
+      <div class="flex-nowrap shrink-0 flex gap-12 items-center">
          <button onclick="toggleLawModal()" class="text-[11px] font-semibold uppercase tracking-[0.2em] text-[#2C3E50]/40 hover:text-[#2C3E50]">Client Access</button>
-         <button class="bg-[#2C3E50] text-white px-8 py-3 rounded-sm font-semibold text-[11px] tracking-wide uppercase hover:bg-slate-800 transition shadow-xl">
+         <button class="bg-[#2C3E50] text-white px-4 py-2 text-xs md:text-base md:px-8 md:py-3 whitespace-nowrap rounded-sm font-semibold text-[11px] tracking-wide uppercase hover:bg-slate-800 transition shadow-xl">
            Consultation
          </button>
       </div>
     </div>
 
-      </nav>
+      <%= render partial: 'templates/shared/mobile_menu_overlay' %></nav>
 
   <!-- Hero -->
   <header class="min-h-screen relative flex items-center justify-center pt-20">
