@@ -24,3 +24,14 @@ development:
 test:
   <<: *default
   database: storage/test.sqlite3
+
+# PostgreSQL configuration for production (Render.com)
+production:
+  adapter: postgresql
+  encoding: unicode
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  url: <%= ENV.fetch("DATABASE_URL") { "" } %>
+
+# Staging or other environments
+staging:
+  <<: *production
