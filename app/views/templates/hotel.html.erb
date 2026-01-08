@@ -16,37 +16,42 @@
 <div class="bg-[#F6F5F2] text-[#1C1C1C] font-sans selection:bg-[#BFA183] selection:text-white min-h-screen overflow-x-hidden">
 
   <!-- Nav -->
-  <nav class="fixed w-full z-50 px-8 py-8 md:px-12 bg-[#F6F5F2]/80 backdrop-blur-xl border-b border-[#BFA183]/10">
-    <div class="container mx-auto flex justify-between items-center">
-      <div class="flex items-center gap-6">
-         <span class="font-serif-en text-3xl tracking-wide font-bold italic text-[#1C1C1C]">Grand Ocean</span>
+  <nav class="fixed w-full z-50 px-8 py-12 md:px-12 bg-[#F6F5F2]/80 backdrop-blur-xl border-b border-[#BFA183]/10">
+    <div class="container mx-auto px-4 md:px-6 flex justify-between items-center flex-nowrap">
+      <div class="flex items-center gap-10">
+         <span class="font-serif-en text-2xl tracking-wide font-semibold italic text-[#1C1C1C]">Grand Ocean</span>
       </div>
       
-      <div class="hidden md:flex gap-14 text-[10px] font-bold uppercase tracking-[0.3em] text-[#1C1C1C]/40">
+      <div class="hidden md:flex gap-14 text-[10px] font-semibold uppercase tracking-[0.3em] text-[#1C1C1C]/40">
         <a href="#suites" class="hover:text-[#BFA183] transition">Suites</a>
         <a href="#dining" class="hover:text-[#BFA183] transition">Gastronomy</a>
         <a href="#spa" class="hover:text-[#BFA183] transition">Wellness</a>
       </div>
+           <button class="mobile-menu-trigger md:hidden ml-auto text-2xl focus:outline-none" style="color: inherit;">
+             <i class="fas fa-bars"></i>
+           </button>
+
       
-      <div class="flex gap-8 items-center">
-         <button onclick="toggleHotelModal()" class="text-[10px] font-bold uppercase tracking-[0.3em] text-[#1C1C1C]/40 hover:text-[#BFA183]">Concierge</button>
-         <button class="bg-[#1C1C1C] text-white px-8 py-3 rounded-none font-bold text-[10px] tracking-[0.3em] uppercase hover:bg-[#BFA183] hover:text-white transition shadow-xl">
+      <div class="flex-nowrap shrink-0 flex gap-12 items-center">
+         <button onclick="toggleHotelModal()" class="hidden md:block text-[10px] font-semibold uppercase tracking-[0.3em] text-[#1C1C1C]/40 hover:text-[#BFA183]" data-mobile-menu-copy="true">Concierge</button>
+         <button class="hidden md:inline-flex bg-[#1C1C1C] text-white px-4 py-2 text-xs md:text-base md:px-8 md:py-3 whitespace-nowrap rounded-none font-semibold text-[10px] tracking-[0.3em] uppercase hover:bg-[#BFA183] hover:text-white transition shadow-xl" data-mobile-menu-copy="true">
            Book Your Stay
          </button>
       </div>
     </div>
-  </nav>
+
+      <%= render partial: 'templates/shared/mobile_menu_overlay' %></nav>
 
   <!-- Hero -->
   <header class="min-h-screen relative flex items-center justify-center pt-20">
-    <div class="container mx-auto px-6 relative z-10 grid lg:grid-cols-12 gap-12 items-center">
+    <div class="container mx-auto px-3 md:px-6 relative z-10 grid lg:grid-cols-12 gap-16 items-center">
       <div class="lg:col-span-5 space-y-12">
-        <div class="inline-flex items-center gap-4">
+        <div class="inline-flex items-center gap-6">
            <span class="w-12 h-[1px] bg-[#BFA183]"></span>
-           <span class="text-[10px] font-bold tracking-[0.6em] uppercase text-[#BFA183]">Signature Hospitality</span>
+           <span class="text-[10px] font-semibold tracking-[0.6em] uppercase text-[#BFA183]">Signature Hospitality</span>
         </div>
         
-        <h1 class="text-6xl md:text-[5.5rem] font-serif font-black leading-none tracking-tighter text-[#1C1C1C] mobile-title">
+        <h1 class="text-3xl md:text-5xl md:text-[5.5rem] font-serif font-semibold leading-none tracking-tight text-[#1C1C1C] mobile-title">
            바다의 깊이,<br><span class="italic text-[#BFA183]">품격의 높이.</span>
         </h1>
         
@@ -57,14 +62,14 @@
         <div class="pt-6">
            <div class="bg-white p-2 inline-flex flex-col md:flex-row shadow-2xl shadow-[#BFA183]/10">
               <div class="px-8 py-4 border-b md:border-b-0 md:border-r border-[#1C1C1C]/5">
-                 <span class="block text-[9px] font-bold tracking-[0.2em] text-[#BFA183] uppercase mb-1">Check In</span>
-                 <span class="font-serif-en text-xl italic font-bold">12. 24</span>
+                 <span class="block text-[9px] font-semibold tracking-[0.2em] text-[#BFA183] uppercase mb-1">Check In</span>
+                 <span class="font-serif-en text-xl italic font-semibold">12. 24</span>
               </div>
               <div class="px-8 py-4 border-b md:border-b-0 md:border-r border-[#1C1C1C]/5">
-                 <span class="block text-[9px] font-bold tracking-[0.2em] text-[#BFA183] uppercase mb-1">Check Out</span>
-                 <span class="font-serif-en text-xl italic font-bold">12. 26</span>
+                 <span class="block text-[9px] font-semibold tracking-[0.2em] text-[#BFA183] uppercase mb-1">Check Out</span>
+                 <span class="font-serif-en text-xl italic font-semibold">12. 26</span>
               </div>
-              <button class="px-10 py-4 bg-[#BFA183] text-white text-[10px] font-bold tracking-[0.3em] uppercase hover:bg-[#1C1C1C] transition">
+              <button class="px-10 py-4 bg-[#BFA183] text-white text-[10px] font-semibold tracking-[0.3em] uppercase hover:bg-[#1C1C1C] transition">
                 Search
               </button>
            </div>
@@ -77,8 +82,8 @@
              
              <!-- Floating Badge -->
              <div class="absolute -bottom-10 -left-10 bg-[#1C1C1C] text-white p-10 max-w-[240px] shadow-2xl">
-                <p class="font-serif-en text-4xl italic mb-2">5 Star</p>
-                <p class="text-[9px] font-bold text-[#BFA183] uppercase tracking-[0.4em]">Luxury Ocean View</p>
+                <p class="font-serif-en text-3xl italic mb-2">5 Star</p>
+                <p class="text-[9px] font-semibold text-[#BFA183] uppercase tracking-[0.4em]">Luxury Ocean View</p>
              </div>
           </div>
           <!-- Decorative Background -->
@@ -89,34 +94,34 @@
 
   <!-- Login Modal -->
   <div id="hotel-modal" class="fixed inset-0 z-[100] hidden items-center justify-center p-4 bg-[#1C1C1C]/60 backdrop-blur-2xl">
-    <div class="bg-white w-full max-w-sm p-16 shadow-2xl relative border-t-8 border-[#BFA183]">
+    <div class="bg-white w-full max-w-sm p-6 md:p-16 shadow-2xl relative border-t-8 border-[#BFA183]">
       <button onclick="toggleHotelModal()" class="absolute top-8 right-8 text-[#1C1C1C]/20 hover:text-[#BFA183] transition text-2xl font-light">&times;</button>
       
       <div class="text-center mb-14">
-        <h2 class="text-2xl font-serif-en italic tracking-wide text-[#1C1C1C] mb-3 font-bold">Member's Suite</h2>
-        <p class="text-[9px] text-[#BFA183] font-bold tracking-[0.3em] uppercase">Grand Ocean Privilege</p>
+        <h2 class="text-2xl font-serif-en italic tracking-wide text-[#1C1C1C] mb-3 font-semibold">Member's Suite</h2>
+        <p class="text-[9px] text-[#BFA183] font-semibold tracking-[0.3em] uppercase">Grand Ocean Privilege</p>
       </div>
       
       <div class="space-y-8">
         <div class="space-y-3">
-           <input type="text" placeholder="MEMBERSHIP NO." class="w-full bg-[#F6F5F2] border-none py-6 px-8 outline-none focus:ring-1 focus:ring-[#BFA183] transition text-[11px] font-bold tracking-widest text-[#1C1C1C]">
+           <input type="text" placeholder="MEMBERSHIP NO." class="w-full bg-[#F6F5F2] border-none py-6 px-8 outline-none focus:ring-1 focus:ring-[#BFA183] transition text-[11px] font-semibold tracking-wide text-[#1C1C1C]">
         </div>
-        <button class="w-full bg-[#1C1C1C] text-white py-6 text-[10px] tracking-[0.4em] font-black uppercase hover:bg-[#BFA183] transition shadow-xl">
+        <button class="w-full bg-[#1C1C1C] text-white py-6 text-[10px] tracking-[0.4em] font-semibold uppercase hover:bg-[#BFA183] transition shadow-xl">
            Access Lounge
         </button>
-        <div class="flex justify-center gap-10 pt-4">
-           <a href="#" class="text-[9px] text-[#1C1C1C]/40 tracking-[0.3em] font-bold uppercase hover:text-[#BFA183] transition italic">Join Club</a>
-           <a href="#" class="text-[9px] text-[#1C1C1C]/40 tracking-[0.3em] font-bold uppercase hover:text-[#BFA183] transition italic">Reservation Lookup</a>
+        <div class="flex justify-center gap-14 pt-4">
+           <a href="#" class="text-[9px] text-[#1C1C1C]/40 tracking-[0.3em] font-semibold uppercase hover:text-[#BFA183] transition italic">Join Club</a>
+           <a href="#" class="text-[9px] text-[#1C1C1C]/40 tracking-[0.3em] font-semibold uppercase hover:text-[#BFA183] transition italic">Reservation Lookup</a>
         </div>
       </div>
     </div>
   </div>
 
-  <footer class="py-32 bg-[#1C1C1C] text-center px-6">
-     <div class="inline-flex flex-col items-center gap-8 mb-12">
-        <span class="font-serif-en text-4xl text-white tracking-wide italic">Grand Ocean</span>
+  <footer class="py-24 md:py-40 bg-[#1C1C1C] text-center px-6">
+     <div class="inline-flex flex-col items-center gap-12 mb-12">
+        <span class="font-serif-en text-3xl text-white tracking-wide italic">Grand Ocean</span>
         <span class="w-12 h-[1px] bg-white/10"></span>
-        <span class="text-[10px] font-bold text-white/30 tracking-[0.6em] uppercase">The Ultimate Escape</span>
+        <span class="text-[10px] font-semibold text-white/30 tracking-[0.6em] uppercase">The Ultimate Escape</span>
      </div>
      <p class="text-[10px] text-white/10 tracking-[1em] uppercase px-6">© 2024 GRAND OCEAN HOTEL. ALL RIGHTS RESERVED.</p>
   </footer>

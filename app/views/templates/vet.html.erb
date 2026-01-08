@@ -22,28 +22,33 @@
 
   <!-- Nav -->
   <nav class="fixed w-full z-50 px-8 py-6 bg-[#F0F9FF]/80 backdrop-blur-xl border-b border-[#BFDBFE]/50">
-    <div class="container mx-auto flex justify-between items-center">
+    <div class="container mx-auto px-4 md:px-6 flex justify-between items-center flex-nowrap">
       <div class="flex items-center gap-2">
-         <div class="w-10 h-10 bg-white rounded-xl flex items-center justify-center text-2xl shadow-sm border border-[#BFDBFE]">
+         <div class="w-8 h-8 max-h-8 max-w-[35%] shrink object-contain md:w-10 md:h-10 bg-white rounded-xl flex items-center justify-center text-lg md:text-2xl shadow-sm border border-[#BFDBFE]">
             🩺
          </div>
-         <span class="font-soft font-bold text-xl tracking-wide text-[#1E3A8A]">With<span class="text-[#3B82F6]">Pet</span></span>
+         <span class="font-soft font-semibold text-xl tracking-wide text-[#1E3A8A]">With<span class="text-[#3B82F6]">Pet</span></span>
       </div>
       
-      <div class="hidden md:flex gap-10 text-[14px] font-soft font-bold text-[#60A5FA]">
+      <div class="hidden md:flex gap-14 text-[14px] font-soft font-semibold text-[#60A5FA]">
         <a href="#about" class="hover:text-[#1E3A8A] transition">About</a>
         <a href="#services" class="hover:text-[#1E3A8A] transition">Services</a>
         <a href="#emergency" class="hover:text-[#1E3A8A] transition text-red-400">Emergency</a>
       </div>
+           <button class="mobile-menu-trigger md:hidden ml-auto text-2xl focus:outline-none" style="color: inherit;">
+             <i class="fas fa-bars"></i>
+           </button>
+
       
-      <div class="flex gap-4 items-center">
-         <button onclick="toggleVetModal()" class="text-[14px] font-soft font-bold text-[#60A5FA] hover:text-[#1E3A8A] bg-white px-4 py-2 rounded-xl shadow-sm border border-[#BFDBFE] hover:shadow-md transition">My Pet</button>
-         <button class="bg-[#3B82F6] text-white px-6 py-2.5 rounded-xl font-soft font-bold text-[14px] hover:bg-[#2563EB] transition shadow-lg shadow-blue-300">
+      <div class="flex-nowrap shrink-0 flex gap-6 items-center">
+         <button onclick="toggleVetModal()" class="hidden md:block text-[14px] font-soft font-semibold text-[#60A5FA] hover:text-[#1E3A8A] bg-white px-4 py-2 rounded-xl shadow-sm border border-[#BFDBFE] hover:shadow-md transition" data-mobile-menu-copy="true">My Pet</button>
+         <button class="hidden md:inline-flex bg-[#3B82F6] text-white px-3 py-2 text-xs md:text-sm md:px-6 md:py-2.5 whitespace-nowrap rounded-xl font-soft font-semibold text-[14px] hover:bg-[#2563EB] transition shadow-lg shadow-blue-300" data-mobile-menu-copy="true">
            Book Appointment
          </button>
       </div>
     </div>
-  </nav>
+
+      <%= render partial: 'templates/shared/mobile_menu_overlay' %></nav>
 
   <!-- Hero -->
   <header class="min-h-screen relative flex items-center justify-center pt-24 overflow-hidden">
@@ -51,14 +56,14 @@
     <div class="absolute top-[10%] left-[10%] w-[500px] h-[500px] bg-[#BFDBFE] rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob"></div>
     <div class="absolute top-[10%] right-[10%] w-[500px] h-[500px] bg-[#E0F2FE] rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob animation-delay-2000"></div>
 
-    <div class="container mx-auto px-6 relative z-10 grid lg:grid-cols-2 gap-20 items-center">
+    <div class="container mx-auto px-3 md:px-6 relative z-10 grid lg:grid-cols-2 gap-12 md:p-20 items-center">
       <div class="space-y-10 text-center lg:text-left order-2 lg:order-1">
-        <div class="inline-flex items-center gap-2 bg-white px-4 py-2 rounded-full shadow-sm border border-[#BFDBFE]">
+        <div class="inline-flex items-center gap-2 bg-white px-4 py-2 rounded-lg shadow-sm border border-[#BFDBFE]">
            <span class="w-2 h-2 rounded-full bg-[#3B82F6] animate-pulse"></span>
-           <span class="text-[12px] font-soft font-bold text-[#3B82F6] uppercase tracking-wide">24/7 Professional Medical Care</span>
+           <span class="text-[12px] font-soft font-semibold text-[#3B82F6] uppercase tracking-wide">24/7 Professional Medical Care</span>
         </div>
         
-        <h1 class="text-5xl md:text-7xl font-soft font-extrabold leading-[1.1] text-[#1E3A8A] mobile-title">
+        <h1 class="text-2xl md:text-4xl md:text-6xl font-soft font-semibold leading-[1.1] text-[#1E3A8A] mobile-title">
            Compassionate<br>
            Care for Your<br>
            <span class="text-[#3B82F6]">Best Friend.</span>
@@ -69,11 +74,11 @@
            위드 펫 메디컬 센터는 평생의 건강 주치의가 되어드립니다.
         </p>
         
-        <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start pt-4">
-           <button class="px-8 py-4 bg-[#1E3A8A] text-white font-soft font-bold text-lg rounded-2xl hover:bg-[#1E40AF] transition shadow-xl">
+        <div class="flex flex-col sm:flex-row gap-6 justify-center lg:justify-start pt-4">
+           <button class="px-8 py-4 bg-[#1E3A8A] text-white font-soft font-semibold text-lg rounded-2xl hover:bg-[#1E40AF] transition shadow-xl">
              Meet Our Doctors
            </button>
-           <button class="px-8 py-4 bg-white text-[#1E3A8A] border-2 border-[#BFDBFE] font-soft font-bold text-lg rounded-2xl hover:bg-[#F0F9FF] transition flex items-center justify-center gap-2 group">
+           <button class="px-8 py-4 bg-white text-[#1E3A8A] border-2 border-[#BFDBFE] font-soft font-semibold text-lg rounded-2xl hover:bg-[#F0F9FF] transition flex items-center justify-center gap-2 group">
              <span>📞</span>
              <span>Emergency Call</span>
            </button>
@@ -82,15 +87,15 @@
       
       <div class="relative order-1 lg:order-2 flex justify-center">
          <div class="relative z-10 w-[350px] md:w-[500px] aspect-square group">
-             <div class="absolute inset-0 bg-[#3B82F6] rounded-[3rem] rotate-3 opacity-10 group-hover:rotate-6 transition duration-700"></div>
-             <img src="https://images.unsplash.com/photo-1628009368231-76033527212e?q=80&w=800" alt="Veterinary Care" class="w-full h-full object-cover rounded-[3rem] shadow-2xl transform -rotate-3 group-hover:rotate-0 transition duration-700 border-8 border-white">
+             <div class="absolute inset-0 bg-[#3B82F6] rounded-2xl rotate-3 opacity-10 group-hover:rotate-6 transition duration-700"></div>
+             <img src="https://images.unsplash.com/photo-1628009368231-76033527212e?q=80&w=800" alt="Veterinary Care" class="w-full h-full object-cover rounded-2xl shadow-2xl transform -rotate-3 group-hover:rotate-0 transition duration-700 border-8 border-white">
              
              <!-- Floating Badge -->
-             <div class="absolute -bottom-8 -right-8 bg-white p-5 rounded-2xl shadow-xl border border-[#BFDBFE] animate-bounce-slow flex items-center gap-4">
-                <div class="bg-blue-50 p-3 rounded-xl text-2xl">🐶</div>
+             <div class="absolute -bottom-8 -right-8 bg-white p-5 rounded-2xl shadow-xl border border-[#BFDBFE] animate-bounce-slow flex items-center gap-6">
+                <div class="bg-blue-50 p-3 rounded-xl text-lg md:text-2xl">🐶</div>
                 <div>
-                   <p class="font-bold text-[#1E3A8A] text-lg">98%</p>
-                   <p class="text-[10px] uppercase font-bold text-[#93C5FD]">Recovery Rate</p>
+                   <p class="font-semibold text-[#1E3A8A] text-lg">98%</p>
+                   <p class="text-[10px] uppercase font-semibold text-[#93C5FD]">Recovery Rate</p>
                 </div>
              </div>
          </div>
@@ -117,26 +122,26 @@
   <!-- Login Modal -->
   <div id="vet-modal" class="fixed inset-0 z-[100] hidden items-center justify-center p-4 bg-[#1E3A8A]/20 backdrop-blur-md">
     <div class="bg-white w-full max-w-sm p-10 shadow-2xl relative rounded-[2.5rem] border-4 border-[#BFDBFE]">
-      <button onclick="toggleVetModal()" class="absolute top-6 right-6 text-[#93C5FD] hover:text-[#3B82F6] transition text-3xl font-soft font-bold">&times;</button>
+      <button onclick="toggleVetModal()" class="absolute top-6 right-6 text-[#93C5FD] hover:text-[#3B82F6] transition text-2xl font-soft font-semibold">&times;</button>
       
       <div class="text-center mb-8">
-        <div class="w-20 h-20 bg-[#EFF6FF] rounded-full flex items-center justify-center text-4xl mx-auto mb-4 border border-[#BFDBFE]">
+        <div class="w-20 h-20 bg-[#EFF6FF] rounded-full flex items-center justify-center text-3xl mx-auto mb-4 border border-[#BFDBFE]">
            🐕
         </div>
-        <h2 class="text-2xl font-soft font-bold text-[#1E3A8A] mb-1">Guardian Portal</h2>
-        <p class="text-[13px] text-[#3B82F6] font-bold uppercase tracking-wide">Access Pet Health Records</p>
+        <h2 class="text-2xl font-soft font-semibold text-[#1E3A8A] mb-1">Guardian Portal</h2>
+        <p class="text-[13px] text-[#3B82F6] font-semibold uppercase tracking-wide">Access Pet Health Records</p>
       </div>
       
       <div class="space-y-4">
         <div>
-           <input type="text" placeholder="Guardian Phone Number" class="w-full bg-[#F0F9FF] border-2 border-[#E0F2FE] rounded-2xl py-4 px-6 outline-none focus:border-[#3B82F6] focus:bg-white transition text-lg font-soft font-bold text-[#1E3A8A] text-center placeholder-[#93C5FD]">
+           <input type="text" placeholder="Guardian Phone Number" class="w-full bg-[#F0F9FF] border-2 border-[#E0F2FE] rounded-2xl py-4 px-6 outline-none focus:border-[#3B82F6] focus:bg-white transition text-lg font-soft font-semibold text-[#1E3A8A] text-center placeholder-[#93C5FD]">
         </div>
         
-        <button class="w-full bg-[#3B82F6] text-white py-4 rounded-2xl font-soft font-bold text-lg shadow-lg hover:bg-[#2563EB] transition transform active:scale-95">
+        <button class="w-full bg-[#3B82F6] text-white py-4 rounded-2xl font-soft font-semibold text-lg shadow-lg hover:bg-[#2563EB] transition transform active:scale-95">
            Log In
         </button>
         
-        <div class="flex justify-center gap-6 pt-4 text-sm font-soft font-bold text-[#93C5FD]">
+        <div class="flex justify-center gap-10 pt-4 text-sm font-soft font-semibold text-[#93C5FD]">
            <a href="#" class="hover:text-[#3B82F6] transition">Register Pet</a>
            <span>•</span>
            <a href="#" class="hover:text-[#3B82F6] transition">Results Inquiry</a>
@@ -145,12 +150,12 @@
     </div>
   </div>
 
-  <footer class="py-20 bg-white text-center px-6 border-t border-[#F0F9FF]">
-     <div class="inline-flex flex-col items-center gap-4 mb-6">
-        <span class="text-3xl">🐾</span>
-        <span class="font-soft font-bold text-xl text-[#1E3A8A]">With<span class="text-[#3B82F6]">Pet</span></span>
+  <footer class="py-20 md:py-32 bg-white text-center px-6 border-t border-[#F0F9FF]">
+     <div class="inline-flex flex-col items-center gap-6 mb-6">
+        <span class="text-2xl">🐾</span>
+        <span class="font-soft font-semibold text-xl text-[#1E3A8A]">With<span class="text-[#3B82F6]">Pet</span></span>
      </div>
-     <p class="text-[11px] font-bold text-[#93C5FD] uppercase tracking-wider">© 2024 WITH PET MEDICAL CENTER.</p>
+     <p class="text-[11px] font-semibold text-[#93C5FD] uppercase tracking-wider">© 2024 WITH PET MEDICAL CENTER.</p>
   </footer>
 
   <script>

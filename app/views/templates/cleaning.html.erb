@@ -22,46 +22,51 @@
   
   <!-- Nav -->
   <nav class="fixed w-full z-50 px-8 py-6 bg-white/90 backdrop-blur-md border-b border-blue-50">
-    <div class="container mx-auto flex justify-between items-center">
+    <div class="container mx-auto px-4 md:px-6 flex justify-between items-center flex-nowrap">
       <div class="flex items-center gap-2">
-         <div class="w-9 h-9 bg-[#2563EB] rounded flex items-center justify-center text-white text-lg font-black shadow-lg shadow-blue-200">
+         <div class="w-9 h-9 bg-[#2563EB] rounded flex items-center justify-center text-white text-lg font-semibold shadow-lg shadow-blue-200">
             C
          </div>
-         <span class="font-tech font-bold text-xl tracking-tight text-[#0F172A] pt-1">CLEAN<span class="text-[#2563EB]">SSAK</span></span>
+         <span class="font-tech font-semibold text-xl tracking-tight text-[#0F172A] pt-1">CLEAN<span class="text-[#2563EB]">SSAK</span></span>
       </div>
       
-      <div class="hidden md:flex gap-10 text-[12px] font-tech font-bold tracking-wider text-slate-400 uppercase">
+      <div class="hidden md:flex gap-14 text-[12px] font-tech font-semibold tracking-wider text-slate-400 uppercase">
         <a href="#home" class="hover:text-[#2563EB] transition">Home Care</a>
         <a href="#office" class="hover:text-[#2563EB] transition">Office Care</a>
         <a href="#special" class="hover:text-[#2563EB] transition">Special Cleaning</a>
       </div>
+           <button class="mobile-menu-trigger md:hidden ml-auto text-2xl focus:outline-none" style="color: inherit;">
+             <i class="fas fa-bars"></i>
+           </button>
+
       
-      <div class="flex gap-4 items-center">
-         <button onclick="toggleCleanModal()" class="text-[12px] font-tech font-bold tracking-wider text-[#2563EB] uppercase hover:bg-blue-50 px-4 py-2 rounded transition">My Booking</button>
-         <button class="bg-[#2563EB] text-white px-6 py-2.5 rounded font-tech font-bold text-[12px] tracking-wider uppercase hover:bg-[#1E40AF] transition shadow-lg shadow-blue-500/20">
+      <div class="flex-nowrap shrink-0 flex gap-6 items-center">
+         <button onclick="toggleCleanModal()" class="hidden md:block text-[12px] font-tech font-semibold tracking-wider text-[#2563EB] uppercase hover:bg-blue-50 px-4 py-2 rounded transition" data-mobile-menu-copy="true">My Booking</button>
+         <button class="hidden md:inline-flex bg-[#2563EB] text-white px-3 py-2 text-xs md:text-sm md:px-6 md:py-2.5 whitespace-nowrap rounded font-tech font-semibold text-[12px] tracking-wider uppercase hover:bg-[#1E40AF] transition shadow-lg shadow-blue-500/20" data-mobile-menu-copy="true">
            Get Quote
          </button>
       </div>
     </div>
-  </nav>
+
+      <%= render partial: 'templates/shared/mobile_menu_overlay' %></nav>
 
   <!-- Hero -->
   <header class="min-h-screen relative flex items-center justify-center pt-24 overflow-hidden">
     <!-- Clean Bubbles -->
-    <div class="absolute top-20 right-[15%] w-64 h-64 bg-blue-100/50 rounded-full blur-3xl animate-pulse"></div>
+    <div class="absolute top-8 md:p-20 right-[15%] w-64 h-64 bg-blue-100/50 rounded-full blur-3xl animate-pulse"></div>
     <div class="absolute bottom-20 left-[15%] w-80 h-80 bg-cyan-100/50 rounded-full blur-3xl animate-pulse delay-700"></div>
 
-    <div class="container mx-auto px-6 relative z-10 grid lg:grid-cols-2 gap-16 items-center">
+    <div class="container mx-auto px-3 md:px-6 relative z-10 grid lg:grid-cols-2 gap-10 md:p-16 items-center">
       <div class="space-y-10 text-center lg:text-left">
         <div class="inline-flex items-center gap-3 bg-blue-50 px-4 py-2 rounded-lg border border-blue-100">
            <span class="flex h-3 w-3 relative">
               <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
               <span class="relative inline-flex rounded-full h-3 w-3 bg-[#2563EB]"></span>
            </span>
-           <span class="text-[11px] font-tech font-bold text-[#2563EB] uppercase tracking-wide">Professional Sanitiaztion Service</span>
+           <span class="text-[11px] font-tech font-semibold text-[#2563EB] uppercase tracking-wide">Professional Sanitiaztion Service</span>
         </div>
         
-        <h1 class="text-5xl md:text-7xl font-sans font-black leading-[1.1] tracking-tight text-[#0F172A] mobile-title">
+        <h1 class="text-2xl md:text-4xl md:text-6xl font-sans font-semibold leading-[1.1] tracking-tight text-[#0F172A] mobile-title">
            공간의 가치를 높이는<br>
            <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#2563EB] to-[#06B6D4]">완벽한 클리닝.</span>
         </h1>
@@ -71,27 +76,27 @@
            전문 장비와 검증된 약품으로 당신의 공간을 새롭게 정의합니다.
         </p>
         
-        <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start pt-4">
-           <button class="px-8 py-4 bg-[#0F172A] text-white font-tech font-bold text-sm tracking-widest uppercase rounded hover:bg-[#2563EB] transition shadow-xl">
+        <div class="flex flex-col sm:flex-row gap-6 justify-center lg:justify-start pt-4">
+           <button class="px-8 py-4 bg-[#0F172A] text-white font-tech font-semibold text-sm tracking-wide uppercase rounded hover:bg-[#2563EB] transition shadow-xl">
              Start Cleaning
            </button>
-           <button class="px-8 py-4 bg-white text-[#0F172A] border border-slate-200 font-tech font-bold text-sm tracking-widest uppercase rounded hover:border-[#2563EB] hover:text-[#2563EB] transition">
+           <button class="px-8 py-4 bg-white text-[#0F172A] border border-slate-200 font-tech font-semibold text-sm tracking-wide uppercase rounded hover:border-[#2563EB] hover:text-[#2563EB] transition">
              Service Guide
            </button>
         </div>
         
-        <div class="pt-8 grid grid-cols-3 gap-8 justify-center lg:justify-start border-t border-slate-100 max-w-md mx-auto lg:mx-0">
+        <div class="pt-8 grid grid-cols-1 md:grid-cols-3 gap-12 justify-center lg:justify-start border-t border-slate-100 max-w-md mx-auto lg:mx-0">
            <div class="text-center lg:text-left">
-              <p class="text-2xl font-black text-[#2563EB]">5.0</p>
-              <p class="text-[10px] font-bold uppercase text-slate-400">User Rating</p>
+              <p class="text-2xl font-semibold text-[#2563EB]">5.0</p>
+              <p class="text-[10px] font-semibold uppercase text-slate-400">User Rating</p>
            </div>
            <div class="text-center lg:text-left">
-              <p class="text-2xl font-black text-[#2563EB]">10k+</p>
-              <p class="text-[10px] font-bold uppercase text-slate-400">Total Cases</p>
+              <p class="text-2xl font-semibold text-[#2563EB]">10k+</p>
+              <p class="text-[10px] font-semibold uppercase text-slate-400">Total Cases</p>
            </div>
            <div class="text-center lg:text-left">
-              <p class="text-2xl font-black text-[#2563EB]">100%</p>
-              <p class="text-[10px] font-bold uppercase text-slate-400">Satisfaction</p>
+              <p class="text-2xl font-semibold text-[#2563EB]">100%</p>
+              <p class="text-[10px] font-semibold uppercase text-slate-400">Satisfaction</p>
            </div>
         </div>
       </div>
@@ -101,11 +106,11 @@
             <img src="https://images.unsplash.com/photo-1581578731117-104f2a412727?q=80&w=800" alt="Professional Cleaning" class="w-full h-auto rounded-xl shadow-inner">
             
             <div class="absolute -bottom-8 -left-8 bg-[#2563EB] text-white p-6 rounded-xl shadow-xl max-w-[200px] hidden md:block">
-               <div class="flex items-start gap-4">
-                  <span class="text-3xl">🛡️</span>
+               <div class="flex items-start gap-6">
+                  <span class="text-2xl">🛡️</span>
                   <div>
-                     <p class="font-tech font-bold text-lg mb-1 leading-none">Safe Zone</p>
-                     <p class="text-[10px] opacity-80 uppercase font-bold tracking-wide leading-tight">99.9% Virus Care Certified</p>
+                     <p class="font-tech font-semibold text-lg mb-1 leading-none">Safe Zone</p>
+                     <p class="text-[10px] opacity-80 uppercase font-semibold tracking-wide leading-tight">99.9% Virus Care Certified</p>
                   </div>
                </div>
             </div>
@@ -122,33 +127,33 @@
       <button onclick="toggleCleanModal()" class="absolute top-6 right-8 text-slate-300 hover:text-[#2563EB] transition text-2xl font-light">&times;</button>
       
       <div class="text-center mb-10">
-        <h2 class="text-xl font-tech font-bold text-[#0F172A] mb-1 tracking-wide uppercase">Member Portal</h2>
-        <p class="text-[10px] text-[#2563EB] font-bold tracking-[0.2em] uppercase">Manage Your Schedule</p>
+        <h2 class="text-xl font-tech font-semibold text-[#0F172A] mb-1 tracking-wide uppercase">Member Portal</h2>
+        <p class="text-[10px] text-[#2563EB] font-semibold tracking-[0.2em] uppercase">Manage Your Schedule</p>
       </div>
       
       <div class="space-y-6 font-tech">
         <div>
-           <label class="block text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-2">Reservation No.</label>
-           <input type="text" placeholder="C-240101-0001" class="w-full bg-slate-50 border border-slate-200 py-3 px-4 outline-none focus:border-[#2563EB] focus:ring-1 focus:ring-[#2563EB] transition text-sm font-bold text-slate-900 uppercase">
+           <label class="block text-[10px] font-semibold text-slate-400 uppercase tracking-wide mb-2">Reservation No.</label>
+           <input type="text" placeholder="C-240101-0001" class="w-full bg-slate-50 border border-slate-200 py-3 px-4 outline-none focus:border-[#2563EB] focus:ring-1 focus:ring-[#2563EB] transition text-sm font-semibold text-slate-900 uppercase">
         </div>
         
-        <button class="w-full bg-[#2563EB] text-white py-4 rounded text-[11px] tracking-widest font-bold uppercase hover:bg-[#1E40AF] transition shadow-lg shadow-blue-500/20">
+        <button class="w-full bg-[#2563EB] text-white py-4 rounded text-[11px] tracking-wide font-semibold uppercase hover:bg-[#1E40AF] transition shadow-lg shadow-blue-500/20">
            Check Status
         </button>
         
-        <div class="flex justify-center gap-8 pt-2">
-           <a href="#" class="text-[10px] text-slate-400 tracking-widest uppercase hover:text-[#2563EB] transition font-bold">New Booking</a>
-           <a href="#" class="text-[10px] text-slate-400 tracking-widest uppercase hover:text-[#2563EB] transition font-bold">Kakao Chat</a>
+        <div class="flex justify-center gap-12 pt-2">
+           <a href="#" class="text-[10px] text-slate-400 tracking-wide uppercase hover:text-[#2563EB] transition font-semibold">New Booking</a>
+           <a href="#" class="text-[10px] text-slate-400 tracking-wide uppercase hover:text-[#2563EB] transition font-semibold">Kakao Chat</a>
         </div>
       </div>
     </div>
   </div>
 
-  <footer class="py-24 bg-white text-center px-6 border-t border-slate-100">
-     <div class="inline-flex items-center gap-4 mb-6 opacity-40 hover:opacity-100 transition duration-500 grayscale hover:grayscale-0">
-        <span class="font-tech font-bold text-xl tracking-tight text-[#0F172A]">CLEAN<span class="text-[#2563EB]">SSAK</span></span>
+  <footer class="py-20 md:py-32 bg-white text-center px-6 border-t border-slate-100">
+     <div class="inline-flex items-center gap-6 mb-6 opacity-40 hover:opacity-100 transition duration-500 grayscale hover:grayscale-0">
+        <span class="font-tech font-semibold text-xl tracking-tight text-[#0F172A]">CLEAN<span class="text-[#2563EB]">SSAK</span></span>
         <span class="w-[1px] h-4 bg-slate-300"></span>
-        <span class="text-[10px] font-bold text-slate-500 tracking-[0.2em] uppercase">Total Care Solution</span>
+        <span class="text-[10px] font-semibold text-slate-500 tracking-[0.2em] uppercase">Total Care Solution</span>
      </div>
      <p class="text-[10px] text-slate-300 tracking-[0.5em] uppercase px-6 font-tech">© 2024 CLEAN SSAK. ALL RIGHTS RESERVED.</p>
   </footer>
