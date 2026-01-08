@@ -39,14 +39,14 @@
 
       
       <div class="flex-nowrap shrink-0 flex gap-10 items-center">
-         <button onclick="toggleEcommerceModal()" class="text-[11px] font-sans font-semibold uppercase tracking-[0.1em] text-slate-500 hover:text-slate-900">Sign In</button>
+         <button onclick="toggleEcommerceModal()" class="hidden md:block text-[11px] font-sans font-semibold uppercase tracking-[0.1em] text-slate-500 hover:text-slate-900" data-mobile-menu-copy="true">Sign In</button>
          <button class="relative p-2 text-slate-900 hover:text-slate-500 transition group">
            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
            <span class="absolute top-0 right-0 w-2 h-2 bg-red-500 rounded-full animate-pulse"></span>
            <!-- Mini Cart Preview (Hover) -->
            <div class="absolute top-full right-0 mt-4 w-64 bg-white border border-slate-100 shadow-xl p-4 hidden group-hover:block z-50 rounded-sm" data-aos="fade-up" data-aos-duration="300">
               <p class="text-xs text-slate-400 mb-2">Cart is empty</p>
-              <a href="#" class="block w-full py-2 bg-slate-900 text-white text-[10px] uppercase font-semibold text-center hover:bg-slate-700 transition">Shop Now</a>
+              <a href="#" class="hidden md:block block w-full py-2 bg-slate-900 text-white text-[10px] uppercase font-semibold text-center hover:bg-slate-700 transition" data-mobile-menu-copy="true">Shop Now</a>
            </div>
          </button>
       </div>
