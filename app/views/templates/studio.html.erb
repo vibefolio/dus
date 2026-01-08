@@ -17,25 +17,25 @@
   }
 </style>
 
-<div class="bg-[#1C1C1C] text-[#E5E5E5] font-sans selection:bg-white selection:text-black min-h-screen overflow-x-hidden relative">
+<div class="bg-[#1C1C1C] text-[#E5E5E5] font-sans selection:bg-white selection:text-slate-900 min-h-screen overflow-x-hidden relative">
   <div class="fixed inset-0 film-grain pointer-events-none"></div>
 
   <!-- Nav -->
   <nav class="fixed w-full z-50 px-8 py-6 bg-[#1C1C1C]/80 backdrop-blur-md border-b border-white/5">
     <div class="container mx-auto flex justify-between items-center">
-      <div class="flex items-center gap-4">
-         <span class="font-film font-bold text-2xl tracking-[0.2em] text-white">Mono<span class="text-[#737373]">Chrome</span></span>
+      <div class="flex items-center gap-6">
+         <span class="font-film font-semibold text-2xl tracking-[0.2em] text-white">Mono<span class="text-[#737373]">Chrome</span></span>
       </div>
       
-      <div class="hidden md:flex gap-12 text-[11px] font-film font-semibold tracking-[0.2em] text-[#737373] uppercase">
+      <div class="hidden md:flex gap-16 text-[11px] font-film font-semibold tracking-[0.2em] text-[#737373] uppercase">
         <a href="#portfolio" class="hover:text-white transition">Portfolio</a>
         <a href="#about" class="hover:text-white transition">About</a>
         <a href="#contact" class="hover:text-white transition">Contact</a>
       </div>
       
-      <div class="flex gap-4 items-center">
-         <button onclick="toggleStudioModal()" class="text-[10px] font-film font-bold uppercase tracking-[0.2em] text-[#737373] hover:text-white">Client Login</button>
-         <button class="bg-white text-black px-6 py-2.5 rounded-sm font-film font-bold text-[10px] tracking-widest uppercase hover:bg-[#D4D4D4] transition shadow-[0_0_15px_rgba(255,255,255,0.1)]">
+      <div class="flex gap-6 items-center">
+         <button onclick="toggleStudioModal()" class="text-[10px] font-film font-semibold uppercase tracking-[0.2em] text-[#737373] hover:text-white">Client Login</button>
+         <button class="bg-white text-slate-900 px-6 py-2.5 rounded-sm font-film font-semibold text-[10px] tracking-wide uppercase hover:bg-[#D4D4D4] transition shadow-[0_0_15px_rgba(255,255,255,0.1)]">
            Inquiry
          </button>
       </div>
@@ -49,13 +49,13 @@
     <div class="absolute top-0 right-[20%] w-[1px] h-[150%] bg-gradient-to-b from-white/20 via-transparent to-transparent rotate-[15deg] blur-[1px]"></div>
     <div class="absolute top-0 left-[20%] w-[1px] h-[150%] bg-gradient-to-b from-white/10 via-transparent to-transparent rotate-[-15deg] blur-[1px]"></div>
 
-    <div class="container mx-auto px-3 md:px-6 relative z-10 grid lg:grid-cols-2 gap-8 md:p-20 items-center">
+    <div class="container mx-auto px-3 md:px-6 relative z-10 grid lg:grid-cols-2 gap-12 md:p-20 items-center">
       <div class="space-y-12 text-center lg:text-left">
         <div class="inline-flex items-center gap-3 border-b border-white/20 pb-2">
            <span class="text-[10px] font-film text-white uppercase tracking-[0.3em]">Artistic Photography</span>
         </div>
         
-        <h1 class="text-3xl md:text-5xl md:text-8xl font-film font-normal leading-[1.1] text-white mobile-title tracking-tight">
+        <h1 class="text-2xl md:text-4xl md:text-7xl font-film font-normal leading-[1.1] text-white mobile-title tracking-tight">
            Capture<br>
            the <span class="italic text-[#737373]">Soul.</span>
         </h1>
@@ -65,11 +65,11 @@
            본연의 아름다움을 담아내는 모노크롬 스튜디오.
         </p>
         
-        <div class="flex flex-col sm:flex-row gap-6 justify-center lg:justify-start pt-8">
-           <button class="px-10 py-4 bg-[#262626] text-white font-film font-bold text-xs uppercase tracking-[0.2em] border border-white/10 hover:bg-white hover:text-black transition">
+        <div class="flex flex-col sm:flex-row gap-10 justify-center lg:justify-start pt-8">
+           <button class="px-10 py-4 bg-[#262626] text-white font-film font-semibold text-xs uppercase tracking-[0.2em] border border-white/10 hover:bg-white hover:text-slate-900 transition">
               View Works
            </button>
-           <button class="px-10 py-4 text-[#737373] font-film font-bold text-xs uppercase tracking-[0.2em] hover:text-white transition flex items-center gap-2">
+           <button class="px-10 py-4 text-[#737373] font-film font-semibold text-xs uppercase tracking-[0.2em] hover:text-white transition flex items-center gap-2">
               <span class="w-8 h-[1px] bg-current"></span> Studio Info
            </button>
         </div>
@@ -93,7 +93,7 @@
   </header>
 
   <!-- Login Modal -->
-  <div id="studio-modal" class="fixed inset-0 z-[100] hidden items-center justify-center p-4 bg-black/90 backdrop-blur-sm">
+  <div id="studio-modal" class="fixed inset-0 z-[100] hidden items-center justify-center p-4 bg-slate-950/90 backdrop-blur-sm">
     <div class="bg-[#171717] w-full max-w-sm p-14 shadow-2xl relative border border-white/10">
       <button onclick="toggleStudioModal()" class="absolute top-8 right-8 text-[#525252] hover:text-white transition text-xl font-film">&times;</button>
       
@@ -107,21 +107,21 @@
            <input type="text" placeholder="ACCESS CODE" class="w-full bg-transparent border-b border-[#404040] py-3 px-2 outline-none focus:border-white transition text-xs font-film text-white text-center placeholder-[#404040] tracking-[0.2em]">
         </div>
         
-        <button class="w-full bg-[#262626] text-white py-4 text-[10px] tracking-[0.3em] font-film font-bold uppercase hover:bg-white hover:text-black transition border border-white/5">
+        <button class="w-full bg-[#262626] text-white py-4 text-[10px] tracking-[0.3em] font-film font-semibold uppercase hover:bg-white hover:text-slate-900 transition border border-white/5">
            Unlock
         </button>
         
         <div class="text-center pt-4">
-           <a href="#" class="text-[9px] text-[#404040] tracking-[0.2em] font-bold uppercase hover:text-white transition font-film">Request Code</a>
+           <a href="#" class="text-[9px] text-[#404040] tracking-[0.2em] font-semibold uppercase hover:text-white transition font-film">Request Code</a>
         </div>
       </div>
     </div>
   </div>
 
-  <footer class="py-12 md:py-24 bg-[#1C1C1C] text-center px-6 border-t border-white/5">
-     <div class="inline-flex flex-col items-center gap-6 mb-8">
-        <span class="font-film font-bold text-2xl tracking-[0.3em] text-white">MONO<span class="text-[#525252]">CHROME</span></span>
-        <span class="text-[10px] font-bold text-[#525252] tracking-[0.5em] uppercase">Fine Art Photography</span>
+  <footer class="py-20 md:py-32 bg-[#1C1C1C] text-center px-6 border-t border-white/5">
+     <div class="inline-flex flex-col items-center gap-10 mb-8">
+        <span class="font-film font-semibold text-2xl tracking-[0.3em] text-white">MONO<span class="text-[#525252]">CHROME</span></span>
+        <span class="text-[10px] font-semibold text-[#525252] tracking-[0.5em] uppercase">Fine Art Photography</span>
      </div>
      <p class="text-[9px] text-[#262626] tracking-[0.5em] uppercase px-6">© 2024 MONOCHROME. ALL RIGHTS RESERVED.</p>
   </footer>
