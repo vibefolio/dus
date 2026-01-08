@@ -15,23 +15,23 @@
 <div class="bg-[#F2F1EE] text-[#1A1A1A] font-sans selection:bg-[#4A4E4D] selection:text-white min-h-screen overflow-x-hidden">
 
   <!-- Nav -->
-  <nav class="fixed w-full z-50 px-8 py-8 md:px-12 bg-[#F2F1EE]/60 backdrop-blur-2xl border-b border-[#1A1A1A]/5">
+  <nav class="fixed w-full z-50 px-8 py-12 md:px-12 bg-[#F2F1EE]/60 backdrop-blur-2xl border-b border-[#1A1A1A]/5">
     <div class="container mx-auto flex justify-between items-center">
-      <div class="flex items-center gap-6">
-         <span class="font-serif text-2xl tracking-[0.6em] font-black uppercase">RIVERSIDE</span>
+      <div class="flex items-center gap-10">
+         <span class="font-serif text-2xl tracking-[0.6em] font-semibold uppercase">RIVERSIDE</span>
          <div class="hidden lg:block w-[1px] h-6 bg-[#1A1A1A]/10"></div>
-         <span class="hidden lg:block text-[9px] font-bold tracking-[0.4em] uppercase text-[#1A1A1A]/40 uppercase">Quiet Luxury Stay</span>
+         <span class="hidden lg:block text-[9px] font-semibold tracking-[0.4em] uppercase text-[#1A1A1A]/40 uppercase">Quiet Luxury Stay</span>
       </div>
       
-      <div class="hidden md:flex gap-14 text-[10px] font-bold uppercase tracking-[0.4em] text-[#1A1A1A]/40">
+      <div class="hidden md:flex gap-14 text-[10px] font-semibold uppercase tracking-[0.4em] text-[#1A1A1A]/40">
         <a href="#about" class="hover:text-[#1A1A1A] transition">About</a>
         <a href="#suites" class="hover:text-[#1A1A1A] transition">Suites</a>
         <a href="#dining" class="hover:text-[#1A1A1A] transition">Dining</a>
       </div>
       
-      <div class="flex gap-8 items-center">
-         <button onclick="toggleStayModal()" class="text-[10px] font-bold uppercase tracking-[0.4em] text-[#1A1A1A]/40 hover:text-[#1A1A1A]">My Reservation</button>
-         <button class="bg-[#1A1A1A] text-white px-10 py-3.5 rounded-none font-bold text-[10px] tracking-[0.4em] uppercase hover:bg-[#4A4E4D] transition shadow-2xl">
+      <div class="flex gap-12 items-center">
+         <button onclick="toggleStayModal()" class="text-[10px] font-semibold uppercase tracking-[0.4em] text-[#1A1A1A]/40 hover:text-[#1A1A1A]">My Reservation</button>
+         <button class="bg-[#1A1A1A] text-white px-10 py-3.5 rounded-none font-semibold text-[10px] tracking-[0.4em] uppercase hover:bg-[#4A4E4D] transition shadow-2xl">
            Reserve
          </button>
       </div>
@@ -48,12 +48,12 @@
     </div>
     
     <div class="container mx-auto px-3 md:px-6 relative z-10 text-center space-y-12">
-      <div class="inline-flex flex-col items-center gap-6">
+      <div class="inline-flex flex-col items-center gap-10">
          <div class="w-[1px] h-24 bg-white/40"></div>
-         <span class="text-[10px] font-bold tracking-[0.8em] uppercase text-white/60">Nature Intertwined with Luxury</span>
+         <span class="text-[10px] font-semibold tracking-[0.8em] uppercase text-white/60">Nature Intertwined with Luxury</span>
       </div>
       
-      <h1 class="text-4xl md:text-6xl md:text-[8rem] font-serif font-black leading-none tracking-tighter text-white mobile-title">
+      <h1 class="text-3xl md:text-5xl md:text-[8rem] font-serif font-semibold leading-none tracking-tight text-white mobile-title">
          물결이 머무는,<br><span class="italic text-white/80">완벽한 고요.</span>
       </h1>
       
@@ -62,7 +62,7 @@
       </p>
       
       <div class="pt-10">
-         <button class="group inline-flex items-center gap-8 text-white text-[11px] font-bold uppercase tracking-[0.6em] hover:text-[#1A1A1A] transition">
+         <button class="group inline-flex items-center gap-12 text-white text-[11px] font-semibold uppercase tracking-[0.6em] hover:text-[#1A1A1A] transition">
             Explore Riverside <span class="w-12 h-[1px] bg-white group-hover:bg-[#1A1A1A] transition"></span>
          </button>
       </div>
@@ -75,33 +75,33 @@
       <button onclick="toggleStayModal()" class="absolute top-12 right-12 text-[#1A1A1A]/20 hover:text-[#1A1A1A] transition text-2xl font-light">&times;</button>
       
       <div class="text-center mb-12">
-        <h2 class="text-xl font-serif tracking-[0.6em] text-[#1A1A1A] mb-3 font-black uppercase">RESERVE_PORTAL</h2>
-        <p class="text-[9px] text-[#1A1A1A]/40 font-bold tracking-[0.3em] uppercase">Private Guest Archive</p>
+        <h2 class="text-xl font-serif tracking-[0.6em] text-[#1A1A1A] mb-3 font-semibold uppercase">RESERVE_PORTAL</h2>
+        <p class="text-[9px] text-[#1A1A1A]/40 font-semibold tracking-[0.3em] uppercase">Private Guest Archive</p>
       </div>
       
       <div class="space-y-8">
         <div class="space-y-3">
-           <p class="text-[9px] font-black text-[#1A1A1A]/20 uppercase tracking-[0.2em] ml-1">Confirmation Number</p>
-           <input type="text" placeholder="XXXX - XXXX - XXXX" class="w-full bg-white border border-[#1A1A1A]/5 py-6 px-8 outline-none focus:ring-1 focus:ring-[#1A1A1A] transition text-[12px] font-bold tracking-widest uppercase">
+           <p class="text-[9px] font-semibold text-[#1A1A1A]/20 uppercase tracking-[0.2em] ml-1">Confirmation Number</p>
+           <input type="text" placeholder="XXXX - XXXX - XXXX" class="w-full bg-white border border-[#1A1A1A]/5 py-6 px-8 outline-none focus:ring-1 focus:ring-[#1A1A1A] transition text-[12px] font-semibold tracking-wide uppercase">
         </div>
-        <button class="w-full bg-[#1A1A1A] text-white py-6 text-[10px] tracking-[0.5em] font-black uppercase hover:bg-[#4A4E4D] transition shadow-xl">
+        <button class="w-full bg-[#1A1A1A] text-white py-6 text-[10px] tracking-[0.5em] font-semibold uppercase hover:bg-[#4A4E4D] transition shadow-xl">
            Access Itinerary
         </button>
         <div class="flex justify-center gap-14 pt-4">
-           <a href="#" class="text-[9px] text-[#1A1A1A]/40 tracking-[0.3em] font-bold uppercase hover:text-[#1A1A1A] transition">Lost Key</a>
-           <a href="#" class="text-[9px] text-[#1A1A1A]/40 tracking-[0.3em] font-bold uppercase hover:text-[#1A1A1A] transition">E-Concierge</a>
+           <a href="#" class="text-[9px] text-[#1A1A1A]/40 tracking-[0.3em] font-semibold uppercase hover:text-[#1A1A1A] transition">Lost Key</a>
+           <a href="#" class="text-[9px] text-[#1A1A1A]/40 tracking-[0.3em] font-semibold uppercase hover:text-[#1A1A1A] transition">E-Concierge</a>
         </div>
       </div>
     </div>
   </div>
 
-  <footer class="py-16 md:py-32 bg-[#1A1A1A] text-center px-6">
-     <div class="inline-flex items-center gap-10 mb-12">
-        <span class="font-serif text-3xl text-white tracking-[0.8em] font-black uppercase">RIVERSIDE</span>
+  <footer class="py-24 md:py-40 bg-[#1A1A1A] text-center px-6">
+     <div class="inline-flex items-center gap-14 mb-12">
+        <span class="font-serif text-2xl text-white tracking-[0.8em] font-semibold uppercase">RIVERSIDE</span>
         <span class="w-[1px] h-10 bg-white/10"></span>
-        <span class="text-[10px] font-bold text-white/30 tracking-[0.6em] uppercase">Quiet Luxury Estate</span>
+        <span class="text-[10px] font-semibold text-white/30 tracking-[0.6em] uppercase">Quiet Luxury Estate</span>
      </div>
-     <div class="max-w-4xl mx-auto grid md:grid-cols-3 gap-12 text-[#F2F1EE]/40 text-[9px] font-bold uppercase tracking-[0.4em] mb-12 border-y border-white/5 py-12">
+     <div class="max-w-4xl mx-auto grid md:grid-cols-3 gap-16 text-[#F2F1EE]/40 text-[9px] font-semibold uppercase tracking-[0.4em] mb-12 border-y border-white/5 py-20">
         <div>360 Riverside Dr, Seoul</div>
         <div>+82 2 1234 5678</div>
         <div>Inquiry@Riverside.com</div>
