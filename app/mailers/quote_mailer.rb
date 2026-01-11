@@ -3,7 +3,7 @@ class QuoteMailer < ApplicationMailer
 
   def new_quote_notification(quote)
     @quote = quote
-    @admin_email = ENV.fetch('ADMIN_EMAIL', 'admin@dlab-website.com')
+    @admin_email = ENV.fetch('ADMIN_EMAIL', 'juuuno@naver.com')
     
     mail(
       to: @admin_email,
