@@ -33,7 +33,7 @@ class DesignTemplatesController < ApplicationController
       end
 
       # Pagination (12 items per page)
-      @design_templates = @design_templates.page(params[:page]).per(12)
+      @design_templates = @design_templates.page(params[:page]).per(12).to_a
       
     rescue => e
       # DB 에러 발생 시 빈 배열로 설정 (Fallback 데이터가 뷰에서 사용됨)
