@@ -1,12 +1,8 @@
 class DesignTemplatesController < ApplicationController
   def index
     begin
-      # Load from Static YAML instead of DB
-      all_templates = YAML.load_file(Rails.root.join('config', 'templates.yml'))
-      
-      # Map to Struct-like objects or just use hashes in the view
-      # To keep existing view code working, we wrap them in OpenStruct
-      @design_templates = all_templates.map { |t| OpenStruct.new(t) }
+      # Load from Static Data
+      @design_templates = DesignTemplate.all_static
 
       # Search functionality (In-memory)
       if params[:query].present?

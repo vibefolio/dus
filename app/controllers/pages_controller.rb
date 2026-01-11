@@ -1,14 +1,7 @@
 class PagesController < ApplicationController
   def home
     begin
-      all_templates = YAML.load_file(Rails.root.join('config', 'templates.yml'))
-      @featured_templates = all_templates.select { |t| t["is_featured"] }.take(3).each_with_index.map do |t, idx|
-        OpenStruct.new(t).tap do |os|
-          os.id = idx + 1000 # Dummy ID
-          os.pc_thumbnail_url = os.image_url.presence || '/images/templates/portfolio_gallery.png'
-          os.mobile_thumbnail_url = os.mobile_image_url.presence || os.pc_thumbnail_url
-        end
-      end
+      @featured_templates = DesignTemplate.all_static.select(&:is_featured).take(3)
     rescue => e
       Rails.logger.error "Home featured templates error: #{e.message}"
       @featured_templates = []
@@ -27,29 +20,12 @@ class PagesController < ApplicationController
   def contact
     @quote = Quote.new
     
-    # DB 기반 템플릿 데이터 로드 (하드코딩 제거)
+    # Static data fallback for template lookup
     if params[:template_id].present?
-      begin
-        # Try DB first
-        @target_template = DesignTemplate.find(params[:template_id])
+      @target_template = DesignTemplate.all_static.find { |t| t.id == params[:template_id].to_i }
+      if @target_template
         @preview_url = @target_template.preview_url
         @preview_title = @target_template.title
-      rescue ActiveRecord::RecordNotFound, ActiveRecord::StatementInvalid, ActiveRecord::ConnectionNotEstablished
-        # Fallback to Static YAML
-        begin
-          all_templates = YAML.load_file(Rails.root.join('config', 'templates.yml'))
-          # Assuming template_id matches idx + 1 from the map in DesignTemplatesController
-          found = all_templates.each_with_index.find { |t, idx| idx + 1 == params[:template_id].to_i }
-          if found
-            t, idx = found
-            @target_template = OpenStruct.new(t)
-            @target_template.id = idx + 1
-            @preview_url = @target_template.preview_url
-            @preview_title = @target_template.title
-          end
-        rescue => static_e
-          Rails.logger.error "Static Template fallback failed: #{static_e.message}"
-        end
       end
     end
 
@@ -132,8 +108,8 @@ class PagesController < ApplicationController
   def sitemap
     @base_url = request.base_url
     begin
-      @templates = DesignTemplate.all
-      @portfolios = Portfolio.all
+      @templates = DesignTemplate.all_static
+      @portfolios = [] # Database is down, no static data for portfolios yet
     rescue => e
       Rails.logger.error "Failed to load data for sitemap: #{e.message}"
       @templates = []
