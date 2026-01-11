@@ -22,6 +22,7 @@ Rails.application.routes.draw do
   get "contact", to: "pages#contact"
   post "contact", to: "pages#create_quote"
   get "pricing", to: "pages#pricing"
+  get "debug_error", to: "pages#debug_error"
 
   # 템플릿 페이지
   resources :design_templates, only: [:index]
