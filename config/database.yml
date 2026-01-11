@@ -25,17 +25,10 @@ test:
   <<: *default
   database: storage/test.sqlite3
 
-# PostgreSQL configuration for production (Render.com)
-# Falls back to nulldb adapter if DATABASE_URL is not set (for build-time)
+# Production configuration (Database-less)
+# We force NullDB for now since the Render PostgreSQL database is expired
 production:
-  <% if ENV['DATABASE_URL'].present? %>
-  adapter: postgresql
-  encoding: unicode
-  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  url: <%= ENV['DATABASE_URL'] %>
-  <% else %>
   adapter: nulldb
-  <% end %>
 
 # Staging or other environments
 staging:
