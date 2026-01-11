@@ -48,6 +48,15 @@ class PagesController < ApplicationController
   def pricing
   end
 
+  def debug_error
+    begin
+      count = DesignTemplate.count
+      render plain: "Success! DesignTemplate count: #{count}"
+    rescue => e
+      render plain: "Error: #{e.class} - #{e.message}\n\nBacktrace:\n#{e.backtrace.join("\n")}", status: :internal_server_error
+    end
+  end
+
   def create_quote
     begin
       @quote = Quote.new(quote_params)
