@@ -1,43 +1,46 @@
 class DesignTemplatesController < ApplicationController
   def index
     begin
-      @design_templates = DesignTemplate.all
+      # Load from Static YAML instead of DB
+      all_templates = YAML.load_file(Rails.root.join('config', 'templates.yml'))
+      
+      # Map to Struct-like objects or just use hashes in the view
+      # To keep existing view code working, we wrap them in OpenStruct
+      @design_templates = all_templates.map { |t| OpenStruct.new(t) }
 
-      # Search functionality
+      # Search functionality (In-memory)
       if params[:query].present?
-        query = "%#{params[:query]}%"
-        @design_templates = @design_templates.where(
-          "title LIKE ? OR description LIKE ? OR category LIKE ?", 
-          query, query, query
-        )
+        query = params[:query].downcase
+        @design_templates = @design_templates.select do |t|
+          t.title.downcase.include?(query) || 
+          t.description.downcase.include?(query) || 
+          t.category.downcase.include?(query)
+        end
       end
 
-      # Category filter
+      # Category filter (In-memory)
       if params[:category].present? && params[:category] != 'all'
-        @design_templates = @design_templates.where(category: params[:category])
+        @design_templates = @design_templates.select { |t| t.category == params[:category] }
       end
 
-      # Sorting logic
+      # Sorting logic (In-memory)
       case params[:sort]
       when 'popular'
-        # view_count 컬럼이 있으면 사용, 없으면 오래된 순(임시)
-        if DesignTemplate.column_names.include?('view_count')
-          @design_templates = @design_templates.order(view_count: :desc)
-        else
-          @design_templates = @design_templates.order(created_at: :asc)
-        end
+        # No actual view_count in static, fallback to featured first
+        @design_templates = @design_templates.sort_by { |t| [t.is_featured ? 0 : 1, t.title] }
       when 'latest'
-        @design_templates = @design_templates.order(created_at: :desc)
+        @design_templates = @design_templates.reverse
       else # 'recommend' or default
-        @design_templates = @design_templates.order(is_featured: :desc, created_at: :desc)
+        @design_templates = @design_templates.sort_by { |t| t.is_featured ? 0 : 1 }
       end
 
-      # Pagination (12 items per page)
-      @design_templates = @design_templates.page(params[:page]).per(12).to_a
+      # Pagination (Simple array slicing)
+      page = params[:page].to_i > 0 ? params[:page].to_i : 1
+      per_page = 12
+      @design_templates = Kaminari.paginate_array(@design_templates).page(page).per(per_page)
       
     rescue => e
-      # DB 에러 발생 시 빈 배열로 설정 (Fallback 데이터가 뷰에서 사용됨)
-      Rails.logger.error "DesignTemplate query failed: #{e.message}"
+      Rails.logger.error "Static Template load failed: #{e.message}"
       @design_templates = []
     end
   end
