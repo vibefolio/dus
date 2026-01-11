@@ -80,35 +80,42 @@ class PagesController < ApplicationController
     begin
       @quote = Quote.new(quote_params)
       @quote.status = "pending"
+      @quote.created_at = Time.current # Ensure it has a timestamp for the mailer
 
       if @quote.save
-        # Send email notifications safely
-        begin
-          QuoteMailer.new_quote_notification(@quote).deliver_now
-          QuoteMailer.quote_confirmation(@quote).deliver_now
-        rescue => e
-          Rails.logger.error "이메일 발송 실패: #{e.message}"
-          # 이메일 실패는 사용자에게 치명적이지 않으므로 무시하고 진행
-        end
-        
-        # Normal success path if @quote.save worked
+        # Normal path: DB is alive
+        send_quote_emails(@quote)
         flash[:notice] = "문의가 성공적으로 접수되었습니다. 담당자가 확인 후 연락드리겠습니다."
         redirect_to contact_path
       else
-        flash.now[:alert] = "입력하신 정보를 다시 확인해주세요."
         render :contact, status: :unprocessable_entity
-        return
       end
     rescue => e
-      # Database connection error (e.g. Render DB expired) or other critical save error
-      Rails.logger.error "CRITICAL: Inquiry DB write failed, logging to file instead: #{e.message}"
-      Rails.logger.info "INQUIRY DATA: #{quote_params.to_h}"
+      # Database connection error (e.g. Render DB expired)
+      Rails.logger.error "CRITICAL: Inquiry DB write failed, fallback to email only: #{e.message}"
       
-      # We still want to give the user a 'Success' feedback or at least not a 500
-      flash[:notice] = "문의가 접수되었습니다. (시스템 점검 중으로 확인 후 연락드리겠습니다.)"
+      # Mock the object for the mailer since DB save failed
+      @fallback_quote = OpenStruct.new(quote_params)
+      @fallback_quote.created_at = Time.current
+      
+      # Try to send email even if DB is down
+      begin
+        send_quote_emails(@fallback_quote)
+        flash[:notice] = "문의가 접수되었습니다. (시스템 점검 중이나 메일로 정상 접수되었습니다.)"
+      rescue => mail_e
+        Rails.logger.error "Email delivery also failed: #{mail_e.message}"
+        flash[:notice] = "문의가 접수되었습니다. (시스템 점검 중으로 확인 후 연락드리겠습니다.)"
+      end
+      
       redirect_to contact_path
-      return
     end
+  end
+
+  private
+
+  def send_quote_emails(quote)
+    QuoteMailer.new_quote_notification(quote).deliver_now
+    QuoteMailer.quote_confirmation(quote).deliver_now
   end
 
   def robots
