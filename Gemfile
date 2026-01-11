@@ -14,6 +14,7 @@ gem "propshaft"
 group :production do
   gem "pg", "~> 1.1"
   gem "puma", ">= 5.0"
+  gem "activerecord-nulldb-adapter"  # Allows builds without database connection
 end
 
 # Use SQLite in development and test

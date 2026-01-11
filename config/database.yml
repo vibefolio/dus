@@ -26,11 +26,16 @@ test:
   database: storage/test.sqlite3
 
 # PostgreSQL configuration for production (Render.com)
+# Falls back to nulldb adapter if DATABASE_URL is not set (for build-time)
 production:
+  <% if ENV['DATABASE_URL'].present? %>
   adapter: postgresql
   encoding: unicode
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  url: <%= ENV.fetch("DATABASE_URL") { "" } %>
+  url: <%= ENV['DATABASE_URL'] %>
+  <% else %>
+  adapter: nulldb
+  <% end %>
 
 # Staging or other environments
 staging:
