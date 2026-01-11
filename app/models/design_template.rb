@@ -35,4 +35,16 @@ class DesignTemplate < ApplicationRecord
       :none
     end
   end
+
+  # Static data support for database-less architecture
+  def self.all_static
+    @static_data ||= YAML.load_file(Rails.root.join('config', 'templates.yml'))
+    @static_data.map.with_index do |t, idx|
+      OpenStruct.new(t).tap do |os|
+        os.id = idx + 1
+        os.pc_thumbnail_url = os.image_url.presence || '/images/templates/portfolio_gallery.png'
+        os.mobile_thumbnail_url = os.mobile_image_url.presence || os.pc_thumbnail_url
+      end
+    end
+  end
 end
