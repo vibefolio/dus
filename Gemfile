@@ -17,11 +17,17 @@ group :production do
   gem "activerecord-nulldb-adapter"  # Allows builds without database connection
 end
 
-# Use SQLite in development and test
+# Use SQLite globally (for production with Fly Volumes)
+gem "sqlite3", ">= 2.1"
+
 group :development, :test do
-  gem "sqlite3", ">= 2.1"
   gem "webrick"  # Web server for development (Windows compatible)
 end
+
+# Auth
+gem "devise"
+gem "omniauth-google-oauth2"
+gem "omniauth-rails_csrf_protection"
 # Use JavaScript with ESM import maps [https://github.com/rails/importmap-rails]
 gem "importmap-rails"
 # Hotwire's SPA-like page accelerator [https://turbo.hotwired.dev]
@@ -45,7 +51,7 @@ gem "tzinfo-data", platforms: %i[ windows jruby ]
 # gem "solid_cable"  # Disabled - requires websocket-driver which has Windows compilation issues
 
 # Reduces boot times through caching; required in config/boot.rb
-# gem "bootsnap", require: false  # Disabled due to Windows compilation issues
+gem "bootsnap", require: false
 
 # Deploy this application anywhere as a Docker container [https://kamal-deploy.org]
 gem "kamal", require: false
@@ -54,7 +60,7 @@ gem "kamal", require: false
 gem "thruster", require: false
 
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
-# gem "image_processing", "~> 1.2"
+gem "image_processing", "~> 1.2"
 
 # PDF generation (선택사항 - Windows에서 설치 오류 시 주석 처리)
 gem "prawn"
@@ -100,3 +106,9 @@ end
 # gem 'sassc-rails'
 
 # gem 'ffi', '1.16.3'
+
+gem "dockerfile-rails", ">= 1.7", group: :development
+
+gem "litestream", "~> 0.14.0"
+
+gem "aws-sdk-s3", "~> 1.211", require: false

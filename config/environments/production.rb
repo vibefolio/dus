@@ -21,8 +21,8 @@ Rails.application.configure do
   # Enable serving of images, stylesheets, and JavaScripts from an asset server.
   # config.asset_host = "http://assets.example.com"
 
-  # Store uploaded files on the local file system (see config/storage.yml for options).
-  config.active_storage.service = :local
+  # Store uploaded files in Tigris Global Object Storage (see config/storage.yml for options).
+  config.active_storage.service = :tigris
 
   # Assume all access to the app is happening through a SSL-terminating reverse proxy.
   # config.assume_ssl = true
@@ -75,9 +75,12 @@ Rails.application.configure do
 
   # Enable DNS rebinding protection and other `Host` header attacks.
   config.hosts = [
-    "designd.co.kr",     # Allow requests from base domain
-    /.*\.designd\.co\.kr/, # Allow requests from subdomains
-    /.*\.onrender\.com/  # Allow Render.com domains
+    "designd.co.kr",
+    "www.designd.co.kr",
+    "dlab-website.fly.dev",
+    /.*\.designd\.co\.kr/,
+    /.*\.fly\.dev/,
+    /.*\.onrender\.com/
   ]
   #
   # Skip DNS rebinding protection for the default health check endpoint.
