@@ -27,8 +27,10 @@ test:
 
 # Production configuration (Database-less)
 # We force NullDB for now since the Render PostgreSQL database is expired
-production:
-  adapter: nulldb
+# Production configuration (SQLite3 on Fly Volume)
+production: &production
+  <<: *default
+  database: /rails/storage/production.sqlite3
 
 # Staging or other environments
 staging:

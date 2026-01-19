@@ -167,7 +167,7 @@
             돈 벌어주는 홈페이지!
           </h1>
           <p class="hero-subtitle" style="margin-bottom: 0.5rem; word-break: keep-all; font-size: clamp(1rem, 4.5vw, 1.5rem); opacity: 0.9; line-height: 1.6;">
-            구독 요금제로 초기 개발비 부담은 낮추고,<br>주력 사업에 집중하세요!
+            요금제로 초기 개발비 부담은 낮추고,<br>주력 사업에 집중하세요!
           </p>
         </div>
 
@@ -179,7 +179,7 @@
     </div>
     <div class="hero-cta">
           <%= link_to "디자인 템플릿 보기", design_templates_path, class: "btn btn-outline btn-lg", style: "color: white; border-color: white;" %>
-      <%= link_to "구독요금제 보기", pricing_path, class: "btn btn-accent btn-lg" %>
+      <%= link_to "요금제 보기", pricing_path, class: "btn btn-accent btn-lg" %>
     </div>
 
     <!-- Stats Grid -->
@@ -216,7 +216,7 @@
       <span style="color: var(--color-accent); font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; font-size: var(--text-sm);">PREMIUM TEMPLATES</span>
       <h2 style="font-size: clamp(1.75rem, 5vw, 3rem); margin-top: var(--space-2); margin-bottom: var(--space-4); font-weight: 800; word-break: keep-all; line-height: 1.3;">시간과 돈을 벌어주는 디자인 템플릿</h2>
       <p class="text-gray" style="font-size: clamp(1rem, 4vw, 1.25rem); max-width: 700px; margin: 0 auto; word-break: keep-all; line-height: 1.6;">
-        업종별 최적화된 고퀄리티 디자인으로<br>합리적인 구독요금제로 빠르게 사업을 시작하세요.
+        업종별 최적화된 고퀄리티 디자인으로<br>합리적인 요금제로 빠르게 사업을 시작하세요.
       </p>
     </div>
 
@@ -227,9 +227,11 @@
           <div class="card template-card" style="padding: 0; overflow: hidden; border: none; box-shadow: var(--shadow-xl); transition: transform 0.3s, box-shadow 0.3s;" onmouseover="this.style.transform='translateY(-4px)'; this.style.boxShadow='0 25px 50px -12px rgba(0,0,0,0.25)'" onmouseout="this.style.transform=''; this.style.boxShadow='var(--shadow-xl)'">
             <div style="height: 240px; overflow: hidden; position: relative; cursor: pointer;" onclick="openLiveDemo('<%= template.preview_url %>', '<%= template.title %>')">
               <% 
-                img_src = if template.pc_image.attached?
+                img_src = if template.try(:pc_image).try(:attached?)
                             url_for(template.pc_image)
-                          elsif template.image_url.present?
+                          elsif template.respond_to?(:pc_thumbnail_url) && template.pc_thumbnail_url.present?
+                            template.pc_thumbnail_url
+                          elsif template.try(:image_url).present?
                             template.image_url
                           else
                             '/images/templates/portfolio_gallery.png'
