@@ -34,6 +34,8 @@ Rails.application.routes.draw do
   post "contact", to: "pages#create_quote"
   get "pricing", to: "pages#pricing"
   get "mypage", to: "mypage#index", as: :mypage
+  get "privacy", to: "pages#privacy"
+  get "terms", to: "pages#terms"
   get "debug_error", to: "pages#debug_error"
 
   # 템플릿 페이지
