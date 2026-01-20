@@ -1,5 +1,15 @@
 Rails.application.routes.draw do
-  devise_for :users
+  devise_for :users, controllers: { 
+    omniauth_callbacks: 'users/omniauth_callbacks',
+    registrations: 'devise/registrations',
+    sessions: 'devise/sessions'
+  }
+  
+  resource :cart, only: [:show] do
+    post 'add', to: 'carts#add_item', as: :add_to
+    delete 'remove/:id', to: 'carts#remove_item', as: :remove_item
+  end
+
   resources :orders do
     collection do
       get 'fail'
@@ -23,10 +33,13 @@ Rails.application.routes.draw do
   get "contact", to: "pages#contact"
   post "contact", to: "pages#create_quote"
   get "pricing", to: "pages#pricing"
+  get "mypage", to: "mypage#index", as: :mypage
   get "debug_error", to: "pages#debug_error"
 
   # 템플릿 페이지
-  resources :design_templates, only: [:index]
+  resources :design_templates, only: [:index] do
+    post 'toggle_like', to: 'likes#toggle', as: :toggle_like
+  end
   get 'templates', to: redirect('/design_templates')
 
   # 어드민 페이지

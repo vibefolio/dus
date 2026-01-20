@@ -147,10 +147,24 @@
                         class="flex-1 py-3 border-2 border-slate-100 text-slate-600 font-bold rounded-xl hover:bg-slate-50 hover:border-slate-200 transition">
                   둘러보기
                 </button>
+
+                <!-- Heart Button -->
+                <% liked = current_user&.likes&.exists?(design_template: template) %>
+                <%= button_to design_template_toggle_like_path(template), method: :post, 
+                    class: "w-12 h-full border-2 #{liked ? 'border-red-500 bg-red-50 text-red-500' : 'border-slate-100 text-slate-400 hover:border-red-200 hover:text-red-400'} rounded-xl flex items-center justify-center transition" do %>
+                  <svg width="24" height="24" fill="<%= liked ? 'currentColor' : 'none' %>" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path></svg>
+                <% end %>
+
                 <%= link_to contact_path(template_id: template.id, template_title: template.title, preview_url: template.preview_url), 
                             class: "flex-1 py-3 bg-slate-900 text-white font-bold rounded-xl text-center hover:bg-indigo-600 transition shadow-lg shadow-slate-200 flex items-center justify-center gap-2" do %>
                   <span>PICK</span>
                   <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-width="2" d="M5 12h14m-7-7l7 7-7 7"/></svg>
+                <% end %>
+                <%= button_to add_to_cart_path, params: { item_type: 'DesignTemplate', item_id: template.id }, 
+                            method: :post,
+                            class: "flex-1 py-3 bg-white border-2 border-slate-900 text-slate-900 font-bold rounded-xl text-center hover:bg-slate-50 transition flex items-center justify-center gap-2", 
+                            form_class: "flex-1" do %>
+                  <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
                 <% end %>
               </div>
             </div>

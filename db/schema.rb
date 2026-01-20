@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_01_13_024356) do
+ActiveRecord::Schema[8.1].define(version: 2026_01_19_232102) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.bigint "blob_id", null: false
     t.datetime "created_at", null: false
@@ -39,6 +39,24 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_13_024356) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
+  create_table "cart_items", force: :cascade do |t|
+    t.integer "cart_id", null: false
+    t.datetime "created_at", null: false
+    t.integer "item_id", null: false
+    t.string "item_type", null: false
+    t.integer "quantity"
+    t.datetime "updated_at", null: false
+    t.index ["cart_id"], name: "index_cart_items_on_cart_id"
+    t.index ["item_type", "item_id"], name: "index_cart_items_on_item"
+  end
+
+  create_table "carts", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "user_id", null: false
+    t.index ["user_id"], name: "index_carts_on_user_id"
+  end
+
   create_table "design_templates", force: :cascade do |t|
     t.string "category"
     t.datetime "created_at", null: false
@@ -48,9 +66,19 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_13_024356) do
     t.boolean "is_featured", default: false
     t.string "mobile_image_url"
     t.string "preview_url"
+    t.integer "price", default: 0
     t.string "title"
     t.datetime "updated_at", null: false
     t.integer "view_count", default: 0
+  end
+
+  create_table "likes", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.integer "design_template_id", null: false
+    t.datetime "updated_at", null: false
+    t.integer "user_id", null: false
+    t.index ["design_template_id"], name: "index_likes_on_design_template_id"
+    t.index ["user_id"], name: "index_likes_on_user_id"
   end
 
   create_table "orders", force: :cascade do |t|
@@ -104,9 +132,13 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_13_024356) do
     t.datetime "created_at", null: false
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
+    t.string "image"
+    t.string "name"
+    t.string "provider"
     t.datetime "remember_created_at"
     t.datetime "reset_password_sent_at"
     t.string "reset_password_token"
+    t.string "uid"
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
@@ -114,5 +146,9 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_13_024356) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "cart_items", "carts"
+  add_foreign_key "carts", "users"
+  add_foreign_key "likes", "design_templates"
+  add_foreign_key "likes", "users"
   add_foreign_key "orders", "products"
 end

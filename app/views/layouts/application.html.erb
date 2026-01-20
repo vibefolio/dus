@@ -91,6 +91,9 @@
       }
     </script>
 
+    <!-- PortOne V2 SDK -->
+    <script src="https://cdn.portone.io/v2/browser-sdk.js"></script>
+
     <%# Includes all stylesheet files in app/assets/stylesheets %>
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
   </head>
@@ -111,6 +114,28 @@
           <%# <li><%= link_to "포트폴리오", portfolio_path, class: "navbar-link #{current_page?(portfolio_path) ? 'active' : ''}" %>
           <li><%= link_to "요금제", pricing_path, class: "navbar-link #{current_page?(pricing_path) ? 'active' : ''}" %></li>
           <li><%= link_to "문의하기", contact_path, class: "navbar-link #{current_page?(contact_path) ? 'active' : ''}" %></li>
+          
+          <% if user_signed_in? %>
+             <li style="margin-left: 10px; display: flex; align-items: center; gap: 15px;">
+              <%= link_to cart_path, class: "relative text-gray-600 hover:text-emerald-600 transition", title: "장바구니" do %>
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+                <% if current_user.cart&.cart_items&.any? %>
+                  <span class="absolute -top-2 -right-2 bg-red-500 text-white text-[10px] font-bold px-1.5 py-0.5 rounded-full"><%= current_user.cart.cart_items.sum(:quantity) %></span>
+                <% end %>
+              <% end %>
+
+              <%= link_to mypage_path, class: "flex items-center gap-2 hover:text-emerald-600 transition" do %>
+                <span style="font-size: 14px; color: #666; font-weight: 500;"><%= current_user.email.split('@')[0] %>님</span>
+              <% end %>
+              
+              <%= button_to "로그아웃", destroy_user_session_path, method: :delete, data: { turbo: false }, class: "btn btn-sm btn-outline", style: "padding: 6px 14px; font-size: 13px; border-radius: 99px; border-color: #ddd; color: #666;" %>
+            </li>
+          <% else %>
+            <li style="margin-left: 10px; display: flex; align-items: center; gap: 10px;">
+              <%= link_to "로그인", new_user_session_path, class: "navbar-link", style: "font-size: 14px; color: #666;" %>
+              <%= link_to "회원가입", new_user_registration_path, class: "btn btn-sm btn-primary", style: "padding: 6px 16px; font-size: 13px; border-radius: 99px; color: white; background: var(--color-primary);" %>
+            </li>
+          <% end %>
         </ul>
 
         <!-- Mobile Menu Button -->
@@ -127,6 +152,20 @@
         <%= link_to "디자인 템플릿", design_templates_path, class: "block px-4 py-2 text-gray-700 font-bold hover:bg-gray-50 rounded-lg #{current_page?(design_templates_path) ? 'text-emerald-600 bg-emerald-50' : ''}" %>
         <%= link_to "요금제", pricing_path, class: "block px-4 py-2 text-gray-700 font-bold hover:bg-gray-50 rounded-lg #{current_page?(pricing_path) ? 'text-emerald-600 bg-emerald-50' : ''}" %>
         <%= link_to "문의하기", contact_path, class: "block px-4 py-2 text-gray-700 font-bold hover:bg-gray-50 rounded-lg #{current_page?(contact_path) ? 'text-emerald-600 bg-emerald-50' : ''}" %>
+        
+        <div style="border-top: 1px solid #eee; margin-top: 10px; padding-top: 10px;">
+          <% if user_signed_in? %>
+            <div class="px-4 py-2 text-sm text-gray-500 mb-2">
+              <%= current_user.email %>님 환영합니다
+            </div>
+            <%= link_to "마이페이지", mypage_path, class: "block px-4 py-2 text-gray-700 font-bold hover:bg-gray-50 rounded-lg" %>
+            <%= link_to "장바구니", cart_path, class: "block px-4 py-2 text-gray-700 font-bold hover:bg-gray-50 rounded-lg" %>
+            <%= button_to "로그아웃", destroy_user_session_path, method: :delete, data: { turbo: false }, class: "block w-full text-left px-4 py-2 text-red-500 font-bold hover:bg-red-50 rounded-lg" %>
+          <% else %>
+            <%= link_to "로그인", new_user_session_path, class: "block px-4 py-2 text-gray-700 font-bold hover:bg-gray-50 rounded-lg" %>
+            <%= link_to "회원가입", new_user_registration_path, class: "block px-4 py-2 text-emerald-600 font-bold hover:bg-emerald-50 rounded-lg" %>
+          <% end %>
+        </div>
       </div>
     </nav>
     

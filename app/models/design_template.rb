@@ -3,7 +3,8 @@ require 'ostruct'
 class DesignTemplate < ApplicationRecord
   has_one_attached :pc_image
   has_one_attached :mobile_image
-
+  
+  has_many :cart_items, as: :item
   validates :title, presence: true
 
   # PC 대표 이미지 URL 반환 (순환 참조 방지를 위해 ActiveStorage Helper 제거)
