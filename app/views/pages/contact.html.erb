@@ -142,10 +142,19 @@
               <!-- 프로젝트 유형 hidden 필드 -->
               <%= hidden_field_tag "quote[project_type]", "템플릿 의뢰" %>
 
-              <button type="submit" class="w-full py-4 bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-lg rounded-xl shadow-lg shadow-emerald-200 hover:shadow-emerald-300 transition-all transform hover:-translate-y-0.5 flex justify-center items-center gap-2">
-                <span>무료 견적 신청하기</span>
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14m-7-7l7 7-7 7"/></svg>
-              </button>
+              <div class="flex gap-3">
+                <button type="submit" class="flex-[2] py-4 bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-lg rounded-xl shadow-lg shadow-emerald-200 hover:shadow-emerald-300 transition-all transform hover:-translate-y-0.5 flex justify-center items-center gap-2">
+                  <span>무료 견적 신청하기</span>
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14m-7-7l7 7-7 7"/></svg>
+                </button>
+                
+                <%= link_to add_to_cart_path(item_type: 'DesignTemplate', item_id: params[:template_id]), 
+                    data: { turbo_method: :post },
+                    class: "flex-1 py-4 bg-white border-2 border-slate-200 hover:border-slate-800 text-slate-600 hover:text-slate-900 font-bold text-lg rounded-xl transition-all transform hover:-translate-y-0.5 flex justify-center items-center gap-2" do %>
+                  <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
+                  <span>담기</span>
+                <% end %>
+              </div>
               
               <p class="text-xs text-center text-gray-400 mt-4 bg-gray-50 py-2 rounded-lg">
                 🔒 보내주신 정보는 프로젝트 상담 목적으로만 사용됩니다.
