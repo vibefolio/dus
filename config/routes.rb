@@ -61,6 +61,12 @@ Rails.application.routes.draw do
       end
     end
     resources :design_templates
+    resources :users
+    resources :orders do
+      member do
+        patch :update_status
+      end
+    end
   end
 
   # SEO
