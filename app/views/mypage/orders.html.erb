@@ -9,15 +9,15 @@
     </div>
 
     <!-- 탭 메뉴 -->
-    <div class="bg-white rounded-2xl shadow-sm mb-8">
-      <div class="flex border-b border-gray-200">
-        <%= link_to mypage_path, class: "flex-1 px-6 py-4 text-center font-medium text-gray-600 hover:text-emerald-600 transition" do %>
+    <div class="bg-white rounded-2xl shadow-sm mb-8 overflow-x-auto">
+      <div class="flex border-b border-gray-200 min-w-max md:min-w-0">
+        <%= link_to mypage_path, class: "flex-1 px-3 md:px-6 py-3 md:py-4 text-center font-medium text-gray-600 hover:text-emerald-600 transition text-sm md:text-base whitespace-nowrap" do %>
           <span>대시보드</span>
         <% end %>
-        <%= link_to mypage_orders_path, class: "flex-1 px-6 py-4 text-center font-medium border-b-2 border-emerald-600 text-emerald-600" do %>
+        <%= link_to mypage_orders_path, class: "flex-1 px-3 md:px-6 py-3 md:py-4 text-center font-medium border-b-2 border-emerald-600 text-emerald-600 text-sm md:text-base whitespace-nowrap" do %>
           <span>주문 내역</span>
         <% end %>
-        <%= link_to mypage_wishlist_path, class: "flex-1 px-6 py-4 text-center font-medium text-gray-600 hover:text-emerald-600 transition" do %>
+        <%= link_to mypage_wishlist_path, class: "flex-1 px-3 md:px-6 py-3 md:py-4 text-center font-medium text-gray-600 hover:text-emerald-600 transition text-sm md:text-base whitespace-nowrap" do %>
           <span>위시리스트</span>
         <% end %>
       </div>
