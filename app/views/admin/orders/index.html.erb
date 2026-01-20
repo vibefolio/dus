@@ -1,0 +1,57 @@
+<div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--space-6);">
+  <h1 style="font-size: var(--text-2xl); font-weight: 700;">주문 관리</h1>
+</div>
+
+<div class="card">
+  <table style="width: 100%; border-collapse: collapse;">
+    <thead>
+      <tr style="border-bottom: 1px solid var(--color-gray-200);">
+        <th style="text-align: left; padding: var(--space-4); color: var(--color-gray-500); font-size: var(--text-sm);">주문번호</th>
+        <th style="text-align: left; padding: var(--space-4); color: var(--color-gray-500); font-size: var(--text-sm);">주문자</th>
+        <th style="text-align: left; padding: var(--space-4); color: var(--color-gray-500); font-size: var(--text-sm);">주문일</th>
+        <th style="text-align: left; padding: var(--space-4); color: var(--color-gray-500); font-size: var(--text-sm);">상태</th>
+        <th style="text-align: right; padding: var(--space-4); color: var(--color-gray-500); font-size: var(--text-sm);">금액</th>
+        <th style="text-align: right; padding: var(--space-4); color: var(--color-gray-500); font-size: var(--text-sm);">관리</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @orders.each do |order| %>
+        <tr style="border-bottom: 1px solid var(--color-gray-100);">
+          <td style="padding: var(--space-4);">#<%= order.id %></td>
+          <td style="padding: var(--space-4);">
+            <% if order.user %>
+              <%= link_to order.user.name || order.user.email, admin_user_path(order.user), class: "text-gray-900 hover:text-primary" %>
+              <div style="font-size: var(--text-xs); color: var(--color-gray-500);"><%= order.user.email %></div>
+            <% else %>
+              <span style="color: var(--color-gray-500);">비회원</span>
+            <% end %>
+          </td>
+          <td style="padding: var(--space-4);"><%= order.created_at.strftime("%Y-%m-%d %H:%M") %></td>
+          <td style="padding: var(--space-4);">
+            <% 
+              badge_class = case order.status
+                when 'pending' then 'bg-yellow-100 text-yellow-800'
+                when 'paid', 'completed' then 'bg-green-100 text-green-800'
+                when 'cancelled', 'refunded' then 'bg-red-100 text-red-800'
+                else 'bg-gray-100 text-gray-800'
+              end
+            %>
+            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium <%= badge_class %>">
+              <%= order.status.upcase %>
+            </span>
+          </td>
+          <td style="padding: var(--space-4); text-align: right; font-weight: 500;">
+            <%= number_to_currency(order.total_amount, unit: "₩", precision: 0) %>
+          </td>
+          <td style="padding: var(--space-4); text-align: right;">
+            <%= link_to "상세보기", admin_order_path(order), class: "btn btn-outline btn-sm" %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  
+  <div style="padding: var(--space-4); display: flex; justify-content: center;">
+    <%#= paginate @orders %>
+  </div>
+</div>
