@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
   # 임시: Fly.io 프록시 문제로 인한 CSRF 검증 건너뛰기
-  skip_before_action :verify_authenticity_token
+  skip_before_action :verify_authenticity_token, raise: false
   # Only allow modern browsers supporting webp images, web push, badges, import maps, CSS nesting, and CSS :has.
   allow_browser versions: :modern
 
