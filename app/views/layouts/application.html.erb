@@ -124,8 +124,15 @@
                 <% end %>
               <% end %>
 
-              <%= link_to mypage_path, class: "flex items-center gap-2 hover:text-emerald-600 transition" do %>
-                <span style="font-size: 14px; color: #666; font-weight: 500;"><%= current_user.email.split('@')[0] %>님</span>
+              <%= link_to mypage_path, class: "flex items-center gap-2 hover:opacity-80 transition group" do %>
+                <% if current_user.image.present? %>
+                  <%= image_tag current_user.image, class: "w-8 h-8 rounded-full object-cover border-2 border-emerald-100 group-hover:border-emerald-300 transition" %>
+                <% else %>
+                  <div class="w-8 h-8 rounded-full bg-gradient-to-br from-emerald-400 to-emerald-600 flex items-center justify-center text-white text-sm font-bold border-2 border-emerald-100 group-hover:border-emerald-300 transition">
+                    <%= (current_user.name&.first || current_user.email.first).upcase %>
+                  </div>
+                <% end %>
+                <span style="font-size: 14px; color: #666; font-weight: 500;"><%= current_user.name || current_user.email.split('@')[0] %>님</span>
               <% end %>
               
               <%= button_to "로그아웃", destroy_user_session_path, method: :delete, data: { turbo: false }, class: "btn btn-sm btn-outline", style: "padding: 6px 14px; font-size: 13px; border-radius: 99px; border-color: #ddd; color: #666;" %>

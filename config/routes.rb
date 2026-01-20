@@ -33,7 +33,12 @@ Rails.application.routes.draw do
   get "contact", to: "pages#contact"
   post "contact", to: "pages#create_quote"
   get "pricing", to: "pages#pricing"
-  get "mypage", to: "mypage#index", as: :mypage
+  # 마이페이지
+  get "mypage", to: "mypage#show", as: :mypage
+  get "mypage/edit", to: "mypage#edit", as: :edit_mypage
+  patch "mypage", to: "mypage#update"
+  get "mypage/wishlist", to: "mypage#wishlist", as: :mypage_wishlist
+  get "mypage/orders", to: "mypage#orders", as: :mypage_orders
   get "privacy", to: "pages#privacy"
   get "terms", to: "pages#terms"
   get "debug_error", to: "pages#debug_error"
