@@ -43,6 +43,12 @@ class PagesController < ApplicationController
   def pricing
   end
 
+  def privacy
+  end
+
+  def terms
+  end
+
   def debug_error
     begin
       count = DesignTemplate.count
