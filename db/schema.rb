@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_01_19_232102) do
+ActiveRecord::Schema[8.1].define(version: 2026_01_20_125049) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.bigint "blob_id", null: false
     t.datetime "created_at", null: false
@@ -81,6 +81,17 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_19_232102) do
     t.index ["user_id"], name: "index_likes_on_user_id"
   end
 
+  create_table "order_items", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.integer "design_template_id", null: false
+    t.integer "order_id", null: false
+    t.decimal "price"
+    t.integer "quantity"
+    t.datetime "updated_at", null: false
+    t.index ["design_template_id"], name: "index_order_items_on_design_template_id"
+    t.index ["order_id"], name: "index_order_items_on_order_id"
+  end
+
   create_table "orders", force: :cascade do |t|
     t.integer "amount"
     t.datetime "created_at", null: false
@@ -89,8 +100,11 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_19_232102) do
     t.string "payment_key"
     t.integer "product_id", null: false
     t.string "status"
+    t.decimal "total_amount"
     t.datetime "updated_at", null: false
+    t.integer "user_id", null: false
     t.index ["product_id"], name: "index_orders_on_product_id"
+    t.index ["user_id"], name: "index_orders_on_user_id"
   end
 
   create_table "portfolios", force: :cascade do |t|
@@ -150,5 +164,8 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_19_232102) do
   add_foreign_key "carts", "users"
   add_foreign_key "likes", "design_templates"
   add_foreign_key "likes", "users"
+  add_foreign_key "order_items", "design_templates"
+  add_foreign_key "order_items", "orders"
   add_foreign_key "orders", "products"
+  add_foreign_key "orders", "users"
 end

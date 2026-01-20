@@ -12,6 +12,7 @@ Rails.application.routes.draw do
 
   resources :orders do
     collection do
+      post 'create_from_cart'
       get 'fail'
     end
   end
