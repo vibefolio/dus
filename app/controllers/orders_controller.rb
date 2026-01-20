@@ -57,6 +57,48 @@ class OrdersController < ApplicationController
     end
   end
 
+  # 장바구니에서 주문 생성
+  def create_from_cart
+    unless user_signed_in?
+      redirect_to new_user_session_path, alert: "로그인이 필요합니다."
+      return
+    end
+
+    cart = current_user.cart
+    unless cart&.cart_items&.any?
+      redirect_to cart_path, alert: "장바구니가 비어있습니다."
+      return
+    end
+
+    # 주문 생성
+    @order = current_user.orders.build(
+      status: 'pending',
+      total_amount: 0
+    )
+
+    # 장바구니 아이템을 주문 아이템으로 변환
+    cart.cart_items.each do |cart_item|
+      @order.order_items.build(
+        design_template: cart_item.design_template,
+        quantity: cart_item.quantity,
+        price: cart_item.design_template.price
+      )
+    end
+
+    # 총액 계산
+    @order.total_amount = @order.calculate_total
+
+    if @order.save
+      # 장바구니 비우기
+      cart.cart_items.destroy_all
+      
+      # 결제 페이지로 리다이렉트 (PortOne 연동)
+      redirect_to @order, notice: "주문이 생성되었습니다. 결제를 진행해주세요."
+    else
+      redirect_to cart_path, alert: "주문 생성에 실패했습니다."
+    end
+  end
+
   # Payment Success Handling
   def success
     payment_key = params[:paymentKey]
