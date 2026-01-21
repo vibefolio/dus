@@ -5,9 +5,22 @@ class ApplicationController < ActionController::Base
   allow_browser versions: :modern
 
   # Changes to the importmap will invalidate the etag for HTML responses
+  # Changes to the importmap will invalidate the etag for HTML responses
   stale_when_importmap_changes
   
+  before_action :set_guest_id
+
   private
+
+  def set_guest_id
+    unless cookies.signed[:guest_id]
+      cookies.signed[:guest_id] = {
+        value: SecureRandom.uuid,
+        expires: 1.month.from_now
+      }
+    end
+  end
+
 
   def authenticate_admin!
     unless session[:admin_id]

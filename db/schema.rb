@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_01_20_125049) do
+ActiveRecord::Schema[8.1].define(version: 2026_01_21_011213) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.bigint "blob_id", null: false
     t.datetime "created_at", null: false
@@ -134,12 +134,15 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_20_125049) do
     t.string "contact_name"
     t.datetime "created_at", null: false
     t.string "email"
+    t.string "guest_session_id"
     t.text "message"
     t.string "phone"
     t.string "preferred_domain"
     t.string "project_type"
     t.string "status"
     t.datetime "updated_at", null: false
+    t.integer "user_id"
+    t.index ["user_id"], name: "index_quotes_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -168,4 +171,5 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_20_125049) do
   add_foreign_key "order_items", "orders"
   add_foreign_key "orders", "products"
   add_foreign_key "orders", "users"
+  add_foreign_key "quotes", "users"
 end
