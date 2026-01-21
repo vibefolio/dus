@@ -1,7 +1,7 @@
 class Admin::UsersController < ApplicationController
   layout "admin"
   before_action :authenticate_admin!
-  before_action :set_user, only: [:show, :destroy]
+  before_action :set_user, only: [:show, :edit, :update, :destroy]
 
   def index
     @users = User.order(created_at: :desc).page(params[:page]).per(20)
@@ -13,6 +13,18 @@ class Admin::UsersController < ApplicationController
     @orders = @user.orders.order(created_at: :desc)
   end
 
+  def edit
+  end
+
+  def update
+    if @user.update(user_params)
+      redirect_to admin_user_path(@user), notice: "회원 정보가 수정되었습니다."
+    else
+      render :edit, status: :unprocessable_entity
+    end
+  end
+
+
   def destroy
     @user.destroy
     redirect_to admin_users_path, notice: "회원이 삭제되었습니다."
@@ -22,5 +34,9 @@ class Admin::UsersController < ApplicationController
 
   def set_user
     @user = User.find(params[:id])
+  end
+
+  def user_params
+    params.require(:user).permit(:name, :email)
   end
 end
