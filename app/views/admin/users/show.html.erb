@@ -5,7 +5,10 @@
       <h1 style="font-size: var(--text-2xl); font-weight: 700; margin-bottom: var(--space-2);"><%= @user.name || @user.email.split("@").first %></h1>
       <p style="color: var(--color-gray-500);"><%= @user.email %></p>
     </div>
-    <%= button_to "회원 삭제", admin_user_path(@user), method: :delete, data: { confirm: "정말 삭제하시겠습니까? 이 작업은 되돌릴 수 없습니다." }, class: "btn btn-danger" %>
+    <div style="display: flex; gap: var(--space-2);">
+      <%= link_to "정보 수정", edit_admin_user_path(@user), class: "btn btn-outline" %>
+      <%= button_to "회원 삭제", admin_user_path(@user), method: :delete, data: { confirm: "정말 삭제하시겠습니까? 이 작업은 되돌릴 수 없습니다." }, class: "btn btn-danger" %>
+    </div>
   </div>
 </div>
 
