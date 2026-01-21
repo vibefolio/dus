@@ -63,11 +63,22 @@ class PagesController < ApplicationController
       @quote = Quote.new(quote_params)
       @quote.status = "pending"
       @quote.created_at = Time.current # Ensure it has a timestamp for the mailer
+      
+      if user_signed_in?
+        @quote.user = current_user
+      else
+        @quote.guest_session_id = cookies.signed[:guest_id]
+      end
 
       if @quote.save
         # Normal path: DB is alive
         send_quote_emails(@quote)
-        flash[:notice] = "문의가 성공적으로 접수되었습니다. 담당자가 확인 후 연락드리겠습니다."
+        
+        if user_signed_in?
+          flash[:notice] = "문의가 성공적으로 접수되었습니다. 담당자가 확인 후 연락드리겠습니다."
+        else
+          flash[:notice] = "문의가 접수되었습니다. 회원가입을 하시면 상담 내역을 연동하여 확인하실 수 있습니다."
+        end
         redirect_to contact_path
       else
         render :contact, status: :unprocessable_entity

@@ -9,6 +9,7 @@ class User < ApplicationRecord
   has_many :likes, dependent: :destroy
   has_many :liked_templates, through: :likes, source: :design_template
   has_many :orders # 구매 내역
+  has_many :quotes, dependent: :nullify # 상담 내역 (유저 삭제시 상담 내역은 남김)
 
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|

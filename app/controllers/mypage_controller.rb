@@ -4,6 +4,7 @@ class MypageController < ApplicationController
   def show
     @user = current_user
     @orders = current_user.orders.order(created_at: :desc).limit(5)
+    @quotes = current_user.quotes.order(created_at: :desc)
     @liked_templates = current_user.liked_templates.limit(6)
   end
 
