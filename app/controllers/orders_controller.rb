@@ -1,18 +1,21 @@
 class OrdersController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_order, only: %i[ show edit update destroy ]
 
   # GET /orders or /orders.json
   def index
-    @orders = Order.all
+    redirect_to mypage_orders_path
   end
 
   # GET /orders/1 or /orders/1.json
   def show
+    # @order is already set by set_order which is now scoped to current_user
   end
 
   # GET /orders/new
   def new
-    @order = Order.new
+    # Legacy support or remove? Keeping for now but strictly scoped
+    @order = current_user.orders.build
   end
 
   # GET /orders/1/edit
@@ -21,7 +24,7 @@ class OrdersController < ApplicationController
 
   # POST /orders or /orders.json
   def create
-    @order = Order.new(order_params)
+    @order = current_user.orders.build(order_params)
 
     respond_to do |format|
       if @order.save
@@ -49,10 +52,16 @@ class OrdersController < ApplicationController
 
   # DELETE /orders/1 or /orders/1.json
   def destroy
-    @order.destroy!
+    if @order.pending?
+      @order.update!(status: 'cancelled')
+      notice = "주문이 취소되었습니다."
+    else
+      @order.destroy!
+      notice = "주문 내역이 삭제되었습니다."
+    end
 
     respond_to do |format|
-      format.html { redirect_to orders_path, notice: "Order was successfully destroyed.", status: :see_other }
+      format.html { redirect_to mypage_orders_path, notice: notice, status: :see_other }
       format.json { head :no_content }
     end
   end
@@ -121,9 +130,10 @@ class OrdersController < ApplicationController
     )
 
     if @order.save
+      @order.complete_payment! # Agency 생성 및 유저 권한 업그레이드 실행
       redirect_to @order, notice: "결제가 성공적으로 완료되었습니다!"
     else
-      redirect_to product_path(@product), alert: "결제 처리에 실패했습니다."
+      redirect_to mypage_orders_path, alert: "결제 처리에 실패했습니다."
     end
   end
 
@@ -137,7 +147,9 @@ class OrdersController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_order
-      @order = Order.find(params.expect(:id))
+      @order = current_user.orders.find(params.expect(:id))
+    rescue ActiveRecord::RecordNotFound
+      redirect_to mypage_orders_path, alert: "주문을 찾을 수 없습니다."
     end
 
     # Only allow a list of trusted parameters through.

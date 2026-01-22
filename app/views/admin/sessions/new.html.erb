@@ -22,7 +22,7 @@
       </p>
     </div>
 
-    <%= form_with url: admin_sessions_path, class: "mt-8 space-y-6" do |f| %>
+    <%= form_with url: admin_session_path, class: "mt-8 space-y-6" do |f| %>
       <% if flash[:alert] %>
         <div class="bg-red-500/10 border border-red-500/50 text-red-200 px-4 py-3 rounded-lg text-sm text-center">
           <%= flash[:alert] %>

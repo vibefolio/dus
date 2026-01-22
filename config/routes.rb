@@ -52,8 +52,15 @@ Rails.application.routes.draw do
 
   # 어드민 페이지
   namespace :admin do
+    get "agencies/index"
+    get "agencies/show"
+    get "agencies/new"
+    get "agencies/edit"
+    get "agencies/create"
+    get "agencies/update"
+    get "agencies/destroy"
     root "dashboard#index"
-    resources :sessions, only: [:new, :create, :destroy]
+    resource :session, only: [:new, :create, :destroy]
     resources :portfolios
     resources :quotes do
       collection do
@@ -61,7 +68,9 @@ Rails.application.routes.draw do
       end
     end
     resources :design_templates
+    resources :agencies
     resources :users
+
     resources :orders do
       member do
         patch :update_status

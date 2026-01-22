@@ -65,6 +65,44 @@
       </div>
     </div>
 
+    <!-- 내 사이트 관리 (Agencies) -->
+    <div class="bg-white rounded-2xl shadow-sm p-6 mb-8">
+      <div class="flex items-center justify-between mb-6">
+        <h2 class="text-xl font-bold text-gray-900">내 사이트 관리</h2>
+        <% if @user.agency_owner? || @user.agency_admin? || @user.super_admin? %>
+          <%= link_to "관리자 패널 바로가기", admin_root_path, class: "text-sm text-emerald-600 hover:text-emerald-700 font-medium font-bold" %>
+        <% end %>
+      </div>
+      
+      <% if @owned_agencies.any? %>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <% @owned_agencies.each do |agency| %>
+            <div class="border border-gray-200 rounded-xl p-5 hover:border-emerald-300 transition shadow-sm bg-gradient-to-br from-white to-gray-50">
+              <div class="flex justify-between items-start mb-4">
+                <div class="px-2 py-1 bg-emerald-100 text-emerald-700 text-[10px] font-bold rounded uppercase tracking-wider">
+                  <%= agency.active? ? "운영 중" : "준비 중" %>
+                </div>
+                <div class="text-xs text-gray-400"><%= agency.created_at.strftime('%Y.%m.%d') %></div>
+              </div>
+              
+              <h3 class="font-bold text-gray-900 text-lg mb-1"><%= agency.name %></h3>
+              <p class="text-emerald-600 text-sm font-medium mb-4"><%= agency.subdomain %>.designd.co.kr</p>
+              
+              <div class="flex gap-2">
+                <%= link_to "사이트 방문", "http://#{agency.subdomain}.designd.co.kr", target: "_blank", class: "flex-1 text-center py-2 bg-gray-100 text-gray-700 rounded-lg text-sm font-bold hover:bg-gray-200 transition" %>
+                <%= link_to "통계/관리", admin_agency_path(agency), class: "flex-1 text-center py-2 bg-emerald-600 text-white rounded-lg text-sm font-bold hover:bg-emerald-700 transition" %>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      <% else %>
+        <div class="text-center py-10 text-gray-400 bg-gray-50 rounded-xl border border-dashed border-gray-300">
+          <p class="mb-2">아직 보유한 사이트가 없습니다.</p>
+          <%= link_to "템플릿 둘러보기", design_templates_path, class: "text-emerald-600 font-bold hover:underline" %>
+        </div>
+      <% end %>
+    </div>
+
     <!-- 상담 내역 -->
     <div class="bg-white rounded-2xl shadow-sm p-6 mb-8">
       <div class="flex items-center justify-between mb-6">

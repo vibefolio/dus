@@ -4,13 +4,14 @@ class Admin::PortfoliosController < ApplicationController
   before_action :set_portfolio, only: [ :edit, :update, :destroy ]
 
   def index
-    begin
-      @portfolios = Portfolio.order(created_at: :desc)
-    rescue => e
-      Rails.logger.error "Failed to load portfolios: #{e.message}"
-      @portfolios = []
-      flash.now[:alert] = "포트폴리오를 불러오는 중 오류가 발생했습니다."
+    @portfolios = Portfolio.order(created_at: :desc)
+    
+    if params[:query].present?
+      query = "%#{params[:query]}%"
+      @portfolios = @portfolios.where("title LIKE ? OR client LIKE ? OR category LIKE ?", query, query, query)
     end
+
+    @portfolios = @portfolios.page(params[:page]).per(20) rescue @portfolios
   end
 
   def new

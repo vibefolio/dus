@@ -61,6 +61,7 @@ class PagesController < ApplicationController
   def create_quote
     begin
       @quote = Quote.new(quote_params)
+      @quote.agency = @current_agency if @current_agency
       @quote.status = "pending"
       @quote.created_at = Time.current # Ensure it has a timestamp for the mailer
       

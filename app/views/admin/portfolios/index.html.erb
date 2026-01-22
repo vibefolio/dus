@@ -1,9 +1,20 @@
-<div style="margin-bottom: var(--space-8); display: flex; justify-content: space-between; align-items: center;">
+<div style="margin-bottom: var(--space-8); display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: var(--space-4);">
   <div>
     <h1 style="font-size: var(--text-4xl); margin-bottom: var(--space-2);">포트폴리오 관리</h1>
     <p class="text-gray">등록된 포트폴리오를 관리하고 새로운 프로젝트를 추가하세요</p>
   </div>
-  <%= link_to "새 포트폴리오 추가", new_admin_portfolio_path, class: "btn btn-primary" %>
+  
+  <div style="flex: 1; max-width: 500px; display: flex; flex-direction: column; gap: var(--space-4); align-items: flex-end;">
+    <%= link_to "새 포트폴리오 추가", new_admin_portfolio_path, class: "btn btn-primary" %>
+    
+    <%= form_with url: admin_portfolios_path, method: :get, class: "flex gap-2 w-full", local: true do |f| %>
+      <%= f.text_field :query, value: params[:query], placeholder: "프로젝트명, 클라이언트, 카테고리 검색", class: "block w-full rounded-md border-gray-300 shadow-sm focus:border-emerald-500 focus:ring-emerald-500 sm:text-sm p-2 bg-white border" %>
+      <%= f.submit "검색", class: "btn btn-primary" %>
+      <% if params[:query].present? %>
+        <%= link_to "초기화", admin_portfolios_path, class: "btn btn-outline" %>
+      <% end %>
+    <% end %>
+  </div>
 </div>
 
 <% if @portfolios.any? %>
@@ -47,6 +58,10 @@
         <% end %>
       </tbody>
     </table>
+  </div>
+
+  <div style="margin-top: var(--space-8); display: flex; justify-content: center;">
+    <%= paginate @portfolios rescue nil %>
   </div>
 <% else %>
   <div class="card text-center" style="padding: var(--space-20);">

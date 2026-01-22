@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_01_21_011213) do
+ActiveRecord::Schema[8.1].define(version: 2026_01_21_223707) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.bigint "blob_id", null: false
     t.datetime "created_at", null: false
@@ -37,6 +37,22 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_21_011213) do
     t.bigint "blob_id", null: false
     t.string "variation_digest", null: false
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
+  end
+
+  create_table "agencies", force: :cascade do |t|
+    t.boolean "active", default: true
+    t.text "admin_ids", default: "[]"
+    t.decimal "commission_rate", precision: 5, scale: 2, default: "10.0"
+    t.datetime "created_at", null: false
+    t.string "name", null: false
+    t.integer "owner_id", null: false
+    t.integer "parent_agency_id"
+    t.text "settings"
+    t.string "subdomain", null: false
+    t.datetime "updated_at", null: false
+    t.index ["owner_id"], name: "index_agencies_on_owner_id"
+    t.index ["parent_agency_id"], name: "index_agencies_on_parent_agency_id"
+    t.index ["subdomain"], name: "index_agencies_on_subdomain", unique: true
   end
 
   create_table "cart_items", force: :cascade do |t|
@@ -93,7 +109,9 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_21_011213) do
   end
 
   create_table "orders", force: :cascade do |t|
+    t.integer "agency_id"
     t.integer "amount"
+    t.decimal "commission_amount", precision: 10, scale: 2, default: "0.0"
     t.datetime "created_at", null: false
     t.string "customer_name"
     t.string "order_uid"
@@ -103,6 +121,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_21_011213) do
     t.decimal "total_amount"
     t.datetime "updated_at", null: false
     t.integer "user_id", null: false
+    t.index ["agency_id"], name: "index_orders_on_agency_id"
     t.index ["product_id"], name: "index_orders_on_product_id"
     t.index ["user_id"], name: "index_orders_on_user_id"
   end
@@ -113,6 +132,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_21_011213) do
     t.datetime "created_at", null: false
     t.text "description"
     t.string "image_url"
+    t.string "preview_url"
     t.date "project_date"
     t.string "title"
     t.datetime "updated_at", null: false
@@ -129,6 +149,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_21_011213) do
   end
 
   create_table "quotes", force: :cascade do |t|
+    t.integer "agency_id"
     t.string "budget"
     t.string "company_name"
     t.string "contact_name"
@@ -142,10 +163,13 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_21_011213) do
     t.string "status"
     t.datetime "updated_at", null: false
     t.integer "user_id"
+    t.string "workflow_status", default: "received"
+    t.index ["agency_id"], name: "index_quotes_on_agency_id"
     t.index ["user_id"], name: "index_quotes_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
+    t.integer "agency_id"
     t.datetime "created_at", null: false
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -155,21 +179,28 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_21_011213) do
     t.datetime "remember_created_at"
     t.datetime "reset_password_sent_at"
     t.string "reset_password_token"
+    t.string "role", default: "user"
     t.string "uid"
     t.datetime "updated_at", null: false
+    t.index ["agency_id"], name: "index_users_on_agency_id"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "agencies", "agencies", column: "parent_agency_id"
+  add_foreign_key "agencies", "users", column: "owner_id"
   add_foreign_key "cart_items", "carts"
   add_foreign_key "carts", "users"
   add_foreign_key "likes", "design_templates"
   add_foreign_key "likes", "users"
   add_foreign_key "order_items", "design_templates"
   add_foreign_key "order_items", "orders"
+  add_foreign_key "orders", "agencies"
   add_foreign_key "orders", "products"
   add_foreign_key "orders", "users"
+  add_foreign_key "quotes", "agencies"
   add_foreign_key "quotes", "users"
+  add_foreign_key "users", "agencies"
 end
