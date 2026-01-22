@@ -1,5 +1,19 @@
-<div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--space-6);">
-  <h1 style="font-size: var(--text-2xl); font-weight: 700;">주문 관리</h1>
+<div style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: var(--space-6); flex-wrap: wrap; gap: 16px;">
+  <div>
+    <h1 style="font-size: var(--text-2xl); font-weight: 700;">주문 관리</h1>
+    <p style="color: var(--color-gray-500); font-size: var(--text-sm);">전체 주문 내역을 확인하고 관리합니다.</p>
+  </div>
+  
+  <div style="flex: 1; max-width: 600px;">
+    <%= form_with url: admin_orders_path, method: :get, class: "flex gap-2 items-center", local: true do |f| %>
+      <%= f.select :status, [["모든 상태", ""]] + Order.statuses.keys.map { |s| [s.upcase, s] }, { selected: params[:status] }, class: "block rounded-md border-gray-300 shadow-sm focus:border-emerald-500 focus:ring-emerald-500 sm:text-sm p-2 bg-white border" %>
+      <%= f.text_field :query, value: params[:query], placeholder: "주문번호, 이름, 이메일 검색", class: "block w-full rounded-md border-gray-300 shadow-sm focus:border-emerald-500 focus:ring-emerald-500 sm:text-sm p-2 bg-white border" %>
+      <%= f.submit "검색", class: "btn btn-primary" %>
+      <% if params[:query].present? || params[:status].present? %>
+        <%= link_to "초기화", admin_orders_path, class: "btn btn-outline" %>
+      <% end %>
+    <% end %>
+  </div>
 </div>
 
 <div class="card">
@@ -52,6 +66,6 @@
   </table>
   
   <div style="padding: var(--space-4); display: flex; justify-content: center;">
-    <%#= paginate @orders %>
+    <%= paginate @orders %>
   </div>
 </div>

@@ -8,6 +8,24 @@ class Admin::QuotesController < ApplicationController
 
   def index
     @quotes = Quote.order(created_at: :desc)
+    
+    # Scoping for Agency Owner/Admin
+    unless session[:admin_id] == "admin" || current_user&.super_admin?
+      owned_agency_ids = Agency.where(owner_id: current_user.id).pluck(:id)
+      managed_agency_ids = Agency.where("admin_ids LIKE ?", "%\"#{current_user.id}\"%").pluck(:id)
+      @quotes = Quote.where(agency_id: owned_agency_ids + managed_agency_ids).order(created_at: :desc)
+    end
+
+    if params[:status].present?
+      @quotes = @quotes.where(status: params[:status])
+    end
+
+    if params[:query].present?
+      query = "%#{params[:query]}%"
+      @quotes = @quotes.where("contact_name LIKE ? OR company_name LIKE ? OR email LIKE ?", query, query, query)
+    end
+
+    @quotes = @quotes.page(params[:page]).per(20) rescue @quotes
   end
 
   def show
@@ -41,7 +59,15 @@ class Admin::QuotesController < ApplicationController
 
   def bulk_destroy
     if params[:quote_ids].present?
-      Quote.where(id: params[:quote_ids]).destroy_all
+      # Ensure scoped protection for bulk destroy
+      target_quotes = Quote.where(id: params[:quote_ids])
+      unless session[:admin_id] == "admin" || current_user&.super_admin?
+        owned_agency_ids = Agency.where(owner_id: current_user.id).pluck(:id)
+        managed_agency_ids = Agency.where("admin_ids LIKE ?", "%\"#{current_user.id}\"%").pluck(:id)
+        target_quotes = target_quotes.where(agency_id: owned_agency_ids + managed_agency_ids)
+      end
+      
+      target_quotes.destroy_all
       redirect_to admin_quotes_path, notice: "선택한 문의 내역이 삭제되었습니다.", status: :see_other
     else
       redirect_to admin_quotes_path, alert: "삭제할 항목을 선택해주세요.", status: :see_other
@@ -52,10 +78,19 @@ class Admin::QuotesController < ApplicationController
 
   def set_quote
     @quote = Quote.find(params[:id])
+    
+    # Authorization Check
+    unless session[:admin_id] == "admin" || current_user&.super_admin?
+      owned_agency_ids = Agency.where(owner_id: current_user.id).pluck(:id)
+      managed_agency_ids = Agency.where("admin_ids LIKE ?", "%\"#{current_user.id}\"%").pluck(:id)
+      unless (owned_agency_ids + managed_agency_ids).include?(@quote.agency_id)
+        redirect_to admin_quotes_path, alert: "해당 문의에 대한 권한이 없습니다."
+      end
+    end
   end
 
   def quote_params
-    params.require(:quote).permit(:status)
+    params.require(:quote).permit(:status, :workflow_status)
   end
 
   def generate_quote_pdf(quote)

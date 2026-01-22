@@ -1,6 +1,19 @@
-<div style="margin-bottom: var(--space-8);">
-  <h1 style="font-size: var(--text-4xl); margin-bottom: var(--space-2);">문의 내역 관리</h1>
-  <p class="text-gray">고객으로부터 접수된 프로젝트 문의를 확인하고 관리하세요</p>
+<div style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: var(--space-8); flex-wrap: wrap; gap: var(--space-4);">
+  <div>
+    <h1 style="font-size: var(--text-4xl); margin-bottom: var(--space-2);">문의 내역 관리</h1>
+    <p class="text-gray">고객으로부터 접수된 프로젝트 문의를 확인하고 관리하세요</p>
+  </div>
+
+  <div style="flex: 1; max-width: 600px;">
+    <%= form_with url: admin_quotes_path, method: :get, class: "flex gap-2 items-center", local: true do |f| %>
+      <%= f.select :status, [["모든 상태", ""]] + [["대기중", "pending"], ["처리완료", "completed"]], { selected: params[:status] }, class: "block rounded-md border-gray-300 shadow-sm focus:border-emerald-500 focus:ring-emerald-500 sm:text-sm p-2 bg-white border" %>
+      <%= f.text_field :query, value: params[:query], placeholder: "이름, 회사, 이메일 검색", class: "block w-full rounded-md border-gray-300 shadow-sm focus:border-emerald-500 focus:ring-emerald-500 sm:text-sm p-2 bg-white border" %>
+      <%= f.submit "검색", class: "btn btn-primary" %>
+      <% if params[:query].present? || params[:status].present? %>
+        <%= link_to "초기화", admin_quotes_path, class: "btn btn-outline" %>
+      <% end %>
+    <% end %>
+  </div>
 </div>
 
 <% if @quotes.any? %>
@@ -93,6 +106,10 @@
     <% end %>
   </div>
 <% end %>
+
+<div style="margin-top: var(--space-8); display: flex; justify-content: center;">
+  <%= paginate @quotes rescue nil %>
+</div>
 
 <script>
   document.addEventListener('turbo:load', function() {
