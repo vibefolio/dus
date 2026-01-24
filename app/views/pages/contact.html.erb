@@ -90,7 +90,11 @@
               <span class="text-xs font-normal text-white bg-emerald-500 px-2 py-1 rounded">필수 입력</span>
             </h2>
             
-            <%= form_with url: contact_path, local: true, class: "space-y-6", html: { id: "template-contact-form" } do |f| %>
+            <%= form_with url: contact_path, local: true, class: "space-y-6", html: { id: "template-contact-form", data: { controller: "honeypot" } } do |f| %>
+              <%# Honeypot field - hidden from users but visible to bots %>
+              <div style="display:none !important;" aria-hidden="true">
+                <%= f.text_field :nickname, tabindex: "-1", autocomplete: "off", data: { honeypot_target: "field" } %>
+              </div>
               
               <div class="grid grid-cols-2 gap-5">
                 <div>
@@ -227,7 +231,11 @@
       <div class="card" style="padding: var(--space-8);">
 
 
-        <%= form_with model: @quote, url: contact_path, local: true, class: "contact-form", html: { onsubmit: "return submitContactForm(this);", id: "contact-form" } do |f| %>
+        <%= form_with model: @quote, url: contact_path, local: true, class: "contact-form", html: { onsubmit: "return submitContactForm(this);", id: "contact-form", data: { controller: "honeypot" } } do |f| %>
+          <%# Honeypot field - hidden from users but visible to bots %>
+          <div style="display:none !important;" aria-hidden="true">
+            <%= f.text_field :nickname, tabindex: "-1", autocomplete: "off", data: { honeypot_target: "field" } %>
+          </div>
           
           <div class="form-grid">
             <div class="form-group">

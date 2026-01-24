@@ -59,6 +59,13 @@ class PagesController < ApplicationController
   end
 
   def create_quote
+    # Honeypot check: Bots will fill 'nickname' which is hidden from human users
+    if params[:quote][:nickname].present?
+      Rails.logger.warn "SPAM PREVENTED: Honeypot field filled by #{params[:quote][:email]}"
+      flash[:notice] = "문의가 접수되었습니다." # Fake success message to not alert the bot
+      return redirect_to contact_path
+    end
+
     begin
       @quote = Quote.new(quote_params)
       @quote.agency = @current_agency if @current_agency
@@ -140,6 +147,6 @@ class PagesController < ApplicationController
   private
 
   def quote_params
-    params.require(:quote).permit(:contact_name, :company_name, :email, :phone, :project_type, :budget, :message, :preferred_domain)
+    params.require(:quote).permit(:contact_name, :company_name, :email, :phone, :project_type, :budget, :message, :preferred_domain, :nickname)
   end
 end
