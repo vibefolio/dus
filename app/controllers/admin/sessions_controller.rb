@@ -9,12 +9,18 @@ class Admin::SessionsController < ApplicationController
   end
 
   def create
-    # Hardcoded credentials for simplicity (can be moved to DB later)
+    # 1. Check legacy ENV credentials
     admin_username = ENV.fetch("ADMIN_USERNAME", "admin@designd.co.kr")
     admin_password = ENV.fetch("ADMIN_PASSWORD", "djemals1234!")
 
-    if params[:username] == admin_username && params[:password] == admin_password
+    # 2. Check User model records
+    user = User.find_by(email: params[:username])
+    
+    if (params[:username] == admin_username && params[:password] == admin_password) || 
+       (user&.valid_password?(params[:password]) && (user.super_admin? || user.agency_admin?))
       session[:admin_id] = "admin"
+      # If logged in via User model, we might want to sign them in via Devise too if needed
+      # but for now we just keep the session[:admin_id] logic to maintain compatibility
       redirect_to admin_root_path, notice: "관리자 모드로 접속했습니다."
     else
       flash.now[:alert] = "아이디 또는 비밀번호가 올바르지 않습니다."
