@@ -198,7 +198,9 @@
 
     <div class="form-group">
       <%= f.label :description, "프로젝트 설명", class: "form-label" %>
-      <%= f.text_area :description, class: "form-textarea", placeholder: "프로젝트에 대한 상세한 설명을 입력하세요...", rows: 6 %>
+      <div class="prose max-w-none">
+        <%= f.rich_text_area :description, class: "form-textarea", placeholder: "프로젝트에 대한 상세한 설명을 입력하세요...", style: "min-height: 300px;" %>
+      </div>
     </div>
 
     <div style="display: flex; gap: var(--space-4); margin-top: var(--space-8);">

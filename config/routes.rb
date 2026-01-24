@@ -19,6 +19,7 @@ Rails.application.routes.draw do
   
   # Design System (Dev Rule)
   get 'design_system', to: 'design_system#index'
+  get 'components', to: 'components#index' # Preview for new features
 
   resources :products
 

@@ -8,7 +8,7 @@ class TemplatesController < ApplicationController
     medical law wedding cleaning agency consulting academy sculpt yoga 
     nail barber flower burger wine salad dessert donut kinder startup 
     rental finance dental vet tax accounting camping studio petshop hotel pension 
-    cloth shoe bag shopping learnhub english artistry
+    cloth shoe bag shopping learnhub english artistry artpage
   ]
 
   # Theme Data Loaded from Extraction (Advanced)
@@ -17,6 +17,7 @@ class TemplatesController < ApplicationController
     "accounting" => { "primary_color" => "#005BAC", "font_family" => "sans-serif", "radius" => "rounded-lg" },
     "agency" => { "primary_color" => "#BEF264", "bg_color" => "#050505", "text_color" => "#ffffff", "font_family" => "sans-serif", "radius" => "rounded-lg" },
     "artistry" => { "primary_color" => "#333333", "font_family" => "sans-serif", "radius" => "rounded-lg" },
+    "artpage" => { "primary_color" => "#000000", "bg_color" => "#ffffff", "text_color" => "#000000", "font_family" => "sans-serif", "radius" => "rounded-none" },
     "bag" => { "primary_color" => "#2D1B15", "font_family" => "sans-serif", "radius" => "rounded-none" },
     "barber" => { "primary_color" => "#B8860B", "bg_color" => "#121212", "text_color" => "#ffffff", "font_family" => "serif", "radius" => "rounded-none" },
     "beauty" => { "primary_color" => "#CFB997", "font_family" => "serif", "radius" => "rounded-lg" },
