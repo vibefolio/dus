@@ -1,20 +1,36 @@
-require 'ostruct'
-
 class DesignTemplate < ApplicationRecord
+  include Rails.application.routes.url_helpers
+
   has_one_attached :pc_image
   has_one_attached :mobile_image
   
   has_many :cart_items, as: :item
   validates :title, presence: true
 
-  # PC 대표 이미지 URL 반환 (순환 참조 방지를 위해 ActiveStorage Helper 제거)
+  # PC 대표 이미지 URL 반환
   def pc_thumbnail_url
-    image_url.presence || '/images/templates/portfolio_gallery.png'
+    if pc_image.attached?
+      begin
+        url_for(pc_image)
+      rescue
+        image_url.presence || '/images/templates/portfolio_gallery.png'
+      end
+    else
+      image_url.presence || '/images/templates/portfolio_gallery.png'
+    end
   end
 
   # 모바일 대표 이미지 URL 반환
   def mobile_thumbnail_url
-    mobile_image_url.presence || pc_thumbnail_url
+    if mobile_image.attached?
+      begin
+        url_for(mobile_image)
+      rescue
+        mobile_image_url.presence || pc_thumbnail_url
+      end
+    else
+      mobile_image_url.presence || pc_thumbnail_url
+    end
   end
 
   # 현재 적용된 PC 이미지 소스 타입 반환

@@ -11,15 +11,7 @@
       <div class="card" style="padding: var(--space-4);">
         <div style="height: 200px; background: #eee; border-radius: var(--radius-md); margin-bottom: var(--space-4); overflow: hidden; position: relative; cursor: pointer;" 
              onclick="openPreview('<%= template.preview_url %>', '<%= j template.title %>', '<%= template.category %>', <%= template.id %>)">
-          <% 
-            thumb_src = if template.image_url.present?
-                          template.image_url
-                        elsif template.pc_image.attached?
-                          url_for(template.pc_image)
-                        else
-                          nil
-                        end
-          %>
+          <% thumb_src = template.pc_thumbnail_url %>
           <% if thumb_src %>
             <img src="<%= thumb_src %>" style="width: 100%; height: 100%; object-fit: cover;" loading="lazy">
           <% else %>
