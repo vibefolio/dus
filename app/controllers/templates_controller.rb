@@ -8,7 +8,8 @@ class TemplatesController < ApplicationController
     medical law wedding cleaning agency consulting academy sculpt yoga 
     nail barber flower burger wine salad dessert donut kinder startup 
     rental finance dental vet tax accounting camping studio petshop hotel pension 
-    cloth shoe bag shopping learnhub english artistry artpage
+    cloth shoe bag shopping learnhub english artistry artpage bizon
+    oluolu_franchise oluolu_marketing kkang mz tech
   ]
 
   # Theme Data Loaded from Extraction (Advanced)
