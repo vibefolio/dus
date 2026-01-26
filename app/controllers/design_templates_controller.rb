@@ -1,8 +1,8 @@
 class DesignTemplatesController < ApplicationController
   def index
     begin
-      # Load from Static Data
-      @design_templates = DesignTemplate.all_static
+      # Load from Combined Data (Database + Static)
+      @design_templates = DesignTemplate.all_combined
 
       # Search functionality (In-memory)
       if params[:query].present?
