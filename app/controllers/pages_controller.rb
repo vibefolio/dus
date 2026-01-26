@@ -1,7 +1,7 @@
 class PagesController < ApplicationController
   def home
     begin
-      @featured_templates = DesignTemplate.all_static.select(&:is_featured).take(3)
+      @featured_templates = DesignTemplate.all_combined.select(&:is_featured).take(3)
     rescue => e
       Rails.logger.error "Home featured templates error: #{e.message}"
       @featured_templates = []

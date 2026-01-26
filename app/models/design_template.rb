@@ -1,3 +1,5 @@
+require "ostruct"
+
 class DesignTemplate < ApplicationRecord
   include Rails.application.routes.url_helpers
 
@@ -55,14 +57,30 @@ class DesignTemplate < ApplicationRecord
     end
   end
 
+  # Combined data from database and static yaml
+  def self.all_combined
+    # Start with database records (newest first)
+    db_templates = self.all.order(created_at: :desc).to_a
+    
+    # Get static records
+    static_templates = self.all_static
+    
+    # Combine them (Database records first so they show up as "new")
+    db_templates + static_templates
+  end
+
   # Static data support for database-less architecture
   def self.all_static
-    @static_data ||= YAML.load_file(Rails.root.join('config', 'templates.yml'))
+    yml_path = Rails.root.join('config', 'templates.yml')
+    return [] unless File.exist?(yml_path)
+    
+    @static_data = YAML.load_file(yml_path)
     @static_data.map.with_index do |t, idx|
       OpenStruct.new(t).tap do |os|
-        os.id = idx + 1
+        os.id = -(idx + 1) # Use negative IDs for static records to avoid conflict
         os.pc_thumbnail_url = os.image_url.presence || '/images/templates/portfolio_gallery.png'
         os.mobile_thumbnail_url = os.mobile_image_url.presence || os.pc_thumbnail_url
+        os.is_database = false
       end
     end
   end
