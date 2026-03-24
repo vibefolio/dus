@@ -78,10 +78,9 @@ Rails.application.configure do
   config.hosts = [
     "designd.co.kr",
     "www.designd.co.kr",
-    "dlab-website.fly.dev",
+    "dus.vibers.co.kr",
     /.*\.designd\.co\.kr/,
-    /.*\.fly\.dev/,
-    /.*\.onrender\.com/
+    /.*\.vibers\.co\.kr/
   ]
   #
   # Skip DNS rebinding protection for the default health check endpoint.
