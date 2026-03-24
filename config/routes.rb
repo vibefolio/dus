@@ -43,8 +43,6 @@ Rails.application.routes.draw do
   get "mypage/orders", to: "mypage#orders", as: :mypage_orders
   get "privacy", to: "pages#privacy"
   get "terms", to: "pages#terms"
-  get "debug_error", to: "pages#debug_error"
-
   # 템플릿 페이지
   resources :design_templates, only: [:index] do
     post 'toggle_like', to: 'likes#toggle', as: :toggle_like
@@ -53,13 +51,6 @@ Rails.application.routes.draw do
 
   # 어드민 페이지
   namespace :admin do
-    get "agencies/index"
-    get "agencies/show"
-    get "agencies/new"
-    get "agencies/edit"
-    get "agencies/create"
-    get "agencies/update"
-    get "agencies/destroy"
     root "dashboard#index"
     resource :session, only: [:new, :create, :destroy]
     resources :portfolios

@@ -1,13 +1,13 @@
-# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+# 테스트용 주문 항목 데이터
 
-one:
-  order: one
+pending_item:
+  order: pending_order
   design_template: one
   quantity: 1
-  price: 9.99
+  price: 99000
 
-two:
-  order: two
+paid_item:
+  order: paid_order
   design_template: two
   quantity: 1
-  price: 9.99
+  price: 149000
