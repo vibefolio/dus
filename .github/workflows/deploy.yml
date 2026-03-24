@@ -10,14 +10,17 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Deploy to NCP via SSH
-        uses: appleboy/ssh-action@v1.0.3
+      - name: Setup SSH
+        uses: webfactory/ssh-agent@v0.9.0
         with:
-          host: ${{ secrets.NCP_HOST }}
-          username: ${{ secrets.NCP_USER }}
-          key: ${{ secrets.NCP_SSH_KEY }}
-          script: |
-            cd /root/projects/dlab-website
-            git pull origin main
-            docker compose down
-            docker compose up -d --build
+          ssh-private-key: ${{ secrets.NCP_SSH_KEY }}
+
+      - name: Deploy to NCP server
+        run: |
+          ssh -o StrictHostKeyChecking=no ${{ secrets.NCP_USER }}@${{ secrets.NCP_HOST }} \
+            "cd /root/projects/dlab-website && \
+             git pull origin main && \
+             docker compose down && \
+             docker compose up -d --build && \
+             docker compose ps && \
+             echo '✅ DUS 배포 완료'"
