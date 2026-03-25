@@ -85,8 +85,8 @@ group :development, :test do
   # Omakase Ruby styling [https://github.com/rails/rubocop-rails-omakase/]
   # gem "rubocop-rails-omakase", require: false
   
-  # N+1 query detection
-  gem "bullet"
+  # N+1 query detection (로컬에서 bundle install 후 사용)
+  # gem "bullet"
 end
 
 group :development do
