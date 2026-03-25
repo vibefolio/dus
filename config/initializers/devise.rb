@@ -278,6 +278,11 @@ Devise.setup do |config|
     image_size: 50
   }
 
+  config.omniauth :kakao,
+                  ENV['KAKAO_CLIENT_ID'],
+                  ENV['KAKAO_CLIENT_SECRET'],
+                  scope: 'profile_nickname,profile_image,account_email'
+
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or
   # change the failure app, you can configure them inside the config.warden block.
