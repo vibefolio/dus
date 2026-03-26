@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
   include TurboNativeApp
+  include ErrorHandler
 
   # OmniAuth 콜백에서만 CSRF 검증 건너뛰기 (전체 Devise 컨트롤러 아님)
   skip_before_action :verify_authenticity_token, if: :omniauth_controller?
@@ -7,17 +8,6 @@ class ApplicationController < ActionController::Base
   allow_browser versions: :modern
 
   layout :set_app_layout
-
-  # 글로벌 에러 핸들링
-  rescue_from ActiveRecord::RecordNotFound do |e|
-    Rails.logger.warn "RecordNotFound: #{e.message}"
-    redirect_to root_path, alert: "요청하신 페이지를 찾을 수 없습니다."
-  end
-
-  rescue_from ActionController::ParameterMissing do |e|
-    Rails.logger.warn "ParameterMissing: #{e.message}"
-    render plain: "잘못된 요청입니다. 필수 파라미터가 누락되었습니다.", status: :bad_request
-  end
 
   # Changes to the importmap will invalidate the etag for HTML responses
   # Changes to the importmap will invalidate the etag for HTML responses
