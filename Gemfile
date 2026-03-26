@@ -114,3 +114,7 @@ gem "litestream", "~> 0.14.0"
 gem "aws-sdk-s3", "~> 1.211", require: false
 
 gem "instagram_basic_display", "~> 0.2.3"
+
+# 에러 추적 (활성화 시 bundle install 필요)
+# gem "sentry-ruby"
+# gem "sentry-rails"

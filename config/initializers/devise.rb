@@ -283,6 +283,8 @@ Devise.setup do |config|
                   ENV['KAKAO_CLIENT_SECRET'],
                   scope: 'profile_nickname,profile_image,account_email'
 
+  config.omniauth :naver, ENV['NAVER_CLIENT_ID'], ENV['NAVER_CLIENT_SECRET'], provider_ignores_state: true
+
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or
   # change the failure app, you can configure them inside the config.warden block.
