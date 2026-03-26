@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta name="turbo-native" content="true">
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+  <%= stylesheet_link_tag "trix", "data-turbo-track": "reload" %>
+  <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+  <%= javascript_importmap_tags %>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: {
+              DEFAULT: "#00a859",
+              dark: "#008a47",
+            },
+            accent: "#00d670",
+          },
+          fontFamily: {
+            sans: ["Inter", "sans-serif"],
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    /* 네이티브 앱에서는 세이프 에리어 처리 */
+    body { padding-top: env(safe-area-inset-top); padding-bottom: env(safe-area-inset-bottom); }
+    /* 네이티브 앱에서 터치 최적화 */
+    * { -webkit-tap-highlight-color: transparent; }
+    a, button { min-height: 44px; }
+  </style>
+</head>
+<body class="bg-white">
+  <main class="min-h-screen">
+    <% if notice %>
+      <div class="px-4 py-3 bg-green-50 text-green-700 text-sm"><%= notice %></div>
+    <% end %>
+    <% if alert %>
+      <div class="px-4 py-3 bg-red-50 text-red-700 text-sm"><%= alert %></div>
+    <% end %>
+    <%= yield %>
+  </main>
+</body>
+</html>

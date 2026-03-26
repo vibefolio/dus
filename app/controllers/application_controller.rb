@@ -1,8 +1,12 @@
 class ApplicationController < ActionController::Base
+  include TurboNativeApp
+
   # OmniAuth 콜백에서만 CSRF 검증 건너뛰기 (전체 Devise 컨트롤러 아님)
   skip_before_action :verify_authenticity_token, if: :omniauth_controller?
   # Only allow modern browsers supporting webp images, web push, badges, import maps, CSS nesting, and CSS :has.
   allow_browser versions: :modern
+
+  layout :set_app_layout
 
   # 글로벌 에러 핸들링
   rescue_from ActiveRecord::RecordNotFound do |e|
@@ -23,6 +27,10 @@ class ApplicationController < ActionController::Base
   before_action :link_user_to_agency
 
   private
+
+  def set_app_layout
+    turbo_native_app? ? "mobile" : "application"
+  end
 
   def set_current_agency
     # subdomain.designd.co.kr or subdomain.faneasy.kr 등에서 서브도메인 추출
