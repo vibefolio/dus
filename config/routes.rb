@@ -74,6 +74,9 @@ Rails.application.routes.draw do
   get '/robots.txt', to: 'pages#robots'
   get '/sitemap.xml', to: 'pages#sitemap'
 
+  # Hotwire Native 설정 엔드포인트
+  get 'native/config', to: 'native#config'
+
   # Health check
   get "up" => "rails/health#show", as: :rails_health_check
 end
