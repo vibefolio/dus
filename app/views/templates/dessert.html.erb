@@ -1,152 +1,569 @@
-<%# Dessert Template - 달콤 상점 (SUCRE) %>
+<%# Dessert Template - 봉봉 디저트 (BONBON DESSERT) %>
 
 <style>
-  /* Supanova Design Upgrade */
+  /* Supanova Design — Soft Pastel Feminine Archetype */
   * { word-break: keep-all; }
-  html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+  html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
   h1, h2, h3, h4 { text-wrap: balance; letter-spacing: -0.02em; line-height: 1.3; }
-  a, button { transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1); }
+  a, button { transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1); }
   a:hover, button:hover { transform: scale(1.02); }
   a:active, button:active { transform: scale(0.98); }
 
-  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap');
-  
-  .font-serif-elegant { font-family: 'Playfair Display', serif; }
-  .font-sans { font-family: 'Pretendard Variable', 'Pretendard', -apple-system, sans-serif; }
+  @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&display=swap');
+
+  .font-sans { font-family: 'Pretendard Variable', 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, sans-serif; }
+  .font-rounded { font-family: 'Quicksand', sans-serif; }
 
   @media (max-width: 768px) {
     .mobile-desc { font-size: 14px !important; line-height: 1.8; }
-    .mobile-title { font-size: 40px !important; }
+    .mobile-title { font-size: 42px !important; }
   }
 
-  .marble-texture {
-    background-image: url("https://www.transparenttextures.com/patterns/white-diamond.png");
-    opacity: 0.4;
+  .soft-overlay {
+    background-image: url("https://www.transparenttextures.com/patterns/cream-paper.png");
+    opacity: 0.3;
+  }
+
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(2rem); filter: blur(4px); }
+    to { opacity: 1; transform: translateY(0); filter: blur(0); }
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(2rem);
+  }
+
+  .reveal.is-visible {
+    animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    animation-delay: calc(var(--delay, 0) * 100ms);
+  }
+
+  .menu-card {
+    transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .menu-card:hover {
+    transform: translateY(-8px);
+  }
+  .menu-card:hover img {
+    transform: scale(1.05);
+  }
+
+  .gallery-item {
+    transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .gallery-item:hover {
+    transform: scale(1.02);
+  }
+  .gallery-item:hover img {
+    transform: scale(1.08);
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-12px); }
   }
 </style>
 
-<div class="bg-[#FDFBF7] text-[#5D4037] font-sans selection:bg-[#E6A4B4] selection:text-white min-h-screen overflow-x-hidden relative">
-  <div class="fixed inset-0 marble-texture pointer-events-none"></div>
+<div class="bg-[#FFF5F5] text-[#5C4A4A] font-sans selection:bg-[#E8A0BF] selection:text-white min-h-screen overflow-x-hidden relative">
+  <div class="fixed inset-0 soft-overlay pointer-events-none z-[60]"></div>
 
-  <!-- Nav -->
-  <nav class="fixed w-full z-50 px-8 py-6 bg-[#FDFBF7]/80 backdrop-blur-md border-b border-[#E6A4B4]/10">
-    <div class="container mx-auto px-4 md:px-6 flex justify-between items-center flex-nowrap">
-      <div class="flex items-center gap-3">
-         <span class="text-2xl opacity-80">🧁</span>
-         <span class="font-serif-elegant font-semibold text-2xl text-[#E6A4B4] tracking-wider uppercase">Sucre<span class="text-[#5D4037]">.</span></span>
-      </div>
-      
-      <div class="hidden md:flex gap-16 text-[11px] font-semibold uppercase tracking-[0.2em] text-[#5D4037]/40">
-        <a href="#patisserie" class="hover:text-[#E6A4B4] transition">Patisserie</a>
-        <a href="#atelier" class="hover:text-[#E6A4B4] transition">Atelier</a>
-        <a href="#gifts" class="hover:text-[#E6A4B4] transition">Gifts</a>
-      </div>
-           <button class="mobile-menu-trigger md:hidden ml-auto text-2xl focus:outline-none" style="color: inherit;">
-             <i class="fas fa-bars"></i>
-           </button>
+  <!-- ========== Nav ========== -->
+  <nav class="fixed w-full z-50 px-4 md:px-8 py-5 bg-[#FFF5F5]/80 backdrop-blur-xl border-b border-[#E8A0BF]/10">
+    <div class="max-w-7xl mx-auto flex justify-between items-center">
+      <a href="#" class="flex items-center gap-3">
+        <span class="font-rounded text-2xl tracking-tight font-bold text-[#E8A0BF]">bonbon</span>
+      </a>
 
-      
-      <div class="flex-nowrap shrink-0 flex gap-10 items-center">
-         <button onclick="toggleDessertModal()" class="hidden md:block text-[11px] font-semibold uppercase tracking-[0.2em] text-[#5D4037]/40 hover:text-[#E6A4B4]" data-mobile-menu-copy="true">My Sweet</button>
-         <button class="hidden md:inline-flex bg-[#E6A4B4] text-white px-4 py-2 text-xs md:text-base md:px-8 md:py-3 whitespace-nowrap rounded-sm font-serif-elegant font-italic text-[13px] tracking-wide hover:bg-[#5D4037] transition shadow-lg shadow-[#E6A4B4]/20" data-mobile-menu-copy="true">
-           Pre Order
-         </button>
+      <div class="hidden md:flex gap-12 text-[10px] font-semibold uppercase tracking-[0.4em] text-[#5C4A4A]/40">
+        <a href="#about" class="hover:text-[#E8A0BF] transition">About</a>
+        <a href="#menu" class="hover:text-[#E8A0BF] transition">Menu</a>
+        <a href="#gallery" class="hover:text-[#E8A0BF] transition">Gallery</a>
+        <a href="#location" class="hover:text-[#E8A0BF] transition">Location</a>
+      </div>
+
+      <button class="mobile-menu-trigger md:hidden ml-auto text-2xl focus:outline-none" style="color: inherit;">
+        <i class="fas fa-bars"></i>
+      </button>
+
+      <div class="hidden md:flex gap-6 items-center shrink-0">
+        <button onclick="toggleDessertModal()" class="text-[10px] font-semibold uppercase tracking-[0.4em] text-[#5C4A4A]/40 hover:text-[#E8A0BF]" data-mobile-menu-copy="true">My Bonbon</button>
+        <button class="bg-[#E8A0BF] text-white px-8 py-3.5 rounded-full font-semibold text-[10px] tracking-[0.3em] uppercase hover:bg-[#D88AAF] transition shadow-lg shadow-[#E8A0BF]/20" data-mobile-menu-copy="true">
+          Pre-Order
+        </button>
       </div>
     </div>
 
-      <%= render partial: 'templates/shared/mobile_menu_overlay' %></nav>
+    <%= render partial: 'templates/shared/mobile_menu_overlay' %>
+  </nav>
 
-  <!-- Hero -->
-  <header class="min-h-screen relative flex items-center justify-center pt-20 overflow-hidden">
-    <!-- Soft Gradient Background -->
-    <div class="absolute top-0 right-0 w-[60%] h-[80%] bg-gradient-to-bl from-[#FFF0F5] to-transparent rounded-bl-[10rem] -z-10"></div>
-    <div class="absolute bottom-0 left-0 w-[40%] h-[60%] bg-[#F5E6EA] rounded-tr-[10rem] -z-10 opacity-50"></div>
-
-    <div class="container mx-auto px-3 md:px-6 relative z-10 grid lg:grid-cols-2 gap-12 md:p-20 items-center">
-      <div class="space-y-12 text-center lg:text-left">
-        <div class="inline-flex items-center gap-3">
-           <span class="w-8 h-[1px] bg-[#E6A4B4]"></span>
-           <span class="text-[11px] font-serif-elegant italic text-[#E6A4B4] tracking-wide">Handcrafted in Seoul</span>
+  <!-- ========== Hero ========== -->
+  <header class="min-h-[100dvh] relative flex items-center justify-center pt-20">
+    <div class="max-w-7xl mx-auto px-4 md:px-8 relative z-10 grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+      <div class="space-y-10 text-center lg:text-left">
+        <div class="inline-flex items-center gap-5 reveal" style="--delay: 0;">
+          <span class="w-10 h-[1px] bg-[#E8A0BF]"></span>
+          <span class="text-[10px] font-semibold tracking-[0.6em] uppercase text-[#E8A0BF]">Patisserie &middot; Seoul</span>
         </div>
-        
-        <h1 class="text-3xl md:text-5xl md:text-[7rem] font-serif-elegant leading-[1.1] text-[#5D4037] mobile-title">
-           Sweetness<br>
-           <span class="italic text-[#E6A4B4]">Redefined.</span>
+
+        <h1 class="text-4xl md:text-6xl lg:text-[5.5rem] font-rounded font-bold leading-tight tracking-tight text-[#5C4A4A] mobile-title reveal" style="--delay: 1;">
+          달콤한 하루,<br><span class="text-[#E8A0BF]">봉봉.</span>
         </h1>
-        
-        <p class="text-[#5D4037]/70 text-sm md:text-xl leading-relaxed max-w-md mx-auto lg:mx-0 mobile-desc font-light">
-           버터의 풍미와 계절의 과일이 만나 탄생하는 작은 사치.<br>
-           슈크레의 디저트로 당신의 오후를 완벽하게 채워보세요.
+
+        <p class="text-[#5C4A4A]/60 text-sm md:text-lg leading-relaxed max-w-lg mx-auto lg:mx-0 mobile-desc reveal" style="--delay: 2;">
+          매일 오전 정성껏 만든 수제 디저트. 프랑스 파티시에의 손끝에서 태어난 작고 예쁜 달콤함을 선물합니다.
         </p>
-        
-        <div class="pt-6 flex flex-col sm:flex-row gap-10 justify-center lg:justify-start">
-           <button class="px-10 py-4 bg-[#5D4037] text-white font-serif-elegant italic text-sm tracking-wide hover:bg-[#E6A4B4] transition shadow-xl">
-             View Collection
-           </button>
-           <button class="px-10 py-4 border border-[#5D4037]/20 text-[#5D4037] font-serif-elegant italic text-sm tracking-wide hover:border-[#E6A4B4] hover:text-[#E6A4B4] transition">
-             Our Story
-           </button>
+
+        <div class="pt-4 flex flex-col sm:flex-row gap-5 justify-center lg:justify-start reveal" style="--delay: 3;">
+          <a href="#menu" class="inline-flex items-center justify-center gap-3 px-10 py-5 bg-[#E8A0BF] text-white font-semibold text-[11px] tracking-[0.3em] uppercase hover:bg-[#D88AAF] rounded-full shadow-xl shadow-[#E8A0BF]/20">
+            Today's Menu
+            <span class="w-7 h-7 rounded-full bg-white/20 flex items-center justify-center">
+              <i class="fas fa-arrow-right text-[10px]"></i>
+            </span>
+          </a>
+          <a href="#about" class="inline-flex items-center justify-center px-10 py-5 border border-[#E8A0BF]/30 text-[#E8A0BF] font-semibold text-[11px] tracking-[0.3em] uppercase hover:bg-white rounded-full">
+            Our Story
+          </a>
         </div>
       </div>
-      
-      <div class="relative hidden lg:flex justify-center items-center">
-         <div class="relative z-10 w-[400px]">
-            <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[350px] h-[450px] border border-[#E6A4B4] rounded-t-[10rem] -z-10 translate-y-4 translate-x-4"></div>
-            <img src="https://images.unsplash.com/photo-1558301211-0d8c8ddee6ec?q=80&w=800" alt="Elegant Dessert" class="w-full h-[500px] object-cover rounded-t-[10rem] shadow-2xl grayscale-[20%] hover:grayscale-0 transition duration-700">
-            
-            <div class="absolute bottom-10 -left-10 bg-white/90 backdrop-blur-sm p-6 shadow-xl border border-[#E6A4B4]/20 max-w-xs">
-               <p class="font-serif-elegant text-2xl italic text-[#5D4037] mb-2">Signature Tart</p>
-               <p class="text-[10px] text-[#5D4037]/50 uppercase tracking-wide leading-relaxed">
-                  Seasonal Raspberry & Vanilla Bean Custard
-               </p>
-            </div>
-         </div>
+
+      <div class="relative reveal" style="--delay: 2;">
+        <div class="absolute -top-12 -right-12 w-72 h-72 bg-[#E8A0BF]/10 rounded-full blur-[100px]"></div>
+        <div class="relative group">
+          <img src="https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?q=80&w=1200" alt="디저트 컬렉션" class="w-full aspect-[4/5] object-cover rounded-[3rem] shadow-2xl group-hover:shadow-[0_30px_80px_-20px_rgba(232,160,191,0.3)] transition-all duration-700" loading="eager">
+          <div class="absolute -bottom-6 -left-6 md:-bottom-8 md:-left-8 bg-white p-8 md:p-10 rounded-2xl shadow-xl border border-[#E8A0BF]/10 max-w-[260px]" style="animation: float 6s ease-in-out infinite;">
+            <p class="text-[10px] font-semibold text-[#E8A0BF] uppercase tracking-[0.4em] mb-3">Handmade Daily</p>
+            <p class="text-xl font-rounded font-bold text-[#5C4A4A]">Made with Love.</p>
+          </div>
+        </div>
       </div>
     </div>
   </header>
 
-  <!-- Login Modal -->
-  <div id="dessert-modal" class="fixed inset-0 z-[100] hidden items-center justify-center p-4 bg-[#5D4037]/10 backdrop-blur-md">
-    <div class="bg-[#FDFBF7] w-full max-w-sm p-14 shadow-2xl relative border border-[#E6A4B4]/20">
-      <button onclick="toggleDessertModal()" class="absolute top-8 right-8 text-[#5D4037]/20 hover:text-[#E6A4B4] transition text-2xl font-serif-elegant">&times;</button>
-      
-      <div class="text-center mb-12">
-        <h2 class="text-2xl font-serif-elegant italic text-[#5D4037] mb-2">Bon Appétit</h2>
-        <p class="text-[10px] text-[#E6A4B4] font-semibold tracking-[0.3em] uppercase">Join Our Patisserie Club</p>
-      </div>
-      
-      <div class="space-y-8">
-        <div class="group">
-           <input type="text" placeholder="GUEST EMAIL" class="w-full bg-transparent border-b border-[#5D4037]/10 py-3 text-[12px] font-semibold tracking-wide placeholder-[#5D4037]/30 uppercase outline-none focus:border-[#E6A4B4] transition text-center text-[#5D4037]">
+  <!-- ========== About Section ========== -->
+  <section id="about" class="py-24 md:py-32">
+    <div class="max-w-7xl mx-auto px-4 md:px-8 grid lg:grid-cols-2 gap-16 lg:gap-24 items-center">
+      <div class="relative reveal" style="--delay: 0;">
+        <div class="absolute -top-8 -left-8 w-60 h-60 bg-[#E8A0BF]/8 rounded-full blur-[80px]"></div>
+        <div class="grid grid-cols-5 gap-4">
+          <div class="col-span-3 overflow-hidden rounded-[2rem]">
+            <img src="https://images.unsplash.com/photo-1486427944544-d2c246c4d3b1?q=80&w=800" alt="디저트 작업" class="w-full h-full object-cover aspect-[3/4]" loading="lazy" decoding="async">
+          </div>
+          <div class="col-span-2 flex flex-col gap-4">
+            <div class="overflow-hidden rounded-[1.5rem] flex-1">
+              <img src="https://images.unsplash.com/photo-1587314168485-3236d6710814?q=80&w=600" alt="마카롱 제작" class="w-full h-full object-cover" loading="lazy" decoding="async">
+            </div>
+            <div class="overflow-hidden rounded-[1.5rem] flex-1">
+              <img src="https://images.unsplash.com/photo-1558326567-98ae2405596b?q=80&w=600" alt="케이크 장식" class="w-full h-full object-cover" loading="lazy" decoding="async">
+            </div>
+          </div>
         </div>
-        
-        <button class="w-full bg-[#E6A4B4] text-white py-4 text-[11px] tracking-[0.3em] font-semibold uppercase hover:bg-[#5D4037] transition shadow-lg">
-           Sign In
+      </div>
+
+      <div class="space-y-8 reveal" style="--delay: 1;">
+        <div class="inline-flex items-center gap-4">
+          <span class="rounded-full px-4 py-1.5 text-[11px] uppercase tracking-[0.15em] font-medium bg-[#E8A0BF]/10 text-[#E8A0BF]">Our Story</span>
+        </div>
+
+        <h2 class="text-3xl md:text-4xl lg:text-5xl font-rounded font-bold leading-snug text-[#5C4A4A]">
+          작은 주방에서<br>시작된 달콤함
+        </h2>
+
+        <p class="text-[#5C4A4A]/60 text-base md:text-lg leading-relaxed">
+          봉봉은 프랑스 르 꼬르동 블루를 졸업한 셰프가 연남동에 차린 작은 디저트 카페입니다. 화학 첨가물 없이, 매일 아침 신선한 재료만으로 디저트를 만듭니다.
+        </p>
+        <p class="text-[#5C4A4A]/60 text-base md:text-lg leading-relaxed">
+          프랑스산 발효 버터, 마다가스카르 바닐라빈, 벨기에 커버처 초콜릿. 최고의 재료를 아끼지 않는 것이 봉봉의 약속입니다.
+        </p>
+
+        <div class="grid grid-cols-3 gap-6 pt-6 border-t border-[#E8A0BF]/10">
+          <div>
+            <p class="text-2xl md:text-3xl font-rounded font-bold text-[#E8A0BF]">12</p>
+            <p class="text-[11px] text-[#5C4A4A]/40 uppercase tracking-[0.1em] mt-1 font-medium">시그니처 메뉴</p>
+          </div>
+          <div>
+            <p class="text-2xl md:text-3xl font-rounded font-bold text-[#E8A0BF]">0%</p>
+            <p class="text-[11px] text-[#5C4A4A]/40 uppercase tracking-[0.1em] mt-1 font-medium">화학 첨가물</p>
+          </div>
+          <div>
+            <p class="text-2xl md:text-3xl font-rounded font-bold text-[#E8A0BF]">5yr</p>
+            <p class="text-[11px] text-[#5C4A4A]/40 uppercase tracking-[0.1em] mt-1 font-medium">연남동 로컬</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== Signature Menu ========== -->
+  <section id="menu" class="py-24 md:py-32 bg-white relative">
+    <div class="max-w-7xl mx-auto px-4 md:px-8">
+      <div class="text-center mb-16 md:mb-20">
+        <span class="rounded-full px-4 py-1.5 text-[11px] uppercase tracking-[0.15em] font-medium bg-[#E8A0BF]/10 text-[#E8A0BF] reveal" style="--delay: 0;">Signature</span>
+        <h2 class="text-3xl md:text-4xl lg:text-5xl font-rounded font-bold leading-snug text-[#5C4A4A] mt-6 reveal" style="--delay: 1;">
+          오늘의 쇼케이스
+        </h2>
+        <p class="text-[#5C4A4A]/50 text-base md:text-lg mt-4 max-w-xl mx-auto reveal" style="--delay: 2;">
+          매일 아침 새로 만드는 한정 수량 디저트. 예약 주문을 추천드려요.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <!-- Menu Item 1 -->
+        <div class="menu-card group reveal" style="--delay: 0;">
+          <div class="bg-[#FFF5F5] rounded-[2rem] p-1.5 ring-1 ring-[#E8A0BF]/10">
+            <div class="rounded-[calc(2rem-0.375rem)] overflow-hidden">
+              <div class="overflow-hidden">
+                <img src="https://images.unsplash.com/photo-1569864358642-9d1684040f43?q=80&w=600" alt="딸기 쇼트케이크" class="w-full aspect-square object-cover transition-transform duration-700" loading="lazy" decoding="async">
+              </div>
+              <div class="p-6 bg-[#FFF5F5]">
+                <div class="flex justify-between items-start mb-2">
+                  <h3 class="text-lg font-semibold text-[#5C4A4A]">딸기 쇼트케이크</h3>
+                  <span class="text-[#E8A0BF] font-rounded font-bold text-lg">7,800</span>
+                </div>
+                <p class="text-[13px] text-[#5C4A4A]/50 leading-relaxed">생크림 시트, 논산 딸기, 마스카포네 무스</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Menu Item 2 -->
+        <div class="menu-card group reveal" style="--delay: 1;">
+          <div class="bg-[#FFF5F5] rounded-[2rem] p-1.5 ring-1 ring-[#E8A0BF]/10">
+            <div class="rounded-[calc(2rem-0.375rem)] overflow-hidden">
+              <div class="overflow-hidden">
+                <img src="https://images.unsplash.com/photo-1558326567-98ae2405596b?q=80&w=600" alt="마카롱 세트" class="w-full aspect-square object-cover transition-transform duration-700" loading="lazy" decoding="async">
+              </div>
+              <div class="p-6 bg-[#FFF5F5]">
+                <div class="flex justify-between items-start mb-2">
+                  <h3 class="text-lg font-semibold text-[#5C4A4A]">마카롱 6종 세트</h3>
+                  <span class="text-[#E8A0BF] font-rounded font-bold text-lg">15,000</span>
+                </div>
+                <p class="text-[13px] text-[#5C4A4A]/50 leading-relaxed">바닐라, 피스타치오, 라즈베리, 솔티카라멜 외</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Menu Item 3 -->
+        <div class="menu-card group reveal" style="--delay: 2;">
+          <div class="bg-[#FFF5F5] rounded-[2rem] p-1.5 ring-1 ring-[#E8A0BF]/10">
+            <div class="rounded-[calc(2rem-0.375rem)] overflow-hidden">
+              <div class="overflow-hidden">
+                <img src="https://images.unsplash.com/photo-1571115177098-24ec42ed204d?q=80&w=600" alt="크렘브륄레" class="w-full aspect-square object-cover transition-transform duration-700" loading="lazy" decoding="async">
+              </div>
+              <div class="p-6 bg-[#FFF5F5]">
+                <div class="flex justify-between items-start mb-2">
+                  <h3 class="text-lg font-semibold text-[#5C4A4A]">크렘 브륄레</h3>
+                  <span class="text-[#E8A0BF] font-rounded font-bold text-lg">8,500</span>
+                </div>
+                <p class="text-[13px] text-[#5C4A4A]/50 leading-relaxed">타히티 바닐라빈, 유기농 달걀, 캐러멜라이즈</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Menu Item 4 -->
+        <div class="menu-card group reveal" style="--delay: 3;">
+          <div class="bg-[#FFF5F5] rounded-[2rem] p-1.5 ring-1 ring-[#E8A0BF]/10">
+            <div class="rounded-[calc(2rem-0.375rem)] overflow-hidden">
+              <div class="overflow-hidden">
+                <img src="https://images.unsplash.com/photo-1587314168485-3236d6710814?q=80&w=600" alt="티라미수" class="w-full aspect-square object-cover transition-transform duration-700" loading="lazy" decoding="async">
+              </div>
+              <div class="p-6 bg-[#FFF5F5]">
+                <div class="flex justify-between items-start mb-2">
+                  <h3 class="text-lg font-semibold text-[#5C4A4A]">클래식 티라미수</h3>
+                  <span class="text-[#E8A0BF] font-rounded font-bold text-lg">9,200</span>
+                </div>
+                <p class="text-[13px] text-[#5C4A4A]/50 leading-relaxed">이탈리안 마스카포네, 에스프레소, 사보이아르디</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="text-center mt-12 reveal" style="--delay: 4;">
+        <a href="#" class="inline-flex items-center gap-3 text-[11px] font-semibold uppercase tracking-[0.3em] text-[#E8A0BF] hover:text-[#5C4A4A]">
+          전체 메뉴 보기
+          <span class="w-6 h-6 rounded-full bg-[#E8A0BF]/10 flex items-center justify-center">
+            <i class="fas fa-arrow-right text-[9px]"></i>
+          </span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== Gallery ========== -->
+  <section id="gallery" class="py-24 md:py-32">
+    <div class="max-w-7xl mx-auto px-4 md:px-8">
+      <div class="flex flex-col md:flex-row md:items-end md:justify-between mb-14 gap-6">
+        <div>
+          <span class="rounded-full px-4 py-1.5 text-[11px] uppercase tracking-[0.15em] font-medium bg-[#E8A0BF]/10 text-[#E8A0BF] reveal" style="--delay: 0;">Gallery</span>
+          <h2 class="text-3xl md:text-4xl lg:text-5xl font-rounded font-bold leading-snug text-[#5C4A4A] mt-6 reveal" style="--delay: 1;">
+            달콤한 순간들
+          </h2>
+        </div>
+        <p class="text-[#5C4A4A]/50 text-base max-w-sm reveal" style="--delay: 2;">
+          연남동 골목, 파스텔 톤의 작은 공간에서.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-4">
+        <div class="gallery-item overflow-hidden rounded-2xl md:rounded-[2rem] reveal" style="--delay: 0;">
+          <img src="https://images.unsplash.com/photo-1488477181946-6428a0291777?q=80&w=800" alt="디저트 진열대" class="w-full aspect-square object-cover transition-transform duration-700" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item overflow-hidden rounded-2xl md:rounded-[2rem] md:row-span-2 reveal" style="--delay: 1;">
+          <img src="https://images.unsplash.com/photo-1517433670267-08bbd4be890f?q=80&w=800" alt="파티시에" class="w-full h-full object-cover transition-transform duration-700" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item overflow-hidden rounded-2xl md:rounded-[2rem] reveal" style="--delay: 2;">
+          <img src="https://images.unsplash.com/photo-1551024506-0bccd828d307?q=80&w=800" alt="크루아상" class="w-full aspect-square object-cover transition-transform duration-700" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item overflow-hidden rounded-2xl md:rounded-[2rem] reveal" style="--delay: 3;">
+          <img src="https://images.unsplash.com/photo-1464349095431-e9a21285b5f3?q=80&w=800" alt="케이크 위 장식" class="w-full aspect-square object-cover transition-transform duration-700" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item overflow-hidden rounded-2xl md:rounded-[2rem] col-span-2 md:col-span-1 reveal" style="--delay: 4;">
+          <img src="https://images.unsplash.com/photo-1495147466023-ac5c588e2e94?q=80&w=800" alt="카페 인테리어" class="w-full aspect-[2/1] md:aspect-square object-cover transition-transform duration-700" loading="lazy" decoding="async">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== Location & Hours ========== -->
+  <section id="location" class="py-24 md:py-32 bg-[#5C4A4A] text-white relative overflow-hidden">
+    <div class="absolute top-0 right-0 w-96 h-96 bg-[#E8A0BF]/10 rounded-full blur-[120px]"></div>
+    <div class="absolute bottom-0 left-0 w-72 h-72 bg-[#E8A0BF]/5 rounded-full blur-[100px]"></div>
+
+    <div class="max-w-7xl mx-auto px-4 md:px-8 relative z-10">
+      <div class="grid lg:grid-cols-2 gap-16 lg:gap-24 items-start">
+        <div class="reveal" style="--delay: 0;">
+          <div class="rounded-[2rem] overflow-hidden aspect-[4/3] bg-[#6B5858] relative group">
+            <img src="https://images.unsplash.com/photo-1514066558159-fc8c737ef259?q=80&w=800" alt="카페 외관" class="w-full h-full object-cover opacity-60 group-hover:opacity-80 transition-opacity duration-700" loading="lazy" decoding="async">
+            <div class="absolute inset-0 flex items-center justify-center">
+              <a href="#" class="inline-flex items-center gap-3 bg-white/10 backdrop-blur-xl border border-white/20 text-white px-8 py-4 rounded-full text-[11px] font-semibold uppercase tracking-[0.3em] hover:bg-white/20 transition">
+                <i class="fas fa-map-marker-alt text-[#E8A0BF]"></i>
+                지도에서 보기
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="space-y-10">
+          <div class="reveal" style="--delay: 1;">
+            <span class="rounded-full px-4 py-1.5 text-[11px] uppercase tracking-[0.15em] font-medium bg-white/10 text-[#E8A0BF]">Visit Us</span>
+            <h2 class="text-3xl md:text-4xl lg:text-5xl font-rounded font-bold leading-snug mt-6">
+              오시는 길
+            </h2>
+          </div>
+
+          <div class="space-y-8 reveal" style="--delay: 2;">
+            <div class="flex gap-5">
+              <div class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center shrink-0 mt-0.5">
+                <i class="fas fa-map-pin text-[#E8A0BF] text-sm"></i>
+              </div>
+              <div>
+                <p class="text-[10px] font-semibold uppercase tracking-[0.3em] text-white/40 mb-2">Address</p>
+                <p class="text-white/80 text-base leading-relaxed">서울특별시 마포구 연남로 1길 28<br>1층 봉봉 디저트</p>
+              </div>
+            </div>
+
+            <div class="flex gap-5">
+              <div class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center shrink-0 mt-0.5">
+                <i class="fas fa-clock text-[#E8A0BF] text-sm"></i>
+              </div>
+              <div>
+                <p class="text-[10px] font-semibold uppercase tracking-[0.3em] text-white/40 mb-2">Hours</p>
+                <div class="space-y-1.5 text-white/80 text-base">
+                  <div class="flex justify-between gap-12">
+                    <span>화 - 금</span>
+                    <span class="font-rounded font-bold">11:00 - 20:00</span>
+                  </div>
+                  <div class="flex justify-between gap-12">
+                    <span>토 - 일</span>
+                    <span class="font-rounded font-bold">11:00 - 21:00</span>
+                  </div>
+                  <div class="flex justify-between gap-12 text-[#E8A0BF]">
+                    <span>월요일</span>
+                    <span class="font-rounded font-bold">정기 휴무</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="flex gap-5">
+              <div class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center shrink-0 mt-0.5">
+                <i class="fas fa-subway text-[#E8A0BF] text-sm"></i>
+              </div>
+              <div>
+                <p class="text-[10px] font-semibold uppercase tracking-[0.3em] text-white/40 mb-2">Transport</p>
+                <p class="text-white/80 text-base leading-relaxed">홍대입구역 3번 출구에서 도보 10분<br>연남동 경의선 숲길 인근</p>
+              </div>
+            </div>
+
+            <div class="flex gap-5">
+              <div class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center shrink-0 mt-0.5">
+                <i class="fas fa-phone text-[#E8A0BF] text-sm"></i>
+              </div>
+              <div>
+                <p class="text-[10px] font-semibold uppercase tracking-[0.3em] text-white/40 mb-2">Contact</p>
+                <p class="text-white/80 text-base">02-7890-1234</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== CTA Section ========== -->
+  <section class="py-24 md:py-32 relative overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-br from-[#FFF5F5] via-[#FFF0F0] to-[#FFF5F5]"></div>
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-[#E8A0BF]/8 rounded-full blur-[120px]"></div>
+
+    <div class="max-w-3xl mx-auto px-4 md:px-8 text-center relative z-10">
+      <div class="reveal" style="--delay: 0;">
+        <span class="font-rounded text-6xl md:text-8xl font-bold text-[#E8A0BF]/15 block mb-6">&hearts;</span>
+      </div>
+      <h2 class="text-3xl md:text-4xl lg:text-5xl font-rounded font-bold leading-snug text-[#5C4A4A] reveal" style="--delay: 1;">
+        특별한 날엔,<br>봉봉의 케이크를
+      </h2>
+      <p class="text-[#5C4A4A]/50 text-base md:text-lg mt-6 max-w-lg mx-auto reveal" style="--delay: 2;">
+        생일, 기념일, 혹은 그냥 오늘이 좋은 날. 세상에서 하나뿐인 주문 제작 케이크를 준비해드립니다. 3일 전 예약 필수.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-5 justify-center mt-10 reveal" style="--delay: 3;">
+        <a href="#" class="inline-flex items-center justify-center gap-3 px-10 py-5 bg-[#E8A0BF] text-white font-semibold text-[11px] tracking-[0.3em] uppercase rounded-full shadow-lg shadow-[#E8A0BF]/20 hover:bg-[#D88AAF]">
+          케이크 예약하기
+          <span class="w-7 h-7 rounded-full bg-white/15 flex items-center justify-center">
+            <i class="fas fa-arrow-right text-[10px]"></i>
+          </span>
+        </a>
+        <a href="https://www.instagram.com/" target="_blank" class="inline-flex items-center justify-center gap-3 px-10 py-5 border border-[#E8A0BF]/30 text-[#E8A0BF] font-semibold text-[11px] tracking-[0.3em] uppercase rounded-full hover:bg-white">
+          <i class="fab fa-instagram text-sm"></i>
+          Instagram
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== Footer ========== -->
+  <footer class="py-16 md:py-24 bg-[#5C4A4A]">
+    <div class="max-w-7xl mx-auto px-4 md:px-8">
+      <div class="grid md:grid-cols-3 gap-12 items-start mb-16">
+        <div>
+          <span class="font-rounded text-2xl text-[#E8A0BF] tracking-tight font-bold block mb-4">bonbon</span>
+          <p class="text-white/30 text-sm leading-relaxed max-w-xs">
+            연남동에서 시작된 수제 디저트 카페. 매일 정성껏 만든 달콤함을 선물합니다.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-2 gap-8">
+          <div>
+            <p class="text-[10px] font-semibold text-white/20 uppercase tracking-[0.3em] mb-4">Menu</p>
+            <ul class="space-y-2.5">
+              <li><a href="#menu" class="text-white/50 text-sm hover:text-[#E8A0BF] transition">Cakes</a></li>
+              <li><a href="#menu" class="text-white/50 text-sm hover:text-[#E8A0BF] transition">Macarons</a></li>
+              <li><a href="#menu" class="text-white/50 text-sm hover:text-[#E8A0BF] transition">Pastries</a></li>
+              <li><a href="#menu" class="text-white/50 text-sm hover:text-[#E8A0BF] transition">Drinks</a></li>
+            </ul>
+          </div>
+          <div>
+            <p class="text-[10px] font-semibold text-white/20 uppercase tracking-[0.3em] mb-4">Info</p>
+            <ul class="space-y-2.5">
+              <li><a href="#about" class="text-white/50 text-sm hover:text-[#E8A0BF] transition">About</a></li>
+              <li><a href="#location" class="text-white/50 text-sm hover:text-[#E8A0BF] transition">Location</a></li>
+              <li><a href="#" class="text-white/50 text-sm hover:text-[#E8A0BF] transition">Custom Order</a></li>
+              <li><a href="#" class="text-white/50 text-sm hover:text-[#E8A0BF] transition">Gift Card</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <div>
+          <p class="text-[10px] font-semibold text-white/20 uppercase tracking-[0.3em] mb-4">Follow</p>
+          <div class="flex gap-3">
+            <a href="#" class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white/50 hover:text-[#E8A0BF] hover:border-[#E8A0BF]/30 transition">
+              <i class="fab fa-instagram text-sm"></i>
+            </a>
+            <a href="#" class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white/50 hover:text-[#E8A0BF] hover:border-[#E8A0BF]/30 transition">
+              <i class="fab fa-facebook-f text-sm"></i>
+            </a>
+            <a href="#" class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white/50 hover:text-[#E8A0BF] hover:border-[#E8A0BF]/30 transition">
+              <i class="fas fa-blog text-sm"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="border-t border-white/5 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+        <p class="text-[10px] text-white/15 tracking-[0.5em] uppercase">
+          &copy; 2024 Bonbon Dessert. All rights reserved by DLAB.
+        </p>
+        <div class="flex gap-6">
+          <a href="#" class="text-[10px] text-white/15 tracking-[0.2em] uppercase hover:text-white/40 transition">Privacy</a>
+          <a href="#" class="text-[10px] text-white/15 tracking-[0.2em] uppercase hover:text-white/40 transition">Terms</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ========== Login Modal ========== -->
+  <div id="dessert-modal" class="fixed inset-0 z-[100] hidden items-center justify-center p-4 bg-[#5C4A4A]/20 backdrop-blur-3xl">
+    <div class="bg-white w-full max-w-sm p-8 md:p-14 shadow-2xl relative rounded-[3rem] border border-[#E8A0BF]/10">
+      <button onclick="toggleDessertModal()" class="absolute top-8 right-8 w-8 h-8 rounded-full bg-[#FFF5F5] flex items-center justify-center text-[#5C4A4A]/30 hover:text-[#E8A0BF] hover:bg-[#E8A0BF]/10 transition text-lg">&times;</button>
+
+      <div class="text-center mb-12">
+        <h2 class="text-xl font-rounded tracking-[0.1em] text-[#5C4A4A] mb-3 font-bold">My Bonbon</h2>
+        <p class="text-[9px] text-[#E8A0BF] font-semibold tracking-[0.3em] uppercase">Member Access</p>
+      </div>
+
+      <div class="space-y-5">
+        <div class="space-y-2">
+          <p class="text-[10px] font-semibold text-[#5C4A4A]/30 uppercase tracking-[0.2em] ml-1">Email</p>
+          <input type="text" placeholder="your@email.com" class="w-full bg-[#FFF5F5] border-none rounded-2xl py-5 px-6 outline-none focus:ring-1 focus:ring-[#E8A0BF] transition text-[13px] text-[#5C4A4A]">
+        </div>
+        <div class="space-y-2">
+          <p class="text-[10px] font-semibold text-[#5C4A4A]/30 uppercase tracking-[0.2em] ml-1">Password</p>
+          <input type="password" placeholder="Password" class="w-full bg-[#FFF5F5] border-none rounded-2xl py-5 px-6 outline-none focus:ring-1 focus:ring-[#E8A0BF] transition text-[13px] text-[#5C4A4A]">
+        </div>
+        <button class="w-full bg-[#E8A0BF] text-white py-5 rounded-full text-[11px] tracking-[0.4em] font-semibold uppercase hover:bg-[#D88AAF] transition shadow-lg shadow-[#E8A0BF]/20 mt-2">
+          Sign In
         </button>
-        
-        <div class="flex justify-center gap-12 pt-2">
-           <a href="#" class="text-[10px] text-[#5D4037]/40 tracking-[0.2em] font-semibold uppercase hover:text-[#E6A4B4] transition font-serif-elegant italic">Register</a>
-           <a href="#" class="text-[10px] text-[#5D4037]/40 tracking-[0.2em] font-semibold uppercase hover:text-[#E6A4B4] transition font-serif-elegant italic">Inquiry</a>
+        <div class="flex justify-center gap-10 pt-2">
+          <a href="#" class="text-[10px] text-[#5C4A4A]/40 tracking-[0.2em] font-semibold uppercase hover:text-[#E8A0BF] transition">Join</a>
+          <a href="#" class="text-[10px] text-[#5C4A4A]/40 tracking-[0.2em] font-semibold uppercase hover:text-[#E8A0BF] transition">Help</a>
         </div>
       </div>
     </div>
   </div>
 
-  <footer class="py-20 md:py-32 bg-[#FDFBF7] text-center px-6 border-t border-[#E6A4B4]/10">
-     <div class="inline-flex flex-col items-center gap-10 mb-8">
-        <span class="font-serif-elegant font-semibold text-2xl text-[#5D4037] tracking-wider uppercase">Sucre<span class="text-[#E6A4B4]">.</span></span>
-        <div class="w-8 h-[1px] bg-[#5D4037]/20"></div>
-        <span class="text-[10px] font-semibold text-[#5D4037]/40 tracking-[0.3em] uppercase">Artisan Patisserie in Seoul</span>
-     </div>
-     <p class="text-[10px] text-[#5D4037]/20 tracking-[0.6em] uppercase px-6">© 2024 SUCRE PATISSERIE. ALL RIGHTS RESERVED.</p>
-  </footer>
-
-  <script>
-    function toggleDessertModal() {
-      const modal = document.getElementById('dessert-modal');
-      modal.classList.toggle('hidden');
-      modal.classList.toggle('flex');
-    }
-  </script>
-
 </div>
+
+<script>
+  // Modal toggle
+  function toggleDessertModal() {
+    const modal = document.getElementById('dessert-modal');
+    modal.classList.toggle('hidden');
+    modal.classList.toggle('flex');
+  }
+
+  // Close modal on backdrop click
+  document.getElementById('dessert-modal').addEventListener('click', function(e) {
+    if (e.target === this) toggleDessertModal();
+  });
+
+  // IntersectionObserver for scroll reveal animations
+  (function() {
+    const observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    });
+
+    document.querySelectorAll('.reveal').forEach(function(el) {
+      observer.observe(el);
+    });
+  })();
+</script>

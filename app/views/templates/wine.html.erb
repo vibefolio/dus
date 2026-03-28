@@ -1,173 +1,564 @@
-<%# Wine Template - 빈티지 1988 (Vintage 1988) %>
+<%# Wine Template - 뱅루즈 와인바 (VIN ROUGE) %>
 
 <style>
-  /* Supanova Design Upgrade */
+  /* Supanova Design — Sophisticated Muted Archetype */
   * { word-break: keep-all; }
-  html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+  html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
   h1, h2, h3, h4 { text-wrap: balance; letter-spacing: -0.02em; line-height: 1.3; }
-  a, button { transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1); }
+  a, button { transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1); }
   a:hover, button:hover { transform: scale(1.02); }
   a:active, button:active { transform: scale(0.98); }
 
-  @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Noto+Sans+KR:wght@300;400;500;700&display=swap');
-  
-  .font-serif-display { font-family: 'Cinzel', serif; }
-  .font-sans { font-family: 'Pretendard Variable', 'Pretendard', -apple-system, sans-serif; }
+  @import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&display=swap');
+
+  .font-sans { font-family: 'Pretendard Variable', 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, sans-serif; }
+  .font-lora { font-family: 'Lora', serif; }
 
   @media (max-width: 768px) {
     .mobile-desc { font-size: 14px !important; line-height: 1.8; }
-    .mobile-title { font-size: 40px !important; }
+    .mobile-title { font-size: 42px !important; }
   }
 
-  .noise-texture {
-    background-image: url("https://www.transparenttextures.com/patterns/stardust.png");
+  .velvet-overlay {
+    background-image: url("https://www.transparenttextures.com/patterns/dark-leather.png");
     opacity: 0.15;
+  }
+
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(2rem); filter: blur(4px); }
+    to { opacity: 1; transform: translateY(0); filter: blur(0); }
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(2rem);
+  }
+
+  .reveal.is-visible {
+    animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    animation-delay: calc(var(--delay, 0) * 100ms);
+  }
+
+  .menu-card {
+    transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .menu-card:hover {
+    transform: translateY(-8px);
+  }
+  .menu-card:hover img {
+    transform: scale(1.05);
+  }
+
+  .gallery-item {
+    transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .gallery-item:hover {
+    transform: scale(1.02);
+  }
+  .gallery-item:hover img {
+    transform: scale(1.08);
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-12px); }
   }
 </style>
 
-<div class="bg-[#1A0B12] text-[#E0C097] font-sans selection:bg-[#722F37] selection:text-white min-h-screen overflow-x-hidden relative">
-  <div class="fixed inset-0 noise-texture pointer-events-none"></div>
+<div class="bg-[#1C1117] text-[#EDE5DA] font-sans selection:bg-[#8B2252] selection:text-white min-h-screen overflow-x-hidden relative">
+  <div class="fixed inset-0 velvet-overlay pointer-events-none z-[60]"></div>
 
-  <!-- Nav -->
-  <nav class="fixed w-full z-50 px-8 py-6 bg-[#1A0B12]/80 backdrop-blur-md border-b border-[#722F37]/30 transition-all duration-300">
-    <div class="container mx-auto px-4 md:px-6 flex justify-between items-center flex-nowrap">
-      <div class="flex items-center gap-6">
-         <div class="w-8 h-8 max-h-8 max-w-[35%] shrink object-contain md:w-10 md:h-10 border border-[#E0C097]/30 flex items-center justify-center transform rotate-45">
-            <span class="transform -rotate-45 text-2xl">🍷</span>
-         </div>
-         <span class="font-serif-display font-semibold text-xl tracking-[0.2em] text-[#E0C097]">Vintage<span class="text-[#722F37]">1988</span></span>
-      </div>
-      
-      <div class="hidden md:flex gap-16 text-[10px] font-serif-display font-semibold tracking-[0.3em] text-[#E0C097]/50">
-        <a href="#collection" class="hover:text-[#E0C097] transition">Collection</a>
-        <a href="#vineyard" class="hover:text-[#E0C097] transition">Vineyard</a>
-        <a href="#tasting" class="hover:text-[#E0C097] transition">Tasting</a>
-      </div>
-           <button class="mobile-menu-trigger md:hidden ml-auto text-2xl focus:outline-none" style="color: inherit;">
-             <i class="fas fa-bars"></i>
-           </button>
+  <!-- ========== Nav ========== -->
+  <nav class="fixed w-full z-50 px-4 md:px-8 py-5 bg-[#1C1117]/80 backdrop-blur-xl border-b border-[#8B2252]/10">
+    <div class="max-w-7xl mx-auto flex justify-between items-center">
+      <a href="#" class="flex items-center gap-3">
+        <span class="font-lora text-2xl tracking-[0.05em] font-semibold italic text-[#8B2252]">Vin Rouge</span>
+      </a>
 
-      
-      <div class="flex-nowrap shrink-0 flex gap-10 items-center">
-         <button onclick="toggleWineModal()" class="hidden md:block text-[10px] font-serif-display font-semibold tracking-[0.3em] text-[#E0C097]/50 hover:text-[#E0C097]" data-mobile-menu-copy="true">Member's Cave</button>
-         <button class="hidden md:inline-flex bg-[#722F37] text-white px-4 py-2 text-xs md:text-base md:px-8 md:py-3 whitespace-nowrap font-serif-display font-semibold text-[11px] tracking-[0.2em] hover:bg-[#8B3A44] transition shadow-[0_0_20px_rgba(114,47,55,0.4)] border border-[#E0C097]/10" data-mobile-menu-copy="true">
-           Reserve
-         </button>
+      <div class="hidden md:flex gap-12 text-[10px] font-semibold uppercase tracking-[0.4em] text-[#EDE5DA]/40">
+        <a href="#about" class="hover:text-[#8B2252] transition">About</a>
+        <a href="#menu" class="hover:text-[#8B2252] transition">Wine</a>
+        <a href="#gallery" class="hover:text-[#8B2252] transition">Gallery</a>
+        <a href="#location" class="hover:text-[#8B2252] transition">Visit</a>
+      </div>
+
+      <button class="mobile-menu-trigger md:hidden ml-auto text-2xl focus:outline-none" style="color: inherit;">
+        <i class="fas fa-bars"></i>
+      </button>
+
+      <div class="hidden md:flex gap-6 items-center shrink-0">
+        <button onclick="toggleWineModal()" class="text-[10px] font-semibold uppercase tracking-[0.4em] text-[#EDE5DA]/40 hover:text-[#8B2252]" data-mobile-menu-copy="true">Members</button>
+        <button class="bg-[#8B2252] text-white px-8 py-3.5 rounded-full font-semibold text-[10px] tracking-[0.3em] uppercase hover:bg-[#A0325F] transition shadow-lg shadow-[#8B2252]/20" data-mobile-menu-copy="true">
+          Reserve
+        </button>
       </div>
     </div>
 
-      <%= render partial: 'templates/shared/mobile_menu_overlay' %></nav>
+    <%= render partial: 'templates/shared/mobile_menu_overlay' %>
+  </nav>
 
-  <!-- Hero -->
-  <header class="min-h-screen relative flex items-center justify-center pt-24 overflow-hidden">
-    <!-- Background Image with Overlay -->
-    <div class="absolute inset-0 z-0">
-       <img src="https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb?q=80&w=1920" alt="Wine Cellar" class="w-full h-full object-cover">
-       <div class="absolute inset-0 bg-gradient-to-t from-[#1A0B12] via-[#1A0B12]/90 to-[#1A0B12]/60"></div>
+  <!-- ========== Hero ========== -->
+  <header class="min-h-[100dvh] relative flex items-center justify-center pt-20">
+    <div class="absolute inset-0 bg-gradient-to-b from-[#1C1117] via-transparent to-[#1C1117] z-[1]"></div>
+    <div class="absolute inset-0">
+      <img src="https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?q=80&w=1800" alt="와인 셀러" class="w-full h-full object-cover opacity-30" loading="eager">
     </div>
 
-    <div class="container mx-auto px-3 md:px-6 relative z-10 grid lg:grid-cols-2 gap-12 md:p-20 items-center">
-      <div class="space-y-12 text-center lg:text-left">
-        <div class="inline-flex items-center gap-3 justify-center lg:justify-start">
-           <span class="w-12 h-[1px] bg-[#E0C097]/50"></span>
-           <span class="text-[10px] font-serif-display font-semibold text-[#E0C097] tracking-[0.4em] uppercase">Premium Selection</span>
-           <span class="w-12 h-[1px] bg-[#E0C097]/50"></span>
+    <div class="max-w-7xl mx-auto px-4 md:px-8 relative z-10 text-center">
+      <div class="space-y-10">
+        <div class="inline-flex items-center gap-5 reveal" style="--delay: 0;">
+          <span class="w-16 h-[1px] bg-[#8B2252]/50"></span>
+          <span class="text-[10px] font-semibold tracking-[0.6em] uppercase text-[#8B2252]">Wine Bar &middot; Itaewon</span>
+          <span class="w-16 h-[1px] bg-[#8B2252]/50"></span>
         </div>
-        
-        <h1 class="text-2xl md:text-4xl md:text-6xl font-serif-display font-semibold leading-[1.2] text-[#E0C097] mobile-title">
-           Timeless<br>
-           <span class="text-[#722F37] italic pr-4">Elegance</span>in<br>
-           Every Drop.
+
+        <h1 class="text-5xl md:text-7xl lg:text-[7rem] font-lora font-semibold leading-none tracking-tight text-[#EDE5DA] mobile-title reveal" style="--delay: 1;">
+          한 잔의 여유,<br><span class="italic text-[#8B2252]">깊은 밤.</span>
         </h1>
-        
-        <p class="text-[#E0C097]/60 text-sm md:text-lg leading-relaxed max-w-lg mx-auto lg:mx-0 mobile-desc font-light">
-           시간이 빚어낸 깊고 그윽한 향기. <br>
-           엄선된 빈티지와 소믈리에의 철학이 담긴 리스트를 경험하세요.
+
+        <p class="text-[#EDE5DA]/50 text-sm md:text-lg leading-relaxed max-w-lg mx-auto mobile-desc reveal" style="--delay: 2;">
+          이태원 골목 지하, 벽돌과 캔들 사이에서 와인 한 잔. 소믈리에가 골라주는 오늘의 와인으로, 하루의 마지막을 채워보세요.
         </p>
-        
-        <div class="flex flex-col sm:flex-row gap-10 justify-center lg:justify-start pt-4">
-           <button class="px-10 py-4 border border-[#E0C097] text-[#E0C097] font-serif-display font-semibold text-xs tracking-[0.3em] hover:bg-[#E0C097] hover:text-[#1A0B12] transition duration-500">
-              Explore Collection
-           </button>
-           <button class="px-10 py-4 text-[#E0C097]/70 font-serif-display font-semibold text-xs tracking-[0.3em] hover:text-[#E0C097] transition flex items-center gap-2 justify-center lg:justify-start group">
-              <span class="w-8 h-8 max-h-8 max-w-[35%] shrink object-contain rounded-full border border-[#E0C097]/30 flex items-center justify-center group-hover:border-[#E0C097] transition">▶</span>
-              Watch The Story
-           </button>
+
+        <div class="pt-4 flex flex-col sm:flex-row gap-5 justify-center reveal" style="--delay: 3;">
+          <a href="#menu" class="inline-flex items-center justify-center gap-3 px-10 py-5 bg-[#8B2252] text-white font-semibold text-[11px] tracking-[0.3em] uppercase hover:bg-[#A0325F] rounded-full shadow-xl shadow-[#8B2252]/20">
+            Wine List
+            <span class="w-7 h-7 rounded-full bg-white/10 flex items-center justify-center">
+              <i class="fas fa-arrow-right text-[10px]"></i>
+            </span>
+          </a>
+          <a href="#about" class="inline-flex items-center justify-center px-10 py-5 border border-[#8B2252]/30 text-[#8B2252] font-semibold text-[11px] tracking-[0.3em] uppercase hover:bg-white/5 rounded-full">
+            Our Story
+          </a>
         </div>
       </div>
-      
-      <div class="relative hidden lg:block">
-         <!-- Bottle Display -->
-         <div class="relative z-10 flex justify-center items-center">
-            <div class="relative w-[300px] h-[600px] group cursor-pointer perspective-1000">
-               <div class="absolute inset-x-0 top-10 bottom-10 bg-[#722F37]/20 blur-[60px] rounded-full group-hover:bg-[#722F37]/30 transition duration-700"></div>
-               <img src="https://images.unsplash.com/photo-1584916201218-f4242ceb4809?q=80&w=400" alt="Premium Wine Bottle" class="w-full h-full object-contain filter drop-shadow-[0_20px_40px_rgba(0,0,0,0.5)] transform group-hover:scale-105 group-hover:rotate-y-12 transition duration-700">
-               
-               <!-- Label Info -->
-               <div class="absolute bottom-20 -right-10 bg-[#1A0B12]/90 backdrop-blur-sm p-6 border border-[#E0C097]/20 shadow-2xl max-w-[200px]">
-                  <p class="font-serif-display text-xl text-[#E0C097] mb-1">Château 1988</p>
-                  <div class="h-[1px] w-full bg-[#E0C097]/20 mb-2"></div>
-                  <div class="flex justify-between items-center text-[10px] uppercase tracking-wide text-[#E0C097]/60">
-                     <span>Grand Cru</span>
-                     <span>Red</span>
-                  </div>
-               </div>
-            </div>
-         </div>
-      </div>
     </div>
-    
-    <style>
-       .rotate-y-12 { transform: rotateY(12deg); }
-       .perspective-1000 { perspective: 1000px; }
-    </style>
   </header>
 
-  <!-- Login Modal -->
-  <div id="wine-modal" class="fixed inset-0 z-[100] hidden items-center justify-center p-4 bg-slate-950/90 backdrop-blur-md">
-    <div class="bg-[#0F0508] w-full max-w-sm p-14 relative border border-[#722F37]/40 shadow-[0_0_60px_rgba(114,47,55,0.2)]">
-      <button onclick="toggleWineModal()" class="absolute top-6 right-6 text-[#E0C097]/30 hover:text-[#E0C097] transition text-2xl font-serif-display">&times;</button>
-      
-      <div class="text-center mb-12">
-         <div class="w-12 h-12 border border-[#E0C097]/20 flex items-center justify-center transform rotate-45 mx-auto mb-6">
-            <span class="transform -rotate-45 text-2xl text-[#E0C097]">🗝️</span>
-         </div>
-        <h2 class="text-xl font-serif-display font-semibold text-[#E0C097] mb-2 tracking-[0.2em] uppercase">Private Cellar</h2>
-        <p class="text-[9px] text-[#722F37] font-semibold tracking-[0.3em] uppercase">Members Only Access</p>
-      </div>
-      
-      <div class="space-y-8">
-        <div class="group relative">
-           <input type="text" placeholder="MEMBERSHIP ID" class="w-full bg-transparent border-b border-[#E0C097]/20 py-3 text-[11px] font-semibold tracking-[0.2em] text-[#E0C097] placeholder-[#E0C097]/20 uppercase outline-none focus:border-[#722F37] transition text-center">
+  <!-- ========== About Section ========== -->
+  <section id="about" class="py-24 md:py-32">
+    <div class="max-w-7xl mx-auto px-4 md:px-8 grid lg:grid-cols-2 gap-16 lg:gap-24 items-center">
+      <div class="relative reveal" style="--delay: 0;">
+        <div class="absolute -top-8 -left-8 w-60 h-60 bg-[#8B2252]/8 rounded-full blur-[80px]"></div>
+        <div class="grid grid-cols-5 gap-4">
+          <div class="col-span-3 overflow-hidden rounded-[2rem]">
+            <img src="https://images.unsplash.com/photo-1528823872057-9c018a7a7553?q=80&w=800" alt="와인 셀러" class="w-full h-full object-cover aspect-[3/4]" loading="lazy" decoding="async">
+          </div>
+          <div class="col-span-2 flex flex-col gap-4">
+            <div class="overflow-hidden rounded-[1.5rem] flex-1">
+              <img src="https://images.unsplash.com/photo-1474722883778-792e7990302f?q=80&w=600" alt="와인 따르기" class="w-full h-full object-cover" loading="lazy" decoding="async">
+            </div>
+            <div class="overflow-hidden rounded-[1.5rem] flex-1">
+              <img src="https://images.unsplash.com/photo-1470337458703-46ad1756a187?q=80&w=600" alt="치즈 플레이트" class="w-full h-full object-cover" loading="lazy" decoding="async">
+            </div>
+          </div>
         </div>
-        
-        <button class="w-full bg-[#E0C097] text-[#1A0B12] py-4 text-[10px] tracking-[0.3em] font-semibold uppercase hover:bg-white transition duration-500 shadow-lg">
-           Unlock Cellar
+      </div>
+
+      <div class="space-y-8 reveal" style="--delay: 1;">
+        <div class="inline-flex items-center gap-4">
+          <span class="rounded-full px-4 py-1.5 text-[11px] uppercase tracking-[0.15em] font-medium bg-[#8B2252]/10 text-[#8B2252]">Our Story</span>
+        </div>
+
+        <h2 class="text-3xl md:text-4xl lg:text-5xl font-lora font-semibold leading-snug text-[#EDE5DA]">
+          지하 계단을 내려오면<br>시간이 느려집니다
+        </h2>
+
+        <p class="text-[#EDE5DA]/50 text-base md:text-lg leading-relaxed">
+          뱅루즈는 프랑스와 이탈리아 소규모 와이너리에서 직접 수입한 내추럴 와인을 소개하는 공간입니다. 대형 유통사에서는 만날 수 없는, 와인메이커의 이야기가 담긴 병을 골라 가져옵니다.
+        </p>
+        <p class="text-[#EDE5DA]/50 text-base md:text-lg leading-relaxed">
+          소믈리에 김서연이 매주 큐레이션하는 와인 리스트와 함께, 와인에 어울리는 소박한 안주를 준비합니다. 무화과와 치즈, 올리브와 브루스게타.
+        </p>
+
+        <div class="grid grid-cols-3 gap-6 pt-6 border-t border-[#8B2252]/10">
+          <div>
+            <p class="text-2xl md:text-3xl font-lora font-semibold text-[#8B2252] italic">200+</p>
+            <p class="text-[11px] text-[#EDE5DA]/40 uppercase tracking-[0.1em] mt-1 font-medium">보유 와인</p>
+          </div>
+          <div>
+            <p class="text-2xl md:text-3xl font-lora font-semibold text-[#8B2252] italic">40+</p>
+            <p class="text-[11px] text-[#EDE5DA]/40 uppercase tracking-[0.1em] mt-1 font-medium">와이너리 직거래</p>
+          </div>
+          <div>
+            <p class="text-2xl md:text-3xl font-lora font-semibold text-[#8B2252] italic">7yr</p>
+            <p class="text-[11px] text-[#EDE5DA]/40 uppercase tracking-[0.1em] mt-1 font-medium">이태원 로컬</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== Wine Selection ========== -->
+  <section id="menu" class="py-24 md:py-32 bg-[#241920] relative">
+    <div class="max-w-7xl mx-auto px-4 md:px-8">
+      <div class="text-center mb-16 md:mb-20">
+        <span class="rounded-full px-4 py-1.5 text-[11px] uppercase tracking-[0.15em] font-medium bg-[#8B2252]/10 text-[#8B2252] reveal" style="--delay: 0;">Selection</span>
+        <h2 class="text-3xl md:text-4xl lg:text-5xl font-lora font-semibold leading-snug text-[#EDE5DA] mt-6 reveal" style="--delay: 1;">
+          이번 주의 큐레이션
+        </h2>
+        <p class="text-[#EDE5DA]/50 text-base md:text-lg mt-4 max-w-xl mx-auto reveal" style="--delay: 2;">
+          소믈리에가 직접 고른 와인. 글라스 한 잔부터 시작할 수 있습니다.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <!-- Wine 1 -->
+        <div class="menu-card group reveal" style="--delay: 0;">
+          <div class="bg-[#2A1F24] rounded-[2rem] p-1.5 ring-1 ring-[#8B2252]/10">
+            <div class="rounded-[calc(2rem-0.375rem)] overflow-hidden">
+              <div class="overflow-hidden">
+                <img src="https://images.unsplash.com/photo-1553361371-9b22f78e8b1d?q=80&w=600" alt="레드 와인" class="w-full aspect-square object-cover transition-transform duration-700" loading="lazy" decoding="async">
+              </div>
+              <div class="p-6 bg-[#2A1F24]">
+                <div class="flex justify-between items-start mb-2">
+                  <h3 class="text-lg font-semibold text-[#EDE5DA]">부르고뉴 피노 누아</h3>
+                  <span class="text-[#8B2252] font-lora font-semibold italic text-lg">Glass</span>
+                </div>
+                <p class="text-[13px] text-[#EDE5DA]/50 leading-relaxed">체리, 바이올렛 향. 실크 같은 탄닌. 2021 빈티지</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Wine 2 -->
+        <div class="menu-card group reveal" style="--delay: 1;">
+          <div class="bg-[#2A1F24] rounded-[2rem] p-1.5 ring-1 ring-[#8B2252]/10">
+            <div class="rounded-[calc(2rem-0.375rem)] overflow-hidden">
+              <div class="overflow-hidden">
+                <img src="https://images.unsplash.com/photo-1558001373-7b93ee48ffa0?q=80&w=600" alt="화이트 와인" class="w-full aspect-square object-cover transition-transform duration-700" loading="lazy" decoding="async">
+              </div>
+              <div class="p-6 bg-[#2A1F24]">
+                <div class="flex justify-between items-start mb-2">
+                  <h3 class="text-lg font-semibold text-[#EDE5DA]">샤블리 프리미에 크뤼</h3>
+                  <span class="text-[#8B2252] font-lora font-semibold italic text-lg">Glass</span>
+                </div>
+                <p class="text-[13px] text-[#EDE5DA]/50 leading-relaxed">미네랄, 시트러스. 굴과 완벽한 페어링. 2020</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Wine 3 -->
+        <div class="menu-card group reveal" style="--delay: 2;">
+          <div class="bg-[#2A1F24] rounded-[2rem] p-1.5 ring-1 ring-[#8B2252]/10">
+            <div class="rounded-[calc(2rem-0.375rem)] overflow-hidden">
+              <div class="overflow-hidden">
+                <img src="https://images.unsplash.com/photo-1566995541428-f2246c17cda2?q=80&w=600" alt="내추럴 와인" class="w-full aspect-square object-cover transition-transform duration-700" loading="lazy" decoding="async">
+              </div>
+              <div class="p-6 bg-[#2A1F24]">
+                <div class="flex justify-between items-start mb-2">
+                  <h3 class="text-lg font-semibold text-[#EDE5DA]">루아르 쉬냉 블랑</h3>
+                  <span class="text-[#8B2252] font-lora font-semibold italic text-lg">Glass</span>
+                </div>
+                <p class="text-[13px] text-[#EDE5DA]/50 leading-relaxed">꿀, 배, 살구 향. 내추럴 양조. 오렌지 와인</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Wine 4 -->
+        <div class="menu-card group reveal" style="--delay: 3;">
+          <div class="bg-[#2A1F24] rounded-[2rem] p-1.5 ring-1 ring-[#8B2252]/10">
+            <div class="rounded-[calc(2rem-0.375rem)] overflow-hidden">
+              <div class="overflow-hidden">
+                <img src="https://images.unsplash.com/photo-1470337458703-46ad1756a187?q=80&w=600" alt="치즈 플레이트" class="w-full aspect-square object-cover transition-transform duration-700" loading="lazy" decoding="async">
+              </div>
+              <div class="p-6 bg-[#2A1F24]">
+                <div class="flex justify-between items-start mb-2">
+                  <h3 class="text-lg font-semibold text-[#EDE5DA]">치즈 & 샤퀴트리</h3>
+                  <span class="text-[#8B2252] font-lora font-semibold italic text-lg">28,000</span>
+                </div>
+                <p class="text-[13px] text-[#EDE5DA]/50 leading-relaxed">유럽 직수입 치즈 4종, 프로슈토, 무화과</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="text-center mt-12 reveal" style="--delay: 4;">
+        <a href="#" class="inline-flex items-center gap-3 text-[11px] font-semibold uppercase tracking-[0.3em] text-[#8B2252] hover:text-[#EDE5DA]">
+          전체 와인 리스트
+          <span class="w-6 h-6 rounded-full bg-[#8B2252]/10 flex items-center justify-center">
+            <i class="fas fa-arrow-right text-[9px]"></i>
+          </span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== Gallery ========== -->
+  <section id="gallery" class="py-24 md:py-32">
+    <div class="max-w-7xl mx-auto px-4 md:px-8">
+      <div class="flex flex-col md:flex-row md:items-end md:justify-between mb-14 gap-6">
+        <div>
+          <span class="rounded-full px-4 py-1.5 text-[11px] uppercase tracking-[0.15em] font-medium bg-[#8B2252]/10 text-[#8B2252] reveal" style="--delay: 0;">Gallery</span>
+          <h2 class="text-3xl md:text-4xl lg:text-5xl font-lora font-semibold leading-snug text-[#EDE5DA] mt-6 reveal" style="--delay: 1;">
+            캔들과 코르크 사이
+          </h2>
+        </div>
+        <p class="text-[#EDE5DA]/50 text-base max-w-sm reveal" style="--delay: 2;">
+          이태원 골목 지하, 벽돌과 오크 향 가득한 공간.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-4">
+        <div class="gallery-item overflow-hidden rounded-2xl md:rounded-[2rem] reveal" style="--delay: 0;">
+          <img src="https://images.unsplash.com/photo-1543007630-9710e4a00a20?q=80&w=800" alt="바 카운터" class="w-full aspect-square object-cover transition-transform duration-700" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item overflow-hidden rounded-2xl md:rounded-[2rem] md:row-span-2 reveal" style="--delay: 1;">
+          <img src="https://images.unsplash.com/photo-1528823872057-9c018a7a7553?q=80&w=800" alt="와인 랙" class="w-full h-full object-cover transition-transform duration-700" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item overflow-hidden rounded-2xl md:rounded-[2rem] reveal" style="--delay: 2;">
+          <img src="https://images.unsplash.com/photo-1516594915307-8f71bceb5872?q=80&w=800" alt="와인 글라스" class="w-full aspect-square object-cover transition-transform duration-700" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item overflow-hidden rounded-2xl md:rounded-[2rem] reveal" style="--delay: 3;">
+          <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?q=80&w=800" alt="캔들릿 테이블" class="w-full aspect-square object-cover transition-transform duration-700" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item overflow-hidden rounded-2xl md:rounded-[2rem] col-span-2 md:col-span-1 reveal" style="--delay: 4;">
+          <img src="https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb?q=80&w=800" alt="와인 셀렉션" class="w-full aspect-[2/1] md:aspect-square object-cover transition-transform duration-700" loading="lazy" decoding="async">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== Location & Hours ========== -->
+  <section id="location" class="py-24 md:py-32 bg-[#241920] text-white relative overflow-hidden">
+    <div class="absolute top-0 right-0 w-96 h-96 bg-[#8B2252]/8 rounded-full blur-[120px]"></div>
+    <div class="absolute bottom-0 left-0 w-72 h-72 bg-[#8B2252]/5 rounded-full blur-[100px]"></div>
+
+    <div class="max-w-7xl mx-auto px-4 md:px-8 relative z-10">
+      <div class="grid lg:grid-cols-2 gap-16 lg:gap-24 items-start">
+        <div class="reveal" style="--delay: 0;">
+          <div class="rounded-[2rem] overflow-hidden aspect-[4/3] bg-[#2A1F24] relative group">
+            <img src="https://images.unsplash.com/photo-1525268323446-0505b6fe7778?q=80&w=800" alt="바 외관" class="w-full h-full object-cover opacity-50 group-hover:opacity-70 transition-opacity duration-700" loading="lazy" decoding="async">
+            <div class="absolute inset-0 flex items-center justify-center">
+              <a href="#" class="inline-flex items-center gap-3 bg-white/10 backdrop-blur-xl border border-white/20 text-white px-8 py-4 rounded-full text-[11px] font-semibold uppercase tracking-[0.3em] hover:bg-white/20 transition">
+                <i class="fas fa-map-marker-alt text-[#8B2252]"></i>
+                지도에서 보기
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="space-y-10">
+          <div class="reveal" style="--delay: 1;">
+            <span class="rounded-full px-4 py-1.5 text-[11px] uppercase tracking-[0.15em] font-medium bg-white/10 text-[#8B2252]">Visit Us</span>
+            <h2 class="text-3xl md:text-4xl lg:text-5xl font-lora font-semibold leading-snug mt-6 italic">
+              오시는 길
+            </h2>
+          </div>
+
+          <div class="space-y-8 reveal" style="--delay: 2;">
+            <div class="flex gap-5">
+              <div class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center shrink-0 mt-0.5">
+                <i class="fas fa-map-pin text-[#8B2252] text-sm"></i>
+              </div>
+              <div>
+                <p class="text-[10px] font-semibold uppercase tracking-[0.3em] text-white/40 mb-2">Address</p>
+                <p class="text-white/80 text-base leading-relaxed">서울특별시 용산구 이태원로 27길 15<br>지하 1층 뱅루즈</p>
+              </div>
+            </div>
+
+            <div class="flex gap-5">
+              <div class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center shrink-0 mt-0.5">
+                <i class="fas fa-clock text-[#8B2252] text-sm"></i>
+              </div>
+              <div>
+                <p class="text-[10px] font-semibold uppercase tracking-[0.3em] text-white/40 mb-2">Hours</p>
+                <div class="space-y-1.5 text-white/80 text-base">
+                  <div class="flex justify-between gap-12">
+                    <span>화 - 목</span>
+                    <span class="font-lora italic">18:00 - 01:00</span>
+                  </div>
+                  <div class="flex justify-between gap-12">
+                    <span>금 - 토</span>
+                    <span class="font-lora italic">18:00 - 02:00</span>
+                  </div>
+                  <div class="flex justify-between gap-12 text-[#8B2252]">
+                    <span>일 / 월</span>
+                    <span class="font-lora italic">정기 휴무</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="flex gap-5">
+              <div class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center shrink-0 mt-0.5">
+                <i class="fas fa-subway text-[#8B2252] text-sm"></i>
+              </div>
+              <div>
+                <p class="text-[10px] font-semibold uppercase tracking-[0.3em] text-white/40 mb-2">Transport</p>
+                <p class="text-white/80 text-base leading-relaxed">이태원역 1번 출구에서 도보 5분<br>경리단길 입구 골목 지하</p>
+              </div>
+            </div>
+
+            <div class="flex gap-5">
+              <div class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center shrink-0 mt-0.5">
+                <i class="fas fa-phone text-[#8B2252] text-sm"></i>
+              </div>
+              <div>
+                <p class="text-[10px] font-semibold uppercase tracking-[0.3em] text-white/40 mb-2">Contact</p>
+                <p class="text-white/80 text-base">02-6789-0123</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== CTA Section ========== -->
+  <section class="py-24 md:py-32 relative overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-br from-[#1C1117] via-[#241920] to-[#1C1117]"></div>
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-[#8B2252]/5 rounded-full blur-[120px]"></div>
+
+    <div class="max-w-3xl mx-auto px-4 md:px-8 text-center relative z-10">
+      <div class="reveal" style="--delay: 0;">
+        <span class="font-lora text-6xl md:text-8xl italic text-[#8B2252]/15 block mb-6">&ldquo;</span>
+      </div>
+      <h2 class="text-3xl md:text-4xl lg:text-5xl font-lora font-semibold leading-snug text-[#EDE5DA] italic reveal" style="--delay: 1;">
+        오늘 밤,<br>어떤 와인이 좋을까요
+      </h2>
+      <p class="text-[#EDE5DA]/50 text-base md:text-lg mt-6 max-w-lg mx-auto reveal" style="--delay: 2;">
+        와인이 어렵게 느껴지셨다면, 소믈리에에게 맡겨주세요. 당신의 기분과 취향에 맞는 한 잔을 찾아드립니다. 예약 없이도 환영합니다.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-5 justify-center mt-10 reveal" style="--delay: 3;">
+        <a href="#" class="inline-flex items-center justify-center gap-3 px-10 py-5 bg-[#8B2252] text-white font-semibold text-[11px] tracking-[0.3em] uppercase rounded-full shadow-lg shadow-[#8B2252]/20 hover:bg-[#A0325F]">
+          자리 예약하기
+          <span class="w-7 h-7 rounded-full bg-white/15 flex items-center justify-center">
+            <i class="fas fa-arrow-right text-[10px]"></i>
+          </span>
+        </a>
+        <a href="https://www.instagram.com/" target="_blank" class="inline-flex items-center justify-center gap-3 px-10 py-5 border border-[#8B2252]/30 text-[#8B2252] font-semibold text-[11px] tracking-[0.3em] uppercase rounded-full hover:bg-white/5">
+          <i class="fab fa-instagram text-sm"></i>
+          Instagram
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== Footer ========== -->
+  <footer class="py-16 md:py-24 bg-[#130E11]">
+    <div class="max-w-7xl mx-auto px-4 md:px-8">
+      <div class="grid md:grid-cols-3 gap-12 items-start mb-16">
+        <div>
+          <span class="font-lora text-2xl text-[#8B2252] tracking-[0.05em] font-semibold italic block mb-4">Vin Rouge</span>
+          <p class="text-white/30 text-sm leading-relaxed max-w-xs">
+            이태원에서 7년, 내추럴 와인과 함께하는 밤. 소규모 와이너리의 이야기를 전합니다.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-2 gap-8">
+          <div>
+            <p class="text-[10px] font-semibold text-white/20 uppercase tracking-[0.3em] mb-4">Wine</p>
+            <ul class="space-y-2.5">
+              <li><a href="#menu" class="text-white/50 text-sm hover:text-[#8B2252] transition">Red</a></li>
+              <li><a href="#menu" class="text-white/50 text-sm hover:text-[#8B2252] transition">White</a></li>
+              <li><a href="#menu" class="text-white/50 text-sm hover:text-[#8B2252] transition">Natural</a></li>
+              <li><a href="#menu" class="text-white/50 text-sm hover:text-[#8B2252] transition">Sparkling</a></li>
+            </ul>
+          </div>
+          <div>
+            <p class="text-[10px] font-semibold text-white/20 uppercase tracking-[0.3em] mb-4">Info</p>
+            <ul class="space-y-2.5">
+              <li><a href="#about" class="text-white/50 text-sm hover:text-[#8B2252] transition">About</a></li>
+              <li><a href="#location" class="text-white/50 text-sm hover:text-[#8B2252] transition">Location</a></li>
+              <li><a href="#" class="text-white/50 text-sm hover:text-[#8B2252] transition">Wine Class</a></li>
+              <li><a href="#" class="text-white/50 text-sm hover:text-[#8B2252] transition">Private Event</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <div>
+          <p class="text-[10px] font-semibold text-white/20 uppercase tracking-[0.3em] mb-4">Follow</p>
+          <div class="flex gap-3">
+            <a href="#" class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white/50 hover:text-[#8B2252] hover:border-[#8B2252]/30 transition">
+              <i class="fab fa-instagram text-sm"></i>
+            </a>
+            <a href="#" class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white/50 hover:text-[#8B2252] hover:border-[#8B2252]/30 transition">
+              <i class="fab fa-facebook-f text-sm"></i>
+            </a>
+            <a href="#" class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white/50 hover:text-[#8B2252] hover:border-[#8B2252]/30 transition">
+              <i class="fas fa-blog text-sm"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="border-t border-white/5 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+        <p class="text-[10px] text-white/15 tracking-[0.5em] uppercase">
+          &copy; 2024 Vin Rouge Wine Bar. All rights reserved by DLAB.
+        </p>
+        <div class="flex gap-6">
+          <a href="#" class="text-[10px] text-white/15 tracking-[0.2em] uppercase hover:text-white/40 transition">Privacy</a>
+          <a href="#" class="text-[10px] text-white/15 tracking-[0.2em] uppercase hover:text-white/40 transition">Terms</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ========== Login Modal ========== -->
+  <div id="wine-modal" class="fixed inset-0 z-[100] hidden items-center justify-center p-4 bg-[#1C1117]/40 backdrop-blur-3xl">
+    <div class="bg-[#241920] w-full max-w-sm p-8 md:p-14 shadow-2xl relative rounded-[3rem] border border-[#8B2252]/10">
+      <button onclick="toggleWineModal()" class="absolute top-8 right-8 w-8 h-8 rounded-full bg-[#2A1F24] flex items-center justify-center text-[#EDE5DA]/30 hover:text-[#8B2252] hover:bg-[#8B2252]/10 transition text-lg">&times;</button>
+
+      <div class="text-center mb-12">
+        <h2 class="text-xl font-lora tracking-[0.1em] italic text-[#EDE5DA] mb-3 font-semibold">Vin Rouge Members</h2>
+        <p class="text-[9px] text-[#8B2252] font-semibold tracking-[0.3em] uppercase">Wine Club Access</p>
+      </div>
+
+      <div class="space-y-5">
+        <div class="space-y-2">
+          <p class="text-[10px] font-semibold text-[#EDE5DA]/30 uppercase tracking-[0.2em] ml-1">Email</p>
+          <input type="text" placeholder="your@email.com" class="w-full bg-[#2A1F24] border-none rounded-2xl py-5 px-6 outline-none focus:ring-1 focus:ring-[#8B2252] transition text-[13px] text-[#EDE5DA]">
+        </div>
+        <div class="space-y-2">
+          <p class="text-[10px] font-semibold text-[#EDE5DA]/30 uppercase tracking-[0.2em] ml-1">Password</p>
+          <input type="password" placeholder="Password" class="w-full bg-[#2A1F24] border-none rounded-2xl py-5 px-6 outline-none focus:ring-1 focus:ring-[#8B2252] transition text-[13px] text-[#EDE5DA]">
+        </div>
+        <button class="w-full bg-[#8B2252] text-white py-5 rounded-full text-[11px] tracking-[0.4em] font-semibold uppercase hover:bg-[#A0325F] transition shadow-lg shadow-[#8B2252]/20 mt-2">
+          Sign In
         </button>
-        
-        <div class="flex justify-center gap-12 pt-4 border-t border-[#E0C097]/5 mt-4">
-           <a href="#" class="text-[9px] text-[#E0C097]/40 tracking-[0.2em] font-semibold uppercase hover:text-[#E0C097] transition font-serif-display">Apply</a>
-           <a href="#" class="text-[9px] text-[#E0C097]/40 tracking-[0.2em] font-semibold uppercase hover:text-[#E0C097] transition font-serif-display">Concierge</a>
+        <div class="flex justify-center gap-10 pt-2">
+          <a href="#" class="text-[10px] text-[#EDE5DA]/40 tracking-[0.2em] font-semibold uppercase hover:text-[#8B2252] transition">Join</a>
+          <a href="#" class="text-[10px] text-[#EDE5DA]/40 tracking-[0.2em] font-semibold uppercase hover:text-[#8B2252] transition">Help</a>
         </div>
       </div>
     </div>
   </div>
 
-  <footer class="py-20 md:py-32 bg-[#0F0508] text-center px-6 border-t border-[#722F37]/20">
-     <div class="inline-flex flex-col items-center gap-10 mb-8">
-        <span class="font-serif-display font-semibold text-2xl text-[#E0C097] tracking-[0.3em] uppercase">Vintage<span class="text-[#722F37]">1988</span></span>
-        <div class="w-8 h-[1px] bg-[#E0C097]/20"></div>
-        <span class="text-[10px] font-semibold text-[#E0C097]/30 tracking-[0.4em] uppercase">Premium Wine Boutique</span>
-     </div>
-     <p class="text-[10px] text-[#E0C097]/20 tracking-[0.6em] uppercase px-6">© 2024 VINTAGE 1988. SEOUL.</p>
-  </footer>
-
-  <script>
-    function toggleWineModal() {
-      const modal = document.getElementById('wine-modal');
-      modal.classList.toggle('hidden');
-      modal.classList.toggle('flex');
-    }
-  </script>
-
 </div>
+
+<script>
+  // Modal toggle
+  function toggleWineModal() {
+    const modal = document.getElementById('wine-modal');
+    modal.classList.toggle('hidden');
+    modal.classList.toggle('flex');
+  }
+
+  // Close modal on backdrop click
+  document.getElementById('wine-modal').addEventListener('click', function(e) {
+    if (e.target === this) toggleWineModal();
+  });
+
+  // IntersectionObserver for scroll reveal animations
+  (function() {
+    const observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    });
+
+    document.querySelectorAll('.reveal').forEach(function(el) {
+      observer.observe(el);
+    });
+  })();
+</script>

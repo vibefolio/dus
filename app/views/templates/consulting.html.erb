@@ -1,4 +1,4 @@
-<%# Consulting Template - 비저너리 파트너스 (VISIONARY PARTNERS) %>
+<%# Consulting Template - 인사이트 파트너스 (INSIGHT PARTNERS) — 컨설팅 회사 %>
 
 <style>
   /* Supanova Design Upgrade */
@@ -9,151 +9,498 @@
   a:hover, button:hover { transform: scale(1.02); }
   a:active, button:active { transform: scale(0.98); }
 
-  @import url('https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700;800&family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap');
-  
-  .font-serif { font-family: 'Nanum Myeongjo', serif; }
-  .font-sans { font-family: 'Pretendard Variable', 'Pretendard', -apple-system, sans-serif; }
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap');
+
+  .font-display { font-family: 'Inter', sans-serif; }
+  .font-body { font-family: 'Noto Sans KR', -apple-system, sans-serif; }
 
   @media (max-width: 768px) {
     .mobile-desc { font-size: 14px !important; line-height: 1.8; }
-    .mobile-title { font-size: 40px !important; }
+    .mobile-title { font-size: 32px !important; }
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(2rem);
+  }
+  .reveal.is-visible {
+    animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    animation-delay: calc(var(--delay, 0) * 100ms);
+  }
+  @keyframes fadeInUp {
+    to { opacity: 1; transform: translateY(0); }
   }
 </style>
 
-<div class="bg-white text-[#111827] font-sans selection:bg-[#F59E0B] selection:text-white min-h-screen overflow-x-hidden">
+<div class="bg-[#FAFAFA] text-[#1F2937] font-body selection:bg-[#2563EB] selection:text-white min-h-screen overflow-x-hidden relative">
 
   <!-- Nav -->
-  <nav class="fixed w-full z-50 px-8 py-6 bg-white/90 backdrop-blur-xl border-b border-[#F59E0B]/20">
+  <nav class="fixed w-full z-50 px-6 py-5 bg-white/95 backdrop-blur-xl border-b border-gray-100 shadow-sm">
     <div class="container mx-auto px-4 md:px-6 flex justify-between items-center flex-nowrap">
-      <div class="flex items-center gap-6">
-         <div class="w-2 h-8 bg-[#F59E0B]"></div>
-         <div class="flex flex-col">
-            <span class="font-serif text-xl font-semibold tracking-tight text-[#111827] leading-none">VISIONARY</span>
-            <span class="text-[9px] font-semibold tracking-[0.2em] uppercase text-[#F59E0B] mt-0.5">Partners Group</span>
-         </div>
+      <div class="flex items-center gap-3">
+        <div class="w-9 h-9 bg-[#2563EB] rounded-lg flex items-center justify-center">
+          <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+        </div>
+        <span class="font-display text-xl font-bold tracking-tight text-[#1F2937]">INSIGHT<span class="text-[#2563EB]">.</span></span>
       </div>
-      
-      <div class="hidden md:flex gap-14 text-[11px] font-semibold uppercase tracking-[0.2em] text-[#111827]/40">
-        <a href="#strategy" class="hover:text-[#F59E0B] transition">Strategy</a>
-        <a href="#digital" class="hover:text-[#F59E0B] transition">Digital</a>
-        <a href="#cases" class="hover:text-[#F59E0B] transition">Performance</a>
-      </div>
-      
-      <div class="flex-nowrap shrink-0 flex gap-12 items-center">
-         <button onclick="toggleConsultModal()" class="hidden md:block text-[11px] font-semibold uppercase tracking-[0.2em] text-[#111827]/40 hover:text-[#F59E0B]" data-mobile-menu-copy="true">Partner Access</button>
-         <button class="hidden md:inline-flex bg-[#111827] text-white px-4 py-2 text-xs md:text-base md:px-8 md:py-3 whitespace-nowrap rounded-none font-semibold text-[11px] tracking-wide uppercase hover:bg-[#F59E0B] transition shadow-xl" data-mobile-menu-copy="true">
-           Get Inquiry
-         </button>
-         <button class="mobile-menu-trigger md:hidden ml-2 sm:ml-4 text-2xl focus:outline-none" style="color: inherit;">
-           <i class="fas fa-bars"></i>
-         </button>
 
+      <div class="hidden md:flex gap-10 text-[13px] font-medium text-[#1F2937]/60">
+        <a href="#about" class="hover:text-[#2563EB] transition">소개</a>
+        <a href="#services" class="hover:text-[#2563EB] transition">서비스</a>
+        <a href="#process" class="hover:text-[#2563EB] transition">프로세스</a>
+        <a href="#clients" class="hover:text-[#2563EB] transition">고객사</a>
+        <a href="#booking" class="hover:text-[#2563EB] transition">상담 예약</a>
+      </div>
+
+      <button class="mobile-menu-trigger md:hidden ml-auto text-2xl focus:outline-none" style="color: #2563EB;">
+        <i class="fas fa-bars"></i>
+      </button>
+
+      <div class="flex-nowrap shrink-0 flex gap-4 items-center">
+        <button onclick="toggleConsultingModal()" class="hidden md:block text-[13px] font-medium text-[#1F2937]/60 hover:text-[#2563EB]" data-mobile-menu-copy="true">로그인</button>
+        <button class="hidden md:inline-flex bg-[#2563EB] text-white px-5 py-2.5 rounded-lg font-semibold text-[13px] hover:bg-[#1D4ED8] transition shadow-lg shadow-[#2563EB]/20" data-mobile-menu-copy="true">
+          무료 상담 예약
+        </button>
       </div>
     </div>
-
-      <%= render partial: 'templates/shared/mobile_menu_overlay' %></nav>
+    <%= render partial: 'templates/shared/mobile_menu_overlay' %>
+  </nav>
 
   <!-- Hero -->
-  <header class="min-h-screen relative flex items-center justify-center pt-20">
-    <div class="absolute inset-0 bg-[#F3F4F6] -z-20"></div>
-    <div class="absolute right-0 top-0 w-[40%] h-full bg-[#E5E7EB] -z-10 hidden lg:block"></div>
-    
-    <div class="container mx-auto px-3 md:px-6 relative z-10 grid lg:grid-cols-2 gap-12 md:p-20 items-center">
-      <div class="space-y-12 text-center lg:text-left">
-        <div class="inline-flex items-center gap-6">
-           <span class="w-12 h-[2px] bg-[#F59E0B]"></span>
-           <span class="text-[10px] font-semibold tracking-[0.4em] uppercase text-[#F59E0B]">Global Strategy Excellence</span>
-        </div>
-        
-        <h1 class="text-2xl md:text-4xl md:text-6xl font-serif font-semibold leading-[1.2] tracking-tight text-[#111827] mobile-title">
-           관점의 전환,<br>
-           <span class="italic text-transparent bg-clip-text bg-gradient-to-r from-[#F59E0B] to-[#111827]">성장의 가속화.</span>
-        </h1>
-        
-        <p class="text-[#374151] text-sm md:text-lg leading-relaxed max-w-lg mx-auto lg:mx-0 mobile-desc">
-           변화의 핵심을 꿰뚫는 통찰과 데이터 기반의 실행 전략. 비저너리 파트너스는 귀하의 비즈니스를 승리로 이끄는 가장 확실한 로드맵입니다.
-        </p>
-        
-        <div class="pt-6 flex flex-col sm:flex-row gap-10 justify-center lg:justify-start">
-           <button class="px-12 py-5 bg-[#F59E0B] text-white font-semibold text-[11px] tracking-wide uppercase hover:bg-[#111827] transition shadow-xl">
-              Our Solutions
-           </button>
-           <button class="px-12 py-5 border border-[#111827]/20 text-[#111827] font-semibold text-[11px] tracking-wide uppercase hover:bg-white transition">
-              Client Stories
-           </button>
+  <header class="min-h-screen relative flex items-center pt-24 overflow-hidden">
+    <div class="absolute right-0 top-0 w-1/2 h-full bg-gradient-to-l from-[#2563EB]/5 to-transparent pointer-events-none"></div>
+    <div class="container mx-auto px-6 md:px-12 grid lg:grid-cols-2 gap-16 items-center">
+      <div class="space-y-8 text-center lg:text-left">
+        <div class="inline-flex items-center gap-2 bg-[#2563EB]/5 border border-[#2563EB]/15 rounded-full px-4 py-1.5">
+          <span class="w-2 h-2 bg-[#2563EB] rounded-full"></span>
+          <span class="text-[12px] font-medium text-[#2563EB]">Top 10 컨설팅 펌 선정</span>
         </div>
 
-        <div class="pt-10 flex gap-16 border-t border-[#111827]/10 items-center justify-center lg:justify-start opacity-70 grayscale">
-            <span class="font-serif font-semibold text-xl text-[#111827]">SAMSUNG</span>
-            <span class="font-serif font-semibold text-xl text-[#111827]">Hyundai</span>
-            <span class="font-serif font-semibold text-xl text-[#111827]">SK</span>
-            <span class="font-serif font-semibold text-xl text-[#111827]">LG</span>
+        <h1 class="text-4xl md:text-6xl font-display font-extrabold leading-[1.1] tracking-tight text-[#1F2937] mobile-title">
+          비즈니스 성장의<br>
+          <span class="text-[#2563EB]">인사이트</span>를 제공합니다
+        </h1>
+
+        <p class="text-lg md:text-xl text-[#1F2937]/60 leading-relaxed max-w-lg mx-auto lg:mx-0 mobile-desc">
+          데이터 기반 전략 수립부터 실행까지, 인사이트 파트너스가 귀사의 지속가능한 성장을 이끌어 드립니다.
+        </p>
+
+        <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+          <a href="#booking" class="px-8 py-4 bg-[#2563EB] text-white font-semibold text-[15px] rounded-lg hover:bg-[#1D4ED8] transition shadow-lg shadow-[#2563EB]/25">
+            무료 상담 신청
+          </a>
+          <a href="#services" class="px-8 py-4 border border-[#2563EB]/20 text-[#2563EB] font-semibold text-[15px] rounded-lg hover:bg-[#2563EB]/5 transition">
+            서비스 살펴보기
+          </a>
+        </div>
+
+        <div class="flex items-center gap-8 pt-4 justify-center lg:justify-start">
+          <div>
+            <div class="text-2xl font-display font-bold text-[#1F2937]">350+</div>
+            <div class="text-[12px] text-[#1F2937]/40">프로젝트 수행</div>
+          </div>
+          <div class="w-px h-10 bg-gray-200"></div>
+          <div>
+            <div class="text-2xl font-display font-bold text-[#1F2937]">97%</div>
+            <div class="text-[12px] text-[#1F2937]/40">재계약률</div>
+          </div>
+          <div class="w-px h-10 bg-gray-200"></div>
+          <div>
+            <div class="text-2xl font-display font-bold text-[#1F2937]">15년</div>
+            <div class="text-[12px] text-[#1F2937]/40">업력</div>
+          </div>
         </div>
       </div>
-      
+
       <div class="relative hidden lg:block">
-         <div class="relative z-10 bg-white p-12 shadow-2xl border-t-8 border-[#F59E0B]">
-            <div class="aspect-[4/3] bg-gray-100 mb-8 overflow-hidden relative group">
-               <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=1200" alt="Strategy Meeting" class="w-full h-full object-cover transition duration-700 group-hover:scale-110 grayscale group-hover:grayscale-0">
+        <img src="https://images.unsplash.com/photo-1553877522-43269d4ea984?w=700&h=500&fit=crop" alt="컨설팅 미팅" class="rounded-2xl shadow-2xl shadow-[#2563EB]/10 w-full object-cover aspect-[4/3]">
+        <div class="absolute -bottom-4 -right-4 bg-white rounded-xl shadow-xl p-5 border border-gray-100">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 bg-green-50 rounded-full flex items-center justify-center">
+              <svg class="w-5 h-5 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
             </div>
-            <div class="flex justify-between items-end">
-               <div>
-                  <p class="text-[10px] font-semibold text-[#F59E0B] uppercase tracking-[0.2em] mb-2">Latest Insight</p>
-                  <h3 class="text-2xl font-serif font-semibold text-[#111827] mb-2">Future of DX</h3>
-                  <p class="text-xs text-gray-500 max-w-xs">디지털 전환 시대, 기업이 갖춰야 할 5가지 핵심 역량 보고서</p>
-               </div>
-               <button class="w-12 h-12 bg-[#111827] text-white flex items-center justify-center hover:bg-[#F59E0B] transition">
-                  <span class="text-xl">→</span>
-               </button>
+            <div>
+              <div class="text-[11px] text-[#1F2937]/40">평균 ROI 개선</div>
+              <div class="text-lg font-display font-bold text-[#1F2937]">+230%</div>
             </div>
-         </div>
-         <!-- Decorative Elements -->
-         <div class="absolute -bottom-10 -right-10 w-40 h-40 border-r-8 border-b-8 border-[#111827]/10"></div>
+          </div>
+        </div>
       </div>
     </div>
   </header>
 
-  <!-- Login Modal -->
-  <div id="consult-modal" class="fixed inset-0 z-[100] hidden items-center justify-center p-4 bg-[#111827]/90 backdrop-blur-xl">
-    <div class="bg-white w-full max-w-sm p-14 shadow-2xl relative border-l-8 border-[#F59E0B]">
-      <button onclick="toggleConsultModal()" class="absolute top-8 right-8 text-[#111827]/30 hover:text-[#F59E0B] transition text-2xl font-light">&times;</button>
-      
-      <div class="text-center mb-12">
-        <h2 class="text-xl font-serif font-semibold tracking-tight text-[#111827] mb-2 uppercase">PARTNER_PORTAL</h2>
-        <p class="text-[9px] text-[#F59E0B] font-semibold tracking-[0.2em] uppercase">Confidential Data Room</p>
-      </div>
-      
-      <div class="space-y-8">
-        <div class="space-y-2">
-            <p class="text-[9px] font-semibold text-[#111827]/40 uppercase tracking-wide ml-1">Access Code</p>
-            <input type="password" placeholder="********" class="w-full bg-[#F3F4F6] border border-[#111827]/5 py-5 px-6 outline-none focus:border-[#F59E0B] transition text-[11px] font-semibold uppercase tracking-wide text-[#111827]">
+  <!-- About -->
+  <section id="about" class="py-24 md:py-32 bg-white">
+    <div class="container mx-auto px-6 md:px-12">
+      <div class="grid lg:grid-cols-2 gap-16 items-center">
+        <div class="space-y-6 reveal">
+          <span class="text-[12px] font-semibold text-[#2563EB] uppercase tracking-widest">About Us</span>
+          <h2 class="text-3xl md:text-4xl font-display font-bold text-[#1F2937]">
+            전략과 실행의<br>차이를 만드는 파트너
+          </h2>
+          <p class="text-[#1F2937]/60 leading-relaxed">
+            인사이트 파트너스는 2009년 설립 이래 국내 주요 기업의 전략 수립과 실행을 지원해온 전문 컨설팅 펌입니다.
+            맥킨지, BCG 출신의 파트너들이 이끄는 전문 팀이 데이터에 기반한 실질적인 인사이트를 제공합니다.
+          </p>
+          <p class="text-[#1F2937]/60 leading-relaxed">
+            단순한 보고서가 아닌, 고객사와 함께 전략을 실행하고 결과를 만들어내는 것이 우리의 철학입니다.
+          </p>
+          <div class="grid grid-cols-2 gap-6 pt-4">
+            <div class="bg-[#FAFAFA] rounded-xl p-5 border border-gray-100">
+              <div class="text-3xl font-display font-bold text-[#2563EB]">42명</div>
+              <div class="text-sm text-[#1F2937]/50 mt-1">전문 컨설턴트</div>
+            </div>
+            <div class="bg-[#FAFAFA] rounded-xl p-5 border border-gray-100">
+              <div class="text-3xl font-display font-bold text-[#2563EB]">12개</div>
+              <div class="text-sm text-[#1F2937]/50 mt-1">산업 전문 영역</div>
+            </div>
+          </div>
         </div>
-        <button class="w-full bg-[#111827] text-white py-5 text-[10px] tracking-[0.4em] font-semibold uppercase hover:bg-[#F59E0B] transition shadow-xl">
-           Secure Connect
+        <div class="reveal" style="--delay: 2;">
+          <img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=600&h=450&fit=crop" alt="전략 회의" class="rounded-2xl shadow-lg w-full object-cover aspect-[4/3]">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services -->
+  <section id="services" class="py-24 md:py-32">
+    <div class="container mx-auto px-6 md:px-12">
+      <div class="text-center mb-16 reveal">
+        <span class="text-[12px] font-semibold text-[#2563EB] uppercase tracking-widest">Services</span>
+        <h2 class="text-3xl md:text-4xl font-display font-bold text-[#1F2937] mt-3">전문 컨설팅 서비스</h2>
+        <p class="text-[#1F2937]/50 mt-4 max-w-xl mx-auto">각 산업과 비즈니스 환경에 최적화된 맞춤형 솔루션을 제공합니다</p>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-8">
+        <div class="reveal bg-white rounded-2xl p-8 md:p-10 border border-gray-100 hover:shadow-xl hover:shadow-[#2563EB]/5 transition-all duration-500 group" style="--delay: 1;">
+          <div class="flex items-start gap-5">
+            <div class="w-14 h-14 bg-[#2563EB]/5 rounded-xl flex items-center justify-center shrink-0 group-hover:bg-[#2563EB] transition-colors duration-500">
+              <svg class="w-7 h-7 text-[#2563EB] group-hover:text-white transition-colors duration-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
+            </div>
+            <div>
+              <h3 class="font-display font-bold text-[#1F2937] text-lg mb-2">경영 전략 컨설팅</h3>
+              <p class="text-[#1F2937]/55 text-sm leading-relaxed">시장 분석, 경쟁 전략, 사업 포트폴리오 최적화 등 기업의 핵심 의사결정을 지원합니다.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="reveal bg-white rounded-2xl p-8 md:p-10 border border-gray-100 hover:shadow-xl hover:shadow-[#2563EB]/5 transition-all duration-500 group" style="--delay: 2;">
+          <div class="flex items-start gap-5">
+            <div class="w-14 h-14 bg-[#2563EB]/5 rounded-xl flex items-center justify-center shrink-0 group-hover:bg-[#2563EB] transition-colors duration-500">
+              <svg class="w-7 h-7 text-[#2563EB] group-hover:text-white transition-colors duration-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+            </div>
+            <div>
+              <h3 class="font-display font-bold text-[#1F2937] text-lg mb-2">디지털 트랜스포메이션</h3>
+              <p class="text-[#1F2937]/55 text-sm leading-relaxed">AI, 클라우드, 데이터 분석 등 디지털 기술을 활용한 비즈니스 혁신 전략을 수립합니다.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="reveal bg-white rounded-2xl p-8 md:p-10 border border-gray-100 hover:shadow-xl hover:shadow-[#2563EB]/5 transition-all duration-500 group" style="--delay: 3;">
+          <div class="flex items-start gap-5">
+            <div class="w-14 h-14 bg-[#2563EB]/5 rounded-xl flex items-center justify-center shrink-0 group-hover:bg-[#2563EB] transition-colors duration-500">
+              <svg class="w-7 h-7 text-[#2563EB] group-hover:text-white transition-colors duration-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+            </div>
+            <div>
+              <h3 class="font-display font-bold text-[#1F2937] text-lg mb-2">조직 혁신 컨설팅</h3>
+              <p class="text-[#1F2937]/55 text-sm leading-relaxed">조직 구조 개편, 성과 관리 체계, 기업 문화 혁신 등 인적 자원의 효율성을 극대화합니다.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="reveal bg-white rounded-2xl p-8 md:p-10 border border-gray-100 hover:shadow-xl hover:shadow-[#2563EB]/5 transition-all duration-500 group" style="--delay: 4;">
+          <div class="flex items-start gap-5">
+            <div class="w-14 h-14 bg-[#2563EB]/5 rounded-xl flex items-center justify-center shrink-0 group-hover:bg-[#2563EB] transition-colors duration-500">
+              <svg class="w-7 h-7 text-[#2563EB] group-hover:text-white transition-colors duration-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            </div>
+            <div>
+              <h3 class="font-display font-bold text-[#1F2937] text-lg mb-2">M&A / 재무 자문</h3>
+              <p class="text-[#1F2937]/55 text-sm leading-relaxed">기업 가치 평가, M&A 전략, 구조조정 자문 등 재무 전문 서비스를 제공합니다.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Process -->
+  <section id="process" class="py-24 md:py-32 bg-white">
+    <div class="container mx-auto px-6 md:px-12">
+      <div class="text-center mb-16 reveal">
+        <span class="text-[12px] font-semibold text-[#2563EB] uppercase tracking-widest">Process</span>
+        <h2 class="text-3xl md:text-4xl font-display font-bold text-[#1F2937] mt-3">컨설팅 프로세스</h2>
+        <p class="text-[#1F2937]/50 mt-4 max-w-xl mx-auto">체계적인 4단계 프로세스로 최적의 결과를 도출합니다</p>
+      </div>
+
+      <div class="grid md:grid-cols-4 gap-8 relative">
+        <div class="hidden md:block absolute top-16 left-[12.5%] right-[12.5%] h-0.5 bg-[#2563EB]/10"></div>
+
+        <div class="reveal text-center relative" style="--delay: 1;">
+          <div class="w-12 h-12 bg-[#2563EB] rounded-full flex items-center justify-center text-white font-display font-bold text-lg mx-auto mb-6 relative z-10 shadow-lg shadow-[#2563EB]/30">1</div>
+          <h3 class="font-display font-bold text-[#1F2937] text-lg mb-3">진단 & 분석</h3>
+          <p class="text-[#1F2937]/55 text-sm leading-relaxed">현재 비즈니스 환경과 내부 역량을 심층 분석하고, 핵심 과제를 도출합니다.</p>
+        </div>
+
+        <div class="reveal text-center relative" style="--delay: 2;">
+          <div class="w-12 h-12 bg-[#2563EB] rounded-full flex items-center justify-center text-white font-display font-bold text-lg mx-auto mb-6 relative z-10 shadow-lg shadow-[#2563EB]/30">2</div>
+          <h3 class="font-display font-bold text-[#1F2937] text-lg mb-3">전략 수립</h3>
+          <p class="text-[#1F2937]/55 text-sm leading-relaxed">데이터와 인사이트를 기반으로 실행 가능한 맞춤형 전략을 설계합니다.</p>
+        </div>
+
+        <div class="reveal text-center relative" style="--delay: 3;">
+          <div class="w-12 h-12 bg-[#2563EB] rounded-full flex items-center justify-center text-white font-display font-bold text-lg mx-auto mb-6 relative z-10 shadow-lg shadow-[#2563EB]/30">3</div>
+          <h3 class="font-display font-bold text-[#1F2937] text-lg mb-3">실행 지원</h3>
+          <p class="text-[#1F2937]/55 text-sm leading-relaxed">전략의 현장 적용을 밀착 지원하며, 실시간으로 결과를 모니터링합니다.</p>
+        </div>
+
+        <div class="reveal text-center relative" style="--delay: 4;">
+          <div class="w-12 h-12 bg-[#2563EB] rounded-full flex items-center justify-center text-white font-display font-bold text-lg mx-auto mb-6 relative z-10 shadow-lg shadow-[#2563EB]/30">4</div>
+          <h3 class="font-display font-bold text-[#1F2937] text-lg mb-3">성과 검증</h3>
+          <p class="text-[#1F2937]/55 text-sm leading-relaxed">정량적 KPI 기반으로 성과를 측정하고, 지속적인 개선 방안을 제시합니다.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Clients -->
+  <section id="clients" class="py-24 md:py-32">
+    <div class="container mx-auto px-6 md:px-12">
+      <div class="text-center mb-16 reveal">
+        <span class="text-[12px] font-semibold text-[#2563EB] uppercase tracking-widest">Clients</span>
+        <h2 class="text-3xl md:text-4xl font-display font-bold text-[#1F2937] mt-3">신뢰하는 고객사</h2>
+      </div>
+
+      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6 reveal" style="--delay: 1;">
+        <div class="bg-white rounded-xl p-6 flex items-center justify-center h-20 border border-gray-100 hover:shadow-md transition">
+          <span class="font-display font-bold text-[#1F2937]/25 text-sm">삼성SDI</span>
+        </div>
+        <div class="bg-white rounded-xl p-6 flex items-center justify-center h-20 border border-gray-100 hover:shadow-md transition">
+          <span class="font-display font-bold text-[#1F2937]/25 text-sm">LG전자</span>
+        </div>
+        <div class="bg-white rounded-xl p-6 flex items-center justify-center h-20 border border-gray-100 hover:shadow-md transition">
+          <span class="font-display font-bold text-[#1F2937]/25 text-sm">현대자동차</span>
+        </div>
+        <div class="bg-white rounded-xl p-6 flex items-center justify-center h-20 border border-gray-100 hover:shadow-md transition">
+          <span class="font-display font-bold text-[#1F2937]/25 text-sm">SK텔레콤</span>
+        </div>
+        <div class="bg-white rounded-xl p-6 flex items-center justify-center h-20 border border-gray-100 hover:shadow-md transition">
+          <span class="font-display font-bold text-[#1F2937]/25 text-sm">CJ그룹</span>
+        </div>
+        <div class="bg-white rounded-xl p-6 flex items-center justify-center h-20 border border-gray-100 hover:shadow-md transition">
+          <span class="font-display font-bold text-[#1F2937]/25 text-sm">포스코</span>
+        </div>
+      </div>
+
+      <div class="mt-16 reveal" style="--delay: 2;">
+        <div class="bg-white rounded-2xl p-10 md:p-14 border border-gray-100 max-w-3xl mx-auto text-center">
+          <svg class="w-10 h-10 text-[#2563EB]/20 mx-auto mb-6" fill="currentColor" viewBox="0 0 24 24"><path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10H14.017zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10H0z"/></svg>
+          <p class="text-[#1F2937]/70 text-lg leading-relaxed mb-8">
+            "인사이트 파트너스와 함께한 디지털 전환 프로젝트를 통해 연간 운영비용 30%를 절감하고,
+            새로운 비즈니스 모델을 성공적으로 론칭할 수 있었습니다."
+          </p>
+          <div>
+            <div class="font-display font-bold text-[#1F2937]">김도현 전무</div>
+            <div class="text-[#1F2937]/40 text-sm">글로벌 제조기업 전략기획실</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Booking / Contact -->
+  <section id="booking" class="py-24 md:py-32 bg-white">
+    <div class="container mx-auto px-6 md:px-12">
+      <div class="grid lg:grid-cols-2 gap-16 items-start">
+        <div class="reveal">
+          <span class="text-[12px] font-semibold text-[#2563EB] uppercase tracking-widest">Consultation</span>
+          <h2 class="text-3xl md:text-4xl font-display font-bold text-[#1F2937] mt-3">무료 상담 예약</h2>
+          <p class="text-[#1F2937]/60 mt-4 leading-relaxed">
+            귀사의 비즈니스 과제에 대해 전문 컨설턴트가 1:1 무료 상담을 진행합니다.
+            상담 후 맞춤형 제안서를 보내드립니다.
+          </p>
+          <div class="mt-10 space-y-6">
+            <div class="flex items-center gap-4 p-4 bg-[#FAFAFA] rounded-xl">
+              <div class="w-10 h-10 bg-[#2563EB]/10 rounded-lg flex items-center justify-center">
+                <svg class="w-5 h-5 text-[#2563EB]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+              </div>
+              <div>
+                <div class="font-medium text-[#1F2937] text-sm">상담 시간</div>
+                <div class="text-[#1F2937]/50 text-xs">평일 09:00 - 18:00 (약 60분 소요)</div>
+              </div>
+            </div>
+            <div class="flex items-center gap-4 p-4 bg-[#FAFAFA] rounded-xl">
+              <div class="w-10 h-10 bg-[#2563EB]/10 rounded-lg flex items-center justify-center">
+                <svg class="w-5 h-5 text-[#2563EB]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
+              </div>
+              <div>
+                <div class="font-medium text-[#1F2937] text-sm">상담 방식</div>
+                <div class="text-[#1F2937]/50 text-xs">대면 / 화상 (Zoom) 선택 가능</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="reveal" style="--delay: 2;">
+          <div class="bg-[#FAFAFA] rounded-2xl p-8 md:p-10 border border-gray-100">
+            <form class="space-y-5">
+              <div class="grid md:grid-cols-2 gap-5">
+                <div>
+                  <label class="block text-[11px] font-semibold text-[#1F2937]/50 uppercase tracking-wide mb-1.5">회사명</label>
+                  <input type="text" placeholder="회사명" class="w-full bg-white border border-gray-200 rounded-lg py-3 px-4 outline-none focus:border-[#2563EB] focus:ring-1 focus:ring-[#2563EB] transition text-sm">
+                </div>
+                <div>
+                  <label class="block text-[11px] font-semibold text-[#1F2937]/50 uppercase tracking-wide mb-1.5">성함</label>
+                  <input type="text" placeholder="홍길동" class="w-full bg-white border border-gray-200 rounded-lg py-3 px-4 outline-none focus:border-[#2563EB] focus:ring-1 focus:ring-[#2563EB] transition text-sm">
+                </div>
+              </div>
+              <div>
+                <label class="block text-[11px] font-semibold text-[#1F2937]/50 uppercase tracking-wide mb-1.5">이메일</label>
+                <input type="email" placeholder="hong@company.com" class="w-full bg-white border border-gray-200 rounded-lg py-3 px-4 outline-none focus:border-[#2563EB] focus:ring-1 focus:ring-[#2563EB] transition text-sm">
+              </div>
+              <div>
+                <label class="block text-[11px] font-semibold text-[#1F2937]/50 uppercase tracking-wide mb-1.5">관심 분야</label>
+                <select class="w-full bg-white border border-gray-200 rounded-lg py-3 px-4 outline-none focus:border-[#2563EB] focus:ring-1 focus:ring-[#2563EB] transition text-sm text-[#1F2937]/60">
+                  <option>경영 전략 컨설팅</option>
+                  <option>디지털 트랜스포메이션</option>
+                  <option>조직 혁신 컨설팅</option>
+                  <option>M&A / 재무 자문</option>
+                </select>
+              </div>
+              <div>
+                <label class="block text-[11px] font-semibold text-[#1F2937]/50 uppercase tracking-wide mb-1.5">상담 내용</label>
+                <textarea rows="3" placeholder="상담하고 싶은 내용을 간략히 적어주세요" class="w-full bg-white border border-gray-200 rounded-lg py-3 px-4 outline-none focus:border-[#2563EB] focus:ring-1 focus:ring-[#2563EB] transition text-sm resize-none"></textarea>
+              </div>
+              <button type="submit" class="w-full bg-[#2563EB] text-white py-3.5 rounded-lg font-semibold text-sm hover:bg-[#1D4ED8] transition shadow-lg shadow-[#2563EB]/20">
+                무료 상담 예약하기
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="py-20 md:py-28 bg-[#2563EB] text-white text-center relative overflow-hidden">
+    <div class="absolute inset-0 opacity-10">
+      <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-white rounded-full blur-[200px]"></div>
+    </div>
+    <div class="container mx-auto px-6 md:px-12 relative z-10 reveal">
+      <h2 class="text-3xl md:text-5xl font-display font-bold mb-6">비즈니스의 다음 단계,<br>함께 준비하세요</h2>
+      <p class="text-white/70 text-lg mb-10 max-w-xl mx-auto">인사이트 파트너스의 전문 컨설턴트가 귀사의 성장 전략을 함께 설계합니다.</p>
+      <a href="#booking" class="inline-flex px-10 py-4 bg-white text-[#2563EB] font-bold text-[15px] rounded-lg hover:bg-gray-100 transition shadow-xl">
+        지금 상담 예약하기
+      </a>
+    </div>
+  </section>
+
+  <!-- Login Modal -->
+  <div id="consulting-modal" class="fixed inset-0 z-[100] hidden items-center justify-center p-4 bg-[#1F2937]/80 backdrop-blur-md">
+    <div class="bg-white w-full max-w-sm p-10 shadow-2xl relative rounded-2xl border border-gray-100">
+      <button onclick="toggleConsultingModal()" class="absolute top-5 right-5 text-gray-300 hover:text-[#1F2937] transition text-2xl">&times;</button>
+
+      <div class="text-center mb-8">
+        <div class="w-12 h-12 bg-[#2563EB] rounded-lg flex items-center justify-center mx-auto mb-4">
+          <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+        </div>
+        <h2 class="text-xl font-display font-bold text-[#1F2937] mb-1">로그인</h2>
+        <p class="text-xs text-[#1F2937]/50">인사이트 파트너스 클라이언트 포털</p>
+      </div>
+
+      <div class="space-y-4">
+        <div>
+          <label class="block text-[11px] font-semibold text-[#1F2937]/50 uppercase tracking-wide mb-1.5">이메일</label>
+          <input type="email" placeholder="name@company.com" class="w-full bg-gray-50 border border-gray-200 rounded-lg py-3 px-4 outline-none focus:border-[#2563EB] focus:ring-1 focus:ring-[#2563EB] transition text-sm">
+        </div>
+        <div>
+          <label class="block text-[11px] font-semibold text-[#1F2937]/50 uppercase tracking-wide mb-1.5">비밀번호</label>
+          <input type="password" placeholder="••••••••" class="w-full bg-gray-50 border border-gray-200 rounded-lg py-3 px-4 outline-none focus:border-[#2563EB] focus:ring-1 focus:ring-[#2563EB] transition text-sm">
+        </div>
+        <button class="w-full bg-[#2563EB] text-white py-3.5 rounded-lg text-sm font-semibold hover:bg-[#1D4ED8] transition shadow-lg mt-2">
+          로그인
         </button>
-        <div class="flex justify-center gap-14 pt-4">
-           <a href="#" class="text-[9px] text-[#111827]/40 tracking-[0.2em] font-semibold uppercase hover:text-[#F59E0B] transition">Request Access</a>
-           <a href="#" class="text-[9px] text-[#111827]/40 tracking-[0.2em] font-semibold uppercase hover:text-[#F59E0B] transition">Support</a>
+        <div class="text-center pt-4 border-t border-gray-100 mt-4">
+          <a href="#" class="text-xs text-[#2563EB] font-semibold hover:underline">비밀번호를 잊으셨나요?</a>
         </div>
       </div>
     </div>
   </div>
 
-  <footer class="py-20 md:py-32 bg-[#111827] text-center px-6">
-     <div class="inline-flex items-center gap-10 mb-8">
-        <span class="font-serif font-semibold text-2xl text-white tracking-wide">VISIONARY</span>
-        <span class="w-12 h-[1px] bg-white/20"></span>
-        <span class="text-[10px] font-semibold text-white/40 tracking-[0.4em] uppercase">Partners Group</span>
-     </div>
-     <p class="text-[10px] text-white/20 tracking-[0.6em] uppercase px-6">© 2024 VISIONARY PARTNERS. SEOUL HQ.</p>
+  <!-- Footer -->
+  <footer class="py-16 md:py-20 bg-[#1F2937] text-white">
+    <div class="container mx-auto px-6 md:px-12">
+      <div class="grid md:grid-cols-4 gap-12 mb-12">
+        <div>
+          <div class="flex items-center gap-2 mb-4">
+            <div class="w-8 h-8 bg-[#2563EB] rounded-lg flex items-center justify-center">
+              <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+            </div>
+            <span class="font-display font-bold">INSIGHT PARTNERS</span>
+          </div>
+          <p class="text-white/40 text-sm leading-relaxed">
+            전략과 실행의 차이를 만드는<br>프리미엄 컨설팅 펌.
+          </p>
+        </div>
+        <div>
+          <h4 class="font-display font-bold text-sm mb-4">서비스</h4>
+          <div class="space-y-2 text-sm text-white/40">
+            <div>경영 전략</div>
+            <div>디지털 전환</div>
+            <div>조직 혁신</div>
+            <div>M&A 자문</div>
+          </div>
+        </div>
+        <div>
+          <h4 class="font-display font-bold text-sm mb-4">회사</h4>
+          <div class="space-y-2 text-sm text-white/40">
+            <div>소개</div>
+            <div>팀 소개</div>
+            <div>채용</div>
+            <div>인사이트 블로그</div>
+          </div>
+        </div>
+        <div>
+          <h4 class="font-display font-bold text-sm mb-4">연락처</h4>
+          <div class="space-y-2 text-sm text-white/40">
+            <div>02-6123-4567</div>
+            <div>hello@insightpartners.co.kr</div>
+            <div>서울 종로구 세종대로 175, 15층</div>
+          </div>
+        </div>
+      </div>
+      <div class="border-t border-white/10 pt-8 text-center">
+        <p class="text-[11px] text-white/30">&copy; 2024 INSIGHT PARTNERS. All rights reserved.</p>
+      </div>
+    </div>
   </footer>
 
+  <!-- Scripts -->
   <script>
-    function toggleConsultModal() {
-      const modal = document.getElementById('consult-modal');
+    function toggleConsultingModal() {
+      const modal = document.getElementById('consulting-modal');
       modal.classList.toggle('hidden');
       modal.classList.toggle('flex');
     }
+    document.getElementById('consulting-modal').addEventListener('click', function(e) {
+      if (e.target === this) toggleConsultingModal();
+    });
+
+    // IntersectionObserver for scroll reveal
+    (function() {
+      const observer = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+      document.querySelectorAll('.reveal').forEach(function(el) {
+        observer.observe(el);
+      });
+    })();
   </script>
 
 </div>
