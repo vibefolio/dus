@@ -1,170 +1,377 @@
-<%# Startup Template - 노버스 (NOVUS) %>
+<%# Tech Template - NEXON TECH %>
 
 <style>
-  /* Supanova Design Upgrade */
+  /* Supanova Design — Dark Tech Archetype */
   * { word-break: keep-all; }
-  html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+  html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
   h1, h2, h3, h4 { text-wrap: balance; letter-spacing: -0.02em; line-height: 1.3; }
-  a, button { transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1); }
+  a, button { transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1); }
   a:hover, button:hover { transform: scale(1.02); }
   a:active, button:active { transform: scale(0.98); }
 
-  @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap');
-  
-  .font-modern { font-family: 'Space Grotesk', sans-serif; }
+  @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+
   .font-sans { font-family: 'Pretendard Variable', 'Pretendard', -apple-system, sans-serif; }
+  .font-mono { font-family: 'Space Grotesk', monospace; }
 
   @media (max-width: 768px) {
     .mobile-desc { font-size: 14px !important; line-height: 1.8; }
-    .mobile-title { font-size: 40px !important; }
+    .mobile-title { font-size: 36px !important; }
   }
 
-  .grid-pattern {
-    background-size: 40px 40px;
-    background-image: linear-gradient(to right, rgba(99, 102, 241, 0.05) 1px, transparent 1px),
-                      linear-gradient(to bottom, rgba(99, 102, 241, 0.05) 1px, transparent 1px);
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(2rem); filter: blur(4px); }
+    to { opacity: 1; transform: translateY(0); filter: blur(0); }
+  }
+  .reveal { opacity: 0; transform: translateY(2rem); }
+  .reveal.is-visible { animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards; animation-delay: calc(var(--delay, 0) * 100ms); }
+
+  .tech-card { transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1); }
+  .tech-card:hover { transform: translateY(-8px); border-color: rgba(139,92,246,0.3); }
+
+  .grid-bg {
+    background-image: linear-gradient(rgba(139,92,246,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(139,92,246,0.05) 1px, transparent 1px);
+    background-size: 60px 60px;
   }
 </style>
 
-<div class="bg-[#020617] text-[#94A3B8] font-sans selection:bg-[#6366F1] selection:text-white min-h-screen overflow-x-hidden relative grid-pattern">
-  
-  <!-- Nav -->
-  <nav class="fixed w-full z-50 px-8 py-6 bg-[#020617]/80 backdrop-blur-xl border-b border-[#6366F1]/10">
-    <div class="container mx-auto px-4 md:px-6 flex justify-between items-center flex-nowrap">
-      <div class="flex items-center gap-2 text-white">
-         <div class="w-8 h-8 max-h-8 max-w-[35%] shrink object-contain bg-gradient-to-tr from-[#6366F1] to-[#A855F7] rounded-lg"></div>
-         <span class="font-modern font-semibold text-xl tracking-tight">Novus<span class="text-[#6366F1]">.ai</span></span>
-      </div>
-      
-      <div class="hidden md:flex gap-14 text-[13px] font-modern font-medium text-slate-400">
-        <a href="#features" class="hover:text-white transition">Features</a>
-        <a href="#solutions" class="hover:text-white transition">Solutions</a>
-        <a href="#customers" class="hover:text-white transition">Customers</a>
-      </div>
-           <button class="mobile-menu-trigger md:hidden ml-auto text-2xl focus:outline-none" style="color: inherit;">
-             <i class="fas fa-bars"></i>
-           </button>
+<div class="bg-[#09090B] text-white font-sans selection:bg-[#8B5CF6] selection:text-white min-h-screen overflow-x-hidden relative">
+  <div class="fixed inset-0 grid-bg pointer-events-none"></div>
 
-      
-      <div class="flex-nowrap shrink-0 flex gap-6 items-center">
-         <button onclick="toggleNovusModal()" class="hidden md:block text-[13px] font-modern font-medium text-slate-400 hover:text-white px-4 py-2 hover:bg-white/5 rounded-lg transition" data-mobile-menu-copy="true">Sign In</button>
-         <button class="hidden md:block bg-white text-[#0F172A] px-5 py-2.5 rounded-lg font-modern font-semibold text-[13px] hover:bg-slate-200 transition shadow-[0_0_20px_rgba(255,255,255,0.2)]" data-mobile-menu-copy="true">
-           Get Started
-         </button>
+  <!-- ========== Nav ========== -->
+  <nav class="fixed w-full z-50 px-4 md:px-8 py-5 bg-[#09090B]/80 backdrop-blur-xl border-b border-white/5">
+    <div class="max-w-7xl mx-auto flex justify-between items-center">
+      <a href="#" class="flex items-center gap-2">
+        <div class="w-8 h-8 bg-gradient-to-br from-[#8B5CF6] to-[#A78BFA] rounded-lg flex items-center justify-center">
+          <span class="font-mono font-bold text-white text-sm">N</span>
+        </div>
+        <span class="font-mono font-bold text-lg tracking-tight">NEXON<span class="text-[#8B5CF6]">TECH</span></span>
+      </a>
+
+      <div class="hidden md:flex gap-10 text-sm font-medium text-white/30 font-mono">
+        <a href="#services" class="hover:text-[#8B5CF6] transition">Services</a>
+        <a href="#portfolio" class="hover:text-[#8B5CF6] transition">Work</a>
+        <a href="#about" class="hover:text-[#8B5CF6] transition">About</a>
+        <a href="#contact" class="hover:text-[#8B5CF6] transition">Contact</a>
+      </div>
+
+      <button class="mobile-menu-trigger md:hidden ml-auto text-2xl focus:outline-none" style="color: inherit;">
+        <i class="fas fa-bars"></i>
+      </button>
+
+      <div class="hidden md:flex gap-4 items-center">
+        <a href="#contact" class="bg-[#8B5CF6] text-white px-6 py-2.5 rounded-lg text-sm font-mono font-semibold hover:bg-[#7C3AED] shadow-lg shadow-[#8B5CF6]/20" data-mobile-menu-copy="true">프로젝트 문의</a>
       </div>
     </div>
 
-      <%= render partial: 'templates/shared/mobile_menu_overlay' %></nav>
+    <%= render partial: 'templates/shared/mobile_menu_overlay' %>
+  </nav>
 
-  <!-- Hero -->
-  <header class="min-h-screen relative flex items-center justify-center pt-24 overflow-hidden">
-    <!-- Glow Effects -->
-    <div class="absolute top-[20%] left-[20%] w-[500px] h-[500px] bg-[#6366F1]/20 rounded-full blur-[100px] animate-pulse"></div>
-    <div class="absolute bottom-[10%] right-[10%] w-[600px] h-[600px] bg-[#A855F7]/10 rounded-full blur-[120px]"></div>
+  <!-- ========== Hero ========== -->
+  <header class="min-h-[100dvh] relative flex items-center pt-20 overflow-hidden">
+    <div class="absolute top-1/3 left-1/4 w-[500px] h-[500px] bg-[#8B5CF6]/10 rounded-full blur-[150px]"></div>
+    <div class="absolute bottom-1/4 right-1/4 w-[300px] h-[300px] bg-[#A78BFA]/10 rounded-full blur-[100px]"></div>
 
-    <div class="container mx-auto px-3 md:px-6 relative z-10 grid lg:grid-cols-2 gap-12 md:p-20 items-center">
-      <div class="space-y-10 text-center lg:text-left">
-        <div class="inline-flex items-center gap-2 bg-[#1E293B]/50 border border-[#6366F1]/20 rounded-full pl-2 pr-4 py-1 backdrop-blur-sm">
-           <span class="bg-[#6366F1] text-white text-[10px] font-semibold px-2 py-0.5 rounded-lg">NEW</span>
-           <span class="text-[12px] font-modern text-[#94A3B8]">Novus v2.0 is now available</span>
-        </div>
-        
-        <h1 class="text-2xl md:text-4xl md:text-6xl font-modern font-semibold leading-[1.1] tracking-tight text-white mobile-title">
-           Experience the <br>
-           Future of <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#6366F1] to-[#A855F7]">Work.</span>
-        </h1>
-        
-        <p class="text-[#94A3B8] text-lg md:text-xl leading-relaxed max-w-lg mx-auto lg:mx-0 mobile-desc font-light">
-           당신의 팀을 위한 차세대 협업 플랫폼. <br>
-           AI 기반의 인사이트로 더 스마트하게 일하세요.
-        </p>
-        
-        <div class="flex flex-col sm:flex-row gap-6 justify-center lg:justify-start pt-4">
-           <button class="px-8 py-4 bg-[#6366F1] text-white font-modern font-semibold text-base rounded-lg hover:bg-[#4F46E5] transition shadow-lg shadow-[#6366F1]/30">
-              Start Free Trial
-           </button>
-           <button class="px-8 py-4 bg-[#1E293B]/50 text-white border border-white/10 font-modern font-semibold text-base rounded-lg hover:bg-[#1E293B] transition flex items-center justify-center gap-2">
-              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-              Watch Demo
-           </button>
-        </div>
-        
-        <div class="pt-8 flex flex-col items-center lg:items-start gap-6">
-           <p class="text-xs font-modern text-slate-500 uppercase tracking-wide">Trusted by innovative teams</p>
-           <div class="flex gap-10 opacity-40 grayscale hover:grayscale-0 transition-all duration-500">
-               <div class="h-6 w-20 bg-white/20 rounded"></div>
-               <div class="h-6 w-20 bg-white/20 rounded"></div>
-               <div class="h-6 w-20 bg-white/20 rounded"></div>
-               <div class="h-6 w-20 bg-white/20 rounded"></div>
-           </div>
-        </div>
+    <div class="max-w-7xl mx-auto px-4 md:px-8 relative z-10 text-center w-full py-20">
+      <div class="inline-flex items-center gap-2 bg-white/5 px-4 py-2 rounded-full border border-[#8B5CF6]/20 reveal" style="--delay: 0;">
+        <span class="w-2 h-2 bg-[#8B5CF6] rounded-full animate-pulse"></span>
+        <span class="text-sm font-mono text-[#8B5CF6]">We Build Digital Futures</span>
       </div>
-      
-      <div class="relative hidden lg:block">
-         <!-- Dashboard Mockup -->
-         <div class="relative z-10 w-full rounded-xl bg-[#0F172A] border border-[#334155]/50 p-2 shadow-2xl backdrop-blur-xl">
-             <div class="absolute inset-0 bg-gradient-to-tr from-[#6366F1]/10 to-transparent rounded-xl pointer-events-none"></div>
-             <!-- Header -->
-             <div class="flex items-center gap-2 px-4 py-3 border-b border-[#334155]/50">
-                <div class="flex gap-1.5">
-                   <div class="w-3 h-3 rounded-full bg-red-500/20"></div>
-                   <div class="w-3 h-3 rounded-full bg-yellow-500/20"></div>
-                   <div class="w-3 h-3 rounded-full bg-green-500/20"></div>
-                </div>
-             </div>
-             <!-- Content -->
-             <div class="p-6 grid grid-cols-1 md:grid-cols-2 gap-10">
-                <div class="col-span-2 h-32 bg-[#1E293B]/50 rounded-lg animate-pulse"></div>
-                <div class="h-40 bg-[#1E293B]/50 rounded-lg"></div>
-                <div class="h-40 bg-[#1E293B]/50 rounded-lg"></div>
-             </div>
-         </div>
+
+      <h1 class="text-5xl md:text-6xl lg:text-8xl font-bold leading-tight mt-8 mobile-title reveal" style="--delay: 1;">
+        기술로<br>
+        <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#8B5CF6] to-[#A78BFA]">미래를 만듭니다</span>
+      </h1>
+
+      <p class="text-white/30 text-base md:text-lg leading-relaxed max-w-lg mx-auto mt-8 mobile-desc reveal" style="--delay: 2;">
+        NEXON TECH는 AI, 클라우드, 풀스택 개발 전문 기업입니다. 혁신적인 기술로 비즈니스의 디지털 전환을 이끕니다.
+      </p>
+
+      <div class="flex flex-col sm:flex-row gap-4 justify-center mt-10 reveal" style="--delay: 3;">
+        <a href="#contact" class="inline-flex items-center justify-center gap-2 px-10 py-4 bg-[#8B5CF6] text-white rounded-lg font-mono font-semibold shadow-lg shadow-[#8B5CF6]/25 hover:bg-[#7C3AED]">
+          프로젝트 시작하기
+        </a>
+        <a href="#services" class="inline-flex items-center justify-center gap-2 px-10 py-4 border border-white/10 rounded-lg font-mono font-semibold text-white/60 hover:border-[#8B5CF6] hover:text-[#8B5CF6]">
+          서비스 보기
+        </a>
+      </div>
+
+      <div class="flex items-center gap-12 justify-center pt-12 reveal" style="--delay: 4;">
+        <div class="text-center">
+          <p class="text-3xl font-mono font-bold text-[#8B5CF6]">200+</p>
+          <p class="text-xs text-white/20 mt-1 font-mono">완료 프로젝트</p>
+        </div>
+        <div class="w-px h-10 bg-white/5"></div>
+        <div class="text-center">
+          <p class="text-3xl font-mono font-bold text-[#8B5CF6]">50+</p>
+          <p class="text-xs text-white/20 mt-1 font-mono">엔지니어</p>
+        </div>
+        <div class="w-px h-10 bg-white/5"></div>
+        <div class="text-center">
+          <p class="text-3xl font-mono font-bold text-[#8B5CF6]">99.9%</p>
+          <p class="text-xs text-white/20 mt-1 font-mono">서비스 안정성</p>
+        </div>
       </div>
     </div>
   </header>
 
-  <!-- Login Modal -->
-  <div id="novus-modal" class="fixed inset-0 z-[100] hidden items-center justify-center p-4 bg-[#020617]/50 backdrop-blur-xl">
-    <div class="bg-[#0F172A] w-full max-w-sm p-10 shadow-2xl relative rounded-2xl border border-[#334155]">
-      <button onclick="toggleNovusModal()" class="absolute top-6 right-6 text-slate-500 hover:text-white transition text-2xl font-light">&times;</button>
-      
-      <div class="text-center mb-10">
-        <div class="w-12 h-12 bg-gradient-to-tr from-[#6366F1] to-[#A855F7] rounded-xl mx-auto mb-4 shadow-lg shadow-[#6366F1]/20"></div>
-        <h2 class="text-xl font-modern font-semibold text-white mb-1">Welcome Back</h2>
-        <p class="text-sm text-slate-400">Enter your details to access your workspace</p>
+  <!-- ========== 서비스 ========== -->
+  <section id="services" class="py-24 md:py-32 relative">
+    <div class="max-w-7xl mx-auto px-4 md:px-8">
+      <div class="text-center mb-16">
+        <span class="text-sm font-mono font-semibold text-[#8B5CF6] tracking-wider uppercase reveal" style="--delay: 0;">Services</span>
+        <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mt-4 reveal" style="--delay: 1;">핵심 서비스</h2>
       </div>
-      
-      <div class="space-y-4">
-        <div>
-           <label class="block text-xs font-medium text-slate-400 mb-1.5 ml-1">Work Email</label>
-           <input type="email" placeholder="name@company.com" class="w-full bg-[#1E293B] border border-[#334155] rounded-lg py-3 px-4 outline-none focus:border-[#6366F1] focus:ring-1 focus:ring-[#6366F1] transition text-sm text-white placeholder-slate-600">
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div class="tech-card bg-white/[0.03] p-8 rounded-xl border border-white/5 reveal" style="--delay: 0;">
+          <div class="w-12 h-12 bg-[#8B5CF6]/10 rounded-lg flex items-center justify-center mb-6">
+            <i class="fas fa-brain text-[#8B5CF6] text-lg"></i>
+          </div>
+          <h3 class="text-lg font-bold mb-3 font-mono">AI / ML</h3>
+          <p class="text-sm text-white/30 leading-relaxed">맞춤형 AI 모델 개발, 자연어 처리, 컴퓨터 비전, 추천 시스템 구축.</p>
         </div>
-        
-        <button class="w-full bg-[#6366F1] text-white py-3 rounded-lg text-sm font-semibold hover:bg-[#4F46E5] transition shadow-lg shadow-[#6366F1]/20 mt-2">
-           Sign In
-        </button>
-        
-        <div class="text-center pt-6">
-           <p class="text-xs text-slate-500">Don't have an account? <a href="#" class="text-[#6366F1] hover:text-[#818CF8] transition">Sign up</a></p>
+
+        <div class="tech-card bg-white/[0.03] p-8 rounded-xl border border-white/5 reveal" style="--delay: 1;">
+          <div class="w-12 h-12 bg-[#8B5CF6]/10 rounded-lg flex items-center justify-center mb-6">
+            <i class="fas fa-cloud text-[#8B5CF6] text-lg"></i>
+          </div>
+          <h3 class="text-lg font-bold mb-3 font-mono">Cloud</h3>
+          <p class="text-sm text-white/30 leading-relaxed">AWS, GCP, Azure 기반 인프라 설계, DevOps, 마이크로서비스 아키텍처.</p>
+        </div>
+
+        <div class="tech-card bg-white/[0.03] p-8 rounded-xl border border-white/5 reveal" style="--delay: 2;">
+          <div class="w-12 h-12 bg-[#8B5CF6]/10 rounded-lg flex items-center justify-center mb-6">
+            <i class="fas fa-code text-[#8B5CF6] text-lg"></i>
+          </div>
+          <h3 class="text-lg font-bold mb-3 font-mono">Web / App</h3>
+          <p class="text-sm text-white/30 leading-relaxed">React, Next.js, Flutter 기반 풀스택 웹/앱 개발. API 설계 및 구축.</p>
+        </div>
+
+        <div class="tech-card bg-white/[0.03] p-8 rounded-xl border border-white/5 reveal" style="--delay: 3;">
+          <div class="w-12 h-12 bg-[#8B5CF6]/10 rounded-lg flex items-center justify-center mb-6">
+            <i class="fas fa-shield-alt text-[#8B5CF6] text-lg"></i>
+          </div>
+          <h3 class="text-lg font-bold mb-3 font-mono">Security</h3>
+          <p class="text-sm text-white/30 leading-relaxed">보안 진단, 취약점 분석, 침투 테스트, 보안 컨설팅 서비스.</p>
         </div>
       </div>
     </div>
-  </div>
+  </section>
 
-  <footer class="py-20 md:py-32 bg-[#020617] text-center px-6 border-t border-[#1E293B]">
-     <div class="inline-flex items-center gap-2 mb-6">
-        <div class="w-5 h-5 bg-gradient-to-tr from-[#6366F1] to-[#A855F7] rounded"></div>
-        <span class="font-modern font-semibold text-lg text-white">Novus<span class="text-[#6366F1]">.ai</span></span>
-     </div>
-     <p class="text-xs text-slate-500">© 2024 NOVUS INC. ALL RIGHTS RESERVED.</p>
+  <!-- ========== 포트폴리오 ========== -->
+  <section id="portfolio" class="py-24 md:py-32 bg-white/[0.02]">
+    <div class="max-w-7xl mx-auto px-4 md:px-8">
+      <div class="text-center mb-16">
+        <span class="text-sm font-mono font-semibold text-[#8B5CF6] tracking-wider uppercase reveal" style="--delay: 0;">Portfolio</span>
+        <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mt-4 reveal" style="--delay: 1;">최근 프로젝트</h2>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div class="group reveal" style="--delay: 0;">
+          <div class="overflow-hidden rounded-xl border border-white/5">
+            <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=800" alt="AI 대시보드" class="w-full aspect-video object-cover group-hover:scale-105 transition duration-700 opacity-70 group-hover:opacity-100" loading="lazy">
+          </div>
+          <div class="mt-4">
+            <span class="text-xs font-mono text-[#8B5CF6]">AI / Dashboard</span>
+            <h3 class="font-bold mt-1">AI 기반 데이터 분석 플랫폼</h3>
+            <p class="text-sm text-white/30 mt-1">실시간 데이터 분석과 AI 인사이트 대시보드 구축.</p>
+          </div>
+        </div>
+
+        <div class="group reveal" style="--delay: 1;">
+          <div class="overflow-hidden rounded-xl border border-white/5">
+            <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=800" alt="이커머스" class="w-full aspect-video object-cover group-hover:scale-105 transition duration-700 opacity-70 group-hover:opacity-100" loading="lazy">
+          </div>
+          <div class="mt-4">
+            <span class="text-xs font-mono text-[#8B5CF6]">E-Commerce</span>
+            <h3 class="font-bold mt-1">대규모 이커머스 플랫폼</h3>
+            <p class="text-sm text-white/30 mt-1">일 100만 트래픽 처리 가능한 마이크로서비스 아키텍처.</p>
+          </div>
+        </div>
+
+        <div class="group reveal" style="--delay: 2;">
+          <div class="overflow-hidden rounded-xl border border-white/5">
+            <img src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?q=80&w=800" alt="모바일 앱" class="w-full aspect-video object-cover group-hover:scale-105 transition duration-700 opacity-70 group-hover:opacity-100" loading="lazy">
+          </div>
+          <div class="mt-4">
+            <span class="text-xs font-mono text-[#8B5CF6]">Mobile App</span>
+            <h3 class="font-bold mt-1">핀테크 모바일 앱</h3>
+            <p class="text-sm text-white/30 mt-1">Flutter 기반 크로스플랫폼 금융 서비스 앱 개발.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== 기술스택 ========== -->
+  <section id="about" class="py-24 md:py-32">
+    <div class="max-w-7xl mx-auto px-4 md:px-8">
+      <div class="grid lg:grid-cols-2 gap-16 items-center">
+        <div class="space-y-8">
+          <div>
+            <span class="text-sm font-mono font-semibold text-[#8B5CF6] tracking-wider uppercase reveal" style="--delay: 0;">Tech Stack</span>
+            <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mt-4 reveal" style="--delay: 1;">우리의 기술력</h2>
+          </div>
+
+          <p class="text-white/30 text-base md:text-lg leading-relaxed reveal" style="--delay: 2;">
+            최신 기술 스택과 업계 최고의 엔지니어가 함께합니다. 10년 이상의 경험으로 검증된 기술력을 보유하고 있습니다.
+          </p>
+
+          <div class="grid grid-cols-2 gap-4 reveal" style="--delay: 3;">
+            <div class="bg-white/[0.03] p-4 rounded-lg border border-white/5">
+              <p class="font-mono font-bold text-[#8B5CF6] text-sm">Frontend</p>
+              <p class="text-xs text-white/30 mt-1">React, Next.js, Vue, Svelte</p>
+            </div>
+            <div class="bg-white/[0.03] p-4 rounded-lg border border-white/5">
+              <p class="font-mono font-bold text-[#8B5CF6] text-sm">Backend</p>
+              <p class="text-xs text-white/30 mt-1">Node, Python, Go, Rust</p>
+            </div>
+            <div class="bg-white/[0.03] p-4 rounded-lg border border-white/5">
+              <p class="font-mono font-bold text-[#8B5CF6] text-sm">Cloud</p>
+              <p class="text-xs text-white/30 mt-1">AWS, GCP, Azure, K8s</p>
+            </div>
+            <div class="bg-white/[0.03] p-4 rounded-lg border border-white/5">
+              <p class="font-mono font-bold text-[#8B5CF6] text-sm">AI / ML</p>
+              <p class="text-xs text-white/30 mt-1">PyTorch, TensorFlow, LLM</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="relative hidden lg:block reveal" style="--delay: 0;">
+          <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=800" alt="개발" class="w-full aspect-[4/3] object-cover rounded-xl border border-white/5 opacity-70" loading="lazy">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== 문의 ========== -->
+  <section id="contact" class="py-24 md:py-32 bg-white/[0.02]">
+    <div class="max-w-4xl mx-auto px-4 md:px-8">
+      <div class="text-center mb-12">
+        <span class="text-sm font-mono font-semibold text-[#8B5CF6] tracking-wider uppercase reveal" style="--delay: 0;">Contact</span>
+        <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mt-4 reveal" style="--delay: 1;">프로젝트 문의</h2>
+        <p class="text-white/30 text-base mt-4 reveal" style="--delay: 2;">아이디어를 현실로 만들어 드립니다</p>
+      </div>
+
+      <div class="bg-white/[0.03] backdrop-blur-xl rounded-2xl p-8 md:p-12 border border-white/5 reveal" style="--delay: 3;">
+        <div class="grid md:grid-cols-2 gap-6">
+          <div>
+            <label class="block text-sm font-mono text-white/50 mb-2">회사명</label>
+            <input type="text" placeholder="회사명" class="w-full bg-white/5 border border-white/10 rounded-lg px-5 py-3.5 text-white placeholder-white/20 outline-none focus:border-[#8B5CF6]/50 transition font-mono">
+          </div>
+          <div>
+            <label class="block text-sm font-mono text-white/50 mb-2">담당자</label>
+            <input type="text" placeholder="이름" class="w-full bg-white/5 border border-white/10 rounded-lg px-5 py-3.5 text-white placeholder-white/20 outline-none focus:border-[#8B5CF6]/50 transition font-mono">
+          </div>
+          <div>
+            <label class="block text-sm font-mono text-white/50 mb-2">이메일</label>
+            <input type="email" placeholder="email@company.com" class="w-full bg-white/5 border border-white/10 rounded-lg px-5 py-3.5 text-white placeholder-white/20 outline-none focus:border-[#8B5CF6]/50 transition font-mono">
+          </div>
+          <div>
+            <label class="block text-sm font-mono text-white/50 mb-2">예산 규모</label>
+            <select class="w-full bg-white/5 border border-white/10 rounded-lg px-5 py-3.5 text-white outline-none focus:border-[#8B5CF6]/50 transition font-mono">
+              <option value="">선택해주세요</option>
+              <option>1,000만원 미만</option>
+              <option>1,000 - 5,000만원</option>
+              <option>5,000만원 - 1억</option>
+              <option>1억 이상</option>
+            </select>
+          </div>
+          <div class="md:col-span-2">
+            <label class="block text-sm font-mono text-white/50 mb-2">프로젝트 설명</label>
+            <textarea rows="4" placeholder="프로젝트에 대해 설명해주세요" class="w-full bg-white/5 border border-white/10 rounded-lg px-5 py-3.5 text-white placeholder-white/20 outline-none focus:border-[#8B5CF6]/50 transition font-mono resize-none"></textarea>
+          </div>
+        </div>
+        <button class="w-full mt-8 bg-[#8B5CF6] text-white py-4 rounded-lg font-mono font-bold text-lg hover:bg-[#7C3AED] shadow-lg shadow-[#8B5CF6]/20">문의 보내기</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== CTA ========== -->
+  <section class="py-24 md:py-32">
+    <div class="max-w-3xl mx-auto px-4 md:px-8 text-center">
+      <h2 class="text-4xl md:text-5xl lg:text-6xl font-bold reveal" style="--delay: 0;">
+        다음 프로젝트,<br>
+        <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#8B5CF6] to-[#A78BFA]">함께 시작하세요.</span>
+      </h2>
+      <p class="text-white/30 text-base md:text-lg mt-6 reveal" style="--delay: 1;">
+        기술적 난제를 해결하고 비즈니스 가치를 만들어내는 것이 우리의 일입니다.
+      </p>
+      <a href="#contact" class="inline-flex items-center justify-center gap-2 px-12 py-5 bg-[#8B5CF6] text-white rounded-lg font-mono font-bold text-lg shadow-lg shadow-[#8B5CF6]/25 hover:bg-[#7C3AED] mt-10 reveal" style="--delay: 2;">
+        무료 상담 신청
+      </a>
+    </div>
+  </section>
+
+  <!-- ========== Footer ========== -->
+  <footer class="py-16 md:py-24 bg-[#050506] border-t border-white/5">
+    <div class="max-w-7xl mx-auto px-4 md:px-8">
+      <div class="grid md:grid-cols-3 gap-12 mb-16">
+        <div>
+          <div class="flex items-center gap-2 mb-4">
+            <div class="w-7 h-7 bg-gradient-to-br from-[#8B5CF6] to-[#A78BFA] rounded-lg flex items-center justify-center">
+              <span class="font-mono font-bold text-white text-xs">N</span>
+            </div>
+            <span class="font-mono font-bold text-sm">NEXON TECH</span>
+          </div>
+          <p class="text-white/20 text-sm leading-relaxed">서울특별시 강남구 역삼로 123<br>넥슨테크 빌딩 15층</p>
+        </div>
+
+        <div class="grid grid-cols-2 gap-8">
+          <div>
+            <p class="text-xs font-mono text-white/15 uppercase tracking-wider mb-4">Services</p>
+            <ul class="space-y-2.5">
+              <li><a href="#services" class="text-white/30 text-sm hover:text-[#8B5CF6] transition font-mono">AI / ML</a></li>
+              <li><a href="#services" class="text-white/30 text-sm hover:text-[#8B5CF6] transition font-mono">Cloud</a></li>
+              <li><a href="#services" class="text-white/30 text-sm hover:text-[#8B5CF6] transition font-mono">Web / App</a></li>
+              <li><a href="#services" class="text-white/30 text-sm hover:text-[#8B5CF6] transition font-mono">Security</a></li>
+            </ul>
+          </div>
+          <div>
+            <p class="text-xs font-mono text-white/15 uppercase tracking-wider mb-4">Company</p>
+            <ul class="space-y-2.5">
+              <li><a href="#about" class="text-white/30 text-sm hover:text-[#8B5CF6] transition font-mono">About</a></li>
+              <li><a href="#portfolio" class="text-white/30 text-sm hover:text-[#8B5CF6] transition font-mono">Work</a></li>
+              <li><a href="#" class="text-white/30 text-sm hover:text-[#8B5CF6] transition font-mono">Careers</a></li>
+              <li><a href="#contact" class="text-white/30 text-sm hover:text-[#8B5CF6] transition font-mono">Contact</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <div>
+          <p class="text-xs font-mono text-white/15 uppercase tracking-wider mb-4">Connect</p>
+          <p class="text-sm text-white/30 font-mono">hello@nexontech.kr</p>
+          <p class="text-sm text-white/30 font-mono mt-1">02-999-8888</p>
+          <div class="flex gap-3 mt-4">
+            <a href="#" class="w-10 h-10 bg-white/5 rounded-lg flex items-center justify-center text-white/30 hover:text-[#8B5CF6] hover:bg-white/10 transition"><i class="fab fa-github text-sm"></i></a>
+            <a href="#" class="w-10 h-10 bg-white/5 rounded-lg flex items-center justify-center text-white/30 hover:text-[#8B5CF6] hover:bg-white/10 transition"><i class="fab fa-linkedin text-sm"></i></a>
+          </div>
+        </div>
+      </div>
+
+      <div class="border-t border-white/5 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+        <p class="text-xs text-white/10 font-mono">&copy; 2024 NEXON TECH. All rights reserved by DLAB.</p>
+        <div class="flex gap-6">
+          <a href="#" class="text-xs text-white/10 font-mono hover:text-white/20 transition">Privacy</a>
+          <a href="#" class="text-xs text-white/10 font-mono hover:text-white/20 transition">Terms</a>
+        </div>
+      </div>
+    </div>
   </footer>
 
-  <script>
-    function toggleNovusModal() {
-      const modal = document.getElementById('novus-modal');
-      modal.classList.toggle('hidden');
-      modal.classList.toggle('flex');
-    }
-  </script>
-
 </div>
+
+<script>
+  (function() {
+    const observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+    document.querySelectorAll('.reveal').forEach(function(el) { observer.observe(el); });
+  })();
+</script>

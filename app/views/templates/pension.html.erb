@@ -1,239 +1,640 @@
-<%# Pension Template - 리버사이드 (RIVERSIDE STAY) %>
+<%# Pension Template — 솔바람 펜션 %>
 
 <style>
-  /* Supanova Design Upgrade */
+  /* Supanova Design — Forest Fresh Archetype */
   * { word-break: keep-all; }
-  html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+  html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
   h1, h2, h3, h4 { text-wrap: balance; letter-spacing: -0.02em; line-height: 1.3; }
-  a, button { transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1); }
+  a, button { transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1); }
   a:hover, button:hover { transform: scale(1.02); }
   a:active, button:active { transform: scale(0.98); }
 
-  @import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap');
-  
-  .font-classic { font-family: 'Libre Baskerville', serif; }
-  .font-sans { font-family: 'Pretendard Variable', 'Pretendard', -apple-system, sans-serif; }
+  @import url('https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700;800&display=swap');
+
+  .font-sans { font-family: 'Pretendard Variable', 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, sans-serif; }
+  .font-serif { font-family: 'Nanum Myeongjo', serif; }
 
   @media (max-width: 768px) {
     .mobile-desc { font-size: 14px !important; line-height: 1.8; }
-    .mobile-title { font-size: 40px !important; }
+    .mobile-title { font-size: 34px !important; }
   }
 
-  .wood-grain {
-    background: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.2' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E");
-    opacity: 0.3;
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(2rem); filter: blur(4px); }
+    to { opacity: 1; transform: translateY(0); filter: blur(0); }
   }
-  
-  .scroll-hide::-webkit-scrollbar {
-      display: none;
+  .reveal {
+    opacity: 0;
+    transform: translateY(2rem);
   }
+  .reveal.is-visible {
+    animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    animation-delay: calc(var(--delay, 0) * 100ms);
+  }
+
+  .pension-card { transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1); }
+  .pension-card:hover { transform: translateY(-8px); box-shadow: 0 20px 60px rgba(46, 125, 91, 0.1); }
+  .pension-card:hover img { transform: scale(1.05); }
+
+  .facility-card { transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); }
+  .facility-card:hover { transform: translateY(-4px); background-color: #2E7D5B; color: white; }
+  .facility-card:hover .fc-icon { color: white; }
+  .facility-card:hover .fc-desc { color: rgba(255,255,255,0.7); }
 </style>
 
-<div class="bg-[#F7F5F2] text-[#4A4238] font-sans selection:bg-[#786C5E] selection:text-white min-h-screen overflow-x-hidden relative pb-20 md:pb-0">
-  <div class="fixed inset-0 wood-grain pointer-events-none"></div>
+<div class="bg-[#F0F7F4] text-[#1A1A1A] font-sans selection:bg-[#2E7D5B] selection:text-white min-h-screen overflow-x-hidden relative">
 
-  <!-- Nav -->
-  <nav class="fixed w-full z-50 px-8 py-6 bg-[#F7F5F2]/90 backdrop-blur-md border-b border-[#786C5E]/10 transition-all duration-300" data-aos="fade-down" data-aos-duration="1000">
-    <div class="container mx-auto px-4 md:px-6 flex justify-between items-center flex-nowrap">
-      <div class="flex items-center gap-6">
-         <span class="font-classic font-semibold text-xl tracking-[0.1em] text-[#4A4238] cursor-pointer">River<span class="text-[#786C5E]">side</span></span>
-      </div>
-      
-      <div class="hidden md:flex gap-16 text-[12px] font-sans font-medium tracking-[0.2em] text-[#9A8C7D] uppercase">
-        <a href="#stay" class="hover:text-[#4A4238] transition">Rooms</a>
-        <a href="#amenities" class="hover:text-[#4A4238] transition">Amenities</a>
-        <a href="#location" class="hover:text-[#4A4238] transition">Find Us</a>
-      </div>
-      
-      <div class="flex-nowrap shrink-0 flex gap-6 items-center">
-         <button onclick="togglePensionModal()" class="hidden md:block text-[12px] font-sans font-semibold uppercase tracking-[0.2em] text-[#9A8C7D] hover:text-[#4A4238]" data-mobile-menu-copy="true">Reservation</button>
-         <button class="mobile-menu-trigger md:hidden ml-2 sm:ml-4 text-2xl focus:outline-none" style="color: inherit;">
-           <i class="fas fa-bars"></i>
-         </button>
+  <!-- ========== Nav ========== -->
+  <nav class="fixed w-full z-50 px-4 md:px-8 py-5 bg-[#F0F7F4]/85 backdrop-blur-xl border-b border-[#2E7D5B]/10">
+    <div class="max-w-7xl mx-auto flex justify-between items-center">
+      <a href="#" class="flex items-center gap-3">
+        <span class="text-[#2E7D5B] text-2xl"><i class="fas fa-tree"></i></span>
+        <span class="font-serif text-xl md:text-2xl font-bold text-[#1A1A1A]">솔바람 펜션</span>
+      </a>
 
-         <button class="hidden md:inline-flex bg-[#786C5E] text-[#F7F5F2] px-3 py-2 text-xs md:text-sm md:px-6 md:py-2.5 whitespace-nowrap rounded-sm font-classic italic text-sm hover:bg-[#5D5348] transition shadow-lg shadow-[#786C5E]/20" data-mobile-menu-copy="true">
-           Check Availability
-         </button>
+      <div class="hidden md:flex gap-12 text-[10px] font-semibold uppercase tracking-[0.4em] text-[#1A1A1A]/30">
+        <a href="#rooms" class="hover:text-[#2E7D5B] transition">객실</a>
+        <a href="#facilities" class="hover:text-[#2E7D5B] transition">시설</a>
+        <a href="#around" class="hover:text-[#2E7D5B] transition">주변</a>
+        <a href="#directions" class="hover:text-[#2E7D5B] transition">오시는 길</a>
+      </div>
+
+      <button class="mobile-menu-trigger md:hidden ml-auto text-2xl focus:outline-none text-[#1A1A1A]">
+        <i class="fas fa-bars"></i>
+      </button>
+
+      <div class="hidden md:flex gap-6 items-center shrink-0">
+        <button onclick="togglePensionModal()" class="text-[10px] font-semibold uppercase tracking-[0.4em] text-[#1A1A1A]/30 hover:text-[#2E7D5B]" data-mobile-menu-copy="true">문의</button>
+        <a href="#booking" class="bg-[#2E7D5B] text-white px-8 py-3.5 rounded-full font-semibold text-[10px] tracking-[0.3em] uppercase hover:bg-[#1A1A1A] transition shadow-lg shadow-[#2E7D5B]/20" data-mobile-menu-copy="true">
+          예약하기
+        </a>
       </div>
     </div>
 
-      <%= render partial: 'templates/shared/mobile_menu_overlay' %></nav>
+    <%= render partial: 'templates/shared/mobile_menu_overlay' %>
+  </nav>
 
-  <!-- Hero -->
-  <header class="min-h-screen relative flex items-center justify-center pt-24 overflow-hidden">
-    <!-- Nature Elements -->
-    <div class="absolute top-0 right-0 w-[50vw] h-full bg-[#EBE8E3] -z-10" data-aos="fade-left" data-aos-duration="1500" data-aos-delay="300"></div>
-    <div class="absolute bottom-10 left-10 w-full h-[1px] bg-[#786C5E]/10"></div>
+  <!-- ========== 1. Hero ========== -->
+  <header class="min-h-screen relative flex items-end pb-20 md:pb-32">
+    <div class="absolute inset-0">
+      <img src="https://images.unsplash.com/photo-1510798831971-661eb04b3739?q=80&w=2000&auto=format" alt="솔바람 펜션" class="w-full h-full object-cover">
+      <div class="absolute inset-0 bg-gradient-to-t from-[#1A1A1A] via-[#1A1A1A]/40 to-transparent"></div>
+    </div>
 
-    <div class="container mx-auto px-3 md:px-6 relative z-10 grid lg:grid-cols-2 gap-12 md:p-20 items-center h-full">
-      <div class="space-y-12 text-center lg:text-left order-2 lg:order-1" data-aos="fade-right" data-aos-duration="1200">
-        <div class="inline-flex items-center gap-3 border-l-2 border-[#786C5E] pl-4">
-           <span class="text-[11px] font-semibold text-[#786C5E] uppercase tracking-[0.3em]">Private Sanctuary</span>
+    <div class="relative z-10 max-w-7xl mx-auto px-6 md:px-10 w-full">
+      <div class="max-w-2xl space-y-8">
+        <div class="reveal inline-flex items-center gap-4">
+          <span class="w-8 h-8 rounded-full bg-[#2E7D5B] flex items-center justify-center text-white text-xs"><i class="fas fa-leaf"></i></span>
+          <span class="text-[10px] font-semibold tracking-[0.5em] uppercase text-white/60">Healing Pension in Gangwon</span>
         </div>
-        
-        <h1 class="text-2xl md:text-4xl md:text-6xl font-classic font-normal leading-[1.1] text-[#2C2822] mobile-title">
-           Listen to<br>
-           the <span class="italic text-[#786C5E]">Silence</span> of<br>
-           Nature.
+
+        <h1 class="reveal text-4xl md:text-7xl font-serif font-bold leading-[1.1] text-white mobile-title" style="--delay:1">
+          솔향 가득한<br>
+          <span class="text-[#7BC9A3]">자연 속 쉼터.</span>
         </h1>
-        
-        <p class="text-[#786C5E]/80 text-sm md:text-lg leading-relaxed max-w-lg mx-auto lg:mx-0 mobile-desc font-light">
-           숲의 숨결과 강의 흐름만이 존재하는 곳.<br>
-           리버사이드에서 온전한 휴식을 경험하세요.
-        </p>
-        
-        <div class="flex flex-col sm:flex-row gap-10 justify-center lg:justify-start pt-6">
-           <button class="px-10 py-4 bg-[#4A4238] text-[#F7F5F2] font-classic italic text-lg hover:bg-[#786C5E] transition shadow-xl">
-              Book Your Stay
-           </button>
-           <button class="px-10 py-4 border-b border-[#786C5E]/30 text-[#786C5E] font-classic italic text-lg hover:border-[#786C5E] transition">
-              View Gallery
-           </button>
-        </div>
 
-        <div class="pt-12 flex justify-center lg:justify-start gap-16 text-[#9A8C7D]">
-           <div class="text-center lg:text-left">
-              <span class="block text-2xl font-classic text-[#4A4238]" data-aos="fade-up" data-aos-delay="500">04</span>
-              <span class="text-[10px] uppercase tracking-wide">Private Villas</span>
-           </div>
-           <div class="text-center lg:text-left">
-              <span class="block text-2xl font-classic text-[#4A4238]" data-aos="fade-up" data-aos-delay="600">Infinity</span>
-              <span class="text-[10px] uppercase tracking-wide">Pool & Spa</span>
-           </div>
+        <p class="reveal text-white/50 text-sm md:text-lg leading-[2] max-w-lg mobile-desc" style="--delay:2">
+          강원도 홍천의 깊은 숲속, 솔바람 펜션에서<br class="hidden md:block">
+          사계절의 아름다움과 함께 특별한 힐링을 경험하세요.
+        </p>
+
+        <div class="reveal flex flex-wrap gap-4 pt-4" style="--delay:3">
+          <a href="#rooms" class="bg-[#2E7D5B] text-white px-8 py-4 rounded-full font-semibold text-[11px] tracking-[0.2em] hover:bg-white hover:text-[#1A1A1A] transition">
+            객실 둘러보기
+          </a>
+          <a href="#booking" class="border border-white/30 text-white px-8 py-4 rounded-full font-semibold text-[11px] tracking-[0.2em] hover:bg-white/10 transition">
+            빈 객실 확인
+          </a>
         </div>
       </div>
-      
-      <div class="relative order-1 lg:order-2 h-full flex items-center justify-center p-8 sm:p-0" data-aos="zoom-in" data-aos-duration="1500" data-aos-delay="200">
-         <div class="relative w-full max-w-[500px] aspect-[4/5]">
-            <div class="absolute top-0 right-0 w-3/4 h-3/4 border border-[#786C5E]/30 z-0"></div>
-            <div class="absolute bottom-0 left-0 w-3/4 h-3/4 bg-[#EBE8E3] z-0"></div>
-            
-            <img src="https://images.unsplash.com/photo-1540541338287-41700207dee6?q=80&w=800" alt="Serene Stay" class="w-full h-full object-cover relative z-10 shadow-2xl filter sepia-[5%] brightness-105 transition-transform hover:scale-[1.01] duration-700">
-            
-            <div class="absolute -bottom-6 -right-6 bg-white p-6 shadow-xl z-20 max-w-[200px] hidden md:block border border-[#786C5E]/10" data-aos="fade-up" data-aos-delay="1000">
-               <p class="font-classic text-xl text-[#4A4238] italic">"Healing"</p>
-               <p class="text-[10px] uppercase font-semibold text-[#9A8C7D] mt-2 leading-relaxed">Best Architecture Award 2024</p>
-            </div>
-         </div>
+
+      <!-- Quick info -->
+      <div class="reveal mt-16 grid grid-cols-2 md:grid-cols-4 gap-4" style="--delay:4">
+        <div class="bg-white/10 backdrop-blur-md rounded-2xl p-5 text-center">
+          <span class="text-[#7BC9A3] text-xl"><i class="fas fa-home"></i></span>
+          <p class="text-white text-sm font-semibold mt-2">독채 펜션</p>
+          <p class="text-white/40 text-[10px] mt-1">프라이빗 공간</p>
+        </div>
+        <div class="bg-white/10 backdrop-blur-md rounded-2xl p-5 text-center">
+          <span class="text-[#7BC9A3] text-xl"><i class="fas fa-fire"></i></span>
+          <p class="text-white text-sm font-semibold mt-2">바베큐장</p>
+          <p class="text-white/40 text-[10px] mt-1">각 동 전용</p>
+        </div>
+        <div class="bg-white/10 backdrop-blur-md rounded-2xl p-5 text-center">
+          <span class="text-[#7BC9A3] text-xl"><i class="fas fa-water"></i></span>
+          <p class="text-white text-sm font-semibold mt-2">계곡 인접</p>
+          <p class="text-white/40 text-[10px] mt-1">도보 3분</p>
+        </div>
+        <div class="bg-white/10 backdrop-blur-md rounded-2xl p-5 text-center">
+          <span class="text-[#7BC9A3] text-xl"><i class="fas fa-parking"></i></span>
+          <p class="text-white text-sm font-semibold mt-2">무료 주차</p>
+          <p class="text-white/40 text-[10px] mt-1">동별 1대</p>
+        </div>
       </div>
     </div>
   </header>
 
-  <!-- Horizontal Scroll Gallery (Rooms) -->
-  <section class="py-20 md:py-32 px-6 overflow-hidden">
-     <div class="container mx-auto">
-        <div class="mb-12 text-center md:text-left" data-aos="fade-up">
-           <h2 class="text-2xl font-classic text-[#4A4238] italic mb-2">Our Rooms</h2>
-           <p class="text-[#786C5E] text-sm">Swipe to explore</p>
-        </div>
-     </div>
-     <div class="flex gap-10 overflow-x-auto pb-8 snap-x snap-mandatory scroll-hide px-6 md:px-[calc((100vw-1280px)/2)]" data-aos="fade-left">
-        <!-- Room 1 -->
-        <div class="snap-center shrink-0 w-[85vw] md:w-[400px] relative group cursor-pointer">
-           <div class="aspect-[4/5] overflow-hidden mb-4 relative">
-              <img src="https://images.unsplash.com/photo-1598928506311-c55ded91a20c?q=80&w=600" class="w-full h-full object-cover transition duration-700 group-hover:scale-110">
-              <div class="absolute inset-0 bg-slate-950/20 group-hover:bg-transparent transition duration-500"></div>
-           </div>
-           <h3 class="text-xl font-classic text-[#4A4238] group-hover:text-[#786C5E] transition">Suite A</h3>
-           <p class="text-xs text-[#9A8C7D] mt-1">Ocean View • 2 Guests</p>
-        </div>
-        <!-- Room 2 -->
-        <div class="snap-center shrink-0 w-[85vw] md:w-[400px] relative group cursor-pointer">
-           <div class="aspect-[4/5] overflow-hidden mb-4 relative">
-              <img src="https://images.unsplash.com/photo-1549294413-26f195200c16?q=80&w=600" class="w-full h-full object-cover transition duration-700 group-hover:scale-110">
-           </div>
-           <h3 class="text-xl font-classic text-[#4A4238] group-hover:text-[#786C5E] transition">Suite B</h3>
-           <p class="text-xs text-[#9A8C7D] mt-1">Garden View • 4 Guests</p>
-        </div>
-        <!-- Room 3 -->
-        <div class="snap-center shrink-0 w-[85vw] md:w-[400px] relative group cursor-pointer">
-           <div class="aspect-[4/5] overflow-hidden mb-4 relative">
-              <img src="https://images.unsplash.com/photo-1629140727571-9b5c6f6267b4?q=80&w=600" class="w-full h-full object-cover transition duration-700 group-hover:scale-110">
-           </div>
-           <h3 class="text-xl font-classic text-[#4A4238] group-hover:text-[#786C5E] transition">Royal Villa</h3>
-           <p class="text-xs text-[#9A8C7D] mt-1">Private Pool • 6 Guests</p>
-        </div>
-     </div>
-  </section>
-
-  <!-- Instagram Grid -->
-  <section class="py-20 md:py-32 bg-white" data-aos="fade-up">
-     <div class="container mx-auto px-3 md:px-6 text-center">
-        <div class="mb-10">
-           <i class="block text-2xl mb-2">@riverside_stay</i>
-           <p class="text-xs text-[#9A8C7D] uppercase tracking-wide">Share your moments</p>
-        </div>
-        <div class="grid grid-cols-1 md:grid-cols-2 md:grid-cols-4 gap-2">
-           <div class="aspect-square bg-gray-100 overflow-hidden cursor-pointer group">
-              <img src="https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?q=80&w=400" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
-           </div>
-           <div class="aspect-square bg-gray-100 overflow-hidden cursor-pointer group">
-              <img src="https://images.unsplash.com/photo-1584622050111-993a426fbf0a?q=80&w=400" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
-           </div>
-           <div class="aspect-square bg-gray-100 overflow-hidden cursor-pointer group">
-              <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=400" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
-           </div>
-           <div class="aspect-square bg-gray-100 overflow-hidden cursor-pointer group">
-              <img src="https://images.unsplash.com/photo-1499793983690-e29da59ef1c2?q=80&w=400" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
-           </div>
-        </div>
-     </div>
-  </section>
-
-  <!-- Floating Reservation Bar (Mobile Only) -->
-  <div class="fixed bottom-0 left-0 w-full bg-white z-[60] border-t border-[#786C5E]/20 p-4 flex md:hidden items-center justify-between shadow-[0_-5px_20px_rgba(0,0,0,0.05)]" data-aos="fade-up" data-aos-offset="0">
-     <div class="flex flex-col">
-        <span class="text-[10px] text-[#9A8C7D] uppercase tracking-wider">Starting from</span>
-        <span class="font-classic text-lg text-[#4A4238] font-semibold">₩ 250,000</span>
-     </div>
-     <button class="bg-[#4A4238] text-white px-4 py-2 text-xs md:text-base md:px-8 md:py-3 whitespace-nowrap rounded-sm font-classic uppercase text-sm tracking-wide hover:bg-[#2C2822] transition">
-        Book Now
-     </button>
-  </div>
-
-  <!-- Login Modal -->
-  <div id="pension-modal" class="fixed inset-0 z-[100] hidden items-center justify-center p-4 bg-[#4A4238]/40 backdrop-blur-md">
-    <div class="bg-[#F7F5F2] w-full max-w-sm p-12 shadow-2xl relative border-t-4 border-[#786C5E]" data-aos="zoom-in">
-      <button onclick="togglePensionModal()" class="absolute top-8 right-8 text-[#9A8C7D] hover:text-[#786C5E] transition text-2xl font-classic">&times;</button>
-      
-      <div class="text-center mb-10">
-        <h2 class="text-2xl font-classic text-[#4A4238] mb-2 italic">Guest Check-in</h2>
-        <p class="text-[10px] text-[#786C5E] font-semibold tracking-[0.3em] uppercase">Manage Your Reservation</p>
+  <!-- ========== 2. 객실 소개 (4종) ========== -->
+  <section id="rooms" class="py-24 md:py-40 px-6 md:px-10">
+    <div class="max-w-7xl mx-auto">
+      <div class="text-center mb-20 reveal">
+        <span class="text-[10px] font-semibold tracking-[0.5em] uppercase text-[#2E7D5B]">Rooms</span>
+        <h2 class="font-serif text-3xl md:text-4xl font-bold mt-4">자연을 닮은 네 개의 공간</h2>
+        <p class="text-[#1A1A1A]/40 text-sm mt-4 max-w-lg mx-auto">모든 객실은 독립된 독채형 펜션으로, 전용 바베큐장과 주차장을 제공합니다.</p>
       </div>
-      
-      <div class="space-y-6">
-        <div>
-           <label class="block text-[10px] font-semibold text-[#9A8C7D] uppercase tracking-wide mb-2 ml-1">Reservation No.</label>
-           <input type="text" placeholder="R-2024-" class="w-full bg-white border border-[#E0DCD6] py-3 px-5 outline-none focus:border-[#786C5E] transition text-sm font-semibold text-[#4A4238] tracking-wide placeholder-[#D4D4D0]">
+
+      <div class="grid md:grid-cols-2 gap-8">
+        <!-- 소나무 (2인) -->
+        <div class="pension-card bg-white rounded-3xl overflow-hidden shadow-sm reveal" style="--delay:0">
+          <div class="aspect-[16/10] overflow-hidden relative">
+            <img src="https://images.unsplash.com/photo-1595576508898-0ad5c879a061?q=80&w=1000&auto=format" alt="소나무 객실" class="w-full h-full object-cover transition-transform duration-700">
+            <div class="absolute top-4 left-4 bg-[#2E7D5B] text-white px-4 py-1.5 rounded-full text-[10px] font-semibold">커플 추천</div>
+          </div>
+          <div class="p-8">
+            <div class="flex justify-between items-start">
+              <div>
+                <h3 class="font-serif text-xl font-bold">소나무</h3>
+                <p class="text-[#1A1A1A]/40 text-sm mt-2 leading-relaxed">
+                  20m² · 원룸형 · 킹베드 · 최대 2인<br>
+                  아늑한 커플 전용 공간. 테라스에서 숲을 바라보며.
+                </p>
+              </div>
+              <div class="text-right shrink-0 ml-4">
+                <span class="font-serif text-xl font-bold text-[#2E7D5B]">₩80,000</span>
+                <span class="block text-[10px] text-[#1A1A1A]/30">비수기 기준</span>
+              </div>
+            </div>
+            <div class="flex gap-3 mt-6 flex-wrap">
+              <span class="px-3 py-1 bg-[#F0F7F4] text-[#2E7D5B] rounded-full text-[10px]">바베큐</span>
+              <span class="px-3 py-1 bg-[#F0F7F4] text-[#2E7D5B] rounded-full text-[10px]">에어컨</span>
+              <span class="px-3 py-1 bg-[#F0F7F4] text-[#2E7D5B] rounded-full text-[10px]">취사 가능</span>
+              <span class="px-3 py-1 bg-[#F0F7F4] text-[#2E7D5B] rounded-full text-[10px]">와이파이</span>
+            </div>
+          </div>
         </div>
-        
-        <button class="w-full bg-[#786C5E] text-[#F7F5F2] py-4 text-[11px] tracking-[0.2em] font-semibold uppercase hover:bg-[#5D5348] transition shadow-lg">
-           Find Booking
+
+        <!-- 자작나무 (4인) -->
+        <div class="pension-card bg-white rounded-3xl overflow-hidden shadow-sm reveal" style="--delay:1">
+          <div class="aspect-[16/10] overflow-hidden relative">
+            <img src="https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?q=80&w=1000&auto=format" alt="자작나무 객실" class="w-full h-full object-cover transition-transform duration-700">
+            <div class="absolute top-4 left-4 bg-[#E8A317] text-white px-4 py-1.5 rounded-full text-[10px] font-semibold">인기 객실</div>
+          </div>
+          <div class="p-8">
+            <div class="flex justify-between items-start">
+              <div>
+                <h3 class="font-serif text-xl font-bold">자작나무</h3>
+                <p class="text-[#1A1A1A]/40 text-sm mt-2 leading-relaxed">
+                  36m² · 투룸형 · 퀸+싱글2 · 최대 4인<br>
+                  가족 여행에 딱 맞는 넉넉한 공간과 넓은 거실.
+                </p>
+              </div>
+              <div class="text-right shrink-0 ml-4">
+                <span class="font-serif text-xl font-bold text-[#2E7D5B]">₩150,000</span>
+                <span class="block text-[10px] text-[#1A1A1A]/30">비수기 기준</span>
+              </div>
+            </div>
+            <div class="flex gap-3 mt-6 flex-wrap">
+              <span class="px-3 py-1 bg-[#F0F7F4] text-[#2E7D5B] rounded-full text-[10px]">바베큐</span>
+              <span class="px-3 py-1 bg-[#F0F7F4] text-[#2E7D5B] rounded-full text-[10px]">복층</span>
+              <span class="px-3 py-1 bg-[#F0F7F4] text-[#2E7D5B] rounded-full text-[10px]">취사 가능</span>
+              <span class="px-3 py-1 bg-[#F0F7F4] text-[#2E7D5B] rounded-full text-[10px]">TV</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 참나무 (6인) -->
+        <div class="pension-card bg-white rounded-3xl overflow-hidden shadow-sm reveal" style="--delay:2">
+          <div class="aspect-[16/10] overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=80&w=1000&auto=format" alt="참나무 객실" class="w-full h-full object-cover transition-transform duration-700">
+          </div>
+          <div class="p-8">
+            <div class="flex justify-between items-start">
+              <div>
+                <h3 class="font-serif text-xl font-bold">참나무</h3>
+                <p class="text-[#1A1A1A]/40 text-sm mt-2 leading-relaxed">
+                  48m² · 투룸형 · 퀸2+싱글2 · 최대 6인<br>
+                  단체 모임과 소규모 워크숍에 적합한 넓은 펜션.
+                </p>
+              </div>
+              <div class="text-right shrink-0 ml-4">
+                <span class="font-serif text-xl font-bold text-[#2E7D5B]">₩220,000</span>
+                <span class="block text-[10px] text-[#1A1A1A]/30">비수기 기준</span>
+              </div>
+            </div>
+            <div class="flex gap-3 mt-6 flex-wrap">
+              <span class="px-3 py-1 bg-[#F0F7F4] text-[#2E7D5B] rounded-full text-[10px]">바베큐</span>
+              <span class="px-3 py-1 bg-[#F0F7F4] text-[#2E7D5B] rounded-full text-[10px]">노래방</span>
+              <span class="px-3 py-1 bg-[#F0F7F4] text-[#2E7D5B] rounded-full text-[10px]">프로젝터</span>
+              <span class="px-3 py-1 bg-[#F0F7F4] text-[#2E7D5B] rounded-full text-[10px]">대형 주방</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 전나무 특실 (8인) -->
+        <div class="pension-card bg-white rounded-3xl overflow-hidden shadow-sm reveal" style="--delay:3">
+          <div class="aspect-[16/10] overflow-hidden relative">
+            <img src="https://images.unsplash.com/photo-1600585154526-990dced4db0d?q=80&w=1000&auto=format" alt="전나무 특실" class="w-full h-full object-cover transition-transform duration-700">
+            <div class="absolute top-4 left-4 bg-[#1A1A1A] text-white px-4 py-1.5 rounded-full text-[10px] font-semibold">프리미엄</div>
+          </div>
+          <div class="p-8">
+            <div class="flex justify-between items-start">
+              <div>
+                <h3 class="font-serif text-xl font-bold">전나무 특실</h3>
+                <p class="text-[#1A1A1A]/40 text-sm mt-2 leading-relaxed">
+                  66m² · 쓰리룸형 · 퀸3+싱글2 · 최대 8인<br>
+                  프라이빗 스파와 넓은 데크가 있는 프리미엄 독채.
+                </p>
+              </div>
+              <div class="text-right shrink-0 ml-4">
+                <span class="font-serif text-xl font-bold text-[#2E7D5B]">₩350,000</span>
+                <span class="block text-[10px] text-[#1A1A1A]/30">비수기 기준</span>
+              </div>
+            </div>
+            <div class="flex gap-3 mt-6 flex-wrap">
+              <span class="px-3 py-1 bg-[#F0F7F4] text-[#2E7D5B] rounded-full text-[10px]">스파</span>
+              <span class="px-3 py-1 bg-[#F0F7F4] text-[#2E7D5B] rounded-full text-[10px]">대형 데크</span>
+              <span class="px-3 py-1 bg-[#F0F7F4] text-[#2E7D5B] rounded-full text-[10px]">노래방</span>
+              <span class="px-3 py-1 bg-[#F0F7F4] text-[#2E7D5B] rounded-full text-[10px]">2면 창</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-12 bg-white rounded-2xl p-6 md:p-8 text-center reveal">
+        <p class="text-sm text-[#1A1A1A]/50">
+          <i class="fas fa-info-circle text-[#2E7D5B] mr-2"></i>
+          성수기(7~8월, 연말) 요금은 비수기 대비 30~50% 할증됩니다. 정확한 요금은 예약 시 확인해주세요.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== 3. 바베큐/시설 안내 ========== -->
+  <section id="facilities" class="py-24 md:py-40 px-6 md:px-10 bg-white">
+    <div class="max-w-7xl mx-auto">
+      <div class="text-center mb-20 reveal">
+        <span class="text-[10px] font-semibold tracking-[0.5em] uppercase text-[#2E7D5B]">Facilities</span>
+        <h2 class="font-serif text-3xl md:text-4xl font-bold mt-4">펜션 시설 안내</h2>
+      </div>
+
+      <div class="grid lg:grid-cols-2 gap-16 items-center mb-20">
+        <div class="reveal">
+          <div class="aspect-[4/3] rounded-3xl overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1529926078117-673cb35a1300?q=80&w=1200&auto=format" alt="바베큐장" class="w-full h-full object-cover">
+          </div>
+        </div>
+        <div class="space-y-8 reveal" style="--delay:1">
+          <div class="inline-flex items-center gap-4">
+            <span class="w-10 h-[1px] bg-[#2E7D5B]"></span>
+            <span class="text-[10px] font-semibold tracking-[0.5em] uppercase text-[#2E7D5B]">BBQ Zone</span>
+          </div>
+          <h3 class="font-serif text-2xl md:text-3xl font-bold">별빛 아래 바베큐</h3>
+          <p class="text-[#1A1A1A]/50 text-sm leading-[2] mobile-desc">
+            각 객실 전용 바베큐장에서 신선한 숯불 바베큐를 즐기세요.
+            그릴, 숯, 집게 등 기본 장비를 무료로 제공하며,
+            식재료 세트도 사전 주문이 가능합니다.
+          </p>
+          <div class="space-y-3">
+            <div class="flex items-center gap-3 text-sm text-[#1A1A1A]/60">
+              <i class="fas fa-check text-[#2E7D5B]"></i>
+              <span>숯불 그릴 + 기본 도구 무료 제공</span>
+            </div>
+            <div class="flex items-center gap-3 text-sm text-[#1A1A1A]/60">
+              <i class="fas fa-check text-[#2E7D5B]"></i>
+              <span>한우 세트 / 삼겹살 세트 사전 주문 가능</span>
+            </div>
+            <div class="flex items-center gap-3 text-sm text-[#1A1A1A]/60">
+              <i class="fas fa-check text-[#2E7D5B]"></i>
+              <span>조명이 설치된 야외 테이블 + 의자</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
+        <div class="facility-card bg-[#F0F7F4] rounded-2xl p-6 md:p-8 text-center reveal" style="--delay:0">
+          <span class="fc-icon text-3xl text-[#2E7D5B] transition"><i class="fas fa-hot-tub"></i></span>
+          <h4 class="font-semibold mt-4 text-sm">스파/족욕</h4>
+          <p class="fc-desc text-[#1A1A1A]/40 text-xs mt-2 transition">전나무 특실 전용</p>
+        </div>
+        <div class="facility-card bg-[#F0F7F4] rounded-2xl p-6 md:p-8 text-center reveal" style="--delay:1">
+          <span class="fc-icon text-3xl text-[#2E7D5B] transition"><i class="fas fa-child"></i></span>
+          <h4 class="font-semibold mt-4 text-sm">놀이터</h4>
+          <p class="fc-desc text-[#1A1A1A]/40 text-xs mt-2 transition">어린이 놀이시설</p>
+        </div>
+        <div class="facility-card bg-[#F0F7F4] rounded-2xl p-6 md:p-8 text-center reveal" style="--delay:2">
+          <span class="fc-icon text-3xl text-[#2E7D5B] transition"><i class="fas fa-swimmer"></i></span>
+          <h4 class="font-semibold mt-4 text-sm">계곡 물놀이</h4>
+          <p class="fc-desc text-[#1A1A1A]/40 text-xs mt-2 transition">도보 3분 거리</p>
+        </div>
+        <div class="facility-card bg-[#F0F7F4] rounded-2xl p-6 md:p-8 text-center reveal" style="--delay:3">
+          <span class="fc-icon text-3xl text-[#2E7D5B] transition"><i class="fas fa-campground"></i></span>
+          <h4 class="font-semibold mt-4 text-sm">캠프파이어</h4>
+          <p class="fc-desc text-[#1A1A1A]/40 text-xs mt-2 transition">공용 모닥불 광장</p>
+        </div>
+        <div class="facility-card bg-[#F0F7F4] rounded-2xl p-6 md:p-8 text-center reveal" style="--delay:4">
+          <span class="fc-icon text-3xl text-[#2E7D5B] transition"><i class="fas fa-table-tennis"></i></span>
+          <h4 class="font-semibold mt-4 text-sm">탁구/배드민턴</h4>
+          <p class="fc-desc text-[#1A1A1A]/40 text-xs mt-2 transition">무료 이용</p>
+        </div>
+        <div class="facility-card bg-[#F0F7F4] rounded-2xl p-6 md:p-8 text-center reveal" style="--delay:5">
+          <span class="fc-icon text-3xl text-[#2E7D5B] transition"><i class="fas fa-dog"></i></span>
+          <h4 class="font-semibold mt-4 text-sm">반려동물</h4>
+          <p class="fc-desc text-[#1A1A1A]/40 text-xs mt-2 transition">소나무동 가능</p>
+        </div>
+        <div class="facility-card bg-[#F0F7F4] rounded-2xl p-6 md:p-8 text-center reveal" style="--delay:6">
+          <span class="fc-icon text-3xl text-[#2E7D5B] transition"><i class="fas fa-microphone"></i></span>
+          <h4 class="font-semibold mt-4 text-sm">노래방</h4>
+          <p class="fc-desc text-[#1A1A1A]/40 text-xs mt-2 transition">참나무/전나무동</p>
+        </div>
+        <div class="facility-card bg-[#F0F7F4] rounded-2xl p-6 md:p-8 text-center reveal" style="--delay:7">
+          <span class="fc-icon text-3xl text-[#2E7D5B] transition"><i class="fas fa-wifi"></i></span>
+          <h4 class="font-semibold mt-4 text-sm">와이파이</h4>
+          <p class="fc-desc text-[#1A1A1A]/40 text-xs mt-2 transition">전 객실 무료</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== 4. 주변 관광 ========== -->
+  <section id="around" class="py-24 md:py-40 px-6 md:px-10">
+    <div class="max-w-7xl mx-auto">
+      <div class="text-center mb-20 reveal">
+        <span class="text-[10px] font-semibold tracking-[0.5em] uppercase text-[#2E7D5B]">Nearby</span>
+        <h2 class="font-serif text-3xl md:text-4xl font-bold mt-4">주변 관광지</h2>
+        <p class="text-[#1A1A1A]/40 text-sm mt-4">펜션에서 차로 30분 이내의 가볼 만한 곳들</p>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-8">
+        <div class="pension-card bg-white rounded-3xl overflow-hidden shadow-sm reveal" style="--delay:0">
+          <div class="aspect-[3/2] overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?q=80&w=800&auto=format" alt="내린천 래프팅" class="w-full h-full object-cover transition-transform duration-700">
+          </div>
+          <div class="p-6">
+            <span class="text-[10px] text-[#2E7D5B] font-semibold">차량 15분</span>
+            <h4 class="font-serif text-lg font-bold mt-2">내린천 래프팅</h4>
+            <p class="text-[#1A1A1A]/40 text-xs mt-2 leading-relaxed">여름 시즌 가장 인기 있는 레저 활동. 초보자 코스부터 상급 코스까지.</p>
+          </div>
+        </div>
+
+        <div class="pension-card bg-white rounded-3xl overflow-hidden shadow-sm reveal" style="--delay:1">
+          <div class="aspect-[3/2] overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?q=80&w=800&auto=format" alt="수타사" class="w-full h-full object-cover transition-transform duration-700">
+          </div>
+          <div class="p-6">
+            <span class="text-[10px] text-[#2E7D5B] font-semibold">차량 20분</span>
+            <h4 class="font-serif text-lg font-bold mt-2">수타사 생태숲</h4>
+            <p class="text-[#1A1A1A]/40 text-xs mt-2 leading-relaxed">천년 고찰 수타사와 아름다운 산책로. 사계절 포토 스팟.</p>
+          </div>
+        </div>
+
+        <div class="pension-card bg-white rounded-3xl overflow-hidden shadow-sm reveal" style="--delay:2">
+          <div class="aspect-[3/2] overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=800&auto=format" alt="비발디파크" class="w-full h-full object-cover transition-transform duration-700">
+          </div>
+          <div class="p-6">
+            <span class="text-[10px] text-[#2E7D5B] font-semibold">차량 25분</span>
+            <h4 class="font-serif text-lg font-bold mt-2">비발디파크</h4>
+            <p class="text-[#1A1A1A]/40 text-xs mt-2 leading-relaxed">겨울 스키장, 여름 오션월드 워터파크. 사계절 종합 레저.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== 5. 오시는 길 ========== -->
+  <section id="directions" class="py-24 md:py-40 px-6 md:px-10 bg-white">
+    <div class="max-w-7xl mx-auto">
+      <div class="grid lg:grid-cols-2 gap-16 items-center">
+        <div class="space-y-10 reveal">
+          <div class="inline-flex items-center gap-4">
+            <span class="w-10 h-[1px] bg-[#2E7D5B]"></span>
+            <span class="text-[10px] font-semibold tracking-[0.5em] uppercase text-[#2E7D5B]">Directions</span>
+          </div>
+
+          <h2 class="font-serif text-3xl md:text-4xl font-bold">오시는 길</h2>
+
+          <div class="space-y-6">
+            <div class="flex gap-5 items-start">
+              <span class="w-10 h-10 flex items-center justify-center bg-[#2E7D5B]/10 text-[#2E7D5B] rounded-full text-sm shrink-0"><i class="fas fa-map-marker-alt"></i></span>
+              <div>
+                <h4 class="text-sm font-semibold mb-1">주소</h4>
+                <p class="text-[#1A1A1A]/50 text-sm">강원도 홍천군 내면 광원리 산 123-4</p>
+              </div>
+            </div>
+            <div class="flex gap-5 items-start">
+              <span class="w-10 h-10 flex items-center justify-center bg-[#2E7D5B]/10 text-[#2E7D5B] rounded-full text-sm shrink-0"><i class="fas fa-car"></i></span>
+              <div>
+                <h4 class="text-sm font-semibold mb-1">자가용</h4>
+                <p class="text-[#1A1A1A]/50 text-sm">서울에서 약 2시간 (영동고속도로 → 홍천IC)<br>네비게이션: "솔바람 펜션" 검색</p>
+              </div>
+            </div>
+            <div class="flex gap-5 items-start">
+              <span class="w-10 h-10 flex items-center justify-center bg-[#2E7D5B]/10 text-[#2E7D5B] rounded-full text-sm shrink-0"><i class="fas fa-bus"></i></span>
+              <div>
+                <h4 class="text-sm font-semibold mb-1">대중교통</h4>
+                <p class="text-[#1A1A1A]/50 text-sm">동서울터미널 → 홍천시외버스터미널 (1시간 30분)<br>홍천 → 내면 시내버스 (40분) · 터미널 픽업 가능</p>
+              </div>
+            </div>
+            <div class="flex gap-5 items-start">
+              <span class="w-10 h-10 flex items-center justify-center bg-[#2E7D5B]/10 text-[#2E7D5B] rounded-full text-sm shrink-0"><i class="fas fa-phone"></i></span>
+              <div>
+                <h4 class="text-sm font-semibold mb-1">문의</h4>
+                <p class="text-[#1A1A1A]/50 text-sm">033-435-0000 · 010-9876-5432</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="reveal" style="--delay:1">
+          <div class="aspect-video bg-[#E8EDE9] rounded-3xl overflow-hidden">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d50587.78!2d128.15!3d37.75!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3562e0!2z7ZmN7LKc!5e0!3m2!1sko!2skr!4v1" width="100%" height="100%" style="border:0; min-height:300px; border-radius:1.5rem;" allowfullscreen="" loading="lazy"></iframe>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== 6. 예약 ========== -->
+  <section id="booking" class="py-24 md:py-40 px-6 md:px-10 bg-[#2E7D5B]">
+    <div class="max-w-4xl mx-auto text-center">
+      <div class="reveal">
+        <span class="text-[10px] font-semibold tracking-[0.5em] uppercase text-white/50">Reservation</span>
+        <h2 class="font-serif text-3xl md:text-5xl font-bold mt-4 text-white">솔바람 펜션 예약하기</h2>
+        <p class="text-white/60 text-sm mt-6 max-w-md mx-auto">
+          전화 또는 아래 폼으로 예약하실 수 있습니다.<br>
+          실시간 예약 확인 후 카카오톡으로 안내드립니다.
+        </p>
+      </div>
+
+      <div class="reveal mt-12 bg-white rounded-3xl p-8 md:p-12 text-left" style="--delay:1">
+        <div class="grid md:grid-cols-2 gap-6">
+          <div>
+            <label class="text-[10px] font-semibold text-[#2E7D5B] uppercase tracking-[0.2em] block mb-3">체크인</label>
+            <input type="date" class="w-full border border-[#1A1A1A]/10 rounded-xl py-4 px-5 text-sm focus:border-[#2E7D5B] outline-none transition bg-[#F0F7F4]">
+          </div>
+          <div>
+            <label class="text-[10px] font-semibold text-[#2E7D5B] uppercase tracking-[0.2em] block mb-3">체크아웃</label>
+            <input type="date" class="w-full border border-[#1A1A1A]/10 rounded-xl py-4 px-5 text-sm focus:border-[#2E7D5B] outline-none transition bg-[#F0F7F4]">
+          </div>
+          <div>
+            <label class="text-[10px] font-semibold text-[#2E7D5B] uppercase tracking-[0.2em] block mb-3">객실 선택</label>
+            <select class="w-full border border-[#1A1A1A]/10 rounded-xl py-4 px-5 text-sm focus:border-[#2E7D5B] outline-none transition bg-[#F0F7F4] appearance-none">
+              <option value="">선택하세요</option>
+              <option>소나무 (2인)</option>
+              <option>자작나무 (4인)</option>
+              <option>참나무 (6인)</option>
+              <option>전나무 특실 (8인)</option>
+            </select>
+          </div>
+          <div>
+            <label class="text-[10px] font-semibold text-[#2E7D5B] uppercase tracking-[0.2em] block mb-3">연락처</label>
+            <input type="tel" placeholder="010-0000-0000" class="w-full border border-[#1A1A1A]/10 rounded-xl py-4 px-5 text-sm focus:border-[#2E7D5B] outline-none transition bg-[#F0F7F4]">
+          </div>
+        </div>
+        <div class="mt-6">
+          <label class="text-[10px] font-semibold text-[#2E7D5B] uppercase tracking-[0.2em] block mb-3">요청 사항</label>
+          <textarea rows="3" placeholder="바베큐 세트, 픽업 요청 등" class="w-full border border-[#1A1A1A]/10 rounded-xl py-4 px-5 text-sm focus:border-[#2E7D5B] outline-none transition bg-[#F0F7F4] resize-none"></textarea>
+        </div>
+        <button class="w-full mt-8 bg-[#2E7D5B] text-white py-4 rounded-full font-semibold text-sm tracking-wide hover:bg-[#1A1A1A] transition shadow-lg shadow-[#2E7D5B]/20">
+          예약 신청하기
         </button>
-        
-        <div class="flex justify-center gap-12 pt-2">
-           <a href="#" class="text-[10px] text-[#9A8C7D] tracking-wide uppercase hover:text-[#786C5E] transition">Modifiy</a>
-           <span class="text-[#E0DCD6]">|</span>
-           <a href="#" class="text-[10px] text-[#9A8C7D] tracking-wide uppercase hover:text-[#786C5E] transition">Contact</a>
+      </div>
+
+      <div class="reveal mt-10 flex flex-col md:flex-row justify-center gap-6" style="--delay:2">
+        <a href="tel:033-435-0000" class="text-white/80 hover:text-white transition text-sm">
+          <i class="fas fa-phone mr-2"></i>033-435-0000
+        </a>
+        <a href="#" class="text-white/80 hover:text-white transition text-sm">
+          <i class="fas fa-comment mr-2"></i>카카오톡 문의
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== 7. 안내사항 ========== -->
+  <section class="py-16 md:py-20 px-6 md:px-10 bg-[#F0F7F4]">
+    <div class="max-w-5xl mx-auto reveal">
+      <h3 class="font-serif text-lg font-bold text-center mb-8">이용 안내</h3>
+      <div class="grid md:grid-cols-3 gap-6 text-sm text-[#1A1A1A]/60">
+        <div class="bg-white rounded-2xl p-6">
+          <h4 class="font-semibold text-[#2E7D5B] mb-3">입/퇴실</h4>
+          <p>체크인 15:00 / 체크아웃 11:00<br>얼리 체크인은 사전 문의 부탁드립니다.</p>
         </div>
+        <div class="bg-white rounded-2xl p-6">
+          <h4 class="font-semibold text-[#2E7D5B] mb-3">취소 규정</h4>
+          <p>7일 전: 전액 환불<br>3일 전: 50% 환불<br>당일: 환불 불가</p>
+        </div>
+        <div class="bg-white rounded-2xl p-6">
+          <h4 class="font-semibold text-[#2E7D5B] mb-3">주의사항</h4>
+          <p>실내 흡연 불가<br>22시 이후 정숙<br>반려동물은 소나무동만 가능</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== 8. Footer ========== -->
+  <footer class="py-20 md:py-28 bg-[#1A1A1A] px-6 md:px-10">
+    <div class="max-w-7xl mx-auto">
+      <div class="grid md:grid-cols-3 gap-12 mb-16">
+        <div>
+          <div class="flex items-center gap-3 mb-4">
+            <span class="text-[#2E7D5B] text-xl"><i class="fas fa-tree"></i></span>
+            <span class="font-serif text-2xl font-bold text-white">솔바람 펜션</span>
+          </div>
+          <p class="text-white/30 text-sm leading-relaxed max-w-xs">
+            강원도 홍천 깊은 숲속의 힐링 독채 펜션.
+            자연과 함께하는 특별한 시간을 선물합니다.
+          </p>
+          <div class="flex gap-3 mt-6">
+            <a href="#" class="w-9 h-9 flex items-center justify-center rounded-full bg-white/5 text-white/40 hover:bg-[#2E7D5B] hover:text-white transition text-sm"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="w-9 h-9 flex items-center justify-center rounded-full bg-white/5 text-white/40 hover:bg-[#2E7D5B] hover:text-white transition text-sm"><i class="fas fa-blog"></i></a>
+            <a href="#" class="w-9 h-9 flex items-center justify-center rounded-full bg-white/5 text-white/40 hover:bg-[#2E7D5B] hover:text-white transition text-sm"><i class="fas fa-comment"></i></a>
+          </div>
+        </div>
+
+        <div>
+          <h4 class="text-[10px] font-semibold tracking-[0.4em] uppercase text-[#2E7D5B] mb-6">바로가기</h4>
+          <div class="space-y-3">
+            <a href="#rooms" class="block text-white/30 text-sm hover:text-[#2E7D5B] transition">객실 안내</a>
+            <a href="#facilities" class="block text-white/30 text-sm hover:text-[#2E7D5B] transition">시설 안내</a>
+            <a href="#around" class="block text-white/30 text-sm hover:text-[#2E7D5B] transition">주변 관광</a>
+            <a href="#booking" class="block text-white/30 text-sm hover:text-[#2E7D5B] transition">예약하기</a>
+          </div>
+        </div>
+
+        <div>
+          <h4 class="text-[10px] font-semibold tracking-[0.4em] uppercase text-[#2E7D5B] mb-6">연락처</h4>
+          <div class="space-y-3 text-white/30 text-sm">
+            <p>강원도 홍천군 내면 광원리 산 123-4</p>
+            <p>033-435-0000</p>
+            <p>solbaram@pension.co.kr</p>
+            <p>체크인 15:00 · 체크아웃 11:00</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="border-t border-white/5 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+        <p class="text-[10px] text-white/10 tracking-[0.5em] uppercase">
+          &copy; 2024 솔바람 펜션. All rights reserved.
+        </p>
+        <div class="flex gap-6">
+          <a href="#" class="text-[10px] text-white/10 tracking-[0.2em] uppercase hover:text-white/30 transition">Privacy</a>
+          <a href="#" class="text-[10px] text-white/10 tracking-[0.2em] uppercase hover:text-white/30 transition">Terms</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ========== 문의 Modal ========== -->
+  <div id="pension-modal" class="fixed inset-0 z-[100] hidden items-center justify-center p-4 bg-[#1A1A1A]/30 backdrop-blur-3xl">
+    <div class="bg-white w-full max-w-sm p-8 md:p-12 shadow-2xl relative rounded-3xl">
+      <button onclick="togglePensionModal()" class="absolute top-6 right-6 w-8 h-8 rounded-full bg-[#F0F7F4] flex items-center justify-center text-[#1A1A1A]/30 hover:text-[#2E7D5B] transition text-lg">&times;</button>
+
+      <div class="text-center mb-10">
+        <h2 class="font-serif text-xl font-bold mb-2">빠른 문의</h2>
+        <p class="text-[10px] text-[#2E7D5B] font-semibold tracking-[0.3em] uppercase">Quick Contact</p>
+      </div>
+
+      <div class="space-y-5">
+        <input type="text" placeholder="성함" class="w-full bg-[#F0F7F4] border-none rounded-xl py-4 px-5 outline-none focus:ring-1 focus:ring-[#2E7D5B] transition text-sm">
+        <input type="tel" placeholder="연락처" class="w-full bg-[#F0F7F4] border-none rounded-xl py-4 px-5 outline-none focus:ring-1 focus:ring-[#2E7D5B] transition text-sm">
+        <textarea rows="3" placeholder="문의 내용" class="w-full bg-[#F0F7F4] border-none rounded-xl py-4 px-5 outline-none focus:ring-1 focus:ring-[#2E7D5B] transition text-sm resize-none"></textarea>
+        <button class="w-full bg-[#2E7D5B] text-white py-4 rounded-full text-sm font-semibold hover:bg-[#1A1A1A] transition">
+          문의 보내기
+        </button>
       </div>
     </div>
   </div>
 
-  <footer class="py-20 md:py-32 bg-[#F7F5F2] text-center px-6 border-t border-[#786C5E]/10 pb-32 md:pb-20">
-     <div class="inline-flex flex-col items-center gap-10 mb-8">
-        <span class="font-classic font-semibold text-2xl tracking-[0.1em] text-[#4A4238]">River<span class="text-[#786C5E]">side</span></span>
-        <span class="text-[10px] font-semibold text-[#9A8C7D] tracking-[0.3em] uppercase">Nature Retreat</span>
-     </div>
-     <p class="text-[10px] text-[#9A8C7D]/50 tracking-[0.5em] uppercase px-6">© 2024 RIVERSIDE STAY. ALL RIGHTS RESERVED.</p>
-  </footer>
-
-  <script>
-    function togglePensionModal() {
-      const modal = document.getElementById('pension-modal');
-      modal.classList.toggle('hidden');
-      modal.classList.toggle('flex');
-    }
-  </script>
-
 </div>
+
+<script>
+  // Modal
+  function togglePensionModal() {
+    const modal = document.getElementById('pension-modal');
+    modal.classList.toggle('hidden');
+    modal.classList.toggle('flex');
+  }
+  document.getElementById('pension-modal').addEventListener('click', function(e) {
+    if (e.target === this) togglePensionModal();
+  });
+
+  // IntersectionObserver
+  (function() {
+    const observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    });
+    document.querySelectorAll('.reveal').forEach(function(el) {
+      observer.observe(el);
+    });
+  })();
+</script>

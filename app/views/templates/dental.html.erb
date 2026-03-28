@@ -1,206 +1,427 @@
-<%# Dental Template - MUA 진 치과 (MUA JIN) %>
+<%# Dental Template - 스마일 치과 (SMILE DENTAL) %>
 
 <style>
-  /* Supanova Design Upgrade */
+  /* Supanova Design — Fresh Dental Archetype */
   * { word-break: keep-all; }
-  html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+  html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
   h1, h2, h3, h4 { text-wrap: balance; letter-spacing: -0.02em; line-height: 1.3; }
-  a, button { transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1); }
+  a, button { transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1); }
   a:hover, button:hover { transform: scale(1.02); }
   a:active, button:active { transform: scale(0.98); }
 
-  @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap');
-  
-  .font-modern { font-family: 'Plus Jakarta Sans', sans-serif; }
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap');
+
   .font-sans { font-family: 'Pretendard Variable', 'Pretendard', -apple-system, sans-serif; }
 
   @media (max-width: 768px) {
     .mobile-desc { font-size: 14px !important; line-height: 1.8; }
-    .mobile-title { font-size: 36px !important; }
+    .mobile-title { font-size: 32px !important; }
   }
 
-  .clean-pattern {
-     background-image: radial-gradient(#0D9488 0.5px, transparent 0.5px);
-     background-size: 24px 24px;
-     opacity: 0.05;
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(2rem); filter: blur(4px); }
+    to { opacity: 1; transform: translateY(0); filter: blur(0); }
   }
+  .reveal { opacity: 0; transform: translateY(2rem); }
+  .reveal.is-visible { animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards; animation-delay: calc(var(--delay, 0) * 100ms); }
+
+  .treat-card { transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1); }
+  .treat-card:hover { transform: translateY(-8px); box-shadow: 0 20px 40px rgba(6,182,212,0.12); }
 </style>
 
-<div class="bg-white text-[#0F172A] font-sans selection:bg-[#0D9488] selection:text-white min-h-screen overflow-x-hidden relative">
-  <div class="fixed inset-0 clean-pattern pointer-events-none"></div>
+<div class="bg-[#FAFAFA] text-[#1E293B] font-sans selection:bg-[#06B6D4] selection:text-white min-h-screen overflow-x-hidden">
 
-  <!-- Nav -->
-  <nav class="fixed w-full z-50 px-8 py-6 bg-white/90 backdrop-blur-md border-b border-slate-100">
-    <div class="container mx-auto px-4 md:px-6 flex justify-between items-center flex-nowrap">
-      <div class="flex items-center gap-2">
-         <div class="w-8 h-8 max-h-8 max-w-[35%] shrink object-contain bg-[#0D9488] rounded-tl-xl rounded-br-xl flex items-center justify-center shadow-lg shadow-teal-100">
-            <span class="text-white font-semibold text-lg">M</span>
-         </div>
-         <span class="font-modern font-semibold text-xl tracking-tight text-[#0F172A]">MUA<span class="text-[#0D9488]">JIN</span></span>
-      </div>
-      
-      <div class="hidden md:flex gap-14 text-[13px] font-modern font-semibold text-slate-400">
-         <a href="#about" class="hover:text-[#0D9488] transition">Doctors</a>
-         <a href="#specialty" class="hover:text-[#0D9488] transition">Expertise</a>
-         <a href="#review" class="hover:text-[#0D9488] transition">Reviews</a>
-      </div>
-           <button class="mobile-menu-trigger md:hidden ml-auto text-2xl focus:outline-none" style="color: inherit;">
-             <i class="fas fa-bars"></i>
-           </button>
+  <!-- ========== Nav ========== -->
+  <nav class="fixed w-full z-50 px-4 md:px-8 py-4 bg-[#FAFAFA]/80 backdrop-blur-xl border-b border-slate-100">
+    <div class="max-w-7xl mx-auto flex justify-between items-center">
+      <a href="#" class="flex items-center gap-2">
+        <div class="w-9 h-9 bg-gradient-to-br from-[#06B6D4] to-[#0891B2] rounded-full flex items-center justify-center">
+          <i class="fas fa-tooth text-white text-sm"></i>
+        </div>
+        <span class="font-bold text-xl">스마일 <span class="text-[#06B6D4]">치과</span></span>
+      </a>
 
-      
-      <div class="flex-nowrap shrink-0 flex gap-6 items-center">
-         <button onclick="toggleDentalModal()" class="hidden md:block text-[13px] font-modern font-semibold text-[#0D9488] hover:bg-teal-50 px-4 py-2 rounded-lg transition" data-mobile-menu-copy="true">Check Up</button>
-         <button class="hidden md:inline-flex bg-[#0F172A] text-white px-3 py-2 text-xs md:text-sm md:px-6 md:py-2.5 whitespace-nowrap rounded-lg font-modern font-semibold text-[13px] tracking-wide hover:bg-[#0D9488] transition shadow-xl shadow-slate-200" data-mobile-menu-copy="true">
-           Book Visit
-         </button>
+      <div class="hidden md:flex gap-10 text-sm font-medium text-slate-400">
+        <a href="#treatments" class="hover:text-[#06B6D4] transition">진료분야</a>
+        <a href="#director" class="hover:text-[#06B6D4] transition">원장소개</a>
+        <a href="#facility" class="hover:text-[#06B6D4] transition">시설안내</a>
+        <a href="#reservation" class="hover:text-[#06B6D4] transition">예약</a>
+      </div>
+
+      <button class="mobile-menu-trigger md:hidden ml-auto text-2xl focus:outline-none" style="color: inherit;">
+        <i class="fas fa-bars"></i>
+      </button>
+
+      <div class="hidden md:flex gap-4 items-center">
+        <a href="tel:02-555-2828" class="text-sm font-medium text-slate-500 hover:text-[#06B6D4]"><i class="fas fa-phone mr-1"></i> 02-555-2828</a>
+        <a href="#reservation" class="bg-[#06B6D4] text-white px-6 py-2.5 rounded-full text-sm font-semibold hover:bg-[#0891B2] shadow-lg shadow-[#06B6D4]/20" data-mobile-menu-copy="true">예약하기</a>
       </div>
     </div>
 
-      <%= render partial: 'templates/shared/mobile_menu_overlay' %></nav>
+    <%= render partial: 'templates/shared/mobile_menu_overlay' %>
+  </nav>
 
-  <!-- Hero -->
-  <header class="min-h-screen relative flex items-center justify-center pt-24 overflow-hidden">
-    <!-- Abstract Shapes -->
-    <div class="absolute top-0 right-0 w-[40vw] h-[80vh] bg-teal-50 rounded-bl-[10rem] -z-10 opacity-60"></div>
-    <div class="absolute bottom-10 left-10 w-64 h-64 bg-slate-50 rounded-full mix-blend-multiply filter blur-3xl opacity-70 animate-pulse"></div>
+  <!-- ========== Hero ========== -->
+  <header class="min-h-[100dvh] relative flex items-center pt-20 overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-br from-[#ECFEFF] via-[#FAFAFA] to-white"></div>
+    <div class="absolute bottom-0 left-0 w-[600px] h-[600px] bg-[#06B6D4]/5 rounded-full blur-[150px]"></div>
 
-    <div class="container mx-auto px-3 md:px-6 relative z-10 grid lg:grid-cols-2 gap-12 md:p-20 items-center">
-      <div class="space-y-10 text-center lg:text-left">
-        <div class="inline-flex items-center gap-3 bg-white px-4 py-2 rounded-lg border border-slate-100 shadow-sm">
-           <span class="flex h-2.5 w-2.5 relative">
-              <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-teal-400 opacity-75"></span>
-              <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-[#0D9488]"></span>
-           </span>
-           <span class="text-[11px] font-modern font-semibold text-[#0D9488] uppercase tracking-wider">Trusted by 10,000+ Patients</span>
+    <div class="max-w-7xl mx-auto px-4 md:px-8 relative z-10 grid lg:grid-cols-2 gap-12 items-center w-full">
+      <div class="space-y-8 text-center lg:text-left">
+        <div class="inline-flex items-center gap-2 bg-white px-4 py-2 rounded-full border border-[#06B6D4]/20 shadow-sm reveal" style="--delay: 0;">
+          <i class="fas fa-smile text-[#06B6D4] text-sm"></i>
+          <span class="text-sm font-medium text-[#06B6D4]">당신의 미소를 디자인합니다</span>
         </div>
-        
-        <h1 class="text-2xl md:text-4xl md:text-6xl font-modern font-semibold leading-[1.1] tracking-tight text-[#0F172A] mobile-title">
-           Design Your<br>
-           <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#0D9488] to-[#14B8A6]">Perfect Smile.</span>
+
+        <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mobile-title reveal" style="--delay: 1;">
+          자신있는 미소,<br>
+          <span class="text-[#06B6D4]">스마일 치과</span>
         </h1>
-        
-        <p class="text-slate-500 text-lg md:text-xl leading-relaxed max-w-lg mx-auto lg:mx-0 mobile-desc font-medium">
-           과잉 진료 없는 정직한 원칙, 대학병원 출신 의료진의 정밀한 케어.<br>
-           당신의 미소가 가장 자연스럽게 빛나도록 디자인합니다.
+
+        <p class="text-slate-400 text-base md:text-lg leading-relaxed max-w-md mx-auto lg:mx-0 mobile-desc reveal" style="--delay: 2;">
+          1:1 맞춤 진료로 환자 한 분 한 분에게 최적의 치료를 제공합니다. 편안하고 안전한 치과 진료를 경험하세요.
         </p>
-        
-        <div class="flex flex-col sm:flex-row gap-6 justify-center lg:justify-start pt-4">
-           <button class="px-8 py-4 bg-[#0D9488] text-white font-modern font-semibold text-base rounded-xl hover:bg-[#0F766E] transition shadow-lg shadow-teal-100 ring-4 ring-teal-50">
-             Start Consultation
-           </button>
-           <button class="px-8 py-4 bg-white text-[#0F172A] border border-slate-200 font-modern font-semibold text-base rounded-xl hover:border-[#0D9488] hover:text-[#0D9488] transition flex items-center justify-center gap-2">
-             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
-             Call Center
-           </button>
+
+        <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start reveal" style="--delay: 3;">
+          <a href="#reservation" class="inline-flex items-center justify-center gap-2 px-8 py-4 bg-[#06B6D4] text-white rounded-full font-semibold shadow-lg shadow-[#06B6D4]/25 hover:bg-[#0891B2]">
+            <i class="fas fa-calendar-alt text-sm"></i> 진료 예약
+          </a>
+          <a href="#treatments" class="inline-flex items-center justify-center gap-2 px-8 py-4 border border-slate-200 rounded-full font-semibold text-slate-600 hover:border-[#06B6D4] hover:text-[#06B6D4]">
+            진료분야 보기
+          </a>
         </div>
-        
-        <!-- Awards -->
-        <div class="pt-8 flex gap-12 justify-center lg:justify-start border-t border-slate-100 max-w-md mx-auto lg:mx-0">
-           <div>
-              <p class="text-2xl font-semibold text-[#0F172A]">5.0</p>
-              <p class="text-[10px] uppercase font-semibold text-slate-400 mt-1">Google Rating</p>
-           </div>
-           <div class="w-px h-10 bg-slate-100"></div>
-           <div>
-              <p class="text-2xl font-semibold text-[#0F172A]">15<span class="text-lg align-top text-[#0D9488]">+</span></p>
-              <p class="text-[10px] uppercase font-semibold text-slate-400 mt-1">Years Exp.</p>
-           </div>
-           <div class="w-px h-10 bg-slate-100"></div>
-           <div>
-              <p class="text-2xl font-semibold text-[#0F172A]">Top</p>
-              <p class="text-[10px] uppercase font-semibold text-slate-400 mt-1">Best Clinic</p>
-           </div>
+
+        <div class="flex items-center gap-8 justify-center lg:justify-start pt-4 reveal" style="--delay: 4;">
+          <div class="text-center">
+            <p class="text-2xl font-bold text-[#06B6D4]">20년+</p>
+            <p class="text-xs text-slate-400 mt-1">진료 경력</p>
+          </div>
+          <div class="w-px h-8 bg-slate-200"></div>
+          <div class="text-center">
+            <p class="text-2xl font-bold text-[#06B6D4]">30,000+</p>
+            <p class="text-xs text-slate-400 mt-1">임플란트 시술</p>
+          </div>
+          <div class="w-px h-8 bg-slate-200"></div>
+          <div class="text-center">
+            <p class="text-2xl font-bold text-[#06B6D4]">99%</p>
+            <p class="text-xs text-slate-400 mt-1">재방문율</p>
+          </div>
         </div>
       </div>
-      
-      <div class="relative hidden lg:block">
-         <div class="relative z-10 w-full max-w-md mx-auto aspect-[3/4]">
-            <img src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?q=80&w=800" alt="Modern Dental Clinic" class="w-full h-full object-cover rounded-2xl shadow-2xl">
-            
-            <!-- Cards -->
-            <div class="absolute top-10 -left-10 bg-white p-5 rounded-2xl shadow-xl flex items-center gap-6 animate-bounce-slow">
-               <div class="w-8 h-8 max-h-8 max-w-[35%] shrink object-contain md:w-10 md:h-10 bg-teal-50 rounded-full flex items-center justify-center text-lg">🦷</div>
-               <div>
-                  <p class="text-[10px] font-semibold text-slate-400 uppercase">Treatment</p>
-                  <p class="font-semibold text-[#0F172A] text-sm">Pain-Free Implant</p>
-               </div>
+
+      <div class="relative hidden lg:block reveal" style="--delay: 2;">
+        <img src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?q=80&w=800" alt="치과 시설" class="w-full h-[550px] object-cover rounded-3xl shadow-2xl">
+        <div class="absolute -bottom-6 -right-6 bg-white p-5 rounded-2xl shadow-xl border border-slate-100">
+          <div class="flex items-center gap-3">
+            <div class="w-12 h-12 bg-[#06B6D4]/10 rounded-full flex items-center justify-center">
+              <i class="fas fa-certificate text-[#06B6D4]"></i>
             </div>
-            
-            <div class="absolute bottom-10 -right-10 bg-[#0F172A] p-5 rounded-2xl shadow-xl animate-bounce-delayed">
-               <div class="flex items-center gap-3">
-                  <div class="flex -space-x-2">
-                     <div class="w-8 h-8 max-h-8 max-w-[35%] shrink object-contain rounded-full bg-slate-200 border-2 border-[#0F172A]"></div>
-                     <div class="w-8 h-8 max-h-8 max-w-[35%] shrink object-contain rounded-full bg-slate-300 border-2 border-[#0F172A]"></div>
-                     <div class="w-8 h-8 max-h-8 max-w-[35%] shrink object-contain rounded-full bg-slate-400 border-2 border-[#0F172A]"></div>
-                  </div>
-                  <div class="text-white">
-                     <p class="font-semibold text-sm">All Specialists</p>
-                     <p class="text-[10px] opacity-60 uppercase">Certified Doctors</p>
-                  </div>
-               </div>
+            <div>
+              <p class="font-bold text-sm">무통 마취 시스템</p>
+              <p class="text-xs text-slate-400">편안한 진료</p>
             </div>
-         </div>
+          </div>
+        </div>
       </div>
     </div>
   </header>
-  
-  <style>
-     @keyframes bounce-slow {
-        0%, 100% { transform: translateY(0); }
-        50% { transform: translateY(-10px); }
-     }
-     .animate-bounce-slow { animation: bounce-slow 4s infinite ease-in-out; }
-     .animate-bounce-delayed { animation: bounce-slow 4s infinite ease-in-out 2s; }
-  </style>
 
-  <!-- Login Modal -->
-  <div id="dental-modal" class="fixed inset-0 z-[100] hidden items-center justify-center p-4 bg-[#0F172A]/20 backdrop-blur-md">
-    <div class="bg-white w-full max-w-sm p-12 shadow-2xl relative rounded-2xl">
-      <button onclick="toggleDentalModal()" class="absolute top-8 right-8 text-slate-300 hover:text-[#0D9488] transition text-2xl font-light">&times;</button>
-      
-      <div class="text-center mb-10">
-        <div class="w-16 h-16 bg-[#F0FDFA] rounded-2xl flex items-center justify-center text-2xl mx-auto mb-4 text-[#0D9488]">
-           🏥
-        </div>
-        <h2 class="text-xl font-modern font-semibold text-[#0F172A] mb-1">Patient Portal</h2>
-        <p class="text-[11px] text-[#0D9488] font-semibold tracking-[0.2em] uppercase">Secure Medical Records</p>
+  <!-- ========== 진료분야 ========== -->
+  <section id="treatments" class="py-24 md:py-32">
+    <div class="max-w-7xl mx-auto px-4 md:px-8">
+      <div class="text-center mb-16">
+        <span class="text-sm font-semibold text-[#06B6D4] tracking-wider uppercase reveal" style="--delay: 0;">Treatments</span>
+        <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mt-4 reveal" style="--delay: 1;">전문 진료분야</h2>
+        <p class="text-slate-400 text-base mt-4 max-w-lg mx-auto reveal" style="--delay: 2;">최신 장비와 숙련된 기술로 최상의 결과를 보장합니다</p>
       </div>
-      
-      <div class="space-y-6">
-        <div>
-           <label class="block text-[11px] font-semibold text-slate-400 uppercase tracking-wide mb-2 ml-1">Chart Number</label>
-           <input type="text" placeholder="e.g. 2401-1234" class="w-full bg-slate-50 border border-slate-200 rounded-xl py-3 px-5 outline-none focus:border-[#0D9488] focus:ring-1 focus:ring-[#0D9488] transition text-sm font-semibold text-[#0F172A] uppercase">
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div class="treat-card bg-white p-8 rounded-2xl border border-slate-100 reveal" style="--delay: 0;">
+          <div class="w-14 h-14 bg-[#06B6D4]/10 rounded-xl flex items-center justify-center mb-6">
+            <i class="fas fa-teeth text-[#06B6D4] text-xl"></i>
+          </div>
+          <h3 class="text-lg font-bold mb-3">임플란트</h3>
+          <p class="text-sm text-slate-400 leading-relaxed">네비게이션 임플란트로 정확하고 안전한 식립. 당일 임플란트 가능.</p>
+          <p class="text-[#06B6D4] font-bold text-sm mt-4">1회 식립 70만원~</p>
         </div>
-        
-        <button class="w-full bg-[#0F172A] text-white py-4 rounded-xl text-[12px] tracking-wide font-semibold uppercase hover:bg-[#0D9488] transition shadow-lg shadow-teal-500/20">
-           Access Records
-        </button>
-        
-        <div class="flex justify-center gap-10 pt-2 text-[#94A3B8] font-semibold text-[11px] uppercase tracking-wide">
-           <a href="#" class="hover:text-[#0D9488] transition">First Visit?</a>
-           <span class="text-slate-200">|</span>
-           <a href="#" class="hover:text-[#0D9488] transition">Need Help</a>
+
+        <div class="treat-card bg-white p-8 rounded-2xl border border-slate-100 reveal" style="--delay: 1;">
+          <div class="w-14 h-14 bg-[#06B6D4]/10 rounded-xl flex items-center justify-center mb-6">
+            <i class="fas fa-smile-beam text-[#06B6D4] text-xl"></i>
+          </div>
+          <h3 class="text-lg font-bold mb-3">치아교정</h3>
+          <p class="text-sm text-slate-400 leading-relaxed">투명교정, 설측교정, 세라믹교정 등 다양한 교정 옵션을 제공합니다.</p>
+          <p class="text-[#06B6D4] font-bold text-sm mt-4">교정 상담 무료</p>
+        </div>
+
+        <div class="treat-card bg-white p-8 rounded-2xl border border-slate-100 reveal" style="--delay: 2;">
+          <div class="w-14 h-14 bg-[#06B6D4]/10 rounded-xl flex items-center justify-center mb-6">
+            <i class="fas fa-star text-[#06B6D4] text-xl"></i>
+          </div>
+          <h3 class="text-lg font-bold mb-3">심미보철</h3>
+          <p class="text-sm text-slate-400 leading-relaxed">라미네이트, 올세라믹으로 자연스럽고 아름다운 치아를 만듭니다.</p>
+          <p class="text-[#06B6D4] font-bold text-sm mt-4">1일 완성 가능</p>
+        </div>
+
+        <div class="treat-card bg-white p-8 rounded-2xl border border-slate-100 reveal" style="--delay: 3;">
+          <div class="w-14 h-14 bg-[#06B6D4]/10 rounded-xl flex items-center justify-center mb-6">
+            <i class="fas fa-magic text-[#06B6D4] text-xl"></i>
+          </div>
+          <h3 class="text-lg font-bold mb-3">치아미백</h3>
+          <p class="text-sm text-slate-400 leading-relaxed">전문 미백 시스템으로 환하고 밝은 치아를 되찾아드립니다.</p>
+          <p class="text-[#06B6D4] font-bold text-sm mt-4">1회 15만원~</p>
         </div>
       </div>
     </div>
-  </div>
+  </section>
 
-  <footer class="py-20 md:py-32 bg-white text-center px-6 border-t border-slate-100">
-     <div class="inline-flex items-center gap-3 mb-6">
-        <span class="font-modern font-semibold text-xl tracking-tight text-[#0F172A]">MUA<span class="text-[#0D9488]">JIN</span></span>
-        <span class="w-px h-4 bg-slate-200"></span>
-        <span class="text-[11px] font-semibold text-slate-400 uppercase tracking-wide">Premium Dental Care</span>
-     </div>
-     <p class="text-[10px] text-slate-300 tracking-wide uppercase px-6">© 2024 MUA JIN Dental Clinic. All Rights Reserved.</p>
+  <!-- ========== 원장소개 ========== -->
+  <section id="director" class="py-24 md:py-32 bg-white">
+    <div class="max-w-7xl mx-auto px-4 md:px-8">
+      <div class="grid lg:grid-cols-2 gap-16 items-center">
+        <div class="relative reveal" style="--delay: 0;">
+          <img src="https://images.unsplash.com/photo-1537368910025-700350fe46c7?q=80&w=700" alt="이스마일 원장" class="w-full aspect-[3/4] object-cover rounded-3xl shadow-xl" loading="lazy">
+          <div class="absolute -bottom-6 left-6 bg-[#06B6D4] text-white p-5 rounded-2xl shadow-lg">
+            <p class="font-bold text-lg">20년+ 경력</p>
+            <p class="text-white/70 text-sm">임플란트 전문의</p>
+          </div>
+        </div>
+
+        <div class="space-y-8">
+          <div>
+            <span class="text-sm font-semibold text-[#06B6D4] tracking-wider uppercase reveal" style="--delay: 0;">Director</span>
+            <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mt-4 reveal" style="--delay: 1;">이스마일 원장</h2>
+          </div>
+
+          <p class="text-slate-400 text-base md:text-lg leading-relaxed reveal" style="--delay: 2;">
+            "환자분의 치아를 내 치아처럼 소중히 생각합니다. 최소한의 삭제, 최대한의 보존을 원칙으로 정직한 진료를 약속드립니다."
+          </p>
+
+          <div class="space-y-4 reveal" style="--delay: 3;">
+            <div class="flex items-center gap-3">
+              <i class="fas fa-check-circle text-[#06B6D4]"></i>
+              <span class="text-slate-600">서울대학교 치과대학 졸업</span>
+            </div>
+            <div class="flex items-center gap-3">
+              <i class="fas fa-check-circle text-[#06B6D4]"></i>
+              <span class="text-slate-600">서울대학교치과병원 보철과 수련</span>
+            </div>
+            <div class="flex items-center gap-3">
+              <i class="fas fa-check-circle text-[#06B6D4]"></i>
+              <span class="text-slate-600">대한임플란트학회 인정의</span>
+            </div>
+            <div class="flex items-center gap-3">
+              <i class="fas fa-check-circle text-[#06B6D4]"></i>
+              <span class="text-slate-600">대한구강악안면임플란트학회 정회원</span>
+            </div>
+            <div class="flex items-center gap-3">
+              <i class="fas fa-check-circle text-[#06B6D4]"></i>
+              <span class="text-slate-600">전 삼성서울병원 치과 진료의</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== 시설 ========== -->
+  <section id="facility" class="py-24 md:py-32 bg-[#FAFAFA]">
+    <div class="max-w-7xl mx-auto px-4 md:px-8">
+      <div class="text-center mb-16">
+        <span class="text-sm font-semibold text-[#06B6D4] tracking-wider uppercase reveal" style="--delay: 0;">Facility</span>
+        <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mt-4 reveal" style="--delay: 1;">편안한 진료 환경</h2>
+      </div>
+
+      <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+        <div class="overflow-hidden rounded-2xl group reveal" style="--delay: 0;">
+          <img src="https://images.unsplash.com/photo-1629909615957-be38d6892e14?q=80&w=800" alt="대기실" class="w-full aspect-square object-cover group-hover:scale-105 transition duration-700" loading="lazy">
+        </div>
+        <div class="overflow-hidden rounded-2xl md:row-span-2 group reveal" style="--delay: 1;">
+          <img src="https://images.unsplash.com/photo-1606811841689-23dfddce3e95?q=80&w=800" alt="진료실" class="w-full h-full object-cover group-hover:scale-105 transition duration-700" loading="lazy">
+        </div>
+        <div class="overflow-hidden rounded-2xl group reveal" style="--delay: 2;">
+          <img src="https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?q=80&w=800" alt="상담실" class="w-full aspect-square object-cover group-hover:scale-105 transition duration-700" loading="lazy">
+        </div>
+        <div class="overflow-hidden rounded-2xl group reveal" style="--delay: 3;">
+          <img src="https://images.unsplash.com/photo-1598256989800-fe5f95da9787?q=80&w=800" alt="CT실" class="w-full aspect-square object-cover group-hover:scale-105 transition duration-700" loading="lazy">
+        </div>
+        <div class="overflow-hidden rounded-2xl col-span-2 md:col-span-1 group reveal" style="--delay: 4;">
+          <img src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?q=80&w=800" alt="수술실" class="w-full aspect-[2/1] md:aspect-square object-cover group-hover:scale-105 transition duration-700" loading="lazy">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== 진료안내 ========== -->
+  <section class="py-24 md:py-32">
+    <div class="max-w-7xl mx-auto px-4 md:px-8">
+      <div class="text-center mb-16">
+        <span class="text-sm font-semibold text-[#06B6D4] tracking-wider uppercase reveal" style="--delay: 0;">Guide</span>
+        <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mt-4 reveal" style="--delay: 1;">진료 안내</h2>
+      </div>
+
+      <div class="grid md:grid-cols-4 gap-6 max-w-5xl mx-auto">
+        <div class="text-center reveal" style="--delay: 0;">
+          <div class="w-16 h-16 bg-[#06B6D4] rounded-full flex items-center justify-center mx-auto mb-4 text-white text-xl font-bold">1</div>
+          <h3 class="font-bold mb-2">예약</h3>
+          <p class="text-sm text-slate-400">온라인 또는 전화로 편리하게 예약</p>
+        </div>
+        <div class="text-center reveal" style="--delay: 1;">
+          <div class="w-16 h-16 bg-[#06B6D4] rounded-full flex items-center justify-center mx-auto mb-4 text-white text-xl font-bold">2</div>
+          <h3 class="font-bold mb-2">상담 및 검진</h3>
+          <p class="text-sm text-slate-400">3D CT 촬영 후 맞춤 치료 계획 수립</p>
+        </div>
+        <div class="text-center reveal" style="--delay: 2;">
+          <div class="w-16 h-16 bg-[#06B6D4] rounded-full flex items-center justify-center mx-auto mb-4 text-white text-xl font-bold">3</div>
+          <h3 class="font-bold mb-2">치료</h3>
+          <p class="text-sm text-slate-400">무통마취 시스템으로 편안한 진료</p>
+        </div>
+        <div class="text-center reveal" style="--delay: 3;">
+          <div class="w-16 h-16 bg-[#06B6D4] rounded-full flex items-center justify-center mx-auto mb-4 text-white text-xl font-bold">4</div>
+          <h3 class="font-bold mb-2">사후관리</h3>
+          <p class="text-sm text-slate-400">정기 검진과 체계적인 사후 관리</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== 예약 ========== -->
+  <section id="reservation" class="py-24 md:py-32 bg-gradient-to-br from-[#06B6D4] to-[#0891B2] text-white relative overflow-hidden">
+    <div class="absolute top-0 left-0 w-96 h-96 bg-white/5 rounded-full blur-[100px]"></div>
+
+    <div class="max-w-4xl mx-auto px-4 md:px-8 relative z-10">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold reveal" style="--delay: 0;">온라인 예약</h2>
+        <p class="text-white/70 text-base mt-4 reveal" style="--delay: 1;">예약 후 방문하시면 대기 시간 없이 바로 진료받으실 수 있습니다</p>
+      </div>
+
+      <div class="bg-white/10 backdrop-blur-xl rounded-3xl p-8 md:p-12 reveal" style="--delay: 2;">
+        <div class="grid md:grid-cols-2 gap-6">
+          <div>
+            <label class="block text-sm font-medium text-white/80 mb-2">이름</label>
+            <input type="text" placeholder="홍길동" class="w-full bg-white/10 border border-white/20 rounded-xl px-5 py-3.5 text-white placeholder-white/40 outline-none focus:border-white/60 transition">
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-white/80 mb-2">연락처</label>
+            <input type="tel" placeholder="010-0000-0000" class="w-full bg-white/10 border border-white/20 rounded-xl px-5 py-3.5 text-white placeholder-white/40 outline-none focus:border-white/60 transition">
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-white/80 mb-2">진료 항목</label>
+            <select class="w-full bg-white/10 border border-white/20 rounded-xl px-5 py-3.5 text-white outline-none focus:border-white/60 transition">
+              <option value="">선택해주세요</option>
+              <option>임플란트</option>
+              <option>치아교정</option>
+              <option>심미보철</option>
+              <option>치아미백</option>
+              <option>일반진료</option>
+            </select>
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-white/80 mb-2">희망 날짜</label>
+            <input type="date" class="w-full bg-white/10 border border-white/20 rounded-xl px-5 py-3.5 text-white outline-none focus:border-white/60 transition">
+          </div>
+          <div class="md:col-span-2">
+            <label class="block text-sm font-medium text-white/80 mb-2">추가 메모</label>
+            <textarea rows="3" placeholder="궁금한 점이나 증상을 적어주세요" class="w-full bg-white/10 border border-white/20 rounded-xl px-5 py-3.5 text-white placeholder-white/40 outline-none focus:border-white/60 transition resize-none"></textarea>
+          </div>
+        </div>
+        <button class="w-full mt-8 bg-white text-[#06B6D4] py-4 rounded-full font-bold text-lg hover:bg-[#ECFEFF] shadow-lg">예약 신청하기</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== CTA ========== -->
+  <section class="py-24 md:py-32">
+    <div class="max-w-3xl mx-auto px-4 md:px-8 text-center">
+      <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold reveal" style="--delay: 0;">
+        자신있게 웃으세요
+      </h2>
+      <p class="text-slate-400 text-base md:text-lg mt-6 reveal" style="--delay: 1;">
+        스마일 치과가 당신의 밝은 미소를 되찾아 드리겠습니다. 부담 없이 상담하세요.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center mt-10 reveal" style="--delay: 2;">
+        <a href="tel:02-555-2828" class="inline-flex items-center justify-center gap-2 px-10 py-4 bg-[#06B6D4] text-white rounded-full font-semibold shadow-lg shadow-[#06B6D4]/25 hover:bg-[#0891B2]">
+          <i class="fas fa-phone text-sm"></i> 02-555-2828
+        </a>
+        <a href="#" class="inline-flex items-center justify-center gap-2 px-10 py-4 border border-slate-200 rounded-full font-semibold text-slate-600 hover:border-[#06B6D4] hover:text-[#06B6D4]">
+          카카오톡 상담
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== Footer ========== -->
+  <footer class="py-16 md:py-24 bg-[#0F172A] text-white">
+    <div class="max-w-7xl mx-auto px-4 md:px-8">
+      <div class="grid md:grid-cols-3 gap-12 mb-16">
+        <div>
+          <div class="flex items-center gap-2 mb-4">
+            <div class="w-8 h-8 bg-[#06B6D4] rounded-full flex items-center justify-center">
+              <i class="fas fa-tooth text-white text-xs"></i>
+            </div>
+            <span class="font-bold text-lg">스마일 치과</span>
+          </div>
+          <p class="text-white/30 text-sm leading-relaxed">서울특별시 서초구 서초대로 256<br>스마일빌딩 4층</p>
+          <p class="text-white/30 text-sm mt-2">대표원장: 이스마일 | 사업자등록번호: 234-56-78901</p>
+        </div>
+
+        <div class="grid grid-cols-2 gap-8">
+          <div>
+            <p class="text-xs font-semibold text-white/20 uppercase tracking-wider mb-4">진료</p>
+            <ul class="space-y-2.5">
+              <li><a href="#treatments" class="text-white/40 text-sm hover:text-[#06B6D4] transition">임플란트</a></li>
+              <li><a href="#treatments" class="text-white/40 text-sm hover:text-[#06B6D4] transition">치아교정</a></li>
+              <li><a href="#treatments" class="text-white/40 text-sm hover:text-[#06B6D4] transition">심미보철</a></li>
+              <li><a href="#treatments" class="text-white/40 text-sm hover:text-[#06B6D4] transition">치아미백</a></li>
+            </ul>
+          </div>
+          <div>
+            <p class="text-xs font-semibold text-white/20 uppercase tracking-wider mb-4">정보</p>
+            <ul class="space-y-2.5">
+              <li><a href="#director" class="text-white/40 text-sm hover:text-[#06B6D4] transition">원장소개</a></li>
+              <li><a href="#facility" class="text-white/40 text-sm hover:text-[#06B6D4] transition">시설안내</a></li>
+              <li><a href="#reservation" class="text-white/40 text-sm hover:text-[#06B6D4] transition">예약</a></li>
+              <li><a href="#" class="text-white/40 text-sm hover:text-[#06B6D4] transition">후기</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <div>
+          <p class="text-xs font-semibold text-white/20 uppercase tracking-wider mb-4">진료시간</p>
+          <div class="space-y-1.5 text-sm text-white/40">
+            <div class="flex justify-between"><span>평일</span><span class="text-white/60">10:00 - 19:00</span></div>
+            <div class="flex justify-between"><span>토요일</span><span class="text-white/60">10:00 - 14:00</span></div>
+            <div class="flex justify-between text-[#06B6D4]"><span>일/공휴일</span><span>휴진</span></div>
+          </div>
+          <div class="flex gap-3 mt-6">
+            <a href="#" class="w-10 h-10 bg-white/5 rounded-lg flex items-center justify-center text-white/40 hover:text-[#06B6D4] hover:bg-white/10 transition"><i class="fab fa-instagram text-sm"></i></a>
+            <a href="#" class="w-10 h-10 bg-white/5 rounded-lg flex items-center justify-center text-white/40 hover:text-[#06B6D4] hover:bg-white/10 transition"><i class="fas fa-blog text-sm"></i></a>
+          </div>
+        </div>
+      </div>
+
+      <div class="border-t border-white/5 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+        <p class="text-xs text-white/15">&copy; 2024 스마일 치과. All rights reserved by DLAB.</p>
+        <div class="flex gap-6">
+          <a href="#" class="text-xs text-white/15 hover:text-white/30 transition">개인정보처리방침</a>
+          <a href="#" class="text-xs text-white/15 hover:text-white/30 transition">비급여 안내</a>
+        </div>
+      </div>
+    </div>
   </footer>
 
-  <script>
-    function toggleDentalModal() {
-      const modal = document.getElementById('dental-modal');
-      modal.classList.toggle('hidden');
-      modal.classList.toggle('flex');
-    }
-  </script>
-
 </div>
+
+<script>
+  (function() {
+    const observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+    document.querySelectorAll('.reveal').forEach(function(el) { observer.observe(el); });
+  })();
+</script>

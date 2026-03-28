@@ -1,224 +1,413 @@
-<%# Ecommerce Template - 헤이든 홈 (HAYDEN HOME) %>
+<%# Ecommerce Template - MARKET (이커머스 종합) %>
 
 <style>
-  /* Supanova Design Upgrade */
+  /* Supanova Design — Ecommerce Platform Archetype */
   * { word-break: keep-all; }
-  html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+  html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
   h1, h2, h3, h4 { text-wrap: balance; letter-spacing: -0.02em; line-height: 1.3; }
-  a, button { transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1); }
+  a, button { transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1); }
   a:hover, button:hover { transform: scale(1.02); }
   a:active, button:active { transform: scale(0.98); }
 
-  @import url('https://fonts.googleapis.com/css2?family=Tenor+Sans&family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap');
-  
-  .font-brand { font-family: 'Tenor Sans', sans-serif; }
-  .font-sans { font-family: 'Pretendard Variable', 'Pretendard', -apple-system, sans-serif; }
+  @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap');
+
+  .font-sans { font-family: 'Pretendard Variable', 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, sans-serif; }
+  .font-dm { font-family: 'DM Sans', sans-serif; }
 
   @media (max-width: 768px) {
     .mobile-desc { font-size: 14px !important; line-height: 1.8; }
-    .mobile-title { font-size: 40px !important; }
+    .mobile-title { font-size: 36px !important; }
   }
 
-  .grid-pattern {
-    background-image: linear-gradient(#e5e7eb 1px, transparent 1px), linear-gradient(90deg, #e5e7eb 1px, transparent 1px);
-    background-size: 40px 40px;
-    opacity: 0.3;
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(2rem); filter: blur(4px); }
+    to { opacity: 1; transform: translateY(0); filter: blur(0); }
   }
+  .reveal { opacity: 0; transform: translateY(2rem); }
+  .reveal.is-visible { animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards; animation-delay: calc(var(--delay, 0) * 100ms); }
+
+  .product-card { transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1); }
+  .product-card:hover { transform: translateY(-8px); box-shadow: 0 25px 60px -15px rgba(124, 58, 237, 0.12); }
+  .product-card:hover img { transform: scale(1.05); }
+
+  .category-card { transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1); }
+  .category-card:hover { transform: translateY(-4px); box-shadow: 0 15px 40px -10px rgba(124, 58, 237, 0.1); }
 </style>
 
-<div class="bg-white text-slate-900 font-sans selection:bg-slate-900 selection:text-white min-h-screen overflow-x-hidden relative">
-  <div class="fixed inset-0 grid-pattern pointer-events-none"></div>
+<div class="bg-white text-[#111827] font-sans selection:bg-[#7C3AED] selection:text-white min-h-screen overflow-x-hidden">
 
-  <!-- Nav -->
-  <nav class="fixed w-full z-50 px-8 py-6 bg-white/90 backdrop-blur-md border-b border-slate-100 transition-all duration-300" data-aos="fade-down" data-aos-duration="1000">
-    <div class="container mx-auto px-4 md:px-6 flex justify-between items-center flex-nowrap">
-      <div class="flex items-center gap-1">
-         <span class="font-brand text-2xl tracking-[0.05em] text-slate-900 font-semibold cursor-pointer">Hayden<span class="text-slate-400">Home</span></span>
-      </div>
-      
-      <div class="hidden md:flex gap-16 text-[11px] font-sans font-semibold tracking-[0.1em] text-slate-500 uppercase">
-        <a href="#new" class="hover:text-slate-900 transition">New In</a>
-        <a href="#furniture" class="hover:text-slate-900 transition">Furniture</a>
-        <a href="#decor" class="hover:text-slate-900 transition">Home Decor</a>
-      </div>
-           <button class="mobile-menu-trigger md:hidden ml-auto text-2xl focus:outline-none" style="color: inherit;">
-             <i class="fas fa-bars"></i>
-           </button>
+  <!-- ========== Nav ========== -->
+  <nav class="fixed w-full z-50 px-4 md:px-8 py-4 bg-white/80 backdrop-blur-xl border-b border-[#7C3AED]/5">
+    <div class="max-w-7xl mx-auto flex justify-between items-center">
+      <a href="#" class="flex items-center gap-2">
+        <div class="w-8 h-8 bg-[#7C3AED] rounded-xl flex items-center justify-center">
+          <i class="fas fa-shopping-basket text-white text-sm"></i>
+        </div>
+        <span class="font-dm text-xl font-extrabold tracking-tight">MARKET</span>
+      </a>
 
-      
-      <div class="flex-nowrap shrink-0 flex gap-10 items-center">
-         <button onclick="toggleEcommerceModal()" class="hidden md:block text-[11px] font-sans font-semibold uppercase tracking-[0.1em] text-slate-500 hover:text-slate-900" data-mobile-menu-copy="true">Sign In</button>
-         <button class="relative p-2 text-slate-900 hover:text-slate-500 transition group">
-           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
-           <span class="absolute top-0 right-0 w-2 h-2 bg-red-500 rounded-full animate-pulse"></span>
-           <!-- Mini Cart Preview (Hover) -->
-           <div class="absolute top-full right-0 mt-4 w-64 bg-white border border-slate-100 shadow-xl p-4 hidden group-hover:block z-50 rounded-sm" data-aos="fade-up" data-aos-duration="300">
-              <p class="text-xs text-slate-400 mb-2">Cart is empty</p>
-              <a href="#" class="hidden md:block block w-full py-2 bg-slate-900 text-white text-[10px] uppercase font-semibold text-center hover:bg-slate-700 transition" data-mobile-menu-copy="true">Shop Now</a>
-           </div>
-         </button>
+      <div class="hidden md:flex gap-10 text-[11px] font-semibold uppercase tracking-[0.3em] text-[#111827]/30">
+        <a href="#products" class="hover:text-[#7C3AED] transition">추천</a>
+        <a href="#categories" class="hover:text-[#7C3AED] transition">카테고리</a>
+        <a href="#reviews" class="hover:text-[#7C3AED] transition">리뷰</a>
+        <a href="#shipping" class="hover:text-[#7C3AED] transition">배송</a>
+      </div>
+
+      <button class="mobile-menu-trigger md:hidden ml-auto text-2xl focus:outline-none" style="color: inherit;">
+        <i class="fas fa-bars"></i>
+      </button>
+
+      <div class="hidden md:flex gap-5 items-center shrink-0">
+        <div class="relative hidden lg:block">
+          <input type="text" placeholder="검색어를 입력하세요" class="bg-[#F3F4F6] rounded-full py-2.5 pl-10 pr-4 text-[12px] w-56 outline-none focus:ring-2 focus:ring-[#7C3AED]/20 transition">
+          <i class="fas fa-search absolute left-3.5 top-1/2 -translate-y-1/2 text-[#111827]/20 text-xs"></i>
+        </div>
+        <button onclick="toggleEcommerceModal()" class="text-[#111827]/30 hover:text-[#7C3AED] transition" data-mobile-menu-copy="true"><i class="far fa-user text-lg"></i></button>
+        <a href="#" class="relative text-[#111827]/30 hover:text-[#7C3AED] transition">
+          <i class="fas fa-shopping-cart text-lg"></i>
+          <span class="absolute -top-1 -right-2 w-4 h-4 bg-[#7C3AED] rounded-full text-white text-[9px] flex items-center justify-center font-bold">3</span>
+        </a>
       </div>
     </div>
 
-      <%= render partial: 'templates/shared/mobile_menu_overlay' %></nav>
+    <%= render partial: 'templates/shared/mobile_menu_overlay' %>
+  </nav>
 
-  <!-- Hero with Clean Grid Layout -->
-  <header class="min-h-screen pt-24 pb-12 px-6 flex items-center">
-    <div class="container mx-auto grid lg:grid-cols-2 gap-16 items-center">
-      
-      <div class="space-y-10 order-2 lg:order-1 text-center lg:text-left" data-aos="fade-right" data-aos-duration="1200">
-         <div class="inline-block bg-slate-100 px-3 py-1 rounded-sm">
-            <span class="text-[10px] font-semibold text-slate-600 uppercase tracking-wide">Autumn / Winter 2024</span>
-         </div>
-         
-         <h1 class="text-2xl md:text-4xl md:text-7xl font-brand leading-[1.05] text-slate-900 mobile-title">
-            Modern<br>
-            Living<br>
-            <span class="italic text-slate-400">Essentials.</span>
-         </h1>
-         
-         <p class="text-slate-500 text-sm md:text-lg leading-relaxed max-w-md mx-auto lg:mx-0 mobile-desc font-medium">
-            미니멀리즘의 정수와 실용성의 조화.<br>
-            당신의 공간을 채우는 가장 감각적인 큐레이션.
-         </p>
-         
-         <div class="flex flex-col sm:flex-row gap-6 justify-center lg:justify-start pt-6">
-            <button class="px-10 py-4 bg-slate-900 text-white font-sans font-semibold text-xs uppercase tracking-wide hover:bg-slate-700 transition shadow-lg hover:shadow-xl transform hover:-translate-y-1">
-               Shop Collection
-            </button>
-            <button class="px-10 py-4 border border-slate-200 text-slate-900 font-sans font-semibold text-xs uppercase tracking-wide hover:border-slate-900 transition">
-               View Lookbook
-            </button>
-         </div>
+  <!-- ========== Hero ========== -->
+  <header class="min-h-[100dvh] relative flex items-center pt-20">
+    <div class="absolute inset-0 overflow-hidden">
+      <div class="absolute top-20 right-0 w-[500px] h-[500px] bg-[#7C3AED]/5 rounded-full blur-[120px]"></div>
+      <div class="absolute bottom-0 left-0 w-[400px] h-[400px] bg-[#A78BFA]/5 rounded-full blur-[100px]"></div>
+    </div>
+
+    <div class="max-w-7xl mx-auto px-4 md:px-8 relative z-10 grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+      <div class="space-y-8 text-center lg:text-left">
+        <div class="inline-flex items-center gap-3 bg-[#7C3AED]/5 rounded-full px-5 py-2 reveal" style="--delay: 0;">
+          <i class="fas fa-fire text-[#7C3AED] text-sm"></i>
+          <span class="text-[11px] font-bold tracking-[0.15em] uppercase text-[#7C3AED]">Spring Sale 최대 50% OFF</span>
+        </div>
+
+        <h1 class="text-4xl md:text-5xl lg:text-[4.5rem] font-extrabold leading-tight tracking-tight font-dm mobile-title reveal" style="--delay: 1;">
+          당신이 찾는<br><span class="text-[#7C3AED]">모든 것.</span>
+        </h1>
+
+        <p class="text-[#111827]/40 text-base md:text-lg leading-relaxed max-w-lg mx-auto lg:mx-0 mobile-desc reveal" style="--delay: 2;">
+          패션, 뷰티, 전자기기, 리빙까지. MARKET에서 트렌디한 제품을 합리적인 가격에 만나보세요. 무료 배송은 기본입니다.
+        </p>
+
+        <div class="pt-2 flex flex-col sm:flex-row gap-4 justify-center lg:justify-start reveal" style="--delay: 3;">
+          <a href="#products" class="inline-flex items-center justify-center gap-3 px-10 py-4 bg-[#7C3AED] text-white font-bold text-[12px] tracking-[0.15em] uppercase hover:bg-[#6D28D9] rounded-2xl shadow-xl shadow-[#7C3AED]/20">
+            쇼핑 시작 <i class="fas fa-arrow-right text-[10px]"></i>
+          </a>
+          <a href="#categories" class="inline-flex items-center justify-center px-10 py-4 border border-[#7C3AED]/15 text-[#7C3AED] font-semibold text-[12px] tracking-[0.15em] uppercase hover:bg-[#7C3AED]/5 rounded-2xl">
+            카테고리
+          </a>
+        </div>
+
+        <div class="flex items-center gap-6 pt-4 justify-center lg:justify-start reveal" style="--delay: 4;">
+          <div class="flex items-center gap-2"><i class="fas fa-truck text-[#7C3AED]"></i><span class="text-[12px] text-[#111827]/40">무료 배송</span></div>
+          <div class="flex items-center gap-2"><i class="fas fa-undo text-[#7C3AED]"></i><span class="text-[12px] text-[#111827]/40">무료 반품</span></div>
+          <div class="flex items-center gap-2"><i class="fas fa-shield-alt text-[#7C3AED]"></i><span class="text-[12px] text-[#111827]/40">안전 결제</span></div>
+        </div>
       </div>
-      
-      <div class="order-1 lg:order-2 grid grid-cols-1 md:grid-cols-2 gap-6 h-full items-center">
-         <div class="space-y-4 translate-y-8" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="200">
-            <div class="relative group cursor-pointer overflow-hidden">
-               <!-- Main Image -->
-               <img src="https://images.unsplash.com/photo-1567016432779-094069958ea5?q=80&w=600" alt="Minimal Chair" class="w-full aspect-[4/5] object-cover grayscale-[20%] group-hover:grayscale-0 transition duration-700 group-hover:scale-110">
-               <!-- Hover Image (Detail) - Simplified as overlay/opacity effect for now, could be separate img -->
-               
-               <div class="absolute inset-0 bg-slate-950/10 group-hover:bg-transparent transition duration-500"></div>
-               
-               <!-- Quick View Button -->
-               <button class="absolute bottom-20 left-1/2 -translate-x-1/2 bg-white text-slate-900 px-6 py-3 text-[10px] uppercase font-semibold tracking-wide opacity-0 group-hover:opacity-100 md:translate-y-4 group-hover:translate-y-0 transition-all duration-500 shadow-lg">
-                  Quick View
-               </button>
 
-               <div class="absolute bottom-4 left-4 right-4 flex justify-between items-end opacity-0 group-hover:opacity-100 transition duration-300 delay-100">
-                  <div class="bg-white/90 backdrop-blur-sm px-4 py-2">
-                     <p class="text-[10px] font-semibold uppercase tracking-wide">Lounge Chair</p>
-                     <p class="text-xs font-serif italic">$850</p>
-                  </div>
-                  <span class="bg-slate-900 text-white text-[10px] px-2 py-1 font-semibold">★ 4.9</span>
-               </div>
-            </div>
-         </div>
-         <div class="space-y-4 -translate-y-8" data-aos="fade-down" data-aos-duration="1500" data-aos-delay="400">
-             <div class="relative group cursor-pointer overflow-hidden">
-               <img src="https://images.unsplash.com/photo-1594026112284-02bb6f3352fe?q=80&w=600" alt="Modern Lamp" class="w-full aspect-[4/5] object-cover grayscale-[20%] group-hover:grayscale-0 transition duration-700 group-hover:scale-110">
-               
-               <div class="absolute inset-0 bg-slate-950/10 group-hover:bg-transparent transition duration-500"></div>
-
-               <button class="absolute bottom-20 left-1/2 -translate-x-1/2 bg-white text-slate-900 px-6 py-3 text-[10px] uppercase font-semibold tracking-wide opacity-0 group-hover:opacity-100 md:translate-y-4 group-hover:translate-y-0 transition-all duration-500 shadow-lg">
-                  Quick View
-               </button>
-
-               <div class="absolute bottom-4 left-4 right-4 flex justify-between items-end opacity-0 group-hover:opacity-100 transition duration-300 delay-100">
-                  <div class="bg-white/90 backdrop-blur-sm px-4 py-2">
-                     <p class="text-[10px] font-semibold uppercase tracking-wide">Table Lamp</p>
-                     <p class="text-xs font-serif italic">$240</p>
-                  </div>
-                  <span class="bg-slate-900 text-white text-[10px] px-2 py-1 font-semibold">★ 4.8</span>
-               </div>
-            </div>
-            <div class="bg-slate-100 p-6 flex flex-col justify-center items-center text-center aspect-square group cursor-pointer hover:bg-slate-200 transition">
-               <p class="font-brand text-3xl mb-2 group-hover:scale-110 transition duration-300">30<span class="text-lg align-top">%</span></p>
-               <p class="text-[10px] uppercase font-semibold text-slate-500 tracking-wide">Seasonal Sale</p>
-            </div>
-         </div>
+      <div class="relative reveal" style="--delay: 2;">
+        <div class="grid grid-cols-2 gap-4">
+          <div class="space-y-4">
+            <div class="bg-[#F3F4F6] rounded-2xl overflow-hidden"><img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?q=80&w=600" alt="상품 1" class="w-full aspect-square object-cover" loading="eager"></div>
+            <div class="bg-[#F3F4F6] rounded-2xl overflow-hidden"><img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?q=80&w=600" alt="상품 2" class="w-full aspect-[4/3] object-cover" loading="eager"></div>
+          </div>
+          <div class="pt-8 space-y-4">
+            <div class="bg-[#F3F4F6] rounded-2xl overflow-hidden"><img src="https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?q=80&w=600" alt="상품 3" class="w-full aspect-[4/3] object-cover" loading="eager"></div>
+            <div class="bg-[#F3F4F6] rounded-2xl overflow-hidden"><img src="https://images.unsplash.com/photo-1572635196237-14b3f281503f?q=80&w=600" alt="상품 4" class="w-full aspect-square object-cover" loading="eager"></div>
+          </div>
+        </div>
       </div>
     </div>
   </header>
-  
-  <!-- Categories -->
-  <section class="py-20 md:py-32 border-t border-slate-100" data-aos="fade-up">
-     <div class="container mx-auto px-3 md:px-6 grid grid-cols-1 md:grid-cols-2 md:grid-cols-4 gap-6">
-        <div class="text-center group cursor-pointer" data-aos="fade-up" data-aos-delay="100">
-           <div class="w-full aspect-square bg-slate-50 rounded-full mb-4 overflow-hidden relative">
-              <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?q=80&w=400" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
-           </div>
-           <p class="font-semibold text-sm uppercase tracking-wide group-hover:text-slate-500 transition">Furniture</p>
-        </div>
-        <div class="text-center group cursor-pointer" data-aos="fade-up" data-aos-delay="200">
-           <div class="w-full aspect-square bg-slate-50 rounded-full mb-4 overflow-hidden relative">
-              <img src="https://images.unsplash.com/photo-1513519245088-0e12902e5a38?q=80&w=400" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
-           </div>
-           <p class="font-semibold text-sm uppercase tracking-wide group-hover:text-slate-500 transition">Decor</p>
-        </div>
-        <div class="text-center group cursor-pointer" data-aos="fade-up" data-aos-delay="300">
-           <div class="w-full aspect-square bg-slate-50 rounded-full mb-4 overflow-hidden relative">
-              <img src="https://images.unsplash.com/photo-1540574163026-643ea20ade25?q=80&w=400" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
-           </div>
-           <p class="font-semibold text-sm uppercase tracking-wide group-hover:text-slate-500 transition">Lighting</p>
-        </div>
-        <div class="text-center group cursor-pointer" data-aos="fade-up" data-aos-delay="400">
-           <div class="w-full aspect-square bg-slate-50 rounded-full mb-4 overflow-hidden relative">
-              <img src="https://images.unsplash.com/photo-1522758971460-1d21eed7dc1d?q=80&w=400" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
-           </div>
-           <p class="font-semibold text-sm uppercase tracking-wide group-hover:text-slate-500 transition">Art</p>
-        </div>
-     </div>
-  </section>
 
-  <!-- Login Modal -->
-  <div id="ecommerce-modal" class="fixed inset-0 z-[100] hidden items-center justify-center p-4 bg-slate-900/40 backdrop-blur-md">
-    <div class="bg-white w-full max-w-sm p-12 shadow-2xl relative border-t-4 border-slate-900" data-aos="zoom-in">
-      <button onclick="toggleEcommerceModal()" class="absolute top-8 right-8 text-slate-400 hover:text-slate-900 transition text-2xl font-brand">&times;</button>
-      
-      <div class="text-center mb-10">
-        <h2 class="text-2xl font-brand text-slate-900 mb-2">Member Sign In</h2>
-        <p class="text-[10px] text-slate-400 font-semibold tracking-[0.2em] uppercase">Manage Your Orders</p>
-      </div>
-      
-      <div class="space-y-6">
-        <div>
-           <label class="block text-[10px] font-semibold text-slate-400 uppercase tracking-wide mb-2 ml-1">Email</label>
-           <input type="email" placeholder="name@example.com" class="w-full bg-slate-50 border border-slate-200 py-3 px-5 outline-none focus:border-slate-900 transition text-sm font-medium text-slate-900 placeholder-slate-300">
+  <!-- ========== About ========== -->
+  <section id="about" class="py-24 md:py-32 bg-[#FAFAFA]">
+    <div class="max-w-7xl mx-auto px-4 md:px-8 text-center">
+      <span class="inline-block rounded-full px-4 py-1.5 text-[11px] uppercase tracking-[0.15em] font-bold bg-[#7C3AED]/5 text-[#7C3AED] reveal" style="--delay: 0;">Why MARKET</span>
+      <h2 class="text-3xl md:text-4xl lg:text-5xl font-extrabold leading-snug mt-6 font-dm reveal" style="--delay: 1;">
+        쇼핑의 모든 것,<br>MARKET 하나로
+      </h2>
+      <div class="grid md:grid-cols-4 gap-6 mt-14">
+        <div class="bg-white rounded-2xl p-6 reveal" style="--delay: 0;">
+          <div class="w-12 h-12 bg-[#7C3AED]/10 rounded-xl flex items-center justify-center mx-auto mb-4"><i class="fas fa-tags text-[#7C3AED] text-lg"></i></div>
+          <h3 class="font-bold text-sm">최저가 보장</h3>
+          <p class="text-[12px] text-[#111827]/40 mt-2">타사 대비 최저가 보장. 차액 200% 환불</p>
         </div>
-        <div>
-           <label class="block text-[10px] font-semibold text-slate-400 uppercase tracking-wide mb-2 ml-1">Password</label>
-           <input type="password" placeholder="••••••••" class="w-full bg-slate-50 border border-slate-200 py-3 px-5 outline-none focus:border-slate-900 transition text-sm font-medium text-slate-900 placeholder-slate-300">
+        <div class="bg-white rounded-2xl p-6 reveal" style="--delay: 1;">
+          <div class="w-12 h-12 bg-[#7C3AED]/10 rounded-xl flex items-center justify-center mx-auto mb-4"><i class="fas fa-shipping-fast text-[#7C3AED] text-lg"></i></div>
+          <h3 class="font-bold text-sm">당일 배송</h3>
+          <p class="text-[12px] text-[#111827]/40 mt-2">오후 2시 이전 주문 시 당일 출고</p>
         </div>
-        
-        <button class="w-full bg-slate-900 text-white py-4 text-[11px] tracking-[0.2em] font-semibold uppercase hover:bg-slate-700 transition shadow-lg">
-           Sign In
-        </button>
-        
-        <div class="flex justify-center gap-10 pt-2 text-slate-400 text-[10px] tracking-wide uppercase font-semibold">
-           <a href="#" class="hover:text-slate-900 transition">Create Account</a>
-           <span>|</span>
-           <a href="#" class="hover:text-slate-900 transition">Find Password</a>
+        <div class="bg-white rounded-2xl p-6 reveal" style="--delay: 2;">
+          <div class="w-12 h-12 bg-[#7C3AED]/10 rounded-xl flex items-center justify-center mx-auto mb-4"><i class="fas fa-exchange-alt text-[#7C3AED] text-lg"></i></div>
+          <h3 class="font-bold text-sm">30일 무료 반품</h3>
+          <p class="text-[12px] text-[#111827]/40 mt-2">마음에 들지 않으면 무조건 환불</p>
+        </div>
+        <div class="bg-white rounded-2xl p-6 reveal" style="--delay: 3;">
+          <div class="w-12 h-12 bg-[#7C3AED]/10 rounded-xl flex items-center justify-center mx-auto mb-4"><i class="fas fa-headset text-[#7C3AED] text-lg"></i></div>
+          <h3 class="font-bold text-sm">24시간 고객센터</h3>
+          <p class="text-[12px] text-[#111827]/40 mt-2">채팅, 전화, 이메일 상시 운영</p>
         </div>
       </div>
     </div>
-  </div>
+  </section>
 
-  <footer class="py-20 md:py-32 bg-white text-center px-6 border-t border-slate-100">
-     <div class="inline-flex flex-col items-center gap-10 mb-8">
-        <span class="font-brand font-semibold text-2xl tracking-[0.05em] text-slate-900">Hayden<span class="text-slate-400">Home</span></span>
-        <span class="text-[10px] font-semibold text-slate-400 tracking-[0.3em] uppercase">Modern Living Curator</span>
-     </div>
-     <p class="text-[10px] text-slate-300 tracking-[0.5em] uppercase px-6">© 2024 HAYDEN HOME. ALL RIGHTS RESERVED.</p>
+  <!-- ========== Recommended Products ========== -->
+  <section id="products" class="py-24 md:py-32">
+    <div class="max-w-7xl mx-auto px-4 md:px-8">
+      <div class="flex items-end justify-between mb-14">
+        <div>
+          <span class="inline-block rounded-full px-4 py-1.5 text-[11px] uppercase tracking-[0.15em] font-bold bg-[#7C3AED]/5 text-[#7C3AED] reveal" style="--delay: 0;">추천</span>
+          <h2 class="text-3xl md:text-4xl lg:text-5xl font-extrabold leading-snug mt-4 font-dm reveal" style="--delay: 1;">추천 상품</h2>
+        </div>
+        <a href="#" class="hidden md:flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.15em] text-[#7C3AED] reveal" style="--delay: 2;">전체 보기 <i class="fas fa-arrow-right text-[9px]"></i></a>
+      </div>
+
+      <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
+        <div class="product-card bg-white rounded-2xl overflow-hidden border border-[#7C3AED]/5 reveal" style="--delay: 0;">
+          <div class="overflow-hidden bg-[#F3F4F6] relative">
+            <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?q=80&w=600" alt="스마트워치" class="w-full aspect-square object-cover transition-transform duration-700" loading="lazy" decoding="async">
+            <span class="absolute top-3 left-3 bg-[#7C3AED] text-white text-[10px] font-bold px-2.5 py-1 rounded-full">-30%</span>
+          </div>
+          <div class="p-4">
+            <p class="text-[10px] text-[#7C3AED] font-bold uppercase tracking-wider">전자기기</p>
+            <h3 class="font-semibold text-sm mt-1">스마트 피트니스 워치</h3>
+            <div class="flex items-center gap-2 mt-2">
+              <span class="text-[#7C3AED] font-bold text-sm font-dm">139,000원</span>
+              <span class="text-[#111827]/20 text-[12px] line-through">199,000원</span>
+            </div>
+            <div class="flex items-center gap-1 mt-2"><div class="flex gap-0.5 text-yellow-400"><i class="fas fa-star text-[9px]"></i><i class="fas fa-star text-[9px]"></i><i class="fas fa-star text-[9px]"></i><i class="fas fa-star text-[9px]"></i><i class="fas fa-star text-[9px]"></i></div><span class="text-[10px] text-[#111827]/30">(324)</span></div>
+          </div>
+        </div>
+
+        <div class="product-card bg-white rounded-2xl overflow-hidden border border-[#7C3AED]/5 reveal" style="--delay: 1;">
+          <div class="overflow-hidden bg-[#F3F4F6] relative">
+            <img src="https://images.unsplash.com/photo-1585386959984-a4155224a1ad?q=80&w=600" alt="향수" class="w-full aspect-square object-cover transition-transform duration-700" loading="lazy" decoding="async">
+            <span class="absolute top-3 left-3 bg-[#EF4444] text-white text-[10px] font-bold px-2.5 py-1 rounded-full">HOT</span>
+          </div>
+          <div class="p-4">
+            <p class="text-[10px] text-[#7C3AED] font-bold uppercase tracking-wider">뷰티</p>
+            <h3 class="font-semibold text-sm mt-1">시그니처 향수 50ml</h3>
+            <div class="flex items-center gap-2 mt-2"><span class="text-[#7C3AED] font-bold text-sm font-dm">89,000원</span></div>
+            <div class="flex items-center gap-1 mt-2"><div class="flex gap-0.5 text-yellow-400"><i class="fas fa-star text-[9px]"></i><i class="fas fa-star text-[9px]"></i><i class="fas fa-star text-[9px]"></i><i class="fas fa-star text-[9px]"></i><i class="fas fa-star-half-alt text-[9px]"></i></div><span class="text-[10px] text-[#111827]/30">(189)</span></div>
+          </div>
+        </div>
+
+        <div class="product-card bg-white rounded-2xl overflow-hidden border border-[#7C3AED]/5 reveal" style="--delay: 2;">
+          <div class="overflow-hidden bg-[#F3F4F6] relative">
+            <img src="https://images.unsplash.com/photo-1491553895911-0055eca6402d?q=80&w=600" alt="운동화" class="w-full aspect-square object-cover transition-transform duration-700" loading="lazy" decoding="async">
+            <span class="absolute top-3 left-3 bg-[#7C3AED] text-white text-[10px] font-bold px-2.5 py-1 rounded-full">-20%</span>
+          </div>
+          <div class="p-4">
+            <p class="text-[10px] text-[#7C3AED] font-bold uppercase tracking-wider">패션</p>
+            <h3 class="font-semibold text-sm mt-1">클래식 러닝 스니커즈</h3>
+            <div class="flex items-center gap-2 mt-2"><span class="text-[#7C3AED] font-bold text-sm font-dm">119,000원</span><span class="text-[#111827]/20 text-[12px] line-through">149,000원</span></div>
+            <div class="flex items-center gap-1 mt-2"><div class="flex gap-0.5 text-yellow-400"><i class="fas fa-star text-[9px]"></i><i class="fas fa-star text-[9px]"></i><i class="fas fa-star text-[9px]"></i><i class="fas fa-star text-[9px]"></i><i class="fas fa-star text-[9px]"></i></div><span class="text-[10px] text-[#111827]/30">(567)</span></div>
+          </div>
+        </div>
+
+        <div class="product-card bg-white rounded-2xl overflow-hidden border border-[#7C3AED]/5 reveal" style="--delay: 3;">
+          <div class="overflow-hidden bg-[#F3F4F6] relative">
+            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=600" alt="무선 이어폰" class="w-full aspect-square object-cover transition-transform duration-700" loading="lazy" decoding="async">
+          </div>
+          <div class="p-4">
+            <p class="text-[10px] text-[#7C3AED] font-bold uppercase tracking-wider">전자기기</p>
+            <h3 class="font-semibold text-sm mt-1">프리미엄 무선 이어폰</h3>
+            <div class="flex items-center gap-2 mt-2"><span class="text-[#7C3AED] font-bold text-sm font-dm">249,000원</span></div>
+            <div class="flex items-center gap-1 mt-2"><div class="flex gap-0.5 text-yellow-400"><i class="fas fa-star text-[9px]"></i><i class="fas fa-star text-[9px]"></i><i class="fas fa-star text-[9px]"></i><i class="fas fa-star text-[9px]"></i><i class="fas fa-star text-[9px]"></i></div><span class="text-[10px] text-[#111827]/30">(891)</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== Categories ========== -->
+  <section id="categories" class="py-24 md:py-32 bg-[#FAFAFA]">
+    <div class="max-w-7xl mx-auto px-4 md:px-8">
+      <div class="text-center mb-14">
+        <span class="inline-block rounded-full px-4 py-1.5 text-[11px] uppercase tracking-[0.15em] font-bold bg-[#7C3AED]/5 text-[#7C3AED] reveal" style="--delay: 0;">Categories</span>
+        <h2 class="text-3xl md:text-4xl lg:text-5xl font-extrabold leading-snug mt-6 font-dm reveal" style="--delay: 1;">카테고리</h2>
+      </div>
+
+      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+        <a href="#" class="category-card bg-white rounded-2xl p-6 text-center border border-[#7C3AED]/5 reveal" style="--delay: 0;">
+          <div class="w-14 h-14 bg-[#7C3AED]/10 rounded-2xl flex items-center justify-center mx-auto mb-3"><i class="fas fa-tshirt text-[#7C3AED] text-xl"></i></div>
+          <p class="font-semibold text-sm">패션</p>
+          <p class="text-[11px] text-[#111827]/30 mt-1">2,400+ 상품</p>
+        </a>
+        <a href="#" class="category-card bg-white rounded-2xl p-6 text-center border border-[#7C3AED]/5 reveal" style="--delay: 1;">
+          <div class="w-14 h-14 bg-[#7C3AED]/10 rounded-2xl flex items-center justify-center mx-auto mb-3"><i class="fas fa-spa text-[#7C3AED] text-xl"></i></div>
+          <p class="font-semibold text-sm">뷰티</p>
+          <p class="text-[11px] text-[#111827]/30 mt-1">1,800+ 상품</p>
+        </a>
+        <a href="#" class="category-card bg-white rounded-2xl p-6 text-center border border-[#7C3AED]/5 reveal" style="--delay: 2;">
+          <div class="w-14 h-14 bg-[#7C3AED]/10 rounded-2xl flex items-center justify-center mx-auto mb-3"><i class="fas fa-laptop text-[#7C3AED] text-xl"></i></div>
+          <p class="font-semibold text-sm">전자기기</p>
+          <p class="text-[11px] text-[#111827]/30 mt-1">950+ 상품</p>
+        </a>
+        <a href="#" class="category-card bg-white rounded-2xl p-6 text-center border border-[#7C3AED]/5 reveal" style="--delay: 3;">
+          <div class="w-14 h-14 bg-[#7C3AED]/10 rounded-2xl flex items-center justify-center mx-auto mb-3"><i class="fas fa-couch text-[#7C3AED] text-xl"></i></div>
+          <p class="font-semibold text-sm">리빙</p>
+          <p class="text-[11px] text-[#111827]/30 mt-1">1,200+ 상품</p>
+        </a>
+        <a href="#" class="category-card bg-white rounded-2xl p-6 text-center border border-[#7C3AED]/5 reveal" style="--delay: 4;">
+          <div class="w-14 h-14 bg-[#7C3AED]/10 rounded-2xl flex items-center justify-center mx-auto mb-3"><i class="fas fa-utensils text-[#7C3AED] text-xl"></i></div>
+          <p class="font-semibold text-sm">식품</p>
+          <p class="text-[11px] text-[#111827]/30 mt-1">800+ 상품</p>
+        </a>
+        <a href="#" class="category-card bg-white rounded-2xl p-6 text-center border border-[#7C3AED]/5 reveal" style="--delay: 5;">
+          <div class="w-14 h-14 bg-[#7C3AED]/10 rounded-2xl flex items-center justify-center mx-auto mb-3"><i class="fas fa-running text-[#7C3AED] text-xl"></i></div>
+          <p class="font-semibold text-sm">스포츠</p>
+          <p class="text-[11px] text-[#111827]/30 mt-1">650+ 상품</p>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== Reviews ========== -->
+  <section id="reviews" class="py-24 md:py-32">
+    <div class="max-w-7xl mx-auto px-4 md:px-8">
+      <div class="text-center mb-14">
+        <span class="inline-block rounded-full px-4 py-1.5 text-[11px] uppercase tracking-[0.15em] font-bold bg-[#7C3AED]/5 text-[#7C3AED] reveal" style="--delay: 0;">Reviews</span>
+        <h2 class="text-3xl md:text-4xl lg:text-5xl font-extrabold leading-snug mt-6 font-dm reveal" style="--delay: 1;">고객 리뷰</h2>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-6">
+        <div class="bg-[#FAFAFA] rounded-2xl p-8 reveal" style="--delay: 0;">
+          <div class="flex gap-0.5 text-[#7C3AED] mb-4"><i class="fas fa-star text-sm"></i><i class="fas fa-star text-sm"></i><i class="fas fa-star text-sm"></i><i class="fas fa-star text-sm"></i><i class="fas fa-star text-sm"></i></div>
+          <p class="text-[14px] text-[#111827]/60 leading-relaxed mb-6">배송이 정말 빠르고 포장도 깔끔해요! 상품 품질도 기대 이상이었습니다. 앞으로도 MARKET에서 계속 쇼핑할 것 같아요.</p>
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 bg-[#7C3AED] rounded-full flex items-center justify-center text-white text-sm font-bold">H</div>
+            <div><p class="font-semibold text-sm">한지민</p><p class="text-[#111827]/30 text-[11px]">스마트워치 구매</p></div>
+          </div>
+        </div>
+        <div class="bg-[#FAFAFA] rounded-2xl p-8 reveal" style="--delay: 1;">
+          <div class="flex gap-0.5 text-[#7C3AED] mb-4"><i class="fas fa-star text-sm"></i><i class="fas fa-star text-sm"></i><i class="fas fa-star text-sm"></i><i class="fas fa-star text-sm"></i><i class="fas fa-star text-sm"></i></div>
+          <p class="text-[14px] text-[#111827]/60 leading-relaxed mb-6">반품 과정이 너무 간편해서 놀랐어요. 고객센터 응대도 친절하고, 환불도 빠르게 처리됐습니다. 최고의 쇼핑 경험!</p>
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 bg-[#7C3AED] rounded-full flex items-center justify-center text-white text-sm font-bold">C</div>
+            <div><p class="font-semibold text-sm">최승우</p><p class="text-[#111827]/30 text-[11px]">운동화 구매</p></div>
+          </div>
+        </div>
+        <div class="bg-[#FAFAFA] rounded-2xl p-8 reveal" style="--delay: 2;">
+          <div class="flex gap-0.5 text-[#7C3AED] mb-4"><i class="fas fa-star text-sm"></i><i class="fas fa-star text-sm"></i><i class="fas fa-star text-sm"></i><i class="fas fa-star text-sm"></i><i class="fas fa-star-half-alt text-sm"></i></div>
+          <p class="text-[14px] text-[#111827]/60 leading-relaxed mb-6">할인 행사가 자주 있어서 좋아요. 가격 대비 품질이 정말 좋고, 카테고리별로 잘 정리되어 있어서 원하는 상품 찾기 쉬워요.</p>
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 bg-[#7C3AED] rounded-full flex items-center justify-center text-white text-sm font-bold">S</div>
+            <div><p class="font-semibold text-sm">서예린</p><p class="text-[#111827]/30 text-[11px]">뷰티 제품 구매</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== Shipping Info ========== -->
+  <section id="shipping" class="py-24 md:py-32 bg-[#7C3AED] text-white">
+    <div class="max-w-7xl mx-auto px-4 md:px-8">
+      <div class="text-center mb-14">
+        <span class="inline-block rounded-full px-4 py-1.5 text-[11px] uppercase tracking-[0.15em] font-bold bg-white/10 text-white reveal" style="--delay: 0;">Shipping</span>
+        <h2 class="text-3xl md:text-4xl lg:text-5xl font-extrabold leading-snug mt-6 font-dm reveal" style="--delay: 1;">배송 안내</h2>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+        <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-8 text-center border border-white/10 reveal" style="--delay: 0;">
+          <div class="w-16 h-16 bg-white/10 rounded-2xl flex items-center justify-center mx-auto mb-5"><i class="fas fa-truck text-2xl"></i></div>
+          <h3 class="font-bold text-lg mb-2">무료 배송</h3>
+          <p class="text-white/50 text-[13px]">전 상품 무료 배송. 도서 산간 지역도 추가 비용 없이 배송해드립니다.</p>
+        </div>
+        <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-8 text-center border border-white/10 reveal" style="--delay: 1;">
+          <div class="w-16 h-16 bg-white/10 rounded-2xl flex items-center justify-center mx-auto mb-5"><i class="fas fa-bolt text-2xl"></i></div>
+          <h3 class="font-bold text-lg mb-2">당일 배송</h3>
+          <p class="text-white/50 text-[13px]">오후 2시 이전 주문 시 당일 출고. 수도권 지역 익일 오전 도착 보장.</p>
+        </div>
+        <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-8 text-center border border-white/10 reveal" style="--delay: 2;">
+          <div class="w-16 h-16 bg-white/10 rounded-2xl flex items-center justify-center mx-auto mb-5"><i class="fas fa-box-open text-2xl"></i></div>
+          <h3 class="font-bold text-lg mb-2">무료 반품</h3>
+          <p class="text-white/50 text-[13px]">30일 이내 무조건 반품/교환. 수거 택배비도 MARKET이 부담합니다.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== CTA ========== -->
+  <section class="py-24 md:py-32 relative overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-br from-[#7C3AED]/5 to-transparent"></div>
+    <div class="max-w-3xl mx-auto px-4 md:px-8 text-center relative z-10">
+      <h2 class="text-3xl md:text-4xl lg:text-5xl font-extrabold leading-snug font-dm reveal" style="--delay: 0;">
+        지금 가입하고<br><span class="text-[#7C3AED]">15% 할인</span> 받으세요
+      </h2>
+      <p class="text-[#111827]/40 text-base mt-6 reveal" style="--delay: 1;">신규 회원 즉시 사용 가능한 할인 쿠폰을 드립니다.</p>
+      <div class="flex flex-col sm:flex-row gap-3 max-w-md mx-auto mt-10 reveal" style="--delay: 2;">
+        <input type="email" placeholder="이메일 주소" class="flex-1 bg-[#F3F4F6] border-none rounded-xl py-4 px-6 outline-none focus:ring-2 focus:ring-[#7C3AED]/20 text-[13px]">
+        <button class="bg-[#7C3AED] text-white px-8 py-4 rounded-xl font-bold text-[12px] uppercase tracking-[0.15em] hover:bg-[#6D28D9] shadow-lg shadow-[#7C3AED]/20">가입</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== Footer ========== -->
+  <footer class="py-16 md:py-24 bg-[#111827]">
+    <div class="max-w-7xl mx-auto px-4 md:px-8">
+      <div class="grid md:grid-cols-4 gap-12 items-start mb-16">
+        <div>
+          <div class="flex items-center gap-2 mb-4"><div class="w-8 h-8 bg-[#7C3AED] rounded-xl flex items-center justify-center"><i class="fas fa-shopping-basket text-white text-sm"></i></div><span class="font-dm text-xl font-extrabold text-white">MARKET</span></div>
+          <p class="text-white/30 text-sm leading-relaxed">당신이 찾는 모든 것. 트렌디한 제품을 합리적인 가격에.</p>
+        </div>
+        <div>
+          <p class="text-[10px] font-semibold text-white/20 uppercase tracking-[0.3em] mb-4">카테고리</p>
+          <ul class="space-y-2.5"><li><a href="#" class="text-white/50 text-sm hover:text-[#7C3AED] transition">패션</a></li><li><a href="#" class="text-white/50 text-sm hover:text-[#7C3AED] transition">뷰티</a></li><li><a href="#" class="text-white/50 text-sm hover:text-[#7C3AED] transition">전자기기</a></li><li><a href="#" class="text-white/50 text-sm hover:text-[#7C3AED] transition">리빙</a></li></ul>
+        </div>
+        <div>
+          <p class="text-[10px] font-semibold text-white/20 uppercase tracking-[0.3em] mb-4">고객센터</p>
+          <ul class="space-y-2.5"><li><a href="#" class="text-white/50 text-sm hover:text-[#7C3AED] transition">FAQ</a></li><li><a href="#" class="text-white/50 text-sm hover:text-[#7C3AED] transition">배송 안내</a></li><li><a href="#" class="text-white/50 text-sm hover:text-[#7C3AED] transition">반품/교환</a></li><li><a href="#" class="text-white/50 text-sm hover:text-[#7C3AED] transition">1:1 문의</a></li></ul>
+        </div>
+        <div>
+          <p class="text-[10px] font-semibold text-white/20 uppercase tracking-[0.3em] mb-4">Follow</p>
+          <div class="flex gap-3">
+            <a href="#" class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white/50 hover:text-[#7C3AED] transition"><i class="fab fa-instagram text-sm"></i></a>
+            <a href="#" class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white/50 hover:text-[#7C3AED] transition"><i class="fab fa-youtube text-sm"></i></a>
+            <a href="#" class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white/50 hover:text-[#7C3AED] transition"><i class="fab fa-facebook-f text-sm"></i></a>
+          </div>
+        </div>
+      </div>
+      <div class="border-t border-white/5 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+        <p class="text-[10px] text-white/15 tracking-[0.3em] uppercase">&copy; 2026 MARKET. All rights reserved by DLAB.</p>
+        <div class="flex gap-6"><a href="#" class="text-[10px] text-white/15 tracking-[0.2em] uppercase hover:text-white/40 transition">개인정보처리방침</a><a href="#" class="text-[10px] text-white/15 tracking-[0.2em] uppercase hover:text-white/40 transition">이용약관</a></div>
+      </div>
+    </div>
   </footer>
 
-  <script>
-    function toggleEcommerceModal() {
-      const modal = document.getElementById('ecommerce-modal');
-      modal.classList.toggle('hidden');
-      modal.classList.toggle('flex');
-    }
-  </script>
-
+  <!-- ========== Login Modal ========== -->
+  <div id="ecommerce-modal" class="fixed inset-0 z-[100] hidden items-center justify-center p-4 bg-[#111827]/30 backdrop-blur-3xl">
+    <div class="bg-white w-full max-w-sm p-8 md:p-12 shadow-2xl relative rounded-3xl">
+      <button onclick="toggleEcommerceModal()" class="absolute top-6 right-6 w-8 h-8 rounded-full bg-[#F3F4F6] flex items-center justify-center text-[#111827]/30 hover:text-[#7C3AED] transition text-lg">&times;</button>
+      <div class="text-center mb-10">
+        <div class="w-12 h-12 bg-[#7C3AED] rounded-xl flex items-center justify-center mx-auto mb-4"><i class="fas fa-shopping-basket text-white"></i></div>
+        <h2 class="text-xl font-extrabold font-dm mb-1">MARKET</h2>
+        <p class="text-[11px] text-[#7C3AED] font-bold tracking-[0.2em] uppercase">Sign In</p>
+      </div>
+      <div class="space-y-4">
+        <input type="email" placeholder="이메일" class="w-full bg-[#F3F4F6] border-none rounded-xl py-4 px-5 outline-none focus:ring-2 focus:ring-[#7C3AED]/20 text-[13px]">
+        <input type="password" placeholder="비밀번호" class="w-full bg-[#F3F4F6] border-none rounded-xl py-4 px-5 outline-none focus:ring-2 focus:ring-[#7C3AED]/20 text-[13px]">
+        <button class="w-full bg-[#7C3AED] text-white py-4 rounded-xl font-bold text-[12px] uppercase tracking-[0.3em] hover:bg-[#6D28D9] shadow-lg shadow-[#7C3AED]/20 mt-2">로그인</button>
+        <div class="relative py-4"><div class="absolute inset-0 flex items-center"><div class="w-full border-t border-[#111827]/5"></div></div><div class="relative flex justify-center"><span class="bg-white px-3 text-[11px] text-[#111827]/30">또는</span></div></div>
+        <button class="w-full bg-[#F3F4F6] py-4 rounded-xl font-semibold text-[12px] text-[#111827]/60 flex items-center justify-center gap-2 hover:bg-[#E5E7EB]"><i class="fab fa-google"></i> Google로 로그인</button>
+        <div class="flex justify-center gap-8 pt-2"><a href="#" class="text-[11px] text-[#111827]/40 font-semibold hover:text-[#7C3AED] transition">회원가입</a><a href="#" class="text-[11px] text-[#111827]/40 font-semibold hover:text-[#7C3AED] transition">비밀번호 찾기</a></div>
+      </div>
+    </div>
+  </div>
 </div>
+
+<script>
+  function toggleEcommerceModal() { const m = document.getElementById('ecommerce-modal'); m.classList.toggle('hidden'); m.classList.toggle('flex'); }
+  document.getElementById('ecommerce-modal').addEventListener('click', function(e) { if (e.target === this) toggleEcommerceModal(); });
+  (function() {
+    const observer = new IntersectionObserver(function(entries) { entries.forEach(function(entry) { if (entry.isIntersecting) { entry.target.classList.add('is-visible'); observer.unobserve(entry.target); } }); }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+    document.querySelectorAll('.reveal').forEach(function(el) { observer.observe(el); });
+  })();
+</script>

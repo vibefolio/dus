@@ -1,292 +1,396 @@
-<%# Wedding Template - 모바일 청첩장 (ETERNAL VOW) %>
+<%# Wedding Template - ETERNAL %>
 
 <style>
-  /* Supanova Design Upgrade */
+  /* Supanova Design — Elegant Wedding Archetype */
   * { word-break: keep-all; }
-  html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+  html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
   h1, h2, h3, h4 { text-wrap: balance; letter-spacing: -0.02em; line-height: 1.3; }
-  a, button { transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1); }
+  a, button { transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1); }
   a:hover, button:hover { transform: scale(1.02); }
   a:active, button:active { transform: scale(0.98); }
 
-  @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap');
-  
-  .font-serif-elegant { font-family: 'Cormorant Garamond', serif; }
+  @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&display=swap');
+
   .font-sans { font-family: 'Pretendard Variable', 'Pretendard', -apple-system, sans-serif; }
+  .font-serif { font-family: 'Cormorant Garamond', serif; }
 
   @media (max-width: 768px) {
     .mobile-desc { font-size: 14px !important; line-height: 1.8; }
-    .mobile-title { font-size: 40px !important; }
+    .mobile-title { font-size: 36px !important; }
   }
 
-  .paper-grain {
-    background: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.6' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E");
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(2rem); filter: blur(4px); }
+    to { opacity: 1; transform: translateY(0); filter: blur(0); }
   }
+  .reveal { opacity: 0; transform: translateY(2rem); }
+  .reveal.is-visible { animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards; animation-delay: calc(var(--delay, 0) * 100ms); }
 
-  .section-padding { padding-top: 100px; padding-bottom: 100px; }
-  
-  /* Accordion Styles */
-  .accordion-content {
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.3s ease-out;
-  }
-  .accordion-toggle.active + .accordion-content {
-    max-height: 300px; /* Approximate height */
-  }
+  .pkg-card { transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1); }
+  .pkg-card:hover { transform: translateY(-8px); }
+  .pkg-card:hover img { transform: scale(1.05); }
+
+  .gallery-item { transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1); }
+  .gallery-item:hover img { transform: scale(1.08); }
 </style>
 
-<div class="bg-[#FFFCF6] text-[#4A4A4A] font-sans selection:bg-[#E5D5C6] selection:text-white min-h-screen overflow-x-hidden relative">
-  <div class="fixed inset-0 paper-grain pointer-events-none"></div>
+<div class="bg-[#FDF8F4] text-[#3D2E1C] font-sans selection:bg-[#B08968] selection:text-white min-h-screen overflow-x-hidden">
 
-  <!-- Nav -->
-  <nav class="fixed w-full z-50 px-8 py-6 bg-[#FFFCF6]/90 backdrop-blur-md border-b border-[#E5D5C6]/30 transition-all duration-300" data-aos="fade-down" data-aos-duration="1000">
-    <div class="container mx-auto px-4 md:px-6 flex justify-between items-center flex-nowrap">
-      <div class="flex items-center gap-6">
-         <span class="font-serif-elegant font-semibold text-2xl tracking-[0.2em] text-[#8C7B6C] uppercase cursor-pointer">Eternal<span class="text-[#E5D5C6]">Vow</span></span>
-      </div>
-      
-      <div class="hidden md:flex gap-16 text-[11px] font-sans font-medium tracking-[0.2em] text-[#A6998E] uppercase">
-        <a href="#invitation" class="hover:text-[#8C7B6C] transition">Invitation</a>
-        <a href="#gallery" class="hover:text-[#8C7B6C] transition">Gallery</a>
-        <a href="#location" class="hover:text-[#8C7B6C] transition">Location</a>
-      </div>
-           <button class="mobile-menu-trigger md:hidden ml-auto text-2xl focus:outline-none" style="color: inherit;">
-             <i class="fas fa-bars"></i>
-           </button>
+  <!-- ========== Nav ========== -->
+  <nav class="fixed w-full z-50 px-4 md:px-8 py-5 bg-[#FDF8F4]/80 backdrop-blur-xl border-b border-[#B08968]/10">
+    <div class="max-w-7xl mx-auto flex justify-between items-center">
+      <a href="#" class="font-serif text-3xl tracking-tight font-semibold italic text-[#B08968]">Eternal</a>
 
-      
-      <div class="flex-nowrap shrink-0 flex gap-6 items-center">
-         <button onclick="toggleWeddingModal()" class="hidden md:block text-[10px] font-sans font-semibold uppercase tracking-[0.2em] text-[#A6998E] hover:text-[#8C7B6C]" data-mobile-menu-copy="true">Guest Access</button>
-         <button class="hidden md:block bg-[#8C7B6C] text-white px-6 py-2 rounded-sm font-serif-elegant font-medium text-xs tracking-wide uppercase hover:bg-[#6D5E52] transition shadow-lg shadow-[#E5D5C6]/50" data-mobile-menu-copy="true">
-           RSVP
-         </button>
+      <div class="hidden md:flex gap-10 text-sm font-medium text-[#3D2E1C]/40 tracking-wide">
+        <a href="#packages" class="hover:text-[#B08968] transition">패키지</a>
+        <a href="#gallery" class="hover:text-[#B08968] transition">갤러리</a>
+        <a href="#process" class="hover:text-[#B08968] transition">진행과정</a>
+        <a href="#consultation" class="hover:text-[#B08968] transition">상담예약</a>
+      </div>
+
+      <button class="mobile-menu-trigger md:hidden ml-auto text-2xl focus:outline-none" style="color: inherit;">
+        <i class="fas fa-bars"></i>
+      </button>
+
+      <div class="hidden md:flex gap-4 items-center">
+        <a href="#consultation" class="bg-[#B08968] text-white px-6 py-2.5 rounded-full text-sm font-semibold hover:bg-[#96724E] shadow-lg shadow-[#B08968]/20" data-mobile-menu-copy="true">상담 예약</a>
       </div>
     </div>
 
-      <%= render partial: 'templates/shared/mobile_menu_overlay' %></nav>
+    <%= render partial: 'templates/shared/mobile_menu_overlay' %>
+  </nav>
 
-  <!-- Hero with D-Day Counter -->
-  <header class="min-h-screen relative flex items-center justify-center pt-24 overflow-hidden">
-    <!-- Decorative Border -->
-    <div class="absolute inset-4 md:inset-8 border border-[#E5D5C6] pointer-events-none z-20 m-2 md:m-8" data-aos="fade-in" data-aos-duration="2000" data-aos-delay="500"></div>
-    <div class="absolute inset-5 md:inset-9 border border-[#E5D5C6] pointer-events-none z-20 m-2 md:m-8 opacity-50" data-aos="fade-in" data-aos-duration="2000" data-aos-delay="700"></div>
+  <!-- ========== Hero ========== -->
+  <header class="min-h-[100dvh] relative flex items-center pt-20 overflow-hidden">
+    <div class="absolute inset-0">
+      <img src="https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=1600" alt="웨딩" class="w-full h-full object-cover">
+      <div class="absolute inset-0 bg-[#FDF8F4]/70"></div>
+    </div>
 
-    <div class="container mx-auto px-3 md:px-6 relative z-10 grid lg:grid-cols-2 gap-16 md:gap-12 md:p-20 items-center h-full">
-      <div class="space-y-8 md:space-y-12 text-center lg:text-left order-2 lg:order-1 flex flex-col justify-center" data-aos="fade-right" data-aos-duration="1200">
-        <div class="inline-flex items-center gap-3 justify-center lg:justify-start">
-           <span class="w-12 h-[1px] bg-[#8C7B6C]"></span>
-           <span class="text-[12px] font-serif-elegant font-semibold text-[#8C7B6C] uppercase tracking-[0.3em] italic">We Are Getting Married</span>
-        </div>
-        
-        <h1 class="text-2xl md:text-4xl md:text-6xl xl:text-7xl font-serif-elegant font-light leading-[1.1] text-[#2C2C2C] mobile-title">
-           Promise of<br>
-           <span class="italic text-[#8C7B6C]">Forever</span><br>
-           Love.
-        </h1>
-        
-        <p class="text-[#8C7B6C] text-sm md:text-lg leading-relaxed max-w-md mx-auto lg:mx-0 mobile-desc font-light font-serif-elegant tracking-wide">
-           두 사람이 하나 되는 날,<br>
-           소중한 분들을 모시고 사랑의 서약을 맺으려 합니다.<br>
-           저희의 시작을 함께 축복해 주세요.
-        </p>
-        
-        <!-- D-Day Counter -->
-        <div class="py-6 flex justify-center lg:justify-start gap-12 border-t border-b border-[#E5D5C6]/50">
-           <div class="text-center">
-              <span class="block text-2xl font-serif-elegant text-[#2C2C2C]" id="days">00</span>
-              <span class="text-[10px] text-[#A6998E] uppercase tracking-wide">Days</span>
-           </div>
-           <div class="text-center">
-              <span class="block text-2xl font-serif-elegant text-[#2C2C2C]" id="hours">00</span>
-              <span class="text-[10px] text-[#A6998E] uppercase tracking-wide">Hours</span>
-           </div>
-           <div class="text-center">
-              <span class="block text-2xl font-serif-elegant text-[#2C2C2C]" id="minutes">00</span>
-              <span class="text-[10px] text-[#A6998E] uppercase tracking-wide">Mins</span>
-           </div>
-           <div class="text-center">
-              <span class="block text-2xl font-serif-elegant text-[#2C2C2C]" id="seconds">00</span>
-              <span class="text-[10px] text-[#A6998E] uppercase tracking-wide">Secs</span>
-           </div>
-        </div>
+    <div class="max-w-4xl mx-auto px-4 md:px-8 relative z-10 text-center py-20">
+      <p class="font-serif italic text-[#B08968] text-lg md:text-xl tracking-wide reveal" style="--delay: 0;">Your Forever Begins Here</p>
 
-        <div class="space-y-1">
-           <p class="font-serif-elegant text-2xl md:text-2xl text-[#2C2C2C]">2025. 10. 12.</p>
-           <p class="text-[11px] font-semibold text-[#A6998E] tracking-[0.3em] uppercase">Saturday 02:00 PM • The Raum Art Center</p>
-        </div>
-      </div>
-      
-      <div class="relative order-1 lg:order-2 h-full flex items-center justify-center py-16" data-aos="fade-left" data-aos-duration="1200">
-         <div class="relative w-[300px] md:w-[450px] aspect-[3/4]">
-            <!-- Photo Frame -->
-            <div class="absolute inset-0 border-8 border-white shadow-2xl z-10 transition-transform hover:scale-[1.02] duration-700">
-               <img src="https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=800" alt="Wedding Couple" class="w-full h-full object-cover filter brightness-[1.05] contrast-[0.95] sepia-[10%]">
-            </div>
-            <!-- Background Decoration -->
-            <div class="absolute -top-10 -right-10 w-full h-full border border-[#E5D5C6] z-0"></div>
-            <div class="absolute -bottom-10 -left-10 w-full h-full bg-[#E5D5C6]/30 z-0"></div>
-            
-            <div class="absolute -bottom-16 -right-12 text-3xl md:text-[5rem] opacity-20 rotate-12 pointer-events-none font-serif-elegant text-[#8C7B6C]">
-               ❦
-            </div>
-         </div>
+      <h1 class="text-5xl md:text-6xl lg:text-8xl font-serif font-semibold leading-tight mt-6 mobile-title reveal" style="--delay: 1;">
+        영원한 순간을<br>
+        <span class="italic text-[#B08968]">함께 만듭니다</span>
+      </h1>
+
+      <p class="text-[#3D2E1C]/50 text-base md:text-lg leading-relaxed max-w-lg mx-auto mt-8 mobile-desc reveal" style="--delay: 2;">
+        두 사람의 특별한 이야기를 담아 세상에 하나뿐인 웨딩을 완성합니다. ETERNAL이 당신의 가장 아름다운 날을 디자인합니다.
+      </p>
+
+      <div class="flex flex-col sm:flex-row gap-4 justify-center mt-10 reveal" style="--delay: 3;">
+        <a href="#consultation" class="inline-flex items-center justify-center gap-2 px-10 py-4 bg-[#B08968] text-white rounded-full font-semibold shadow-lg shadow-[#B08968]/20 hover:bg-[#96724E]">
+          무료 상담 예약
+        </a>
+        <a href="#gallery" class="inline-flex items-center justify-center gap-2 px-10 py-4 border border-[#B08968]/30 rounded-full font-semibold text-[#B08968] hover:bg-[#B08968] hover:text-white">
+          갤러리 보기
+        </a>
       </div>
     </div>
   </header>
 
-  <!-- Gallery Section -->
-  <section id="gallery" class="section-padding px-6 bg-[#fff]" data-aos="fade-up">
-     <div class="container mx-auto max-w-5xl">
-        <div class="text-center mb-16 space-y-4">
-           <span class="text-[#8C7B6C] font-serif-elegant italic text-lg">Our Moments</span>
-           <h2 class="text-3xl text-[#2C2C2C] font-serif-elegant font-light">Gallery</h2>
-        </div>
-        <div class="grid grid-cols-1 md:grid-cols-2 md:grid-cols-3 gap-6">
-           <div class="aspect-[3/4] overflow-hidden group cursor-pointer" data-aos="fade-up" data-aos-delay="100">
-              <img src="https://images.unsplash.com/photo-1511285560982-1351cdeb9821?q=80&w=600" class="w-full h-full object-cover transition duration-700 group-hover:scale-110 filter sepia-[20%]" alt="Gallery 1">
-           </div>
-           <div class="aspect-[3/4] overflow-hidden group cursor-pointer" data-aos="fade-up" data-aos-delay="200">
-              <img src="https://images.unsplash.com/photo-1519225448064-511555e19e31?q=80&w=600" class="w-full h-full object-cover transition duration-700 group-hover:scale-110 filter sepia-[20%]" alt="Gallery 2">
-           </div>
-           <div class="aspect-[3/4] overflow-hidden group cursor-pointer" data-aos="fade-up" data-aos-delay="300">
-              <img src="https://images.unsplash.com/photo-1520854221256-17451cc330e7?q=80&w=600" class="w-full h-full object-cover transition duration-700 group-hover:scale-110 filter sepia-[20%]" alt="Gallery 3">
-           </div>
-        </div>
-     </div>
-  </section>
-  
-  <!-- Location & Map Buttons -->
-  <section id="location" class="section-padding px-6 bg-[#FFFCF6]" data-aos="fade-up">
-     <div class="container mx-auto max-w-3xl text-center">
-        <div class="mb-12 space-y-4">
-           <span class="text-[#8C7B6C] font-serif-elegant italic text-lg">Location</span>
-           <h2 class="text-3xl text-[#2C2C2C] font-serif-elegant font-light">오시는 길</h2>
-           <p class="text-[#4A4A4A] mt-4 font-light leading-relaxed">
-              서울시 강남구 언주로 564<br>
-              <strong>라움 아트센터 2F 체임버홀</strong>
-           </p>
-        </div>
-        
-        <div class="w-full aspect-video bg-[#E5D5C6]/30 mb-8 flex items-center justify-center text-[#8C7B6C] font-serif-elegant italic border border-[#E5D5C6]">
-           <!-- Placeholder for Map -->
-           Map Area (Google/Naver Map Embed)
-        </div>
-
-        <div class="flex flex-col md:flex-row gap-3 justify-center mb-12">
-           <button class="flex-1 py-3 px-6 bg-[#FAE100] text-[#3C1E1E] rounded-md text-sm font-semibold shadow-sm hover:shadow-md transition flex items-center justify-center gap-2">
-              <span class="text-lg">K</span> 카카오내비
-           </button>
-           <button class="flex-1 py-3 px-6 bg-[#00C73C] text-white rounded-md text-sm font-semibold shadow-sm hover:shadow-md transition flex items-center justify-center gap-2">
-              <span class="text-lg">N</span> 네이버지도
-           </button>
-           <button class="flex-1 py-3 px-6 bg-[#006CFF] text-white rounded-md text-sm font-semibold shadow-sm hover:shadow-md transition flex items-center justify-center gap-2">
-              <span class="text-lg">T</span> 티맵
-           </button>
-        </div>
-     </div>
-  </section>
-
-  <!-- Money Gift (Accordion) -->
-  <section class="section-padding px-6 bg-[#fff]" data-aos="fade-up">
-     <div class="container mx-auto max-w-md">
-        <div class="text-center mb-10">
-           <h2 class="text-2xl text-[#2C2C2C] font-serif-elegant font-light italic mb-2">For Gift</h2>
-           <p class="text-xs text-[#8C7B6C] uppercase tracking-wide">마음 전하실 곳</p>
-        </div>
-        
-        <div class="space-y-4">
-           <div class="border border-[#E5D5C6] rounded-sm overflow-hidden">
-              <button class="accordion-toggle w-full px-6 py-4 flex justify-between items-center bg-[#FFFCF6] hover:bg-[#FDF6EC] transition text-[#4A4A4A] font-medium text-sm" onclick="this.classList.toggle('active')">
-                 <span>신랑측 계좌번호</span>
-                 <span class="text-[#8C7B6C] text-lg">↓</span>
-              </button>
-              <div class="accordion-content bg-white">
-                 <div class="p-6 text-center space-y-3">
-                    <p class="text-sm text-[#8C7B6C]">국민은행 123-456-7890 (홍길동)</p>
-                    <button class="text-xs bg-[#4A4A4A] text-white px-3 py-1 rounded-sm hover:bg-slate-950 transition" onclick="navigator.clipboard.writeText('1234567890')">복사하기</button>
-                 </div>
-              </div>
-           </div>
-           
-           <div class="border border-[#E5D5C6] rounded-sm overflow-hidden">
-              <button class="accordion-toggle w-full px-6 py-4 flex justify-between items-center bg-[#FFFCF6] hover:bg-[#FDF6EC] transition text-[#4A4A4A] font-medium text-sm" onclick="this.classList.toggle('active')">
-                 <span>신부측 계좌번호</span>
-                 <span class="text-[#8C7B6C] text-lg">↓</span>
-              </button>
-              <div class="accordion-content bg-white">
-                 <div class="p-6 text-center space-y-3">
-                    <p class="text-sm text-[#8C7B6C]">우리은행 098-765-4321 (김철수)</p>
-                    <button class="text-xs bg-[#4A4A4A] text-white px-3 py-1 rounded-sm hover:bg-slate-950 transition" onclick="navigator.clipboard.writeText('0987654321')">복사하기</button>
-                 </div>
-              </div>
-           </div>
-        </div>
-     </div>
-  </section>
-
-  <!-- Login Modal -->
-  <div id="wedding-modal" class="fixed inset-0 z-[100] hidden items-center justify-center p-4 bg-[#2C2C2C]/10 backdrop-blur-md">
-    <div class="bg-[#FFFCF6] w-full max-w-sm p-14 shadow-[0_20px_50px_rgba(140,123,108,0.15)] relative border border-[#E5D5C6]" data-aos="zoom-in">
-      <button onclick="toggleWeddingModal()" class="absolute top-8 right-8 text-[#A6998E] hover:text-[#8C7B6C] transition text-xl font-serif-elegant">&times;</button>
-      
-      <div class="text-center mb-12">
-        <h2 class="text-2xl font-serif-elegant font-normal text-[#2C2C2C] mb-2 italic">Guest Access</h2>
-        <p class="text-[10px] text-[#8C7B6C] tracking-[0.3em] uppercase">Enter Invitation Code</p>
+  <!-- ========== 패키지 ========== -->
+  <section id="packages" class="py-24 md:py-32">
+    <div class="max-w-7xl mx-auto px-4 md:px-8">
+      <div class="text-center mb-16">
+        <span class="font-serif italic text-[#B08968] text-lg reveal" style="--delay: 0;">Packages</span>
+        <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mt-4 reveal" style="--delay: 1;">웨딩 패키지</h2>
+        <p class="text-[#3D2E1C]/40 text-base mt-4 max-w-lg mx-auto reveal" style="--delay: 2;">두 분의 스타일과 예산에 맞는 맞춤 패키지를 준비했습니다</p>
       </div>
-      
-      <div class="space-y-8">
-        <div>
-           <input type="text" placeholder="CODE" class="w-full bg-white border border-[#E5D5C6] py-4 px-6 outline-none focus:border-[#8C7B6C] transition text-sm font-serif-elegant text-[#2C2C2C] text-center placeholder-[#D4D4D0] tracking-[0.3em]">
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div class="pkg-card group reveal" style="--delay: 0;">
+          <div class="overflow-hidden rounded-2xl">
+            <img src="https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?q=80&w=600" alt="클래식 패키지" class="w-full aspect-[3/4] object-cover transition duration-700" loading="lazy">
+          </div>
+          <div class="mt-5">
+            <span class="font-serif italic text-[#B08968] text-sm">Classic</span>
+            <h3 class="text-lg font-bold mt-1">클래식 웨딩</h3>
+            <p class="text-sm text-[#3D2E1C]/40 mt-2 leading-relaxed">전통적인 아름다움을 담은 클래식한 웨딩 패키지.</p>
+            <p class="text-[#B08968] font-bold mt-3">350만원~</p>
+          </div>
         </div>
-        
-        <button class="w-full bg-[#8C7B6C] text-white py-4 text-[11px] tracking-[0.3em] font-semibold uppercase hover:bg-[#6D5E52] transition shadow-md">
-           Unlock
-        </button>
-        
-        <div class="text-center pt-4">
-           <p class="text-[10px] text-[#A6998E] tracking-wide font-serif-elegant italic">"We look forward to seeing you."</p>
+
+        <div class="pkg-card group reveal" style="--delay: 1;">
+          <div class="overflow-hidden rounded-2xl">
+            <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?q=80&w=600" alt="모던 패키지" class="w-full aspect-[3/4] object-cover transition duration-700" loading="lazy">
+          </div>
+          <div class="mt-5">
+            <span class="font-serif italic text-[#B08968] text-sm">Modern</span>
+            <h3 class="text-lg font-bold mt-1">모던 웨딩</h3>
+            <p class="text-sm text-[#3D2E1C]/40 mt-2 leading-relaxed">세련되고 현대적인 감각의 모던 웨딩 패키지.</p>
+            <p class="text-[#B08968] font-bold mt-3">500만원~</p>
+          </div>
+        </div>
+
+        <div class="pkg-card group reveal" style="--delay: 2;">
+          <div class="overflow-hidden rounded-2xl">
+            <img src="https://images.unsplash.com/photo-1520854221256-17451cc331bf?q=80&w=600" alt="가든 패키지" class="w-full aspect-[3/4] object-cover transition duration-700" loading="lazy">
+          </div>
+          <div class="mt-5">
+            <span class="font-serif italic text-[#B08968] text-sm">Garden</span>
+            <h3 class="text-lg font-bold mt-1">가든 웨딩</h3>
+            <p class="text-sm text-[#3D2E1C]/40 mt-2 leading-relaxed">자연 속에서 펼쳐지는 로맨틱한 야외 웨딩.</p>
+            <p class="text-[#B08968] font-bold mt-3">700만원~</p>
+          </div>
+        </div>
+
+        <div class="pkg-card group reveal" style="--delay: 3;">
+          <div class="overflow-hidden rounded-2xl">
+            <img src="https://images.unsplash.com/photo-1546032996-6dfacbacbf3f?q=80&w=600" alt="프리미엄 패키지" class="w-full aspect-[3/4] object-cover transition duration-700" loading="lazy">
+          </div>
+          <div class="mt-5">
+            <span class="font-serif italic text-[#B08968] text-sm">Premium</span>
+            <h3 class="text-lg font-bold mt-1">프리미엄 웨딩</h3>
+            <p class="text-sm text-[#3D2E1C]/40 mt-2 leading-relaxed">모든 것을 맞춤 제작하는 올인원 프리미엄 웨딩.</p>
+            <p class="text-[#B08968] font-bold mt-3">1,200만원~</p>
+          </div>
         </div>
       </div>
     </div>
-  </div>
+  </section>
 
-  <footer class="py-20 md:py-32 bg-[#FFFCF6] text-center px-6 border-t border-[#E5D5C6]/50">
-     <div class="inline-flex flex-col items-center gap-10 mb-8">
-        <span class="font-serif-elegant text-2xl tracking-[0.2em] text-[#8C7B6C] uppercase">Eternal<span class="text-[#E5D5C6] italic">Vow</span></span>
-        <span class="text-[10px] font-semibold text-[#A6998E] tracking-[0.4em] uppercase">Premium Wedding Service</span>
-     </div>
-     <p class="text-[10px] text-[#D4D4D0] tracking-[0.5em] uppercase px-6">© 2024 ETERNAL VOW. ALL RIGHTS RESERVED.</p>
+  <!-- ========== 갤러리 ========== -->
+  <section id="gallery" class="py-24 md:py-32 bg-white">
+    <div class="max-w-7xl mx-auto px-4 md:px-8">
+      <div class="text-center mb-16">
+        <span class="font-serif italic text-[#B08968] text-lg reveal" style="--delay: 0;">Gallery</span>
+        <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mt-4 reveal" style="--delay: 1;">웨딩 갤러리</h2>
+      </div>
+
+      <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+        <div class="gallery-item overflow-hidden rounded-2xl reveal" style="--delay: 0;">
+          <img src="https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=800" alt="웨딩 1" class="w-full aspect-square object-cover transition duration-700" loading="lazy">
+        </div>
+        <div class="gallery-item overflow-hidden rounded-2xl md:row-span-2 reveal" style="--delay: 1;">
+          <img src="https://images.unsplash.com/photo-1591604466107-ec97de577aff?q=80&w=800" alt="웨딩 2" class="w-full h-full object-cover transition duration-700" loading="lazy">
+        </div>
+        <div class="gallery-item overflow-hidden rounded-2xl reveal" style="--delay: 2;">
+          <img src="https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?q=80&w=800" alt="웨딩 3" class="w-full aspect-square object-cover transition duration-700" loading="lazy">
+        </div>
+        <div class="gallery-item overflow-hidden rounded-2xl reveal" style="--delay: 3;">
+          <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?q=80&w=800" alt="웨딩 4" class="w-full aspect-square object-cover transition duration-700" loading="lazy">
+        </div>
+        <div class="gallery-item overflow-hidden rounded-2xl col-span-2 md:col-span-1 reveal" style="--delay: 4;">
+          <img src="https://images.unsplash.com/photo-1520854221256-17451cc331bf?q=80&w=800" alt="웨딩 5" class="w-full aspect-[2/1] md:aspect-square object-cover transition duration-700" loading="lazy">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== 진행과정 ========== -->
+  <section id="process" class="py-24 md:py-32">
+    <div class="max-w-7xl mx-auto px-4 md:px-8">
+      <div class="text-center mb-16">
+        <span class="font-serif italic text-[#B08968] text-lg reveal" style="--delay: 0;">Process</span>
+        <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mt-4 reveal" style="--delay: 1;">웨딩 진행 과정</h2>
+      </div>
+
+      <div class="grid md:grid-cols-4 gap-8 max-w-5xl mx-auto">
+        <div class="text-center reveal" style="--delay: 0;">
+          <div class="w-16 h-16 bg-[#B08968] rounded-full flex items-center justify-center mx-auto mb-4">
+            <span class="font-serif text-white text-2xl font-semibold italic">01</span>
+          </div>
+          <h3 class="font-bold mb-2">상담</h3>
+          <p class="text-sm text-[#3D2E1C]/40">1:1 맞춤 상담으로 두 분의 이야기를 듣습니다.</p>
+        </div>
+        <div class="text-center reveal" style="--delay: 1;">
+          <div class="w-16 h-16 bg-[#B08968] rounded-full flex items-center justify-center mx-auto mb-4">
+            <span class="font-serif text-white text-2xl font-semibold italic">02</span>
+          </div>
+          <h3 class="font-bold mb-2">기획</h3>
+          <p class="text-sm text-[#3D2E1C]/40">컨셉, 플라워, 공간 디자인을 기획합니다.</p>
+        </div>
+        <div class="text-center reveal" style="--delay: 2;">
+          <div class="w-16 h-16 bg-[#B08968] rounded-full flex items-center justify-center mx-auto mb-4">
+            <span class="font-serif text-white text-2xl font-semibold italic">03</span>
+          </div>
+          <h3 class="font-bold mb-2">준비</h3>
+          <p class="text-sm text-[#3D2E1C]/40">드레스, 메이크업, 촬영 등 세부 준비를 진행합니다.</p>
+        </div>
+        <div class="text-center reveal" style="--delay: 3;">
+          <div class="w-16 h-16 bg-[#B08968] rounded-full flex items-center justify-center mx-auto mb-4">
+            <span class="font-serif text-white text-2xl font-semibold italic">04</span>
+          </div>
+          <h3 class="font-bold mb-2">당일</h3>
+          <p class="text-sm text-[#3D2E1C]/40">전담 코디네이터가 당일 모든 진행을 담당합니다.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== 후기 ========== -->
+  <section class="py-24 md:py-32 bg-white">
+    <div class="max-w-7xl mx-auto px-4 md:px-8">
+      <div class="text-center mb-16">
+        <span class="font-serif italic text-[#B08968] text-lg reveal" style="--delay: 0;">Reviews</span>
+        <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mt-4 reveal" style="--delay: 1;">신랑신부 후기</h2>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+        <div class="bg-[#FDF8F4] p-8 rounded-2xl reveal" style="--delay: 0;">
+          <div class="flex items-center gap-1 text-[#B08968] mb-4">
+            <i class="fas fa-star text-sm"></i><i class="fas fa-star text-sm"></i><i class="fas fa-star text-sm"></i><i class="fas fa-star text-sm"></i><i class="fas fa-star text-sm"></i>
+          </div>
+          <p class="text-sm text-[#3D2E1C]/60 leading-relaxed italic">"상상 이상의 웨딩이었어요. 모든 디테일이 완벽했고, 코디네이터분이 너무 잘 챙겨주셨어요."</p>
+          <p class="text-sm font-bold mt-4">김OO & 이OO 부부</p>
+          <p class="text-xs text-[#3D2E1C]/30">2024년 5월 가든 웨딩</p>
+        </div>
+
+        <div class="bg-[#FDF8F4] p-8 rounded-2xl reveal" style="--delay: 1;">
+          <div class="flex items-center gap-1 text-[#B08968] mb-4">
+            <i class="fas fa-star text-sm"></i><i class="fas fa-star text-sm"></i><i class="fas fa-star text-sm"></i><i class="fas fa-star text-sm"></i><i class="fas fa-star text-sm"></i>
+          </div>
+          <p class="text-sm text-[#3D2E1C]/60 leading-relaxed italic">"플라워 데코레이션이 정말 아름다웠어요. 하객분들 모두 감탄하셨습니다."</p>
+          <p class="text-sm font-bold mt-4">박OO & 최OO 부부</p>
+          <p class="text-xs text-[#3D2E1C]/30">2024년 3월 클래식 웨딩</p>
+        </div>
+
+        <div class="bg-[#FDF8F4] p-8 rounded-2xl reveal" style="--delay: 2;">
+          <div class="flex items-center gap-1 text-[#B08968] mb-4">
+            <i class="fas fa-star text-sm"></i><i class="fas fa-star text-sm"></i><i class="fas fa-star text-sm"></i><i class="fas fa-star text-sm"></i><i class="fas fa-star text-sm"></i>
+          </div>
+          <p class="text-sm text-[#3D2E1C]/60 leading-relaxed italic">"준비부터 당일까지 정말 편안하게 진행할 수 있었어요. 강력 추천합니다!"</p>
+          <p class="text-sm font-bold mt-4">정OO & 한OO 부부</p>
+          <p class="text-xs text-[#3D2E1C]/30">2024년 10월 프리미엄 웨딩</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== 숫자로 보는 ETERNAL ========== -->
+  <section class="py-24 md:py-32">
+    <div class="max-w-7xl mx-auto px-4 md:px-8">
+      <div class="text-center mb-16">
+        <span class="font-serif italic text-[#B08968] text-lg reveal" style="--delay: 0;">Numbers</span>
+        <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mt-4 reveal" style="--delay: 1;">숫자로 보는 ETERNAL</h2>
+      </div>
+
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-4xl mx-auto">
+        <div class="text-center reveal" style="--delay: 0;">
+          <p class="text-4xl md:text-5xl font-bold text-[#B08968]">1,200+</p>
+          <p class="text-sm text-[#3D2E1C]/40 mt-2">웨딩 진행</p>
+        </div>
+        <div class="text-center reveal" style="--delay: 1;">
+          <p class="text-4xl md:text-5xl font-bold text-[#B08968]">8년</p>
+          <p class="text-sm text-[#3D2E1C]/40 mt-2">업계 경험</p>
+        </div>
+        <div class="text-center reveal" style="--delay: 2;">
+          <p class="text-4xl md:text-5xl font-bold text-[#B08968]">4.9</p>
+          <p class="text-sm text-[#3D2E1C]/40 mt-2">평균 평점</p>
+        </div>
+        <div class="text-center reveal" style="--delay: 3;">
+          <p class="text-4xl md:text-5xl font-bold text-[#B08968]">15명</p>
+          <p class="text-sm text-[#3D2E1C]/40 mt-2">전문 스태프</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== 상담예약 ========== -->
+  <section id="consultation" class="py-24 md:py-32 bg-gradient-to-br from-[#B08968] to-[#96724E] text-white relative overflow-hidden">
+    <div class="absolute top-0 left-0 w-96 h-96 bg-white/5 rounded-full blur-[100px]"></div>
+
+    <div class="max-w-4xl mx-auto px-4 md:px-8 relative z-10">
+      <div class="text-center mb-12">
+        <p class="font-serif italic text-white/70 text-lg reveal" style="--delay: 0;">Consultation</p>
+        <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mt-4 reveal" style="--delay: 1;">무료 상담 예약</h2>
+        <p class="text-white/60 text-base mt-4 reveal" style="--delay: 2;">두 분의 특별한 날을 함께 준비하겠습니다</p>
+      </div>
+
+      <div class="bg-white/10 backdrop-blur-xl rounded-3xl p-8 md:p-12 reveal" style="--delay: 3;">
+        <div class="grid md:grid-cols-2 gap-6">
+          <div>
+            <label class="block text-sm font-medium text-white/80 mb-2">신랑 이름</label>
+            <input type="text" placeholder="홍길동" class="w-full bg-white/10 border border-white/20 rounded-xl px-5 py-3.5 text-white placeholder-white/40 outline-none focus:border-white/60 transition">
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-white/80 mb-2">신부 이름</label>
+            <input type="text" placeholder="김영희" class="w-full bg-white/10 border border-white/20 rounded-xl px-5 py-3.5 text-white placeholder-white/40 outline-none focus:border-white/60 transition">
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-white/80 mb-2">연락처</label>
+            <input type="tel" placeholder="010-0000-0000" class="w-full bg-white/10 border border-white/20 rounded-xl px-5 py-3.5 text-white placeholder-white/40 outline-none focus:border-white/60 transition">
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-white/80 mb-2">예식 예정일</label>
+            <input type="date" class="w-full bg-white/10 border border-white/20 rounded-xl px-5 py-3.5 text-white outline-none focus:border-white/60 transition">
+          </div>
+          <div class="md:col-span-2">
+            <label class="block text-sm font-medium text-white/80 mb-2">원하시는 웨딩 스타일</label>
+            <textarea rows="3" placeholder="원하시는 컨셉이나 분위기를 알려주세요" class="w-full bg-white/10 border border-white/20 rounded-xl px-5 py-3.5 text-white placeholder-white/40 outline-none focus:border-white/60 transition resize-none"></textarea>
+          </div>
+        </div>
+        <button class="w-full mt-8 bg-white text-[#B08968] py-4 rounded-full font-bold text-lg hover:bg-[#FDF8F4] shadow-lg">상담 신청하기</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== Footer ========== -->
+  <footer class="py-16 md:py-24 bg-[#1C1510] text-white">
+    <div class="max-w-7xl mx-auto px-4 md:px-8">
+      <div class="grid md:grid-cols-3 gap-12 mb-16">
+        <div>
+          <p class="font-serif text-2xl italic text-[#B08968] mb-4">Eternal</p>
+          <p class="text-white/30 text-sm leading-relaxed">서울특별시 강남구 도산대로 45길 12<br>에터널 스튜디오 2층</p>
+          <p class="text-white/30 text-sm mt-2">대표: 이에터널 | 사업자등록번호: 456-78-90123</p>
+        </div>
+
+        <div class="grid grid-cols-2 gap-8">
+          <div>
+            <p class="text-xs font-semibold text-white/20 uppercase tracking-wider mb-4">패키지</p>
+            <ul class="space-y-2.5">
+              <li><a href="#packages" class="text-white/40 text-sm hover:text-[#B08968] transition">클래식</a></li>
+              <li><a href="#packages" class="text-white/40 text-sm hover:text-[#B08968] transition">모던</a></li>
+              <li><a href="#packages" class="text-white/40 text-sm hover:text-[#B08968] transition">가든</a></li>
+              <li><a href="#packages" class="text-white/40 text-sm hover:text-[#B08968] transition">프리미엄</a></li>
+            </ul>
+          </div>
+          <div>
+            <p class="text-xs font-semibold text-white/20 uppercase tracking-wider mb-4">정보</p>
+            <ul class="space-y-2.5">
+              <li><a href="#gallery" class="text-white/40 text-sm hover:text-[#B08968] transition">갤러리</a></li>
+              <li><a href="#process" class="text-white/40 text-sm hover:text-[#B08968] transition">진행과정</a></li>
+              <li><a href="#consultation" class="text-white/40 text-sm hover:text-[#B08968] transition">상담</a></li>
+              <li><a href="#" class="text-white/40 text-sm hover:text-[#B08968] transition">후기</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <div>
+          <p class="text-xs font-semibold text-white/20 uppercase tracking-wider mb-4">연락처</p>
+          <p class="text-xl font-bold text-[#B08968]">02-555-0123</p>
+          <p class="text-white/30 text-sm mt-2">평일 10:00 - 19:00 | 주말 예약제</p>
+          <div class="flex gap-3 mt-4">
+            <a href="#" class="w-10 h-10 bg-white/5 rounded-lg flex items-center justify-center text-white/40 hover:text-[#B08968] hover:bg-white/10 transition"><i class="fab fa-instagram text-sm"></i></a>
+            <a href="#" class="w-10 h-10 bg-white/5 rounded-lg flex items-center justify-center text-white/40 hover:text-[#B08968] hover:bg-white/10 transition"><i class="fab fa-pinterest text-sm"></i></a>
+          </div>
+        </div>
+      </div>
+
+      <div class="border-t border-white/5 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+        <p class="text-xs text-white/15">&copy; 2024 ETERNAL. All rights reserved by DLAB.</p>
+        <div class="flex gap-6">
+          <a href="#" class="text-xs text-white/15 hover:text-white/30 transition">개인정보처리방침</a>
+          <a href="#" class="text-xs text-white/15 hover:text-white/30 transition">이용약관</a>
+        </div>
+      </div>
+    </div>
   </footer>
 
-  <script>
-    function toggleWeddingModal() {
-      const modal = document.getElementById('wedding-modal');
-      modal.classList.toggle('hidden');
-      modal.classList.toggle('flex');
-    }
-
-    // Countdown Timer
-    function updateCountdown() {
-       const targetDate = new Date('2025-10-12T14:00:00');
-       const now = new Date();
-       const diff = targetDate - now;
-
-       if (diff > 0) {
-          const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-          const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-          const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-          const seconds = Math.floor((diff % (1000 * 60)) / 1000);
-
-          document.getElementById('days').innerText = String(days).padStart(2, '0');
-          document.getElementById('hours').innerText = String(hours).padStart(2, '0');
-          document.getElementById('minutes').innerText = String(minutes).padStart(2, '0');
-          document.getElementById('seconds').innerText = String(seconds).padStart(2, '0');
-       }
-    }
-    
-    setInterval(updateCountdown, 1000);
-    updateCountdown();
-  </script>
-
 </div>
+
+<script>
+  (function() {
+    const observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+    document.querySelectorAll('.reveal').forEach(function(el) { observer.observe(el); });
+  })();
+</script>
