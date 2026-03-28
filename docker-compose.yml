@@ -1,0 +1,28 @@
+services:
+  dlab-website-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: dlab-website-app
+    restart: unless-stopped
+    ports:
+      - "4040:80"
+    env_file:
+      - .env
+    volumes:
+      - dlab_website_storage:/rails/storage
+    networks:
+      - npm_default
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:80/up"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 60s
+
+volumes:
+  dlab_website_storage:
+
+networks:
+  npm_default:
+    external: true

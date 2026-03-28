@@ -1,17 +1,22 @@
-# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+# 테스트용 주문 데이터
 
-one:
+pending_order:
+  user: regular_user
   product: one
-  customer_name: MyString
-  amount: 1
-  status: MyString
-  payment_key: MyString
-  order_uid: MyString
+  customer_name: "일반유저"
+  amount: 99000
+  status: "pending"
+  payment_key: "pay_test_001"
+  order_uid: "ORD-001"
+  total_amount: 99000
 
-two:
-  product: two
-  customer_name: MyString
-  amount: 1
-  status: MyString
-  payment_key: MyString
-  order_uid: MyString
+paid_order:
+  user: owner
+  product: one
+  customer_name: "에이전시오너"
+  amount: 149000
+  status: "paid"
+  payment_key: "pay_test_002"
+  order_uid: "ORD-002"
+  total_amount: 149000
+  agency: main_agency

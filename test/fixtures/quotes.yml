@@ -1,21 +1,24 @@
-# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+# 테스트용 견적 데이터
 
-one:
-  company_name: MyString
-  contact_name: MyString
-  email: MyString
-  phone: MyString
-  project_type: MyString
-  budget: MyString
-  message: MyText
-  status: MyString
+pending_quote:
+  company_name: "테스트회사"
+  contact_name: "홍길동"
+  email: "hong@example.com"
+  phone: "010-1234-5678"
+  project_type: "웹사이트"
+  budget: "100만원~300만원"
+  message: "홈페이지 제작 문의드립니다."
+  status: "pending"
+  workflow_status: "received"
 
-two:
-  company_name: MyString
-  contact_name: MyString
-  email: MyString
-  phone: MyString
-  project_type: MyString
-  budget: MyString
-  message: MyText
-  status: MyString
+completed_quote:
+  company_name: "완료회사"
+  contact_name: "김철수"
+  email: "kim@example.com"
+  phone: "010-9876-5432"
+  project_type: "쇼핑몰"
+  budget: "500만원 이상"
+  message: "쇼핑몰 구축 완료 건"
+  status: "completed"
+  workflow_status: "completed"
+  user: regular_user

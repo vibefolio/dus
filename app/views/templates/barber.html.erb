@@ -1,139 +1,566 @@
-<%# Barber Template - 바버 클래식 (BARBER CLASSIC) %>
+<%# Barber Template - 블랙스미스 바버샵 (BLACKSMITH BARBER) %>
 
 <style>
+  /* Supanova Design — Masculine Vintage-Modern Archetype */
+  * { word-break: keep-all; }
+  html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+  h1, h2, h3, h4 { text-wrap: balance; letter-spacing: -0.02em; line-height: 1.3; }
+  a, button { transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1); }
+  a:hover, button:hover { transform: scale(1.02); }
+  a:active, button:active { transform: scale(0.98); }
+
   @import url('https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700;800&family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap');
-  
+
   .font-serif { font-family: 'Nanum Myeongjo', serif; }
-  .font-sans { font-family: 'Noto Sans KR', sans-serif; }
+  .font-sans { font-family: 'Pretendard Variable', 'Pretendard', -apple-system, sans-serif; }
 
   @media (max-width: 768px) {
     .mobile-desc { font-size: 14px !important; line-height: 1.8; }
     .mobile-title { font-size: 40px !important; }
   }
 
-  .texture {
+  .leather-texture {
     background-image: url("https://www.transparenttextures.com/patterns/dark-leather.png");
-    opacity: 0.1;
+    opacity: 0.08;
   }
+
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(2rem); filter: blur(4px); }
+    to { opacity: 1; transform: translateY(0); filter: blur(0); }
+  }
+  .reveal { opacity: 0; transform: translateY(2rem); }
+  .reveal.is-visible { animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards; animation-delay: calc(var(--delay, 0) * 100ms); }
+
+  .menu-card { transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1); }
+  .menu-card:hover { transform: translateY(-8px); }
 </style>
 
-<div class="bg-[#121212] text-[#E5E5E5] font-sans selection:bg-[#B8860B] selection:text-white min-h-screen overflow-x-hidden relative">
-  <div class="fixed inset-0 texture pointer-events-none"></div>
+<div class="bg-[#1A1A1A] text-[#F5F0EB] font-sans selection:bg-[#C8956C] selection:text-white min-h-screen overflow-x-hidden relative">
+  <div class="fixed inset-0 leather-texture pointer-events-none"></div>
 
-  <!-- Nav -->
-  <nav class="fixed w-full z-50 px-8 py-12 md:px-12 bg-[#121212]/80 backdrop-blur-xl border-b border-white/5">
-    <div class="container mx-auto px-4 md:px-6 flex justify-between items-center flex-nowrap">
-      <div class="flex items-center gap-10">
-         <span class="font-serif text-2xl tracking-[0.4em] font-semibold uppercase text-[#B8860B]">BARBER<span class="text-white">CLASSIC</span></span>
-      </div>
-      
-      <div class="hidden md:flex gap-14 text-[10px] font-semibold uppercase tracking-[0.4em] text-white/30">
-        <a href="#about" class="hover:text-[#B8860B] transition">Heritage</a>
-        <a href="#ritual" class="hover:text-[#B8860B] transition">Ritual</a>
-        <a href="#booking" class="hover:text-[#B8860B] transition">Apointment</a>
-      </div>
-           <button class="mobile-menu-trigger md:hidden ml-auto text-2xl focus:outline-none" style="color: inherit;">
-             <i class="fas fa-bars"></i>
-           </button>
+  <!-- ========== Nav ========== -->
+  <nav class="fixed w-full z-50 px-4 md:px-8 py-5 bg-[#1A1A1A]/80 backdrop-blur-xl border-b border-white/5">
+    <div class="max-w-7xl mx-auto flex justify-between items-center">
+      <a href="#" class="flex items-center gap-3">
+        <span class="font-serif text-2xl tracking-[0.4em] font-semibold uppercase text-[#C8956C]">BLACK<span class="text-[#F5F0EB]">SMITH</span></span>
+      </a>
 
-      
-      <div class="flex-nowrap shrink-0 flex gap-12 items-center">
-         <button onclick="toggleBarberModal()" class="hidden md:block text-[10px] font-semibold uppercase tracking-[0.4em] text-white/30 hover:text-[#B8860B]" data-mobile-menu-copy="true">Club_ID</button>
-         <button class="hidden md:block bg-[#B8860B] text-slate-900 px-10 py-3.5 rounded-none font-semibold text-[10px] tracking-[0.4em] uppercase hover:bg-white transition shadow-2xl" data-mobile-menu-copy="true">
-           Book Now
-         </button>
+      <div class="hidden md:flex gap-12 text-[10px] font-semibold uppercase tracking-[0.4em] text-white/30">
+        <a href="#about" class="hover:text-[#C8956C] transition">Heritage</a>
+        <a href="#menu" class="hover:text-[#C8956C] transition">Menu</a>
+        <a href="#barbers" class="hover:text-[#C8956C] transition">Barbers</a>
+        <a href="#location" class="hover:text-[#C8956C] transition">Location</a>
+      </div>
+
+      <button class="mobile-menu-trigger md:hidden ml-auto text-2xl focus:outline-none" style="color: inherit;">
+        <i class="fas fa-bars"></i>
+      </button>
+
+      <div class="hidden md:flex gap-6 items-center shrink-0">
+        <button onclick="toggleBarberModal()" class="text-[10px] font-semibold uppercase tracking-[0.4em] text-white/30 hover:text-[#C8956C]" data-mobile-menu-copy="true">Club ID</button>
+        <button class="bg-[#C8956C] text-[#1A1A1A] px-8 py-3.5 font-semibold text-[10px] tracking-[0.3em] uppercase hover:bg-white transition shadow-lg" data-mobile-menu-copy="true">
+          예약하기
+        </button>
       </div>
     </div>
 
-      <%= render partial: 'templates/shared/mobile_menu_overlay' %></nav>
+    <%= render partial: 'templates/shared/mobile_menu_overlay' %>
+  </nav>
 
-  <!-- Hero -->
-  <header class="min-h-screen relative flex items-center justify-center pt-20">
+  <!-- ========== Hero ========== -->
+  <header class="min-h-[100dvh] relative flex items-center justify-center pt-20">
     <div class="absolute inset-0 z-0">
-       <div class="absolute inset-0 bg-gradient-to-t from-[#121212] via-transparent to-[#121212]"></div>
-       <img src="https://images.unsplash.com/photo-1621605815971-fbc98d665033?q=80&w=2400" alt="Barbershop" class="w-full h-full object-cover grayscale brightness-50 contrast-125">
+      <div class="absolute inset-0 bg-gradient-to-t from-[#1A1A1A] via-transparent to-[#1A1A1A]/80 z-10"></div>
+      <img src="https://images.unsplash.com/photo-1621605815971-fbc98d665033?q=80&w=2400" alt="바버샵" class="w-full h-full object-cover grayscale brightness-50 contrast-125">
     </div>
-    
-    <div class="container mx-auto px-3 md:px-6 relative z-10 grid lg:grid-cols-2 gap-10 md:p-16 items-center">
-      <div class="space-y-12 text-center lg:text-left">
-        <div class="inline-flex items-center gap-6">
-           <div class="w-12 h-[1px] bg-[#B8860B]"></div>
-           <span class="text-[10px] font-semibold tracking-[0.8em] uppercase text-[#B8860B]">Established 1984</span>
+
+    <div class="max-w-7xl mx-auto px-4 md:px-8 relative z-10 grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+      <div class="space-y-10 text-center lg:text-left">
+        <div class="inline-flex items-center gap-5 reveal" style="--delay: 0;">
+          <span class="w-10 h-[1px] bg-[#C8956C]"></span>
+          <span class="text-[10px] font-semibold tracking-[0.6em] uppercase text-[#C8956C]">Established 1984</span>
         </div>
-        
-        <h1 class="text-3xl md:text-5xl md:text-[7.5rem] font-serif font-semibold leading-none tracking-tight mobile-title">
-            Gentlemen's<br><span class="italic text-[#B8860B]">Sanctuary.</span>
+
+        <h1 class="text-4xl md:text-6xl lg:text-[5.5rem] font-serif font-semibold leading-tight tracking-tight text-[#F5F0EB] mobile-title reveal" style="--delay: 1;">
+          남자의 품격을<br><span class="italic text-[#C8956C]">벼려내다.</span>
         </h1>
-        
-        <p class="text-white/40 text-sm md:text-xl leading-[1.8] max-w-lg mx-auto lg:mx-0 mobile-desc">
-           정통 바버링의 가치와 현대적 감각의 조화. 바버 클래식은 당신의 취향과 스타일을 한 단계 더 높여주는 가장 완벽한 그루밍 시퀀스를 제안합니다.
+
+        <p class="text-white/40 text-sm md:text-lg leading-relaxed max-w-lg mx-auto lg:mx-0 mobile-desc reveal" style="--delay: 2;">
+          정통 바버링의 가치와 현대적 감각의 조화. 블랙스미스는 당신의 스타일을 한 단계 더 높여주는 그루밍 시퀀스를 제안합니다.
         </p>
-        
-        <div class="pt-6 flex flex-col sm:flex-row gap-12 justify-center lg:justify-start">
-           <button class="px-14 py-6 bg-[#B8860B] text-slate-900 font-semibold text-[11px] tracking-[0.4em] uppercase hover:bg-white transition-all shadow-2xl">
-              Discover Ritual
-           </button>
-           <button class="px-14 py-6 border border-white/10 text-white font-semibold text-[11px] tracking-[0.4em] uppercase hover:bg-white/5 transition-all">
-              Private Lounge
-           </button>
+
+        <div class="pt-4 flex flex-col sm:flex-row gap-5 justify-center lg:justify-start reveal" style="--delay: 3;">
+          <a href="#menu" class="inline-flex items-center justify-center gap-3 px-10 py-5 bg-[#C8956C] text-[#1A1A1A] font-semibold text-[11px] tracking-[0.3em] uppercase hover:bg-white shadow-xl">
+            커트 메뉴 보기
+            <span class="w-7 h-7 bg-[#1A1A1A]/10 flex items-center justify-center">
+              <i class="fas fa-arrow-right text-[10px]"></i>
+            </span>
+          </a>
+          <a href="#about" class="inline-flex items-center justify-center px-10 py-5 border border-white/10 text-white font-semibold text-[11px] tracking-[0.3em] uppercase hover:bg-white/5">
+            브랜드 스토리
+          </a>
         </div>
       </div>
 
-      <div class="relative hidden lg:block">
-         <div class="relative group">
-            <div class="absolute -top-10 -left-10 w-full h-full border border-[#B8860B]/20 pointer-events-none group-hover:top-0 group-hover:left-0 transition-all duration-700"></div>
-            <img src="https://images.unsplash.com/photo-1503951914875-452162b0f3f1?q=80&w=1200" alt="Barbering" class="w-full aspect-square object-cover grayscale brightness-75 group-hover:grayscale-0 transition duration-1000">
-            <div class="absolute -bottom-8 -right-8 bg-[#B8860B] p-10 shadow-2xl">
-               <p class="text-[10px] font-semibold text-slate-900 uppercase tracking-[0.4em] mb-4">Craftsmanship</p>
-               <h3 class="font-serif text-2xl font-semibold text-slate-900 italic">The Master's Cut</h3>
-            </div>
-         </div>
+      <div class="relative hidden lg:block reveal" style="--delay: 2;">
+        <div class="relative group">
+          <div class="absolute -top-6 -left-6 w-full h-full border border-[#C8956C]/20 pointer-events-none group-hover:top-0 group-hover:left-0 transition-all duration-700"></div>
+          <img src="https://images.unsplash.com/photo-1503951914875-452162b0f3f1?q=80&w=1200" alt="바버링" class="w-full aspect-square object-cover grayscale brightness-75 group-hover:grayscale-0 transition duration-1000">
+          <div class="absolute -bottom-6 -right-6 bg-[#C8956C] p-8 shadow-2xl">
+            <p class="text-[10px] font-semibold text-[#1A1A1A] uppercase tracking-[0.4em] mb-3">Craftsmanship</p>
+            <h3 class="font-serif text-xl font-semibold text-[#1A1A1A] italic">The Master's Cut</h3>
+          </div>
+        </div>
       </div>
     </div>
   </header>
 
-  <!-- Login Modal -->
-  <div id="barber-modal" class="fixed inset-0 z-[100] hidden items-center justify-center p-4 bg-slate-950/95 backdrop-blur-2xl">
-    <div class="bg-[#1A1A1B] w-full max-w-sm p-6 md:p-16 shadow-2xl relative border border-[#B8860B]/10">
-      <div class="absolute top-0 left-0 w-full h-[1px] bg-[#B8860B]/20"></div>
-      <button onclick="toggleBarberModal()" class="absolute top-12 right-12 text-white/20 hover:text-[#B8860B] transition text-2xl font-light">&times;</button>
-      
-      <div class="text-center mb-14">
-        <h2 class="text-xl font-serif tracking-[0.6em] text-white mb-3 font-semibold uppercase">CLUB_MEMBER</h2>
-        <p class="text-[9px] text-[#B8860B] font-semibold tracking-[0.3em] uppercase">Private Grooming Connection</p>
-      </div>
-      
-      <div class="space-y-8">
-        <div class="space-y-3">
-           <p class="text-[9px] font-semibold text-white/20 uppercase tracking-[0.2em] ml-1">Authorized Access</p>
-           <input type="text" placeholder="GENTLEMAN_ID" class="w-full bg-white/5 border border-white/5 py-6 px-8 outline-none focus:border-[#B8860B] transition text-[11px] font-semibold tracking-[0.4em] text-white">
+  <!-- ========== About ========== -->
+  <section id="about" class="py-24 md:py-32 relative">
+    <div class="max-w-7xl mx-auto px-4 md:px-8 grid lg:grid-cols-2 gap-16 lg:gap-24 items-center">
+      <div class="relative reveal" style="--delay: 0;">
+        <div class="grid grid-cols-5 gap-4">
+          <div class="col-span-3 overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1585747860715-2ba37e788b70?q=80&w=800" alt="바버 작업" class="w-full h-full object-cover aspect-[3/4] grayscale hover:grayscale-0 transition duration-700" loading="lazy">
+          </div>
+          <div class="col-span-2 flex flex-col gap-4">
+            <div class="overflow-hidden flex-1">
+              <img src="https://images.unsplash.com/photo-1622286342621-4bd786c2447c?q=80&w=600" alt="면도 도구" class="w-full h-full object-cover grayscale hover:grayscale-0 transition duration-700" loading="lazy">
+            </div>
+            <div class="overflow-hidden flex-1">
+              <img src="https://images.unsplash.com/photo-1599351431202-1e0f0137899a?q=80&w=600" alt="바버 의자" class="w-full h-full object-cover grayscale hover:grayscale-0 transition duration-700" loading="lazy">
+            </div>
+          </div>
         </div>
-        <button class="w-full bg-[#B8860B] text-slate-900 py-6 text-[10px] tracking-[0.5em] font-semibold uppercase hover:bg-white transition shadow-xl">
-           Verify Identity
+      </div>
+
+      <div class="space-y-8 reveal" style="--delay: 1;">
+        <div class="inline-flex items-center gap-4">
+          <span class="px-4 py-1.5 text-[11px] uppercase tracking-[0.15em] font-medium bg-[#C8956C]/10 text-[#C8956C] border border-[#C8956C]/20">Heritage</span>
+        </div>
+
+        <h2 class="text-3xl md:text-4xl lg:text-5xl font-serif font-semibold leading-snug text-[#F5F0EB]">
+          40년 전통의<br>장인정신을 잇다
+        </h2>
+
+        <p class="text-white/40 text-base md:text-lg leading-relaxed">
+          블랙스미스 바버샵은 1984년 종로에서 시작되었습니다. 아버지에서 아들로 이어진 가위의 감각은 단순한 기술이 아닌, 남자의 품격을 다루는 철학입니다.
+        </p>
+        <p class="text-white/40 text-base md:text-lg leading-relaxed">
+          최상급 독일제 공구와 영국 전통 그루밍 제품만을 사용합니다. 한 번의 방문으로 끝나지 않는, 평생의 스타일 파트너가 되겠습니다.
+        </p>
+
+        <div class="grid grid-cols-3 gap-6 pt-6 border-t border-white/10">
+          <div>
+            <p class="text-2xl md:text-3xl font-serif font-semibold text-[#C8956C]">40yr</p>
+            <p class="text-[11px] text-white/30 uppercase tracking-[0.1em] mt-1 font-medium">전통 바버샵</p>
+          </div>
+          <div>
+            <p class="text-2xl md:text-3xl font-serif font-semibold text-[#C8956C]">3대</p>
+            <p class="text-[11px] text-white/30 uppercase tracking-[0.1em] mt-1 font-medium">가업 계승</p>
+          </div>
+          <div>
+            <p class="text-2xl md:text-3xl font-serif font-semibold text-[#C8956C]">12K+</p>
+            <p class="text-[11px] text-white/30 uppercase tracking-[0.1em] mt-1 font-medium">연간 고객</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== 커트 메뉴 ========== -->
+  <section id="menu" class="py-24 md:py-32 bg-[#141414] relative">
+    <div class="max-w-7xl mx-auto px-4 md:px-8">
+      <div class="text-center mb-16 md:mb-20">
+        <span class="px-4 py-1.5 text-[11px] uppercase tracking-[0.15em] font-medium bg-[#C8956C]/10 text-[#C8956C] border border-[#C8956C]/20 reveal" style="--delay: 0;">Grooming Menu</span>
+        <h2 class="text-3xl md:text-4xl lg:text-5xl font-serif font-semibold leading-snug text-[#F5F0EB] mt-6 reveal" style="--delay: 1;">
+          당신에게 맞는<br>그루밍 리추얼
+        </h2>
+        <p class="text-white/30 text-base md:text-lg mt-4 max-w-xl mx-auto reveal" style="--delay: 2;">
+          숙련된 마스터 바버의 손끝에서 완성되는 클래식 스타일
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <!-- 메뉴 1 -->
+        <div class="menu-card group reveal" style="--delay: 0;">
+          <div class="bg-[#222] p-1.5 ring-1 ring-white/5">
+            <div class="overflow-hidden">
+              <img src="https://images.unsplash.com/photo-1599351431613-18ef1fdd27e1?q=80&w=600" alt="클래식 컷" class="w-full aspect-square object-cover grayscale group-hover:grayscale-0 transition duration-700" loading="lazy">
+            </div>
+            <div class="p-6">
+              <div class="flex justify-between items-start mb-2">
+                <h3 class="text-lg font-semibold text-[#F5F0EB]">클래식 컷</h3>
+                <span class="text-[#C8956C] font-serif font-semibold text-lg">35,000</span>
+              </div>
+              <p class="text-[13px] text-white/30 leading-relaxed">전통 가위 커트와 면도기 라인업으로 완성하는 정통 스타일</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 메뉴 2 -->
+        <div class="menu-card group reveal" style="--delay: 1;">
+          <div class="bg-[#222] p-1.5 ring-1 ring-white/5">
+            <div class="overflow-hidden">
+              <img src="https://images.unsplash.com/photo-1621605815971-fbc98d665033?q=80&w=600" alt="시그니처 풀코스" class="w-full aspect-square object-cover grayscale group-hover:grayscale-0 transition duration-700" loading="lazy">
+            </div>
+            <div class="p-6">
+              <div class="flex justify-between items-start mb-2">
+                <h3 class="text-lg font-semibold text-[#F5F0EB]">시그니처 풀코스</h3>
+                <span class="text-[#C8956C] font-serif font-semibold text-lg">65,000</span>
+              </div>
+              <p class="text-[13px] text-white/30 leading-relaxed">커트 + 직선 면도 + 핫타올 + 스캘프 마사지 풀 패키지</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 메뉴 3 -->
+        <div class="menu-card group reveal" style="--delay: 2;">
+          <div class="bg-[#222] p-1.5 ring-1 ring-white/5">
+            <div class="overflow-hidden">
+              <img src="https://images.unsplash.com/photo-1622286342621-4bd786c2447c?q=80&w=600" alt="직선 면도" class="w-full aspect-square object-cover grayscale group-hover:grayscale-0 transition duration-700" loading="lazy">
+            </div>
+            <div class="p-6">
+              <div class="flex justify-between items-start mb-2">
+                <h3 class="text-lg font-semibold text-[#F5F0EB]">직선 면도</h3>
+                <span class="text-[#C8956C] font-serif font-semibold text-lg">30,000</span>
+              </div>
+              <p class="text-[13px] text-white/30 leading-relaxed">뜨거운 수건과 에센셜 오일, 전통 직선 면도의 정수</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 메뉴 4 -->
+        <div class="menu-card group reveal" style="--delay: 3;">
+          <div class="bg-[#222] p-1.5 ring-1 ring-white/5">
+            <div class="overflow-hidden">
+              <img src="https://images.unsplash.com/photo-1519019121610-4095cd2e78c3?q=80&w=600" alt="비어드 트리밍" class="w-full aspect-square object-cover grayscale group-hover:grayscale-0 transition duration-700" loading="lazy">
+            </div>
+            <div class="p-6">
+              <div class="flex justify-between items-start mb-2">
+                <h3 class="text-lg font-semibold text-[#F5F0EB]">비어드 트리밍</h3>
+                <span class="text-[#C8956C] font-serif font-semibold text-lg">25,000</span>
+              </div>
+              <p class="text-[13px] text-white/30 leading-relaxed">얼굴형에 맞춘 수염 디자인과 비어드 오일 케어</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== 바버 소개 ========== -->
+  <section id="barbers" class="py-24 md:py-32">
+    <div class="max-w-7xl mx-auto px-4 md:px-8">
+      <div class="text-center mb-16 md:mb-20">
+        <span class="px-4 py-1.5 text-[11px] uppercase tracking-[0.15em] font-medium bg-[#C8956C]/10 text-[#C8956C] border border-[#C8956C]/20 reveal" style="--delay: 0;">Master Barbers</span>
+        <h2 class="text-3xl md:text-4xl lg:text-5xl font-serif font-semibold leading-snug text-[#F5F0EB] mt-6 reveal" style="--delay: 1;">
+          장인의 손끝
+        </h2>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-8">
+        <div class="text-center reveal group" style="--delay: 0;">
+          <div class="overflow-hidden mb-6">
+            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=600" alt="마스터 바버 1" class="w-full aspect-[3/4] object-cover grayscale group-hover:grayscale-0 transition duration-700" loading="lazy">
+          </div>
+          <h3 class="text-xl font-serif font-semibold text-[#F5F0EB] mb-1">김 정훈</h3>
+          <p class="text-[11px] text-[#C8956C] uppercase tracking-[0.3em] font-semibold mb-3">Master Barber</p>
+          <p class="text-sm text-white/30 max-w-xs mx-auto">30년 경력의 원장. 국내 바버 대회 심사위원. 전통 직선 면도의 대가.</p>
+        </div>
+
+        <div class="text-center reveal group" style="--delay: 1;">
+          <div class="overflow-hidden mb-6">
+            <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=600" alt="수석 바버" class="w-full aspect-[3/4] object-cover grayscale group-hover:grayscale-0 transition duration-700" loading="lazy">
+          </div>
+          <h3 class="text-xl font-serif font-semibold text-[#F5F0EB] mb-1">박 준혁</h3>
+          <p class="text-[11px] text-[#C8956C] uppercase tracking-[0.3em] font-semibold mb-3">Senior Barber</p>
+          <p class="text-sm text-white/30 max-w-xs mx-auto">영국 Barber Academy 수료. 페이드 컷과 텍스처 스타일링 전문.</p>
+        </div>
+
+        <div class="text-center reveal group" style="--delay: 2;">
+          <div class="overflow-hidden mb-6">
+            <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=600" alt="주니어 바버" class="w-full aspect-[3/4] object-cover grayscale group-hover:grayscale-0 transition duration-700" loading="lazy">
+          </div>
+          <h3 class="text-xl font-serif font-semibold text-[#F5F0EB] mb-1">이 시우</h3>
+          <p class="text-[11px] text-[#C8956C] uppercase tracking-[0.3em] font-semibold mb-3">Junior Barber</p>
+          <p class="text-sm text-white/30 max-w-xs mx-auto">MZ 감각의 트렌디한 스타일. SNS 인기 바버. 모던 페이드 전문.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== 갤러리 ========== -->
+  <section id="gallery" class="py-24 md:py-32 bg-[#141414]">
+    <div class="max-w-7xl mx-auto px-4 md:px-8">
+      <div class="flex flex-col md:flex-row md:items-end md:justify-between mb-14 gap-6">
+        <div>
+          <span class="px-4 py-1.5 text-[11px] uppercase tracking-[0.15em] font-medium bg-[#C8956C]/10 text-[#C8956C] border border-[#C8956C]/20 reveal" style="--delay: 0;">Gallery</span>
+          <h2 class="text-3xl md:text-4xl lg:text-5xl font-serif font-semibold leading-snug text-[#F5F0EB] mt-6 reveal" style="--delay: 1;">
+            작품으로 보여주다
+          </h2>
+        </div>
+        <p class="text-white/30 text-base max-w-sm reveal" style="--delay: 2;">
+          블랙스미스만의 클래식한 컷 스타일을 감상하세요.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-4">
+        <div class="overflow-hidden reveal group" style="--delay: 0;">
+          <img src="https://images.unsplash.com/photo-1605497788044-5a32c7078486?q=80&w=800" alt="스타일 1" class="w-full aspect-square object-cover grayscale group-hover:grayscale-0 transition duration-700" loading="lazy">
+        </div>
+        <div class="overflow-hidden md:row-span-2 reveal group" style="--delay: 1;">
+          <img src="https://images.unsplash.com/photo-1599351431613-18ef1fdd27e1?q=80&w=800" alt="스타일 2" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition duration-700" loading="lazy">
+        </div>
+        <div class="overflow-hidden reveal group" style="--delay: 2;">
+          <img src="https://images.unsplash.com/photo-1503951914875-452162b0f3f1?q=80&w=800" alt="스타일 3" class="w-full aspect-square object-cover grayscale group-hover:grayscale-0 transition duration-700" loading="lazy">
+        </div>
+        <div class="overflow-hidden reveal group" style="--delay: 3;">
+          <img src="https://images.unsplash.com/photo-1622286342621-4bd786c2447c?q=80&w=800" alt="스타일 4" class="w-full aspect-square object-cover grayscale group-hover:grayscale-0 transition duration-700" loading="lazy">
+        </div>
+        <div class="overflow-hidden col-span-2 md:col-span-1 reveal group" style="--delay: 4;">
+          <img src="https://images.unsplash.com/photo-1585747860715-2ba37e788b70?q=80&w=800" alt="바버샵 공간" class="w-full aspect-[2/1] md:aspect-square object-cover grayscale group-hover:grayscale-0 transition duration-700" loading="lazy">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== Location ========== -->
+  <section id="location" class="py-24 md:py-32 relative overflow-hidden">
+    <div class="absolute top-0 right-0 w-96 h-96 bg-[#C8956C]/5 rounded-full blur-[120px]"></div>
+
+    <div class="max-w-7xl mx-auto px-4 md:px-8 relative z-10">
+      <div class="grid lg:grid-cols-2 gap-16 lg:gap-24 items-start">
+        <div class="reveal" style="--delay: 0;">
+          <div class="overflow-hidden aspect-[4/3] bg-[#222] relative group">
+            <img src="https://images.unsplash.com/photo-1521590832167-7bcbfaa6381f?q=80&w=800" alt="바버샵 외관" class="w-full h-full object-cover opacity-60 group-hover:opacity-80 grayscale group-hover:grayscale-0 transition duration-700" loading="lazy">
+            <div class="absolute inset-0 flex items-center justify-center">
+              <a href="#" class="inline-flex items-center gap-3 bg-[#1A1A1A]/50 backdrop-blur-xl border border-white/20 text-white px-8 py-4 text-[11px] font-semibold uppercase tracking-[0.3em] hover:bg-[#C8956C] hover:border-[#C8956C] transition">
+                <i class="fas fa-map-marker-alt text-[#C8956C]"></i>
+                지도에서 보기
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="space-y-10">
+          <div class="reveal" style="--delay: 1;">
+            <span class="px-4 py-1.5 text-[11px] uppercase tracking-[0.15em] font-medium bg-[#C8956C]/10 text-[#C8956C] border border-[#C8956C]/20">Visit Us</span>
+            <h2 class="text-3xl md:text-4xl lg:text-5xl font-serif font-semibold leading-snug mt-6">
+              오시는 길
+            </h2>
+          </div>
+
+          <div class="space-y-8 reveal" style="--delay: 2;">
+            <div class="flex gap-5">
+              <div class="w-10 h-10 bg-white/5 border border-white/10 flex items-center justify-center shrink-0 mt-0.5">
+                <i class="fas fa-map-pin text-[#C8956C] text-sm"></i>
+              </div>
+              <div>
+                <p class="text-[10px] font-semibold uppercase tracking-[0.3em] text-white/30 mb-2">Address</p>
+                <p class="text-white/70 text-base leading-relaxed">서울특별시 종로구 삼청로 56<br>블랙스미스 빌딩 1층</p>
+              </div>
+            </div>
+
+            <div class="flex gap-5">
+              <div class="w-10 h-10 bg-white/5 border border-white/10 flex items-center justify-center shrink-0 mt-0.5">
+                <i class="fas fa-clock text-[#C8956C] text-sm"></i>
+              </div>
+              <div>
+                <p class="text-[10px] font-semibold uppercase tracking-[0.3em] text-white/30 mb-2">Hours</p>
+                <div class="space-y-1.5 text-white/70 text-base">
+                  <div class="flex justify-between gap-12">
+                    <span>화 - 금</span>
+                    <span class="font-serif">10:00 - 21:00</span>
+                  </div>
+                  <div class="flex justify-between gap-12">
+                    <span>토 - 일</span>
+                    <span class="font-serif">10:00 - 19:00</span>
+                  </div>
+                  <div class="flex justify-between gap-12 text-[#C8956C]">
+                    <span>월요일</span>
+                    <span class="font-serif">정기 휴무</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="flex gap-5">
+              <div class="w-10 h-10 bg-white/5 border border-white/10 flex items-center justify-center shrink-0 mt-0.5">
+                <i class="fas fa-subway text-[#C8956C] text-sm"></i>
+              </div>
+              <div>
+                <p class="text-[10px] font-semibold uppercase tracking-[0.3em] text-white/30 mb-2">Transport</p>
+                <p class="text-white/70 text-base leading-relaxed">안국역 1번 출구 도보 7분<br>인근 공영주차장 이용 가능</p>
+              </div>
+            </div>
+
+            <div class="flex gap-5">
+              <div class="w-10 h-10 bg-white/5 border border-white/10 flex items-center justify-center shrink-0 mt-0.5">
+                <i class="fas fa-phone text-[#C8956C] text-sm"></i>
+              </div>
+              <div>
+                <p class="text-[10px] font-semibold uppercase tracking-[0.3em] text-white/30 mb-2">Contact</p>
+                <p class="text-white/70 text-base">02-9876-5432</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== CTA ========== -->
+  <section class="py-24 md:py-32 bg-[#141414] relative overflow-hidden">
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-[#C8956C]/5 rounded-full blur-[120px]"></div>
+
+    <div class="max-w-3xl mx-auto px-4 md:px-8 text-center relative z-10">
+      <div class="reveal" style="--delay: 0;">
+        <span class="font-serif text-6xl md:text-8xl italic text-[#C8956C]/15 block mb-6">&ldquo;</span>
+      </div>
+      <h2 class="text-3xl md:text-4xl lg:text-5xl font-serif font-semibold leading-snug text-[#F5F0EB] reveal" style="--delay: 1;">
+        진정한 스타일은<br>디테일에서 완성된다
+      </h2>
+      <p class="text-white/30 text-base md:text-lg mt-6 max-w-lg mx-auto reveal" style="--delay: 2;">
+        블랙스미스의 의자에 앉는 순간, 당신은 이미 변화를 시작한 겁니다. 지금 예약하세요.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-5 justify-center mt-10 reveal" style="--delay: 3;">
+        <a href="#" class="inline-flex items-center justify-center gap-3 px-10 py-5 bg-[#C8956C] text-[#1A1A1A] font-semibold text-[11px] tracking-[0.3em] uppercase shadow-lg hover:bg-white">
+          온라인 예약하기
+          <span class="w-7 h-7 bg-[#1A1A1A]/10 flex items-center justify-center">
+            <i class="fas fa-arrow-right text-[10px]"></i>
+          </span>
+        </a>
+        <a href="https://www.instagram.com/" target="_blank" class="inline-flex items-center justify-center gap-3 px-10 py-5 border border-white/10 text-white font-semibold text-[11px] tracking-[0.3em] uppercase hover:bg-white/5">
+          <i class="fab fa-instagram text-sm"></i>
+          Instagram
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== Footer ========== -->
+  <footer class="py-16 md:py-24 bg-[#0F0F0F]">
+    <div class="max-w-7xl mx-auto px-4 md:px-8">
+      <div class="grid md:grid-cols-3 gap-12 items-start mb-16">
+        <div>
+          <span class="font-serif text-2xl text-white tracking-[0.4em] font-semibold uppercase block mb-4">BLACK<span class="text-white/20">SMITH</span></span>
+          <p class="text-white/20 text-sm leading-relaxed max-w-xs">
+            종로 삼청동의 전통 바버샵. 40년 장인정신으로 남자의 품격을 완성합니다.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-2 gap-8">
+          <div>
+            <p class="text-[10px] font-semibold text-white/15 uppercase tracking-[0.3em] mb-4">Menu</p>
+            <ul class="space-y-2.5">
+              <li><a href="#menu" class="text-white/40 text-sm hover:text-[#C8956C] transition">Classic Cut</a></li>
+              <li><a href="#menu" class="text-white/40 text-sm hover:text-[#C8956C] transition">Full Course</a></li>
+              <li><a href="#menu" class="text-white/40 text-sm hover:text-[#C8956C] transition">Shave</a></li>
+              <li><a href="#menu" class="text-white/40 text-sm hover:text-[#C8956C] transition">Beard</a></li>
+            </ul>
+          </div>
+          <div>
+            <p class="text-[10px] font-semibold text-white/15 uppercase tracking-[0.3em] mb-4">Info</p>
+            <ul class="space-y-2.5">
+              <li><a href="#about" class="text-white/40 text-sm hover:text-[#C8956C] transition">Heritage</a></li>
+              <li><a href="#barbers" class="text-white/40 text-sm hover:text-[#C8956C] transition">Barbers</a></li>
+              <li><a href="#location" class="text-white/40 text-sm hover:text-[#C8956C] transition">Location</a></li>
+              <li><a href="#" class="text-white/40 text-sm hover:text-[#C8956C] transition">Careers</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <div>
+          <p class="text-[10px] font-semibold text-white/15 uppercase tracking-[0.3em] mb-4">Follow</p>
+          <div class="flex gap-3">
+            <a href="#" class="w-10 h-10 bg-white/5 border border-white/10 flex items-center justify-center text-white/40 hover:text-[#C8956C] hover:border-[#C8956C]/30 transition">
+              <i class="fab fa-instagram text-sm"></i>
+            </a>
+            <a href="#" class="w-10 h-10 bg-white/5 border border-white/10 flex items-center justify-center text-white/40 hover:text-[#C8956C] hover:border-[#C8956C]/30 transition">
+              <i class="fab fa-youtube text-sm"></i>
+            </a>
+            <a href="#" class="w-10 h-10 bg-white/5 border border-white/10 flex items-center justify-center text-white/40 hover:text-[#C8956C] hover:border-[#C8956C]/30 transition">
+              <i class="fas fa-blog text-sm"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="border-t border-white/5 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+        <p class="text-[10px] text-white/10 tracking-[0.5em] uppercase">
+          &copy; 2024 Blacksmith Barber Heritage. All rights reserved.
+        </p>
+        <div class="flex gap-6">
+          <a href="#" class="text-[10px] text-white/10 tracking-[0.2em] uppercase hover:text-white/30 transition">Privacy</a>
+          <a href="#" class="text-[10px] text-white/10 tracking-[0.2em] uppercase hover:text-white/30 transition">Terms</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ========== Login Modal ========== -->
+  <div id="barber-modal" class="fixed inset-0 z-[100] hidden items-center justify-center p-4 bg-[#0F0F0F]/90 backdrop-blur-2xl">
+    <div class="bg-[#1A1A1A] w-full max-w-sm p-8 md:p-14 shadow-2xl relative border border-[#C8956C]/10">
+      <div class="absolute top-0 left-0 w-full h-[1px] bg-[#C8956C]/20"></div>
+      <button onclick="toggleBarberModal()" class="absolute top-8 right-8 text-white/20 hover:text-[#C8956C] transition text-2xl font-light">&times;</button>
+
+      <div class="text-center mb-12">
+        <h2 class="text-xl font-serif tracking-[0.4em] text-white mb-3 font-semibold uppercase">Club Member</h2>
+        <p class="text-[9px] text-[#C8956C] font-semibold tracking-[0.3em] uppercase">Private Grooming Access</p>
+      </div>
+
+      <div class="space-y-5">
+        <div class="space-y-2">
+          <p class="text-[10px] font-semibold text-white/20 uppercase tracking-[0.2em] ml-1">Member ID</p>
+          <input type="text" placeholder="GENTLEMAN_ID" class="w-full bg-white/5 border border-white/5 py-5 px-6 outline-none focus:border-[#C8956C] transition text-[13px] font-semibold tracking-wide text-white">
+        </div>
+        <div class="space-y-2">
+          <p class="text-[10px] font-semibold text-white/20 uppercase tracking-[0.2em] ml-1">Password</p>
+          <input type="password" placeholder="Password" class="w-full bg-white/5 border border-white/5 py-5 px-6 outline-none focus:border-[#C8956C] transition text-[13px] font-semibold tracking-wide text-white">
+        </div>
+        <button class="w-full bg-[#C8956C] text-[#1A1A1A] py-5 text-[11px] tracking-[0.4em] font-semibold uppercase hover:bg-white transition shadow-xl mt-2">
+          Verify Identity
         </button>
-        <div class="flex justify-center gap-14 pt-4">
-           <a href="#" class="text-[9px] text-white/20 tracking-[0.3em] font-semibold uppercase hover:text-[#B8860B] transition">Join Heirloom</a>
-           <a href="#" class="text-[9px] text-white/20 tracking-[0.3em] font-semibold uppercase hover:text-[#B8860B] transition">Support</a>
+        <div class="flex justify-center gap-10 pt-2">
+          <a href="#" class="text-[10px] text-white/20 tracking-[0.2em] font-semibold uppercase hover:text-[#C8956C] transition">Join</a>
+          <a href="#" class="text-[10px] text-white/20 tracking-[0.2em] font-semibold uppercase hover:text-[#C8956C] transition">Support</a>
         </div>
       </div>
     </div>
   </div>
 
-  <footer class="py-24 md:py-40 bg-slate-950 text-center px-6 border-t border-white/5">
-     <div class="inline-flex items-center gap-14 mb-12">
-        <span class="font-serif text-2xl text-white tracking-[0.8em] font-semibold uppercase italic">BARBER<span class="text-white/10">CLASSIC</span></span>
-        <div class="w-12 h-[1px] bg-white/10"></div>
-        <span class="text-[10px] font-semibold text-white/20 tracking-[0.6em] uppercase">Crafted by Tradition</span>
-     </div>
-     <p class="text-[10px] text-white/10 tracking-[1em] uppercase px-6">© 2024 BARBER CLASSIC HERITAGE. ALL RIGHTS RESERVED.</p>
-  </footer>
-
-  <script>
-    function toggleBarberModal() {
-      const modal = document.getElementById('barber-modal');
-      modal.classList.toggle('hidden');
-      modal.classList.toggle('flex');
-    }
-  </script>
-
 </div>
+
+<script>
+  // Modal toggle
+  function toggleBarberModal() {
+    const modal = document.getElementById('barber-modal');
+    modal.classList.toggle('hidden');
+    modal.classList.toggle('flex');
+  }
+
+  // Close modal on backdrop click
+  document.getElementById('barber-modal').addEventListener('click', function(e) {
+    if (e.target === this) toggleBarberModal();
+  });
+
+  // IntersectionObserver for scroll reveal animations
+  (function() {
+    const observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    });
+
+    document.querySelectorAll('.reveal').forEach(function(el) {
+      observer.observe(el);
+    });
+  })();
+</script>

@@ -1,11 +1,34 @@
-# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+# 테스트용 유저 데이터
 
-# This model initially had no columns defined. If you add columns to the
-# model remove the "{}" from the fixture names and add the columns immediately
-# below each fixture, per the syntax in the comments below
-#
-one: {}
-# column: value
-#
-two: {}
-# column: value
+super_admin:
+  email: "admin@designd.co.kr"
+  encrypted_password: <%= Devise::Encryptor.digest(User, 'password123') %>
+  name: "슈퍼관리자"
+  role: "super_admin"
+
+owner:
+  email: "owner@example.com"
+  encrypted_password: <%= Devise::Encryptor.digest(User, 'password123') %>
+  name: "에이전시오너"
+  role: "owner"
+  agency: main_agency
+
+admin_user:
+  email: "admin_user@example.com"
+  encrypted_password: <%= Devise::Encryptor.digest(User, 'password123') %>
+  name: "관리자유저"
+  role: "admin"
+
+regular_user:
+  email: "user@example.com"
+  encrypted_password: <%= Devise::Encryptor.digest(User, 'password123') %>
+  name: "일반유저"
+  role: "user"
+
+google_user:
+  email: "google@example.com"
+  encrypted_password: <%= Devise::Encryptor.digest(User, 'password123') %>
+  name: "구글유저"
+  role: "user"
+  provider: "google_oauth2"
+  uid: "123456789"
