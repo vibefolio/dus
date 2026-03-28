@@ -1,16 +1,16 @@
-<%# Beauty Template - 르 블랑 (LUMIER) %>
+<%# Beauty Template - 르 블랑 뷰티 살롱 (LE BLANC) %>
 
 <style>
-  /* Supanova Design Upgrade */
+  /* Supanova Design — Clean Structural Archetype */
   * { word-break: keep-all; }
-  html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+  html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
   h1, h2, h3, h4 { text-wrap: balance; letter-spacing: -0.02em; line-height: 1.3; }
-  a, button { transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1); }
+  a, button { transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1); }
   a:hover, button:hover { transform: scale(1.02); }
   a:active, button:active { transform: scale(0.98); }
 
   @import url('https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700;800&family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap');
-  
+
   .font-serif { font-family: 'Nanum Myeongjo', serif; }
   .font-sans { font-family: 'Pretendard Variable', 'Pretendard', -apple-system, sans-serif; }
 
@@ -18,118 +18,525 @@
     .mobile-desc { font-size: 14px !important; line-height: 1.8; }
     .mobile-title { font-size: 40px !important; }
   }
+
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(2rem); filter: blur(4px); }
+    to { opacity: 1; transform: translateY(0); filter: blur(0); }
+  }
+  .reveal { opacity: 0; transform: translateY(2rem); }
+  .reveal.is-visible { animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards; animation-delay: calc(var(--delay, 0) * 100ms); }
+
+  .menu-card { transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1); }
+  .menu-card:hover { transform: translateY(-8px); }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+  }
 </style>
 
-<div class="bg-[#FFFDFB] text-[#5D5552] font-sans selection:bg-[#CFB997] selection:text-white min-h-screen overflow-x-hidden">
+<div class="bg-[#FAFAF8] text-[#2C2C2C] font-sans selection:bg-[#C4A882] selection:text-white min-h-screen overflow-x-hidden relative">
 
-  <!-- Nav -->
-  <nav class="fixed w-full z-50 px-8 py-12 md:px-12 bg-[#FFFDFB]/60 backdrop-blur-2xl border-b border-[#CFB997]/10">
-    <div class="container mx-auto px-4 md:px-6 flex justify-between items-center flex-nowrap">
-      <div class="flex items-center gap-10">
-         <span class="font-serif text-2xl tracking-[0.5em] font-semibold uppercase text-[#CFB997]">LUMIER</span>
-      </div>
-      
-      <div class="hidden md:flex gap-14 text-[10px] font-semibold uppercase tracking-[0.4em] text-[#5D5552]/40">
-        <a href="#about" class="hover:text-[#CFB997] transition">Essence</a>
-        <a href="#ritual" class="hover:text-[#CFB997] transition">Ritual</a>
-        <a href="#suites" class="hover:text-[#CFB997] transition">Suites</a>
-      </div>
-      
-      <div class="flex-nowrap shrink-0 flex gap-12 items-center">
-         <button onclick="toggleBeautyModal()" class="hidden md:block text-[10px] font-semibold uppercase tracking-[0.4em] text-[#5D5552]/40 hover:text-[#CFB997]" data-mobile-menu-copy="true">Member_ID</button>
-         <button class="hidden md:block bg-[#CFB997] text-white px-10 py-3.5 rounded-lg font-semibold text-[10px] tracking-[0.4em] uppercase hover:bg-[#5D5552] transition shadow-2xl shadow-[#CFB997]/20" data-mobile-menu-copy="true">
-           Reservation
-         </button>
-         <button class="mobile-menu-trigger md:hidden ml-2 sm:ml-4 text-2xl focus:outline-none" style="color: inherit;">
-           <i class="fas fa-bars"></i>
-         </button>
+  <!-- ========== Nav ========== -->
+  <nav class="fixed w-full z-50 px-4 md:px-8 py-5 bg-[#FAFAF8]/80 backdrop-blur-xl border-b border-[#C4A882]/10">
+    <div class="max-w-7xl mx-auto flex justify-between items-center">
+      <a href="#" class="flex items-center gap-3">
+        <span class="font-serif text-2xl tracking-[0.3em] font-semibold uppercase text-[#C4A882]">LE BLANC</span>
+      </a>
 
+      <div class="hidden md:flex gap-12 text-[10px] font-semibold uppercase tracking-[0.4em] text-[#2C2C2C]/40">
+        <a href="#about" class="hover:text-[#C4A882] transition">About</a>
+        <a href="#menu" class="hover:text-[#C4A882] transition">Menu</a>
+        <a href="#gallery" class="hover:text-[#C4A882] transition">Gallery</a>
+        <a href="#location" class="hover:text-[#C4A882] transition">Location</a>
+      </div>
+
+      <button class="mobile-menu-trigger md:hidden ml-auto text-2xl focus:outline-none" style="color: inherit;">
+        <i class="fas fa-bars"></i>
+      </button>
+
+      <div class="hidden md:flex gap-6 items-center shrink-0">
+        <button onclick="toggleBeautyModal()" class="text-[10px] font-semibold uppercase tracking-[0.4em] text-[#2C2C2C]/40 hover:text-[#C4A882]" data-mobile-menu-copy="true">Member</button>
+        <button class="bg-[#C4A882] text-white px-8 py-3.5 rounded-full font-semibold text-[10px] tracking-[0.3em] uppercase hover:bg-[#2C2C2C] transition shadow-lg shadow-[#C4A882]/20" data-mobile-menu-copy="true">
+          예약하기
+        </button>
       </div>
     </div>
 
-      <%= render partial: 'templates/shared/mobile_menu_overlay' %></nav>
+    <%= render partial: 'templates/shared/mobile_menu_overlay' %>
+  </nav>
 
-  <!-- Hero -->
-  <header class="min-h-screen relative flex items-center justify-center pt-20">
-    <div class="container mx-auto px-3 md:px-6 relative z-10 grid lg:grid-cols-2 gap-12 md:p-20 items-center">
-      <div class="space-y-12 text-center lg:text-left">
-        <div class="inline-flex items-center gap-6">
-           <span class="w-12 h-[1px] bg-[#CFB997]"></span>
-           <span class="text-[10px] font-semibold tracking-[0.6em] uppercase text-[#CFB997]">Premium Aesthetic Spa</span>
+  <!-- ========== Hero ========== -->
+  <header class="min-h-[100dvh] relative flex items-center justify-center pt-20">
+    <div class="absolute -top-20 right-0 w-96 h-96 bg-[#C4A882]/8 rounded-full blur-[120px]"></div>
+
+    <div class="max-w-7xl mx-auto px-4 md:px-8 relative z-10 grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+      <div class="space-y-10 text-center lg:text-left">
+        <div class="inline-flex items-center gap-5 reveal" style="--delay: 0;">
+          <span class="w-10 h-[1px] bg-[#C4A882]"></span>
+          <span class="text-[10px] font-semibold tracking-[0.6em] uppercase text-[#C4A882]">Premium Beauty Salon</span>
         </div>
-        
-        <h1 class="text-3xl md:text-5xl md:text-[8rem] font-serif font-semibold leading-none tracking-tight text-[#5D5552] mobile-title">
-           내면의 빛을<br><span class="italic text-[#CFB997]">조각하다.</span>
+
+        <h1 class="text-4xl md:text-6xl lg:text-[5.5rem] font-serif font-semibold leading-tight tracking-tight text-[#2C2C2C] mobile-title reveal" style="--delay: 1;">
+          내면의 빛을<br><span class="italic text-[#C4A882]">조각하다.</span>
         </h1>
-        
-        <p class="text-[#5D5552]/60 text-sm md:text-xl leading-[2] max-w-lg mx-auto lg:mx-0 mobile-desc">
-           피본 본연의 광채를 깨우는 루미에르만의 정교한 터치. 가장 프라이빗한 공간에서 누리는 최상위 에스테틱 솔루션을 경험하세요.
+
+        <p class="text-[#2C2C2C]/60 text-sm md:text-lg leading-relaxed max-w-lg mx-auto lg:mx-0 mobile-desc reveal" style="--delay: 2;">
+          피부 본연의 광채를 깨우는 르 블랑만의 정교한 터치. 가장 프라이빗한 공간에서 누리는 최상위 에스테틱 솔루션을 경험하세요.
         </p>
-        
-        <div class="pt-6 flex flex-col sm:flex-row gap-12 justify-center lg:justify-start">
-           <button class="px-14 py-6 bg-[#5D5552] text-white font-semibold text-[11px] tracking-[0.4em] uppercase hover:bg-[#CFB997] transition-all shadow-2xl">
-              View Rituals
-           </button>
-           <button class="px-14 py-6 border border-[#CFB997]/30 text-[#CFB997] font-semibold text-[11px] tracking-[0.4em] uppercase hover:bg-[#FFFDFB] transition-all uppercase">
-              Gift Voucher
-           </button>
+
+        <div class="pt-4 flex flex-col sm:flex-row gap-5 justify-center lg:justify-start reveal" style="--delay: 3;">
+          <a href="#menu" class="inline-flex items-center justify-center gap-3 px-10 py-5 bg-[#2C2C2C] text-white font-semibold text-[11px] tracking-[0.3em] uppercase hover:bg-[#C4A882] rounded-full shadow-xl">
+            시술 보기
+            <span class="w-7 h-7 rounded-full bg-white/10 flex items-center justify-center">
+              <i class="fas fa-arrow-right text-[10px]"></i>
+            </span>
+          </a>
+          <a href="#about" class="inline-flex items-center justify-center px-10 py-5 border border-[#C4A882]/30 text-[#C4A882] font-semibold text-[11px] tracking-[0.3em] uppercase hover:bg-white rounded-full">
+            브랜드 스토리
+          </a>
         </div>
       </div>
 
-      <div class="relative">
-         <div class="absolute -top-8 md:p-20 -right-20 w-80 h-80 bg-[#CFB997]/10 rounded-full blur-[120px]"></div>
-         <div class="relative bg-white p-6 rounded-[220px_220px_20px_20px] shadow-2xl border border-[#CFB997]/5">
-            <img src="https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?q=80&w=1200" alt="Spa" class="w-full aspect-[4/5] object-cover rounded-[210px_210px_10px_10px] brightness-105 contrast-95">
-            <div class="absolute -bottom-10 -left-10 bg-white p-12 rounded-2xl shadow-2xl border border-[#CFB997]/10 max-w-[280px]">
-               <p class="text-[10px] font-semibold text-[#CFB997] uppercase tracking-[0.4em] mb-4">Secret of Lumier</p>
-               <p class="text-sm font-serif italic text-[#5D5552] leading-relaxed">"단 한 번의 정교한 터치로 달라지는 피부의 에너지를 확인하세요."</p>
-            </div>
-         </div>
+      <div class="relative reveal" style="--delay: 2;">
+        <div class="absolute -top-12 -right-12 w-72 h-72 bg-[#C4A882]/10 rounded-full blur-[100px]"></div>
+        <div class="relative group">
+          <div class="bg-white p-4 rounded-[200px_200px_20px_20px] shadow-2xl border border-[#C4A882]/5">
+            <img src="https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?q=80&w=1200" alt="뷰티 살롱" class="w-full aspect-[4/5] object-cover rounded-[190px_190px_10px_10px] brightness-105 contrast-95" loading="eager">
+          </div>
+          <div class="absolute -bottom-6 -left-6 md:-bottom-8 md:-left-8 bg-white p-8 md:p-10 rounded-2xl shadow-xl border border-[#C4A882]/10 max-w-[260px]" style="animation: float 6s ease-in-out infinite;">
+            <p class="text-[10px] font-semibold text-[#C4A882] uppercase tracking-[0.4em] mb-3">Le Blanc Secret</p>
+            <p class="text-base font-serif italic text-[#2C2C2C]">단 한 번의 터치로 달라지는 피부의 광채.</p>
+          </div>
+        </div>
       </div>
     </div>
   </header>
 
-  <!-- Login Modal -->
-  <div id="beauty-modal" class="fixed inset-0 z-[100] hidden items-center justify-center p-4 bg-[#5D5552]/20 backdrop-blur-3xl">
-    <div class="bg-white w-full max-w-sm p-6 md:p-16 shadow-2xl relative rounded-[4rem] border border-[#CFB997]/10">
-      <button onclick="toggleBeautyModal()" class="absolute top-12 right-12 text-[#5D5552]/20 hover:text-[#CFB997] transition text-2xl font-light">&times;</button>
-      
-      <div class="text-center mb-14">
-        <h2 class="text-xl font-serif tracking-[0.6em] text-[#5D5552] mb-3 font-semibold uppercase">SANCTUARY_KEY</h2>
-        <p class="text-[9px] text-[#CFB997] font-semibold tracking-[0.3em] uppercase">Authorized Guest Access</p>
-      </div>
-      
-      <div class="space-y-8">
-        <div class="space-y-3">
-           <p class="text-[9px] font-semibold text-[#5D5552]/30 uppercase tracking-[0.2em] ml-1">Member Account</p>
-           <input type="text" placeholder="GUEST_IDENTITY_TOKEN" class="w-full bg-[#FFFDFB] border-none rounded-2xl py-6 px-8 outline-none focus:ring-1 focus:ring-[#CFB997] transition text-[11px] font-semibold tracking-wide text-[#5D5552]">
+  <!-- ========== About ========== -->
+  <section id="about" class="py-24 md:py-32">
+    <div class="max-w-7xl mx-auto px-4 md:px-8 grid lg:grid-cols-2 gap-16 lg:gap-24 items-center">
+      <div class="relative reveal" style="--delay: 0;">
+        <div class="absolute -top-8 -left-8 w-60 h-60 bg-[#C4A882]/8 rounded-full blur-[80px]"></div>
+        <div class="grid grid-cols-5 gap-4">
+          <div class="col-span-3 overflow-hidden rounded-[2rem]">
+            <img src="https://images.unsplash.com/photo-1560750588-73207b1ef5b8?q=80&w=800" alt="살롱 인테리어" class="w-full h-full object-cover aspect-[3/4]" loading="lazy">
+          </div>
+          <div class="col-span-2 flex flex-col gap-4">
+            <div class="overflow-hidden rounded-[1.5rem] flex-1">
+              <img src="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?q=80&w=600" alt="스킨케어" class="w-full h-full object-cover" loading="lazy">
+            </div>
+            <div class="overflow-hidden rounded-[1.5rem] flex-1">
+              <img src="https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?q=80&w=600" alt="뷰티 제품" class="w-full h-full object-cover" loading="lazy">
+            </div>
+          </div>
         </div>
-        <button class="w-full bg-[#5D5552] text-white py-6 rounded-2xl text-[10px] tracking-[0.6em] font-semibold uppercase hover:bg-[#CFB997] transition shadow-xl shadow-[#CFB997]/30">
-           Enter Archive
+      </div>
+
+      <div class="space-y-8 reveal" style="--delay: 1;">
+        <div class="inline-flex items-center gap-4">
+          <span class="rounded-full px-4 py-1.5 text-[11px] uppercase tracking-[0.15em] font-medium bg-[#C4A882]/10 text-[#C4A882]">Our Story</span>
+        </div>
+
+        <h2 class="text-3xl md:text-4xl lg:text-5xl font-serif font-semibold leading-snug text-[#2C2C2C]">
+          아름다움을 넘어,<br>본연의 자신을 찾는 여정
+        </h2>
+
+        <p class="text-[#2C2C2C]/60 text-base md:text-lg leading-relaxed">
+          르 블랑은 2018년 청담동에서 시작되었습니다. 피부과학과 미학을 결합한 독자적인 프로토콜로, 고객 한 분 한 분의 피부 상태를 면밀히 분석합니다.
+        </p>
+        <p class="text-[#2C2C2C]/60 text-base md:text-lg leading-relaxed">
+          유럽 프리미엄 원료와 자체 개발 세럼을 활용하여 즉각적이면서도 지속 가능한 결과를 추구합니다. 진정한 아름다움은 내면에서 비롯된다고 믿습니다.
+        </p>
+
+        <div class="grid grid-cols-3 gap-6 pt-6 border-t border-[#C4A882]/10">
+          <div>
+            <p class="text-2xl md:text-3xl font-serif font-semibold text-[#C4A882]">7yr</p>
+            <p class="text-[11px] text-[#2C2C2C]/40 uppercase tracking-[0.1em] mt-1 font-medium">청담 프리미엄</p>
+          </div>
+          <div>
+            <p class="text-2xl md:text-3xl font-serif font-semibold text-[#C4A882]">5,000+</p>
+            <p class="text-[11px] text-[#2C2C2C]/40 uppercase tracking-[0.1em] mt-1 font-medium">누적 고객</p>
+          </div>
+          <div>
+            <p class="text-2xl md:text-3xl font-serif font-semibold text-[#C4A882]">98%</p>
+            <p class="text-[11px] text-[#2C2C2C]/40 uppercase tracking-[0.1em] mt-1 font-medium">재방문율</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== 시술 메뉴 ========== -->
+  <section id="menu" class="py-24 md:py-32 bg-white relative">
+    <div class="max-w-7xl mx-auto px-4 md:px-8">
+      <div class="text-center mb-16 md:mb-20">
+        <span class="rounded-full px-4 py-1.5 text-[11px] uppercase tracking-[0.15em] font-medium bg-[#C4A882]/10 text-[#C4A882] reveal" style="--delay: 0;">Treatment Menu</span>
+        <h2 class="text-3xl md:text-4xl lg:text-5xl font-serif font-semibold leading-snug text-[#2C2C2C] mt-6 reveal" style="--delay: 1;">
+          르 블랑만의<br>프리미엄 시술
+        </h2>
+        <p class="text-[#2C2C2C]/50 text-base md:text-lg mt-4 max-w-xl mx-auto reveal" style="--delay: 2;">
+          과학적 분석과 섬세한 손길이 만나 완성되는 맞춤 솔루션
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <!-- 시술 1 -->
+        <div class="menu-card group reveal" style="--delay: 0;">
+          <div class="bg-[#FAFAF8] rounded-[2rem] p-1.5 ring-1 ring-[#2C2C2C]/5">
+            <div class="rounded-[calc(2rem-0.375rem)] overflow-hidden">
+              <div class="overflow-hidden">
+                <img src="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?q=80&w=600" alt="수분 광채 페이셜" class="w-full aspect-square object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy">
+              </div>
+              <div class="p-6 bg-[#FAFAF8]">
+                <div class="flex justify-between items-start mb-2">
+                  <h3 class="text-lg font-semibold text-[#2C2C2C]">수분 광채 페이셜</h3>
+                  <span class="text-[#C4A882] font-serif font-semibold text-lg">180,000</span>
+                </div>
+                <p class="text-[13px] text-[#2C2C2C]/50 leading-relaxed">히알루론산 3중 레이어링과 LED 광선 테라피로 깊은 보습</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 시술 2 -->
+        <div class="menu-card group reveal" style="--delay: 1;">
+          <div class="bg-[#FAFAF8] rounded-[2rem] p-1.5 ring-1 ring-[#2C2C2C]/5">
+            <div class="rounded-[calc(2rem-0.375rem)] overflow-hidden">
+              <div class="overflow-hidden">
+                <img src="https://images.unsplash.com/photo-1512290923902-8a9f81dc236c?q=80&w=600" alt="안티에이징 리프팅" class="w-full aspect-square object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy">
+              </div>
+              <div class="p-6 bg-[#FAFAF8]">
+                <div class="flex justify-between items-start mb-2">
+                  <h3 class="text-lg font-semibold text-[#2C2C2C]">안티에이징 리프팅</h3>
+                  <span class="text-[#C4A882] font-serif font-semibold text-lg">250,000</span>
+                </div>
+                <p class="text-[13px] text-[#2C2C2C]/50 leading-relaxed">RF 고주파와 콜라겐 부스팅으로 탄력 있는 V라인 완성</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 시술 3 -->
+        <div class="menu-card group reveal" style="--delay: 2;">
+          <div class="bg-[#FAFAF8] rounded-[2rem] p-1.5 ring-1 ring-[#2C2C2C]/5">
+            <div class="rounded-[calc(2rem-0.375rem)] overflow-hidden">
+              <div class="overflow-hidden">
+                <img src="https://images.unsplash.com/photo-1552693673-1bf958298935?q=80&w=600" alt="브라이트닝 필링" class="w-full aspect-square object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy">
+              </div>
+              <div class="p-6 bg-[#FAFAF8]">
+                <div class="flex justify-between items-start mb-2">
+                  <h3 class="text-lg font-semibold text-[#2C2C2C]">브라이트닝 필링</h3>
+                  <span class="text-[#C4A882] font-serif font-semibold text-lg">150,000</span>
+                </div>
+                <p class="text-[13px] text-[#2C2C2C]/50 leading-relaxed">AHA/BHA 복합 필링과 비타민C 앰플로 맑고 투명한 피부톤</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 시술 4 -->
+        <div class="menu-card group reveal" style="--delay: 3;">
+          <div class="bg-[#FAFAF8] rounded-[2rem] p-1.5 ring-1 ring-[#2C2C2C]/5">
+            <div class="rounded-[calc(2rem-0.375rem)] overflow-hidden">
+              <div class="overflow-hidden">
+                <img src="https://images.unsplash.com/photo-1540555700478-4be289fbec6d?q=80&w=600" alt="딥 릴렉스 바디" class="w-full aspect-square object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy">
+              </div>
+              <div class="p-6 bg-[#FAFAF8]">
+                <div class="flex justify-between items-start mb-2">
+                  <h3 class="text-lg font-semibold text-[#2C2C2C]">딥 릴렉스 바디</h3>
+                  <span class="text-[#C4A882] font-serif font-semibold text-lg">200,000</span>
+                </div>
+                <p class="text-[13px] text-[#2C2C2C]/50 leading-relaxed">아로마 오일과 스톤 테라피로 전신 이완과 순환 촉진</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="text-center mt-12 reveal" style="--delay: 4;">
+        <a href="#" class="inline-flex items-center gap-3 text-[11px] font-semibold uppercase tracking-[0.3em] text-[#C4A882] hover:text-[#2C2C2C]">
+          전체 메뉴 보기
+          <span class="w-6 h-6 rounded-full bg-[#C4A882]/10 flex items-center justify-center">
+            <i class="fas fa-arrow-right text-[9px]"></i>
+          </span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== Before/After 갤러리 ========== -->
+  <section id="gallery" class="py-24 md:py-32">
+    <div class="max-w-7xl mx-auto px-4 md:px-8">
+      <div class="flex flex-col md:flex-row md:items-end md:justify-between mb-14 gap-6">
+        <div>
+          <span class="rounded-full px-4 py-1.5 text-[11px] uppercase tracking-[0.15em] font-medium bg-[#C4A882]/10 text-[#C4A882] reveal" style="--delay: 0;">Before &amp; After</span>
+          <h2 class="text-3xl md:text-4xl lg:text-5xl font-serif font-semibold leading-snug text-[#2C2C2C] mt-6 reveal" style="--delay: 1;">
+            눈에 보이는 변화
+          </h2>
+        </div>
+        <p class="text-[#2C2C2C]/50 text-base max-w-sm reveal" style="--delay: 2;">
+          실제 고객님들의 시술 전후 결과를 확인해보세요.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-4">
+        <div class="overflow-hidden rounded-2xl md:rounded-[2rem] reveal group" style="--delay: 0;">
+          <img src="https://images.unsplash.com/photo-1596755389378-c31d21fd1273?q=80&w=800" alt="시술 전후 1" class="w-full aspect-square object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy">
+        </div>
+        <div class="overflow-hidden rounded-2xl md:rounded-[2rem] md:row-span-2 reveal group" style="--delay: 1;">
+          <img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?q=80&w=800" alt="시술 전후 2" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy">
+        </div>
+        <div class="overflow-hidden rounded-2xl md:rounded-[2rem] reveal group" style="--delay: 2;">
+          <img src="https://images.unsplash.com/photo-1505944270255-72b8c68c6a70?q=80&w=800" alt="시술 전후 3" class="w-full aspect-square object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy">
+        </div>
+        <div class="overflow-hidden rounded-2xl md:rounded-[2rem] reveal group" style="--delay: 3;">
+          <img src="https://images.unsplash.com/photo-1519415510236-718bdfcd89c8?q=80&w=800" alt="시술 전후 4" class="w-full aspect-square object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy">
+        </div>
+        <div class="overflow-hidden rounded-2xl md:rounded-[2rem] col-span-2 md:col-span-1 reveal group" style="--delay: 4;">
+          <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=800" alt="살롱 공간" class="w-full aspect-[2/1] md:aspect-square object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== 예약 CTA ========== -->
+  <section class="py-24 md:py-32 relative overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-br from-[#FAFAF8] via-[#f5f0e8] to-[#FAFAF8]"></div>
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-[#C4A882]/8 rounded-full blur-[120px]"></div>
+
+    <div class="max-w-3xl mx-auto px-4 md:px-8 text-center relative z-10">
+      <div class="reveal" style="--delay: 0;">
+        <span class="font-serif text-6xl md:text-8xl italic text-[#C4A882]/20 block mb-6">&ldquo;</span>
+      </div>
+      <h2 class="text-3xl md:text-4xl lg:text-5xl font-serif font-semibold leading-snug text-[#2C2C2C] reveal" style="--delay: 1;">
+        당신만을 위한<br>프라이빗 뷰티 시간
+      </h2>
+      <p class="text-[#2C2C2C]/50 text-base md:text-lg mt-6 max-w-lg mx-auto reveal" style="--delay: 2;">
+        르 블랑은 하루 최대 6팀만 예약을 받습니다. 온전히 당신에게만 집중하는 시간을 경험하세요.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-5 justify-center mt-10 reveal" style="--delay: 3;">
+        <a href="#" class="inline-flex items-center justify-center gap-3 px-10 py-5 bg-[#C4A882] text-white font-semibold text-[11px] tracking-[0.3em] uppercase rounded-full shadow-lg shadow-[#C4A882]/20 hover:bg-[#2C2C2C]">
+          온라인 예약하기
+          <span class="w-7 h-7 rounded-full bg-white/15 flex items-center justify-center">
+            <i class="fas fa-arrow-right text-[10px]"></i>
+          </span>
+        </a>
+        <a href="tel:02-1234-5678" class="inline-flex items-center justify-center gap-3 px-10 py-5 border border-[#C4A882]/30 text-[#C4A882] font-semibold text-[11px] tracking-[0.3em] uppercase rounded-full hover:bg-white">
+          <i class="fas fa-phone text-sm"></i>
+          전화 예약
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== Location ========== -->
+  <section id="location" class="py-24 md:py-32 bg-[#2C2C2C] text-white relative overflow-hidden">
+    <div class="absolute top-0 right-0 w-96 h-96 bg-[#C4A882]/10 rounded-full blur-[120px]"></div>
+    <div class="absolute bottom-0 left-0 w-72 h-72 bg-[#C4A882]/10 rounded-full blur-[100px]"></div>
+
+    <div class="max-w-7xl mx-auto px-4 md:px-8 relative z-10">
+      <div class="grid lg:grid-cols-2 gap-16 lg:gap-24 items-start">
+        <div class="reveal" style="--delay: 0;">
+          <div class="rounded-[2rem] overflow-hidden aspect-[4/3] bg-[#3a3a3a] relative group">
+            <img src="https://images.unsplash.com/photo-1600948836101-f9ffda59d250?q=80&w=800" alt="살롱 외관" class="w-full h-full object-cover opacity-60 group-hover:opacity-80 transition-opacity duration-700" loading="lazy">
+            <div class="absolute inset-0 flex items-center justify-center">
+              <a href="#" class="inline-flex items-center gap-3 bg-white/10 backdrop-blur-xl border border-white/20 text-white px-8 py-4 rounded-full text-[11px] font-semibold uppercase tracking-[0.3em] hover:bg-white/20 transition">
+                <i class="fas fa-map-marker-alt text-[#C4A882]"></i>
+                지도에서 보기
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="space-y-10">
+          <div class="reveal" style="--delay: 1;">
+            <span class="rounded-full px-4 py-1.5 text-[11px] uppercase tracking-[0.15em] font-medium bg-white/10 text-[#C4A882]">Visit Us</span>
+            <h2 class="text-3xl md:text-4xl lg:text-5xl font-serif font-semibold leading-snug mt-6">
+              오시는 길
+            </h2>
+          </div>
+
+          <div class="space-y-8 reveal" style="--delay: 2;">
+            <div class="flex gap-5">
+              <div class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center shrink-0 mt-0.5">
+                <i class="fas fa-map-pin text-[#C4A882] text-sm"></i>
+              </div>
+              <div>
+                <p class="text-[10px] font-semibold uppercase tracking-[0.3em] text-white/40 mb-2">Address</p>
+                <p class="text-white/80 text-base leading-relaxed">서울특별시 강남구 청담동 123-45<br>르 블랑 빌딩 2층</p>
+              </div>
+            </div>
+
+            <div class="flex gap-5">
+              <div class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center shrink-0 mt-0.5">
+                <i class="fas fa-clock text-[#C4A882] text-sm"></i>
+              </div>
+              <div>
+                <p class="text-[10px] font-semibold uppercase tracking-[0.3em] text-white/40 mb-2">Hours</p>
+                <div class="space-y-1.5 text-white/80 text-base">
+                  <div class="flex justify-between gap-12">
+                    <span>화 - 토</span>
+                    <span class="font-serif">10:00 - 20:00</span>
+                  </div>
+                  <div class="flex justify-between gap-12">
+                    <span>일요일</span>
+                    <span class="font-serif">11:00 - 18:00</span>
+                  </div>
+                  <div class="flex justify-between gap-12 text-[#C4A882]">
+                    <span>월요일</span>
+                    <span class="font-serif">정기 휴무</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="flex gap-5">
+              <div class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center shrink-0 mt-0.5">
+                <i class="fas fa-subway text-[#C4A882] text-sm"></i>
+              </div>
+              <div>
+                <p class="text-[10px] font-semibold uppercase tracking-[0.3em] text-white/40 mb-2">Transport</p>
+                <p class="text-white/80 text-base leading-relaxed">압구정로데오역 5번 출구 도보 3분<br>발렛 파킹 가능</p>
+              </div>
+            </div>
+
+            <div class="flex gap-5">
+              <div class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center shrink-0 mt-0.5">
+                <i class="fas fa-phone text-[#C4A882] text-sm"></i>
+              </div>
+              <div>
+                <p class="text-[10px] font-semibold uppercase tracking-[0.3em] text-white/40 mb-2">Contact</p>
+                <p class="text-white/80 text-base">02-1234-5678</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== Footer ========== -->
+  <footer class="py-16 md:py-24 bg-[#2C2C2C]">
+    <div class="max-w-7xl mx-auto px-4 md:px-8">
+      <div class="grid md:grid-cols-3 gap-12 items-start mb-16">
+        <div>
+          <span class="font-serif text-2xl text-white tracking-[0.3em] font-semibold uppercase block mb-4">LE BLANC</span>
+          <p class="text-white/30 text-sm leading-relaxed max-w-xs">
+            청담동 프리미엄 뷰티 살롱. 과학적 피부 분석과 섬세한 손길로 당신의 아름다움을 완성합니다.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-2 gap-8">
+          <div>
+            <p class="text-[10px] font-semibold text-white/20 uppercase tracking-[0.3em] mb-4">Menu</p>
+            <ul class="space-y-2.5">
+              <li><a href="#menu" class="text-white/50 text-sm hover:text-[#C4A882] transition">Facial</a></li>
+              <li><a href="#menu" class="text-white/50 text-sm hover:text-[#C4A882] transition">Lifting</a></li>
+              <li><a href="#menu" class="text-white/50 text-sm hover:text-[#C4A882] transition">Peeling</a></li>
+              <li><a href="#menu" class="text-white/50 text-sm hover:text-[#C4A882] transition">Body</a></li>
+            </ul>
+          </div>
+          <div>
+            <p class="text-[10px] font-semibold text-white/20 uppercase tracking-[0.3em] mb-4">Info</p>
+            <ul class="space-y-2.5">
+              <li><a href="#about" class="text-white/50 text-sm hover:text-[#C4A882] transition">About</a></li>
+              <li><a href="#location" class="text-white/50 text-sm hover:text-[#C4A882] transition">Location</a></li>
+              <li><a href="#gallery" class="text-white/50 text-sm hover:text-[#C4A882] transition">Gallery</a></li>
+              <li><a href="#" class="text-white/50 text-sm hover:text-[#C4A882] transition">Careers</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <div>
+          <p class="text-[10px] font-semibold text-white/20 uppercase tracking-[0.3em] mb-4">Follow</p>
+          <div class="flex gap-3">
+            <a href="#" class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white/50 hover:text-[#C4A882] hover:border-[#C4A882]/30 transition">
+              <i class="fab fa-instagram text-sm"></i>
+            </a>
+            <a href="#" class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white/50 hover:text-[#C4A882] hover:border-[#C4A882]/30 transition">
+              <i class="fab fa-facebook-f text-sm"></i>
+            </a>
+            <a href="#" class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white/50 hover:text-[#C4A882] hover:border-[#C4A882]/30 transition">
+              <i class="fas fa-blog text-sm"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="border-t border-white/5 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+        <p class="text-[10px] text-white/15 tracking-[0.5em] uppercase">
+          &copy; 2024 Le Blanc Beauty Salon. All rights reserved by DLAB.
+        </p>
+        <div class="flex gap-6">
+          <a href="#" class="text-[10px] text-white/15 tracking-[0.2em] uppercase hover:text-white/40 transition">Privacy</a>
+          <a href="#" class="text-[10px] text-white/15 tracking-[0.2em] uppercase hover:text-white/40 transition">Terms</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ========== Login Modal ========== -->
+  <div id="beauty-modal" class="fixed inset-0 z-[100] hidden items-center justify-center p-4 bg-[#2C2C2C]/20 backdrop-blur-3xl">
+    <div class="bg-white w-full max-w-sm p-8 md:p-14 shadow-2xl relative rounded-[3rem] border border-[#C4A882]/10">
+      <button onclick="toggleBeautyModal()" class="absolute top-8 right-8 w-8 h-8 rounded-full bg-[#FAFAF8] flex items-center justify-center text-[#2C2C2C]/30 hover:text-[#C4A882] hover:bg-[#C4A882]/10 transition text-lg">&times;</button>
+
+      <div class="text-center mb-12">
+        <h2 class="text-xl font-serif tracking-[0.3em] text-[#2C2C2C] mb-3 font-semibold uppercase">Member</h2>
+        <p class="text-[9px] text-[#C4A882] font-semibold tracking-[0.3em] uppercase">Authorized Guest Access</p>
+      </div>
+
+      <div class="space-y-5">
+        <div class="space-y-2">
+          <p class="text-[10px] font-semibold text-[#2C2C2C]/30 uppercase tracking-[0.2em] ml-1">Member ID</p>
+          <input type="text" placeholder="your@email.com" class="w-full bg-[#FAFAF8] border-none rounded-2xl py-5 px-6 outline-none focus:ring-1 focus:ring-[#C4A882] transition text-[13px] text-[#2C2C2C]">
+        </div>
+        <div class="space-y-2">
+          <p class="text-[10px] font-semibold text-[#2C2C2C]/30 uppercase tracking-[0.2em] ml-1">Password</p>
+          <input type="password" placeholder="Password" class="w-full bg-[#FAFAF8] border-none rounded-2xl py-5 px-6 outline-none focus:ring-1 focus:ring-[#C4A882] transition text-[13px] text-[#2C2C2C]">
+        </div>
+        <button class="w-full bg-[#C4A882] text-white py-5 rounded-full text-[11px] tracking-[0.4em] font-semibold uppercase hover:bg-[#2C2C2C] transition shadow-lg shadow-[#C4A882]/20 mt-2">
+          Sign In
         </button>
-        <div class="flex justify-center gap-14 pt-4">
-           <a href="#" class="text-[9px] text-[#5D5552]/30 tracking-[0.4em] font-semibold uppercase hover:text-[#CFB997] transition italic">Registration</a>
-           <a href="#" class="text-[9px] text-[#5D5552]/30 tracking-[0.4em] font-semibold uppercase hover:text-[#CFB997] transition italic">Concierge</a>
+        <div class="flex justify-center gap-10 pt-2">
+          <a href="#" class="text-[10px] text-[#2C2C2C]/40 tracking-[0.2em] font-semibold uppercase hover:text-[#C4A882] transition">Join</a>
+          <a href="#" class="text-[10px] text-[#2C2C2C]/40 tracking-[0.2em] font-semibold uppercase hover:text-[#C4A882] transition">Help</a>
         </div>
       </div>
     </div>
   </div>
 
-  <footer class="py-24 md:py-40 bg-[#FFFDFB] text-center px-6 border-t border-[#CFB997]/10">
-     <div class="inline-flex items-center gap-14 mb-12">
-        <span class="font-serif text-2xl tracking-[0.6em] font-semibold uppercase text-[#CFB997]">LUMIER</span>
-        <span class="w-16 h-[1px] bg-[#CFB997]/20"></span>
-        <span class="text-[10px] font-semibold text-[#5D5552]/30 tracking-[0.6em] uppercase">Aesthetic Sanctuary</span>
-     </div>
-     <p class="text-[10px] text-[#5D5552]/20 tracking-[1em] uppercase px-6">© 2024 LUMIER SEOUL. ALL RIGHTS RESERVED BY DLAB.</p>
-  </footer>
-
-  <script>
-    function toggleBeautyModal() {
-      const modal = document.getElementById('beauty-modal');
-      modal.classList.toggle('hidden');
-      modal.classList.toggle('flex');
-    }
-  </script>
-
 </div>
+
+<script>
+  // Modal toggle
+  function toggleBeautyModal() {
+    const modal = document.getElementById('beauty-modal');
+    modal.classList.toggle('hidden');
+    modal.classList.toggle('flex');
+  }
+
+  // Close modal on backdrop click
+  document.getElementById('beauty-modal').addEventListener('click', function(e) {
+    if (e.target === this) toggleBeautyModal();
+  });
+
+  // IntersectionObserver for scroll reveal animations
+  (function() {
+    const observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    });
+
+    document.querySelectorAll('.reveal').forEach(function(el) {
+      observer.observe(el);
+    });
+  })();
+</script>

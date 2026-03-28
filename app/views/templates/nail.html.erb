@@ -1,17 +1,17 @@
-<%# Nail Template - 네온 네일 (NEON NAIL) %>
+<%# Nail Template - 로즈 아뜰리에 (ROSE ATELIER) %>
 
 <style>
-  /* Supanova Design Upgrade */
+  /* Supanova Design — Elegant Soft Pastel Archetype */
   * { word-break: keep-all; }
-  html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+  html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
   h1, h2, h3, h4 { text-wrap: balance; letter-spacing: -0.02em; line-height: 1.3; }
-  a, button { transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1); }
+  a, button { transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1); }
   a:hover, button:hover { transform: scale(1.02); }
   a:active, button:active { transform: scale(0.98); }
 
-  @import url('https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap');
-  
-  .font-cyber { font-family: 'Syncopate', sans-serif; }
+  @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300..700;1,300..700&family=Noto+Sans+KR:wght@300;400;500;700&display=swap');
+
+  .font-elegant { font-family: 'Cormorant Garamond', serif; }
   .font-sans { font-family: 'Pretendard Variable', 'Pretendard', -apple-system, sans-serif; }
 
   @media (max-width: 768px) {
@@ -19,154 +19,548 @@
     .mobile-title { font-size: 40px !important; }
   }
 
-  .glitch-pattern {
-    background: repeating-linear-gradient(
-      0deg,
-      transparent,
-      transparent 2px,
-      #FF00FF 2px,
-      #FF00FF 4px
-    );
-    opacity: 0.03;
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(2rem); filter: blur(4px); }
+    to { opacity: 1; transform: translateY(0); filter: blur(0); }
+  }
+  .reveal { opacity: 0; transform: translateY(2rem); }
+  .reveal.is-visible { animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards; animation-delay: calc(var(--delay, 0) * 100ms); }
+
+  .gallery-card { transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1); }
+  .gallery-card:hover { transform: translateY(-6px); }
+  .gallery-card:hover img { transform: scale(1.05); }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
   }
 </style>
 
-<div class="bg-slate-950 text-white font-sans selection:bg-[#FF00FF] selection:text-white min-h-screen overflow-x-hidden relative">
-  <div class="fixed inset-0 glitch-pattern pointer-events-none"></div>
+<div class="bg-[#FDF8F5] text-[#3D3D3D] font-sans selection:bg-[#D4A5A5] selection:text-white min-h-screen overflow-x-hidden relative">
 
-  <!-- Nav -->
-  <nav class="fixed w-full z-50 px-8 py-6 bg-slate-950/80 backdrop-blur-md border-b border-[#FF00FF]/20">
-    <div class="container mx-auto px-4 md:px-6 flex justify-between items-center flex-nowrap">
-      <div class="flex items-center gap-2">
-         <span class="text-[#00FFFF] text-2xl animate-pulse">✦</span>
-         <span class="font-cyber font-semibold text-lg tracking-wide text-white">Neon<span class="text-[#FF00FF]">Nail</span></span>
-      </div>
-      
-      <div class="hidden md:flex gap-16 text-[10px] font-cyber font-semibold tracking-[0.2em] text-[#FF00FF]/60 uppercase">
-        <a href="#gallery" class="hover:text-[#00FFFF] transition">Gallery</a>
-        <a href="#artists" class="hover:text-[#00FFFF] transition">Artists</a>
-        <a href="#price" class="hover:text-[#00FFFF] transition">Price</a>
-      </div>
-           <button class="mobile-menu-trigger md:hidden ml-auto text-2xl focus:outline-none" style="color: inherit;">
-             <i class="fas fa-bars"></i>
-           </button>
+  <!-- ========== Nav ========== -->
+  <nav class="fixed w-full z-50 px-4 md:px-8 py-5 bg-[#FDF8F5]/80 backdrop-blur-xl border-b border-[#D4A5A5]/10">
+    <div class="max-w-7xl mx-auto flex justify-between items-center">
+      <a href="#" class="flex items-center gap-3">
+        <span class="font-elegant text-3xl tracking-wide font-medium italic text-[#D4A5A5]">Rose <span class="text-[#3D3D3D]">Atelier</span></span>
+      </a>
 
-      
-      <div class="flex-nowrap shrink-0 flex gap-6 items-center">
-         <button onclick="toggleNailModal()" class="hidden md:block text-[10px] font-cyber font-semibold uppercase tracking-[0.2em] text-[#FF00FF]/60 hover:text-[#00FFFF]" data-mobile-menu-copy="true">Membership</button>
-         <button class="hidden md:block border border-[#00FFFF] text-[#00FFFF] px-6 py-2 rounded-none font-cyber font-semibold text-[10px] hover:bg-[#00FFFF] hover:text-slate-900 transition shadow-[0_0_15px_#00FFFF]" data-mobile-menu-copy="true">
-           Book Now
-         </button>
+      <div class="hidden md:flex gap-12 text-[10px] font-semibold uppercase tracking-[0.4em] text-[#3D3D3D]/40">
+        <a href="#about" class="hover:text-[#D4A5A5] transition">About</a>
+        <a href="#gallery" class="hover:text-[#D4A5A5] transition">Gallery</a>
+        <a href="#price" class="hover:text-[#D4A5A5] transition">Price</a>
+        <a href="#location" class="hover:text-[#D4A5A5] transition">Location</a>
+      </div>
+
+      <button class="mobile-menu-trigger md:hidden ml-auto text-2xl focus:outline-none" style="color: inherit;">
+        <i class="fas fa-bars"></i>
+      </button>
+
+      <div class="hidden md:flex gap-6 items-center shrink-0">
+        <button onclick="toggleNailModal()" class="text-[10px] font-semibold uppercase tracking-[0.4em] text-[#3D3D3D]/40 hover:text-[#D4A5A5]" data-mobile-menu-copy="true">Member</button>
+        <button class="bg-[#D4A5A5] text-white px-8 py-3.5 rounded-full font-semibold text-[10px] tracking-[0.3em] uppercase hover:bg-[#3D3D3D] transition shadow-lg shadow-[#D4A5A5]/20" data-mobile-menu-copy="true">
+          예약하기
+        </button>
       </div>
     </div>
 
-      <%= render partial: 'templates/shared/mobile_menu_overlay' %></nav>
+    <%= render partial: 'templates/shared/mobile_menu_overlay' %>
+  </nav>
 
-  <!-- Hero -->
-  <header class="min-h-screen relative flex items-center justify-center pt-24 overflow-hidden">
-    <!-- Neon Glows -->
-    <div class="absolute top-[20%] left-[20%] w-[300px] h-[300px] bg-[#FF00FF] rounded-full filter blur-[120px] opacity-40 animate-pulse"></div>
-    <div class="absolute bottom-[20%] right-[20%] w-[400px] h-[400px] bg-[#00FFFF] rounded-full filter blur-[150px] opacity-30 animate-pulse delay-1000"></div>
+  <!-- ========== Hero ========== -->
+  <header class="min-h-[100dvh] relative flex items-center justify-center pt-20">
+    <div class="absolute top-[15%] right-[10%] w-[400px] h-[400px] bg-[#D4A5A5]/10 rounded-full blur-[100px]"></div>
+    <div class="absolute bottom-[20%] left-[5%] w-[300px] h-[300px] bg-[#E8C8C8]/15 rounded-full blur-[80px]"></div>
 
-    <div class="container mx-auto px-3 md:px-6 relative z-10 grid lg:grid-cols-2 gap-12 md:p-20 items-center">
+    <div class="max-w-7xl mx-auto px-4 md:px-8 relative z-10 grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
       <div class="space-y-10 text-center lg:text-left">
-        <div class="inline-flex items-center gap-2 border border-[#FF00FF] px-4 py-1.5 rounded-none bg-slate-950/50 backdrop-blur-sm">
-           <span class="w-2 h-2 bg-[#FF00FF] animate-ping"></span>
-           <span class="text-[10px] font-cyber font-semibold text-[#FF00FF] uppercase tracking-wide">Cyber Aesthetic Studio</span>
+        <div class="inline-flex items-center gap-5 reveal" style="--delay: 0;">
+          <span class="w-10 h-[1px] bg-[#D4A5A5]"></span>
+          <span class="text-[10px] font-semibold tracking-[0.6em] uppercase text-[#D4A5A5]">Nail Art Studio</span>
         </div>
-        
-        <h1 class="text-2xl md:text-4xl md:text-6xl font-cyber font-semibold leading-[1.1] text-white mobile-title uppercase">
-           Future<br>
-           at your<br>
-           <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#FF00FF] via-[#00FFFF] to-[#FF00FF] animate-gradient-x">Fingertips.</span>
+
+        <h1 class="text-4xl md:text-6xl lg:text-[5.5rem] font-elegant font-medium leading-tight tracking-tight text-[#3D3D3D] mobile-title reveal" style="--delay: 1;">
+          손끝에 피어나는<br><span class="italic text-[#D4A5A5]">작은 예술.</span>
         </h1>
-        
-        <p class="text-gray-400 text-sm md:text-lg leading-relaxed max-w-lg mx-auto lg:mx-0 mobile-desc font-light">
-           평범함을 거부하는 당신을 위한 사이버 펑크 무드 네일.<br>
-           네온 네일에서 가장 감각적인 아트를 경험하세요.
+
+        <p class="text-[#3D3D3D]/60 text-sm md:text-lg leading-relaxed max-w-lg mx-auto lg:mx-0 mobile-desc reveal" style="--delay: 2;">
+          섬세한 감각과 예술적 감성으로 완성되는 네일 아트. 로즈 아뜰리에에서 당신만의 특별한 스타일을 만나보세요.
         </p>
-        
-        <div class="flex flex-col sm:flex-row gap-10 justify-center lg:justify-start pt-6">
-           <button class="px-10 py-4 bg-[#FF00FF] text-slate-900 font-cyber font-semibold text-sm uppercase tracking-wide hover:bg-[#00FFFF] transition shadow-[0_0_20px_#FF00FF] hover:shadow-[0_0_20px_#00FFFF]">
-              View Designs
-           </button>
-           <button class="px-10 py-4 border border-white/20 text-white font-cyber font-semibold text-sm uppercase tracking-wide hover:border-[#FF00FF] hover:text-[#FF00FF] transition bg-slate-950/50 backdrop-blur-sm">
-              Artist Info
-           </button>
+
+        <div class="pt-4 flex flex-col sm:flex-row gap-5 justify-center lg:justify-start reveal" style="--delay: 3;">
+          <a href="#gallery" class="inline-flex items-center justify-center gap-3 px-10 py-5 bg-[#3D3D3D] text-white font-semibold text-[11px] tracking-[0.3em] uppercase hover:bg-[#D4A5A5] rounded-full shadow-xl">
+            아트 갤러리
+            <span class="w-7 h-7 rounded-full bg-white/10 flex items-center justify-center">
+              <i class="fas fa-arrow-right text-[10px]"></i>
+            </span>
+          </a>
+          <a href="#price" class="inline-flex items-center justify-center px-10 py-5 border border-[#D4A5A5]/30 text-[#D4A5A5] font-semibold text-[11px] tracking-[0.3em] uppercase hover:bg-white rounded-full">
+            가격표 보기
+          </a>
         </div>
       </div>
-      
-      <div class="relative hidden lg:block">
-         <div class="relative z-10 w-full max-w-[450px] mx-auto aspect-[3/4] border border-[#00FFFF]/30 p-2 group">
-            <div class="absolute inset-0 bg-gradient-to-b from-[#FF00FF]/20 to-[#00FFFF]/20 opacity-0 group-hover:opacity-100 transition duration-500"></div>
-            <img src="https://images.unsplash.com/photo-1604654894610-df63bc536371?q=80&w=800" alt="Cyber Nail Art" class="w-full h-full object-cover grayscale contrast-125 group-hover:grayscale-0 transition duration-700">
-            
-            <!-- Floating Elements -->
-            <div class="absolute top-10 -right-12 bg-slate-950 border border-[#FF00FF] p-4 shadow-[0_0_15px_#FF00FF] text-[#FF00FF] font-cyber text-xs uppercase tracking-wide rotate-90 origin-bottom-left">
-               New Collection
-            </div>
-            
-            <div class="absolute -bottom-6 -left-6 bg-slate-950 border border-[#00FFFF] py-3 px-6 shadow-[0_0_15px_#00FFFF]">
-               <p class="font-cyber font-semibold text-white text-lg">Chrome Heart</p>
-               <p class="text-[9px] text-[#00FFFF] uppercase tracking-wide">Premium Art</p>
-            </div>
-         </div>
+
+      <div class="relative reveal" style="--delay: 2;">
+        <div class="absolute -top-12 -right-12 w-72 h-72 bg-[#D4A5A5]/10 rounded-full blur-[100px]"></div>
+        <div class="relative group">
+          <div class="bg-white p-4 rounded-[3rem] shadow-2xl border border-[#D4A5A5]/5">
+            <img src="https://images.unsplash.com/photo-1604654894610-df63bc536371?q=80&w=1200" alt="네일 아트" class="w-full aspect-[4/5] object-cover rounded-[2.5rem] brightness-105" loading="eager">
+          </div>
+          <div class="absolute -bottom-6 -left-6 md:-bottom-8 md:-left-8 bg-white p-8 md:p-10 rounded-2xl shadow-xl border border-[#D4A5A5]/10 max-w-[240px]" style="animation: float 6s ease-in-out infinite;">
+            <p class="text-[10px] font-semibold text-[#D4A5A5] uppercase tracking-[0.4em] mb-3">This Season</p>
+            <p class="text-base font-elegant italic text-[#3D3D3D]">Cherry Blossom Collection</p>
+          </div>
+        </div>
       </div>
     </div>
   </header>
-  
-  <style>
-     @keyframes gradient-x {
-        0%, 100% { background-position: 0% 50%; }
-        50% { background-position: 100% 50%; }
-     }
-     .animate-gradient-x {
-        background-size: 200% 200%;
-        animation: gradient-x 3s ease infinite;
-     }
-  </style>
 
-  <!-- Login Modal -->
-  <div id="nail-modal" class="fixed inset-0 z-[100] hidden items-center justify-center p-4 bg-slate-950/80 backdrop-blur-lg">
-    <div class="bg-slate-950 w-full max-w-sm p-12 shadow-[0_0_50px_#FF00FF] relative border border-[#FF00FF]">
-      <button onclick="toggleNailModal()" class="absolute top-6 right-6 text-gray-500 hover:text-[#00FFFF] transition text-2xl font-cyber">&times;</button>
-      
-      <div class="text-center mb-10">
-        <h2 class="text-xl font-cyber font-semibold text-white mb-2 uppercase">VIP Access</h2>
-        <p class="text-[9px] text-[#00FFFF] font-semibold tracking-[0.3em] uppercase border border-[#00FFFF] inline-block px-3 py-1">Members Only</p>
-      </div>
-      
-      <div class="space-y-6">
-        <div class="group">
-           <input type="text" placeholder="Passcode" class="w-full bg-slate-950 border border-[#FF00FF]/50 py-4 px-6 text-sm font-cyber font-semibold text-[#FF00FF] placeholder-[#FF00FF]/30 uppercase outline-none focus:border-[#00FFFF] focus:shadow-[0_0_15px_#00FFFF] transition text-center">
+  <!-- ========== About ========== -->
+  <section id="about" class="py-24 md:py-32">
+    <div class="max-w-7xl mx-auto px-4 md:px-8 grid lg:grid-cols-2 gap-16 lg:gap-24 items-center">
+      <div class="relative reveal" style="--delay: 0;">
+        <div class="grid grid-cols-2 gap-4">
+          <div class="overflow-hidden rounded-[2rem]">
+            <img src="https://images.unsplash.com/photo-1607779097040-26e80aa78e66?q=80&w=600" alt="네일 작업" class="w-full aspect-[3/4] object-cover" loading="lazy">
+          </div>
+          <div class="overflow-hidden rounded-[2rem] mt-8">
+            <img src="https://images.unsplash.com/photo-1519014816548-bf5fe059798b?q=80&w=600" alt="네일 디자인" class="w-full aspect-[3/4] object-cover" loading="lazy">
+          </div>
         </div>
-        
-        <button class="w-full bg-[#FF00FF] text-slate-900 py-4 text-[10px] tracking-[0.3em] font-cyber font-semibold uppercase hover:bg-[#00FFFF] transition shadow-[0_0_20px_#FF00FF] hover:shadow-[0_0_20px_#00FFFF]">
-           Enter System
+      </div>
+
+      <div class="space-y-8 reveal" style="--delay: 1;">
+        <div class="inline-flex items-center gap-4">
+          <span class="rounded-full px-4 py-1.5 text-[11px] uppercase tracking-[0.15em] font-medium bg-[#D4A5A5]/10 text-[#D4A5A5]">Our Story</span>
+        </div>
+
+        <h2 class="text-3xl md:text-4xl lg:text-5xl font-elegant font-medium leading-snug text-[#3D3D3D]">
+          한 올 한 올,<br>정성을 담아서
+        </h2>
+
+        <p class="text-[#3D3D3D]/60 text-base md:text-lg leading-relaxed">
+          로즈 아뜰리에는 2020년 한남동에서 문을 열었습니다. 일본과 한국에서 수련한 아티스트들이 한 분 한 분의 손끝에 예술을 그려넣습니다.
+        </p>
+        <p class="text-[#3D3D3D]/60 text-base md:text-lg leading-relaxed">
+          네일은 가장 가까이에서 매일 마주하는 예술입니다. 트렌드를 좇기보다 당신의 개성에 어울리는 디자인을 함께 만들어갑니다.
+        </p>
+
+        <div class="grid grid-cols-3 gap-6 pt-6 border-t border-[#D4A5A5]/10">
+          <div>
+            <p class="text-2xl md:text-3xl font-elegant font-medium text-[#D4A5A5]">5yr</p>
+            <p class="text-[11px] text-[#3D3D3D]/40 uppercase tracking-[0.1em] mt-1 font-medium">한남동 아뜰리에</p>
+          </div>
+          <div>
+            <p class="text-2xl md:text-3xl font-elegant font-medium text-[#D4A5A5]">200+</p>
+            <p class="text-[11px] text-[#3D3D3D]/40 uppercase tracking-[0.1em] mt-1 font-medium">아트 디자인</p>
+          </div>
+          <div>
+            <p class="text-2xl md:text-3xl font-elegant font-medium text-[#D4A5A5]">100%</p>
+            <p class="text-[11px] text-[#3D3D3D]/40 uppercase tracking-[0.1em] mt-1 font-medium">프리미엄 젤</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== 네일 아트 갤러리 ========== -->
+  <section id="gallery" class="py-24 md:py-32 bg-white relative">
+    <div class="max-w-7xl mx-auto px-4 md:px-8">
+      <div class="text-center mb-16 md:mb-20">
+        <span class="rounded-full px-4 py-1.5 text-[11px] uppercase tracking-[0.15em] font-medium bg-[#D4A5A5]/10 text-[#D4A5A5] reveal" style="--delay: 0;">Art Gallery</span>
+        <h2 class="text-3xl md:text-4xl lg:text-5xl font-elegant font-medium leading-snug text-[#3D3D3D] mt-6 reveal" style="--delay: 1;">
+          이번 시즌의<br>베스트 디자인
+        </h2>
+        <p class="text-[#3D3D3D]/50 text-base md:text-lg mt-4 max-w-xl mx-auto reveal" style="--delay: 2;">
+          아티스트가 직접 큐레이션한 시즌 컬렉션을 만나보세요
+        </p>
+      </div>
+
+      <div class="grid grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
+        <!-- 갤러리 1 -->
+        <div class="gallery-card group reveal" style="--delay: 0;">
+          <div class="bg-[#FDF8F5] rounded-[2rem] p-1.5 ring-1 ring-[#D4A5A5]/10 overflow-hidden">
+            <div class="overflow-hidden rounded-[calc(2rem-0.375rem)]">
+              <img src="https://images.unsplash.com/photo-1604654894610-df63bc536371?q=80&w=600" alt="체리 블라썸" class="w-full aspect-square object-cover transition-transform duration-700" loading="lazy">
+            </div>
+            <div class="p-5 text-center">
+              <h3 class="text-base font-semibold text-[#3D3D3D]">체리 블라썸</h3>
+              <p class="text-[12px] text-[#D4A5A5] mt-1">Spring Collection</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 갤러리 2 -->
+        <div class="gallery-card group reveal" style="--delay: 1;">
+          <div class="bg-[#FDF8F5] rounded-[2rem] p-1.5 ring-1 ring-[#D4A5A5]/10 overflow-hidden">
+            <div class="overflow-hidden rounded-[calc(2rem-0.375rem)]">
+              <img src="https://images.unsplash.com/photo-1519014816548-bf5fe059798b?q=80&w=600" alt="프렌치 모던" class="w-full aspect-square object-cover transition-transform duration-700" loading="lazy">
+            </div>
+            <div class="p-5 text-center">
+              <h3 class="text-base font-semibold text-[#3D3D3D]">프렌치 모던</h3>
+              <p class="text-[12px] text-[#D4A5A5] mt-1">Classic Line</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 갤러리 3 -->
+        <div class="gallery-card group reveal" style="--delay: 2;">
+          <div class="bg-[#FDF8F5] rounded-[2rem] p-1.5 ring-1 ring-[#D4A5A5]/10 overflow-hidden">
+            <div class="overflow-hidden rounded-[calc(2rem-0.375rem)]">
+              <img src="https://images.unsplash.com/photo-1607779097040-26e80aa78e66?q=80&w=600" alt="글리터 파티" class="w-full aspect-square object-cover transition-transform duration-700" loading="lazy">
+            </div>
+            <div class="p-5 text-center">
+              <h3 class="text-base font-semibold text-[#3D3D3D]">글리터 파티</h3>
+              <p class="text-[12px] text-[#D4A5A5] mt-1">Party Edition</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 갤러리 4 -->
+        <div class="gallery-card group reveal" style="--delay: 3;">
+          <div class="bg-[#FDF8F5] rounded-[2rem] p-1.5 ring-1 ring-[#D4A5A5]/10 overflow-hidden">
+            <div class="overflow-hidden rounded-[calc(2rem-0.375rem)]">
+              <img src="https://images.unsplash.com/photo-1632345031435-8727f6897d53?q=80&w=600" alt="미니멀 라인" class="w-full aspect-square object-cover transition-transform duration-700" loading="lazy">
+            </div>
+            <div class="p-5 text-center">
+              <h3 class="text-base font-semibold text-[#3D3D3D]">미니멀 라인</h3>
+              <p class="text-[12px] text-[#D4A5A5] mt-1">Daily Look</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 갤러리 5 -->
+        <div class="gallery-card group reveal" style="--delay: 4;">
+          <div class="bg-[#FDF8F5] rounded-[2rem] p-1.5 ring-1 ring-[#D4A5A5]/10 overflow-hidden">
+            <div class="overflow-hidden rounded-[calc(2rem-0.375rem)]">
+              <img src="https://images.unsplash.com/photo-1604654894610-df63bc536371?q=80&w=600" alt="마블 아트" class="w-full aspect-square object-cover transition-transform duration-700 hue-rotate-30" loading="lazy">
+            </div>
+            <div class="p-5 text-center">
+              <h3 class="text-base font-semibold text-[#3D3D3D]">마블 아트</h3>
+              <p class="text-[12px] text-[#D4A5A5] mt-1">Signature Art</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 갤러리 6 -->
+        <div class="gallery-card group reveal" style="--delay: 5;">
+          <div class="bg-[#FDF8F5] rounded-[2rem] p-1.5 ring-1 ring-[#D4A5A5]/10 overflow-hidden">
+            <div class="overflow-hidden rounded-[calc(2rem-0.375rem)]">
+              <img src="https://images.unsplash.com/photo-1519014816548-bf5fe059798b?q=80&w=600" alt="뉴트럴 톤" class="w-full aspect-square object-cover transition-transform duration-700 sepia-[.3]" loading="lazy">
+            </div>
+            <div class="p-5 text-center">
+              <h3 class="text-base font-semibold text-[#3D3D3D]">뉴트럴 톤</h3>
+              <p class="text-[12px] text-[#D4A5A5] mt-1">Office Chic</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== 가격표 ========== -->
+  <section id="price" class="py-24 md:py-32">
+    <div class="max-w-7xl mx-auto px-4 md:px-8">
+      <div class="text-center mb-16 md:mb-20">
+        <span class="rounded-full px-4 py-1.5 text-[11px] uppercase tracking-[0.15em] font-medium bg-[#D4A5A5]/10 text-[#D4A5A5] reveal" style="--delay: 0;">Price List</span>
+        <h2 class="text-3xl md:text-4xl lg:text-5xl font-elegant font-medium leading-snug text-[#3D3D3D] mt-6 reveal" style="--delay: 1;">
+          합리적인 가격,<br>프리미엄 퀄리티
+        </h2>
+      </div>
+
+      <div class="max-w-3xl mx-auto space-y-0 reveal" style="--delay: 2;">
+        <!-- 가격 항목들 -->
+        <div class="flex justify-between items-center py-6 border-b border-[#D4A5A5]/10 group hover:bg-[#D4A5A5]/5 px-4 rounded-lg transition">
+          <div>
+            <h3 class="text-lg font-semibold text-[#3D3D3D]">젤 네일 (원컬러)</h3>
+            <p class="text-[13px] text-[#3D3D3D]/40 mt-1">손 / 발 선택 가능</p>
+          </div>
+          <span class="text-xl font-elegant font-medium text-[#D4A5A5]">45,000~</span>
+        </div>
+
+        <div class="flex justify-between items-center py-6 border-b border-[#D4A5A5]/10 group hover:bg-[#D4A5A5]/5 px-4 rounded-lg transition">
+          <div>
+            <h3 class="text-lg font-semibold text-[#3D3D3D]">아트 네일</h3>
+            <p class="text-[13px] text-[#3D3D3D]/40 mt-1">시즌 디자인 / 커스텀 아트</p>
+          </div>
+          <span class="text-xl font-elegant font-medium text-[#D4A5A5]">65,000~</span>
+        </div>
+
+        <div class="flex justify-between items-center py-6 border-b border-[#D4A5A5]/10 group hover:bg-[#D4A5A5]/5 px-4 rounded-lg transition">
+          <div>
+            <h3 class="text-lg font-semibold text-[#3D3D3D]">프리미엄 아트</h3>
+            <p class="text-[13px] text-[#3D3D3D]/40 mt-1">3D 아트 / 크리스탈 / 핸드페인팅</p>
+          </div>
+          <span class="text-xl font-elegant font-medium text-[#D4A5A5]">90,000~</span>
+        </div>
+
+        <div class="flex justify-between items-center py-6 border-b border-[#D4A5A5]/10 group hover:bg-[#D4A5A5]/5 px-4 rounded-lg transition">
+          <div>
+            <h3 class="text-lg font-semibold text-[#3D3D3D]">손 케어 (건식/습식)</h3>
+            <p class="text-[13px] text-[#3D3D3D]/40 mt-1">큐티클 케어 + 보습 마사지</p>
+          </div>
+          <span class="text-xl font-elegant font-medium text-[#D4A5A5]">30,000~</span>
+        </div>
+
+        <div class="flex justify-between items-center py-6 border-b border-[#D4A5A5]/10 group hover:bg-[#D4A5A5]/5 px-4 rounded-lg transition">
+          <div>
+            <h3 class="text-lg font-semibold text-[#3D3D3D]">젤 제거</h3>
+            <p class="text-[13px] text-[#3D3D3D]/40 mt-1">안전한 오프 + 영양 케어</p>
+          </div>
+          <span class="text-xl font-elegant font-medium text-[#D4A5A5]">15,000</span>
+        </div>
+
+        <div class="flex justify-between items-center py-6 group hover:bg-[#D4A5A5]/5 px-4 rounded-lg transition">
+          <div>
+            <h3 class="text-lg font-semibold text-[#3D3D3D]">패디큐어 풀코스</h3>
+            <p class="text-[13px] text-[#3D3D3D]/40 mt-1">각질 제거 + 보습 + 컬러링</p>
+          </div>
+          <span class="text-xl font-elegant font-medium text-[#D4A5A5]">55,000~</span>
+        </div>
+      </div>
+
+      <div class="text-center mt-10 reveal" style="--delay: 3;">
+        <p class="text-[13px] text-[#3D3D3D]/40">* 디자인 복잡도에 따라 가격이 달라질 수 있습니다. 상담 시 정확한 견적을 안내드립니다.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== 예약 CTA ========== -->
+  <section class="py-24 md:py-32 relative overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-br from-[#FDF8F5] via-[#f8ece6] to-[#FDF8F5]"></div>
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-[#D4A5A5]/8 rounded-full blur-[120px]"></div>
+
+    <div class="max-w-3xl mx-auto px-4 md:px-8 text-center relative z-10">
+      <div class="reveal" style="--delay: 0;">
+        <span class="font-elegant text-6xl md:text-8xl italic text-[#D4A5A5]/20 block mb-6">&ldquo;</span>
+      </div>
+      <h2 class="text-3xl md:text-4xl lg:text-5xl font-elegant font-medium leading-snug text-[#3D3D3D] reveal" style="--delay: 1;">
+        특별한 날을 위한<br>완벽한 네일 준비
+      </h2>
+      <p class="text-[#3D3D3D]/50 text-base md:text-lg mt-6 max-w-lg mx-auto reveal" style="--delay: 2;">
+        웨딩, 파티, 혹은 나를 위한 작은 선물. 로즈 아뜰리에에서 손끝까지 완벽하게 준비하세요.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-5 justify-center mt-10 reveal" style="--delay: 3;">
+        <a href="#" class="inline-flex items-center justify-center gap-3 px-10 py-5 bg-[#D4A5A5] text-white font-semibold text-[11px] tracking-[0.3em] uppercase rounded-full shadow-lg shadow-[#D4A5A5]/20 hover:bg-[#3D3D3D]">
+          카카오톡 예약
+          <span class="w-7 h-7 rounded-full bg-white/15 flex items-center justify-center">
+            <i class="fas fa-arrow-right text-[10px]"></i>
+          </span>
+        </a>
+        <a href="https://www.instagram.com/" target="_blank" class="inline-flex items-center justify-center gap-3 px-10 py-5 border border-[#D4A5A5]/30 text-[#D4A5A5] font-semibold text-[11px] tracking-[0.3em] uppercase rounded-full hover:bg-white">
+          <i class="fab fa-instagram text-sm"></i>
+          Instagram
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== Location ========== -->
+  <section id="location" class="py-24 md:py-32 bg-[#3D3D3D] text-white relative overflow-hidden">
+    <div class="absolute top-0 right-0 w-96 h-96 bg-[#D4A5A5]/10 rounded-full blur-[120px]"></div>
+
+    <div class="max-w-7xl mx-auto px-4 md:px-8 relative z-10">
+      <div class="grid lg:grid-cols-2 gap-16 lg:gap-24 items-start">
+        <div class="reveal" style="--delay: 0;">
+          <div class="rounded-[2rem] overflow-hidden aspect-[4/3] bg-[#555] relative group">
+            <img src="https://images.unsplash.com/photo-1600948836101-f9ffda59d250?q=80&w=800" alt="아뜰리에 외관" class="w-full h-full object-cover opacity-60 group-hover:opacity-80 transition-opacity duration-700" loading="lazy">
+            <div class="absolute inset-0 flex items-center justify-center">
+              <a href="#" class="inline-flex items-center gap-3 bg-white/10 backdrop-blur-xl border border-white/20 text-white px-8 py-4 rounded-full text-[11px] font-semibold uppercase tracking-[0.3em] hover:bg-white/20 transition">
+                <i class="fas fa-map-marker-alt text-[#D4A5A5]"></i>
+                지도에서 보기
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="space-y-10">
+          <div class="reveal" style="--delay: 1;">
+            <span class="rounded-full px-4 py-1.5 text-[11px] uppercase tracking-[0.15em] font-medium bg-white/10 text-[#D4A5A5]">Visit Us</span>
+            <h2 class="text-3xl md:text-4xl lg:text-5xl font-elegant font-medium leading-snug mt-6">
+              오시는 길
+            </h2>
+          </div>
+
+          <div class="space-y-8 reveal" style="--delay: 2;">
+            <div class="flex gap-5">
+              <div class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center shrink-0 mt-0.5">
+                <i class="fas fa-map-pin text-[#D4A5A5] text-sm"></i>
+              </div>
+              <div>
+                <p class="text-[10px] font-semibold uppercase tracking-[0.3em] text-white/40 mb-2">Address</p>
+                <p class="text-white/80 text-base leading-relaxed">서울특별시 용산구 한남대로 42길 18<br>로즈 아뜰리에 2층</p>
+              </div>
+            </div>
+
+            <div class="flex gap-5">
+              <div class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center shrink-0 mt-0.5">
+                <i class="fas fa-clock text-[#D4A5A5] text-sm"></i>
+              </div>
+              <div>
+                <p class="text-[10px] font-semibold uppercase tracking-[0.3em] text-white/40 mb-2">Hours</p>
+                <div class="space-y-1.5 text-white/80 text-base">
+                  <div class="flex justify-between gap-12">
+                    <span>화 - 토</span>
+                    <span class="font-elegant">10:00 - 20:00</span>
+                  </div>
+                  <div class="flex justify-between gap-12">
+                    <span>일요일</span>
+                    <span class="font-elegant">11:00 - 18:00</span>
+                  </div>
+                  <div class="flex justify-between gap-12 text-[#D4A5A5]">
+                    <span>월요일</span>
+                    <span class="font-elegant">정기 휴무</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="flex gap-5">
+              <div class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center shrink-0 mt-0.5">
+                <i class="fas fa-subway text-[#D4A5A5] text-sm"></i>
+              </div>
+              <div>
+                <p class="text-[10px] font-semibold uppercase tracking-[0.3em] text-white/40 mb-2">Transport</p>
+                <p class="text-white/80 text-base leading-relaxed">한남역 3번 출구 도보 5분<br>건물 내 주차 가능 (2시간 무료)</p>
+              </div>
+            </div>
+
+            <div class="flex gap-5">
+              <div class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center shrink-0 mt-0.5">
+                <i class="fas fa-phone text-[#D4A5A5] text-sm"></i>
+              </div>
+              <div>
+                <p class="text-[10px] font-semibold uppercase tracking-[0.3em] text-white/40 mb-2">Contact</p>
+                <p class="text-white/80 text-base">02-555-1234</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== Footer ========== -->
+  <footer class="py-16 md:py-24 bg-[#3D3D3D]">
+    <div class="max-w-7xl mx-auto px-4 md:px-8">
+      <div class="grid md:grid-cols-3 gap-12 items-start mb-16">
+        <div>
+          <span class="font-elegant text-2xl text-white tracking-wide font-medium italic block mb-4">Rose Atelier</span>
+          <p class="text-white/30 text-sm leading-relaxed max-w-xs">
+            한남동의 프리미엄 네일 아트 스튜디오. 손끝에 피어나는 작은 예술을 선물합니다.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-2 gap-8">
+          <div>
+            <p class="text-[10px] font-semibold text-white/20 uppercase tracking-[0.3em] mb-4">Service</p>
+            <ul class="space-y-2.5">
+              <li><a href="#price" class="text-white/50 text-sm hover:text-[#D4A5A5] transition">Gel Nail</a></li>
+              <li><a href="#price" class="text-white/50 text-sm hover:text-[#D4A5A5] transition">Art Nail</a></li>
+              <li><a href="#price" class="text-white/50 text-sm hover:text-[#D4A5A5] transition">Hand Care</a></li>
+              <li><a href="#price" class="text-white/50 text-sm hover:text-[#D4A5A5] transition">Pedicure</a></li>
+            </ul>
+          </div>
+          <div>
+            <p class="text-[10px] font-semibold text-white/20 uppercase tracking-[0.3em] mb-4">Info</p>
+            <ul class="space-y-2.5">
+              <li><a href="#about" class="text-white/50 text-sm hover:text-[#D4A5A5] transition">About</a></li>
+              <li><a href="#gallery" class="text-white/50 text-sm hover:text-[#D4A5A5] transition">Gallery</a></li>
+              <li><a href="#location" class="text-white/50 text-sm hover:text-[#D4A5A5] transition">Location</a></li>
+              <li><a href="#" class="text-white/50 text-sm hover:text-[#D4A5A5] transition">Careers</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <div>
+          <p class="text-[10px] font-semibold text-white/20 uppercase tracking-[0.3em] mb-4">Follow</p>
+          <div class="flex gap-3">
+            <a href="#" class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white/50 hover:text-[#D4A5A5] hover:border-[#D4A5A5]/30 transition">
+              <i class="fab fa-instagram text-sm"></i>
+            </a>
+            <a href="#" class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white/50 hover:text-[#D4A5A5] hover:border-[#D4A5A5]/30 transition">
+              <i class="fab fa-facebook-f text-sm"></i>
+            </a>
+            <a href="#" class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white/50 hover:text-[#D4A5A5] hover:border-[#D4A5A5]/30 transition">
+              <i class="fas fa-comment text-sm"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="border-t border-white/5 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+        <p class="text-[10px] text-white/15 tracking-[0.5em] uppercase">
+          &copy; 2024 Rose Atelier Nail Studio. All rights reserved by DLAB.
+        </p>
+        <div class="flex gap-6">
+          <a href="#" class="text-[10px] text-white/15 tracking-[0.2em] uppercase hover:text-white/40 transition">Privacy</a>
+          <a href="#" class="text-[10px] text-white/15 tracking-[0.2em] uppercase hover:text-white/40 transition">Terms</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ========== Login Modal ========== -->
+  <div id="nail-modal" class="fixed inset-0 z-[100] hidden items-center justify-center p-4 bg-[#3D3D3D]/20 backdrop-blur-3xl">
+    <div class="bg-white w-full max-w-sm p-8 md:p-14 shadow-2xl relative rounded-[3rem] border border-[#D4A5A5]/10">
+      <button onclick="toggleNailModal()" class="absolute top-8 right-8 w-8 h-8 rounded-full bg-[#FDF8F5] flex items-center justify-center text-[#3D3D3D]/30 hover:text-[#D4A5A5] hover:bg-[#D4A5A5]/10 transition text-lg">&times;</button>
+
+      <div class="text-center mb-12">
+        <h2 class="text-2xl font-elegant italic text-[#3D3D3D] mb-3">Rose Member</h2>
+        <p class="text-[9px] text-[#D4A5A5] font-semibold tracking-[0.3em] uppercase">VIP Access</p>
+      </div>
+
+      <div class="space-y-5">
+        <div class="space-y-2">
+          <p class="text-[10px] font-semibold text-[#3D3D3D]/30 uppercase tracking-[0.2em] ml-1">Email</p>
+          <input type="text" placeholder="your@email.com" class="w-full bg-[#FDF8F5] border-none rounded-2xl py-5 px-6 outline-none focus:ring-1 focus:ring-[#D4A5A5] transition text-[13px] text-[#3D3D3D]">
+        </div>
+        <div class="space-y-2">
+          <p class="text-[10px] font-semibold text-[#3D3D3D]/30 uppercase tracking-[0.2em] ml-1">Password</p>
+          <input type="password" placeholder="Password" class="w-full bg-[#FDF8F5] border-none rounded-2xl py-5 px-6 outline-none focus:ring-1 focus:ring-[#D4A5A5] transition text-[13px] text-[#3D3D3D]">
+        </div>
+        <button class="w-full bg-[#D4A5A5] text-white py-5 rounded-full text-[11px] tracking-[0.4em] font-semibold uppercase hover:bg-[#3D3D3D] transition shadow-lg shadow-[#D4A5A5]/20 mt-2">
+          Sign In
         </button>
-        
-        <div class="flex justify-center gap-12 pt-4 border-t border-white/10 mt-4">
-           <a href="#" class="text-[9px] text-gray-500 tracking-[0.2em] font-semibold uppercase hover:text-[#00FFFF] transition font-cyber">Apply</a>
-           <a href="#" class="text-[9px] text-gray-500 tracking-[0.2em] font-semibold uppercase hover:text-[#00FFFF] transition font-cyber">Lost Key</a>
+        <div class="flex justify-center gap-10 pt-2">
+          <a href="#" class="text-[10px] text-[#3D3D3D]/40 tracking-[0.2em] font-semibold uppercase hover:text-[#D4A5A5] transition">Join</a>
+          <a href="#" class="text-[10px] text-[#3D3D3D]/40 tracking-[0.2em] font-semibold uppercase hover:text-[#D4A5A5] transition">Help</a>
         </div>
       </div>
     </div>
   </div>
 
-  <footer class="py-20 md:py-32 bg-slate-950 text-center px-6 border-t border-[#FF00FF]/20">
-     <div class="inline-flex flex-col items-center gap-10 mb-8">
-        <span class="font-cyber font-semibold text-2xl tracking-wide text-white uppercase">Neon<span class="text-[#FF00FF]">Nail</span></span>
-        <span class="text-[10px] font-semibold text-gray-600 tracking-[0.4em] uppercase">Cyberpunk Aesthetic</span>
-     </div>
-     <p class="text-[10px] text-white/10 tracking-[0.6em] uppercase px-6">© 2024 NEON NAIL. SEOUL.</p>
-  </footer>
-
-  <script>
-    function toggleNailModal() {
-      const modal = document.getElementById('nail-modal');
-      modal.classList.toggle('hidden');
-      modal.classList.toggle('flex');
-    }
-  </script>
-
 </div>
+
+<script>
+  // Modal toggle
+  function toggleNailModal() {
+    const modal = document.getElementById('nail-modal');
+    modal.classList.toggle('hidden');
+    modal.classList.toggle('flex');
+  }
+
+  // Close modal on backdrop click
+  document.getElementById('nail-modal').addEventListener('click', function(e) {
+    if (e.target === this) toggleNailModal();
+  });
+
+  // IntersectionObserver for scroll reveal animations
+  (function() {
+    const observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    });
+
+    document.querySelectorAll('.reveal').forEach(function(el) {
+      observer.observe(el);
+    });
+  })();
+</script>

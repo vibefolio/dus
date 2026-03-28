@@ -1,153 +1,569 @@
-<%# Burger Template - 버거 조인트 (BURGER JOINT) %>
+<%# Burger Template - 스매시 버거 클럽 (SMASH BURGER CLUB) %>
 
 <style>
-  /* Supanova Design Upgrade */
+  /* Supanova Design — Bold American Diner Archetype */
   * { word-break: keep-all; }
-  html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+  html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
   h1, h2, h3, h4 { text-wrap: balance; letter-spacing: -0.02em; line-height: 1.3; }
-  a, button { transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1); }
+  a, button { transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1); }
   a:hover, button:hover { transform: scale(1.02); }
   a:active, button:active { transform: scale(0.98); }
 
-  @import url('https://fonts.googleapis.com/css2?family=Anton&family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap');
-  
-  .font-display { font-family: 'Anton', sans-serif; }
-  .font-sans { font-family: 'Pretendard Variable', 'Pretendard', -apple-system, sans-serif; }
+  @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap');
+
+  .font-sans { font-family: 'Pretendard Variable', 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, sans-serif; }
+  .font-grotesk { font-family: 'Space Grotesk', sans-serif; }
 
   @media (max-width: 768px) {
     .mobile-desc { font-size: 14px !important; line-height: 1.8; }
-    .mobile-title { font-size: 40px !important; }
+    .mobile-title { font-size: 42px !important; }
   }
 
-  .grunge-texture {
+  .grunge-overlay {
     background-image: url("https://www.transparenttextures.com/patterns/asfalt-dark.png");
-    opacity: 0.8;
+    opacity: 0.3;
+  }
+
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(2rem); filter: blur(4px); }
+    to { opacity: 1; transform: translateY(0); filter: blur(0); }
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(2rem);
+  }
+
+  .reveal.is-visible {
+    animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    animation-delay: calc(var(--delay, 0) * 100ms);
+  }
+
+  .menu-card {
+    transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .menu-card:hover {
+    transform: translateY(-8px);
+  }
+  .menu-card:hover img {
+    transform: scale(1.05);
+  }
+
+  .gallery-item {
+    transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .gallery-item:hover {
+    transform: scale(1.02);
+  }
+  .gallery-item:hover img {
+    transform: scale(1.08);
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-12px); }
+  }
+
+  @keyframes flame {
+    0%, 100% { transform: scaleY(1); opacity: 0.8; }
+    50% { transform: scaleY(1.1); opacity: 1; }
   }
 </style>
 
-<div class="bg-[#121212] text-white font-sans selection:bg-[#E8482D] selection:text-white min-h-screen overflow-x-hidden relative">
-  <div class="fixed inset-0 grunge-texture pointer-events-none opacity-20"></div>
+<div class="bg-[#1A1A1A] text-[#F5F0EB] font-sans selection:bg-[#FF6B35] selection:text-white min-h-screen overflow-x-hidden relative">
+  <div class="fixed inset-0 grunge-overlay pointer-events-none z-[60]"></div>
 
-  <!-- Nav -->
-  <nav class="fixed w-full z-50 px-3 md:px-6 py-6 bg-[#121212]/90 backdrop-blur-md border-b border-white/5">
-    <div class="container mx-auto px-4 md:px-6 flex justify-between items-center flex-nowrap">
-      <div class="flex items-center gap-3">
-         <div class="w-8 h-8 max-h-8 max-w-[35%] shrink object-contain md:w-10 md:h-10 bg-[#FFB400] skew-x-[-12deg] flex items-center justify-center text-slate-900 font-semibold text-xl shadow-[4px_4px_0px_#E8482D]">
-            B
-         </div>
-         <span class="font-display text-2xl tracking-wide uppercase text-white">BURGER<span class="text-[#FFB400]">JOINT</span></span>
-      </div>
-      
-      <div class="hidden md:flex gap-14 text-[11px] font-semibold uppercase tracking-[0.2em] text-white/40">
-        <a href="#burgers" class="hover:text-[#FFB400] transition">The Menu</a>
-        <a href="#sides" class="hover:text-[#FFB400] transition">Sides</a>
-        <a href="#craft-beer" class="hover:text-[#FFB400] transition">Craft Beer</a>
-      </div>
-           <button class="mobile-menu-trigger md:hidden ml-auto text-2xl focus:outline-none" style="color: inherit;">
-             <i class="fas fa-bars"></i>
-           </button>
+  <!-- ========== Nav ========== -->
+  <nav class="fixed w-full z-50 px-4 md:px-8 py-5 bg-[#1A1A1A]/80 backdrop-blur-xl border-b border-[#FF6B35]/10">
+    <div class="max-w-7xl mx-auto flex justify-between items-center">
+      <a href="#" class="flex items-center gap-3">
+        <span class="font-grotesk text-2xl tracking-tight font-bold uppercase text-[#FF6B35]">Smash Club</span>
+      </a>
 
-      
-      <div class="flex-nowrap shrink-0 flex gap-6 items-center">
-         <button onclick="toggleBurgerModal()" class="hidden md:block text-[11px] font-semibold uppercase tracking-[0.2em] text-white/40 hover:text-[#FFB400]" data-mobile-menu-copy="true">Join Club</button>
-         <button class="hidden md:inline-flex bg-[#E8482D] text-white px-3 py-2 text-xs md:text-sm md:px-6 md:py-2.5 whitespace-nowrap skew-x-[-12deg] font-semibold text-[12px] tracking-wide uppercase hover:bg-[#FFB400] hover:text-slate-900 transition shadow-[4px_4px_0px_black] border border-white/10 active:translate-x-[2px] active:translate-y-[2px] active:shadow-none" data-mobile-menu-copy="true">
-           Order Now
-         </button>
+      <div class="hidden md:flex gap-12 text-[10px] font-semibold uppercase tracking-[0.4em] text-[#F5F0EB]/40">
+        <a href="#about" class="hover:text-[#FF6B35] transition">About</a>
+        <a href="#menu" class="hover:text-[#FF6B35] transition">Menu</a>
+        <a href="#gallery" class="hover:text-[#FF6B35] transition">Gallery</a>
+        <a href="#location" class="hover:text-[#FF6B35] transition">Location</a>
+      </div>
+
+      <button class="mobile-menu-trigger md:hidden ml-auto text-2xl focus:outline-none" style="color: inherit;">
+        <i class="fas fa-bars"></i>
+      </button>
+
+      <div class="hidden md:flex gap-6 items-center shrink-0">
+        <button onclick="toggleBurgerModal()" class="text-[10px] font-semibold uppercase tracking-[0.4em] text-[#F5F0EB]/40 hover:text-[#FF6B35]" data-mobile-menu-copy="true">Members</button>
+        <button class="bg-[#FF6B35] text-white px-8 py-3.5 rounded-full font-bold text-[10px] tracking-[0.3em] uppercase hover:bg-[#E85A25] transition shadow-lg shadow-[#FF6B35]/20" data-mobile-menu-copy="true">
+          Order Now
+        </button>
       </div>
     </div>
 
-      <%= render partial: 'templates/shared/mobile_menu_overlay' %></nav>
+    <%= render partial: 'templates/shared/mobile_menu_overlay' %>
+  </nav>
 
-  <!-- Hero -->
-  <header class="min-h-screen relative flex items-center justify-center pt-20 overflow-hidden">
-    <!-- Graffiti elements -->
-    <div class="absolute top-[10%] left-[5%] text-4xl md:text-[15rem] font-semibold text-white/5 font-display rotate-[-15deg] pointer-events-none select-none">TASTY</div>
-    <div class="absolute bottom-[10%] right-[0%] text-4xl md:text-[15rem] font-semibold text-white/5 font-display rotate-[10deg] pointer-events-none select-none">JUICY</div>
-    
-    <div class="container mx-auto px-3 md:px-6 relative z-10 grid lg:grid-cols-2 gap-16 items-center">
-      <div class="space-y-8 text-center lg:text-left order-2 lg:order-1">
-        <div class="inline-flex items-center gap-2 bg-[#FFB400] text-slate-900 px-4 py-1 skew-x-[-12deg] shadow-[4px_4px_0px_#E8482D]">
-           <span class="font-semibold text-xs uppercase tracking-wider">Premium American Grill</span>
+  <!-- ========== Hero ========== -->
+  <header class="min-h-[100dvh] relative flex items-center justify-center pt-20">
+    <div class="absolute inset-0 bg-gradient-to-b from-[#1A1A1A] via-transparent to-[#1A1A1A] z-[1]"></div>
+    <div class="absolute inset-0">
+      <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?q=80&w=1800" alt="스매시 버거" class="w-full h-full object-cover opacity-30" loading="eager">
+    </div>
+
+    <div class="max-w-7xl mx-auto px-4 md:px-8 relative z-10 text-center">
+      <div class="space-y-10">
+        <div class="inline-flex items-center gap-5 reveal" style="--delay: 0;">
+          <span class="w-10 h-[2px] bg-[#FF6B35]"></span>
+          <span class="text-[10px] font-bold tracking-[0.6em] uppercase text-[#FF6B35]">Since 2020 &middot; Seoul</span>
+          <span class="w-10 h-[2px] bg-[#FF6B35]"></span>
         </div>
-        
-        <h1 class="text-3xl md:text-5xl md:text-[8rem] font-display uppercase leading-[0.85] tracking-wide text-white mobile-title text-shadow-lg">
-           Real<br>
-           <span class="text-[#E8482D]">Meat</span><br>
-           <span class="text-white/20">Lover.</span>
+
+        <h1 class="text-5xl md:text-7xl lg:text-[7rem] font-grotesk font-bold leading-none tracking-tighter text-white mobile-title reveal" style="--delay: 1;">
+          불 위에서<br><span class="text-[#FF6B35]">스매시.</span>
         </h1>
-        
-        <p class="text-white/60 text-sm md:text-xl leading-relaxed max-w-md mx-auto lg:mx-0 mobile-desc font-medium">
-           매일 아침 직접 갈아 만든 100% 소고기 패티의 진한 육즙.<br>
-           타협하지 않는 오리지널 아메리칸 버거의 맛을 경험하세요.
+
+        <p class="text-[#F5F0EB]/60 text-sm md:text-lg leading-relaxed max-w-lg mx-auto mobile-desc reveal" style="--delay: 2;">
+          200도 철판 위에서 강하게 눌러 구운 패티. 육즙이 철판과 만나 만들어내는 크러스트. 한 입이면 압니다.
         </p>
-        
-        <div class="flex flex-col sm:flex-row gap-10 justify-center lg:justify-start pt-4">
-           <button class="px-10 py-5 bg-[#FFB400] text-slate-900 font-semibold text-sm uppercase tracking-wide skew-x-[-12deg] hover:bg-white transition shadow-[6px_6px_0px_#E8482D] active:translate-x-[2px] active:translate-y-[2px] active:shadow-none">
-              Explore Menu
-           </button>
-           <button class="px-10 py-5 border-2 border-white/20 text-white font-semibold text-sm uppercase tracking-wide skew-x-[-12deg] hover:border-[#FFB400] hover:text-[#FFB400] transition backdrop-blur-sm">
-              Our Location
-           </button>
+
+        <div class="pt-4 flex flex-col sm:flex-row gap-5 justify-center reveal" style="--delay: 3;">
+          <a href="#menu" class="inline-flex items-center justify-center gap-3 px-10 py-5 bg-[#FF6B35] text-white font-bold text-[11px] tracking-[0.3em] uppercase hover:bg-[#E85A25] rounded-full shadow-xl shadow-[#FF6B35]/30">
+            메뉴 보기
+            <span class="w-7 h-7 rounded-full bg-white/10 flex items-center justify-center">
+              <i class="fas fa-arrow-right text-[10px]"></i>
+            </span>
+          </a>
+          <a href="#about" class="inline-flex items-center justify-center px-10 py-5 border border-[#F5F0EB]/20 text-[#F5F0EB]/80 font-semibold text-[11px] tracking-[0.3em] uppercase hover:bg-white/5 rounded-full">
+            Our Story
+          </a>
         </div>
-      </div>
-      
-      <div class="relative order-1 lg:order-2">
-         <div class="relative z-10 w-full max-w-lg mx-auto">
-            <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?q=80&w=1000" alt="Delicious Burger" class="w-full h-auto object-contain transform hover:scale-105 transition duration-500 drop-shadow-[0_20px_50px_rgba(232,72,45,0.3)] filter contrast-125">
-            
-            <!-- Graphic Stickers -->
-            <div class="absolute -top-10 -right-10 bg-[#E8482D] text-white p-6 rounded-full rotate-[15deg] shadow-xl flex flex-col items-center justify-center w-28 h-28 border-4 border-white border-dashed animate-pulse">
-               <span class="text-xs font-semibold uppercase">Only</span>
-               <span class="text-2xl font-semibold font-display">$8.99</span>
-            </div>
-         </div>
       </div>
     </div>
   </header>
 
-  <!-- Login Modal -->
-  <div id="burger-modal" class="fixed inset-0 z-[100] hidden items-center justify-center p-4 bg-slate-950/90 backdrop-blur-xl">
-    <div class="bg-[#1a1a1a] w-full max-w-sm p-12 shadow-[8px_8px_0px_#E8482D] relative border-2 border-[#333]">
-      <button onclick="toggleBurgerModal()" class="absolute top-6 right-6 text-white/20 hover:text-[#FFB400] transition text-2xl font-semibold">&times;</button>
-      
-      <div class="text-center mb-10">
-        <h2 class="text-3xl font-display uppercase text-white mb-1 tracking-wide">Burger Club</h2>
-        <p class="text-[10px] text-[#FFB400] font-semibold tracking-[0.2em] uppercase bg-white/5 inline-block px-3 py-1 rounded skew-x-[-12deg]">Join the Meat Society</p>
-      </div>
-      
-      <div class="space-y-6">
-        <div>
-           <label class="block text-[10px] font-semibold text-[#555] uppercase tracking-wide mb-2 ml-1">Phone Number</label>
-           <input type="text" placeholder="010-0000-0000" class="w-full bg-slate-950 border-2 border-[#333] py-4 px-6 outline-none focus:border-[#FFB400] transition text-sm font-semibold text-white placeholder-white/20 uppercase">
+  <!-- ========== About Section ========== -->
+  <section id="about" class="py-24 md:py-32">
+    <div class="max-w-7xl mx-auto px-4 md:px-8 grid lg:grid-cols-2 gap-16 lg:gap-24 items-center">
+      <div class="relative reveal" style="--delay: 0;">
+        <div class="absolute -top-8 -left-8 w-60 h-60 bg-[#FF6B35]/10 rounded-full blur-[80px]"></div>
+        <div class="grid grid-cols-5 gap-4">
+          <div class="col-span-3 overflow-hidden rounded-[2rem]">
+            <img src="https://images.unsplash.com/photo-1466978913421-dad2ebd01d17?q=80&w=800" alt="주방 그릴" class="w-full h-full object-cover aspect-[3/4]" loading="lazy" decoding="async">
+          </div>
+          <div class="col-span-2 flex flex-col gap-4">
+            <div class="overflow-hidden rounded-[1.5rem] flex-1">
+              <img src="https://images.unsplash.com/photo-1550547660-d9450f859349?q=80&w=600" alt="패티 굽기" class="w-full h-full object-cover" loading="lazy" decoding="async">
+            </div>
+            <div class="overflow-hidden rounded-[1.5rem] flex-1">
+              <img src="https://images.unsplash.com/photo-1571091718767-18b5b1457add?q=80&w=600" alt="완성된 버거" class="w-full h-full object-cover" loading="lazy" decoding="async">
+            </div>
+          </div>
         </div>
-        
-        <button class="w-full bg-[#E8482D] text-white py-4 text-xs tracking-wide font-semibold uppercase hover:bg-[#FFB400] hover:text-slate-900 transition shadow-[4px_4px_0px_white] active:translate-x-[2px] active:translate-y-[2px] active:shadow-none">
-           Get Coupon & Stamp
+      </div>
+
+      <div class="space-y-8 reveal" style="--delay: 1;">
+        <div class="inline-flex items-center gap-4">
+          <span class="rounded-full px-4 py-1.5 text-[11px] uppercase tracking-[0.15em] font-bold bg-[#FF6B35]/10 text-[#FF6B35]">Our Story</span>
+        </div>
+
+        <h2 class="text-3xl md:text-4xl lg:text-5xl font-grotesk font-bold leading-snug text-white">
+          철판 위의<br>진심 한 장
+        </h2>
+
+        <p class="text-[#F5F0EB]/60 text-base md:text-lg leading-relaxed">
+          스매시 버거 클럽은 합정동 골목에서 시작한 2평짜리 버거 가게입니다. 좋은 고기를 가장 맛있게 먹는 방법을 고민하다, 뉴욕 스타일 스매시 버거에 답이 있다는 걸 알았습니다.
+        </p>
+        <p class="text-[#F5F0EB]/60 text-base md:text-lg leading-relaxed">
+          국내산 한우 트리밍과 호주산 척아이롤을 7:3으로 블렌딩합니다. 매일 아침 직접 갈아 만든 패티만 사용합니다. 냉동은 없습니다.
+        </p>
+
+        <div class="grid grid-cols-3 gap-6 pt-6 border-t border-[#FF6B35]/10">
+          <div>
+            <p class="text-2xl md:text-3xl font-grotesk font-bold text-[#FF6B35]">200°</p>
+            <p class="text-[11px] text-[#F5F0EB]/40 uppercase tracking-[0.1em] mt-1 font-medium">철판 온도</p>
+          </div>
+          <div>
+            <p class="text-2xl md:text-3xl font-grotesk font-bold text-[#FF6B35]">7:3</p>
+            <p class="text-[11px] text-[#F5F0EB]/40 uppercase tracking-[0.1em] mt-1 font-medium">한우 블렌딩</p>
+          </div>
+          <div>
+            <p class="text-2xl md:text-3xl font-grotesk font-bold text-[#FF6B35]">0%</p>
+            <p class="text-[11px] text-[#F5F0EB]/40 uppercase tracking-[0.1em] mt-1 font-medium">냉동 패티</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== Signature Menu ========== -->
+  <section id="menu" class="py-24 md:py-32 bg-[#222222] relative">
+    <div class="max-w-7xl mx-auto px-4 md:px-8">
+      <div class="text-center mb-16 md:mb-20">
+        <span class="rounded-full px-4 py-1.5 text-[11px] uppercase tracking-[0.15em] font-bold bg-[#FF6B35]/10 text-[#FF6B35] reveal" style="--delay: 0;">Signature</span>
+        <h2 class="text-3xl md:text-4xl lg:text-5xl font-grotesk font-bold leading-snug text-white mt-6 reveal" style="--delay: 1;">
+          줄 서서 먹는<br>이유가 있습니다
+        </h2>
+        <p class="text-[#F5F0EB]/50 text-base md:text-lg mt-4 max-w-xl mx-auto reveal" style="--delay: 2;">
+          매일 한정 수량. 패티가 소진되면 영업을 종료합니다.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <!-- Menu Item 1 -->
+        <div class="menu-card group reveal" style="--delay: 0;">
+          <div class="bg-[#2A2A2A] rounded-[2rem] p-1.5 ring-1 ring-white/5">
+            <div class="rounded-[calc(2rem-0.375rem)] overflow-hidden">
+              <div class="overflow-hidden">
+                <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?q=80&w=600" alt="클래식 스매시" class="w-full aspect-square object-cover transition-transform duration-700" loading="lazy" decoding="async">
+              </div>
+              <div class="p-6 bg-[#2A2A2A]">
+                <div class="flex justify-between items-start mb-2">
+                  <h3 class="text-lg font-semibold text-white">클래식 스매시</h3>
+                  <span class="text-[#FF6B35] font-grotesk font-bold text-lg">9,800</span>
+                </div>
+                <p class="text-[13px] text-[#F5F0EB]/50 leading-relaxed">더블 패티, 아메리칸 치즈, 피클, 스매시 소스</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Menu Item 2 -->
+        <div class="menu-card group reveal" style="--delay: 1;">
+          <div class="bg-[#2A2A2A] rounded-[2rem] p-1.5 ring-1 ring-white/5">
+            <div class="rounded-[calc(2rem-0.375rem)] overflow-hidden">
+              <div class="overflow-hidden">
+                <img src="https://images.unsplash.com/photo-1553979459-d2229ba7433b?q=80&w=600" alt="베이컨 스매시" class="w-full aspect-square object-cover transition-transform duration-700" loading="lazy" decoding="async">
+              </div>
+              <div class="p-6 bg-[#2A2A2A]">
+                <div class="flex justify-between items-start mb-2">
+                  <h3 class="text-lg font-semibold text-white">베이컨 스매시</h3>
+                  <span class="text-[#FF6B35] font-grotesk font-bold text-lg">12,500</span>
+                </div>
+                <p class="text-[13px] text-[#F5F0EB]/50 leading-relaxed">트리플 패티, 훈연 베이컨, 체다, 할라피뇨</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Menu Item 3 -->
+        <div class="menu-card group reveal" style="--delay: 2;">
+          <div class="bg-[#2A2A2A] rounded-[2rem] p-1.5 ring-1 ring-white/5">
+            <div class="rounded-[calc(2rem-0.375rem)] overflow-hidden">
+              <div class="overflow-hidden">
+                <img src="https://images.unsplash.com/photo-1639024471283-03518883512d?q=80&w=600" alt="머쉬룸 스매시" class="w-full aspect-square object-cover transition-transform duration-700" loading="lazy" decoding="async">
+              </div>
+              <div class="p-6 bg-[#2A2A2A]">
+                <div class="flex justify-between items-start mb-2">
+                  <h3 class="text-lg font-semibold text-white">머쉬룸 스매시</h3>
+                  <span class="text-[#FF6B35] font-grotesk font-bold text-lg">11,800</span>
+                </div>
+                <p class="text-[13px] text-[#F5F0EB]/50 leading-relaxed">더블 패티, 트러플 소스, 구운 양송이, 그뤼에르</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Menu Item 4 -->
+        <div class="menu-card group reveal" style="--delay: 3;">
+          <div class="bg-[#2A2A2A] rounded-[2rem] p-1.5 ring-1 ring-white/5">
+            <div class="rounded-[calc(2rem-0.375rem)] overflow-hidden">
+              <div class="overflow-hidden">
+                <img src="https://images.unsplash.com/photo-1630384060421-cb20aeb56983?q=80&w=600" alt="크링클컷 프라이" class="w-full aspect-square object-cover transition-transform duration-700" loading="lazy" decoding="async">
+              </div>
+              <div class="p-6 bg-[#2A2A2A]">
+                <div class="flex justify-between items-start mb-2">
+                  <h3 class="text-lg font-semibold text-white">크링클컷 프라이</h3>
+                  <span class="text-[#FF6B35] font-grotesk font-bold text-lg">4,500</span>
+                </div>
+                <p class="text-[13px] text-[#F5F0EB]/50 leading-relaxed">시즈닝 프라이 + 스매시 딥소스 2종</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="text-center mt-12 reveal" style="--delay: 4;">
+        <a href="#" class="inline-flex items-center gap-3 text-[11px] font-bold uppercase tracking-[0.3em] text-[#FF6B35] hover:text-white">
+          전체 메뉴 보기
+          <span class="w-6 h-6 rounded-full bg-[#FF6B35]/10 flex items-center justify-center">
+            <i class="fas fa-arrow-right text-[9px]"></i>
+          </span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== Gallery ========== -->
+  <section id="gallery" class="py-24 md:py-32">
+    <div class="max-w-7xl mx-auto px-4 md:px-8">
+      <div class="flex flex-col md:flex-row md:items-end md:justify-between mb-14 gap-6">
+        <div>
+          <span class="rounded-full px-4 py-1.5 text-[11px] uppercase tracking-[0.15em] font-bold bg-[#FF6B35]/10 text-[#FF6B35] reveal" style="--delay: 0;">Gallery</span>
+          <h2 class="text-3xl md:text-4xl lg:text-5xl font-grotesk font-bold leading-snug text-white mt-6 reveal" style="--delay: 1;">
+            철판 위의 순간들
+          </h2>
+        </div>
+        <p class="text-[#F5F0EB]/50 text-base max-w-sm reveal" style="--delay: 2;">
+          합정동 골목, 연기와 육즙 사이에서.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-4">
+        <div class="gallery-item overflow-hidden rounded-2xl md:rounded-[2rem] reveal" style="--delay: 0;">
+          <img src="https://images.unsplash.com/photo-1594212699903-ec8a3eca50f5?q=80&w=800" alt="버거 클로즈업" class="w-full aspect-square object-cover transition-transform duration-700" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item overflow-hidden rounded-2xl md:rounded-[2rem] md:row-span-2 reveal" style="--delay: 1;">
+          <img src="https://images.unsplash.com/photo-1514933651103-005eec06c04b?q=80&w=800" alt="레스토랑 내부" class="w-full h-full object-cover transition-transform duration-700" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item overflow-hidden rounded-2xl md:rounded-[2rem] reveal" style="--delay: 2;">
+          <img src="https://images.unsplash.com/photo-1460306855393-0410f61241c7?q=80&w=800" alt="그릴 위 패티" class="w-full aspect-square object-cover transition-transform duration-700" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item overflow-hidden rounded-2xl md:rounded-[2rem] reveal" style="--delay: 3;">
+          <img src="https://images.unsplash.com/photo-1572802419224-296b0aeee0d9?q=80&w=800" alt="프라이와 콜라" class="w-full aspect-square object-cover transition-transform duration-700" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item overflow-hidden rounded-2xl md:rounded-[2rem] col-span-2 md:col-span-1 reveal" style="--delay: 4;">
+          <img src="https://images.unsplash.com/photo-1547584370-2cc98b8b8dc8?q=80&w=800" alt="네온사인" class="w-full aspect-[2/1] md:aspect-square object-cover transition-transform duration-700" loading="lazy" decoding="async">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== Location & Hours ========== -->
+  <section id="location" class="py-24 md:py-32 bg-[#111111] text-white relative overflow-hidden">
+    <div class="absolute top-0 right-0 w-96 h-96 bg-[#FF6B35]/10 rounded-full blur-[120px]"></div>
+    <div class="absolute bottom-0 left-0 w-72 h-72 bg-[#FF6B35]/5 rounded-full blur-[100px]"></div>
+
+    <div class="max-w-7xl mx-auto px-4 md:px-8 relative z-10">
+      <div class="grid lg:grid-cols-2 gap-16 lg:gap-24 items-start">
+        <div class="reveal" style="--delay: 0;">
+          <div class="rounded-[2rem] overflow-hidden aspect-[4/3] bg-[#2A2A2A] relative group">
+            <img src="https://images.unsplash.com/photo-1555992336-fb0d29498b13?q=80&w=800" alt="매장 외관" class="w-full h-full object-cover opacity-60 group-hover:opacity-80 transition-opacity duration-700" loading="lazy" decoding="async">
+            <div class="absolute inset-0 flex items-center justify-center">
+              <a href="#" class="inline-flex items-center gap-3 bg-white/10 backdrop-blur-xl border border-white/20 text-white px-8 py-4 rounded-full text-[11px] font-bold uppercase tracking-[0.3em] hover:bg-white/20 transition">
+                <i class="fas fa-map-marker-alt text-[#FF6B35]"></i>
+                지도에서 보기
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="space-y-10">
+          <div class="reveal" style="--delay: 1;">
+            <span class="rounded-full px-4 py-1.5 text-[11px] uppercase tracking-[0.15em] font-bold bg-white/10 text-[#FF6B35]">Visit Us</span>
+            <h2 class="text-3xl md:text-4xl lg:text-5xl font-grotesk font-bold leading-snug mt-6">
+              오시는 길
+            </h2>
+          </div>
+
+          <div class="space-y-8 reveal" style="--delay: 2;">
+            <div class="flex gap-5">
+              <div class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center shrink-0 mt-0.5">
+                <i class="fas fa-map-pin text-[#FF6B35] text-sm"></i>
+              </div>
+              <div>
+                <p class="text-[10px] font-bold uppercase tracking-[0.3em] text-white/40 mb-2">Address</p>
+                <p class="text-white/80 text-base leading-relaxed">서울특별시 마포구 합정동 양화로 23길 17<br>1층 스매시 버거 클럽</p>
+              </div>
+            </div>
+
+            <div class="flex gap-5">
+              <div class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center shrink-0 mt-0.5">
+                <i class="fas fa-clock text-[#FF6B35] text-sm"></i>
+              </div>
+              <div>
+                <p class="text-[10px] font-bold uppercase tracking-[0.3em] text-white/40 mb-2">Hours</p>
+                <div class="space-y-1.5 text-white/80 text-base">
+                  <div class="flex justify-between gap-12">
+                    <span>화 - 금</span>
+                    <span class="font-grotesk font-bold">11:30 - 21:00</span>
+                  </div>
+                  <div class="flex justify-between gap-12">
+                    <span>토 - 일</span>
+                    <span class="font-grotesk font-bold">11:00 - 22:00</span>
+                  </div>
+                  <div class="flex justify-between gap-12 text-[#FF6B35]">
+                    <span>월요일</span>
+                    <span class="font-grotesk font-bold">정기 휴무</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="flex gap-5">
+              <div class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center shrink-0 mt-0.5">
+                <i class="fas fa-subway text-[#FF6B35] text-sm"></i>
+              </div>
+              <div>
+                <p class="text-[10px] font-bold uppercase tracking-[0.3em] text-white/40 mb-2">Transport</p>
+                <p class="text-white/80 text-base leading-relaxed">합정역 3번 출구에서 도보 7분<br>패티 소진 시 조기 마감</p>
+              </div>
+            </div>
+
+            <div class="flex gap-5">
+              <div class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center shrink-0 mt-0.5">
+                <i class="fas fa-phone text-[#FF6B35] text-sm"></i>
+              </div>
+              <div>
+                <p class="text-[10px] font-bold uppercase tracking-[0.3em] text-white/40 mb-2">Contact</p>
+                <p class="text-white/80 text-base">02-3456-7890</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== CTA Section ========== -->
+  <section class="py-24 md:py-32 relative overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-br from-[#1A1A1A] via-[#222222] to-[#1A1A1A]"></div>
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-[#FF6B35]/8 rounded-full blur-[120px]"></div>
+
+    <div class="max-w-3xl mx-auto px-4 md:px-8 text-center relative z-10">
+      <div class="reveal" style="--delay: 0;">
+        <span class="font-grotesk text-7xl md:text-9xl font-bold text-[#FF6B35]/15 block mb-6">SMASH</span>
+      </div>
+      <h2 class="text-3xl md:text-4xl lg:text-5xl font-grotesk font-bold leading-snug text-white reveal" style="--delay: 1;">
+        오늘 패티,<br>아직 남아있습니다
+      </h2>
+      <p class="text-[#F5F0EB]/50 text-base md:text-lg mt-6 max-w-lg mx-auto reveal" style="--delay: 2;">
+        매일 오전 직접 갈아 만든 한정 수량 패티. 망설이면 내일을 기약해야 합니다. 주문은 지금, 방문은 언제든.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-5 justify-center mt-10 reveal" style="--delay: 3;">
+        <a href="#" class="inline-flex items-center justify-center gap-3 px-10 py-5 bg-[#FF6B35] text-white font-bold text-[11px] tracking-[0.3em] uppercase rounded-full shadow-lg shadow-[#FF6B35]/30 hover:bg-[#E85A25]">
+          온라인 주문하기
+          <span class="w-7 h-7 rounded-full bg-white/15 flex items-center justify-center">
+            <i class="fas fa-arrow-right text-[10px]"></i>
+          </span>
+        </a>
+        <a href="https://www.instagram.com/" target="_blank" class="inline-flex items-center justify-center gap-3 px-10 py-5 border border-[#F5F0EB]/20 text-[#F5F0EB]/80 font-semibold text-[11px] tracking-[0.3em] uppercase rounded-full hover:bg-white/5">
+          <i class="fab fa-instagram text-sm"></i>
+          Instagram
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== Footer ========== -->
+  <footer class="py-16 md:py-24 bg-[#111111]">
+    <div class="max-w-7xl mx-auto px-4 md:px-8">
+      <div class="grid md:grid-cols-3 gap-12 items-start mb-16">
+        <div>
+          <span class="font-grotesk text-2xl text-[#FF6B35] tracking-tight font-bold uppercase block mb-4">Smash Club</span>
+          <p class="text-white/30 text-sm leading-relaxed max-w-xs">
+            합정동에서 시작된 스매시 버거 전문점. 매일 아침 직접 간 패티로, 정직하게 굽습니다.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-2 gap-8">
+          <div>
+            <p class="text-[10px] font-bold text-white/20 uppercase tracking-[0.3em] mb-4">Menu</p>
+            <ul class="space-y-2.5">
+              <li><a href="#menu" class="text-white/50 text-sm hover:text-[#FF6B35] transition">Burgers</a></li>
+              <li><a href="#menu" class="text-white/50 text-sm hover:text-[#FF6B35] transition">Sides</a></li>
+              <li><a href="#menu" class="text-white/50 text-sm hover:text-[#FF6B35] transition">Drinks</a></li>
+              <li><a href="#menu" class="text-white/50 text-sm hover:text-[#FF6B35] transition">Combo</a></li>
+            </ul>
+          </div>
+          <div>
+            <p class="text-[10px] font-bold text-white/20 uppercase tracking-[0.3em] mb-4">Info</p>
+            <ul class="space-y-2.5">
+              <li><a href="#about" class="text-white/50 text-sm hover:text-[#FF6B35] transition">About</a></li>
+              <li><a href="#location" class="text-white/50 text-sm hover:text-[#FF6B35] transition">Location</a></li>
+              <li><a href="#" class="text-white/50 text-sm hover:text-[#FF6B35] transition">Catering</a></li>
+              <li><a href="#" class="text-white/50 text-sm hover:text-[#FF6B35] transition">Franchise</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <div>
+          <p class="text-[10px] font-bold text-white/20 uppercase tracking-[0.3em] mb-4">Follow</p>
+          <div class="flex gap-3">
+            <a href="#" class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white/50 hover:text-[#FF6B35] hover:border-[#FF6B35]/30 transition">
+              <i class="fab fa-instagram text-sm"></i>
+            </a>
+            <a href="#" class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white/50 hover:text-[#FF6B35] hover:border-[#FF6B35]/30 transition">
+              <i class="fab fa-youtube text-sm"></i>
+            </a>
+            <a href="#" class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white/50 hover:text-[#FF6B35] hover:border-[#FF6B35]/30 transition">
+              <i class="fas fa-blog text-sm"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="border-t border-white/5 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+        <p class="text-[10px] text-white/15 tracking-[0.5em] uppercase">
+          &copy; 2024 Smash Burger Club. All rights reserved by DLAB.
+        </p>
+        <div class="flex gap-6">
+          <a href="#" class="text-[10px] text-white/15 tracking-[0.2em] uppercase hover:text-white/40 transition">Privacy</a>
+          <a href="#" class="text-[10px] text-white/15 tracking-[0.2em] uppercase hover:text-white/40 transition">Terms</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ========== Login Modal ========== -->
+  <div id="burger-modal" class="fixed inset-0 z-[100] hidden items-center justify-center p-4 bg-[#1A1A1A]/40 backdrop-blur-3xl">
+    <div class="bg-[#222222] w-full max-w-sm p-8 md:p-14 shadow-2xl relative rounded-[3rem] border border-[#FF6B35]/10">
+      <button onclick="toggleBurgerModal()" class="absolute top-8 right-8 w-8 h-8 rounded-full bg-[#2A2A2A] flex items-center justify-center text-white/30 hover:text-[#FF6B35] hover:bg-[#FF6B35]/10 transition text-lg">&times;</button>
+
+      <div class="text-center mb-12">
+        <h2 class="text-xl font-grotesk tracking-[0.1em] uppercase text-white mb-3 font-bold">Members</h2>
+        <p class="text-[9px] text-[#FF6B35] font-bold tracking-[0.3em] uppercase">Smash Club Access</p>
+      </div>
+
+      <div class="space-y-5">
+        <div class="space-y-2">
+          <p class="text-[10px] font-bold text-white/30 uppercase tracking-[0.2em] ml-1">Email</p>
+          <input type="text" placeholder="your@email.com" class="w-full bg-[#2A2A2A] border-none rounded-2xl py-5 px-6 outline-none focus:ring-1 focus:ring-[#FF6B35] transition text-[13px] text-white">
+        </div>
+        <div class="space-y-2">
+          <p class="text-[10px] font-bold text-white/30 uppercase tracking-[0.2em] ml-1">Password</p>
+          <input type="password" placeholder="Password" class="w-full bg-[#2A2A2A] border-none rounded-2xl py-5 px-6 outline-none focus:ring-1 focus:ring-[#FF6B35] transition text-[13px] text-white">
+        </div>
+        <button class="w-full bg-[#FF6B35] text-white py-5 rounded-full text-[11px] tracking-[0.4em] font-bold uppercase hover:bg-[#E85A25] transition shadow-lg shadow-[#FF6B35]/20 mt-2">
+          Sign In
         </button>
-        
-        <div class="flex justify-center gap-10 pt-4 border-t border-[#333] mt-2">
-           <a href="#" class="text-[10px] text-[#555] tracking-wide uppercase hover:text-[#FFB400] transition font-semibold border-b border-transparent hover:border-[#FFB400]">Check Balance</a>
-           <a href="#" class="text-[10px] text-[#555] tracking-wide uppercase hover:text-[#FFB400] transition font-semibold border-b border-transparent hover:border-[#FFB400]">Sign Up</a>
+        <div class="flex justify-center gap-10 pt-2">
+          <a href="#" class="text-[10px] text-white/40 tracking-[0.2em] font-bold uppercase hover:text-[#FF6B35] transition">Join</a>
+          <a href="#" class="text-[10px] text-white/40 tracking-[0.2em] font-bold uppercase hover:text-[#FF6B35] transition">Help</a>
         </div>
       </div>
     </div>
   </div>
 
-  <footer class="py-20 md:py-32 bg-[#121212] text-center px-6 border-t border-white/5">
-     <div class="inline-flex flex-col items-center gap-10 mb-8">
-        <span class="font-display text-3xl text-white tracking-wide uppercase">Burger<span class="text-[#E8482D]">Joint</span></span>
-        <div class="w-12 h-1 bg-[#FFB400]"></div>
-        <span class="text-[10px] font-semibold text-white/30 tracking-[0.4em] uppercase">Authentic American Taste</span>
-     </div>
-     <p class="text-[10px] text-white/20 tracking-[0.6em] uppercase px-6">© 2024 BURGER JOINT. SEOUL.</p>
-  </footer>
-
-  <script>
-    function toggleBurgerModal() {
-      const modal = document.getElementById('burger-modal');
-      modal.classList.toggle('hidden');
-      modal.classList.toggle('flex');
-    }
-  </script>
-
 </div>
+
+<script>
+  // Modal toggle
+  function toggleBurgerModal() {
+    const modal = document.getElementById('burger-modal');
+    modal.classList.toggle('hidden');
+    modal.classList.toggle('flex');
+  }
+
+  // Close modal on backdrop click
+  document.getElementById('burger-modal').addEventListener('click', function(e) {
+    if (e.target === this) toggleBurgerModal();
+  });
+
+  // IntersectionObserver for scroll reveal animations
+  (function() {
+    const observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    });
+
+    document.querySelectorAll('.reveal').forEach(function(el) {
+      observer.observe(el);
+    });
+  })();
+</script>
