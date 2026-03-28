@@ -1,58 +1,64 @@
 <% content_for :title, "프로필 수정 - 디어스" %>
 
-<div class="min-h-screen bg-gray-50 py-12">
-  <div class="container mx-auto px-4 max-w-2xl">
-    <div class="bg-white rounded-2xl shadow-sm p-8">
-      <div style="margin-bottom: 8px;">
-        <span class="inline-block rounded-full px-3 py-1 text-xs uppercase tracking-widest font-medium bg-emerald-50 text-emerald-600" style="font-size: 11px; letter-spacing: 0.15em;">Profile Settings</span>
-      </div>
-      <h1 class="text-2xl font-bold text-gray-900 mb-8">프로필 수정</h1>
+<div class="min-h-screen bg-gray-50 section-premium">
+  <div class="max-w-2xl mx-auto px-4 md:px-6">
 
-      <%= form_with(model: @user, url: mypage_path, method: :patch, local: true, html: { class: "space-y-6", data: { turbo: false } }) do |f| %>
-        <% if @user.errors.any? %>
-          <div class="bg-red-50 border border-red-200 rounded-lg p-4">
-            <h3 class="text-red-800 font-medium mb-2">오류가 발생했습니다:</h3>
-            <ul class="list-disc list-inside text-red-700 text-sm">
-              <% @user.errors.full_messages.each do |message| %>
-                <li><%= message %></li>
-              <% end %>
-            </ul>
+    <div class="card-premium reveal">
+      <div class="card-premium-inner">
+        <span class="eyebrow mb-3">Profile Settings</span>
+        <h1 class="text-2xl font-bold text-gray-900 mb-8" style="letter-spacing: -0.02em;">프로필 수정</h1>
+
+        <%= form_with(model: @user, url: mypage_path, method: :patch, local: true, html: { class: "space-y-6", data: { turbo: false } }) do |f| %>
+          <% if @user.errors.any? %>
+            <div class="bg-red-50 border border-red-100 rounded-2xl p-4">
+              <h3 class="text-red-800 font-medium mb-2 text-sm">오류가 발생했습니다:</h3>
+              <ul class="list-disc list-inside text-red-600 text-sm">
+                <% @user.errors.full_messages.each do |message| %>
+                  <li><%= message %></li>
+                <% end %>
+              </ul>
+            </div>
+          <% end %>
+
+          <!-- 이름 -->
+          <div>
+            <%= f.label :name, "이름", class: "block text-sm font-medium text-gray-700 mb-2" %>
+            <%= f.text_field :name, class: "w-full px-4 py-3.5 border border-gray-200 rounded-2xl bg-gray-50/50 focus:ring-2 focus:ring-[#00a859]/10 focus:border-[#00a859] focus:bg-white outline-none", placeholder: "이름을 입력하세요", style: "transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);" %>
+          </div>
+
+          <!-- 이메일 (읽기 전용) -->
+          <div>
+            <%= f.label :email, "이메일", class: "block text-sm font-medium text-gray-700 mb-2" %>
+            <%= f.email_field :email, class: "w-full px-4 py-3.5 border border-gray-200 rounded-2xl bg-gray-100 cursor-not-allowed text-gray-500", disabled: true %>
+            <p class="mt-1.5 text-xs text-gray-400">이메일은 변경할 수 없습니다</p>
+          </div>
+
+          <!-- 버튼 -->
+          <div class="flex gap-3 pt-4">
+            <%= f.submit "저장하기", class: "flex-1 px-6 py-3.5 bg-gradient-to-r from-[#00a859] to-[#00d670] text-white rounded-full font-medium cursor-pointer hover:shadow-lg", style: "transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); border: none;" %>
+            <%= link_to "취소", mypage_path, class: "flex-1 px-6 py-3.5 bg-gray-100 text-gray-600 rounded-full font-medium text-center hover:bg-gray-200", style: "transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);" %>
           </div>
         <% end %>
 
-        <!-- 이름 -->
-        <div>
-          <%= f.label :name, "이름", class: "block text-sm font-medium text-gray-700 mb-2" %>
-          <%= f.text_field :name, class: "w-full px-4 py-3.5 border border-gray-200 rounded-2xl bg-gray-50 focus:ring-2 focus:ring-emerald-100 focus:border-emerald-500 focus:bg-white transition outline-none", placeholder: "이름을 입력하세요", style: "transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);" %>
+        <!-- 비밀번호 변경 -->
+        <div class="mt-12 pt-8 border-t border-gray-100">
+          <span class="eyebrow mb-3">Security</span>
+          <h2 class="text-lg font-bold text-gray-900 mt-2 mb-2" style="letter-spacing: -0.02em;">비밀번호 변경</h2>
+          <p class="text-gray-500 text-sm mb-4">비밀번호를 변경하시려면 아래 버튼을 클릭하세요.</p>
+          <%= link_to edit_user_registration_path, class: "inline-flex items-center gap-2 px-6 py-3 bg-gray-900 text-white rounded-full font-medium hover:bg-gray-800", style: "transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);" do %>
+            비밀번호 변경하기
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+          <% end %>
         </div>
 
-        <!-- 이메일 (읽기 전용) -->
-        <div>
-          <%= f.label :email, "이메일", class: "block text-sm font-medium text-gray-700 mb-2" %>
-          <%= f.email_field :email, class: "w-full px-4 py-3.5 border border-gray-200 rounded-2xl bg-gray-100 cursor-not-allowed", disabled: true %>
-          <p class="mt-1 text-sm text-gray-500">이메일은 변경할 수 없습니다</p>
+        <!-- 계정 삭제 -->
+        <div class="mt-12 pt-8 border-t border-gray-100">
+          <h2 class="text-lg font-bold text-red-500 mb-2" style="letter-spacing: -0.02em;">계정 삭제</h2>
+          <p class="text-gray-500 text-sm mb-4">계정을 삭제하면 모든 데이터가 영구적으로 삭제됩니다.</p>
+          <%= button_to "계정 삭제", user_registration_path, method: :delete, data: { turbo: false, confirm: "정말로 계정을 삭제하시겠습니까? 이 작업은 되돌릴 수 없습니다." }, class: "px-6 py-3 bg-red-500 text-white rounded-full font-medium hover:bg-red-600", style: "transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); border: none; cursor: pointer;" %>
         </div>
-
-        <!-- 버튼 -->
-        <div class="flex gap-4 pt-4">
-          <%= f.submit "저장하기", class: "flex-1 px-6 py-3.5 bg-emerald-600 text-white rounded-full hover:bg-emerald-700 font-medium cursor-pointer", style: "transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); border: none;" %>
-          <%= link_to "취소", mypage_path, class: "flex-1 px-6 py-3.5 bg-gray-200 text-gray-700 rounded-full hover:bg-gray-300 font-medium text-center", style: "transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);" %>
-        </div>
-      <% end %>
-
-      <!-- 비밀번호 변경 섹션 -->
-      <div class="mt-12 pt-8 border-t border-gray-200">
-        <h2 class="text-xl font-bold text-gray-900 mb-4">비밀번호 변경</h2>
-        <p class="text-gray-600 mb-4">비밀번호를 변경하시려면 아래 버튼을 클릭하세요.</p>
-        <%= link_to "비밀번호 변경하기", edit_user_registration_path, class: "inline-flex items-center gap-2 px-6 py-3 bg-gray-800 text-white rounded-full hover:bg-gray-900 font-medium", style: "transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);" %>
-      </div>
-
-      <!-- 계정 삭제 섹션 -->
-      <div class="mt-12 pt-8 border-t border-gray-200">
-        <h2 class="text-xl font-bold text-red-600 mb-4">계정 삭제</h2>
-        <p class="text-gray-600 mb-4">계정을 삭제하면 모든 데이터가 영구적으로 삭제됩니다.</p>
-        <%= button_to "계정 삭제", user_registration_path, method: :delete, data: { turbo: false, confirm: "정말로 계정을 삭제하시겠습니까? 이 작업은 되돌릴 수 없습니다." }, class: "px-6 py-3 bg-red-600 text-white rounded-full hover:bg-red-700 font-medium", style: "transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); border: none; cursor: pointer;" %>
       </div>
     </div>
+
   </div>
 </div>

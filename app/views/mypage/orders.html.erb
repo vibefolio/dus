@@ -1,86 +1,91 @@
 <% content_for :title, "주문 내역 - 디어스" %>
 
-<div class="min-h-screen bg-gray-50 py-12">
-  <div class="container mx-auto px-4 max-w-6xl">
+<div class="min-h-screen bg-gray-50 section-premium">
+  <div class="max-w-6xl mx-auto px-4 md:px-6">
+
     <!-- 헤더 -->
-    <div class="mb-8">
-      <span class="inline-block rounded-full px-3 py-1 text-xs uppercase tracking-widest font-medium bg-emerald-50 text-emerald-600 mb-3" style="font-size: 11px; letter-spacing: 0.15em;">Order History</span>
-      <h1 class="text-3xl font-bold text-gray-900 mb-2" style="word-break: keep-all;">주문 내역</h1>
-      <p class="text-gray-600" style="word-break: keep-all;">구매하신 템플릿과 서비스를 확인하세요</p>
+    <div class="mb-8 reveal">
+      <span class="eyebrow mb-3">Order History</span>
+      <h1 class="text-3xl font-bold text-gray-900 mt-2 mb-2" style="letter-spacing: -0.02em; word-break: keep-all;">주문 내역</h1>
+      <p class="text-gray-500" style="word-break: keep-all;">구매하신 템플릿과 서비스를 확인하세요</p>
     </div>
 
     <!-- 탭 메뉴 -->
-    <div class="bg-white rounded-2xl shadow-sm mb-8 overflow-x-auto">
-      <div class="flex border-b border-gray-200 min-w-max md:min-w-0">
-        <%= link_to mypage_path, class: "flex-1 px-3 md:px-6 py-3 md:py-4 text-center font-medium text-gray-600 hover:text-emerald-600 transition text-sm md:text-base whitespace-nowrap" do %>
-          <span>대시보드</span>
-        <% end %>
-        <%= link_to mypage_orders_path, class: "flex-1 px-3 md:px-6 py-3 md:py-4 text-center font-medium border-b-2 border-emerald-600 text-emerald-600 text-sm md:text-base whitespace-nowrap" do %>
-          <span>주문 내역</span>
-        <% end %>
-        <%= link_to mypage_wishlist_path, class: "flex-1 px-3 md:px-6 py-3 md:py-4 text-center font-medium text-gray-600 hover:text-emerald-600 transition text-sm md:text-base whitespace-nowrap" do %>
-          <span>위시리스트</span>
-        <% end %>
+    <div class="card-premium mb-8 reveal">
+      <div class="bg-white rounded-[calc(2rem-0.375rem)] overflow-x-auto">
+        <div class="flex min-w-max md:min-w-0">
+          <%= link_to mypage_path, class: "flex-1 px-3 md:px-6 py-3.5 md:py-4 text-center font-medium text-gray-400 hover:text-[#00a859] text-sm md:text-base whitespace-nowrap", style: "transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);" do %>
+            대시보드
+          <% end %>
+          <%= link_to mypage_orders_path, class: "flex-1 px-3 md:px-6 py-3.5 md:py-4 text-center font-medium border-b-2 border-[#00a859] text-[#00a859] text-sm md:text-base whitespace-nowrap", style: "transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);" do %>
+            주문 내역
+          <% end %>
+          <%= link_to mypage_wishlist_path, class: "flex-1 px-3 md:px-6 py-3.5 md:py-4 text-center font-medium text-gray-400 hover:text-[#00a859] text-sm md:text-base whitespace-nowrap", style: "transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);" do %>
+            위시리스트
+          <% end %>
+        </div>
       </div>
     </div>
 
     <% if @orders.any? %>
       <!-- 주문 목록 -->
-      <div class="space-y-4">
-        <% @orders.each do |order| %>
-          <div class="bg-white rounded-2xl overflow-hidden" style="background: rgba(0,0,0,0.03); padding: 6px; transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);" onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 20px 60px -15px rgba(0,0,0,0.08)';" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none';">
-            <!-- 주문 헤더 -->
-            <div class="bg-gray-50 px-6 py-4 border-b border-gray-200">
-              <div class="flex items-center justify-between">
-                <div class="flex items-center gap-4">
-                  <div>
-                    <div class="text-sm text-gray-600">주문번호</div>
-                    <div class="font-bold text-gray-900">#<%= order.id %></div>
+      <div class="space-y-5">
+        <% @orders.each_with_index do |order, i| %>
+          <div class="card-premium reveal-stagger" style="animation-delay: <%= i * 80 %>ms;">
+            <div class="card-premium-inner !p-0 overflow-hidden">
+              <!-- 주문 헤더 -->
+              <div class="px-6 py-4 bg-gray-50/80 border-b border-gray-100">
+                <div class="flex items-center justify-between">
+                  <div class="flex items-center gap-4">
+                    <div>
+                      <div class="text-xs text-gray-400">주문번호</div>
+                      <div class="font-bold text-gray-900">#<%= order.id %></div>
+                    </div>
+                    <div class="h-8 w-px bg-gray-200"></div>
+                    <div>
+                      <div class="text-xs text-gray-400">주문일자</div>
+                      <div class="font-medium text-gray-900 text-sm"><%= order.created_at.strftime('%Y년 %m월 %d일') %></div>
+                    </div>
                   </div>
-                  <div class="h-8 w-px bg-gray-300"></div>
-                  <div>
-                    <div class="text-sm text-gray-600">주문일자</div>
-                    <div class="font-medium text-gray-900"><%= order.created_at.strftime('%Y년 %m월 %d일') %></div>
-                  </div>
+                  <span class="px-4 py-1.5 bg-[#00a859]/10 text-[#00a859] text-xs font-medium rounded-full">
+                    <%= order.status || '완료' %>
+                  </span>
                 </div>
-                <span class="px-4 py-2 bg-emerald-100 text-emerald-700 text-sm font-medium rounded-full">
-                  <%= order.status || '완료' %>
-                </span>
               </div>
-            </div>
 
-            <!-- 주문 상세 -->
-            <div class="p-6">
-              <% if order.order_items&.any? %>
-                <div class="space-y-4 mb-6">
-                  <% order.order_items.each do |item| %>
-                    <div class="flex items-center gap-4">
-                      <% if item.design_template&.thumbnail_url.present? %>
-                        <%= image_tag item.design_template.thumbnail_url, class: "w-20 h-20 rounded-lg object-cover" %>
-                      <% else %>
-                        <div class="w-20 h-20 rounded-lg bg-gradient-to-br from-emerald-100 to-emerald-200"></div>
-                      <% end %>
-                      <div class="flex-1">
-                        <div class="font-medium text-gray-900"><%= item.design_template&.name || '템플릿' %></div>
-                        <div class="text-sm text-gray-600">수량: <%= item.quantity %></div>
-                      </div>
-                      <div class="text-right">
-                        <div class="font-bold text-gray-900">
-                          <%= number_to_currency(item.price * item.quantity, unit: '₩', precision: 0) %>
+              <!-- 주문 상세 -->
+              <div class="p-6">
+                <% if order.order_items&.any? %>
+                  <div class="space-y-4 mb-6">
+                    <% order.order_items.each do |item| %>
+                      <div class="flex items-center gap-4">
+                        <% if item.design_template&.thumbnail_url.present? %>
+                          <%= image_tag item.design_template.thumbnail_url, class: "w-16 h-16 rounded-xl object-cover", loading: "lazy", decoding: "async" %>
+                        <% else %>
+                          <div class="w-16 h-16 rounded-xl bg-gradient-to-br from-[#00a859]/10 to-[#00d670]/10"></div>
+                        <% end %>
+                        <div class="flex-1">
+                          <div class="font-medium text-gray-900"><%= item.design_template&.name || '템플릿' %></div>
+                          <div class="text-sm text-gray-400">수량: <%= item.quantity %></div>
+                        </div>
+                        <div class="text-right">
+                          <div class="font-bold text-gray-900">
+                            <%= number_to_currency(item.price * item.quantity, unit: '₩', precision: 0) %>
+                          </div>
                         </div>
                       </div>
-                    </div>
-                  <% end %>
-                </div>
-              <% end %>
+                    <% end %>
+                  </div>
+                <% end %>
 
-              <!-- 총액 -->
-              <div class="border-t border-gray-200 pt-4">
-                <div class="flex items-center justify-between text-lg">
-                  <span class="font-medium text-gray-900">총 결제금액</span>
-                  <span class="font-bold text-emerald-600 text-2xl">
-                    <%= number_to_currency(order.total_amount || 0, unit: '₩', precision: 0) %>
-                  </span>
+                <!-- 총액 -->
+                <div class="border-t border-gray-100 pt-4">
+                  <div class="flex items-center justify-between">
+                    <span class="font-medium text-gray-500 text-sm">총 결제금액</span>
+                    <span class="font-bold text-[#00a859] text-2xl">
+                      <%= number_to_currency(order.total_amount || 0, unit: '₩', precision: 0) %>
+                    </span>
+                  </div>
                 </div>
               </div>
             </div>
@@ -89,14 +94,20 @@
       </div>
     <% else %>
       <!-- 빈 상태 -->
-      <div class="bg-white rounded-2xl shadow-sm p-16 text-center">
-        <svg class="w-24 h-24 mx-auto mb-6 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/>
-        </svg>
-        <h2 class="text-2xl font-bold text-gray-900 mb-2">주문 내역이 없습니다</h2>
-        <p class="text-gray-600 mb-8">첫 번째 템플릿을 구매해보세요</p>
-        <%= link_to "템플릿 둘러보기", design_templates_path, class: "inline-flex items-center gap-2 px-6 py-3.5 bg-emerald-600 text-white rounded-full hover:bg-emerald-700 font-medium", style: "transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);" %>
+      <div class="card-premium reveal">
+        <div class="card-premium-inner text-center py-16">
+          <svg class="w-16 h-16 mx-auto mb-4 text-gray-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/>
+          </svg>
+          <h2 class="text-xl font-bold text-gray-900 mb-2" style="letter-spacing: -0.02em;">주문 내역이 없습니다</h2>
+          <p class="text-gray-500 mb-6 text-sm">첫 번째 템플릿을 구매해보세요</p>
+          <%= link_to design_templates_path, class: "btn-supanova btn-supanova-primary inline-flex bg-gradient-to-r from-[#00a859] to-[#00d670] text-white !px-6 !py-3", style: "transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);" do %>
+            템플릿 둘러보기
+            <span class="arrow"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg></span>
+          <% end %>
+        </div>
       </div>
     <% end %>
+
   </div>
 </div>
