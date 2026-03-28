@@ -1,163 +1,401 @@
-<%# Agency Template - 에이전시X (AGENCY X) %>
+<%# Bizon Template - 비즈온 (BIZON) %>
 
 <style>
-  /* Supanova Design Upgrade */
+  /* Supanova Design — Business Solution Archetype */
   * { word-break: keep-all; }
-  html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+  html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
   h1, h2, h3, h4 { text-wrap: balance; letter-spacing: -0.02em; line-height: 1.3; }
-  a, button { transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1); }
+  a, button { transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1); }
   a:hover, button:hover { transform: scale(1.02); }
   a:active, button:active { transform: scale(0.98); }
 
-  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700;900&family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap');
-  
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+  .font-sans { font-family: 'Pretendard Variable', 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, sans-serif; }
   .font-inter { font-family: 'Inter', sans-serif; }
-  .font-sans { font-family: 'Pretendard Variable', 'Pretendard', -apple-system, sans-serif; }
 
   @media (max-width: 768px) {
-    .mobile-desc { font-size: 14px !important; line-height: 1.6; }
-    .mobile-title { font-size: 40px !important; }
+    .mobile-desc { font-size: 14px !important; line-height: 1.8; }
+    .mobile-title { font-size: 42px !important; }
   }
 
-  .noise {
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
-    opacity: 0.05;
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(2rem); filter: blur(4px); }
+    to { opacity: 1; transform: translateY(0); filter: blur(0); }
+  }
+
+  .reveal { opacity: 0; transform: translateY(2rem); }
+  .reveal.is-visible {
+    animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    animation-delay: calc(var(--delay, 0) * 100ms);
+  }
+
+  .solution-card { transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1); }
+  .solution-card:hover { transform: translateY(-8px); }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-12px); }
+  }
+
+  @keyframes countUp {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
   }
 </style>
 
-<div class="bg-[#050505] text-white font-sans selection:bg-[#BEF264] selection:text-slate-900 min-h-screen overflow-x-hidden relative">
-  <div class="fixed inset-0 noise pointer-events-none"></div>
+<div class="bg-[#F8FAFC] text-[#0F172A] font-sans selection:bg-[#3B82F6] selection:text-white min-h-screen overflow-x-hidden relative">
 
-  <!-- Nav -->
-  <nav class="fixed w-full z-50 px-3 md:px-6 py-6 border-b border-white/5 bg-[#050505]/80 backdrop-blur-xl">
-    <div class="container mx-auto px-4 md:px-6 flex justify-between items-center flex-nowrap">
-      <div class="flex items-center gap-3 group cursor-pointer">
-         <div class="w-2 h-2 bg-[#BEF264] rounded-full group-hover:animate-ping"></div>
-         <span class="font-inter font-semibold text-2xl tracking-tight uppercase italic">AGENCY<span class="text-[#BEF264]">X</span></span>
-      </div>
-      
-      <div class="hidden md:flex gap-16 text-[10px] font-semibold uppercase tracking-[0.4em] text-white/40">
-        <a href="#projects" class="hover:text-[#BEF264] transition">Artifacts</a>
-        <a href="#vision" class="hover:text-[#BEF264] transition">Our_Vision</a>
-        <a href="#lab" class="hover:text-[#BEF264] transition">X_Lab</a>
-      </div>
-           <button class="mobile-menu-trigger md:hidden ml-auto text-2xl focus:outline-none" style="color: inherit;">
-             <i class="fas fa-bars"></i>
-           </button>
+  <!-- ========== Nav ========== -->
+  <nav class="fixed w-full z-50 px-4 md:px-8 py-5 bg-[#F8FAFC]/80 backdrop-blur-xl border-b border-[#3B82F6]/10">
+    <div class="max-w-7xl mx-auto flex justify-between items-center">
+      <a href="#" class="flex items-center gap-3">
+        <span class="font-inter text-2xl tracking-tight font-extrabold text-[#0F172A]">BIZON</span>
+      </a>
 
-      
-      <div class="flex-nowrap shrink-0 flex gap-12 items-center">
-         <button onclick="toggleAgencyModal()" class="hidden md:block text-[10px] font-semibold uppercase tracking-[0.4em] text-white/40 hover:text-white" data-mobile-menu-copy="true">Admin_X</button>
-         <button class="hidden md:inline-flex bg-[#BEF264] text-slate-900 px-4 py-2 text-xs md:text-base md:px-8 md:py-3 whitespace-nowrap rounded-none font-semibold text-[10px] tracking-[0.4em] uppercase hover:bg-white transition-all" data-mobile-menu-copy="true">
-           Initiate Project
-         </button>
+      <div class="hidden md:flex gap-12 text-[10px] font-semibold uppercase tracking-[0.4em] text-[#0F172A]/40">
+        <a href="#solutions" class="hover:text-[#3B82F6] transition">Solutions</a>
+        <a href="#impact" class="hover:text-[#3B82F6] transition">Impact</a>
+        <a href="#clients" class="hover:text-[#3B82F6] transition">Clients</a>
+        <a href="#demo" class="hover:text-[#3B82F6] transition">Demo</a>
+        <a href="#contact" class="hover:text-[#3B82F6] transition">Contact</a>
+      </div>
+
+      <button class="mobile-menu-trigger md:hidden ml-auto text-2xl focus:outline-none" style="color: inherit;">
+        <i class="fas fa-bars"></i>
+      </button>
+
+      <div class="hidden md:flex gap-6 items-center shrink-0">
+        <button onclick="toggleBizonModal()" class="text-[10px] font-semibold uppercase tracking-[0.4em] text-[#0F172A]/40 hover:text-[#3B82F6]" data-mobile-menu-copy="true">Login</button>
+        <button class="bg-[#3B82F6] text-white px-8 py-3.5 rounded-full font-bold text-[10px] tracking-[0.3em] uppercase hover:bg-[#2563EB] transition shadow-lg shadow-[#3B82F6]/20" data-mobile-menu-copy="true">
+          데모 신청
+        </button>
       </div>
     </div>
 
-      <%= render partial: 'templates/shared/mobile_menu_overlay' %></nav>
+    <%= render partial: 'templates/shared/mobile_menu_overlay' %>
+  </nav>
 
-  <!-- Hero -->
-  <header class="min-h-screen relative flex items-center pt-24 overflow-hidden">
-    <div class="absolute inset-0 z-0">
-       <div class="absolute top-[20%] right-[-10%] w-[60%] h-[60%] bg-[#BEF264]/10 rounded-full blur-[150px]"></div>
-       <div class="absolute bottom-[10%] left-[-10%] w-[50%] h-[50%] bg-blue-600/5 rounded-full blur-[150px]"></div>
-    </div>
-    
-    <div class="container mx-auto px-3 md:px-6 relative z-10 grid lg:grid-cols-12 gap-16 items-center">
-      <div class="lg:col-span-8 space-y-12">
-        <div class="inline-flex items-center gap-6 text-[#BEF264] text-[10px] font-semibold tracking-[0.5em] uppercase border-l-2 border-[#BEF264] pl-6">
-           Breaking the digital ceiling
+  <!-- ========== Hero ========== -->
+  <header class="min-h-[100dvh] relative flex items-center justify-center pt-20">
+    <div class="absolute top-1/4 right-0 w-96 h-96 bg-[#3B82F6]/10 rounded-full blur-[150px]"></div>
+
+    <div class="max-w-7xl mx-auto px-4 md:px-8 relative z-10 grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+      <div class="space-y-10 text-center lg:text-left">
+        <div class="inline-flex items-center gap-5 reveal" style="--delay: 0;">
+          <span class="w-10 h-[1px] bg-[#3B82F6]"></span>
+          <span class="text-[10px] font-semibold tracking-[0.6em] uppercase text-[#3B82F6]">Business Solution</span>
         </div>
-        
-        <h1 class="text-3xl md:text-5xl md:text-[10rem] font-inter font-semibold leading-[0.9] tracking-tight mobile-title">
-           BIZON<br>MARKETING<br><span class="italic text-transparent bg-clip-text bg-gradient-to-r from-[#BEF264] to-emerald-500">AGENCY.</span>
+
+        <h1 class="text-4xl md:text-6xl lg:text-[5.5rem] font-inter font-extrabold leading-tight tracking-tight text-[#0F172A] mobile-title reveal" style="--delay: 1;">
+          비즈니스를<br><span class="text-[#3B82F6]">더 스마트하게.</span>
         </h1>
-        
-        <div class="flex flex-col md:flex-row gap-16 items-start">
-           <p class="max-w-[400px] text-white/40 text-sm md:text-lg leading-relaxed mobile-desc">
-             비즈온 마케팅은 데이터 기반의 전략과 크리에이티브로 성공적인 비즈니스 성장을 이끌어냅니다. 당신의 파트너가 되어 새로운 가치를 창출하겠습니다.
-           </p>
-           <div class="pt-4">
-              <button class="w-16 h-16 rounded-full border border-white/20 flex items-center justify-center hover:bg-[#BEF264] hover:text-slate-900 transition-all group">
-                 <span class="text-2xl group-hover:translate-x-1 transition">→</span>
-              </button>
-           </div>
+
+        <p class="text-[#0F172A]/50 text-sm md:text-lg leading-relaxed max-w-lg mx-auto lg:mx-0 mobile-desc reveal" style="--delay: 2;">
+          데이터 기반 의사결정, 업무 자동화, 성과 분석까지. BIZON은 기업의 디지털 전환을 원스톱으로 지원하는 올인원 비즈니스 솔루션입니다.
+        </p>
+
+        <div class="pt-4 flex flex-col sm:flex-row gap-5 justify-center lg:justify-start reveal" style="--delay: 3;">
+          <a href="#demo" class="inline-flex items-center justify-center gap-3 px-10 py-5 bg-[#3B82F6] text-white font-bold text-[11px] tracking-[0.3em] uppercase hover:bg-[#2563EB] rounded-full shadow-xl shadow-[#3B82F6]/20">
+            무료 데모 신청
+            <span class="w-7 h-7 rounded-full bg-white/15 flex items-center justify-center"><i class="fas fa-arrow-right text-[10px]"></i></span>
+          </a>
+          <a href="#solutions" class="inline-flex items-center justify-center px-10 py-5 border border-[#3B82F6]/20 text-[#3B82F6] font-semibold text-[11px] tracking-[0.3em] uppercase hover:bg-white rounded-full">
+            솔루션 보기
+          </a>
         </div>
       </div>
-      
-      <div class="lg:col-span-4 relative hidden lg:block">
-         <div class="aspect-[3/4] bg-white/5 border border-white/10 rounded-2xl overflow-hidden group">
-            <img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?q=80&w=1200" alt="Creative" class="w-full h-full object-cover transition-all duration-700 group-hover:scale-110 grayscale group-hover:grayscale-0">
-            <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent"></div>
-            <div class="absolute bottom-10 left-10">
-               <p class="text-[10px] font-semibold tracking-[0.4em] uppercase text-[#BEF264]">Latest Artifact</p>
-               <h3 class="text-2xl font-inter font-semibold uppercase mt-2">CYBER_DYNE 2024</h3>
-            </div>
-         </div>
+
+      <div class="relative reveal" style="--delay: 2;">
+        <div class="absolute -top-12 -right-12 w-72 h-72 bg-[#3B82F6]/10 rounded-full blur-[100px]"></div>
+        <div class="relative group">
+          <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=1200" alt="비즈니스 대시보드" class="w-full aspect-[4/5] object-cover rounded-[3rem] shadow-2xl group-hover:shadow-[0_30px_80px_-20px_rgba(59,130,246,0.3)] transition-all duration-700" loading="eager">
+          <div class="absolute -bottom-6 -left-6 md:-bottom-8 md:-left-8 bg-white p-8 md:p-10 rounded-2xl shadow-xl border border-[#3B82F6]/10 max-w-[260px]" style="animation: float 6s ease-in-out infinite;">
+            <p class="text-[10px] font-semibold text-[#3B82F6] uppercase tracking-[0.4em] mb-3">Growth Rate</p>
+            <p class="text-xl font-inter font-extrabold text-[#0F172A]">+340% 생산성</p>
+          </div>
+        </div>
       </div>
     </div>
   </header>
 
-  <!-- Marquee -->
-  <div class="py-20 border-y border-white/5 bg-white text-slate-900 overflow-hidden relative z-20">
-    <div class="whitespace-nowrap flex gap-16 font-inter font-semibold text-2xl md:text-5xl animate-marquee-fast italic">
-       <span>STRATEGY_</span> <span>-</span> <span>DEVELOPMENT_</span> <span>-</span> <span>BRANDING_</span> <span>-</span> <span>MOTION_</span> <span>-</span> <span>EXPERIENCE_</span> <span>-</span>
-       <span>STRATEGY_</span> <span>-</span> <span>DEVELOPMENT_</span> <span>-</span> <span>BRANDING_</span> <span>-</span> <span>MOTION_</span> <span>-</span> <span>EXPERIENCE_</span> <span>-</span>
-    </div>
-  </div>
-
-  <style>
-    @keyframes marquee-fast {
-      0% { transform: translateX(0); }
-      100% { transform: translateX(-50%); }
-    }
-    .animate-marquee-fast { animation: marquee-fast 20s linear infinite; }
-  </style>
-
-  <!-- Login Modal -->
-  <div id="agency-modal" class="fixed inset-0 z-[100] hidden items-center justify-center p-4 bg-slate-950/95 backdrop-blur-3xl">
-    <div class="bg-[#0F0F0F] w-full max-w-sm p-14 shadow-2xl relative border border-white/10">
-      <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-[#BEF264] to-emerald-500"></div>
-      <button onclick="toggleAgencyModal()" class="absolute top-10 right-10 text-white/20 hover:text-[#BEF264] transition text-2xl font-light">&times;</button>
-      
-      <div class="text-center mb-14">
-        <h2 class="text-xl font-inter tracking-[0.5em] text-white mb-2 font-semibold uppercase italic">ACCESS_X</h2>
-        <p class="text-[9px] text-[#BEF264] font-semibold tracking-[0.3em] uppercase">Authorized personnel only</p>
+  <!-- ========== Solutions (4개) ========== -->
+  <section id="solutions" class="py-24 md:py-32 bg-white">
+    <div class="max-w-7xl mx-auto px-4 md:px-8">
+      <div class="text-center mb-16 md:mb-20">
+        <span class="rounded-full px-4 py-1.5 text-[11px] uppercase tracking-[0.15em] font-medium bg-[#3B82F6]/10 text-[#3B82F6] reveal" style="--delay: 0;">Solutions</span>
+        <h2 class="text-3xl md:text-4xl lg:text-5xl font-inter font-extrabold leading-snug text-[#0F172A] mt-6 reveal" style="--delay: 1;">올인원 비즈니스 솔루션</h2>
+        <p class="text-[#0F172A]/40 text-base md:text-lg mt-4 max-w-xl mx-auto reveal" style="--delay: 2;">기업의 모든 업무를 하나의 플랫폼에서.</p>
       </div>
-      
-      <div class="space-y-8">
-        <div class="space-y-4">
-           <div class="flex justify-between items-center px-1">
-              <span class="text-[9px] font-semibold tracking-[0.4em] uppercase text-white/30">Entry Code</span>
-              <span class="text-[8px] font-semibold tracking-[0.4em] uppercase text-[#BEF264]">Encrypted</span>
-           </div>
-           <input type="password" placeholder="********" class="w-full bg-white/5 border border-white/10 py-5 px-6 outline-none focus:border-[#BEF264] transition text-[11px] font-semibold tracking-[0.4em] text-white">
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div class="solution-card bg-[#F8FAFC] rounded-[2rem] p-8 border border-[#3B82F6]/5 reveal" style="--delay: 0;">
+          <div class="w-14 h-14 bg-[#3B82F6]/10 rounded-2xl flex items-center justify-center mb-6"><i class="fas fa-chart-line text-[#3B82F6] text-xl"></i></div>
+          <h3 class="text-lg font-bold text-[#0F172A] mb-3">데이터 애널리틱스</h3>
+          <p class="text-[#0F172A]/40 text-sm leading-relaxed">실시간 데이터 분석과 AI 인사이트로 빠른 의사결정을 지원합니다.</p>
         </div>
-        <button class="w-full bg-white text-slate-900 py-5 font-inter font-semibold text-[10px] tracking-[0.4em] uppercase hover:bg-[#BEF264] transition-all">
-           BOOT_PROTOCOL
-        </button>
-        <div class="flex flex-col items-center gap-10 pt-4">
-           <a href="#" class="text-[9px] text-white/20 tracking-[0.4em] font-semibold uppercase hover:text-[#BEF264] transition underline decoration-1 underline-offset-8">Request Project Access</a>
+
+        <div class="solution-card bg-[#F8FAFC] rounded-[2rem] p-8 border border-[#3B82F6]/5 reveal" style="--delay: 1;">
+          <div class="w-14 h-14 bg-[#3B82F6]/10 rounded-2xl flex items-center justify-center mb-6"><i class="fas fa-robot text-[#3B82F6] text-xl"></i></div>
+          <h3 class="text-lg font-bold text-[#0F172A] mb-3">업무 자동화</h3>
+          <p class="text-[#0F172A]/40 text-sm leading-relaxed">반복 업무를 AI가 대신합니다. RPA와 워크플로우 자동화를 제공합니다.</p>
+        </div>
+
+        <div class="solution-card bg-[#F8FAFC] rounded-[2rem] p-8 border border-[#3B82F6]/5 reveal" style="--delay: 2;">
+          <div class="w-14 h-14 bg-[#3B82F6]/10 rounded-2xl flex items-center justify-center mb-6"><i class="fas fa-users-cog text-[#3B82F6] text-xl"></i></div>
+          <h3 class="text-lg font-bold text-[#0F172A] mb-3">HR 관리</h3>
+          <p class="text-[#0F172A]/40 text-sm leading-relaxed">채용부터 성과 관리까지. 인사 업무의 모든 프로세스를 통합합니다.</p>
+        </div>
+
+        <div class="solution-card bg-[#F8FAFC] rounded-[2rem] p-8 border border-[#3B82F6]/5 reveal" style="--delay: 3;">
+          <div class="w-14 h-14 bg-[#3B82F6]/10 rounded-2xl flex items-center justify-center mb-6"><i class="fas fa-shield-alt text-[#3B82F6] text-xl"></i></div>
+          <h3 class="text-lg font-bold text-[#0F172A] mb-3">보안 솔루션</h3>
+          <p class="text-[#0F172A]/40 text-sm leading-relaxed">엔터프라이즈급 보안으로 기업 데이터를 안전하게 보호합니다.</p>
         </div>
       </div>
     </div>
-  </div>
+  </section>
 
-  <footer class="py-24 md:py-40 bg-[#050505] text-center px-6 relative z-10 border-t border-white/5">
-     <div class="inline-flex items-center gap-14 mb-12">
-        <span class="font-inter text-2xl tracking-tight font-semibold uppercase text-white/10 italic">AGENCY<span class="text-white/5">X</span></span>
-        <div class="w-12 h-[1px] bg-white/5"></div>
-        <span class="text-[10px] font-semibold text-white/20 tracking-[0.6em] uppercase">Defining the Edge</span>
-     </div>
-     <p class="text-[10px] text-white/10 tracking-[1em] uppercase px-6">© 2024 AGENCY X CREATIVE. NO MORE BOUNDARIES.</p>
+  <!-- ========== Impact 도입 효과 (수치) ========== -->
+  <section id="impact" class="py-24 md:py-32 relative overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-br from-[#0F172A] to-[#1E293B]"></div>
+
+    <div class="max-w-7xl mx-auto px-4 md:px-8 relative z-10">
+      <div class="text-center mb-16 md:mb-20">
+        <span class="rounded-full px-4 py-1.5 text-[11px] uppercase tracking-[0.15em] font-medium bg-white/10 text-[#3B82F6] reveal" style="--delay: 0;">Impact</span>
+        <h2 class="text-3xl md:text-4xl lg:text-5xl font-inter font-extrabold leading-snug text-white mt-6 reveal" style="--delay: 1;">숫자가 증명합니다</h2>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div class="text-center reveal" style="--delay: 0;">
+          <p class="text-5xl md:text-6xl font-inter font-extrabold text-[#3B82F6] mb-3">340%</p>
+          <p class="text-white/40 text-sm font-medium">평균 생산성 향상</p>
+        </div>
+        <div class="text-center reveal" style="--delay: 1;">
+          <p class="text-5xl md:text-6xl font-inter font-extrabold text-[#3B82F6] mb-3">60%</p>
+          <p class="text-white/40 text-sm font-medium">업무 시간 절감</p>
+        </div>
+        <div class="text-center reveal" style="--delay: 2;">
+          <p class="text-5xl md:text-6xl font-inter font-extrabold text-[#3B82F6] mb-3">500+</p>
+          <p class="text-white/40 text-sm font-medium">도입 기업</p>
+        </div>
+        <div class="text-center reveal" style="--delay: 3;">
+          <p class="text-5xl md:text-6xl font-inter font-extrabold text-[#3B82F6] mb-3">98%</p>
+          <p class="text-white/40 text-sm font-medium">고객 만족도</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== Clients 고객사 ========== -->
+  <section id="clients" class="py-24 md:py-32 bg-white">
+    <div class="max-w-7xl mx-auto px-4 md:px-8">
+      <div class="text-center mb-16 md:mb-20">
+        <span class="rounded-full px-4 py-1.5 text-[11px] uppercase tracking-[0.15em] font-medium bg-[#3B82F6]/10 text-[#3B82F6] reveal" style="--delay: 0;">Clients</span>
+        <h2 class="text-3xl md:text-4xl lg:text-5xl font-inter font-extrabold leading-snug text-[#0F172A] mt-6 reveal" style="--delay: 1;">500개 기업이 선택한 솔루션</h2>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-8">
+        <div class="bg-[#F8FAFC] rounded-[2rem] p-8 border border-[#3B82F6]/5 reveal" style="--delay: 0;">
+          <div class="flex items-center gap-4 mb-6">
+            <div class="w-12 h-12 bg-[#3B82F6]/10 rounded-xl flex items-center justify-center"><i class="fas fa-building text-[#3B82F6]"></i></div>
+            <div>
+              <p class="font-bold text-[#0F172A]">테크스타트</p>
+              <p class="text-xs text-[#0F172A]/40">IT 서비스</p>
+            </div>
+          </div>
+          <p class="text-[#0F172A]/50 text-sm leading-relaxed italic">"BIZON 도입 후 반복 업무가 70% 줄었습니다. 팀원들이 창의적인 일에 더 집중할 수 있게 되었어요."</p>
+          <p class="text-[#0F172A]/30 text-xs mt-4 font-medium">— 김대표, CEO</p>
+        </div>
+
+        <div class="bg-[#F8FAFC] rounded-[2rem] p-8 border border-[#3B82F6]/5 reveal" style="--delay: 1;">
+          <div class="flex items-center gap-4 mb-6">
+            <div class="w-12 h-12 bg-[#3B82F6]/10 rounded-xl flex items-center justify-center"><i class="fas fa-shopping-cart text-[#3B82F6]"></i></div>
+            <div>
+              <p class="font-bold text-[#0F172A]">커머스플러스</p>
+              <p class="text-xs text-[#0F172A]/40">이커머스</p>
+            </div>
+          </div>
+          <p class="text-[#0F172A]/50 text-sm leading-relaxed italic">"데이터 분석 기능이 놀랍습니다. 매출 트렌드를 실시간으로 파악하고 즉시 대응할 수 있게 되었습니다."</p>
+          <p class="text-[#0F172A]/30 text-xs mt-4 font-medium">— 이부장, COO</p>
+        </div>
+
+        <div class="bg-[#F8FAFC] rounded-[2rem] p-8 border border-[#3B82F6]/5 reveal" style="--delay: 2;">
+          <div class="flex items-center gap-4 mb-6">
+            <div class="w-12 h-12 bg-[#3B82F6]/10 rounded-xl flex items-center justify-center"><i class="fas fa-heartbeat text-[#3B82F6]"></i></div>
+            <div>
+              <p class="font-bold text-[#0F172A]">헬스케어랩</p>
+              <p class="text-xs text-[#0F172A]/40">의료 서비스</p>
+            </div>
+          </div>
+          <p class="text-[#0F172A]/50 text-sm leading-relaxed italic">"HR 모듈 덕분에 100명 규모의 채용 프로세스를 3분의 1로 단축했습니다."</p>
+          <p class="text-[#0F172A]/30 text-xs mt-4 font-medium">— 박팀장, HR Director</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== Demo 데모 신청 ========== -->
+  <section id="demo" class="py-24 md:py-32 relative overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-br from-[#3B82F6] to-[#2563EB]"></div>
+
+    <div class="max-w-7xl mx-auto px-4 md:px-8 relative z-10">
+      <div class="grid lg:grid-cols-2 gap-16 items-center">
+        <div class="space-y-8">
+          <span class="rounded-full px-4 py-1.5 text-[11px] uppercase tracking-[0.15em] font-medium bg-white/15 text-white reveal" style="--delay: 0;">Free Demo</span>
+          <h2 class="text-3xl md:text-4xl lg:text-5xl font-inter font-extrabold leading-snug text-white reveal" style="--delay: 1;">
+            14일 무료 체험으로<br>직접 경험하세요
+          </h2>
+          <p class="text-white/70 text-base md:text-lg leading-relaxed reveal" style="--delay: 2;">
+            카드 등록 없이 14일간 모든 기능을 무료로 사용해보세요. 전담 매니저가 온보딩을 도와드립니다.
+          </p>
+
+          <div class="grid grid-cols-2 gap-6 pt-4 reveal" style="--delay: 3;">
+            <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/10">
+              <p class="text-2xl font-inter font-bold text-white mb-1">14일</p>
+              <p class="text-white/60 text-sm">무료 체험 기간</p>
+            </div>
+            <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/10">
+              <p class="text-2xl font-inter font-bold text-white mb-1">1:1</p>
+              <p class="text-white/60 text-sm">전담 매니저 배정</p>
+            </div>
+          </div>
+
+          <a href="#" class="inline-flex items-center justify-center gap-3 px-10 py-5 bg-white text-[#3B82F6] font-bold text-[11px] tracking-[0.3em] uppercase rounded-full hover:bg-[#F8FAFC] shadow-xl reveal" style="--delay: 4;">
+            무료 데모 시작
+            <span class="w-7 h-7 rounded-full bg-[#3B82F6]/10 flex items-center justify-center"><i class="fas fa-arrow-right text-[10px]"></i></span>
+          </a>
+        </div>
+
+        <div class="relative reveal" style="--delay: 2;">
+          <img src="https://images.unsplash.com/photo-1551434678-e076c223a692?q=80&w=800" alt="팀 미팅" class="w-full aspect-[4/5] object-cover rounded-[3rem] shadow-2xl" loading="lazy" decoding="async">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== Contact ========== -->
+  <section id="contact" class="py-24 md:py-32">
+    <div class="max-w-3xl mx-auto px-4 md:px-8 text-center">
+      <div class="reveal" style="--delay: 0;">
+        <i class="fas fa-headset text-6xl md:text-8xl text-[#3B82F6]/20 block mb-6"></i>
+      </div>
+      <h2 class="text-3xl md:text-4xl lg:text-5xl font-inter font-extrabold leading-snug text-[#0F172A] reveal" style="--delay: 1;">
+        궁금한 점이 있으신가요?
+      </h2>
+      <p class="text-[#0F172A]/40 text-base md:text-lg mt-6 max-w-lg mx-auto reveal" style="--delay: 2;">
+        도입 상담부터 기술 지원까지, BIZON 전문가가 도와드립니다.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-5 justify-center mt-10 reveal" style="--delay: 3;">
+        <a href="#" class="inline-flex items-center justify-center gap-3 px-10 py-5 bg-[#3B82F6] text-white font-bold text-[11px] tracking-[0.3em] uppercase rounded-full shadow-lg shadow-[#3B82F6]/20 hover:bg-[#2563EB]">
+          상담 신청
+          <span class="w-7 h-7 rounded-full bg-white/15 flex items-center justify-center"><i class="fas fa-arrow-right text-[10px]"></i></span>
+        </a>
+        <a href="#" class="inline-flex items-center justify-center gap-3 px-10 py-5 border border-[#3B82F6]/20 text-[#3B82F6] font-semibold text-[11px] tracking-[0.3em] uppercase rounded-full hover:bg-white">
+          <i class="fas fa-phone text-sm"></i> 1588-0000
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== Footer ========== -->
+  <footer class="py-16 md:py-24 bg-[#0F172A]">
+    <div class="max-w-7xl mx-auto px-4 md:px-8">
+      <div class="grid md:grid-cols-3 gap-12 items-start mb-16">
+        <div>
+          <span class="font-inter text-2xl text-white tracking-tight font-extrabold block mb-4">BIZON</span>
+          <p class="text-white/30 text-sm leading-relaxed max-w-xs">기업의 디지털 전환을 원스톱으로 지원하는 올인원 비즈니스 솔루션.</p>
+        </div>
+        <div class="grid grid-cols-2 gap-8">
+          <div>
+            <p class="text-[10px] font-semibold text-white/20 uppercase tracking-[0.3em] mb-4">Product</p>
+            <ul class="space-y-2.5">
+              <li><a href="#solutions" class="text-white/50 text-sm hover:text-[#3B82F6] transition">Analytics</a></li>
+              <li><a href="#solutions" class="text-white/50 text-sm hover:text-[#3B82F6] transition">Automation</a></li>
+              <li><a href="#solutions" class="text-white/50 text-sm hover:text-[#3B82F6] transition">HR</a></li>
+              <li><a href="#solutions" class="text-white/50 text-sm hover:text-[#3B82F6] transition">Security</a></li>
+            </ul>
+          </div>
+          <div>
+            <p class="text-[10px] font-semibold text-white/20 uppercase tracking-[0.3em] mb-4">Company</p>
+            <ul class="space-y-2.5">
+              <li><a href="#impact" class="text-white/50 text-sm hover:text-[#3B82F6] transition">Impact</a></li>
+              <li><a href="#clients" class="text-white/50 text-sm hover:text-[#3B82F6] transition">Clients</a></li>
+              <li><a href="#demo" class="text-white/50 text-sm hover:text-[#3B82F6] transition">Demo</a></li>
+              <li><a href="#contact" class="text-white/50 text-sm hover:text-[#3B82F6] transition">Contact</a></li>
+            </ul>
+          </div>
+        </div>
+        <div>
+          <p class="text-[10px] font-semibold text-white/20 uppercase tracking-[0.3em] mb-4">Follow</p>
+          <div class="flex gap-3">
+            <a href="#" class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white/50 hover:text-[#3B82F6] hover:border-[#3B82F6]/30 transition"><i class="fab fa-linkedin-in text-sm"></i></a>
+            <a href="#" class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white/50 hover:text-[#3B82F6] hover:border-[#3B82F6]/30 transition"><i class="fab fa-twitter text-sm"></i></a>
+            <a href="#" class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white/50 hover:text-[#3B82F6] hover:border-[#3B82F6]/30 transition"><i class="fas fa-blog text-sm"></i></a>
+          </div>
+        </div>
+      </div>
+      <div class="border-t border-white/5 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+        <p class="text-[10px] text-white/15 tracking-[0.5em] uppercase">&copy; 2024 BIZON. All rights reserved by DLAB.</p>
+        <div class="flex gap-6">
+          <a href="#" class="text-[10px] text-white/15 tracking-[0.2em] uppercase hover:text-white/40 transition">Privacy</a>
+          <a href="#" class="text-[10px] text-white/15 tracking-[0.2em] uppercase hover:text-white/40 transition">Terms</a>
+        </div>
+      </div>
+    </div>
   </footer>
 
-  <script>
-    function toggleAgencyModal() {
-      const modal = document.getElementById('agency-modal');
-      modal.classList.toggle('hidden');
-      modal.classList.toggle('flex');
-    }
-  </script>
+  <!-- ========== Login Modal ========== -->
+  <div id="bizon-modal" class="fixed inset-0 z-[100] hidden items-center justify-center p-4 bg-[#0F172A]/20 backdrop-blur-3xl">
+    <div class="bg-white w-full max-w-sm p-8 md:p-14 shadow-2xl relative rounded-[3rem] border border-[#3B82F6]/10">
+      <button onclick="toggleBizonModal()" class="absolute top-8 right-8 w-8 h-8 rounded-full bg-[#F8FAFC] flex items-center justify-center text-[#0F172A]/30 hover:text-[#3B82F6] hover:bg-[#3B82F6]/10 transition text-lg">&times;</button>
+      <div class="text-center mb-12">
+        <h2 class="text-xl font-inter tracking-[0.1em] font-extrabold text-[#0F172A] mb-3">BIZON</h2>
+        <p class="text-[9px] text-[#3B82F6] font-semibold tracking-[0.3em] uppercase">Client Portal</p>
+      </div>
+      <div class="space-y-5">
+        <div class="space-y-2">
+          <p class="text-[10px] font-semibold text-[#0F172A]/30 uppercase tracking-[0.2em] ml-1">Email</p>
+          <input type="text" placeholder="your@company.com" class="w-full bg-[#F8FAFC] border-none rounded-2xl py-5 px-6 outline-none focus:ring-1 focus:ring-[#3B82F6] transition text-[13px] text-[#0F172A]">
+        </div>
+        <div class="space-y-2">
+          <p class="text-[10px] font-semibold text-[#0F172A]/30 uppercase tracking-[0.2em] ml-1">Password</p>
+          <input type="password" placeholder="Password" class="w-full bg-[#F8FAFC] border-none rounded-2xl py-5 px-6 outline-none focus:ring-1 focus:ring-[#3B82F6] transition text-[13px] text-[#0F172A]">
+        </div>
+        <button class="w-full bg-[#3B82F6] text-white py-5 rounded-full text-[11px] tracking-[0.4em] font-bold uppercase hover:bg-[#2563EB] transition shadow-lg shadow-[#3B82F6]/20 mt-2">Sign In</button>
+        <div class="flex justify-center gap-10 pt-2">
+          <a href="#" class="text-[10px] text-[#0F172A]/40 tracking-[0.2em] font-semibold uppercase hover:text-[#3B82F6] transition">Register</a>
+          <a href="#" class="text-[10px] text-[#0F172A]/40 tracking-[0.2em] font-semibold uppercase hover:text-[#3B82F6] transition">Help</a>
+        </div>
+      </div>
+    </div>
+  </div>
 
 </div>
+
+<script>
+  function toggleBizonModal() {
+    const modal = document.getElementById('bizon-modal');
+    modal.classList.toggle('hidden');
+    modal.classList.toggle('flex');
+  }
+
+  document.getElementById('bizon-modal').addEventListener('click', function(e) {
+    if (e.target === this) toggleBizonModal();
+  });
+
+  (function() {
+    const observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+    document.querySelectorAll('.reveal').forEach(function(el) {
+      observer.observe(el);
+    });
+  })();
+</script>

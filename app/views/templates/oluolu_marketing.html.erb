@@ -1,142 +1,379 @@
-<%# Cafe Template - 데일리 크럼 (DAILY CRUMB) %>
+<%# OluOlu Marketing Template - 올루 마케팅 (OLU MARKETING) %>
 
 <style>
-  /* Supanova Design Upgrade */
+  /* Supanova Design — Marketing Agency Archetype */
   * { word-break: keep-all; }
-  html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+  html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
   h1, h2, h3, h4 { text-wrap: balance; letter-spacing: -0.02em; line-height: 1.3; }
-  a, button { transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1); }
+  a, button { transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1); }
   a:hover, button:hover { transform: scale(1.02); }
   a:active, button:active { transform: scale(0.98); }
 
-  @import url('https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700;800&family=Noto+Sans+KR:wght@300;400;500;700;900&family=Playfair+Display:ital,wght@0,400;0,900;1,400&display=swap');
-  
-  .font-serif { font-family: 'Nanum Myeongjo', serif; }
-  .font-sans { font-family: 'Pretendard Variable', 'Pretendard', -apple-system, sans-serif; }
-  .font-playfair { font-family: 'Playfair Display', serif; }
+  @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap');
+
+  .font-sans { font-family: 'Pretendard Variable', 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, sans-serif; }
+  .font-grotesk { font-family: 'Space Grotesk', sans-serif; }
 
   @media (max-width: 768px) {
     .mobile-desc { font-size: 14px !important; line-height: 1.8; }
-    .mobile-title { font-size: 40px !important; }
+    .mobile-title { font-size: 42px !important; }
   }
 
-  .grain-overlay {
-    background-image: url("https://www.transparenttextures.com/patterns/natural-paper.png");
-    opacity: 0.5;
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(2rem); filter: blur(4px); }
+    to { opacity: 1; transform: translateY(0); filter: blur(0); }
+  }
+
+  .reveal { opacity: 0; transform: translateY(2rem); }
+  .reveal.is-visible {
+    animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    animation-delay: calc(var(--delay, 0) * 100ms);
+  }
+
+  .service-card { transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1); }
+  .service-card:hover { transform: translateY(-8px); }
+
+  .gallery-item { transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1); }
+  .gallery-item:hover { transform: scale(1.02); }
+  .gallery-item:hover img { transform: scale(1.08); }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-12px); }
+  }
+
+  .dark-noise {
+    background-image: url("https://www.transparenttextures.com/patterns/asfalt-dark.png");
+    opacity: 0.15;
   }
 </style>
 
-<div class="bg-[#FAF9F6] text-[#433D3C] font-sans selection:bg-[#BC9D84] selection:text-white min-h-screen overflow-x-hidden relative">
-  <div class="fixed inset-0 grain-overlay pointer-events-none"></div>
+<div class="bg-[#0F172A] text-white font-sans selection:bg-[#F59E0B] selection:text-black min-h-screen overflow-x-hidden relative">
+  <div class="fixed inset-0 dark-noise pointer-events-none z-[60]"></div>
 
-  <!-- Nav -->
-  <nav class="fixed w-full z-50 px-8 py-12 md:px-12 bg-[#FAF9F6]/80 backdrop-blur-xl border-b border-[#BC9D84]/10">
-    <div class="container mx-auto px-4 md:px-6 flex justify-between items-center flex-nowrap">
-      <div class="flex items-center gap-10">
-         <span class="font-playfair text-2xl tracking-tight font-semibold italic text-[#8B735B]">Daily Crumb</span>
-      </div>
-      
-      <div class="hidden md:flex gap-14 text-[10px] font-semibold uppercase tracking-[0.4em] text-[#433D3C]/40">
-        <a href="#about" class="hover:text-[#8B735B] transition">Bakery</a>
-        <a href="#menu" class="hover:text-[#8B735B] transition">Patisserie</a>
-        <a href="#location" class="hover:text-[#8B735B] transition">Atelier</a>
-      </div>
-           <button class="mobile-menu-trigger md:hidden ml-auto text-2xl focus:outline-none" style="color: inherit;">
-             <i class="fas fa-bars"></i>
-           </button>
+  <!-- ========== Nav ========== -->
+  <nav class="fixed w-full z-50 px-4 md:px-8 py-5 bg-[#0F172A]/80 backdrop-blur-xl border-b border-white/5">
+    <div class="max-w-7xl mx-auto flex justify-between items-center">
+      <a href="#" class="flex items-center gap-3">
+        <span class="font-grotesk text-2xl tracking-tight font-bold text-[#F59E0B]">OLU</span>
+        <span class="font-grotesk text-2xl tracking-tight font-bold text-white/40">MARKETING</span>
+      </a>
 
-      
-      <div class="flex-nowrap shrink-0 flex gap-12 items-center">
-         <button onclick="toggleCafeModal()" class="hidden md:block text-[10px] font-semibold uppercase tracking-[0.4em] text-[#433D3C]/40 hover:text-[#8B735B]" data-mobile-menu-copy="true">Club Crumb</button>
-         <button class="hidden md:block bg-[#8B735B] text-white px-10 py-3.5 rounded-lg font-semibold text-[10px] tracking-[0.4em] uppercase hover:bg-[#433D3C] transition shadow-2xl shadow-[#8B735B]/20" data-mobile-menu-copy="true">
-           Order Online
-         </button>
+      <div class="hidden md:flex gap-12 text-[10px] font-semibold uppercase tracking-[0.4em] text-white/40">
+        <a href="#services" class="hover:text-[#F59E0B] transition">Services</a>
+        <a href="#results" class="hover:text-[#F59E0B] transition">Results</a>
+        <a href="#portfolio" class="hover:text-[#F59E0B] transition">Portfolio</a>
+        <a href="#process" class="hover:text-[#F59E0B] transition">Process</a>
+        <a href="#consult" class="hover:text-[#F59E0B] transition">Contact</a>
+      </div>
+
+      <button class="mobile-menu-trigger md:hidden ml-auto text-2xl focus:outline-none" style="color: inherit;">
+        <i class="fas fa-bars"></i>
+      </button>
+
+      <div class="hidden md:flex gap-6 items-center shrink-0">
+        <button onclick="toggleMarketingModal()" class="text-[10px] font-semibold uppercase tracking-[0.4em] text-white/40 hover:text-[#F59E0B]" data-mobile-menu-copy="true">Login</button>
+        <button class="bg-[#F59E0B] text-[#0F172A] px-8 py-3.5 rounded-full font-bold text-[10px] tracking-[0.3em] uppercase hover:bg-[#D97706] transition shadow-lg shadow-[#F59E0B]/20" data-mobile-menu-copy="true">
+          상담 신청
+        </button>
       </div>
     </div>
 
-      <%= render partial: 'templates/shared/mobile_menu_overlay' %></nav>
+    <%= render partial: 'templates/shared/mobile_menu_overlay' %>
+  </nav>
 
-  <!-- Hero -->
-  <header class="min-h-screen relative flex items-center justify-center pt-20">
-    <div class="container mx-auto px-3 md:px-6 relative z-10 grid lg:grid-cols-2 gap-12 md:p-20 items-center">
-      <div class="space-y-12 text-center lg:text-left">
-        <div class="inline-flex items-center gap-6">
-           <span class="w-12 h-[1px] bg-[#BC9D84]"></span>
-           <span class="text-[10px] font-semibold tracking-[0.6em] uppercase text-[#BC9D84]">Artisan Boulangerie</span>
+  <!-- ========== Hero ========== -->
+  <header class="min-h-[100dvh] relative flex items-center justify-center pt-20">
+    <div class="absolute inset-0">
+      <div class="absolute top-1/3 left-1/4 w-96 h-96 bg-[#F59E0B]/10 rounded-full blur-[150px]"></div>
+      <div class="absolute bottom-1/3 right-1/4 w-80 h-80 bg-[#F59E0B]/5 rounded-full blur-[150px]"></div>
+    </div>
+
+    <div class="max-w-7xl mx-auto px-4 md:px-8 relative z-10 grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+      <div class="space-y-10 text-center lg:text-left">
+        <div class="inline-flex items-center gap-5 reveal" style="--delay: 0;">
+          <span class="w-10 h-[1px] bg-[#F59E0B]"></span>
+          <span class="text-[10px] font-semibold tracking-[0.6em] uppercase text-[#F59E0B]">Marketing Agency</span>
         </div>
-        
-        <h1 class="text-3xl md:text-5xl md:text-[8rem] font-serif font-semibold leading-none tracking-tight text-[#433D3C] mobile-title">
-           따스한 향기,<br><span class="italic text-[#BC9D84]">매일의 휴식.</span>
+
+        <h1 class="text-4xl md:text-6xl lg:text-[5.5rem] font-grotesk font-bold leading-tight tracking-tight mobile-title reveal" style="--delay: 1;">
+          매출을 만드는<br><span class="text-[#F59E0B]">마케팅.</span>
         </h1>
-        
-        <p class="text-[#433D3C]/60 text-sm md:text-xl leading-[2] max-w-lg mx-auto lg:mx-0 mobile-desc">
-           천연 발효종과 유기농 밀가루로 구워낸 정직한 빵. 데일리 크럼은 당신의 평범한 아침을 가장 특별한 순간으로 바꿉니다.
+
+        <p class="text-white/50 text-sm md:text-lg leading-relaxed max-w-lg mx-auto lg:mx-0 mobile-desc reveal" style="--delay: 2;">
+          데이터 기반 퍼포먼스 마케팅부터 브랜딩까지. 올루 마케팅은 매출로 증명하는 결과 중심 마케팅 대행사입니다.
         </p>
-        
-        <div class="pt-6 flex flex-col sm:flex-row gap-12 justify-center lg:justify-start">
-           <button class="px-14 py-6 bg-[#433D3C] text-white font-semibold text-[11px] tracking-[0.4em] uppercase hover:bg-[#8B735B] transition-all shadow-2xl">
-              Morning Batch
-           </button>
-           <button class="px-14 py-6 border border-[#BC9D84]/30 text-[#8B735B] font-semibold text-[11px] tracking-[0.4em] uppercase hover:bg-white transition-all">
-              Bakery Story
-           </button>
+
+        <div class="pt-4 flex flex-col sm:flex-row gap-5 justify-center lg:justify-start reveal" style="--delay: 3;">
+          <a href="#consult" class="inline-flex items-center justify-center gap-3 px-10 py-5 bg-[#F59E0B] text-[#0F172A] font-bold text-[11px] tracking-[0.3em] uppercase hover:bg-[#D97706] rounded-full shadow-xl shadow-[#F59E0B]/20">
+            무료 상담 신청
+            <span class="w-7 h-7 rounded-full bg-black/10 flex items-center justify-center"><i class="fas fa-arrow-right text-[10px]"></i></span>
+          </a>
+          <a href="#results" class="inline-flex items-center justify-center px-10 py-5 border border-white/10 text-white/70 font-semibold text-[11px] tracking-[0.3em] uppercase hover:bg-white/5 rounded-full">
+            성공 사례
+          </a>
         </div>
       </div>
 
-      <div class="relative">
-         <div class="absolute -top-8 md:p-20 -right-20 w-80 h-80 bg-[#BC9D84]/10 rounded-full blur-[120px]"></div>
-         <div class="relative group">
-            <img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?q=80&w=1200" alt="Bakery" class="w-full aspect-square object-cover rounded-[5rem_2rem_5rem_2rem] shadow-2xl group-hover:scale-105 transition duration-1000">
-            <div class="absolute -bottom-10 -left-10 bg-white p-12 rounded-2xl shadow-2xl border border-[#BC9D84]/10 max-w-[300px]">
-               <p class="text-[10px] font-semibold text-[#BC9D84] uppercase tracking-[0.4em] mb-4">Slow Baking Ritual</p>
-               <p class="text-2xl font-playfair italic font-semibold text-[#433D3C]">Fermented with Care.</p>
-            </div>
-         </div>
+      <div class="relative reveal" style="--delay: 2;">
+        <div class="absolute -top-12 -right-12 w-72 h-72 bg-[#F59E0B]/10 rounded-full blur-[100px]"></div>
+        <div class="relative group">
+          <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=1200" alt="마케팅 대시보드" class="w-full aspect-[4/5] object-cover rounded-[3rem] shadow-2xl group-hover:shadow-[0_30px_80px_-20px_rgba(245,158,11,0.3)] transition-all duration-700" loading="eager">
+          <div class="absolute -bottom-6 -left-6 md:-bottom-8 md:-left-8 bg-[#1E293B] p-8 md:p-10 rounded-2xl shadow-xl border border-white/5 max-w-[260px]" style="animation: float 6s ease-in-out infinite;">
+            <p class="text-[10px] font-semibold text-[#F59E0B] uppercase tracking-[0.4em] mb-3">ROAS</p>
+            <p class="text-xl font-grotesk font-bold text-white">평균 850% 달성</p>
+          </div>
+        </div>
       </div>
     </div>
   </header>
 
-  <!-- Login Modal -->
-  <div id="cafe-modal" class="fixed inset-0 z-[100] hidden items-center justify-center p-4 bg-[#433D3C]/20 backdrop-blur-3xl">
-    <div class="bg-white w-full max-w-sm p-6 md:p-16 shadow-2xl relative rounded-[4rem] border border-[#BC9D84]/10">
-      <button onclick="toggleCafeModal()" class="absolute top-12 right-12 text-[#433D3C]/20 hover:text-[#8B735B] transition text-2xl font-light">&times;</button>
-      
-      <div class="text-center mb-14">
-        <h2 class="text-xl font-playfair tracking-[0.2em] italic text-[#433D3C] mb-3 font-semibold">Club Crumb Access</h2>
-        <p class="text-[9px] text-[#BC9D84] font-semibold tracking-[0.3em] uppercase">Private Member Session</p>
+  <!-- ========== Services (4개) ========== -->
+  <section id="services" class="py-24 md:py-32">
+    <div class="max-w-7xl mx-auto px-4 md:px-8">
+      <div class="text-center mb-16 md:mb-20">
+        <span class="rounded-full px-4 py-1.5 text-[11px] uppercase tracking-[0.15em] font-medium bg-white/5 text-[#F59E0B] border border-white/10 reveal" style="--delay: 0;">Services</span>
+        <h2 class="text-3xl md:text-4xl lg:text-5xl font-grotesk font-bold leading-snug text-white mt-6 reveal" style="--delay: 1;">전문 마케팅 서비스</h2>
+        <p class="text-white/40 text-base md:text-lg mt-4 max-w-xl mx-auto reveal" style="--delay: 2;">매출 성장을 위한 올인원 마케팅 솔루션.</p>
       </div>
-      
-      <div class="space-y-8">
-        <div class="space-y-3">
-           <p class="text-[9px] font-semibold text-[#433D3C]/30 uppercase tracking-[0.2em] ml-1">Member ID</p>
-           <input type="text" placeholder="BREAD_LOVER_ID" class="w-full bg-[#FAF9F6] border-none rounded-2xl py-6 px-8 outline-none focus:ring-1 focus:ring-[#8B735B] transition text-[11px] font-semibold tracking-wide text-[#433D3C]">
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div class="service-card bg-[#1E293B] rounded-[2rem] p-8 border border-white/5 reveal" style="--delay: 0;">
+          <div class="w-14 h-14 bg-[#F59E0B]/10 rounded-2xl flex items-center justify-center mb-6"><i class="fas fa-search-dollar text-[#F59E0B] text-xl"></i></div>
+          <h3 class="text-lg font-bold text-white mb-3">퍼포먼스 마케팅</h3>
+          <p class="text-white/40 text-sm leading-relaxed">네이버, 구글, 메타 광고 최적화. ROAS 극대화를 위한 데이터 기반 운영.</p>
         </div>
-        <button class="w-full bg-[#8B735B] text-white py-6 rounded-2xl text-[10px] tracking-[0.6em] font-semibold uppercase hover:bg-[#433D3C] transition shadow-xl shadow-[#8B735B]/30">
-           Establish Session
-        </button>
-        <div class="flex justify-center gap-14 pt-4">
-           <a href="#" class="text-[9px] text-[#433D3C]/40 tracking-[0.4em] font-semibold uppercase hover:text-[#8B735B] transition italic">Join Atelier</a>
-           <a href="#" class="text-[9px] text-[#433D3C]/40 tracking-[0.4em] font-semibold uppercase hover:text-[#8B735B] transition italic">Support</a>
+
+        <div class="service-card bg-[#1E293B] rounded-[2rem] p-8 border border-white/5 reveal" style="--delay: 1;">
+          <div class="w-14 h-14 bg-[#F59E0B]/10 rounded-2xl flex items-center justify-center mb-6"><i class="fab fa-instagram text-[#F59E0B] text-xl"></i></div>
+          <h3 class="text-lg font-bold text-white mb-3">SNS 마케팅</h3>
+          <p class="text-white/40 text-sm leading-relaxed">인스타그램, 유튜브, 틱톡 채널 운영. 콘텐츠 기획부터 제작까지.</p>
+        </div>
+
+        <div class="service-card bg-[#1E293B] rounded-[2rem] p-8 border border-white/5 reveal" style="--delay: 2;">
+          <div class="w-14 h-14 bg-[#F59E0B]/10 rounded-2xl flex items-center justify-center mb-6"><i class="fas fa-pen-nib text-[#F59E0B] text-xl"></i></div>
+          <h3 class="text-lg font-bold text-white mb-3">브랜딩</h3>
+          <p class="text-white/40 text-sm leading-relaxed">BI/CI 디자인, 브랜드 전략 수립, 스토리텔링으로 브랜드 가치를 높입니다.</p>
+        </div>
+
+        <div class="service-card bg-[#1E293B] rounded-[2rem] p-8 border border-white/5 reveal" style="--delay: 3;">
+          <div class="w-14 h-14 bg-[#F59E0B]/10 rounded-2xl flex items-center justify-center mb-6"><i class="fas fa-globe text-[#F59E0B] text-xl"></i></div>
+          <h3 class="text-lg font-bold text-white mb-3">웹사이트 제작</h3>
+          <p class="text-white/40 text-sm leading-relaxed">전환율 최적화된 랜딩 페이지와 기업 웹사이트를 제작합니다.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== Results 성공 사례 (수치) ========== -->
+  <section id="results" class="py-24 md:py-32 relative overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-b from-[#0F172A] via-[#1A1A2E] to-[#0F172A]"></div>
+
+    <div class="max-w-7xl mx-auto px-4 md:px-8 relative z-10">
+      <div class="text-center mb-16 md:mb-20">
+        <span class="rounded-full px-4 py-1.5 text-[11px] uppercase tracking-[0.15em] font-medium bg-white/5 text-[#F59E0B] border border-white/10 reveal" style="--delay: 0;">Results</span>
+        <h2 class="text-3xl md:text-4xl lg:text-5xl font-grotesk font-bold leading-snug text-white mt-6 reveal" style="--delay: 1;">숫자로 증명합니다</h2>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div class="text-center reveal" style="--delay: 0;">
+          <p class="text-5xl md:text-6xl font-grotesk font-bold text-[#F59E0B] mb-3">850%</p>
+          <p class="text-white/40 text-sm font-medium">평균 ROAS</p>
+        </div>
+        <div class="text-center reveal" style="--delay: 1;">
+          <p class="text-5xl md:text-6xl font-grotesk font-bold text-[#F59E0B] mb-3">200+</p>
+          <p class="text-white/40 text-sm font-medium">프로젝트 수행</p>
+        </div>
+        <div class="text-center reveal" style="--delay: 2;">
+          <p class="text-5xl md:text-6xl font-grotesk font-bold text-[#F59E0B] mb-3">3.2배</p>
+          <p class="text-white/40 text-sm font-medium">평균 매출 성장</p>
+        </div>
+        <div class="text-center reveal" style="--delay: 3;">
+          <p class="text-5xl md:text-6xl font-grotesk font-bold text-[#F59E0B] mb-3">95%</p>
+          <p class="text-white/40 text-sm font-medium">재계약률</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== Portfolio ========== -->
+  <section id="portfolio" class="py-24 md:py-32">
+    <div class="max-w-7xl mx-auto px-4 md:px-8">
+      <div class="text-center mb-16 md:mb-20">
+        <span class="rounded-full px-4 py-1.5 text-[11px] uppercase tracking-[0.15em] font-medium bg-white/5 text-[#F59E0B] border border-white/10 reveal" style="--delay: 0;">Portfolio</span>
+        <h2 class="text-3xl md:text-4xl lg:text-5xl font-grotesk font-bold leading-snug text-white mt-6 reveal" style="--delay: 1;">포트폴리오</h2>
+      </div>
+
+      <div class="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
+        <div class="gallery-item overflow-hidden rounded-[1.5rem] reveal" style="--delay: 0;"><img src="https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?q=80&w=600" alt="SNS 캠페인" class="w-full aspect-square object-cover transition-transform duration-700" loading="lazy" decoding="async"></div>
+        <div class="gallery-item overflow-hidden rounded-[1.5rem] reveal" style="--delay: 1;"><img src="https://images.unsplash.com/photo-1432888622747-4eb9a8efeb07?q=80&w=600" alt="브랜딩" class="w-full aspect-square object-cover transition-transform duration-700" loading="lazy" decoding="async"></div>
+        <div class="gallery-item overflow-hidden rounded-[1.5rem] reveal" style="--delay: 2;"><img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=600" alt="대시보드" class="w-full aspect-square object-cover transition-transform duration-700" loading="lazy" decoding="async"></div>
+        <div class="gallery-item overflow-hidden rounded-[1.5rem] reveal" style="--delay: 3;"><img src="https://images.unsplash.com/photo-1551434678-e076c223a692?q=80&w=600" alt="팀 워크" class="w-full aspect-square object-cover transition-transform duration-700" loading="lazy" decoding="async"></div>
+        <div class="gallery-item overflow-hidden rounded-[1.5rem] col-span-2 reveal" style="--delay: 4;"><img src="https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?q=80&w=900" alt="데이터 분석" class="w-full aspect-[2/1] object-cover transition-transform duration-700" loading="lazy" decoding="async"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== Process ========== -->
+  <section id="process" class="py-24 md:py-32 relative overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-b from-[#0F172A] via-[#1E293B] to-[#0F172A]"></div>
+
+    <div class="max-w-7xl mx-auto px-4 md:px-8 relative z-10">
+      <div class="text-center mb-16 md:mb-20">
+        <span class="rounded-full px-4 py-1.5 text-[11px] uppercase tracking-[0.15em] font-medium bg-white/5 text-[#F59E0B] border border-white/10 reveal" style="--delay: 0;">Process</span>
+        <h2 class="text-3xl md:text-4xl lg:text-5xl font-grotesk font-bold leading-snug text-white mt-6 reveal" style="--delay: 1;">진행 프로세스</h2>
+      </div>
+
+      <div class="grid md:grid-cols-4 gap-8">
+        <div class="text-center reveal" style="--delay: 0;">
+          <div class="w-16 h-16 bg-[#F59E0B] rounded-full flex items-center justify-center mx-auto mb-6 text-[#0F172A] font-grotesk font-bold text-xl">01</div>
+          <h3 class="font-bold text-white mb-2">상담 & 분석</h3>
+          <p class="text-white/40 text-sm leading-relaxed">현재 마케팅 현황을 분석하고 맞춤 전략을 제안합니다.</p>
+        </div>
+        <div class="text-center reveal" style="--delay: 1;">
+          <div class="w-16 h-16 bg-[#F59E0B] rounded-full flex items-center justify-center mx-auto mb-6 text-[#0F172A] font-grotesk font-bold text-xl">02</div>
+          <h3 class="font-bold text-white mb-2">전략 수립</h3>
+          <p class="text-white/40 text-sm leading-relaxed">목표 KPI를 설정하고 채널별 실행 전략을 수립합니다.</p>
+        </div>
+        <div class="text-center reveal" style="--delay: 2;">
+          <div class="w-16 h-16 bg-[#F59E0B] rounded-full flex items-center justify-center mx-auto mb-6 text-[#0F172A] font-grotesk font-bold text-xl">03</div>
+          <h3 class="font-bold text-white mb-2">실행 & 최적화</h3>
+          <p class="text-white/40 text-sm leading-relaxed">캠페인을 론칭하고 실시간 데이터로 지속 최적화합니다.</p>
+        </div>
+        <div class="text-center reveal" style="--delay: 3;">
+          <div class="w-16 h-16 bg-[#F59E0B] rounded-full flex items-center justify-center mx-auto mb-6 text-[#0F172A] font-grotesk font-bold text-xl">04</div>
+          <h3 class="font-bold text-white mb-2">보고 & 개선</h3>
+          <p class="text-white/40 text-sm leading-relaxed">월간 성과 리포트와 함께 다음 달 전략을 제안합니다.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== CTA 상담 ========== -->
+  <section id="consult" class="py-24 md:py-32">
+    <div class="max-w-3xl mx-auto px-4 md:px-8 text-center">
+      <div class="reveal" style="--delay: 0;">
+        <span class="text-6xl md:text-8xl font-grotesk font-bold text-[#F59E0B]/20 block mb-6">OLU</span>
+      </div>
+      <h2 class="text-3xl md:text-4xl lg:text-5xl font-grotesk font-bold leading-snug text-white reveal" style="--delay: 1;">
+        매출 성장,<br>지금 시작하세요
+      </h2>
+      <p class="text-white/40 text-base md:text-lg mt-6 max-w-lg mx-auto reveal" style="--delay: 2;">
+        첫 상담은 무료입니다. 현재 마케팅 현황을 분석하고 맞춤 전략을 제안해드립니다.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-5 justify-center mt-10 reveal" style="--delay: 3;">
+        <a href="#" class="inline-flex items-center justify-center gap-3 px-10 py-5 bg-[#F59E0B] text-[#0F172A] font-bold text-[11px] tracking-[0.3em] uppercase rounded-full shadow-lg shadow-[#F59E0B]/20 hover:bg-[#D97706]">
+          무료 상담 신청
+          <span class="w-7 h-7 rounded-full bg-black/10 flex items-center justify-center"><i class="fas fa-arrow-right text-[10px]"></i></span>
+        </a>
+        <a href="#" class="inline-flex items-center justify-center gap-3 px-10 py-5 border border-white/10 text-white/70 font-semibold text-[11px] tracking-[0.3em] uppercase rounded-full hover:bg-white/5">
+          <i class="fas fa-phone text-sm"></i> 02-555-0000
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== Footer ========== -->
+  <footer class="py-16 md:py-24 bg-[#060A14] border-t border-white/5">
+    <div class="max-w-7xl mx-auto px-4 md:px-8">
+      <div class="grid md:grid-cols-3 gap-12 items-start mb-16">
+        <div>
+          <div class="flex items-center gap-2 mb-4">
+            <span class="font-grotesk text-2xl tracking-tight font-bold text-[#F59E0B]">OLU</span>
+            <span class="font-grotesk text-2xl tracking-tight font-bold text-white/40">MARKETING</span>
+          </div>
+          <p class="text-white/30 text-sm leading-relaxed max-w-xs">데이터 기반 퍼포먼스 마케팅. 매출로 증명하는 결과 중심 마케팅 대행사.</p>
+        </div>
+        <div class="grid grid-cols-2 gap-8">
+          <div>
+            <p class="text-[10px] font-semibold text-white/20 uppercase tracking-[0.3em] mb-4">Service</p>
+            <ul class="space-y-2.5">
+              <li><a href="#services" class="text-white/50 text-sm hover:text-[#F59E0B] transition">퍼포먼스</a></li>
+              <li><a href="#services" class="text-white/50 text-sm hover:text-[#F59E0B] transition">SNS</a></li>
+              <li><a href="#services" class="text-white/50 text-sm hover:text-[#F59E0B] transition">브랜딩</a></li>
+              <li><a href="#services" class="text-white/50 text-sm hover:text-[#F59E0B] transition">웹사이트</a></li>
+            </ul>
+          </div>
+          <div>
+            <p class="text-[10px] font-semibold text-white/20 uppercase tracking-[0.3em] mb-4">Company</p>
+            <ul class="space-y-2.5">
+              <li><a href="#results" class="text-white/50 text-sm hover:text-[#F59E0B] transition">성공 사례</a></li>
+              <li><a href="#portfolio" class="text-white/50 text-sm hover:text-[#F59E0B] transition">포트폴리오</a></li>
+              <li><a href="#process" class="text-white/50 text-sm hover:text-[#F59E0B] transition">프로세스</a></li>
+              <li><a href="#consult" class="text-white/50 text-sm hover:text-[#F59E0B] transition">상담</a></li>
+            </ul>
+          </div>
+        </div>
+        <div>
+          <p class="text-[10px] font-semibold text-white/20 uppercase tracking-[0.3em] mb-4">Follow</p>
+          <div class="flex gap-3">
+            <a href="#" class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white/50 hover:text-[#F59E0B] hover:border-[#F59E0B]/30 transition"><i class="fab fa-instagram text-sm"></i></a>
+            <a href="#" class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white/50 hover:text-[#F59E0B] hover:border-[#F59E0B]/30 transition"><i class="fab fa-youtube text-sm"></i></a>
+            <a href="#" class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white/50 hover:text-[#F59E0B] hover:border-[#F59E0B]/30 transition"><i class="fas fa-blog text-sm"></i></a>
+          </div>
+        </div>
+      </div>
+      <div class="border-t border-white/5 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+        <p class="text-[10px] text-white/15 tracking-[0.5em] uppercase">&copy; 2024 OLU Marketing. All rights reserved by DLAB.</p>
+        <div class="flex gap-6">
+          <a href="#" class="text-[10px] text-white/15 tracking-[0.2em] uppercase hover:text-white/40 transition">Privacy</a>
+          <a href="#" class="text-[10px] text-white/15 tracking-[0.2em] uppercase hover:text-white/40 transition">Terms</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ========== Login Modal ========== -->
+  <div id="marketing-modal" class="fixed inset-0 z-[100] hidden items-center justify-center p-4 bg-black/40 backdrop-blur-3xl">
+    <div class="bg-[#1E293B] w-full max-w-sm p-8 md:p-14 shadow-2xl relative rounded-[3rem] border border-white/5">
+      <button onclick="toggleMarketingModal()" class="absolute top-8 right-8 w-8 h-8 rounded-full bg-white/5 flex items-center justify-center text-white/30 hover:text-[#F59E0B] hover:bg-[#F59E0B]/10 transition text-lg">&times;</button>
+      <div class="text-center mb-12">
+        <h2 class="text-xl font-grotesk tracking-[0.1em] font-bold text-[#F59E0B] mb-3">OLU MARKETING</h2>
+        <p class="text-[9px] text-white/30 font-semibold tracking-[0.3em] uppercase">Client Portal</p>
+      </div>
+      <div class="space-y-5">
+        <div class="space-y-2">
+          <p class="text-[10px] font-semibold text-white/30 uppercase tracking-[0.2em] ml-1">Email</p>
+          <input type="text" placeholder="your@email.com" class="w-full bg-white/5 border border-white/10 rounded-2xl py-5 px-6 outline-none focus:ring-1 focus:ring-[#F59E0B] transition text-[13px] text-white">
+        </div>
+        <div class="space-y-2">
+          <p class="text-[10px] font-semibold text-white/30 uppercase tracking-[0.2em] ml-1">Password</p>
+          <input type="password" placeholder="Password" class="w-full bg-white/5 border border-white/10 rounded-2xl py-5 px-6 outline-none focus:ring-1 focus:ring-[#F59E0B] transition text-[13px] text-white">
+        </div>
+        <button class="w-full bg-[#F59E0B] text-[#0F172A] py-5 rounded-full text-[11px] tracking-[0.4em] font-bold uppercase hover:bg-[#D97706] transition shadow-lg shadow-[#F59E0B]/20 mt-2">Sign In</button>
+        <div class="flex justify-center gap-10 pt-2">
+          <a href="#" class="text-[10px] text-white/40 tracking-[0.2em] font-semibold uppercase hover:text-[#F59E0B] transition">Register</a>
+          <a href="#" class="text-[10px] text-white/40 tracking-[0.2em] font-semibold uppercase hover:text-[#F59E0B] transition">Help</a>
         </div>
       </div>
     </div>
   </div>
 
-  <footer class="py-24 md:py-40 bg-[#433D3C] text-center px-6">
-     <div class="inline-flex items-center gap-14 mb-12">
-        <span class="font-playfair text-2xl text-white tracking-tight font-semibold italic">Daily Crumb</span>
-        <span class="w-[1px] h-10 bg-white/10"></span>
-        <span class="text-[10px] font-semibold text-white/30 tracking-[0.6em] uppercase">Boulangerie & Atelier</span>
-     </div>
-     <p class="text-[10px] text-white/10 tracking-[1em] uppercase px-6">© 2024 DAILY CRUMB BAKERY. ALL RIGHTS RESERVED BY DLAB.</p>
-  </footer>
-
-  <script>
-    function toggleCafeModal() {
-      const modal = document.getElementById('cafe-modal');
-      modal.classList.toggle('hidden');
-      modal.classList.toggle('flex');
-    }
-  </script>
-
 </div>
+
+<script>
+  function toggleMarketingModal() {
+    const modal = document.getElementById('marketing-modal');
+    modal.classList.toggle('hidden');
+    modal.classList.toggle('flex');
+  }
+
+  document.getElementById('marketing-modal').addEventListener('click', function(e) {
+    if (e.target === this) toggleMarketingModal();
+  });
+
+  (function() {
+    const observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+    document.querySelectorAll('.reveal').forEach(function(el) {
+      observer.observe(el);
+    });
+  })();
+</script>

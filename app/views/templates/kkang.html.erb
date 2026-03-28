@@ -1,191 +1,477 @@
-<%# Portfolio Template - Jay 디자인 (J.STUDIO) %>
+<%# Kkang Template - 바다꽃게 %>
 
 <style>
-  /* Supanova Design Upgrade */
+  /* Supanova Design — Seafood Restaurant Archetype */
   * { word-break: keep-all; }
-  html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+  html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
   h1, h2, h3, h4 { text-wrap: balance; letter-spacing: -0.02em; line-height: 1.3; }
-  a, button { transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1); }
+  a, button { transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1); }
   a:hover, button:hover { transform: scale(1.02); }
   a:active, button:active { transform: scale(0.98); }
 
-  @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap');
-  
-  .font-tech { font-family: 'Manrope', sans-serif; }
-  .font-sans { font-family: 'Pretendard Variable', 'Pretendard', -apple-system, sans-serif; }
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;500;600;700;900&display=swap');
+
+  .font-sans { font-family: 'Pretendard Variable', 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, sans-serif; }
+  .font-serif-kr { font-family: 'Noto Serif KR', serif; }
 
   @media (max-width: 768px) {
     .mobile-desc { font-size: 14px !important; line-height: 1.8; }
-    .mobile-title { font-size: 40px !important; }
+    .mobile-title { font-size: 42px !important; }
   }
 
-  .grid-bg {
-    background-size: 50px 50px;
-    background-image: 
-      linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
-      linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(2rem); filter: blur(4px); }
+    to { opacity: 1; transform: translateY(0); filter: blur(0); }
+  }
+
+  .reveal { opacity: 0; transform: translateY(2rem); }
+  .reveal.is-visible {
+    animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    animation-delay: calc(var(--delay, 0) * 100ms);
+  }
+
+  .menu-card { transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1); }
+  .menu-card:hover { transform: translateY(-8px); }
+  .menu-card:hover img { transform: scale(1.05); }
+
+  .gallery-item { transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1); }
+  .gallery-item:hover { transform: scale(1.02); }
+  .gallery-item:hover img { transform: scale(1.08); }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-12px); }
+  }
+
+  .wave-pattern {
+    background-image: url("https://www.transparenttextures.com/patterns/cream-paper.png");
+    opacity: 0.4;
   }
 </style>
 
-<div class="bg-slate-950 text-white font-tech selection:bg-[#CCFF00] selection:text-slate-900 min-h-screen overflow-x-hidden relative">
-  <div class="fixed inset-0 grid-bg pointer-events-none"></div>
+<div class="bg-[#FFF8F0] text-[#1A1A1A] font-sans selection:bg-[#DC2626] selection:text-white min-h-screen overflow-x-hidden relative">
+  <div class="fixed inset-0 wave-pattern pointer-events-none z-[60]"></div>
 
-  <!-- Nav -->
-  <nav class="fixed w-full z-50 px-8 py-6 bg-slate-950/80 backdrop-blur-md border-b border-white/5">
-    <div class="container mx-auto px-4 md:px-6 flex justify-between items-center flex-nowrap">
-      <div class="flex items-center gap-2">
-         <div class="w-2 h-2 bg-[#CCFF00] rounded-full animate-pulse"></div>
-         <span class="font-tech font-semibold text-xl tracking-wide text-white">J.Studio</span>
-      </div>
-      
-      <div class="hidden md:flex gap-10 md:p-16 text-[10px] font-tech font-semibold tracking-[0.2em] text-[#888] uppercase">
-        <a href="#projects" class="hover:text-[#CCFF00] transition">Selected Work</a>
-        <a href="#approach" class="hover:text-[#CCFF00] transition">Approach</a>
-        <a href="#about" class="hover:text-[#CCFF00] transition">About Me</a>
-      </div>
-           <button class="mobile-menu-trigger md:hidden ml-auto text-2xl focus:outline-none" style="color: inherit;">
-             <i class="fas fa-bars"></i>
-           </button>
+  <!-- ========== Nav ========== -->
+  <nav class="fixed w-full z-50 px-4 md:px-8 py-5 bg-[#FFF8F0]/80 backdrop-blur-xl border-b border-[#DC2626]/10">
+    <div class="max-w-7xl mx-auto flex justify-between items-center">
+      <a href="#" class="flex items-center gap-3">
+        <span class="font-serif-kr text-2xl tracking-tight font-bold text-[#DC2626]">바다꽃게</span>
+      </a>
 
-      
-      <div class="flex-nowrap shrink-0 flex gap-6 items-center">
-         <button onclick="togglePortfolioModal()" class="hidden md:block text-[10px] font-tech font-semibold uppercase tracking-[0.2em] text-[#888] hover:text-[#CCFF00]" data-mobile-menu-copy="true">Client Access</button>
-         <button class="hidden md:inline-flex bg-[#CCFF00] text-slate-900 px-3 py-2 text-xs md:text-sm md:px-6 md:py-2.5 whitespace-nowrap rounded-lg font-tech font-semibold text-xs hover:bg-[#B3E600] transition shadow-[0_0_20px_rgba(204,255,0,0.3)]" data-mobile-menu-copy="true">
-           Let's Talk
-         </button>
+      <div class="hidden md:flex gap-12 text-[10px] font-semibold uppercase tracking-[0.4em] text-[#1A1A1A]/40">
+        <a href="#about" class="hover:text-[#DC2626] transition">소개</a>
+        <a href="#menu" class="hover:text-[#DC2626] transition">메뉴</a>
+        <a href="#gallery" class="hover:text-[#DC2626] transition">갤러리</a>
+        <a href="#location" class="hover:text-[#DC2626] transition">위치</a>
+      </div>
+
+      <button class="mobile-menu-trigger md:hidden ml-auto text-2xl focus:outline-none" style="color: inherit;">
+        <i class="fas fa-bars"></i>
+      </button>
+
+      <div class="hidden md:flex gap-6 items-center shrink-0">
+        <button onclick="toggleKkangModal()" class="text-[10px] font-semibold uppercase tracking-[0.4em] text-[#1A1A1A]/40 hover:text-[#DC2626]" data-mobile-menu-copy="true">회원</button>
+        <button class="bg-[#DC2626] text-white px-8 py-3.5 rounded-full font-bold text-[10px] tracking-[0.3em] uppercase hover:bg-[#B91C1C] transition shadow-lg shadow-[#DC2626]/20" data-mobile-menu-copy="true">
+          예약하기
+        </button>
       </div>
     </div>
 
-      <%= render partial: 'templates/shared/mobile_menu_overlay' %></nav>
+    <%= render partial: 'templates/shared/mobile_menu_overlay' %>
+  </nav>
 
-  <!-- Hero -->
-  <header class="min-h-screen relative flex items-center justify-center pt-24 overflow-hidden">
-    <!-- Glow Effects -->
-    <div class="absolute top-[20%] right-[10%] w-[300px] h-[300px] bg-[#CCFF00] rounded-full blur-[150px] opacity-10"></div>
-    <div class="absolute bottom-[10%] left-[10%] w-[200px] h-[200px] bg-white rounded-full blur-[120px] opacity-5"></div>
-
-    <div class="container mx-auto px-3 md:px-6 relative z-10 grid lg:grid-cols-2 gap-12 md:p-20 items-center">
-      <div class="space-y-12">
-        <div class="inline-flex items-center gap-2 border border-white/10 px-4 py-1.5 rounded-lg bg-white/5 backdrop-blur-sm">
-           <span class="text-[10px] font-tech font-semibold text-[#CCFF00] uppercase tracking-wide">● Senior Product Designer based in Seoul</span>
+  <!-- ========== Hero ========== -->
+  <header class="min-h-[100dvh] relative flex items-center justify-center pt-20">
+    <div class="max-w-7xl mx-auto px-4 md:px-8 relative z-10 grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+      <div class="space-y-10 text-center lg:text-left">
+        <div class="inline-flex items-center gap-5 reveal" style="--delay: 0;">
+          <span class="w-10 h-[1px] bg-[#DC2626]"></span>
+          <span class="text-[10px] font-semibold tracking-[0.6em] uppercase text-[#DC2626]">Since 1998</span>
         </div>
-        
-        <h1 class="text-2xl md:text-4xl md:text-7xl font-tech font-semibold leading-[1.0] text-white mobile-title tracking-tight">
-           Crafting<br>
-           Digital<br>
-           <span class="text-[#CCFF00]">Intelligence.</span>
+
+        <h1 class="text-4xl md:text-6xl lg:text-[5.5rem] font-serif-kr font-bold leading-tight tracking-tight text-[#1A1A1A] mobile-title reveal" style="--delay: 1;">
+          바다에서 온<br><span class="text-[#DC2626]">꽃게의 진미.</span>
         </h1>
-        
-        <p class="text-[#888] text-sm md:text-xl leading-relaxed max-w-lg mobile-desc font-light font-sans">
-           데이터와 직관의 교차점에서 사용자 경험을 설계합니다.<br>
-           비즈니스 목표를 달성하는 가장 논리적이고 아름다운 해답을 제안합니다.
+
+        <p class="text-[#1A1A1A]/60 text-sm md:text-lg leading-relaxed max-w-lg mx-auto lg:mx-0 mobile-desc reveal" style="--delay: 2;">
+          서해안 직송 활꽃게를 25년 전통 비법 양념으로 정성껏 조리합니다. 바다꽃게에서 경험하는 대한민국 최고의 꽃게 요리.
         </p>
-        
-        <div class="flex flex-col sm:flex-row gap-10 pt-6">
-           <button class="px-8 py-4 bg-white text-slate-900 font-tech font-semibold text-sm rounded-lg hover:bg-[#CCFF00] transition">
-              View Case Studies
-           </button>
-           <button class="px-8 py-4 border border-white/20 text-white font-tech font-semibold text-sm rounded-lg hover:border-[#CCFF00] hover:text-[#CCFF00] transition flex items-center gap-2">
-              <span>↓</span> Download Resume
-           </button>
+
+        <div class="pt-4 flex flex-col sm:flex-row gap-5 justify-center lg:justify-start reveal" style="--delay: 3;">
+          <a href="#menu" class="inline-flex items-center justify-center gap-3 px-10 py-5 bg-[#DC2626] text-white font-bold text-[11px] tracking-[0.3em] uppercase hover:bg-[#B91C1C] rounded-full shadow-xl shadow-[#DC2626]/20">
+            대표 메뉴
+            <span class="w-7 h-7 rounded-full bg-white/15 flex items-center justify-center">
+              <i class="fas fa-arrow-right text-[10px]"></i>
+            </span>
+          </a>
+          <a href="#location" class="inline-flex items-center justify-center px-10 py-5 border border-[#DC2626]/30 text-[#DC2626] font-semibold text-[11px] tracking-[0.3em] uppercase hover:bg-white rounded-full">
+            오시는 길
+          </a>
         </div>
       </div>
-      
-      <div class="relative hidden lg:block">
-         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-             <div class="space-y-4 pt-12">
-                 <div class="bg-[#111] p-6 rounded-2xl border border-white/5 hover:border-[#CCFF00]/50 transition group">
-                    <p class="text-[#CCFF00] font-semibold text-2xl mb-2">08+</p>
-                    <p class="text-[10px] text-[#888] uppercase tracking-wide group-hover:text-white transition">Years Experience</p>
-                 </div>
-                 <div class="bg-[#111] p-6 rounded-2xl border border-white/5 aspect-square relative overflow-hidden group">
-                    <div class="absolute inset-0 bg-gradient-to-br from-[#CCFF00]/20 to-transparent opacity-0 group-hover:opacity-100 transition duration-500"></div>
-                    <img src="https://images.unsplash.com/photo-1626785774573-4b7993143d2d?q=80&w=800" alt="Work 1" class="w-full h-full object-cover opacity-50 grayscale group-hover:grayscale-0 transition">
-                 </div>
-             </div>
-             <div class="space-y-4">
-                 <div class="bg-[#111] p-6 rounded-2xl border border-white/5 aspect-[3/4] relative overflow-hidden group">
-                    <div class="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent opacity-0 group-hover:opacity-100 transition duration-500"></div>
-                     <img src="https://images.unsplash.com/photo-1611162617474-5b21e879e113?q=80&w=800" alt="Work 2" class="w-full h-full object-cover opacity-50 grayscale group-hover:grayscale-0 transition">
-                 </div>
-                 <div class="bg-[#CCFF00] p-6 rounded-2xl">
-                    <p class="text-slate-900 font-semibold text-lg">Product<br>Interface<br>System</p>
-                 </div>
-             </div>
-         </div>
+
+      <div class="relative reveal" style="--delay: 2;">
+        <div class="absolute -top-12 -right-12 w-72 h-72 bg-[#DC2626]/10 rounded-full blur-[100px]"></div>
+        <div class="relative group">
+          <img src="https://images.unsplash.com/photo-1559737558-2f5a35f4523b?q=80&w=1200" alt="꽃게찜" class="w-full aspect-[4/5] object-cover rounded-[3rem] shadow-2xl group-hover:shadow-[0_30px_80px_-20px_rgba(220,38,38,0.3)] transition-all duration-700" loading="eager">
+          <div class="absolute -bottom-6 -left-6 md:-bottom-8 md:-left-8 bg-white p-8 md:p-10 rounded-2xl shadow-xl border border-[#DC2626]/10 max-w-[260px]" style="animation: float 6s ease-in-out infinite;">
+            <p class="text-[10px] font-semibold text-[#DC2626] uppercase tracking-[0.4em] mb-3">오늘의 꽃게</p>
+            <p class="text-xl font-serif-kr font-bold text-[#1A1A1A]">서해 직송 활꽃게</p>
+          </div>
+        </div>
       </div>
     </div>
   </header>
-  
-  <!-- Marquee -->
-  <div class="py-6 border-y border-white/5 bg-slate-950/50 backdrop-blur-sm overflow-hidden whitespace-nowrap">
-     <div class="inline-block animate-marquee">
-        <span class="text-[#444] font-tech font-semibold text-3xl uppercase mx-8">User Interface</span>
-        <span class="text-[#CCFF00] font-tech font-semibold text-3xl uppercase mx-8">•</span>
-        <span class="text-[#444] font-tech font-semibold text-3xl uppercase mx-8">Experience Design</span>
-        <span class="text-[#CCFF00] font-tech font-semibold text-3xl uppercase mx-8">•</span>
-        <span class="text-[#444] font-tech font-semibold text-3xl uppercase mx-8">Interaction</span>
-        <span class="text-[#CCFF00] font-tech font-semibold text-3xl uppercase mx-8">•</span>
-        <span class="text-[#444] font-tech font-semibold text-3xl uppercase mx-8">Prototyping</span>
-        <span class="text-[#CCFF00] font-tech font-semibold text-3xl uppercase mx-8">•</span>
-         <span class="text-[#444] font-tech font-semibold text-3xl uppercase mx-8">User Interface</span>
-        <span class="text-[#CCFF00] font-tech font-semibold text-3xl uppercase mx-8">•</span>
-        <span class="text-[#444] font-tech font-semibold text-3xl uppercase mx-8">Experience Design</span>
-        <span class="text-[#CCFF00] font-tech font-semibold text-3xl uppercase mx-8">•</span>
-        <span class="text-[#444] font-tech font-semibold text-3xl uppercase mx-8">Interaction</span>
-        <span class="text-[#CCFF00] font-tech font-semibold text-3xl uppercase mx-8">•</span>
-        <span class="text-[#444] font-tech font-semibold text-3xl uppercase mx-8">Prototyping</span>
-     </div>
-  </div>
-  
-  <style>
-     @keyframes marquee {
-        0% { transform: translateX(0); }
-        100% { transform: translateX(-50%); }
-     }
-     .animate-marquee { display: inline-block; animation: marquee 20s linear infinite; }
-  </style>
 
-  <!-- Login Modal -->
-  <div id="portfolio-modal" class="fixed inset-0 z-[100] hidden items-center justify-center p-4 bg-slate-950/90 backdrop-blur-md">
-    <div class="bg-[#111] w-full max-w-sm p-12 shadow-[0_0_50px_rgba(204,255,0,0.1)] relative border border-white/10 rounded-2xl">
-      <button onclick="togglePortfolioModal()" class="absolute top-8 right-8 text-[#444] hover:text-[#CCFF00] transition text-2xl font-tech">&times;</button>
-      
-      <div class="text-center mb-10">
-        <h2 class="text-2xl font-tech font-semibold text-white mb-2">Protected Work</h2>
-        <p class="text-[10px] text-[#888] font-semibold tracking-[0.2em] uppercase">Enter Password to View</p>
-      </div>
-      
-      <div class="space-y-6">
-        <div>
-           <input type="password" placeholder="••••••••" class="w-full bg-[#0a0a0a] border border-white/10 rounded-lg py-4 px-6 outline-none focus:border-[#CCFF00] transition text-lg font-tech font-semibold text-white text-center tracking-wide">
+  <!-- ========== About / 신선함의 비밀 ========== -->
+  <section id="about" class="py-24 md:py-32">
+    <div class="max-w-7xl mx-auto px-4 md:px-8 grid lg:grid-cols-2 gap-16 lg:gap-24 items-center">
+      <div class="relative reveal" style="--delay: 0;">
+        <div class="absolute -top-8 -left-8 w-60 h-60 bg-[#DC2626]/8 rounded-full blur-[80px]"></div>
+        <div class="grid grid-cols-5 gap-4">
+          <div class="col-span-3 overflow-hidden rounded-[2rem]">
+            <img src="https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?q=80&w=800" alt="수산 시장" class="w-full h-full object-cover aspect-[3/4]" loading="lazy" decoding="async">
+          </div>
+          <div class="col-span-2 flex flex-col gap-4">
+            <div class="overflow-hidden rounded-[1.5rem] flex-1">
+              <img src="https://images.unsplash.com/photo-1615141982883-c7ad0e69fd62?q=80&w=600" alt="해산물" class="w-full h-full object-cover" loading="lazy" decoding="async">
+            </div>
+            <div class="overflow-hidden rounded-[1.5rem] flex-1">
+              <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?q=80&w=600" alt="요리" class="w-full h-full object-cover" loading="lazy" decoding="async">
+            </div>
+          </div>
         </div>
-        
-        <button class="w-full bg-[#CCFF00] text-slate-900 py-4 rounded-lg text-[11px] tracking-[0.1em] font-semibold uppercase hover:bg-[#B3E600] transition">
-           Unlock Project
-        </button>
-        
-        <div class="text-center pt-2">
-           <a href="#" class="text-[10px] text-[#444] tracking-wide uppercase hover:text-[#CCFF00] transition border-b border-[#222] pb-0.5 hover:border-[#CCFF00]">Request Password</a>
+      </div>
+
+      <div class="space-y-8 reveal" style="--delay: 1;">
+        <div class="inline-flex items-center gap-4">
+          <span class="rounded-full px-4 py-1.5 text-[11px] uppercase tracking-[0.15em] font-medium bg-[#DC2626]/10 text-[#DC2626]">신선함의 비밀</span>
+        </div>
+
+        <h2 class="text-3xl md:text-4xl lg:text-5xl font-serif-kr font-bold leading-snug text-[#1A1A1A]">
+          매일 새벽,<br>서해에서 식탁까지
+        </h2>
+
+        <p class="text-[#1A1A1A]/60 text-base md:text-lg leading-relaxed">
+          매일 새벽 4시, 서해안 태안과 인천에서 그날 잡은 활꽃게가 바다꽃게에 도착합니다. 수조에서 살아 움직이는 싱싱한 꽃게만을 엄선하여 25년 전통 비법 양념장으로 조리합니다.
+        </p>
+        <p class="text-[#1A1A1A]/60 text-base md:text-lg leading-relaxed">
+          우리는 냉동 꽃게를 절대 사용하지 않습니다. 손님의 주문이 들어오면 그때서야 활꽃게를 손질하기 시작합니다. 이것이 바다꽃게의 맛의 비밀입니다.
+        </p>
+
+        <div class="grid grid-cols-3 gap-6 pt-6 border-t border-[#DC2626]/10">
+          <div>
+            <p class="text-2xl md:text-3xl font-serif-kr font-bold text-[#DC2626]">25년</p>
+            <p class="text-[11px] text-[#1A1A1A]/40 uppercase tracking-[0.1em] mt-1 font-medium">전통의 맛</p>
+          </div>
+          <div>
+            <p class="text-2xl md:text-3xl font-serif-kr font-bold text-[#DC2626]">100%</p>
+            <p class="text-[11px] text-[#1A1A1A]/40 uppercase tracking-[0.1em] mt-1 font-medium">서해안 활꽃게</p>
+          </div>
+          <div>
+            <p class="text-2xl md:text-3xl font-serif-kr font-bold text-[#DC2626]">3대</p>
+            <p class="text-[11px] text-[#1A1A1A]/40 uppercase tracking-[0.1em] mt-1 font-medium">비법 양념장</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== 대표 메뉴 (4개) ========== -->
+  <section id="menu" class="py-24 md:py-32 bg-white relative">
+    <div class="max-w-7xl mx-auto px-4 md:px-8">
+      <div class="text-center mb-16 md:mb-20">
+        <span class="rounded-full px-4 py-1.5 text-[11px] uppercase tracking-[0.15em] font-medium bg-[#DC2626]/10 text-[#DC2626] reveal" style="--delay: 0;">대표 메뉴</span>
+        <h2 class="text-3xl md:text-4xl lg:text-5xl font-serif-kr font-bold leading-snug text-[#1A1A1A] mt-6 reveal" style="--delay: 1;">
+          꽃게의 모든 것
+        </h2>
+        <p class="text-[#1A1A1A]/50 text-base md:text-lg mt-4 max-w-xl mx-auto reveal" style="--delay: 2;">
+          활꽃게로 만든 정통 꽃게 요리를 만나보세요.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div class="menu-card bg-[#FFF8F0] rounded-[2rem] overflow-hidden reveal" style="--delay: 0;">
+          <div class="overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1559737558-2f5a35f4523b?q=80&w=600" alt="양념꽃게찜" class="w-full aspect-[4/3] object-cover transition-transform duration-700" loading="lazy" decoding="async">
+          </div>
+          <div class="p-6">
+            <div class="flex items-center justify-between mb-3">
+              <span class="text-[10px] font-semibold text-[#DC2626] uppercase tracking-[0.2em]">인기 1위</span>
+              <span class="text-lg font-serif-kr font-bold text-[#DC2626]">₩55,000</span>
+            </div>
+            <h3 class="text-lg font-bold text-[#1A1A1A] mb-2">양념꽃게찜</h3>
+            <p class="text-[#1A1A1A]/50 text-sm leading-relaxed">25년 전통 비법 양념장으로 쪄낸 활꽃게. 2인 기준 3마리</p>
+          </div>
+        </div>
+
+        <div class="menu-card bg-[#FFF8F0] rounded-[2rem] overflow-hidden reveal" style="--delay: 1;">
+          <div class="overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1565557623262-b51c2513a641?q=80&w=600" alt="간장꽃게" class="w-full aspect-[4/3] object-cover transition-transform duration-700" loading="lazy" decoding="async">
+          </div>
+          <div class="p-6">
+            <div class="flex items-center justify-between mb-3">
+              <span class="text-[10px] font-semibold text-[#DC2626] uppercase tracking-[0.2em]">시그니처</span>
+              <span class="text-lg font-serif-kr font-bold text-[#DC2626]">₩65,000</span>
+            </div>
+            <h3 class="text-lg font-bold text-[#1A1A1A] mb-2">간장꽃게</h3>
+            <p class="text-[#1A1A1A]/50 text-sm leading-relaxed">3일간 숙성시킨 특제 간장에 담근 밥도둑 간장꽃게</p>
+          </div>
+        </div>
+
+        <div class="menu-card bg-[#FFF8F0] rounded-[2rem] overflow-hidden reveal" style="--delay: 2;">
+          <div class="overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1534604973900-c43ab4c2e0ab?q=80&w=600" alt="꽃게탕" class="w-full aspect-[4/3] object-cover transition-transform duration-700" loading="lazy" decoding="async">
+          </div>
+          <div class="p-6">
+            <div class="flex items-center justify-between mb-3">
+              <span class="text-[10px] font-semibold text-[#DC2626] uppercase tracking-[0.2em]">보양</span>
+              <span class="text-lg font-serif-kr font-bold text-[#DC2626]">₩45,000</span>
+            </div>
+            <h3 class="text-lg font-bold text-[#1A1A1A] mb-2">꽃게탕</h3>
+            <p class="text-[#1A1A1A]/50 text-sm leading-relaxed">시원한 국물이 일품인 꽃게탕. 미나리, 두부와 함께</p>
+          </div>
+        </div>
+
+        <div class="menu-card bg-[#FFF8F0] rounded-[2rem] overflow-hidden reveal" style="--delay: 3;">
+          <div class="overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1563245372-f21724e3856d?q=80&w=600" alt="꽃게볶음밥" class="w-full aspect-[4/3] object-cover transition-transform duration-700" loading="lazy" decoding="async">
+          </div>
+          <div class="p-6">
+            <div class="flex items-center justify-between mb-3">
+              <span class="text-[10px] font-semibold text-[#DC2626] uppercase tracking-[0.2em]">마무리</span>
+              <span class="text-lg font-serif-kr font-bold text-[#DC2626]">₩12,000</span>
+            </div>
+            <h3 class="text-lg font-bold text-[#1A1A1A] mb-2">꽃게볶음밥</h3>
+            <p class="text-[#1A1A1A]/50 text-sm leading-relaxed">꽃게살이 듬뿍 들어간 고소한 볶음밥. 식사의 완벽한 마무리</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== Gallery ========== -->
+  <section id="gallery" class="py-24 md:py-32">
+    <div class="max-w-7xl mx-auto px-4 md:px-8">
+      <div class="text-center mb-16 md:mb-20">
+        <span class="rounded-full px-4 py-1.5 text-[11px] uppercase tracking-[0.15em] font-medium bg-[#DC2626]/10 text-[#DC2626] reveal" style="--delay: 0;">Gallery</span>
+        <h2 class="text-3xl md:text-4xl lg:text-5xl font-serif-kr font-bold leading-snug text-[#1A1A1A] mt-6 reveal" style="--delay: 1;">
+          매장 갤러리
+        </h2>
+      </div>
+
+      <div class="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
+        <div class="gallery-item overflow-hidden rounded-[1.5rem] reveal" style="--delay: 0;">
+          <img src="https://images.unsplash.com/photo-1552566626-52f8b828add9?q=80&w=600" alt="매장 내부" class="w-full aspect-square object-cover transition-transform duration-700" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item overflow-hidden rounded-[1.5rem] reveal" style="--delay: 1;">
+          <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?q=80&w=600" alt="테이블 세팅" class="w-full aspect-square object-cover transition-transform duration-700" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item overflow-hidden rounded-[1.5rem] reveal" style="--delay: 2;">
+          <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?q=80&w=600" alt="주방" class="w-full aspect-square object-cover transition-transform duration-700" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item overflow-hidden rounded-[1.5rem] reveal" style="--delay: 3;">
+          <img src="https://images.unsplash.com/photo-1578474846511-04ba529f0b88?q=80&w=600" alt="해산물" class="w-full aspect-square object-cover transition-transform duration-700" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item overflow-hidden rounded-[1.5rem] col-span-2 reveal" style="--delay: 4;">
+          <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?q=80&w=900" alt="단체석" class="w-full aspect-[2/1] object-cover transition-transform duration-700" loading="lazy" decoding="async">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== Location / 영업시간 ========== -->
+  <section id="location" class="py-24 md:py-32 bg-[#1A1A1A]">
+    <div class="max-w-7xl mx-auto px-4 md:px-8">
+      <div class="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+        <div class="overflow-hidden rounded-[2rem] reveal" style="--delay: 0;">
+          <img src="https://images.unsplash.com/photo-1514933651103-005eec06c04b?q=80&w=800" alt="매장 외관" class="w-full aspect-[4/3] object-cover" loading="lazy" decoding="async">
+        </div>
+
+        <div class="space-y-8 reveal" style="--delay: 1;">
+          <span class="rounded-full px-4 py-1.5 text-[11px] uppercase tracking-[0.15em] font-medium bg-white/10 text-[#DC2626]">Location</span>
+          <h2 class="text-3xl md:text-4xl lg:text-5xl font-serif-kr font-bold leading-snug text-white">오시는 길</h2>
+
+          <div class="space-y-6">
+            <div class="flex gap-5">
+              <div class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center shrink-0 mt-0.5">
+                <i class="fas fa-map-marker-alt text-[#DC2626] text-sm"></i>
+              </div>
+              <div>
+                <p class="text-[10px] font-semibold uppercase tracking-[0.3em] text-white/40 mb-2">Address</p>
+                <p class="text-white/80 text-base leading-relaxed">서울시 마포구 월드컵북로 12<br>바다꽃게 본점</p>
+              </div>
+            </div>
+
+            <div class="flex gap-5">
+              <div class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center shrink-0 mt-0.5">
+                <i class="fas fa-clock text-[#DC2626] text-sm"></i>
+              </div>
+              <div>
+                <p class="text-[10px] font-semibold uppercase tracking-[0.3em] text-white/40 mb-2">Hours</p>
+                <p class="text-white/80 text-base leading-relaxed">점심 11:30 – 15:00<br>저녁 17:00 – 22:00 (라스트오더 21:00)<br>매주 월요일 휴무</p>
+              </div>
+            </div>
+
+            <div class="flex gap-5">
+              <div class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center shrink-0 mt-0.5">
+                <i class="fas fa-subway text-[#DC2626] text-sm"></i>
+              </div>
+              <div>
+                <p class="text-[10px] font-semibold uppercase tracking-[0.3em] text-white/40 mb-2">Transport</p>
+                <p class="text-white/80 text-base leading-relaxed">마포구청역 1번 출구에서 도보 5분<br>전용 주차장 20대 보유</p>
+              </div>
+            </div>
+
+            <div class="flex gap-5">
+              <div class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center shrink-0 mt-0.5">
+                <i class="fas fa-phone text-[#DC2626] text-sm"></i>
+              </div>
+              <div>
+                <p class="text-[10px] font-semibold uppercase tracking-[0.3em] text-white/40 mb-2">Contact</p>
+                <p class="text-white/80 text-base">02-3456-7890</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== CTA / 예약 ========== -->
+  <section class="py-24 md:py-32 relative overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-br from-[#FFF8F0] via-[#FEF3E2] to-[#FFF8F0]"></div>
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-[#DC2626]/8 rounded-full blur-[120px]"></div>
+
+    <div class="max-w-3xl mx-auto px-4 md:px-8 text-center relative z-10">
+      <div class="reveal" style="--delay: 0;">
+        <i class="fas fa-water text-6xl md:text-8xl text-[#DC2626]/20 block mb-6"></i>
+      </div>
+      <h2 class="text-3xl md:text-4xl lg:text-5xl font-serif-kr font-bold leading-snug text-[#1A1A1A] reveal" style="--delay: 1;">
+        특별한 자리를<br>바다꽃게에서
+      </h2>
+      <p class="text-[#1A1A1A]/50 text-base md:text-lg mt-6 max-w-lg mx-auto reveal" style="--delay: 2;">
+        소중한 분들과 함께하는 식사, 바다꽃게가 최고의 경험을 약속합니다. 단체석(최대 40명) 및 개인룸(4실) 예약이 가능합니다.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-5 justify-center mt-10 reveal" style="--delay: 3;">
+        <a href="#" class="inline-flex items-center justify-center gap-3 px-10 py-5 bg-[#DC2626] text-white font-bold text-[11px] tracking-[0.3em] uppercase rounded-full shadow-lg shadow-[#DC2626]/20 hover:bg-[#B91C1C]">
+          전화 예약하기
+          <span class="w-7 h-7 rounded-full bg-white/15 flex items-center justify-center">
+            <i class="fas fa-phone text-[10px]"></i>
+          </span>
+        </a>
+        <a href="#" class="inline-flex items-center justify-center gap-3 px-10 py-5 border border-[#DC2626]/30 text-[#DC2626] font-semibold text-[11px] tracking-[0.3em] uppercase rounded-full hover:bg-white">
+          <i class="fas fa-calendar text-sm"></i>
+          네이버 예약
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== Footer ========== -->
+  <footer class="py-16 md:py-24 bg-[#1A1A1A]">
+    <div class="max-w-7xl mx-auto px-4 md:px-8">
+      <div class="grid md:grid-cols-3 gap-12 items-start mb-16">
+        <div>
+          <span class="font-serif-kr text-2xl text-white tracking-tight font-bold block mb-4">바다꽃게</span>
+          <p class="text-white/30 text-sm leading-relaxed max-w-xs">25년 전통의 서해안 직송 활꽃게 전문점. 최고의 재료와 정성으로 만든 꽃게 요리를 약속합니다.</p>
+        </div>
+
+        <div class="grid grid-cols-2 gap-8">
+          <div>
+            <p class="text-[10px] font-semibold text-white/20 uppercase tracking-[0.3em] mb-4">Menu</p>
+            <ul class="space-y-2.5">
+              <li><a href="#menu" class="text-white/50 text-sm hover:text-[#DC2626] transition">양념꽃게찜</a></li>
+              <li><a href="#menu" class="text-white/50 text-sm hover:text-[#DC2626] transition">간장꽃게</a></li>
+              <li><a href="#menu" class="text-white/50 text-sm hover:text-[#DC2626] transition">꽃게탕</a></li>
+              <li><a href="#menu" class="text-white/50 text-sm hover:text-[#DC2626] transition">볶음밥</a></li>
+            </ul>
+          </div>
+          <div>
+            <p class="text-[10px] font-semibold text-white/20 uppercase tracking-[0.3em] mb-4">Info</p>
+            <ul class="space-y-2.5">
+              <li><a href="#about" class="text-white/50 text-sm hover:text-[#DC2626] transition">소개</a></li>
+              <li><a href="#gallery" class="text-white/50 text-sm hover:text-[#DC2626] transition">갤러리</a></li>
+              <li><a href="#location" class="text-white/50 text-sm hover:text-[#DC2626] transition">오시는 길</a></li>
+              <li><a href="#" class="text-white/50 text-sm hover:text-[#DC2626] transition">예약</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <div>
+          <p class="text-[10px] font-semibold text-white/20 uppercase tracking-[0.3em] mb-4">Follow</p>
+          <div class="flex gap-3">
+            <a href="#" class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white/50 hover:text-[#DC2626] hover:border-[#DC2626]/30 transition"><i class="fab fa-instagram text-sm"></i></a>
+            <a href="#" class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white/50 hover:text-[#DC2626] hover:border-[#DC2626]/30 transition"><i class="fab fa-facebook-f text-sm"></i></a>
+            <a href="#" class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white/50 hover:text-[#DC2626] hover:border-[#DC2626]/30 transition"><i class="fas fa-blog text-sm"></i></a>
+          </div>
+        </div>
+      </div>
+
+      <div class="border-t border-white/5 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+        <p class="text-[10px] text-white/15 tracking-[0.5em] uppercase">&copy; 2024 바다꽃게. All rights reserved by DLAB.</p>
+        <div class="flex gap-6">
+          <a href="#" class="text-[10px] text-white/15 tracking-[0.2em] uppercase hover:text-white/40 transition">Privacy</a>
+          <a href="#" class="text-[10px] text-white/15 tracking-[0.2em] uppercase hover:text-white/40 transition">Terms</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ========== Login Modal ========== -->
+  <div id="kkang-modal" class="fixed inset-0 z-[100] hidden items-center justify-center p-4 bg-[#1A1A1A]/20 backdrop-blur-3xl">
+    <div class="bg-white w-full max-w-sm p-8 md:p-14 shadow-2xl relative rounded-[3rem] border border-[#DC2626]/10">
+      <button onclick="toggleKkangModal()" class="absolute top-8 right-8 w-8 h-8 rounded-full bg-[#FFF8F0] flex items-center justify-center text-[#1A1A1A]/30 hover:text-[#DC2626] hover:bg-[#DC2626]/10 transition text-lg">&times;</button>
+
+      <div class="text-center mb-12">
+        <h2 class="text-xl font-serif-kr tracking-[0.1em] font-bold text-[#1A1A1A] mb-3">바다꽃게</h2>
+        <p class="text-[9px] text-[#DC2626] font-semibold tracking-[0.3em] uppercase">Member Access</p>
+      </div>
+
+      <div class="space-y-5">
+        <div class="space-y-2">
+          <p class="text-[10px] font-semibold text-[#1A1A1A]/30 uppercase tracking-[0.2em] ml-1">Email</p>
+          <input type="text" placeholder="your@email.com" class="w-full bg-[#FFF8F0] border-none rounded-2xl py-5 px-6 outline-none focus:ring-1 focus:ring-[#DC2626] transition text-[13px] text-[#1A1A1A]">
+        </div>
+        <div class="space-y-2">
+          <p class="text-[10px] font-semibold text-[#1A1A1A]/30 uppercase tracking-[0.2em] ml-1">Password</p>
+          <input type="password" placeholder="Password" class="w-full bg-[#FFF8F0] border-none rounded-2xl py-5 px-6 outline-none focus:ring-1 focus:ring-[#DC2626] transition text-[13px] text-[#1A1A1A]">
+        </div>
+        <button class="w-full bg-[#DC2626] text-white py-5 rounded-full text-[11px] tracking-[0.4em] font-bold uppercase hover:bg-[#B91C1C] transition shadow-lg shadow-[#DC2626]/20 mt-2">Sign In</button>
+        <div class="flex justify-center gap-10 pt-2">
+          <a href="#" class="text-[10px] text-[#1A1A1A]/40 tracking-[0.2em] font-semibold uppercase hover:text-[#DC2626] transition">Join</a>
+          <a href="#" class="text-[10px] text-[#1A1A1A]/40 tracking-[0.2em] font-semibold uppercase hover:text-[#DC2626] transition">Help</a>
         </div>
       </div>
     </div>
   </div>
 
-  <footer class="py-20 md:py-32 bg-slate-950 text-center px-6 border-t border-white/5">
-     <div class="inline-flex flex-col items-center gap-10 mb-8">
-        <span class="font-tech font-semibold text-2xl tracking-[0.05em] text-white">J.Studio</span>
-        <span class="text-[10px] font-semibold text-[#444] tracking-[0.3em] uppercase">Digital Product Design</span>
-     </div>
-     <p class="text-[10px] text-[#222] tracking-[0.2em] uppercase px-6">© 2024 JAY DESIGN. SEOUL.</p>
-  </footer>
-
-  <script>
-    function togglePortfolioModal() {
-      const modal = document.getElementById('portfolio-modal');
-      modal.classList.toggle('hidden');
-      modal.classList.toggle('flex');
-    }
-  </script>
-
 </div>
+
+<script>
+  function toggleKkangModal() {
+    const modal = document.getElementById('kkang-modal');
+    modal.classList.toggle('hidden');
+    modal.classList.toggle('flex');
+  }
+
+  document.getElementById('kkang-modal').addEventListener('click', function(e) {
+    if (e.target === this) toggleKkangModal();
+  });
+
+  (function() {
+    const observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+    document.querySelectorAll('.reveal').forEach(function(el) {
+      observer.observe(el);
+    });
+  })();
+</script>
