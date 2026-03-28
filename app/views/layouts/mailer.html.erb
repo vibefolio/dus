@@ -2,12 +2,92 @@
 <html>
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
-      /* Email styles need to be inline */
+      body {
+        margin: 0;
+        padding: 0;
+        background-color: #f3f4f6;
+        font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        -webkit-font-smoothing: antialiased;
+        color: #1f2937;
+      }
+      .email-wrapper {
+        width: 100%;
+        padding: 40px 20px;
+        background-color: #f3f4f6;
+      }
+      .email-container {
+        max-width: 600px;
+        margin: 0 auto;
+        background-color: #ffffff;
+        border-radius: 16px;
+        overflow: hidden;
+        border: 1px solid #e5e7eb;
+        box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
+      }
+      .email-header {
+        background: linear-gradient(135deg, #00a859 0%, #00d670 100%);
+        padding: 32px 40px;
+        text-align: center;
+      }
+      .email-header .brand-name {
+        font-size: 28px;
+        font-weight: 800;
+        color: #ffffff;
+        letter-spacing: -0.02em;
+        margin: 0;
+      }
+      .email-header .brand-sub {
+        font-size: 13px;
+        color: rgba(255, 255, 255, 0.8);
+        margin-top: 4px;
+      }
+      .email-body {
+        padding: 40px;
+      }
+      .email-footer {
+        padding: 24px 40px;
+        background-color: #f9fafb;
+        border-top: 1px solid #e5e7eb;
+        text-align: center;
+      }
+      .email-footer p {
+        margin: 4px 0;
+        font-size: 13px;
+        color: #9ca3af;
+        line-height: 1.6;
+      }
+      .email-footer a {
+        color: #00a859;
+        text-decoration: none;
+      }
     </style>
   </head>
 
   <body>
-    <%= yield %>
+    <div class="email-wrapper">
+      <div class="email-container">
+        <!-- Brand Header -->
+        <div class="email-header">
+          <p class="brand-name">D.us</p>
+          <p class="brand-sub">by Vibers &mdash; designd.co.kr</p>
+        </div>
+
+        <!-- Content -->
+        <div class="email-body">
+          <%= yield %>
+        </div>
+
+        <!-- Footer -->
+        <div class="email-footer">
+          <p style="font-weight: 600; color: #374151;">&copy; 2026 D.us (디어스)</p>
+          <p>계발자들 (Vibers) &mdash; <a href="https://designd.co.kr">designd.co.kr</a></p>
+          <p style="margin-top: 12px; font-size: 12px;">
+            문의: <a href="mailto:contact@designd.co.kr">contact@designd.co.kr</a>
+          </p>
+        </div>
+      </div>
+    </div>
   </body>
 </html>

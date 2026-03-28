@@ -64,7 +64,8 @@
       *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
       html { font-family: 'Pretendard', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; line-height: 1.5; }
       body { min-height: 100vh; background-color: #fff; color: #1f2937; }
-      .navbar { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background: rgba(255,255,255,0.95); backdrop-filter: blur(10px); padding: 1rem 2rem; }
+      .navbar { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background: rgba(255,255,255,0.85); -webkit-backdrop-filter: blur(20px); backdrop-filter: blur(20px); padding: 1rem 2rem; transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1); border-bottom: 1px solid rgba(0,0,0,0.04); }
+      .navbar.scrolled { background: rgba(255,255,255,0.95); box-shadow: 0 4px 24px -4px rgba(0,0,0,0.06); }
       .navbar-container { display: flex; align-items: center; justify-content: space-between; max-width: 1280px; margin: 0 auto; }
       .navbar-menu { display: flex; gap: 2rem; list-style: none; }
       .navbar-link { text-decoration: none; color: #374151; font-weight: 500; }
@@ -92,7 +93,7 @@
               accent: "#00d670",
             },
             fontFamily: {
-              sans: ["Inter", "sans-serif"],
+              sans: ["Pretendard", "-apple-system", "BlinkMacSystemFont", "sans-serif"],
               serif: ["Noto Serif KR", "serif"],
               cinzel: ["Cinzel", "serif"],
             }
@@ -325,49 +326,79 @@
     </main>
 
     <!-- Footer -->
-    <footer class="footer">
+    <footer style="background: #111; color: #e5e7eb; padding: 80px 0 40px;">
       <div class="container">
-        <div class="footer-content">
-          <div class="footer-section">
-            <h3>디어스</h3>
-            <p>비싼 홈페이지? NO!<br>돈 벌어주는 홈페이지</p>
+        <!-- 3-Column Layout -->
+        <div style="display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 48px; margin-bottom: 48px;">
+          <!-- Brand Column -->
+          <div>
+            <div style="margin-bottom: 20px;">
+              <%= image_tag "logo.png", alt: "디어스", style: "height: 40px; width: auto; filter: brightness(0) invert(1); opacity: 0.9;" %>
+            </div>
+            <p style="color: #9ca3af; font-size: 15px; line-height: 1.8; max-width: 320px; word-break: keep-all;">
+              비싼 홈페이지? NO!<br>
+              돈 벌어주는 홈페이지를 만들어드립니다.<br>
+              AI와 현대적 디자인의 완벽한 조화.
+            </p>
+            <!-- Social Links -->
+            <div style="display: flex; gap: 12px; margin-top: 24px;">
+              <a href="mailto:duscontactus@gmail.com" style="width: 40px; height: 40px; border-radius: 9999px; background: rgba(255,255,255,0.08); display: flex; align-items: center; justify-content: center; transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);" class="footer-social-link">
+                <svg width="18" height="18" fill="none" stroke="#9ca3af" stroke-width="2" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+              </a>
+              <a href="https://instagram.com" target="_blank" style="width: 40px; height: 40px; border-radius: 9999px; background: rgba(255,255,255,0.08); display: flex; align-items: center; justify-content: center; transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);" class="footer-social-link">
+                <svg width="18" height="18" fill="none" stroke="#9ca3af" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5" fill="#9ca3af"/></svg>
+              </a>
+            </div>
           </div>
-          
-          <div class="footer-section">
-            <h3>서비스</h3>
-            <ul>
-              <li><a href="#">웹 개발</a></li>
-              <li><a href="#">앱 개발</a></li>
-              <li><a href="#">UI/UX 디자인</a></li>
-              <li><a href="#">디지털 마케팅</a></li>
+
+          <!-- Services Column -->
+          <div>
+            <h4 style="font-size: 14px; font-weight: 700; color: white; margin-bottom: 20px; letter-spacing: 0.05em; text-transform: uppercase;">서비스</h4>
+            <ul style="list-style: none; padding: 0; display: flex; flex-direction: column; gap: 12px;">
+              <li><%= link_to "디자인 템플릿", design_templates_path, style: "color: #9ca3af; text-decoration: none; font-size: 14px; transition: color 0.3s;", class: "footer-link" %></li>
+              <li><%= link_to "요금제", pricing_path, style: "color: #9ca3af; text-decoration: none; font-size: 14px; transition: color 0.3s;", class: "footer-link" %></li>
+              <li><%= link_to "문의하기", contact_path, style: "color: #9ca3af; text-decoration: none; font-size: 14px; transition: color 0.3s;", class: "footer-link" %></li>
+              <li><%= link_to "디자인 가이드", design_system_path, style: "color: #9ca3af; text-decoration: none; font-size: 14px; transition: color 0.3s;", class: "footer-link" %></li>
             </ul>
           </div>
-          
-          <div class="footer-section">
-            <h3>회사</h3>
-            <ul>
-              <li><%= link_to "디자인 템플릿", design_templates_path %></li>
-              <li><%= link_to "요금제", pricing_path %></li>
-              <li><%= link_to "문의하기", contact_path %></li>
-              <li><%= link_to "디자인 가이드", design_system_path %></li>
+
+          <!-- Contact Column -->
+          <div>
+            <h4 style="font-size: 14px; font-weight: 700; color: white; margin-bottom: 20px; letter-spacing: 0.05em; text-transform: uppercase;">연락처</h4>
+            <ul style="list-style: none; padding: 0; display: flex; flex-direction: column; gap: 12px;">
+              <li style="color: #9ca3af; font-size: 14px;">duscontactus@gmail.com</li>
+              <li style="color: #9ca3af; font-size: 14px;">평일 09:00 - 18:00</li>
+              <li style="color: #9ca3af; font-size: 14px;">주말 및 공휴일 휴무</li>
             </ul>
-          </div>
-          
-          <div class="footer-section">
-            <h3>연락처</h3>
-            <p>이메일: duscontactus@gmail.com</p>
           </div>
         </div>
-        
-        <div class="footer-bottom" style="display: flex; justify-content: space-between; align-items: center; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.1);">
-          <p>&copy; <%= Time.current.year %> 디어스(D.US). All rights reserved.</p>
+
+        <!-- Footer Bottom -->
+        <div style="display: flex; justify-content: space-between; align-items: center; padding-top: 24px; border-top: 1px solid rgba(255,255,255,0.08); flex-wrap: wrap; gap: 12px;">
+          <p style="color: #6b7280; font-size: 13px;">&copy; <%= Time.current.year %> 디어스(D.US). All rights reserved.</p>
           <div style="display: flex; gap: 20px;">
-            <%= link_to "서비스 이용약관", terms_path, style: "color: #999; text-decoration: none; font-size: 13px;" %>
-            <%= link_to "개인정보처리방침", privacy_path, style: "color: #999; text-decoration: none; font-size: 13px; font-weight: bold;" %>
+            <%= link_to "서비스 이용약관", terms_path, style: "color: #6b7280; text-decoration: none; font-size: 13px; transition: color 0.3s;", class: "footer-link" %>
+            <%= link_to "개인정보처리방침", privacy_path, style: "color: #6b7280; text-decoration: none; font-size: 13px; font-weight: bold; transition: color 0.3s;", class: "footer-link" %>
           </div>
         </div>
       </div>
     </footer>
+
+    <style>
+      .footer-link:hover { color: #00a859 !important; }
+      .footer-social-link:hover { background: rgba(0, 168, 89, 0.2) !important; }
+      .footer-social-link:hover svg { stroke: #00a859; }
+      @media (max-width: 768px) {
+        footer .container > div[style*="grid-template-columns: 2fr"] {
+          grid-template-columns: 1fr !important;
+          gap: 32px !important;
+        }
+        footer .container > div[style*="justify-content: space-between"] {
+          flex-direction: column;
+          text-align: center;
+        }
+      }
+    </style>
 
     <!-- Scroll to Top Button -->
     <button id="scrollToTopBtn" class="fixed bottom-8 right-8 z-50 bg-emerald-600 hover:bg-emerald-700 text-white p-3 rounded-full shadow-lg transition-all transform translate-y-20 opacity-0" onclick="scrollToTop()">

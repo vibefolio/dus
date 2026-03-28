@@ -4,149 +4,95 @@
 <!-- Portfolio Hero -->
 <section class="hero" style="min-height: 50vh; padding-top: 120px;">
   <div class="hero-content">
-    <h1 class="hero-title" style="font-size: var(--text-6xl);">포트폴리오</h1>
-    <p class="hero-subtitle">
+    <span class="eyebrow-light" style="margin-bottom: 16px; display: inline-block;">Our Works</span>
+    <h1 class="hero-title" style="font-size: var(--text-6xl); word-break: keep-all; line-height: 1.3;">포트폴리오</h1>
+    <p class="hero-subtitle" style="word-break: keep-all;">
       디어스가 만들어온 성공적인 프로젝트들을 만나보세요
     </p>
   </div>
 </section>
 
 <!-- Portfolio Grid -->
-<section class="section">
+<section style="padding: 96px 0 96px;">
   <div class="container">
     <% if @portfolios.any? %>
-      <div class="grid grid-3">
-        <% @portfolios.each do |portfolio| %>
-          <div class="card">
-            <div class="card-image-wrapper">
-              <% if portfolio.image.attached? %>
-                <%= image_tag portfolio.image, alt: portfolio.title, class: "card-image pc-ver" %>
-              <% elsif portfolio.image_url.present? %>
-                <%= image_tag portfolio.image_url, alt: portfolio.title, class: "card-image pc-ver" %>
-              <% else %>
-                <div class="card-image pc-ver" style="background: var(--gradient-primary); display: flex; align-items: center; justify-content: center; color: white; font-size: var(--text-3xl); font-weight: 700;">
-                  <%= portfolio.title[0] %>
-                </div>
-              <% end %>
-
-              <% if portfolio.mobile_image.attached? %>
-                <%= image_tag portfolio.mobile_image, alt: "#{portfolio.title} Mobile", class: "card-image mobile-ver" %>
-              <% end %>
-            </div>
-
-            <style>
-              .card-image-wrapper {
-                position: relative;
-                width: 100%;
-                height: 250px;
-                overflow: hidden;
-                border-radius: var(--radius-lg);
-                margin-bottom: var(--space-4);
-                background: #f3f4f6; /* fallback background */
-              }
-
-              .card-image {
-                width: 100%;
-                height: 100%;
-                object-fit: cover;
-                transition: transform 0.5s ease;
-                position: absolute;
-                top: 0;
-                left: 0;
-                display: block;
-              }
-
-              /* PC Version Default State */
-              .card-image.pc-ver {
-                z-index: 10;
-              }
-
-              /* Mobile Version Default State - Hidden below */
-              .card-image.mobile-ver {
-                z-index: 20;
-                transform: translateY(100%);
-                opacity: 0;
-                transition: transform 0.4s ease, opacity 0.4s ease;
-              }
-              
-              /* Hover Effects */
-              .card:hover .card-image.pc-ver {
-                transform: translateY(-20px) scale(0.95);
-                filter: brightness(0.9);
-              }
-
-              .card:hover .card-image.mobile-ver {
-                transform: translateY(0); /* Slide up into view */
-                opacity: 1;
-              }
-              
-              /* Optional: If we want the mobile version to be smaller and centered like a phone mock */
-              /*
-              .card-image.mobile-ver {
-                width: 80%;
-                height: auto;
-                aspect-ratio: 9/16; 
-                left: 10%;
-                top: 10%; 
-                border-radius: 10px;
-                box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-              }
-              */
-            </style>
-            
-            <% if portfolio.category.present? %>
-              <span style="display: inline-block; padding: var(--space-1) var(--space-3); background: var(--color-accent); color: white; border-radius: var(--radius-full); font-size: var(--text-sm); font-weight: 600; margin-bottom: var(--space-3);">
-                <%= portfolio.category %>
-              </span>
-            <% end %>
-            
-            <h3 class="card-title">
-              <% if portfolio.preview_url.present? %>
-                <%= link_to portfolio.title, portfolio.preview_url, target: "_blank", class: "hover:text-emerald-600 transition" %>
-              <% else %>
-                <%= portfolio.title %>
-              <% end %>
-            </h3>
-            
-            <% if portfolio.client.present? %>
-              <p style="color: var(--color-gray-500); font-size: var(--text-sm); margin-bottom: var(--space-2);">
-                <strong>클라이언트:</strong> <%= portfolio.client %>
-              </p>
-            <% end %>
-            
-            <% if portfolio.description.present? %>
-              <p class="card-text text-sm"><%= truncate(portfolio.description, length: 120) %></p>
-            <% end %>
-            
-            <div style="margin-top: var(--space-4); display: flex; justify-content: space-between; align-items: center;">
-              <% if portfolio.project_date.present? %>
-                <p style="color: var(--color-gray-400); font-size: var(--text-sm);">
-                  <%= portfolio.project_date.strftime("%Y년 %m월") %>
-                </p>
-              <% end %>
-
-              <% if portfolio.preview_url.present? %>
-                <%= link_to portfolio.preview_url, target: "_blank", class: "btn btn-sm btn-outline", style: "font-size: 11px; padding: 4px 10px;" do %>
-                  사이트 방문 <svg style="display:inline; width:12px; height:12px;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+      <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px;">
+        <% @portfolios.each_with_index do |portfolio, idx| %>
+          <!-- Double-Bezel Card -->
+          <div class="card-premium" style="--index: <%= idx %>; opacity: 0; animation: fadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards; animation-delay: calc(var(--index) * 80ms);">
+            <div class="card-premium-inner" style="padding: 0; overflow: hidden;">
+              <div class="portfolio-image-wrapper" style="position: relative; width: 100%; height: 250px; overflow: hidden;">
+                <% if portfolio.image.attached? %>
+                  <%= image_tag portfolio.image, alt: portfolio.title, class: "portfolio-img pc-ver", style: "width: 100%; height: 100%; object-fit: cover; transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1); position: absolute; top: 0; left: 0; z-index: 10;" %>
+                <% elsif portfolio.image_url.present? %>
+                  <%= image_tag portfolio.image_url, alt: portfolio.title, class: "portfolio-img pc-ver", style: "width: 100%; height: 100%; object-fit: cover; transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1); position: absolute; top: 0; left: 0; z-index: 10;" %>
+                <% else %>
+                  <div style="width: 100%; height: 100%; background: linear-gradient(135deg, #00a859, #00d670); display: flex; align-items: center; justify-content: center; color: white; font-size: 40px; font-weight: 700; position: absolute; top: 0; left: 0; z-index: 10;">
+                    <%= portfolio.title[0] %>
+                  </div>
                 <% end %>
-              <% end %>
+
+                <% if portfolio.mobile_image.attached? %>
+                  <%= image_tag portfolio.mobile_image, alt: "#{portfolio.title} Mobile", class: "portfolio-img mobile-ver", style: "width: 100%; height: 100%; object-fit: cover; position: absolute; top: 0; left: 0; z-index: 20; transform: translateY(100%); opacity: 0; transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);" %>
+                <% end %>
+              </div>
+
+              <div style="padding: 24px;">
+                <% if portfolio.category.present? %>
+                  <span class="eyebrow" style="margin-bottom: 12px; display: inline-block;">
+                    <%= portfolio.category %>
+                  </span>
+                <% end %>
+
+                <h3 style="font-size: 20px; font-weight: 700; color: #111; margin-bottom: 8px; line-height: 1.4; word-break: keep-all;">
+                  <% if portfolio.preview_url.present? %>
+                    <%= link_to portfolio.title, portfolio.preview_url, target: "_blank", style: "color: #111; text-decoration: none; transition: color 0.3s;", class: "portfolio-title-link" %>
+                  <% else %>
+                    <%= portfolio.title %>
+                  <% end %>
+                </h3>
+
+                <% if portfolio.client.present? %>
+                  <p style="color: #6b7280; font-size: 14px; margin-bottom: 8px;">
+                    <strong>클라이언트:</strong> <%= portfolio.client %>
+                  </p>
+                <% end %>
+
+                <% if portfolio.description.present? %>
+                  <p style="color: #9ca3af; font-size: 14px; line-height: 1.6; word-break: keep-all;"><%= truncate(portfolio.description, length: 120) %></p>
+                <% end %>
+
+                <div style="margin-top: 20px; display: flex; justify-content: space-between; align-items: center;">
+                  <% if portfolio.project_date.present? %>
+                    <p style="color: #9ca3af; font-size: 13px;">
+                      <%= portfolio.project_date.strftime("%Y년 %m월") %>
+                    </p>
+                  <% end %>
+
+                  <% if portfolio.preview_url.present? %>
+                    <%= link_to portfolio.preview_url, target: "_blank", style: "display: inline-flex; align-items: center; gap: 6px; padding: 8px 16px; border: 1px solid #e5e7eb; border-radius: 9999px; font-size: 13px; font-weight: 600; color: #374151; text-decoration: none; transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);", class: "portfolio-visit-btn" do %>
+                      사이트 방문 <svg style="display:inline; width:12px; height:12px;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+                    <% end %>
+                  <% end %>
+                </div>
+              </div>
             </div>
           </div>
         <% end %>
       </div>
     <% else %>
-      <div class="text-center" style="padding: var(--space-20) 0;">
-        <div style="width: 100px; height: 100px; background: var(--color-gray-100); border-radius: var(--radius-full); display: flex; align-items: center; justify-content: center; margin: 0 auto var(--space-6);">
-          <svg width="50" height="50" viewBox="0 0 24 24" fill="none" stroke="var(--color-gray-400)" stroke-width="2">
+      <div style="text-align: center; padding: 120px 0;">
+        <div style="width: 100px; height: 100px; background: #f3f4f6; border-radius: 9999px; display: flex; align-items: center; justify-content: center; margin: 0 auto 24px;">
+          <svg width="50" height="50" viewBox="0 0 24 24" fill="none" stroke="#9ca3af" stroke-width="2">
             <rect x="3" y="3" width="18" height="18" rx="2"/>
             <circle cx="8.5" cy="8.5" r="1.5"/>
             <path d="M21 15l-5-5L5 21"/>
           </svg>
         </div>
-        <h3 style="font-size: var(--text-3xl); color: var(--color-gray-700); margin-bottom: var(--space-4);">
+        <h3 style="font-size: 28px; font-weight: 700; color: #374151; margin-bottom: 16px; word-break: keep-all;">
           아직 등록된 포트폴리오가 없습니다
         </h3>
-        <p class="text-gray" style="font-size: var(--text-lg);">
+        <p style="color: #9ca3af; font-size: 18px; word-break: keep-all;">
           곧 멋진 프로젝트들을 선보일 예정입니다
         </p>
       </div>
@@ -155,15 +101,61 @@
 </section>
 
 <!-- CTA Section -->
-<section class="section" style="background: var(--color-gray-50);">
-  <div class="container text-center">
-    <h2 style="font-size: var(--text-4xl); margin-bottom: var(--space-4);">
+<section style="padding: 96px 0; background: #f9fafb;">
+  <div class="container" style="text-align: center;">
+    <span class="eyebrow" style="margin-bottom: 16px; display: inline-block;">Next Project</span>
+    <h2 style="font-size: 40px; font-weight: 800; margin-bottom: 16px; color: #111; word-break: keep-all; line-height: 1.3;">
       다음 성공 사례의 주인공이 되어보세요
     </h2>
-    <p class="text-gray" style="font-size: var(--text-lg); margin-bottom: var(--space-8);">
+    <p style="color: #6b7280; font-size: 18px; margin-bottom: 40px; word-break: keep-all;">
       지금 바로 프로젝트를 시작하세요
     </p>
-    <%= link_to "프로젝트 문의하기", contact_path, class: "btn btn-primary btn-lg" %>
+    <%= link_to contact_path, style: "display: inline-flex; align-items: center; gap: 8px; padding: 16px 32px; background: var(--color-primary); color: white; font-weight: 700; border-radius: 9999px; text-decoration: none; font-size: 16px; transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);", class: "btn-cta-primary" do %>
+      프로젝트 문의하기
+      <span style="width: 32px; height: 32px; border-radius: 9999px; background: rgba(255,255,255,0.2); display: flex; align-items: center; justify-content: center;">
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14m-7-7l7 7-7 7"/></svg>
+      </span>
+    <% end %>
   </div>
 </section>
 
+<style>
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(2rem); filter: blur(4px); }
+    to { opacity: 1; transform: translateY(0); filter: blur(0); }
+  }
+  .card-premium:hover .portfolio-img.pc-ver {
+    transform: translateY(-20px) scale(0.95);
+    filter: brightness(0.9);
+  }
+  .card-premium:hover .portfolio-img.mobile-ver {
+    transform: translateY(0) !important;
+    opacity: 1 !important;
+  }
+  .portfolio-title-link:hover {
+    color: var(--color-primary) !important;
+  }
+  .portfolio-visit-btn:hover {
+    border-color: var(--color-primary) !important;
+    color: var(--color-primary) !important;
+    transform: scale(1.02);
+  }
+  .btn-cta-primary:hover {
+    transform: scale(1.02);
+    box-shadow: 0 8px 24px -4px rgba(0, 168, 89, 0.3);
+  }
+  .btn-cta-primary:active {
+    transform: scale(0.98);
+  }
+  .btn-cta-primary:hover span {
+    transform: translateX(4px);
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  @media (max-width: 768px) {
+    .card-premium { animation-delay: 0ms !important; }
+    section > .container > div[style*="grid-template-columns"] {
+      grid-template-columns: 1fr !important;
+    }
+  }
+</style>
