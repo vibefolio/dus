@@ -1,10 +1,13 @@
 class Admin::DesignTemplatesController < ApplicationController
   layout "admin"
   before_action :authenticate_admin!
-  before_action :set_design_template, only: %i[ edit update destroy ]
+  before_action :set_design_template, only: %i[ show edit update destroy ]
 
   def index
     @design_templates = DesignTemplate.order(created_at: :desc)
+  end
+
+  def show
   end
 
   def new

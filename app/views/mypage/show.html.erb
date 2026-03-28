@@ -216,13 +216,13 @@
             <div class="grid grid-cols-2 gap-3">
               <% @liked_templates.first(4).each do |template| %>
                 <div class="group relative overflow-hidden rounded-xl border border-gray-100 hover:border-[#00a859]/30" style="transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);">
-                  <% if template.thumbnail_url.present? %>
-                    <%= image_tag template.thumbnail_url, class: "w-full h-28 object-cover", loading: "lazy", decoding: "async" %>
+                  <% if template.pc_thumbnail_url.present? %>
+                    <%= image_tag template.pc_thumbnail_url, class: "w-full h-28 object-cover", loading: "lazy", decoding: "async" %>
                   <% else %>
                     <div class="w-full h-28 bg-gradient-to-br from-[#00a859]/10 to-[#00d670]/10"></div>
                   <% end %>
                   <div class="p-3">
-                    <div class="text-sm font-medium text-gray-900 truncate"><%= template.name %></div>
+                    <div class="text-sm font-medium text-gray-900 truncate"><%= template.title %></div>
                     <div class="text-xs text-gray-500"><%= number_to_currency(template.price, unit: '₩', precision: 0) %></div>
                   </div>
                 </div>

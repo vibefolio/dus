@@ -1,0 +1,64 @@
+<div style="max-width: 800px;">
+  <div style="margin-bottom: var(--space-8);">
+    <%= link_to "← 목록으로", admin_design_templates_path, style: "color: var(--color-gray-600); text-decoration: none;" %>
+    <h1 style="font-size: var(--text-4xl); margin-top: var(--space-4);"><%= @design_template.title %></h1>
+  </div>
+
+  <div class="card" style="padding: var(--space-6);">
+    <!-- 썸네일 이미지 -->
+    <div style="height: 300px; background: #eee; border-radius: var(--radius-md); margin-bottom: var(--space-6); overflow: hidden;">
+      <% thumb_src = @design_template.pc_thumbnail_url %>
+      <% if thumb_src %>
+        <img src="<%= thumb_src %>" style="width: 100%; height: 100%; object-fit: cover;" loading="lazy">
+      <% else %>
+        <div style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; color: #999;">No Image</div>
+      <% end %>
+    </div>
+
+    <!-- 상세 정보 -->
+    <table style="width: 100%; border-collapse: collapse;">
+      <tr style="border-bottom: 1px solid #eee;">
+        <td style="padding: var(--space-3); font-weight: bold; color: var(--color-gray-600); width: 150px;">제목</td>
+        <td style="padding: var(--space-3);"><%= @design_template.title %></td>
+      </tr>
+      <tr style="border-bottom: 1px solid #eee;">
+        <td style="padding: var(--space-3); font-weight: bold; color: var(--color-gray-600);">카테고리</td>
+        <td style="padding: var(--space-3);"><%= @design_template.category %></td>
+      </tr>
+      <tr style="border-bottom: 1px solid #eee;">
+        <td style="padding: var(--space-3); font-weight: bold; color: var(--color-gray-600);">설명</td>
+        <td style="padding: var(--space-3);"><%= @design_template.description %></td>
+      </tr>
+      <tr style="border-bottom: 1px solid #eee;">
+        <td style="padding: var(--space-3); font-weight: bold; color: var(--color-gray-600);">미리보기 URL</td>
+        <td style="padding: var(--space-3);">
+          <% if @design_template.preview_url.present? %>
+            <%= link_to @design_template.preview_url, @design_template.preview_url, target: "_blank", style: "color: var(--color-primary);" %>
+          <% else %>
+            <span style="color: var(--color-gray-400);">없음</span>
+          <% end %>
+        </td>
+      </tr>
+      <tr style="border-bottom: 1px solid #eee;">
+        <td style="padding: var(--space-3); font-weight: bold; color: var(--color-gray-600);">메인 노출</td>
+        <td style="padding: var(--space-3);">
+          <% if @design_template.is_featured %>
+            <span style="background: var(--color-accent); color: white; font-size: 12px; font-weight: bold; padding: 2px 10px; border-radius: 99px;">YES</span>
+          <% else %>
+            <span style="color: var(--color-gray-400);">NO</span>
+          <% end %>
+        </td>
+      </tr>
+      <tr>
+        <td style="padding: var(--space-3); font-weight: bold; color: var(--color-gray-600);">등록일</td>
+        <td style="padding: var(--space-3);"><%= @design_template.created_at.strftime('%Y년 %m월 %d일') %></td>
+      </tr>
+    </table>
+
+    <!-- 액션 버튼 -->
+    <div style="display: flex; gap: var(--space-3); margin-top: var(--space-6);">
+      <%= link_to "수정", edit_admin_design_template_path(@design_template), class: "btn btn-primary" %>
+      <%= button_to "삭제", admin_design_template_path(@design_template), method: :delete, class: "btn", style: "background: var(--color-error); color: white; border: none;", onclick: "return confirm('정말 삭제하시겠습니까?');" %>
+    </div>
+  </div>
+</div>

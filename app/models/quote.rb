@@ -5,6 +5,7 @@ class Quote < ApplicationRecord
   ].freeze
 
   belongs_to :user, optional: true
+  belongs_to :agency, optional: true
   
   validates :contact_name, presence: true
   validates :email, presence: true, format: { with: URI::MailTo::EMAIL_REGEXP }

@@ -1,0 +1,41 @@
+<% content_for :title, "결제 완료 - 디어스" %>
+
+<div class="min-h-screen bg-gray-50 py-12">
+  <div class="container mx-auto px-4 max-w-2xl text-center">
+
+    <div class="bg-white rounded-2xl shadow-sm p-12">
+      <!-- 체크 아이콘 -->
+      <div class="w-20 h-20 mx-auto mb-6 bg-emerald-100 rounded-full flex items-center justify-center">
+        <svg class="w-10 h-10 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+        </svg>
+      </div>
+
+      <h1 class="text-3xl font-bold text-gray-900 mb-3">결제가 완료되었습니다</h1>
+      <p class="text-gray-500 mb-8">감사합니다. 주문이 정상적으로 처리되었습니다.</p>
+
+      <% if @order %>
+        <div class="bg-gray-50 rounded-xl p-6 mb-8 text-left">
+          <div class="flex justify-between items-center mb-3">
+            <span class="text-gray-500 text-sm">주문번호</span>
+            <span class="font-bold text-gray-900">#<%= @order.id %></span>
+          </div>
+          <div class="flex justify-between items-center mb-3">
+            <span class="text-gray-500 text-sm">주문일자</span>
+            <span class="font-medium text-gray-900"><%= @order.created_at.strftime('%Y년 %m월 %d일') %></span>
+          </div>
+          <div class="flex justify-between items-center">
+            <span class="text-gray-500 text-sm">결제금액</span>
+            <span class="font-bold text-emerald-600 text-lg"><%= number_to_currency(@order.total_amount || 0, unit: '₩', precision: 0) %></span>
+          </div>
+        </div>
+      <% end %>
+
+      <div class="flex gap-4 justify-center">
+        <%= link_to "주문 내역 보기", mypage_orders_path, class: "px-6 py-3 bg-emerald-600 text-white rounded-full font-medium hover:bg-emerald-700 transition" %>
+        <%= link_to "쇼핑 계속하기", design_templates_path, class: "px-6 py-3 bg-gray-100 text-gray-700 rounded-full font-medium hover:bg-gray-200 transition" %>
+      </div>
+    </div>
+
+  </div>
+</div>
