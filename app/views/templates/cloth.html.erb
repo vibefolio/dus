@@ -1,153 +1,297 @@
-<%# Cloth Template - 모드 서울 (MODE SEOUL) %>
+<%# Cloth Template - ATELIER SEOUL (의류 브랜드) %>
 
 <style>
-  /* Supanova Design Upgrade */
+  /* Supanova Design — Luxury Fashion Archetype */
   * { word-break: keep-all; }
-  html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+  html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
   h1, h2, h3, h4 { text-wrap: balance; letter-spacing: -0.02em; line-height: 1.3; }
-  a, button { transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1); }
+  a, button { transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1); }
   a:hover, button:hover { transform: scale(1.02); }
   a:active, button:active { transform: scale(0.98); }
 
-  @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300&family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap');
-  
-  .font-serif-display { font-family: 'Cormorant Garamond', serif; }
-  .font-sans { font-family: 'Pretendard Variable', 'Pretendard', -apple-system, sans-serif; }
+  @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&display=swap');
+
+  .font-sans { font-family: 'Pretendard Variable', 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, sans-serif; }
+  .font-cormorant { font-family: 'Cormorant Garamond', serif; }
 
   @media (max-width: 768px) {
     .mobile-desc { font-size: 14px !important; line-height: 1.8; }
     .mobile-title { font-size: 40px !important; }
   }
 
-  .fabric-texture {
-    background-image: url("https://www.transparenttextures.com/patterns/woven.png");
-    opacity: 0.05;
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(2rem); filter: blur(4px); }
+    to { opacity: 1; transform: translateY(0); filter: blur(0); }
   }
+  .reveal { opacity: 0; transform: translateY(2rem); }
+  .reveal.is-visible { animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards; animation-delay: calc(var(--delay, 0) * 100ms); }
+
+  .collection-card { transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1); }
+  .collection-card:hover { transform: translateY(-4px); }
+  .collection-card:hover img { transform: scale(1.05); }
+  .lookbook-item { transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1); }
+  .lookbook-item:hover img { transform: scale(1.03); }
 </style>
 
-<div class="bg-[#F5F5F4] text-[#292524] font-sans selection:bg-[#57534E] selection:text-white min-h-screen overflow-x-hidden relative">
-  <div class="fixed inset-0 fabric-texture pointer-events-none"></div>
+<div class="bg-[#F5F5F0] text-[#2C2C2C] font-sans selection:bg-[#B08D57] selection:text-white min-h-screen overflow-x-hidden">
 
-  <!-- Nav -->
-  <nav class="fixed w-full z-50 px-8 py-12 md:px-12 bg-[#F5F5F4]/80 backdrop-blur-xl border-b border-[#292524]/5">
-    <div class="container mx-auto px-4 md:px-6 flex justify-between items-center flex-nowrap">
-      <div class="flex items-center gap-10">
-         <span class="font-serif-display text-2xl tracking-wide font-semibold uppercase text-[#292524]">Mode<span class="italic font-light">Seoul</span></span>
-      </div>
-      
-      <div class="hidden md:flex gap-14 text-[10px] font-semibold uppercase tracking-[0.3em] text-[#292524]/40">
-        <a href="#lookbook" class="hover:text-[#57534E] transition">Editorial</a>
-        <a href="#shop" class="hover:text-[#57534E] transition">Collection</a>
-        <a href="#archive" class="hover:text-[#57534E] transition">Archive</a>
-      </div>
-           <button class="mobile-menu-trigger md:hidden ml-auto text-2xl focus:outline-none" style="color: inherit;">
-             <i class="fas fa-bars"></i>
-           </button>
+  <!-- ========== Nav ========== -->
+  <nav class="fixed w-full z-50 px-4 md:px-8 py-6 bg-[#F5F5F0]/80 backdrop-blur-xl border-b border-[#B08D57]/5">
+    <div class="max-w-7xl mx-auto flex justify-between items-center">
+      <a href="#" class="text-center">
+        <span class="font-cormorant text-2xl font-semibold tracking-[0.15em] text-[#2C2C2C]">ATELIER</span>
+        <span class="block font-cormorant text-[10px] tracking-[0.5em] uppercase text-[#B08D57]">Seoul</span>
+      </a>
 
-      
-      <div class="flex-nowrap shrink-0 flex gap-12 items-center">
-         <button onclick="toggleModeModal()" class="hidden md:block text-[10px] font-semibold uppercase tracking-[0.3em] text-[#292524]/40 hover:text-[#292524]" data-mobile-menu-copy="true">Atelier_ID</button>
-         <button class="hidden md:block relative" data-mobile-menu-copy="true">
-            <span class="text-[10px] font-semibold uppercase tracking-[0.3em] hover:text-[#57534E] transition">Cart</span>
-            <span class="absolute -top-1 -right-2 w-1.5 h-1.5 bg-[#57534E] rounded-full"></span>
-         </button>
+      <div class="hidden md:flex gap-12 text-[10px] font-semibold uppercase tracking-[0.4em] text-[#2C2C2C]/30">
+        <a href="#collection" class="hover:text-[#B08D57] transition">컬렉션</a>
+        <a href="#lookbook" class="hover:text-[#B08D57] transition">룩북</a>
+        <a href="#philosophy" class="hover:text-[#B08D57] transition">철학</a>
+        <a href="#store" class="hover:text-[#B08D57] transition">매장</a>
+      </div>
+
+      <button class="mobile-menu-trigger md:hidden ml-auto text-2xl focus:outline-none" style="color: inherit;">
+        <i class="fas fa-bars"></i>
+      </button>
+
+      <div class="hidden md:flex gap-5 items-center shrink-0">
+        <button onclick="toggleClothModal()" class="text-[10px] font-semibold text-[#2C2C2C]/30 hover:text-[#B08D57] tracking-[0.3em] uppercase" data-mobile-menu-copy="true">Account</button>
+        <a href="#" class="text-[#2C2C2C]/30 hover:text-[#B08D57] transition"><i class="fas fa-shopping-bag"></i></a>
       </div>
     </div>
 
-      <%= render partial: 'templates/shared/mobile_menu_overlay' %></nav>
+    <%= render partial: 'templates/shared/mobile_menu_overlay' %>
+  </nav>
 
-  <!-- Hero -->
-  <header class="min-h-screen relative flex items-center justify-center pt-24 overflow-hidden">
-    <!-- Abstract Shapes -->
-    <div class="absolute top-[20%] left-[10%] w-[300px] h-[300px] bg-[#E7E5E4] rounded-full mix-blend-multiply filter blur-3xl opacity-50 animate-blob"></div>
-    <div class="absolute top-[20%] right-[10%] w-[300px] h-[300px] bg-[#D6D3D1] rounded-full mix-blend-multiply filter blur-3xl opacity-50 animate-blob animation-delay-2000"></div>
-    
-    <div class="container mx-auto px-3 md:px-6 relative z-10 grid lg:grid-cols-12 gap-16 items-center">
-      <div class="lg:col-span-1 hidden lg:flex flex-col gap-12 items-center text-[10px] font-semibold tracking-[0.4em] uppercase text-[#292524]/30 [writing-mode:vertical-rl] rotate-180">
-         <span>Spring / Summer 24</span>
-         <div class="h-24 w-[1px] bg-[#292524]/20"></div>
-         <span>Minimalism</span>
-      </div>
-
-      <div class="lg:col-span-5 relative z-20">
-         <div class="relative overflow-hidden aspect-[3/4]">
-            <img src="https://images.unsplash.com/photo-1441984904996-e0b6ba687e04?q=80&w=1200" alt="Fashion Editorial" class="w-full h-full object-cover grayscale brightness-90 hover:scale-105 transition duration-[1.5s]">
-            <div class="absolute bottom-8 left-8 bg-white/80 backdrop-blur-sm p-6 border border-white/20">
-               <p class="font-serif-display text-2xl italic mb-2">The New Silence</p>
-               <button class="text-[9px] font-semibold uppercase tracking-[0.3em] border-b border-black pb-1">View Lookbook</button>
-            </div>
-         </div>
-      </div>
-
-      <div class="lg:col-span-6 space-y-12 text-center lg:text-left pl-0 lg:pl-12">
-        <h1 class="text-3xl md:text-5xl md:text-[8rem] font-serif-display leading-[0.9] tracking-tight text-[#292524] mobile-title">
-           Essential<br>
-           <span class="italic font-light text-[#57534E]">Form.</span>
-        </h1>
-        
-        <p class="text-[#292524]/60 text-sm md:text-lg leading-relaxed max-w-md mx-auto lg:mx-0 mobile-desc">
-           서울의 정서, 비워진 미학. 불필요한 것을 덜어내고 본질만을 남긴 모드 서울의 새로운 컬렉션을 확인하세요.
-        </p>
-        
-        <div class="pt-8 flex flex-col sm:flex-row gap-12 justify-center lg:justify-start">
-           <button class="group flex items-center gap-6 text-[11px] font-semibold uppercase tracking-[0.4em] text-[#292524] hover:text-[#57534E] transition">
-              <span class="w-12 h-[1px] bg-[#292524] group-hover:w-20 transition-all"></span> Shop Now
-           </button>
+  <!-- ========== Hero ========== -->
+  <header class="min-h-[100dvh] relative flex items-center pt-20">
+    <div class="max-w-7xl mx-auto px-4 md:px-8 relative z-10 grid lg:grid-cols-2 gap-8 lg:gap-16 items-center">
+      <div class="space-y-8 text-center lg:text-left">
+        <div class="inline-flex items-center gap-4 reveal" style="--delay: 0;">
+          <span class="w-12 h-[1px] bg-[#B08D57]"></span>
+          <span class="text-[10px] font-semibold tracking-[0.5em] uppercase text-[#B08D57]">S/S 2026</span>
         </div>
+
+        <h1 class="text-4xl md:text-5xl lg:text-[4.5rem] font-cormorant font-semibold leading-tight tracking-tight mobile-title reveal" style="--delay: 1;">
+          시간이 만든<br><span class="italic text-[#B08D57]">아름다움.</span>
+        </h1>
+
+        <p class="text-[#2C2C2C]/40 text-base md:text-lg leading-relaxed max-w-md mx-auto lg:mx-0 mobile-desc reveal" style="--delay: 2;">
+          ATELIER SEOUL은 한국의 미감과 유러피안 테일러링을 결합한 컨템포러리 패션 브랜드입니다. 시간이 지나도 변하지 않는 우아함을 추구합니다.
+        </p>
+
+        <div class="pt-4 flex flex-col sm:flex-row gap-4 justify-center lg:justify-start reveal" style="--delay: 3;">
+          <a href="#collection" class="inline-flex items-center justify-center gap-3 px-10 py-4 bg-[#2C2C2C] text-white font-semibold text-[10px] tracking-[0.4em] uppercase hover:bg-[#B08D57] rounded-none">
+            컬렉션 보기 <i class="fas fa-arrow-right text-[9px]"></i>
+          </a>
+          <a href="#lookbook" class="inline-flex items-center justify-center px-10 py-4 border border-[#B08D57]/30 text-[#B08D57] font-semibold text-[10px] tracking-[0.4em] uppercase hover:bg-[#B08D57]/5 rounded-none">
+            룩북
+          </a>
+        </div>
+      </div>
+
+      <div class="relative reveal" style="--delay: 1;">
+        <img src="https://images.unsplash.com/photo-1509631179647-0177331693ae?q=80&w=1200" alt="컬렉션" class="w-full aspect-[3/4] object-cover" loading="eager">
       </div>
     </div>
   </header>
 
-   <style>
-      @keyframes blob {
-         0% { transform: translate(0px, 0px) scale(1); }
-         33% { transform: translate(30px, -50px) scale(1.1); }
-         66% { transform: translate(-20px, 20px) scale(0.9); }
-         100% { transform: translate(0px, 0px) scale(1); }
-      }
-      .animate-blob { animation: blob 7s infinite; }
-      .animation-delay-2000 { animation-delay: 2s; }
-   </style>
-
-  <!-- Login Modal -->
-  <div id="mode-modal" class="fixed inset-0 z-[100] hidden items-center justify-center p-4 bg-[#292524]/10 backdrop-blur-3xl">
-    <div class="bg-[#F5F5F4] w-full max-w-sm p-6 md:p-16 shadow-2xl relative border border-[#292524]/5">
-      <button onclick="toggleModeModal()" class="absolute top-12 right-12 text-[#292524]/20 hover:text-[#292524] transition text-2xl font-light">&times;</button>
-      
-      <div class="text-center mb-16">
-        <h2 class="text-2xl font-serif-display tracking-wide text-[#292524] mb-2 italic">Atelier Club</h2>
-        <p class="text-[9px] text-[#57534E] font-semibold tracking-[0.3em] uppercase">Private Archive Access</p>
+  <!-- ========== About ========== -->
+  <section id="about" class="py-24 md:py-32 bg-white">
+    <div class="max-w-5xl mx-auto px-4 md:px-8 text-center">
+      <span class="text-[10px] font-semibold tracking-[0.5em] uppercase text-[#B08D57] reveal" style="--delay: 0;">About</span>
+      <h2 class="text-3xl md:text-4xl lg:text-5xl font-cormorant font-semibold leading-snug mt-6 reveal" style="--delay: 1;">
+        장인의 손끝에서<br>탄생하는 의복
+      </h2>
+      <p class="text-[#2C2C2C]/40 text-base md:text-lg mt-6 max-w-2xl mx-auto leading-relaxed reveal" style="--delay: 2;">
+        서울 성수동 아틀리에에서 시작된 ATELIER SEOUL은 매 시즌 한정된 수량의 작품만을 선보입니다. 이탈리아 최고급 원단과 한국 장인의 섬세한 손놀림이 만나 하나의 의복이 완성됩니다.
+      </p>
+      <div class="grid grid-cols-3 gap-8 max-w-xl mx-auto mt-14 pt-10 border-t border-[#B08D57]/10">
+        <div class="reveal" style="--delay: 0;"><p class="text-2xl font-cormorant font-semibold text-[#B08D57]">2018</p><p class="text-[11px] text-[#2C2C2C]/30 mt-1">브랜드 설립</p></div>
+        <div class="reveal" style="--delay: 1;"><p class="text-2xl font-cormorant font-semibold text-[#B08D57]">100%</p><p class="text-[11px] text-[#2C2C2C]/30 mt-1">이탈리아 원단</p></div>
+        <div class="reveal" style="--delay: 2;"><p class="text-2xl font-cormorant font-semibold text-[#B08D57]">Limited</p><p class="text-[11px] text-[#2C2C2C]/30 mt-1">시즌 한정 생산</p></div>
       </div>
-      
-      <div class="space-y-10">
-        <div class="relative group">
-           <input type="text" placeholder="MEMBER CODE" class="w-full bg-transparent border-b border-[#292524]/10 py-4 text-[11px] font-semibold tracking-[0.3em] placeholder-[#292524]/20 uppercase outline-none focus:border-[#292524] transition text-center">
+    </div>
+  </section>
+
+  <!-- ========== Collection ========== -->
+  <section id="collection" class="py-24 md:py-32">
+    <div class="max-w-7xl mx-auto px-4 md:px-8">
+      <div class="text-center mb-16">
+        <span class="text-[10px] font-semibold tracking-[0.5em] uppercase text-[#B08D57] reveal" style="--delay: 0;">Collection</span>
+        <h2 class="text-3xl md:text-4xl lg:text-5xl font-cormorant font-semibold leading-snug mt-6 reveal" style="--delay: 1;">S/S 2026 컬렉션</h2>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div class="collection-card group reveal" style="--delay: 0;">
+          <div class="overflow-hidden mb-4"><img src="https://images.unsplash.com/photo-1539109136881-3be0616acf4b?q=80&w=600" alt="린넨 코트" class="w-full aspect-[3/4] object-cover transition-transform duration-700" loading="lazy" decoding="async"></div>
+          <p class="text-[10px] text-[#B08D57] font-semibold uppercase tracking-[0.3em]">Outerwear</p>
+          <h3 class="font-semibold text-base mt-1">오버사이즈 린넨 코트</h3>
+          <p class="text-[#2C2C2C]/40 text-sm mt-1 font-cormorant">&#8361;580,000</p>
         </div>
-        <button class="w-full bg-[#292524] text-white py-6 text-[10px] tracking-[0.4em] font-semibold uppercase hover:bg-[#57534E] transition shadow-xl">
-           Enter Archive
-        </button>
-        <div class="flex justify-center pt-2">
-           <a href="#" class="text-[9px] text-[#292524]/30 tracking-[0.3em] font-semibold uppercase hover:text-[#292524] transition border-b border-transparent hover:border-[#292524]">Apply for Membership</a>
+        <div class="collection-card group reveal" style="--delay: 1;">
+          <div class="overflow-hidden mb-4"><img src="https://images.unsplash.com/photo-1594938298603-c8148c4dae35?q=80&w=600" alt="실크 블라우스" class="w-full aspect-[3/4] object-cover transition-transform duration-700" loading="lazy" decoding="async"></div>
+          <p class="text-[10px] text-[#B08D57] font-semibold uppercase tracking-[0.3em]">Top</p>
+          <h3 class="font-semibold text-base mt-1">실크 드레이프 블라우스</h3>
+          <p class="text-[#2C2C2C]/40 text-sm mt-1 font-cormorant">&#8361;320,000</p>
+        </div>
+        <div class="collection-card group reveal" style="--delay: 2;">
+          <div class="overflow-hidden mb-4"><img src="https://images.unsplash.com/photo-1506629082955-511b1aa562c8?q=80&w=600" alt="테일러드 팬츠" class="w-full aspect-[3/4] object-cover transition-transform duration-700" loading="lazy" decoding="async"></div>
+          <p class="text-[10px] text-[#B08D57] font-semibold uppercase tracking-[0.3em]">Bottom</p>
+          <h3 class="font-semibold text-base mt-1">테일러드 와이드 팬츠</h3>
+          <p class="text-[#2C2C2C]/40 text-sm mt-1 font-cormorant">&#8361;280,000</p>
+        </div>
+        <div class="collection-card group reveal" style="--delay: 3;">
+          <div class="overflow-hidden mb-4"><img src="https://images.unsplash.com/photo-1496747611176-843222e1e57c?q=80&w=600" alt="원피스" class="w-full aspect-[3/4] object-cover transition-transform duration-700" loading="lazy" decoding="async"></div>
+          <p class="text-[10px] text-[#B08D57] font-semibold uppercase tracking-[0.3em]">Dress</p>
+          <h3 class="font-semibold text-base mt-1">미디 랩 드레스</h3>
+          <p class="text-[#2C2C2C]/40 text-sm mt-1 font-cormorant">&#8361;420,000</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== Lookbook Gallery ========== -->
+  <section id="lookbook" class="py-24 md:py-32 bg-white">
+    <div class="max-w-7xl mx-auto px-4 md:px-8">
+      <div class="text-center mb-14">
+        <span class="text-[10px] font-semibold tracking-[0.5em] uppercase text-[#B08D57] reveal" style="--delay: 0;">Lookbook</span>
+        <h2 class="text-3xl md:text-4xl lg:text-5xl font-cormorant font-semibold leading-snug mt-6 reveal" style="--delay: 1;">룩북 갤러리</h2>
+      </div>
+      <div class="grid grid-cols-2 md:grid-cols-3 gap-3">
+        <div class="lookbook-item overflow-hidden md:row-span-2 reveal" style="--delay: 0;"><img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?q=80&w=800" alt="룩북 1" class="w-full h-full object-cover transition-transform duration-700" loading="lazy" decoding="async"></div>
+        <div class="lookbook-item overflow-hidden reveal" style="--delay: 1;"><img src="https://images.unsplash.com/photo-1529139574466-a303027c1d8b?q=80&w=600" alt="룩북 2" class="w-full aspect-square object-cover transition-transform duration-700" loading="lazy" decoding="async"></div>
+        <div class="lookbook-item overflow-hidden reveal" style="--delay: 2;"><img src="https://images.unsplash.com/photo-1495385794356-15371f348c31?q=80&w=600" alt="룩북 3" class="w-full aspect-square object-cover transition-transform duration-700" loading="lazy" decoding="async"></div>
+        <div class="lookbook-item overflow-hidden reveal" style="--delay: 3;"><img src="https://images.unsplash.com/photo-1487222477894-8943e31ef7b2?q=80&w=600" alt="룩북 4" class="w-full aspect-square object-cover transition-transform duration-700" loading="lazy" decoding="async"></div>
+        <div class="lookbook-item overflow-hidden reveal" style="--delay: 4;"><img src="https://images.unsplash.com/photo-1509631179647-0177331693ae?q=80&w=600" alt="룩북 5" class="w-full aspect-square object-cover transition-transform duration-700" loading="lazy" decoding="async"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== Philosophy ========== -->
+  <section id="philosophy" class="py-24 md:py-32 bg-[#2C2C2C] text-white">
+    <div class="max-w-5xl mx-auto px-4 md:px-8 text-center">
+      <span class="text-[10px] font-semibold tracking-[0.5em] uppercase text-[#B08D57] reveal" style="--delay: 0;">Philosophy</span>
+      <h2 class="text-3xl md:text-4xl lg:text-[3.5rem] font-cormorant font-semibold leading-snug mt-8 reveal" style="--delay: 1;">
+        &ldquo;옷은 그 사람의<br>이야기를 입는 것이다.&rdquo;
+      </h2>
+      <p class="text-white/40 text-base md:text-lg mt-8 max-w-2xl mx-auto leading-relaxed reveal" style="--delay: 2;">
+        우리는 빠르게 소비되고 버려지는 패션을 거부합니다. 한 벌의 옷이 완성되기까지 수많은 시간과 정성이 깃듭니다. ATELIER SEOUL의 의복은 트렌드를 좇지 않고, 입는 사람의 고유한 이야기를 담아냅니다.
+      </p>
+      <div class="grid md:grid-cols-3 gap-8 mt-16">
+        <div class="reveal" style="--delay: 0;">
+          <div class="w-14 h-14 border border-[#B08D57]/30 rounded-full flex items-center justify-center mx-auto mb-4"><i class="fas fa-leaf text-[#B08D57]"></i></div>
+          <h3 class="font-semibold text-base">지속 가능한 소재</h3>
+          <p class="text-white/30 text-[13px] mt-2">환경을 생각하는 친환경 원단과 천연 염료만을 사용합니다</p>
+        </div>
+        <div class="reveal" style="--delay: 1;">
+          <div class="w-14 h-14 border border-[#B08D57]/30 rounded-full flex items-center justify-center mx-auto mb-4"><i class="fas fa-hands text-[#B08D57]"></i></div>
+          <h3 class="font-semibold text-base">장인 핸드메이드</h3>
+          <p class="text-white/30 text-[13px] mt-2">모든 제품은 숙련된 장인이 한 땀 한 땀 수작업으로 완성합니다</p>
+        </div>
+        <div class="reveal" style="--delay: 2;">
+          <div class="w-14 h-14 border border-[#B08D57]/30 rounded-full flex items-center justify-center mx-auto mb-4"><i class="fas fa-gem text-[#B08D57]"></i></div>
+          <h3 class="font-semibold text-base">한정 생산</h3>
+          <p class="text-white/30 text-[13px] mt-2">대량 생산을 지양하고, 시즌별 한정된 수량만 선보입니다</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== Store ========== -->
+  <section id="store" class="py-24 md:py-32">
+    <div class="max-w-7xl mx-auto px-4 md:px-8 grid lg:grid-cols-2 gap-16 items-center">
+      <div class="reveal" style="--delay: 0;">
+        <img src="https://images.unsplash.com/photo-1441984904996-e0b6ba687e04?q=80&w=800" alt="매장" class="w-full aspect-[4/3] object-cover" loading="lazy" decoding="async">
+      </div>
+      <div class="space-y-8 reveal" style="--delay: 1;">
+        <span class="text-[10px] font-semibold tracking-[0.5em] uppercase text-[#B08D57]">Flagship Store</span>
+        <h2 class="text-3xl md:text-4xl font-cormorant font-semibold leading-snug">성수동 플래그십 스토어</h2>
+        <div class="space-y-4 text-[#2C2C2C]/50 text-base">
+          <p><i class="fas fa-map-marker-alt text-[#B08D57] mr-3"></i>서울특별시 성동구 연무장길 17, 1층</p>
+          <p><i class="fas fa-clock text-[#B08D57] mr-3"></i>화-토 11:00-20:00 / 일-월 휴무</p>
+          <p><i class="fas fa-phone text-[#B08D57] mr-3"></i>02-1234-5678</p>
+        </div>
+        <a href="#" class="inline-flex items-center gap-3 text-[10px] font-semibold uppercase tracking-[0.4em] text-[#B08D57] hover:text-[#2C2C2C]">
+          매장 방문 예약 <i class="fas fa-arrow-right text-[9px]"></i>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== CTA ========== -->
+  <section class="py-24 md:py-32 bg-[#B08D57] relative overflow-hidden">
+    <div class="max-w-3xl mx-auto px-4 md:px-8 text-center relative z-10">
+      <h2 class="text-3xl md:text-4xl lg:text-5xl font-cormorant font-semibold leading-snug text-white reveal" style="--delay: 0;">
+        당신만의 스타일을<br>완성하세요
+      </h2>
+      <p class="text-white/60 text-base mt-6 reveal" style="--delay: 1;">뉴스레터를 구독하시면 신규 컬렉션 소식을 가장 먼저 받아보실 수 있습니다.</p>
+      <div class="flex flex-col sm:flex-row gap-3 max-w-md mx-auto mt-10 reveal" style="--delay: 2;">
+        <input type="email" placeholder="이메일 주소" class="flex-1 bg-white/10 border border-white/20 py-4 px-6 text-white placeholder-white/40 outline-none focus:ring-1 focus:ring-white/30 text-[13px]">
+        <button class="bg-white text-[#B08D57] px-8 py-4 font-semibold text-[10px] uppercase tracking-[0.3em] hover:bg-[#2C2C2C] hover:text-white">구독</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== Footer ========== -->
+  <footer class="py-16 md:py-24 bg-[#2C2C2C]">
+    <div class="max-w-7xl mx-auto px-4 md:px-8">
+      <div class="grid md:grid-cols-3 gap-12 items-start mb-16">
+        <div>
+          <div class="mb-4"><span class="font-cormorant text-2xl font-semibold tracking-[0.15em] text-white">ATELIER</span><span class="block font-cormorant text-[10px] tracking-[0.5em] uppercase text-[#B08D57]">Seoul</span></div>
+          <p class="text-white/20 text-sm leading-relaxed max-w-xs">한국의 미감과 유러피안 테일러링이 만나는 컨템포러리 패션.</p>
+        </div>
+        <div class="grid grid-cols-2 gap-8">
+          <div>
+            <p class="text-[10px] font-semibold text-white/15 uppercase tracking-[0.3em] mb-4">Shop</p>
+            <ul class="space-y-2.5"><li><a href="#" class="text-white/40 text-sm hover:text-[#B08D57] transition">신상품</a></li><li><a href="#" class="text-white/40 text-sm hover:text-[#B08D57] transition">컬렉션</a></li><li><a href="#" class="text-white/40 text-sm hover:text-[#B08D57] transition">룩북</a></li></ul>
+          </div>
+          <div>
+            <p class="text-[10px] font-semibold text-white/15 uppercase tracking-[0.3em] mb-4">Info</p>
+            <ul class="space-y-2.5"><li><a href="#" class="text-white/40 text-sm hover:text-[#B08D57] transition">브랜드</a></li><li><a href="#" class="text-white/40 text-sm hover:text-[#B08D57] transition">매장 안내</a></li><li><a href="#" class="text-white/40 text-sm hover:text-[#B08D57] transition">고객센터</a></li></ul>
+          </div>
+        </div>
+        <div>
+          <p class="text-[10px] font-semibold text-white/15 uppercase tracking-[0.3em] mb-4">Follow</p>
+          <div class="flex gap-3">
+            <a href="#" class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white/40 hover:text-[#B08D57] transition"><i class="fab fa-instagram text-sm"></i></a>
+            <a href="#" class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white/40 hover:text-[#B08D57] transition"><i class="fab fa-pinterest-p text-sm"></i></a>
+          </div>
+        </div>
+      </div>
+      <div class="border-t border-white/5 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+        <p class="text-[10px] text-white/10 tracking-[0.3em] uppercase">&copy; 2026 ATELIER SEOUL. All rights reserved by DLAB.</p>
+        <div class="flex gap-6"><a href="#" class="text-[10px] text-white/10 tracking-[0.2em] uppercase hover:text-white/30 transition">개인정보처리방침</a><a href="#" class="text-[10px] text-white/10 tracking-[0.2em] uppercase hover:text-white/30 transition">이용약관</a></div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ========== Login Modal ========== -->
+  <div id="cloth-modal" class="fixed inset-0 z-[100] hidden items-center justify-center p-4 bg-[#2C2C2C]/20 backdrop-blur-3xl">
+    <div class="bg-[#F5F5F0] w-full max-w-sm p-8 md:p-12 shadow-2xl relative">
+      <button onclick="toggleClothModal()" class="absolute top-6 right-6 text-[#2C2C2C]/30 hover:text-[#B08D57] transition text-2xl">&times;</button>
+      <div class="text-center mb-10">
+        <span class="font-cormorant text-2xl font-semibold tracking-[0.15em]">ATELIER</span>
+        <p class="text-[10px] text-[#B08D57] font-semibold tracking-[0.5em] uppercase mt-1">Seoul</p>
+      </div>
+      <div class="space-y-4">
+        <input type="text" placeholder="이메일" class="w-full bg-white border border-[#B08D57]/10 py-4 px-5 outline-none focus:ring-1 focus:ring-[#B08D57]/20 text-[13px]">
+        <input type="password" placeholder="비밀번호" class="w-full bg-white border border-[#B08D57]/10 py-4 px-5 outline-none focus:ring-1 focus:ring-[#B08D57]/20 text-[13px]">
+        <button class="w-full bg-[#2C2C2C] text-white py-4 font-semibold text-[10px] uppercase tracking-[0.4em] hover:bg-[#B08D57] mt-2">로그인</button>
+        <div class="flex justify-center gap-8 pt-2">
+          <a href="#" class="text-[11px] text-[#2C2C2C]/30 font-semibold hover:text-[#B08D57] transition">회원가입</a>
+          <a href="#" class="text-[11px] text-[#2C2C2C]/30 font-semibold hover:text-[#B08D57] transition">비밀번호 찾기</a>
         </div>
       </div>
     </div>
   </div>
-
-  <footer class="py-24 md:py-40 bg-[#F5F5F4] text-center px-6 border-t border-[#292524]/5">
-     <div class="inline-flex flex-col items-center gap-12 mb-12">
-        <span class="font-serif-display text-3xl tracking-wide uppercase text-[#292524]">Mode Seoul</span>
-        <div class="w-12 h-[1px] bg-[#292524]/20"></div>
-        <span class="text-[10px] font-semibold text-[#292524]/30 tracking-[0.4em] uppercase">Minimalism Culture</span>
-     </div>
-     <p class="text-[10px] text-[#292524]/20 tracking-[1em] uppercase px-6">© 2024 MODE SEOUL ATELIER. ALL RIGHTS RESERVED.</p>
-  </footer>
-
-  <script>
-    function toggleModeModal() {
-      const modal = document.getElementById('mode-modal');
-      modal.classList.toggle('hidden');
-      modal.classList.toggle('flex');
-    }
-  </script>
-
 </div>
+
+<script>
+  function toggleClothModal() { const m = document.getElementById('cloth-modal'); m.classList.toggle('hidden'); m.classList.toggle('flex'); }
+  document.getElementById('cloth-modal').addEventListener('click', function(e) { if (e.target === this) toggleClothModal(); });
+  (function() {
+    const observer = new IntersectionObserver(function(entries) { entries.forEach(function(entry) { if (entry.isIntersecting) { entry.target.classList.add('is-visible'); observer.unobserve(entry.target); } }); }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+    document.querySelectorAll('.reveal').forEach(function(el) { observer.observe(el); });
+  })();
+</script>

@@ -1,165 +1,667 @@
-<%# Rental Template - 고카 렌터카 (RENT-ALL) %>
+<%# Rental Template — SPACE ON (렌탈/공간대여) %>
 
 <style>
-  /* Supanova Design Upgrade */
+  /* Supanova Design — Clean Modern Archetype */
   * { word-break: keep-all; }
-  html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+  html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
   h1, h2, h3, h4 { text-wrap: balance; letter-spacing: -0.02em; line-height: 1.3; }
-  a, button { transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1); }
+  a, button { transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1); }
   a:hover, button:hover { transform: scale(1.02); }
   a:active, button:active { transform: scale(0.98); }
 
-  @import url('https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,300..900;1,300..900&family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap');
-  
-  .font-display { font-family: 'Jost', sans-serif; }
-  .font-sans { font-family: 'Pretendard Variable', 'Pretendard', -apple-system, sans-serif; }
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+
+  .font-sans { font-family: 'Inter', 'Pretendard Variable', -apple-system, sans-serif; }
 
   @media (max-width: 768px) {
     .mobile-desc { font-size: 14px !important; line-height: 1.8; }
-    .mobile-title { font-size: 40px !important; }
+    .mobile-title { font-size: 32px !important; }
   }
 
-  .speed-pattern {
-    background-image: repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(37, 99, 235, 0.03) 10px, rgba(37, 99, 235, 0.03) 20px);
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(2rem); filter: blur(4px); }
+    to { opacity: 1; transform: translateY(0); filter: blur(0); }
   }
+  .reveal {
+    opacity: 0;
+    transform: translateY(2rem);
+  }
+  .reveal.is-visible {
+    animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    animation-delay: calc(var(--delay, 0) * 100ms);
+  }
+
+  .space-card { transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1); }
+  .space-card:hover { transform: translateY(-8px); box-shadow: 0 20px 60px rgba(59, 130, 246, 0.1); }
+  .space-card:hover img { transform: scale(1.05); }
+
+  .review-card { transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); }
+  .review-card:hover { transform: translateY(-4px); }
+
+  .option-card { transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); }
+  .option-card:hover { transform: translateY(-4px); border-color: #3B82F6; }
 </style>
 
-<div class="bg-slate-50 text-slate-900 font-sans selection:bg-blue-600 selection:text-white min-h-screen overflow-x-hidden relative speed-pattern">
+<div class="bg-[#FAFAFA] text-[#1F2937] font-sans selection:bg-[#3B82F6] selection:text-white min-h-screen overflow-x-hidden relative">
 
-  <!-- Nav -->
-  <nav class="fixed w-full z-50 px-8 py-6 bg-white/80 backdrop-blur-xl border-b border-blue-100">
-    <div class="container mx-auto px-4 md:px-6 flex justify-between items-center flex-nowrap">
-      <div class="flex items-center gap-3">
-         <div class="w-8 h-8 max-h-8 max-w-[35%] shrink object-contain rounded-full border-2 border-blue-600 flex items-center justify-center text-blue-600 font-semibold text-xs italic">
-            R
-         </div>
-         <span class="font-display text-2xl font-semibold tracking-tight uppercase text-slate-900 italic">Rent<span class="text-blue-600">All</span></span>
-      </div>
-      
-      <div class="hidden md:flex gap-16 text-[11px] font-semibold uppercase tracking-[0.2em] text-slate-400">
-        <a href="#vehicles" class="hover:text-blue-600 transition">Vehicles</a>
-        <a href="#locations" class="hover:text-blue-600 transition">Locations</a>
-        <a href="#business" class="hover:text-blue-600 transition">Business</a>
-      </div>
-           <button class="mobile-menu-trigger md:hidden ml-auto text-2xl focus:outline-none" style="color: inherit;">
-             <i class="fas fa-bars"></i>
-           </button>
+  <!-- ========== Nav ========== -->
+  <nav class="fixed w-full z-50 px-4 md:px-8 py-5 bg-[#FAFAFA]/90 backdrop-blur-xl border-b border-[#1F2937]/5">
+    <div class="max-w-7xl mx-auto flex justify-between items-center">
+      <a href="#" class="flex items-center gap-2">
+        <span class="w-8 h-8 bg-[#3B82F6] rounded-lg flex items-center justify-center text-white font-black text-sm">S</span>
+        <span class="text-xl font-extrabold tracking-tight text-[#1F2937]">SPACE ON</span>
+      </a>
 
-      
-      <div class="flex-nowrap shrink-0 flex gap-10 items-center">
-         <button onclick="toggleRentalModal()" class="hidden md:block text-[11px] font-semibold uppercase tracking-[0.2em] text-slate-400 hover:text-blue-600" data-mobile-menu-copy="true">My Booking</button>
-         <button class="hidden md:inline-flex bg-blue-600 text-white px-4 py-2 text-xs md:text-base md:px-8 md:py-3 whitespace-nowrap rounded-lg font-semibold text-[11px] tracking-wide uppercase hover:bg-slate-900 transition shadow-xl shadow-blue-200" data-mobile-menu-copy="true">
-           Fast Track
-         </button>
+      <div class="hidden md:flex gap-10 text-[11px] font-semibold text-[#1F2937]/40">
+        <a href="#spaces" class="hover:text-[#3B82F6] transition">공간</a>
+        <a href="#equipment" class="hover:text-[#3B82F6] transition">장비/옵션</a>
+        <a href="#reviews" class="hover:text-[#3B82F6] transition">후기</a>
+        <a href="#location" class="hover:text-[#3B82F6] transition">위치</a>
+      </div>
+
+      <button class="mobile-menu-trigger md:hidden ml-auto text-2xl focus:outline-none text-[#1F2937]">
+        <i class="fas fa-bars"></i>
+      </button>
+
+      <div class="hidden md:flex gap-4 items-center shrink-0">
+        <button onclick="toggleRentalModal()" class="text-[11px] font-semibold text-[#1F2937]/40 hover:text-[#3B82F6]" data-mobile-menu-copy="true">로그인</button>
+        <a href="#booking" class="bg-[#3B82F6] text-white px-6 py-3 rounded-xl font-semibold text-[11px] hover:bg-[#1F2937] transition shadow-lg shadow-[#3B82F6]/20" data-mobile-menu-copy="true">
+          예약하기
+        </a>
       </div>
     </div>
 
-      <%= render partial: 'templates/shared/mobile_menu_overlay' %></nav>
+    <%= render partial: 'templates/shared/mobile_menu_overlay' %>
+  </nav>
 
-  <!-- Hero -->
-  <header class="min-h-screen relative flex items-center justify-center pt-20">
-    <!-- Dynamic Background Element -->
-    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] bg-blue-100/50 rounded-full blur-[100px] -z-10 skew-x-12"></div>
-    
-    <div class="container mx-auto px-3 md:px-6 relative z-10 grid lg:grid-cols-2 gap-10 md:p-16 items-center">
-      <div class="space-y-10 text-center lg:text-left order-2 lg:order-1">
-        <div class="inline-flex items-center gap-2 bg-white border border-blue-100 px-4 py-1.5 rounded-lg shadow-sm text-blue-600">
-           <span class="font-semibold text-xs">⚡</span>
-           <span class="text-[10px] font-semibold tracking-wide uppercase">Premium Mobility Service</span>
+  <!-- ========== 1. Hero ========== -->
+  <header class="min-h-screen relative flex items-center pt-20">
+    <div class="max-w-7xl mx-auto px-6 md:px-10 w-full grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+      <div class="space-y-8">
+        <div class="reveal inline-flex items-center gap-3 bg-[#3B82F6]/5 rounded-full px-4 py-2">
+          <span class="w-2 h-2 rounded-full bg-[#3B82F6] animate-pulse"></span>
+          <span class="text-[11px] font-semibold text-[#3B82F6]">공간대여 전문 플랫폼</span>
         </div>
-        
-        <h1 class="text-2xl md:text-4xl md:text-7xl font-display font-semibold leading-[0.9] tracking-tight text-slate-900 mobile-title italic">
-           Drive<br>
-           <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-700 to-blue-400">Your Freedom.</span>
+
+        <h1 class="reveal text-4xl md:text-6xl font-black leading-[1.1] tracking-tight mobile-title" style="--delay:1">
+          당신의 아이디어에<br>
+          <span class="text-[#3B82F6]">공간을 더하다.</span>
         </h1>
-        
-        <p class="text-slate-500 text-sm md:text-xl leading-relaxed max-w-lg mx-auto lg:mx-0 mobile-desc font-medium">
-           더 자유롭고, 더 감각적인 여정의 시작. 전 차량 3년 미만 신차 출고, 최상의 컨디션으로 당신의 드라이빙을 완성합니다.
+
+        <p class="reveal text-[#1F2937]/50 text-sm md:text-base leading-[2] max-w-md mobile-desc" style="--delay:2">
+          촬영, 세미나, 파티, 워크숍 등 다양한 목적에 맞는<br class="hidden md:block">
+          프리미엄 공간을 시간 단위로 합리적으로 이용하세요.
         </p>
-        
-        <!-- Searchbox -->
-        <div class="bg-white p-2 rounded-2xl shadow-2xl shadow-blue-100/50 flex flex-col items-center gap-2 border border-blue-50 max-w-md mx-auto lg:mx-0">
-           <div class="flex w-full divide-x divide-slate-100 p-2">
-              <div class="flex-1 px-4">
-                 <p class="text-[9px] font-semibold text-slate-400 uppercase tracking-wide mb-1">Pick-up</p>
-                 <p class="font-semibold text-slate-800 text-sm">Seoul, Guro</p>
-              </div>
-              <div class="flex-1 px-4">
-                 <p class="text-[9px] font-semibold text-slate-400 uppercase tracking-wide mb-1">Date</p>
-                 <p class="font-semibold text-slate-800 text-sm">Today, 10:00</p>
-              </div>
-           </div>
-           <button class="w-full bg-slate-900 text-white rounded-xl py-4 font-semibold text-[11px] tracking-wide uppercase hover:bg-blue-600 transition">
-              Search Available Cars
-           </button>
+
+        <div class="reveal flex flex-wrap gap-3 pt-4" style="--delay:3">
+          <a href="#spaces" class="bg-[#3B82F6] text-white px-8 py-4 rounded-xl font-semibold text-[11px] hover:bg-[#1F2937] transition shadow-lg shadow-[#3B82F6]/20">
+            공간 둘러보기
+          </a>
+          <a href="#booking" class="border border-[#3B82F6]/20 text-[#3B82F6] px-8 py-4 rounded-xl font-semibold text-[11px] hover:bg-[#3B82F6]/5 transition">
+            견적 문의
+          </a>
+        </div>
+
+        <!-- Trust badges -->
+        <div class="reveal flex flex-wrap gap-6 pt-8" style="--delay:4">
+          <div class="flex items-center gap-2">
+            <span class="text-[#3B82F6]"><i class="fas fa-check-circle"></i></span>
+            <span class="text-xs text-[#1F2937]/40">당일 예약 가능</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <span class="text-[#3B82F6]"><i class="fas fa-check-circle"></i></span>
+            <span class="text-xs text-[#1F2937]/40">시간 단위 결제</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <span class="text-[#3B82F6]"><i class="fas fa-check-circle"></i></span>
+            <span class="text-xs text-[#1F2937]/40">무료 주차 50대</span>
+          </div>
         </div>
       </div>
-      
-      <div class="relative order-1 lg:order-2">
-         <img src="https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?q=80&w=1200" alt="Car" class="w-full object-contain drop-shadow-2xl transform hover:scale-105 transition duration-700">
-         <div class="absolute -bottom-10 right-0 bg-white/80 backdrop-blur-md px-8 py-4 rounded-xl border border-white/50 shadow-lg hidden lg:block">
-            <p class="text-[10px] font-semibold text-slate-400 uppercase tracking-wide mb-1">Featured Model</p>
-            <p class="text-xl font-semibold text-slate-900 italic">Tesla Model 3</p>
-            <div class="mt-2 flex gap-2">
-               <span class="px-2 py-0.5 bg-blue-100 text-blue-700 text-[9px] font-semibold rounded">Electric</span>
-               <span class="px-2 py-0.5 bg-slate-100 text-slate-600 text-[9px] font-semibold rounded">Autopilot</span>
+
+      <div class="reveal relative" style="--delay:2">
+        <div class="aspect-[4/3] rounded-3xl overflow-hidden shadow-2xl shadow-[#3B82F6]/10">
+          <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=1200&auto=format" alt="SPACE ON" class="w-full h-full object-cover">
+        </div>
+        <div class="absolute -bottom-5 -right-5 bg-white rounded-2xl p-5 shadow-xl border border-[#1F2937]/5">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 bg-[#3B82F6]/10 rounded-xl flex items-center justify-center text-[#3B82F6]">
+              <i class="fas fa-star"></i>
             </div>
-         </div>
+            <div>
+              <p class="font-bold text-sm">4.8 / 5.0</p>
+              <p class="text-[10px] text-[#1F2937]/40">1,200+ 이용 후기</p>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </header>
 
-  <!-- Login Modal -->
-  <div id="rental-modal" class="fixed inset-0 z-[100] hidden items-center justify-center p-4 bg-slate-900/40 backdrop-blur-2xl">
-    <div class="bg-white w-full max-w-sm p-12 shadow-2xl relative rounded-[2.5rem]">
-      <button onclick="toggleRentalModal()" class="absolute top-8 right-8 text-slate-300 hover:text-blue-600 transition text-2xl font-light">&times;</button>
-      
-      <div class="text-center mb-10">
-        <h2 class="text-xl font-display font-semibold tracking-tight text-slate-900 mb-2 uppercase italic">Member Hub</h2>
-        <p class="text-[9px] text-blue-600 font-semibold tracking-[0.2em] uppercase">Rent-All Mobility Access</p>
+  <!-- ========== 2. 공간 소개 (4종) ========== -->
+  <section id="spaces" class="py-24 md:py-40 px-6 md:px-10">
+    <div class="max-w-7xl mx-auto">
+      <div class="text-center mb-20 reveal">
+        <span class="text-[11px] font-semibold text-[#3B82F6]">Our Spaces</span>
+        <h2 class="text-3xl md:text-4xl font-black mt-3 tracking-tight">목적에 맞는 최적의 공간</h2>
+        <p class="text-[#1F2937]/40 text-sm mt-4 max-w-lg mx-auto">모든 공간은 고속 와이파이, 에어컨, 음향 시스템이 기본 제공됩니다.</p>
       </div>
-      
-      <div class="space-y-6">
-        <div class="space-y-2">
-           <p class="text-[9px] font-semibold text-slate-400 uppercase tracking-wide ml-2">License / Mobile</p>
-           <input type="text" placeholder="010-XXXX-XXXX" class="w-full bg-slate-50 border-none rounded-2xl py-5 px-6 outline-none focus:ring-2 focus:ring-blue-100 transition text-[11px] font-semibold tracking-wide text-slate-800">
-        </div>
-        <button class="w-full bg-blue-600 text-white py-5 rounded-2xl text-[10px] tracking-[0.4em] font-semibold uppercase hover:bg-slate-900 transition shadow-xl shadow-blue-200">
-           Fast Login
-        </button>
-        <div class="flex justify-center gap-12 pt-4">
-           <a href="#" class="text-[9px] text-slate-400 tracking-[0.2em] font-semibold uppercase hover:text-blue-600 transition">Join Membership</a>
-           <a href="#" class="text-[9px] text-slate-400 tracking-[0.2em] font-semibold uppercase hover:text-blue-600 transition">Lookup Reservation</a>
-        </div>
-      </div>
-      
-      <div class="mt-8 pt-6 border-t border-slate-100">
-         <div class="flex justify-between items-center px-2">
-            <span class="text-[9px] font-semibold text-slate-400 uppercase tracking-wide">Connect With</span>
-            <div class="flex gap-2">
-               <button class="w-8 h-8 max-h-8 max-w-[35%] shrink object-contain rounded-full bg-yellow-400 flex items-center justify-center font-semibold text-xs">K</button>
-               <button class="w-8 h-8 max-h-8 max-w-[35%] shrink object-contain rounded-full bg-green-500 flex items-center justify-center font-semibold text-xs text-white">N</button>
+
+      <div class="grid md:grid-cols-2 gap-6">
+        <!-- 스튜디오 A -->
+        <div class="space-card bg-white rounded-2xl overflow-hidden shadow-sm border border-[#1F2937]/5 reveal" style="--delay:0">
+          <div class="aspect-[16/10] overflow-hidden relative">
+            <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=1000&auto=format" alt="스튜디오 A" class="w-full h-full object-cover transition-transform duration-700">
+            <div class="absolute top-4 left-4 bg-[#3B82F6] text-white px-3 py-1.5 rounded-lg text-[10px] font-bold">인기</div>
+          </div>
+          <div class="p-7">
+            <div class="flex justify-between items-start">
+              <div>
+                <div class="flex items-center gap-2 mb-2">
+                  <span class="w-2 h-2 rounded-full bg-[#3B82F6]"></span>
+                  <span class="text-[10px] font-semibold text-[#3B82F6]">STUDIO A</span>
+                </div>
+                <h3 class="text-lg font-bold">촬영 스튜디오</h3>
+                <p class="text-[#1F2937]/40 text-sm mt-2 leading-relaxed">
+                  80m² · 자연광 대형 창 · 화이트/그레이 월 · 최대 20인
+                </p>
+              </div>
+              <div class="text-right shrink-0 ml-4">
+                <span class="text-xl font-black text-[#3B82F6]">₩50,000</span>
+                <span class="block text-[10px] text-[#1F2937]/30">/ 시간</span>
+              </div>
             </div>
-         </div>
+            <div class="flex gap-2 mt-5 flex-wrap">
+              <span class="px-3 py-1 bg-[#3B82F6]/5 text-[#3B82F6] rounded-lg text-[10px] font-medium">자연광</span>
+              <span class="px-3 py-1 bg-[#3B82F6]/5 text-[#3B82F6] rounded-lg text-[10px] font-medium">조명</span>
+              <span class="px-3 py-1 bg-[#3B82F6]/5 text-[#3B82F6] rounded-lg text-[10px] font-medium">탈의실</span>
+              <span class="px-3 py-1 bg-[#3B82F6]/5 text-[#3B82F6] rounded-lg text-[10px] font-medium">메이크업존</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 세미나룸 -->
+        <div class="space-card bg-white rounded-2xl overflow-hidden shadow-sm border border-[#1F2937]/5 reveal" style="--delay:1">
+          <div class="aspect-[16/10] overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1517502884422-41eaead166d4?q=80&w=1000&auto=format" alt="세미나룸" class="w-full h-full object-cover transition-transform duration-700">
+          </div>
+          <div class="p-7">
+            <div class="flex justify-between items-start">
+              <div>
+                <div class="flex items-center gap-2 mb-2">
+                  <span class="w-2 h-2 rounded-full bg-[#3B82F6]"></span>
+                  <span class="text-[10px] font-semibold text-[#3B82F6]">SEMINAR</span>
+                </div>
+                <h3 class="text-lg font-bold">세미나 & 컨퍼런스</h3>
+                <p class="text-[#1F2937]/40 text-sm mt-2 leading-relaxed">
+                  120m² · 대형 스크린 · 마이크 시스템 · 최대 60인
+                </p>
+              </div>
+              <div class="text-right shrink-0 ml-4">
+                <span class="text-xl font-black text-[#3B82F6]">₩80,000</span>
+                <span class="block text-[10px] text-[#1F2937]/30">/ 시간</span>
+              </div>
+            </div>
+            <div class="flex gap-2 mt-5 flex-wrap">
+              <span class="px-3 py-1 bg-[#3B82F6]/5 text-[#3B82F6] rounded-lg text-[10px] font-medium">프로젝터</span>
+              <span class="px-3 py-1 bg-[#3B82F6]/5 text-[#3B82F6] rounded-lg text-[10px] font-medium">마이크</span>
+              <span class="px-3 py-1 bg-[#3B82F6]/5 text-[#3B82F6] rounded-lg text-[10px] font-medium">화이트보드</span>
+              <span class="px-3 py-1 bg-[#3B82F6]/5 text-[#3B82F6] rounded-lg text-[10px] font-medium">케이터링</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 파티룸 -->
+        <div class="space-card bg-white rounded-2xl overflow-hidden shadow-sm border border-[#1F2937]/5 reveal" style="--delay:2">
+          <div class="aspect-[16/10] overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1519167758481-83f550bb49b3?q=80&w=1000&auto=format" alt="파티룸" class="w-full h-full object-cover transition-transform duration-700">
+          </div>
+          <div class="p-7">
+            <div class="flex justify-between items-start">
+              <div>
+                <div class="flex items-center gap-2 mb-2">
+                  <span class="w-2 h-2 rounded-full bg-[#3B82F6]"></span>
+                  <span class="text-[10px] font-semibold text-[#3B82F6]">PARTY</span>
+                </div>
+                <h3 class="text-lg font-bold">파티 & 이벤트</h3>
+                <p class="text-[#1F2937]/40 text-sm mt-2 leading-relaxed">
+                  100m² · DJ 부스 · 미러볼 · 주방 · 최대 40인
+                </p>
+              </div>
+              <div class="text-right shrink-0 ml-4">
+                <span class="text-xl font-black text-[#3B82F6]">₩70,000</span>
+                <span class="block text-[10px] text-[#1F2937]/30">/ 시간</span>
+              </div>
+            </div>
+            <div class="flex gap-2 mt-5 flex-wrap">
+              <span class="px-3 py-1 bg-[#3B82F6]/5 text-[#3B82F6] rounded-lg text-[10px] font-medium">음향</span>
+              <span class="px-3 py-1 bg-[#3B82F6]/5 text-[#3B82F6] rounded-lg text-[10px] font-medium">주방</span>
+              <span class="px-3 py-1 bg-[#3B82F6]/5 text-[#3B82F6] rounded-lg text-[10px] font-medium">루프탑</span>
+              <span class="px-3 py-1 bg-[#3B82F6]/5 text-[#3B82F6] rounded-lg text-[10px] font-medium">포토존</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 코워킹 -->
+        <div class="space-card bg-white rounded-2xl overflow-hidden shadow-sm border border-[#1F2937]/5 reveal" style="--delay:3">
+          <div class="aspect-[16/10] overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1527192491265-7e15c55b1ed2?q=80&w=1000&auto=format" alt="코워킹" class="w-full h-full object-cover transition-transform duration-700">
+          </div>
+          <div class="p-7">
+            <div class="flex justify-between items-start">
+              <div>
+                <div class="flex items-center gap-2 mb-2">
+                  <span class="w-2 h-2 rounded-full bg-[#3B82F6]"></span>
+                  <span class="text-[10px] font-semibold text-[#3B82F6]">CO-WORK</span>
+                </div>
+                <h3 class="text-lg font-bold">코워킹 스페이스</h3>
+                <p class="text-[#1F2937]/40 text-sm mt-2 leading-relaxed">
+                  60m² · 개별 데스크 · 회의실 · 프린터 · 최대 15인
+                </p>
+              </div>
+              <div class="text-right shrink-0 ml-4">
+                <span class="text-xl font-black text-[#3B82F6]">₩15,000</span>
+                <span class="block text-[10px] text-[#1F2937]/30">/ 시간</span>
+              </div>
+            </div>
+            <div class="flex gap-2 mt-5 flex-wrap">
+              <span class="px-3 py-1 bg-[#3B82F6]/5 text-[#3B82F6] rounded-lg text-[10px] font-medium">모니터</span>
+              <span class="px-3 py-1 bg-[#3B82F6]/5 text-[#3B82F6] rounded-lg text-[10px] font-medium">프린터</span>
+              <span class="px-3 py-1 bg-[#3B82F6]/5 text-[#3B82F6] rounded-lg text-[10px] font-medium">커피</span>
+              <span class="px-3 py-1 bg-[#3B82F6]/5 text-[#3B82F6] rounded-lg text-[10px] font-medium">락커</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== 3. 장비/옵션 ========== -->
+  <section id="equipment" class="py-24 md:py-40 px-6 md:px-10 bg-white">
+    <div class="max-w-7xl mx-auto">
+      <div class="text-center mb-20 reveal">
+        <span class="text-[11px] font-semibold text-[#3B82F6]">Equipment & Options</span>
+        <h2 class="text-3xl md:text-4xl font-black mt-3 tracking-tight">추가 장비 & 옵션</h2>
+        <p class="text-[#1F2937]/40 text-sm mt-4">필요에 따라 추가 장비를 대여하실 수 있습니다.</p>
+      </div>
+
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
+        <div class="option-card bg-[#FAFAFA] rounded-2xl p-6 text-center border border-transparent reveal" style="--delay:0">
+          <span class="text-3xl text-[#3B82F6]"><i class="fas fa-video"></i></span>
+          <h4 class="font-bold text-sm mt-4">카메라 장비</h4>
+          <p class="text-[#1F2937]/40 text-xs mt-2">삼각대, 조명, 배경지</p>
+          <p class="text-[#3B82F6] font-bold text-sm mt-3">₩30,000~</p>
+        </div>
+        <div class="option-card bg-[#FAFAFA] rounded-2xl p-6 text-center border border-transparent reveal" style="--delay:1">
+          <span class="text-3xl text-[#3B82F6]"><i class="fas fa-desktop"></i></span>
+          <h4 class="font-bold text-sm mt-4">프레젠테이션</h4>
+          <p class="text-[#1F2937]/40 text-xs mt-2">빔프로젝터, 스크린, 포인터</p>
+          <p class="text-[#3B82F6] font-bold text-sm mt-3">₩20,000~</p>
+        </div>
+        <div class="option-card bg-[#FAFAFA] rounded-2xl p-6 text-center border border-transparent reveal" style="--delay:2">
+          <span class="text-3xl text-[#3B82F6]"><i class="fas fa-music"></i></span>
+          <h4 class="font-bold text-sm mt-4">음향 시스템</h4>
+          <p class="text-[#1F2937]/40 text-xs mt-2">스피커, 마이크, 앰프</p>
+          <p class="text-[#3B82F6] font-bold text-sm mt-3">₩40,000~</p>
+        </div>
+        <div class="option-card bg-[#FAFAFA] rounded-2xl p-6 text-center border border-transparent reveal" style="--delay:3">
+          <span class="text-3xl text-[#3B82F6]"><i class="fas fa-utensils"></i></span>
+          <h4 class="font-bold text-sm mt-4">케이터링</h4>
+          <p class="text-[#1F2937]/40 text-xs mt-2">커피, 다과, 도시락</p>
+          <p class="text-[#3B82F6] font-bold text-sm mt-3">₩10,000~/인</p>
+        </div>
+        <div class="option-card bg-[#FAFAFA] rounded-2xl p-6 text-center border border-transparent reveal" style="--delay:4">
+          <span class="text-3xl text-[#3B82F6]"><i class="fas fa-chair"></i></span>
+          <h4 class="font-bold text-sm mt-4">가구 세팅</h4>
+          <p class="text-[#1F2937]/40 text-xs mt-2">테이블, 의자, 소파</p>
+          <p class="text-[#3B82F6] font-bold text-sm mt-3">₩20,000~</p>
+        </div>
+        <div class="option-card bg-[#FAFAFA] rounded-2xl p-6 text-center border border-transparent reveal" style="--delay:5">
+          <span class="text-3xl text-[#3B82F6]"><i class="fas fa-camera-retro"></i></span>
+          <h4 class="font-bold text-sm mt-4">포토 프롭</h4>
+          <p class="text-[#1F2937]/40 text-xs mt-2">소품, 배경, 조화</p>
+          <p class="text-[#3B82F6] font-bold text-sm mt-3">₩15,000~</p>
+        </div>
+        <div class="option-card bg-[#FAFAFA] rounded-2xl p-6 text-center border border-transparent reveal" style="--delay:6">
+          <span class="text-3xl text-[#3B82F6]"><i class="fas fa-broom"></i></span>
+          <h4 class="font-bold text-sm mt-4">정리 서비스</h4>
+          <p class="text-[#1F2937]/40 text-xs mt-2">이용 후 전문 청소</p>
+          <p class="text-[#3B82F6] font-bold text-sm mt-3">₩50,000</p>
+        </div>
+        <div class="option-card bg-[#FAFAFA] rounded-2xl p-6 text-center border border-transparent reveal" style="--delay:7">
+          <span class="text-3xl text-[#3B82F6]"><i class="fas fa-user-tie"></i></span>
+          <h4 class="font-bold text-sm mt-4">매니저 배치</h4>
+          <p class="text-[#1F2937]/40 text-xs mt-2">현장 운영 매니저</p>
+          <p class="text-[#3B82F6] font-bold text-sm mt-3">₩30,000/h</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== 4. 이용 후기 ========== -->
+  <section id="reviews" class="py-24 md:py-40 px-6 md:px-10">
+    <div class="max-w-7xl mx-auto">
+      <div class="text-center mb-20 reveal">
+        <span class="text-[11px] font-semibold text-[#3B82F6]">Reviews</span>
+        <h2 class="text-3xl md:text-4xl font-black mt-3 tracking-tight">이용하신 분들의 후기</h2>
+        <div class="flex items-center justify-center gap-3 mt-6">
+          <div class="flex text-[#3B82F6]">
+            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+          </div>
+          <span class="text-sm text-[#1F2937]/50">4.8 / 5.0 (1,200건)</span>
+        </div>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-6">
+        <div class="review-card bg-white rounded-2xl p-7 border border-[#1F2937]/5 reveal" style="--delay:0">
+          <div class="flex items-center gap-3 mb-4">
+            <div class="w-10 h-10 rounded-xl bg-[#3B82F6]/10 flex items-center justify-center text-[#3B82F6] font-bold text-sm">김</div>
+            <div>
+              <p class="font-semibold text-sm">김태현</p>
+              <p class="text-[10px] text-[#1F2937]/30">촬영 스튜디오 이용 · 2024.11</p>
+            </div>
+          </div>
+          <div class="text-[#3B82F6] text-xs mb-3"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+          <p class="text-[#1F2937]/60 text-sm leading-relaxed">
+            자연광이 정말 좋아서 제품 촬영하기에 최적이었습니다.
+            장비 대여도 간편하고, 매니저분이 세팅 도와주셔서 편했어요.
+          </p>
+        </div>
+
+        <div class="review-card bg-white rounded-2xl p-7 border border-[#1F2937]/5 reveal" style="--delay:1">
+          <div class="flex items-center gap-3 mb-4">
+            <div class="w-10 h-10 rounded-xl bg-[#3B82F6]/10 flex items-center justify-center text-[#3B82F6] font-bold text-sm">이</div>
+            <div>
+              <p class="font-semibold text-sm">이수정</p>
+              <p class="text-[10px] text-[#1F2937]/30">세미나룸 이용 · 2024.10</p>
+            </div>
+          </div>
+          <div class="text-[#3B82F6] text-xs mb-3"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+          <p class="text-[#1F2937]/60 text-sm leading-relaxed">
+            40명 규모 세미나를 진행했는데, 음향과 빔프로젝터 퀄리티가 훌륭했습니다.
+            주차장도 넉넉하고 교통도 편리해서 참석자분들 만족도가 높았어요.
+          </p>
+        </div>
+
+        <div class="review-card bg-white rounded-2xl p-7 border border-[#1F2937]/5 reveal" style="--delay:2">
+          <div class="flex items-center gap-3 mb-4">
+            <div class="w-10 h-10 rounded-xl bg-[#3B82F6]/10 flex items-center justify-center text-[#3B82F6] font-bold text-sm">박</div>
+            <div>
+              <p class="font-semibold text-sm">박준서</p>
+              <p class="text-[10px] text-[#1F2937]/30">파티룸 이용 · 2024.09</p>
+            </div>
+          </div>
+          <div class="text-[#3B82F6] text-xs mb-3"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i></div>
+          <p class="text-[#1F2937]/60 text-sm leading-relaxed">
+            생일파티로 이용했는데 루프탑에서 야경이 정말 예뻤어요.
+            주방 시설도 잘 되어있고 DJ 부스 음향도 좋았습니다. 강추!
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== 5. 예약 ========== -->
+  <section id="booking" class="py-24 md:py-40 px-6 md:px-10 bg-[#1F2937]">
+    <div class="max-w-4xl mx-auto text-center">
+      <div class="reveal">
+        <span class="text-[11px] font-semibold text-[#3B82F6]">Reservation</span>
+        <h2 class="text-3xl md:text-5xl font-black mt-3 text-white tracking-tight">공간 예약하기</h2>
+        <p class="text-white/40 text-sm mt-6 max-w-md mx-auto">
+          원하시는 공간, 날짜, 시간을 선택하시면<br>
+          실시간으로 예약 가능 여부를 확인하실 수 있습니다.
+        </p>
+      </div>
+
+      <div class="reveal mt-12 bg-white rounded-3xl p-8 md:p-12 text-left" style="--delay:1">
+        <div class="grid md:grid-cols-2 gap-6">
+          <div>
+            <label class="text-[10px] font-semibold text-[#3B82F6] block mb-3">이용 날짜</label>
+            <input type="date" class="w-full border border-[#1F2937]/10 rounded-xl py-4 px-5 text-sm focus:border-[#3B82F6] outline-none transition bg-[#FAFAFA]">
+          </div>
+          <div>
+            <label class="text-[10px] font-semibold text-[#3B82F6] block mb-3">이용 시간</label>
+            <div class="grid grid-cols-2 gap-3">
+              <select class="border border-[#1F2937]/10 rounded-xl py-4 px-5 text-sm focus:border-[#3B82F6] outline-none transition bg-[#FAFAFA] appearance-none">
+                <option>09:00</option>
+                <option>10:00</option>
+                <option>11:00</option>
+                <option>12:00</option>
+                <option>13:00</option>
+                <option>14:00</option>
+              </select>
+              <select class="border border-[#1F2937]/10 rounded-xl py-4 px-5 text-sm focus:border-[#3B82F6] outline-none transition bg-[#FAFAFA] appearance-none">
+                <option>12:00</option>
+                <option>14:00</option>
+                <option>16:00</option>
+                <option>18:00</option>
+                <option>20:00</option>
+                <option>22:00</option>
+              </select>
+            </div>
+          </div>
+          <div>
+            <label class="text-[10px] font-semibold text-[#3B82F6] block mb-3">공간 선택</label>
+            <select class="w-full border border-[#1F2937]/10 rounded-xl py-4 px-5 text-sm focus:border-[#3B82F6] outline-none transition bg-[#FAFAFA] appearance-none">
+              <option value="">선택하세요</option>
+              <option>촬영 스튜디오 (Studio A)</option>
+              <option>세미나 & 컨퍼런스</option>
+              <option>파티 & 이벤트</option>
+              <option>코워킹 스페이스</option>
+            </select>
+          </div>
+          <div>
+            <label class="text-[10px] font-semibold text-[#3B82F6] block mb-3">인원</label>
+            <input type="number" placeholder="예상 인원수" min="1" class="w-full border border-[#1F2937]/10 rounded-xl py-4 px-5 text-sm focus:border-[#3B82F6] outline-none transition bg-[#FAFAFA]">
+          </div>
+        </div>
+        <div class="mt-6">
+          <label class="text-[10px] font-semibold text-[#3B82F6] block mb-3">추가 요청사항</label>
+          <textarea rows="3" placeholder="필요한 장비, 특이사항 등" class="w-full border border-[#1F2937]/10 rounded-xl py-4 px-5 text-sm focus:border-[#3B82F6] outline-none transition bg-[#FAFAFA] resize-none"></textarea>
+        </div>
+
+        <button class="w-full mt-8 bg-[#3B82F6] text-white py-4 rounded-xl font-bold text-sm hover:bg-[#1F2937] transition shadow-lg shadow-[#3B82F6]/20">
+          예약 가능 여부 확인
+        </button>
+
+        <div class="flex flex-wrap justify-center gap-6 mt-6 pt-6 border-t border-[#1F2937]/5">
+          <div class="flex items-center gap-2 text-[#1F2937]/40 text-xs">
+            <i class="fas fa-bolt text-[#3B82F6]"></i>
+            <span>즉시 확인</span>
+          </div>
+          <div class="flex items-center gap-2 text-[#1F2937]/40 text-xs">
+            <i class="fas fa-undo text-[#3B82F6]"></i>
+            <span>24시간 전 무료 취소</span>
+          </div>
+          <div class="flex items-center gap-2 text-[#1F2937]/40 text-xs">
+            <i class="fas fa-credit-card text-[#3B82F6]"></i>
+            <span>카드/계좌이체</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== 6. 위치 ========== -->
+  <section id="location" class="py-24 md:py-40 px-6 md:px-10">
+    <div class="max-w-7xl mx-auto">
+      <div class="grid lg:grid-cols-2 gap-16 items-center">
+        <div class="space-y-10 reveal">
+          <div>
+            <span class="text-[11px] font-semibold text-[#3B82F6]">Location</span>
+            <h2 class="text-3xl md:text-4xl font-black mt-3 tracking-tight">찾아오시는 길</h2>
+          </div>
+
+          <div class="space-y-6">
+            <div class="flex gap-4 items-start">
+              <span class="w-10 h-10 flex items-center justify-center bg-[#3B82F6]/10 text-[#3B82F6] rounded-xl text-sm shrink-0"><i class="fas fa-map-marker-alt"></i></span>
+              <div>
+                <h4 class="text-sm font-bold mb-1">주소</h4>
+                <p class="text-[#1F2937]/50 text-sm">서울특별시 성동구 성수이로 77, 3~5층</p>
+              </div>
+            </div>
+            <div class="flex gap-4 items-start">
+              <span class="w-10 h-10 flex items-center justify-center bg-[#3B82F6]/10 text-[#3B82F6] rounded-xl text-sm shrink-0"><i class="fas fa-subway"></i></span>
+              <div>
+                <h4 class="text-sm font-bold mb-1">지하철</h4>
+                <p class="text-[#1F2937]/50 text-sm">2호선 성수역 3번 출구 도보 5분<br>분당선 서울숲역 4번 출구 도보 8분</p>
+              </div>
+            </div>
+            <div class="flex gap-4 items-start">
+              <span class="w-10 h-10 flex items-center justify-center bg-[#3B82F6]/10 text-[#3B82F6] rounded-xl text-sm shrink-0"><i class="fas fa-parking"></i></span>
+              <div>
+                <h4 class="text-sm font-bold mb-1">주차</h4>
+                <p class="text-[#1F2937]/50 text-sm">건물 지하 주차장 50대 무료 (3시간)<br>추가 시간당 ₩3,000</p>
+              </div>
+            </div>
+            <div class="flex gap-4 items-start">
+              <span class="w-10 h-10 flex items-center justify-center bg-[#3B82F6]/10 text-[#3B82F6] rounded-xl text-sm shrink-0"><i class="fas fa-clock"></i></span>
+              <div>
+                <h4 class="text-sm font-bold mb-1">운영시간</h4>
+                <p class="text-[#1F2937]/50 text-sm">월~일 09:00 ~ 22:00 (연중무휴)<br>야간 이용 별도 문의</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="reveal" style="--delay:1">
+          <div class="aspect-video bg-[#E5E7EB] rounded-2xl overflow-hidden border border-[#1F2937]/5">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3163.0!2d127.056!3d37.544!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x357ca!2z7ISx7IiY!5e0!3m2!1sko!2skr!4v1" width="100%" height="100%" style="border:0; min-height:300px; border-radius:1rem;" allowfullscreen="" loading="lazy"></iframe>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== 7. CTA 배너 ========== -->
+  <section class="py-20 md:py-28 px-6 md:px-10 bg-[#3B82F6]">
+    <div class="max-w-4xl mx-auto text-center reveal">
+      <h2 class="text-2xl md:text-4xl font-black text-white tracking-tight">
+        특별한 공간이 필요하신가요?
+      </h2>
+      <p class="text-white/60 text-sm mt-4 max-w-md mx-auto">
+        대관, 장기 임대, 맞춤 세팅 등 특별한 요청도 환영합니다.<br>
+        전담 매니저가 상담해드립니다.
+      </p>
+      <div class="flex flex-wrap justify-center gap-4 mt-8">
+        <a href="tel:02-1234-5678" class="bg-white text-[#3B82F6] px-8 py-4 rounded-xl font-bold text-[11px] hover:bg-[#1F2937] hover:text-white transition">
+          <i class="fas fa-phone mr-2"></i>02-1234-5678
+        </a>
+        <a href="mailto:hello@spaceon.co.kr" class="border border-white/30 text-white px-8 py-4 rounded-xl font-semibold text-[11px] hover:bg-white/10 transition">
+          <i class="fas fa-envelope mr-2"></i>이메일 문의
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== 8. Footer ========== -->
+  <footer class="py-20 md:py-28 bg-[#1F2937] px-6 md:px-10">
+    <div class="max-w-7xl mx-auto">
+      <div class="grid md:grid-cols-4 gap-12 mb-16">
+        <div class="md:col-span-2">
+          <div class="flex items-center gap-2 mb-4">
+            <span class="w-8 h-8 bg-[#3B82F6] rounded-lg flex items-center justify-center text-white font-black text-sm">S</span>
+            <span class="text-xl font-extrabold text-white tracking-tight">SPACE ON</span>
+          </div>
+          <p class="text-white/30 text-sm leading-relaxed max-w-sm">
+            성수동의 프리미엄 공간 대여 플랫폼.
+            촬영, 세미나, 파티, 워크숍 등 다양한 목적에 맞는 공간을 제공합니다.
+          </p>
+          <div class="flex gap-3 mt-6">
+            <a href="#" class="w-9 h-9 flex items-center justify-center rounded-xl bg-white/5 text-white/40 hover:bg-[#3B82F6] hover:text-white transition text-sm"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="w-9 h-9 flex items-center justify-center rounded-xl bg-white/5 text-white/40 hover:bg-[#3B82F6] hover:text-white transition text-sm"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" class="w-9 h-9 flex items-center justify-center rounded-xl bg-white/5 text-white/40 hover:bg-[#3B82F6] hover:text-white transition text-sm"><i class="fas fa-blog"></i></a>
+          </div>
+        </div>
+
+        <div>
+          <h4 class="text-[10px] font-semibold text-[#3B82F6] mb-6">바로가기</h4>
+          <div class="space-y-3">
+            <a href="#spaces" class="block text-white/30 text-sm hover:text-[#3B82F6] transition">공간 안내</a>
+            <a href="#equipment" class="block text-white/30 text-sm hover:text-[#3B82F6] transition">장비/옵션</a>
+            <a href="#reviews" class="block text-white/30 text-sm hover:text-[#3B82F6] transition">이용 후기</a>
+            <a href="#booking" class="block text-white/30 text-sm hover:text-[#3B82F6] transition">예약하기</a>
+          </div>
+        </div>
+
+        <div>
+          <h4 class="text-[10px] font-semibold text-[#3B82F6] mb-6">연락처</h4>
+          <div class="space-y-3 text-white/30 text-sm">
+            <p>서울특별시 성동구<br>성수이로 77, 3~5층</p>
+            <p>02-1234-5678</p>
+            <p>hello@spaceon.co.kr</p>
+            <p>운영 09:00~22:00</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="border-t border-white/5 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+        <p class="text-[10px] text-white/10 tracking-[0.3em]">
+          &copy; 2024 SPACE ON. All rights reserved.
+        </p>
+        <div class="flex gap-6">
+          <a href="#" class="text-[10px] text-white/10 hover:text-white/30 transition">개인정보처리방침</a>
+          <a href="#" class="text-[10px] text-white/10 hover:text-white/30 transition">이용약관</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ========== Login Modal ========== -->
+  <div id="rental-modal" class="fixed inset-0 z-[100] hidden items-center justify-center p-4 bg-[#1F2937]/20 backdrop-blur-3xl">
+    <div class="bg-white w-full max-w-sm p-8 md:p-12 shadow-2xl relative rounded-3xl">
+      <button onclick="toggleRentalModal()" class="absolute top-6 right-6 w-8 h-8 rounded-xl bg-[#FAFAFA] flex items-center justify-center text-[#1F2937]/30 hover:text-[#3B82F6] transition text-lg">&times;</button>
+
+      <div class="text-center mb-10">
+        <div class="w-12 h-12 bg-[#3B82F6]/10 rounded-2xl flex items-center justify-center text-[#3B82F6] mx-auto mb-4">
+          <i class="fas fa-user"></i>
+        </div>
+        <h2 class="text-xl font-bold text-[#1F2937] mb-1">로그인</h2>
+        <p class="text-[10px] text-[#3B82F6] font-semibold">SPACE ON 회원</p>
+      </div>
+
+      <div class="space-y-4">
+        <input type="text" placeholder="이메일" class="w-full bg-[#FAFAFA] border-none rounded-xl py-4 px-5 outline-none focus:ring-2 focus:ring-[#3B82F6]/20 transition text-sm">
+        <input type="password" placeholder="비밀번호" class="w-full bg-[#FAFAFA] border-none rounded-xl py-4 px-5 outline-none focus:ring-2 focus:ring-[#3B82F6]/20 transition text-sm">
+        <button class="w-full bg-[#3B82F6] text-white py-4 rounded-xl text-sm font-bold hover:bg-[#1F2937] transition shadow-lg shadow-[#3B82F6]/20">
+          로그인
+        </button>
+        <div class="flex justify-center gap-6 pt-2">
+          <a href="#" class="text-[10px] text-[#1F2937]/40 font-semibold hover:text-[#3B82F6] transition">회원가입</a>
+          <a href="#" class="text-[10px] text-[#1F2937]/40 font-semibold hover:text-[#3B82F6] transition">비밀번호 찾기</a>
+        </div>
       </div>
     </div>
   </div>
 
-  <footer class="py-20 md:py-32 bg-white text-center px-6 border-t border-slate-100">
-     <div class="inline-flex items-center gap-10 mb-8">
-        <span class="font-display font-semibold text-2xl tracking-tight uppercase text-slate-900 italic">Rent<span class="text-blue-600">All</span></span>
-        <span class="w-12 h-[1px] bg-slate-100"></span>
-        <span class="text-[10px] font-semibold text-slate-400 tracking-[0.3em] uppercase">Mobility Solutions</span>
-     </div>
-     <p class="text-[10px] text-slate-300 tracking-[0.6em] uppercase px-6">© 2024 RENT-ALL. ALL RIGHTS RESERVED.</p>
-  </footer>
-
-  <script>
-    function toggleRentalModal() {
-      const modal = document.getElementById('rental-modal');
-      modal.classList.toggle('hidden');
-      modal.classList.toggle('flex');
-    }
-  </script>
-
 </div>
+
+<script>
+  // Modal
+  function toggleRentalModal() {
+    const modal = document.getElementById('rental-modal');
+    modal.classList.toggle('hidden');
+    modal.classList.toggle('flex');
+  }
+  document.getElementById('rental-modal').addEventListener('click', function(e) {
+    if (e.target === this) toggleRentalModal();
+  });
+
+  // IntersectionObserver
+  (function() {
+    const observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    });
+    document.querySelectorAll('.reveal').forEach(function(el) {
+      observer.observe(el);
+    });
+  })();
+</script>

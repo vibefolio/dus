@@ -1,170 +1,415 @@
-<%# Study Template - 라이브러리 원 (LIBRARY ONE) %>
+<%# Study Template - Focus Zone (스터디카페) %>
 
 <style>
-  /* Supanova Design Upgrade */
+  /* Supanova Design — Dark Study Cafe Archetype */
   * { word-break: keep-all; }
-  html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+  html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
   h1, h2, h3, h4 { text-wrap: balance; letter-spacing: -0.02em; line-height: 1.3; }
-  a, button { transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1); }
+  a, button { transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1); }
   a:hover, button:hover { transform: scale(1.02); }
   a:active, button:active { transform: scale(0.98); }
 
-  @import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap');
-  
-  .font-modern-serif { font-family: 'DM Serif Display', serif; }
-  .font-sans { font-family: 'Pretendard Variable', 'Pretendard', -apple-system, sans-serif; }
+  @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+
+  .font-sans { font-family: 'Pretendard Variable', 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, sans-serif; }
+  .font-space { font-family: 'Space Grotesk', sans-serif; }
 
   @media (max-width: 768px) {
     .mobile-desc { font-size: 14px !important; line-height: 1.8; }
-    .mobile-title { font-size: 40px !important; }
+    .mobile-title { font-size: 36px !important; }
   }
 
-  .paper-texture {
-    background: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.03'/%3E%3C/svg%3E");
-    opacity: 0.1;
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(2rem); filter: blur(4px); }
+    to { opacity: 1; transform: translateY(0); filter: blur(0); }
   }
+  .reveal { opacity: 0; transform: translateY(2rem); }
+  .reveal.is-visible { animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards; animation-delay: calc(var(--delay, 0) * 100ms); }
+
+  .seat-card { transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1); }
+  .seat-card:hover { transform: translateY(-8px); border-color: #E2B714; }
+  .gallery-item { transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1); }
+  .gallery-item:hover { transform: scale(1.02); }
+  .gallery-item:hover img { transform: scale(1.08); }
+
+  @keyframes glow { 0%, 100% { box-shadow: 0 0 20px rgba(226, 183, 20, 0.1); } 50% { box-shadow: 0 0 40px rgba(226, 183, 20, 0.2); } }
 </style>
 
-<div class="bg-[#F5F5F0] text-[#2D2D2A] font-sans selection:bg-[#4A5D44] selection:text-white min-h-screen overflow-x-hidden relative">
-  <div class="fixed inset-0 paper-texture pointer-events-none"></div>
+<div class="bg-[#1A1A2E] text-white font-sans selection:bg-[#E2B714] selection:text-[#1A1A2E] min-h-screen overflow-x-hidden">
 
-  <!-- Nav -->
-  <nav class="fixed w-full z-50 px-8 py-6 bg-[#F5F5F0]/90 backdrop-blur-md border-b border-[#4A5D44]/10">
-    <div class="container mx-auto px-4 md:px-6 flex justify-between items-center flex-nowrap">
-      <div class="flex items-center gap-2">
-         <span class="w-8 h-8 max-h-8 max-w-[35%] shrink object-contain bg-[#4A5D44] rounded-full flex items-center justify-center text-[#F5F5F0] font-modern-serif text-lg pt-1">L</span>
-         <span class="font-modern-serif text-xl tracking-tight text-[#2D2D2A]">Library<span class="text-[#4A5D44]">One</span></span>
-      </div>
-      
-      <div class="hidden md:flex gap-14 text-[12px] font-semibold tracking-[0.1em] text-[#8C8C85] uppercase">
-        <a href="#focus" class="hover:text-[#4A5D44] transition">Focus Zone</a>
-        <a href="#lounge" class="hover:text-[#4A5D44] transition"> Lounge</a>
-        <a href="#pricing" class="hover:text-[#4A5D44] transition">Seats</a>
-      </div>
-           <button class="mobile-menu-trigger md:hidden ml-auto text-2xl focus:outline-none" style="color: inherit;">
-             <i class="fas fa-bars"></i>
-           </button>
+  <!-- ========== Nav ========== -->
+  <nav class="fixed w-full z-50 px-4 md:px-8 py-5 bg-[#1A1A2E]/80 backdrop-blur-xl border-b border-[#E2B714]/10">
+    <div class="max-w-7xl mx-auto flex justify-between items-center">
+      <a href="#" class="flex items-center gap-3">
+        <div class="w-8 h-8 bg-[#E2B714] rounded-lg flex items-center justify-center">
+          <i class="fas fa-bolt text-[#1A1A2E] text-sm"></i>
+        </div>
+        <span class="font-space text-xl font-bold tracking-tight">Focus Zone</span>
+      </a>
 
-      
-      <div class="flex-nowrap shrink-0 flex gap-6 items-center">
-         <button onclick="toggleStudyModal()" class="hidden md:block text-[12px] font-semibold uppercase tracking-[0.1em] text-[#8C8C85] hover:text-[#4A5D44]" data-mobile-menu-copy="true">My Seat</button>
-         <button class="hidden md:inline-flex bg-[#4A5D44] text-[#F5F5F0] px-3 py-2 text-xs md:text-sm md:px-6 md:py-2.5 whitespace-nowrap rounded-sm lg:rounded-lg font-semibold text-[11px] tracking-wide uppercase hover:bg-[#3A4A35] transition shadow-lg shadow-[#4A5D44]/20" data-mobile-menu-copy="true">
-           Check In
-         </button>
+      <div class="hidden md:flex gap-10 text-[11px] font-semibold uppercase tracking-[0.3em] text-white/30">
+        <a href="#seats" class="hover:text-[#E2B714] transition">좌석</a>
+        <a href="#gallery" class="hover:text-[#E2B714] transition">시설</a>
+        <a href="#pricing" class="hover:text-[#E2B714] transition">요금</a>
+        <a href="#location" class="hover:text-[#E2B714] transition">위치</a>
+      </div>
+
+      <button class="mobile-menu-trigger md:hidden ml-auto text-2xl focus:outline-none" style="color: inherit;">
+        <i class="fas fa-bars"></i>
+      </button>
+
+      <div class="hidden md:flex gap-4 items-center shrink-0">
+        <button onclick="toggleStudyModal()" class="text-[11px] font-semibold text-white/30 hover:text-[#E2B714] tracking-[0.2em] uppercase" data-mobile-menu-copy="true">로그인</button>
+        <a href="#pricing" class="bg-[#E2B714] text-[#1A1A2E] px-7 py-3 rounded-full font-bold text-[11px] tracking-[0.2em] uppercase hover:bg-[#d4a912] shadow-lg shadow-[#E2B714]/20" data-mobile-menu-copy="true">좌석 예약</a>
       </div>
     </div>
 
-      <%= render partial: 'templates/shared/mobile_menu_overlay' %></nav>
+    <%= render partial: 'templates/shared/mobile_menu_overlay' %>
+  </nav>
 
-  <!-- Hero -->
-  <header class="min-h-screen relative flex items-center justify-center pt-24 overflow-hidden">
-    <!-- Calm Background Elements -->
-    <div class="absolute top-0 right-0 w-[40vw] h-[100vh] bg-[#EBEBE6] -z-10"></div>
-    <div class="absolute bottom-20 left-20 w-64 h-64 border border-[#4A5D44]/10 rounded-full animate-spin-slow"></div>
+  <!-- ========== Hero ========== -->
+  <header class="min-h-[100dvh] relative flex items-center pt-20">
+    <div class="absolute inset-0">
+      <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=1600" alt="스터디카페 배경" class="w-full h-full object-cover opacity-20" loading="eager">
+      <div class="absolute inset-0 bg-gradient-to-b from-[#1A1A2E]/80 via-[#1A1A2E]/60 to-[#1A1A2E]"></div>
+    </div>
+    <div class="absolute top-40 right-20 w-80 h-80 bg-[#E2B714]/5 rounded-full blur-[120px]"></div>
 
-    <div class="container mx-auto px-3 md:px-6 relative z-10 grid lg:grid-cols-2 gap-12 md:p-20 items-center">
-      <div class="space-y-12 text-center lg:text-left order-2 lg:order-1">
-        <div class="inline-flex items-center gap-3 border-l-2 border-[#4A5D44] pl-4">
-           <span class="text-[11px] font-semibold text-[#4A5D44] uppercase tracking-[0.2em]">Premium Study Lounge</span>
-        </div>
-        
-        <h1 class="text-2xl md:text-4xl md:text-6xl font-modern-serif font-normal leading-[1.1] text-[#2D2D2A] mobile-title">
-           Silence,<br>
-           Focus, and<br>
-           <span class="italic text-[#4A5D44]">Inspiration.</span>
-        </h1>
-        
-        <p class="text-[#8C8C85] text-sm md:text-lg leading-relaxed max-w-md mx-auto lg:mx-0 mobile-desc font-medium">
-           몰입의 깊이가 다른 공간. 라이브러리 원은 당신의 가장 집중된 시간을 디자인합니다.
-        </p>
-        
-        <div class="flex flex-col sm:flex-row gap-10 justify-center lg:justify-start pt-6">
-           <button class="px-10 py-4 bg-[#2D2D2A] text-[#F5F5F0] font-modern-serif text-lg hover:bg-[#4A5D44] transition shadow-xl">
-              Reserve Now
-           </button>
-           <button class="px-10 py-4 border border-[#4A5D44]/30 text-[#4A5D44] font-modern-serif text-lg hover:bg-[#4A5D44] hover:text-[#F5F5F0] transition">
-              View Spaces
-           </button>
-        </div>
-
-        <div class="pt-10 flex gap-12 justify-center lg:justify-start text-[#8C8C85] text-xs font-semibold uppercase tracking-wider">
-           <div class="flex items-center gap-2">
-              <span class="w-2 h-2 rounded-full bg-[#4A5D44]"></span> Silence Zone
-           </div>
-           <div class="flex items-center gap-2">
-              <span class="w-2 h-2 rounded-full bg-[#A3B19E]"></span> Cafe Lounge
-           </div>
-           <div class="flex items-center gap-2">
-              <span class="w-2 h-2 rounded-full bg-[#D4D4D0]"></span> Meeting Room
-           </div>
-        </div>
+    <div class="max-w-7xl mx-auto px-4 md:px-8 relative z-10 text-center">
+      <div class="inline-flex items-center gap-3 bg-[#E2B714]/10 rounded-full px-5 py-2 mb-8 reveal" style="--delay: 0;">
+        <span class="w-2 h-2 bg-[#E2B714] rounded-full animate-pulse"></span>
+        <span class="text-[11px] font-bold tracking-[0.3em] uppercase text-[#E2B714]">24시간 운영</span>
       </div>
-      
-      <div class="relative order-1 lg:order-2 flex justify-center h-full items-center">
-         <div class="relative w-[350px] md:w-[450px] aspect-[4/5]">
-            <div class="absolute inset-0 bg-[#4A5D44] transform translate-x-4 translate-y-4 -z-10"></div>
-            <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=800" alt="Quiet Study Space" class="w-full h-full object-cover grayscale-[20%] sepia-[10%] shadow-2xl">
-            
-            <div class="absolute -bottom-6 -left-10 bg-[#F5F5F0] p-6 border border-[#4A5D44]/10 shadow-lg max-w-[200px] hidden md:block">
-               <p class="font-modern-serif text-2xl text-[#2D2D2A]">24h</p>
-               <p class="text-[10px] uppercase font-semibold text-[#8C8C85] mt-1 tracking-wide">Open Every Day</p>
-            </div>
-         </div>
+
+      <h1 class="text-4xl md:text-6xl lg:text-[5.5rem] font-bold leading-tight tracking-tight mobile-title reveal" style="--delay: 1;">
+        집중의 시간,<br><span class="text-[#E2B714] font-space">Focus Zone.</span>
+      </h1>
+
+      <p class="text-white/40 text-base md:text-lg leading-relaxed max-w-xl mx-auto mt-8 mobile-desc reveal" style="--delay: 2;">
+        완벽한 집중 환경을 제공하는 프리미엄 스터디카페. 나만의 공간에서 목표에 한 발짝 더 가까워지세요.
+      </p>
+
+      <div class="flex flex-col sm:flex-row gap-4 justify-center mt-10 reveal" style="--delay: 3;">
+        <a href="#pricing" class="inline-flex items-center justify-center gap-3 px-10 py-5 bg-[#E2B714] text-[#1A1A2E] font-bold text-[12px] tracking-[0.2em] uppercase hover:bg-[#d4a912] rounded-full shadow-xl shadow-[#E2B714]/20">
+          좌석 예약하기 <i class="fas fa-arrow-right text-[10px]"></i>
+        </a>
+        <a href="#seats" class="inline-flex items-center justify-center gap-3 px-10 py-5 border border-white/10 text-white/60 font-semibold text-[12px] tracking-[0.2em] uppercase hover:border-[#E2B714]/30 rounded-full">
+          시설 둘러보기
+        </a>
+      </div>
+
+      <div class="grid grid-cols-4 gap-8 max-w-2xl mx-auto mt-16 reveal" style="--delay: 4;">
+        <div><p class="text-2xl md:text-3xl font-bold text-[#E2B714] font-space">24h</p><p class="text-[11px] text-white/30 mt-1">연중무휴</p></div>
+        <div><p class="text-2xl md:text-3xl font-bold text-[#E2B714] font-space">200+</p><p class="text-[11px] text-white/30 mt-1">좌석 수</p></div>
+        <div><p class="text-2xl md:text-3xl font-bold text-[#E2B714] font-space">30dB</p><p class="text-[11px] text-white/30 mt-1">정숙 환경</p></div>
+        <div><p class="text-2xl md:text-3xl font-bold text-[#E2B714] font-space">FREE</p><p class="text-[11px] text-white/30 mt-1">음료 무제한</p></div>
       </div>
     </div>
   </header>
-  
-  <style>
-     @keyframes spin-slow {
-        0% { transform: rotate(0deg); }
-        100% { transform: rotate(360deg); }
-     }
-     .animate-spin-slow { animation: spin-slow 20s linear infinite; }
-  </style>
 
-  <!-- Login Modal -->
-  <div id="study-modal" class="fixed inset-0 z-[100] hidden items-center justify-center p-4 bg-[#2D2D2A]/40 backdrop-blur-md">
-    <div class="bg-[#F5F5F0] w-full max-w-sm p-12 shadow-2xl relative border-t-4 border-[#4A5D44]">
-      <button onclick="toggleStudyModal()" class="absolute top-8 right-8 text-[#8C8C85] hover:text-[#4A5D44] transition text-2xl font-modern-serif">&times;</button>
-      
-      <div class="text-center mb-10">
-        <h2 class="text-2xl font-modern-serif text-[#2D2D2A] mb-2">Member Access</h2>
-        <p class="text-[10px] text-[#4A5D44] font-semibold tracking-[0.3em] uppercase">Private Study Lounge</p>
-      </div>
-      
-      <div class="space-y-6">
-        <div>
-           <label class="block text-[10px] font-semibold text-[#8C8C85] uppercase tracking-wide mb-2 ml-1">Phone Number</label>
-           <input type="text" placeholder="010-0000-0000" class="w-full bg-white border border-[#EBEBE6] py-3 px-5 outline-none focus:border-[#4A5D44] transition text-sm font-semibold text-[#2D2D2A] tracking-wide placeholder-[#D4D4D0]">
+  <!-- ========== About ========== -->
+  <section id="about" class="py-24 md:py-32">
+    <div class="max-w-7xl mx-auto px-4 md:px-8 grid lg:grid-cols-2 gap-16 lg:gap-24 items-center">
+      <div class="space-y-8 reveal" style="--delay: 0;">
+        <span class="inline-block rounded-full px-4 py-1.5 text-[11px] uppercase tracking-[0.15em] font-bold bg-[#E2B714]/10 text-[#E2B714]">About</span>
+        <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold leading-snug">
+          당신만의<br>완벽한 집중 공간
+        </h2>
+        <p class="text-white/40 text-base md:text-lg leading-relaxed">
+          Focus Zone은 학습에 최적화된 환경을 설계합니다. 방음 시설, 개인 조명, 고속 와이파이, 무료 음료까지. 오직 당신의 집중에만 신경 쓸 수 있도록 모든 것을 준비했습니다.
+        </p>
+        <div class="grid grid-cols-2 gap-4">
+          <div class="bg-white/5 rounded-2xl p-5 border border-white/5">
+            <i class="fas fa-wifi text-[#E2B714] text-lg mb-3"></i>
+            <p class="font-semibold text-sm">초고속 와이파이</p>
+            <p class="text-[12px] text-white/30 mt-1">1Gbps 광랜</p>
+          </div>
+          <div class="bg-white/5 rounded-2xl p-5 border border-white/5">
+            <i class="fas fa-plug text-[#E2B714] text-lg mb-3"></i>
+            <p class="font-semibold text-sm">개인 콘센트</p>
+            <p class="text-[12px] text-white/30 mt-1">좌석별 2구 이상</p>
+          </div>
+          <div class="bg-white/5 rounded-2xl p-5 border border-white/5">
+            <i class="fas fa-coffee text-[#E2B714] text-lg mb-3"></i>
+            <p class="font-semibold text-sm">무료 음료</p>
+            <p class="text-[12px] text-white/30 mt-1">커피, 차 무제한</p>
+          </div>
+          <div class="bg-white/5 rounded-2xl p-5 border border-white/5">
+            <i class="fas fa-print text-[#E2B714] text-lg mb-3"></i>
+            <p class="font-semibold text-sm">복합기 이용</p>
+            <p class="text-[12px] text-white/30 mt-1">흑백/컬러 출력</p>
+          </div>
         </div>
-        
-        <button class="w-full bg-[#4A5D44] text-[#F5F5F0] py-4 text-[11px] tracking-[0.2em] font-semibold uppercase hover:bg-[#3A4A35] transition shadow-lg">
-           Confirm Entry
-        </button>
-        
-        <div class="flex justify-center gap-12 pt-2">
-           <a href="#" class="text-[10px] text-[#8C8C85] tracking-wide uppercase hover:text-[#4A5D44] transition">Code Login</a>
-           <span class="text-[#EBEBE6]">|</span>
-           <a href="#" class="text-[10px] text-[#8C8C85] tracking-wide uppercase hover:text-[#4A5D44] transition">Buy Pass</a>
+      </div>
+
+      <div class="relative reveal" style="--delay: 1;">
+        <div class="rounded-[2rem] overflow-hidden" style="animation: glow 4s ease-in-out infinite;">
+          <img src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?q=80&w=800" alt="스터디카페 내부" class="w-full aspect-[4/5] object-cover" loading="lazy" decoding="async">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== Seat Types ========== -->
+  <section id="seats" class="py-24 md:py-32 bg-[#16213E]">
+    <div class="max-w-7xl mx-auto px-4 md:px-8">
+      <div class="text-center mb-16">
+        <span class="inline-block rounded-full px-4 py-1.5 text-[11px] uppercase tracking-[0.15em] font-bold bg-[#E2B714]/10 text-[#E2B714] reveal" style="--delay: 0;">Seats</span>
+        <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold leading-snug mt-6 reveal" style="--delay: 1;">
+          나에게 맞는<br>좌석을 선택하세요
+        </h2>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div class="seat-card bg-[#1A1A2E] rounded-3xl p-8 border border-white/5 reveal" style="--delay: 0;">
+          <div class="w-14 h-14 bg-[#E2B714]/10 rounded-2xl flex items-center justify-center mb-6">
+            <i class="fas fa-chair text-[#E2B714] text-xl"></i>
+          </div>
+          <h3 class="text-lg font-bold mb-2">오픈석</h3>
+          <p class="text-white/30 text-[13px] leading-relaxed mb-4">넓은 공용 공간에서 자유롭게 이용하는 기본 좌석. 개인 조명과 콘센트 제공</p>
+          <p class="text-[#E2B714] font-bold text-lg font-space">시간당 1,500원</p>
+        </div>
+
+        <div class="seat-card bg-[#1A1A2E] rounded-3xl p-8 border border-white/5 reveal" style="--delay: 1;">
+          <div class="w-14 h-14 bg-[#E2B714]/10 rounded-2xl flex items-center justify-center mb-6">
+            <i class="fas fa-user-shield text-[#E2B714] text-xl"></i>
+          </div>
+          <h3 class="text-lg font-bold mb-2">반개인석</h3>
+          <p class="text-white/30 text-[13px] leading-relaxed mb-4">파티션으로 분리된 반독립 공간. 집중도를 높이면서 적당한 개방감 유지</p>
+          <p class="text-[#E2B714] font-bold text-lg font-space">시간당 2,000원</p>
+        </div>
+
+        <div class="seat-card bg-[#1A1A2E] rounded-3xl p-8 border border-[#E2B714]/30 ring-1 ring-[#E2B714]/20 reveal" style="--delay: 2;">
+          <div class="inline-block bg-[#E2B714] text-[#1A1A2E] text-[10px] font-bold uppercase tracking-[0.15em] px-3 py-1 rounded-full mb-4">인기</div>
+          <div class="w-14 h-14 bg-[#E2B714]/10 rounded-2xl flex items-center justify-center mb-6">
+            <i class="fas fa-door-closed text-[#E2B714] text-xl"></i>
+          </div>
+          <h3 class="text-lg font-bold mb-2">1인 독립실</h3>
+          <p class="text-white/30 text-[13px] leading-relaxed mb-4">완전히 독립된 나만의 공간. 최고의 집중 환경과 프라이버시를 보장</p>
+          <p class="text-[#E2B714] font-bold text-lg font-space">시간당 3,000원</p>
+        </div>
+
+        <div class="seat-card bg-[#1A1A2E] rounded-3xl p-8 border border-white/5 reveal" style="--delay: 3;">
+          <div class="w-14 h-14 bg-[#E2B714]/10 rounded-2xl flex items-center justify-center mb-6">
+            <i class="fas fa-users text-[#E2B714] text-xl"></i>
+          </div>
+          <h3 class="text-lg font-bold mb-2">그룹 스터디룸</h3>
+          <p class="text-white/30 text-[13px] leading-relaxed mb-4">2~6인용 그룹 스터디룸. 화이트보드와 대형 모니터 구비</p>
+          <p class="text-[#E2B714] font-bold text-lg font-space">시간당 8,000원</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== Gallery ========== -->
+  <section id="gallery" class="py-24 md:py-32">
+    <div class="max-w-7xl mx-auto px-4 md:px-8">
+      <div class="flex flex-col md:flex-row md:items-end md:justify-between mb-14 gap-6">
+        <div>
+          <span class="inline-block rounded-full px-4 py-1.5 text-[11px] uppercase tracking-[0.15em] font-bold bg-[#E2B714]/10 text-[#E2B714] reveal" style="--delay: 0;">Gallery</span>
+          <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold leading-snug mt-6 reveal" style="--delay: 1;">시설 갤러리</h2>
+        </div>
+        <p class="text-white/30 text-base max-w-sm reveal" style="--delay: 2;">최신 인테리어와 쾌적한 환경을 직접 확인하세요.</p>
+      </div>
+
+      <div class="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-4">
+        <div class="gallery-item overflow-hidden rounded-2xl reveal" style="--delay: 0;"><img src="https://images.unsplash.com/photo-1497366811353-6870744d04b2?q=80&w=800" alt="오픈석 전경" class="w-full aspect-square object-cover transition-transform duration-700" loading="lazy" decoding="async"></div>
+        <div class="gallery-item overflow-hidden rounded-2xl md:row-span-2 reveal" style="--delay: 1;"><img src="https://images.unsplash.com/photo-1497215842964-222b430dc094?q=80&w=800" alt="독립실" class="w-full h-full object-cover transition-transform duration-700" loading="lazy" decoding="async"></div>
+        <div class="gallery-item overflow-hidden rounded-2xl reveal" style="--delay: 2;"><img src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?q=80&w=800" alt="음료 코너" class="w-full aspect-square object-cover transition-transform duration-700" loading="lazy" decoding="async"></div>
+        <div class="gallery-item overflow-hidden rounded-2xl reveal" style="--delay: 3;"><img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?q=80&w=800" alt="스터디룸" class="w-full aspect-square object-cover transition-transform duration-700" loading="lazy" decoding="async"></div>
+        <div class="gallery-item overflow-hidden rounded-2xl col-span-2 md:col-span-1 reveal" style="--delay: 4;"><img src="https://images.unsplash.com/photo-1416339306562-f3d12fefd36f?q=80&w=800" alt="복도" class="w-full aspect-[2/1] md:aspect-square object-cover transition-transform duration-700" loading="lazy" decoding="async"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== Pricing ========== -->
+  <section id="pricing" class="py-24 md:py-32 bg-[#16213E]">
+    <div class="max-w-7xl mx-auto px-4 md:px-8">
+      <div class="text-center mb-16">
+        <span class="inline-block rounded-full px-4 py-1.5 text-[11px] uppercase tracking-[0.15em] font-bold bg-[#E2B714]/10 text-[#E2B714] reveal" style="--delay: 0;">Pricing</span>
+        <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold leading-snug mt-6 reveal" style="--delay: 1;">합리적인 요금제</h2>
+        <p class="text-white/30 text-base md:text-lg mt-4 max-w-xl mx-auto reveal" style="--delay: 2;">기간이 길수록 더 합리적인 가격으로 이용하세요.</p>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+        <div class="bg-[#1A1A2E] rounded-3xl p-8 border border-white/5 text-center reveal" style="--delay: 0;">
+          <p class="text-[11px] font-bold text-white/30 uppercase tracking-[0.2em] mb-4">시간권</p>
+          <p class="text-4xl font-bold text-[#E2B714] font-space">1,500<span class="text-lg text-white/30">원~</span></p>
+          <p class="text-white/30 text-[13px] mt-4 mb-6">시간당 / 좌석 유형별 차등</p>
+          <ul class="space-y-3 text-left text-[13px] text-white/50 mb-8">
+            <li class="flex items-center gap-2"><i class="fas fa-check text-[#E2B714] text-[10px]"></i> 원하는 시간만큼 이용</li>
+            <li class="flex items-center gap-2"><i class="fas fa-check text-[#E2B714] text-[10px]"></i> 무료 음료 포함</li>
+            <li class="flex items-center gap-2"><i class="fas fa-check text-[#E2B714] text-[10px]"></i> 좌석 자유 선택</li>
+          </ul>
+          <a href="#" class="block w-full py-4 border border-[#E2B714]/30 rounded-full text-[#E2B714] font-semibold text-[12px] uppercase tracking-[0.15em] hover:bg-[#E2B714]/10">선택하기</a>
+        </div>
+
+        <div class="bg-[#1A1A2E] rounded-3xl p-8 border border-[#E2B714]/30 text-center ring-1 ring-[#E2B714]/20 reveal" style="--delay: 1;">
+          <div class="inline-block bg-[#E2B714] text-[#1A1A2E] text-[10px] font-bold uppercase tracking-[0.15em] px-3 py-1 rounded-full mb-4">추천</div>
+          <p class="text-[11px] font-bold text-white/30 uppercase tracking-[0.2em] mb-4">정기권 (1개월)</p>
+          <p class="text-4xl font-bold text-[#E2B714] font-space">89,000<span class="text-lg text-white/30">원</span></p>
+          <p class="text-white/30 text-[13px] mt-4 mb-6">오픈석 기준 / 월</p>
+          <ul class="space-y-3 text-left text-[13px] text-white/50 mb-8">
+            <li class="flex items-center gap-2"><i class="fas fa-check text-[#E2B714] text-[10px]"></i> 하루 최대 12시간 이용</li>
+            <li class="flex items-center gap-2"><i class="fas fa-check text-[#E2B714] text-[10px]"></i> 무료 음료 무제한</li>
+            <li class="flex items-center gap-2"><i class="fas fa-check text-[#E2B714] text-[10px]"></i> 사물함 무료 제공</li>
+            <li class="flex items-center gap-2"><i class="fas fa-check text-[#E2B714] text-[10px]"></i> 독립실 할인 10%</li>
+          </ul>
+          <a href="#" class="block w-full py-4 bg-[#E2B714] rounded-full text-[#1A1A2E] font-bold text-[12px] uppercase tracking-[0.15em] hover:bg-[#d4a912] shadow-lg shadow-[#E2B714]/20">선택하기</a>
+        </div>
+
+        <div class="bg-[#1A1A2E] rounded-3xl p-8 border border-white/5 text-center reveal" style="--delay: 2;">
+          <p class="text-[11px] font-bold text-white/30 uppercase tracking-[0.2em] mb-4">정기권 (3개월)</p>
+          <p class="text-4xl font-bold text-[#E2B714] font-space">229,000<span class="text-lg text-white/30">원</span></p>
+          <p class="text-white/30 text-[13px] mt-4 mb-6">오픈석 기준 / 3개월</p>
+          <ul class="space-y-3 text-left text-[13px] text-white/50 mb-8">
+            <li class="flex items-center gap-2"><i class="fas fa-check text-[#E2B714] text-[10px]"></i> 하루 무제한 이용</li>
+            <li class="flex items-center gap-2"><i class="fas fa-check text-[#E2B714] text-[10px]"></i> 무료 음료 무제한</li>
+            <li class="flex items-center gap-2"><i class="fas fa-check text-[#E2B714] text-[10px]"></i> 사물함 + 프린터 무료</li>
+            <li class="flex items-center gap-2"><i class="fas fa-check text-[#E2B714] text-[10px]"></i> 독립실 할인 20%</li>
+          </ul>
+          <a href="#" class="block w-full py-4 border border-[#E2B714]/30 rounded-full text-[#E2B714] font-semibold text-[12px] uppercase tracking-[0.15em] hover:bg-[#E2B714]/10">선택하기</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== Location ========== -->
+  <section id="location" class="py-24 md:py-32">
+    <div class="max-w-7xl mx-auto px-4 md:px-8 grid lg:grid-cols-2 gap-16 lg:gap-24 items-start">
+      <div class="reveal" style="--delay: 0;">
+        <div class="rounded-[2rem] overflow-hidden aspect-[4/3] bg-[#16213E] relative group">
+          <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=800" alt="건물 외관" class="w-full h-full object-cover opacity-40 group-hover:opacity-60 transition-opacity duration-700" loading="lazy" decoding="async">
+          <div class="absolute inset-0 flex items-center justify-center">
+            <a href="#" class="inline-flex items-center gap-3 bg-white/10 backdrop-blur-xl border border-white/20 text-white px-8 py-4 rounded-full text-[11px] font-semibold uppercase tracking-[0.3em] hover:bg-white/20 transition">
+              <i class="fas fa-map-marker-alt text-[#E2B714]"></i> 지도에서 보기
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="space-y-8">
+        <div class="reveal" style="--delay: 1;">
+          <span class="inline-block rounded-full px-4 py-1.5 text-[11px] uppercase tracking-[0.15em] font-bold bg-[#E2B714]/10 text-[#E2B714]">Location</span>
+          <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold leading-snug mt-6">오시는 길</h2>
+        </div>
+        <div class="space-y-6 reveal" style="--delay: 2;">
+          <div class="flex gap-4">
+            <div class="w-10 h-10 bg-[#E2B714]/10 rounded-full flex items-center justify-center shrink-0"><i class="fas fa-map-pin text-[#E2B714] text-sm"></i></div>
+            <div><p class="text-[10px] font-bold uppercase tracking-[0.2em] text-white/30 mb-1">주소</p><p class="text-white/70 text-base">서울특별시 관악구 관악로 1, 2층</p></div>
+          </div>
+          <div class="flex gap-4">
+            <div class="w-10 h-10 bg-[#E2B714]/10 rounded-full flex items-center justify-center shrink-0"><i class="fas fa-clock text-[#E2B714] text-sm"></i></div>
+            <div><p class="text-[10px] font-bold uppercase tracking-[0.2em] text-white/30 mb-1">운영시간</p><p class="text-white/70 text-base">24시간 연중무휴</p></div>
+          </div>
+          <div class="flex gap-4">
+            <div class="w-10 h-10 bg-[#E2B714]/10 rounded-full flex items-center justify-center shrink-0"><i class="fas fa-subway text-[#E2B714] text-sm"></i></div>
+            <div><p class="text-[10px] font-bold uppercase tracking-[0.2em] text-white/30 mb-1">교통</p><p class="text-white/70 text-base">서울대입구역 3번 출구 도보 3분</p></div>
+          </div>
+          <div class="flex gap-4">
+            <div class="w-10 h-10 bg-[#E2B714]/10 rounded-full flex items-center justify-center shrink-0"><i class="fas fa-phone text-[#E2B714] text-sm"></i></div>
+            <div><p class="text-[10px] font-bold uppercase tracking-[0.2em] text-white/30 mb-1">문의</p><p class="text-white/70 text-base">02-123-4567</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== CTA ========== -->
+  <section class="py-24 md:py-32 relative overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-br from-[#E2B714] to-[#d4a912]"></div>
+    <div class="absolute inset-0 opacity-10" style="background-image: url('https://www.transparenttextures.com/patterns/dark-geometric.png');"></div>
+    <div class="max-w-3xl mx-auto px-4 md:px-8 text-center relative z-10">
+      <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold leading-snug text-[#1A1A2E] reveal" style="--delay: 0;">
+        집중이 필요한 순간,<br>Focus Zone으로
+      </h2>
+      <p class="text-[#1A1A2E]/60 text-base md:text-lg mt-6 max-w-lg mx-auto reveal" style="--delay: 1;">
+        지금 바로 좌석을 예약하고 최고의 학습 환경을 경험하세요.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center mt-10 reveal" style="--delay: 2;">
+        <a href="#pricing" class="inline-flex items-center justify-center gap-3 px-10 py-5 bg-[#1A1A2E] text-[#E2B714] font-bold text-[12px] tracking-[0.2em] uppercase rounded-full shadow-xl">
+          좌석 예약 <i class="fas fa-arrow-right text-[10px]"></i>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== Footer ========== -->
+  <footer class="py-16 md:py-24 bg-[#0D0D1A]">
+    <div class="max-w-7xl mx-auto px-4 md:px-8">
+      <div class="grid md:grid-cols-3 gap-12 items-start mb-16">
+        <div>
+          <div class="flex items-center gap-2 mb-4">
+            <div class="w-8 h-8 bg-[#E2B714] rounded-lg flex items-center justify-center"><i class="fas fa-bolt text-[#1A1A2E] text-sm"></i></div>
+            <span class="font-space text-xl font-bold">Focus Zone</span>
+          </div>
+          <p class="text-white/20 text-sm leading-relaxed max-w-xs">24시간 운영되는 프리미엄 스터디카페. 당신의 집중을 위한 최적의 공간.</p>
+        </div>
+        <div class="grid grid-cols-2 gap-8">
+          <div>
+            <p class="text-[10px] font-semibold text-white/15 uppercase tracking-[0.3em] mb-4">좌석</p>
+            <ul class="space-y-2.5">
+              <li><a href="#seats" class="text-white/30 text-sm hover:text-[#E2B714] transition">오픈석</a></li>
+              <li><a href="#seats" class="text-white/30 text-sm hover:text-[#E2B714] transition">반개인석</a></li>
+              <li><a href="#seats" class="text-white/30 text-sm hover:text-[#E2B714] transition">1인 독립실</a></li>
+              <li><a href="#seats" class="text-white/30 text-sm hover:text-[#E2B714] transition">그룹 스터디룸</a></li>
+            </ul>
+          </div>
+          <div>
+            <p class="text-[10px] font-semibold text-white/15 uppercase tracking-[0.3em] mb-4">안내</p>
+            <ul class="space-y-2.5">
+              <li><a href="#about" class="text-white/30 text-sm hover:text-[#E2B714] transition">소개</a></li>
+              <li><a href="#gallery" class="text-white/30 text-sm hover:text-[#E2B714] transition">시설</a></li>
+              <li><a href="#pricing" class="text-white/30 text-sm hover:text-[#E2B714] transition">요금</a></li>
+              <li><a href="#location" class="text-white/30 text-sm hover:text-[#E2B714] transition">위치</a></li>
+            </ul>
+          </div>
+        </div>
+        <div>
+          <p class="text-[10px] font-semibold text-white/15 uppercase tracking-[0.3em] mb-4">Follow</p>
+          <div class="flex gap-3">
+            <a href="#" class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white/30 hover:text-[#E2B714] hover:border-[#E2B714]/30 transition"><i class="fab fa-instagram text-sm"></i></a>
+            <a href="#" class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white/30 hover:text-[#E2B714] hover:border-[#E2B714]/30 transition"><i class="fas fa-blog text-sm"></i></a>
+          </div>
+        </div>
+      </div>
+      <div class="border-t border-white/5 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+        <p class="text-[10px] text-white/10 tracking-[0.3em] uppercase">&copy; 2026 Focus Zone. All rights reserved by DLAB.</p>
+        <div class="flex gap-6">
+          <a href="#" class="text-[10px] text-white/10 tracking-[0.2em] uppercase hover:text-white/30 transition">개인정보처리방침</a>
+          <a href="#" class="text-[10px] text-white/10 tracking-[0.2em] uppercase hover:text-white/30 transition">이용약관</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ========== Login Modal ========== -->
+  <div id="study-modal" class="fixed inset-0 z-[100] hidden items-center justify-center p-4 bg-[#0D0D1A]/50 backdrop-blur-3xl">
+    <div class="bg-[#1A1A2E] w-full max-w-sm p-8 md:p-12 shadow-2xl relative rounded-3xl border border-[#E2B714]/10">
+      <button onclick="toggleStudyModal()" class="absolute top-6 right-6 w-8 h-8 rounded-full bg-white/5 flex items-center justify-center text-white/30 hover:text-[#E2B714] transition text-lg">&times;</button>
+      <div class="text-center mb-10">
+        <div class="w-12 h-12 bg-[#E2B714] rounded-xl flex items-center justify-center mx-auto mb-4"><i class="fas fa-bolt text-[#1A1A2E] text-lg"></i></div>
+        <h2 class="text-xl font-bold text-white mb-1">Focus Zone</h2>
+        <p class="text-[11px] text-[#E2B714] font-bold tracking-[0.2em] uppercase">Member Login</p>
+      </div>
+      <div class="space-y-4">
+        <div><p class="text-[10px] font-semibold text-white/20 uppercase tracking-[0.15em] mb-2">아이디</p><input type="text" placeholder="your@email.com" class="w-full bg-white/5 border border-white/10 rounded-xl py-4 px-5 outline-none focus:ring-2 focus:ring-[#E2B714]/20 transition text-[13px] text-white placeholder-white/20"></div>
+        <div><p class="text-[10px] font-semibold text-white/20 uppercase tracking-[0.15em] mb-2">비밀번호</p><input type="password" placeholder="Password" class="w-full bg-white/5 border border-white/10 rounded-xl py-4 px-5 outline-none focus:ring-2 focus:ring-[#E2B714]/20 transition text-[13px] text-white placeholder-white/20"></div>
+        <button class="w-full bg-[#E2B714] text-[#1A1A2E] py-4 rounded-full text-[12px] tracking-[0.3em] font-bold uppercase hover:bg-[#d4a912] shadow-lg shadow-[#E2B714]/20 mt-2">로그인</button>
+        <div class="flex justify-center gap-8 pt-2">
+          <a href="#" class="text-[11px] text-white/30 font-semibold hover:text-[#E2B714] transition">회원가입</a>
+          <a href="#" class="text-[11px] text-white/30 font-semibold hover:text-[#E2B714] transition">비밀번호 찾기</a>
         </div>
       </div>
     </div>
   </div>
-
-  <footer class="py-20 md:py-32 bg-[#2D2D2A] text-center px-6">
-     <div class="inline-flex flex-col items-center gap-10 mb-8">
-        <span class="font-modern-serif text-2xl text-[#F5F5F0]">Library<span class="text-[#4A5D44]">One</span></span>
-        <span class="text-[10px] font-semibold text-[#8C8C85] tracking-[0.3em] uppercase">Premium Study Environment</span>
-     </div>
-     <p class="text-[10px] text-[#8C8C85]/30 tracking-[0.5em] uppercase px-6">© 2024 LIBRARY ONE. ALL RIGHTS RESERVED.</p>
-  </footer>
-
-  <script>
-    function toggleStudyModal() {
-      const modal = document.getElementById('study-modal');
-      modal.classList.toggle('hidden');
-      modal.classList.toggle('flex');
-    }
-  </script>
-
 </div>
+
+<script>
+  function toggleStudyModal() { const m = document.getElementById('study-modal'); m.classList.toggle('hidden'); m.classList.toggle('flex'); }
+  document.getElementById('study-modal').addEventListener('click', function(e) { if (e.target === this) toggleStudyModal(); });
+  (function() {
+    const observer = new IntersectionObserver(function(entries) { entries.forEach(function(entry) { if (entry.isIntersecting) { entry.target.classList.add('is-visible'); observer.unobserve(entry.target); } }); }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+    document.querySelectorAll('.reveal').forEach(function(el) { observer.observe(el); });
+  })();
+</script>

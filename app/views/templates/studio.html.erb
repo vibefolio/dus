@@ -1,149 +1,359 @@
-<%# Studio Template - 모노크롬 (MONOCHROME) %>
+<%# Studio Template - MOMENT STUDIO %>
 
 <style>
-  /* Supanova Design Upgrade */
+  /* Supanova Design — Cinematic Studio Archetype */
   * { word-break: keep-all; }
-  html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+  html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
   h1, h2, h3, h4 { text-wrap: balance; letter-spacing: -0.02em; line-height: 1.3; }
-  a, button { transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1); }
+  a, button { transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1); }
   a:hover, button:hover { transform: scale(1.02); }
   a:active, button:active { transform: scale(0.98); }
 
-  @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap');
-  
-  .font-film { font-family: 'Cinzel', serif; }
+  @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap');
+
   .font-sans { font-family: 'Pretendard Variable', 'Pretendard', -apple-system, sans-serif; }
+  .font-serif { font-family: 'Cormorant Garamond', serif; }
 
   @media (max-width: 768px) {
     .mobile-desc { font-size: 14px !important; line-height: 1.8; }
-    .mobile-title { font-size: 40px !important; }
+    .mobile-title { font-size: 38px !important; }
   }
 
-  .film-grain {
-    background: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E");
-    opacity: 0.15;
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(2rem); filter: blur(4px); }
+    to { opacity: 1; transform: translateY(0); filter: blur(0); }
   }
+  .reveal { opacity: 0; transform: translateY(2rem); }
+  .reveal.is-visible { animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards; animation-delay: calc(var(--delay, 0) * 100ms); }
+
+  .type-card { transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1); }
+  .type-card:hover { transform: translateY(-8px); }
+  .type-card:hover img { transform: scale(1.05); filter: brightness(1.1); }
 </style>
 
-<div class="bg-[#1C1C1C] text-[#E5E5E5] font-sans selection:bg-white selection:text-slate-900 min-h-screen overflow-x-hidden relative">
-  <div class="fixed inset-0 film-grain pointer-events-none"></div>
+<div class="bg-[#1A1A1A] text-[#E5E5E5] font-sans selection:bg-white selection:text-black min-h-screen overflow-x-hidden">
 
-  <!-- Nav -->
-  <nav class="fixed w-full z-50 px-8 py-6 bg-[#1C1C1C]/80 backdrop-blur-md border-b border-white/5">
-    <div class="container mx-auto px-4 md:px-6 flex justify-between items-center flex-nowrap">
-      <div class="flex items-center gap-6">
-         <span class="font-film font-semibold text-2xl tracking-[0.2em] text-white">Mono<span class="text-[#737373]">Chrome</span></span>
-      </div>
-      
-      <div class="hidden md:flex gap-16 text-[11px] font-film font-semibold tracking-[0.2em] text-[#737373] uppercase">
-        <a href="#portfolio" class="hover:text-white transition">Portfolio</a>
-        <a href="#about" class="hover:text-white transition">About</a>
-        <a href="#contact" class="hover:text-white transition">Contact</a>
-      </div>
-      
-      <div class="flex-nowrap shrink-0 flex gap-6 items-center">
-         <button onclick="toggleStudioModal()" class="hidden md:block text-[10px] font-film font-semibold uppercase tracking-[0.2em] text-[#737373] hover:text-white" data-mobile-menu-copy="true">Client Login</button>
-         <button class="hidden md:inline-flex bg-white text-slate-900 px-3 py-2 text-xs md:text-sm md:px-6 md:py-2.5 whitespace-nowrap rounded-sm font-film font-semibold text-[10px] tracking-wide uppercase hover:bg-[#D4D4D4] transition shadow-[0_0_15px_rgba(255,255,255,0.1)]" data-mobile-menu-copy="true">
-           Inquiry
-         </button>
-         <button class="mobile-menu-trigger md:hidden ml-2 sm:ml-4 text-2xl focus:outline-none" style="color: inherit;">
-           <i class="fas fa-bars"></i>
-         </button>
+  <!-- ========== Nav ========== -->
+  <nav class="fixed w-full z-50 px-4 md:px-8 py-5 bg-[#1A1A1A]/80 backdrop-blur-xl border-b border-white/5">
+    <div class="max-w-7xl mx-auto flex justify-between items-center">
+      <a href="#" class="font-serif text-2xl tracking-tight font-semibold italic text-white/80">Moment</a>
 
+      <div class="hidden md:flex gap-10 text-sm font-medium text-white/30">
+        <a href="#types" class="hover:text-white transition">촬영유형</a>
+        <a href="#gallery" class="hover:text-white transition">갤러리</a>
+        <a href="#about" class="hover:text-white transition">소개</a>
+        <a href="#reservation" class="hover:text-white transition">예약</a>
+      </div>
+
+      <button class="mobile-menu-trigger md:hidden ml-auto text-2xl focus:outline-none" style="color: inherit;">
+        <i class="fas fa-bars"></i>
+      </button>
+
+      <div class="hidden md:flex gap-4 items-center">
+        <a href="#reservation" class="border border-white/20 text-white px-6 py-2.5 rounded-full text-sm font-medium hover:bg-white hover:text-[#1A1A1A]" data-mobile-menu-copy="true">촬영 예약</a>
       </div>
     </div>
 
-      <%= render partial: 'templates/shared/mobile_menu_overlay' %></nav>
+    <%= render partial: 'templates/shared/mobile_menu_overlay' %>
+  </nav>
 
-  <!-- Hero -->
-  <header class="min-h-screen relative flex items-center justify-center pt-24 overflow-hidden">
-    <!-- Spotlight Effect -->
-    <div class="absolute top-0 right-[20%] w-[1px] h-[150%] bg-gradient-to-b from-white/20 via-transparent to-transparent rotate-[15deg] blur-[1px]"></div>
-    <div class="absolute top-0 left-[20%] w-[1px] h-[150%] bg-gradient-to-b from-white/10 via-transparent to-transparent rotate-[-15deg] blur-[1px]"></div>
+  <!-- ========== Hero ========== -->
+  <header class="min-h-[100dvh] relative flex items-center pt-20 overflow-hidden">
+    <div class="absolute inset-0">
+      <img src="https://images.unsplash.com/photo-1520854221256-17451cc331bf?q=80&w=1600" alt="스튜디오" class="w-full h-full object-cover opacity-30">
+      <div class="absolute inset-0 bg-gradient-to-t from-[#1A1A1A] via-[#1A1A1A]/50 to-transparent"></div>
+    </div>
 
-    <div class="container mx-auto px-3 md:px-6 relative z-10 grid lg:grid-cols-2 gap-12 md:p-20 items-center">
-      <div class="space-y-12 text-center lg:text-left">
-        <div class="inline-flex items-center gap-3 border-b border-white/20 pb-2">
-           <span class="text-[10px] font-film text-white uppercase tracking-[0.3em]">Artistic Photography</span>
-        </div>
-        
-        <h1 class="text-2xl md:text-4xl md:text-7xl font-film font-normal leading-[1.1] text-white mobile-title tracking-tight">
-           Capture<br>
-           the <span class="italic text-[#737373]">Soul.</span>
-        </h1>
-        
-        <p class="text-[#737373] text-sm md:text-lg leading-relaxed max-w-lg mx-auto lg:mx-0 mobile-desc font-light">
-           빛과 그림자, 그 찰나의 순간을 영원으로.<br>
-           본연의 아름다움을 담아내는 모노크롬 스튜디오.
+    <div class="max-w-7xl mx-auto px-4 md:px-8 relative z-10 w-full py-20">
+      <p class="font-serif italic text-white/30 text-xl tracking-wide reveal" style="--delay: 0;">Photography Studio</p>
+
+      <h1 class="text-5xl md:text-7xl lg:text-[8rem] font-serif font-semibold leading-[0.9] mt-6 mobile-title reveal" style="--delay: 1;">
+        순간을<br>
+        <span class="italic text-white/40">영원으로.</span>
+      </h1>
+
+      <div class="flex flex-col md:flex-row md:items-end justify-between mt-16 gap-8">
+        <p class="text-white/30 text-base md:text-lg leading-relaxed max-w-md mobile-desc reveal" style="--delay: 2;">
+          MOMENT STUDIO는 빛과 감성으로 당신의 특별한 순간을 기록합니다. 프로필, 웨딩, 가족, 상업 촬영까지.
         </p>
-        
-        <div class="flex flex-col sm:flex-row gap-10 justify-center lg:justify-start pt-8">
-           <button class="px-10 py-4 bg-[#262626] text-white font-film font-semibold text-xs uppercase tracking-[0.2em] border border-white/10 hover:bg-white hover:text-slate-900 transition">
-              View Works
-           </button>
-           <button class="px-10 py-4 text-[#737373] font-film font-semibold text-xs uppercase tracking-[0.2em] hover:text-white transition flex items-center gap-2">
-              <span class="w-8 h-[1px] bg-current"></span> Studio Info
-           </button>
-        </div>
-      </div>
-      
-      <div class="relative hidden lg:block h-full flex items-center justify-center">
-         <div class="relative w-[400px] h-[550px]">
-            <!-- Frame -->
-            <div class="absolute inset-0 border border-white/10 translate-x-4 translate-y-4"></div>
-            <div class="absolute inset-0 border border-white/10 -translate-x-4 -translate-y-4"></div>
-            
-            <img src="https://images.unsplash.com/photo-1471341971476-84d5a7d74d82?q=80&w=800" alt="Black and White Portrait" class="w-full h-full object-cover grayscale opacity-80 shadow-2xl relative z-10 transition duration-1000 hover:scale-[1.02] hover:opacity-100 filter brightness-90 contrast-125">
-            
-            <!-- Metadata -->
-            <div class="absolute -right-8 bottom-20 rotate-90 origin-bottom-right">
-               <p class="text-[10px] font-film text-[#525252] uppercase tracking-[0.4em]">ISO 400 . F/1.8 . 1/125</p>
-            </div>
-         </div>
+        <a href="#reservation" class="inline-flex items-center justify-center gap-2 px-10 py-4 border border-white/20 rounded-full font-medium text-white hover:bg-white hover:text-[#1A1A1A] reveal" style="--delay: 3;">
+          촬영 예약하기 <i class="fas fa-arrow-right text-sm"></i>
+        </a>
       </div>
     </div>
   </header>
 
-  <!-- Login Modal -->
-  <div id="studio-modal" class="fixed inset-0 z-[100] hidden items-center justify-center p-4 bg-slate-950/90 backdrop-blur-sm">
-    <div class="bg-[#171717] w-full max-w-sm p-14 shadow-2xl relative border border-white/10">
-      <button onclick="toggleStudioModal()" class="absolute top-8 right-8 text-[#525252] hover:text-white transition text-xl font-film">&times;</button>
-      
-      <div class="text-center mb-12">
-        <h2 class="text-2xl font-film font-normal text-white mb-2 tracking-[0.2em]">PRIVATE</h2>
-        <p class="text-[10px] text-[#737373] tracking-[0.4em] uppercase">Client Archive Access</p>
+  <!-- ========== 촬영유형 ========== -->
+  <section id="types" class="py-24 md:py-32">
+    <div class="max-w-7xl mx-auto px-4 md:px-8">
+      <div class="text-center mb-16">
+        <span class="font-serif italic text-white/30 text-lg reveal" style="--delay: 0;">Photography</span>
+        <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mt-4 reveal" style="--delay: 1;">촬영 유형</h2>
       </div>
-      
-      <div class="space-y-8">
-        <div class="relative group">
-           <input type="text" placeholder="ACCESS CODE" class="w-full bg-transparent border-b border-[#404040] py-3 px-2 outline-none focus:border-white transition text-xs font-film text-white text-center placeholder-[#404040] tracking-[0.2em]">
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div class="type-card group reveal" style="--delay: 0;">
+          <div class="overflow-hidden rounded-xl border border-white/5">
+            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=600" alt="프로필" class="w-full aspect-[3/4] object-cover opacity-70 group-hover:opacity-100 transition duration-700" loading="lazy">
+          </div>
+          <div class="mt-4">
+            <span class="font-serif italic text-white/30 text-sm">Profile</span>
+            <h3 class="font-bold text-lg mt-1">프로필 촬영</h3>
+            <p class="text-sm text-white/30 mt-1">비즈니스, SNS, 배우 프로필까지 다양한 프로필 촬영.</p>
+            <p class="text-white/60 font-semibold text-sm mt-2">150,000원~</p>
+          </div>
         </div>
-        
-        <button class="w-full bg-[#262626] text-white py-4 text-[10px] tracking-[0.3em] font-film font-semibold uppercase hover:bg-white hover:text-slate-900 transition border border-white/5">
-           Unlock
-        </button>
-        
-        <div class="text-center pt-4">
-           <a href="#" class="text-[9px] text-[#404040] tracking-[0.2em] font-semibold uppercase hover:text-white transition font-film">Request Code</a>
+
+        <div class="type-card group reveal" style="--delay: 1;">
+          <div class="overflow-hidden rounded-xl border border-white/5">
+            <img src="https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=600" alt="웨딩" class="w-full aspect-[3/4] object-cover opacity-70 group-hover:opacity-100 transition duration-700" loading="lazy">
+          </div>
+          <div class="mt-4">
+            <span class="font-serif italic text-white/30 text-sm">Wedding</span>
+            <h3 class="font-bold text-lg mt-1">웨딩 촬영</h3>
+            <p class="text-sm text-white/30 mt-1">스냅, 본식, 리허설 등 웨딩의 모든 순간을 담습니다.</p>
+            <p class="text-white/60 font-semibold text-sm mt-2">500,000원~</p>
+          </div>
+        </div>
+
+        <div class="type-card group reveal" style="--delay: 2;">
+          <div class="overflow-hidden rounded-xl border border-white/5">
+            <img src="https://images.unsplash.com/photo-1609220136736-443140cffec6?q=80&w=600" alt="가족" class="w-full aspect-[3/4] object-cover opacity-70 group-hover:opacity-100 transition duration-700" loading="lazy">
+          </div>
+          <div class="mt-4">
+            <span class="font-serif italic text-white/30 text-sm">Family</span>
+            <h3 class="font-bold text-lg mt-1">가족 촬영</h3>
+            <p class="text-sm text-white/30 mt-1">돌잔치, 가족사진, 만삭 촬영 등 소중한 가족의 기록.</p>
+            <p class="text-white/60 font-semibold text-sm mt-2">200,000원~</p>
+          </div>
+        </div>
+
+        <div class="type-card group reveal" style="--delay: 3;">
+          <div class="overflow-hidden rounded-xl border border-white/5">
+            <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?q=80&w=600" alt="상업" class="w-full aspect-[3/4] object-cover opacity-70 group-hover:opacity-100 transition duration-700" loading="lazy">
+          </div>
+          <div class="mt-4">
+            <span class="font-serif italic text-white/30 text-sm">Commercial</span>
+            <h3 class="font-bold text-lg mt-1">상업 촬영</h3>
+            <p class="text-sm text-white/30 mt-1">제품, 음식, 건축물 등 상업용 전문 촬영 서비스.</p>
+            <p class="text-white/60 font-semibold text-sm mt-2">별도 견적</p>
+          </div>
         </div>
       </div>
     </div>
-  </div>
+  </section>
 
-  <footer class="py-20 md:py-32 bg-[#1C1C1C] text-center px-6 border-t border-white/5">
-     <div class="inline-flex flex-col items-center gap-10 mb-8">
-        <span class="font-film font-semibold text-2xl tracking-[0.3em] text-white">MONO<span class="text-[#525252]">CHROME</span></span>
-        <span class="text-[10px] font-semibold text-[#525252] tracking-[0.5em] uppercase">Fine Art Photography</span>
-     </div>
-     <p class="text-[9px] text-[#262626] tracking-[0.5em] uppercase px-6">© 2024 MONOCHROME. ALL RIGHTS RESERVED.</p>
+  <!-- ========== 갤러리 ========== -->
+  <section id="gallery" class="py-24 md:py-32 bg-white/[0.02]">
+    <div class="max-w-7xl mx-auto px-4 md:px-8">
+      <div class="text-center mb-16">
+        <span class="font-serif italic text-white/30 text-lg reveal" style="--delay: 0;">Gallery</span>
+        <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mt-4 reveal" style="--delay: 1;">포트폴리오</h2>
+      </div>
+
+      <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+        <div class="overflow-hidden rounded-xl group reveal" style="--delay: 0;">
+          <img src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?q=80&w=800" alt="갤러리 1" class="w-full aspect-square object-cover opacity-70 group-hover:opacity-100 transition duration-700" loading="lazy">
+        </div>
+        <div class="overflow-hidden rounded-xl md:row-span-2 group reveal" style="--delay: 1;">
+          <img src="https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=800" alt="갤러리 2" class="w-full h-full object-cover opacity-70 group-hover:opacity-100 transition duration-700" loading="lazy">
+        </div>
+        <div class="overflow-hidden rounded-xl group reveal" style="--delay: 2;">
+          <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=800" alt="갤러리 3" class="w-full aspect-square object-cover opacity-70 group-hover:opacity-100 transition duration-700" loading="lazy">
+        </div>
+        <div class="overflow-hidden rounded-xl group reveal" style="--delay: 3;">
+          <img src="https://images.unsplash.com/photo-1609220136736-443140cffec6?q=80&w=800" alt="갤러리 4" class="w-full aspect-square object-cover opacity-70 group-hover:opacity-100 transition duration-700" loading="lazy">
+        </div>
+        <div class="overflow-hidden rounded-xl col-span-2 md:col-span-1 group reveal" style="--delay: 4;">
+          <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?q=80&w=800" alt="갤러리 5" class="w-full aspect-[2/1] md:aspect-square object-cover opacity-70 group-hover:opacity-100 transition duration-700" loading="lazy">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== 소개 ========== -->
+  <section id="about" class="py-24 md:py-32">
+    <div class="max-w-7xl mx-auto px-4 md:px-8">
+      <div class="grid lg:grid-cols-2 gap-16 items-center">
+        <div class="relative reveal" style="--delay: 0;">
+          <img src="https://images.unsplash.com/photo-1554048612-b6a482bc67e5?q=80&w=700" alt="스튜디오 내부" class="w-full aspect-[4/3] object-cover rounded-xl border border-white/5 opacity-70" loading="lazy">
+        </div>
+
+        <div class="space-y-8">
+          <div>
+            <span class="font-serif italic text-white/30 text-lg reveal" style="--delay: 0;">About</span>
+            <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mt-4 reveal" style="--delay: 1;">MOMENT STUDIO</h2>
+          </div>
+
+          <p class="text-white/30 text-base md:text-lg leading-relaxed reveal" style="--delay: 2;">
+            2015년 성수동에서 시작한 MOMENT STUDIO는 자연광 스튜디오를 기반으로 감성적이고 자연스러운 사진을 추구합니다. 단순히 예쁜 사진이 아닌, 그 순간의 감정까지 담아내는 것이 우리의 철학입니다.
+          </p>
+
+          <div class="grid grid-cols-3 gap-6 pt-4 border-t border-white/5 reveal" style="--delay: 3;">
+            <div>
+              <p class="text-2xl font-bold text-white">9년</p>
+              <p class="text-xs text-white/20 mt-1">운영 경력</p>
+            </div>
+            <div>
+              <p class="text-2xl font-bold text-white">5,000+</p>
+              <p class="text-xs text-white/20 mt-1">촬영 건수</p>
+            </div>
+            <div>
+              <p class="text-2xl font-bold text-white">4.9</p>
+              <p class="text-xs text-white/20 mt-1">평균 평점</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== 후기 ========== -->
+  <section class="py-24 md:py-32">
+    <div class="max-w-7xl mx-auto px-4 md:px-8">
+      <div class="text-center mb-16">
+        <span class="font-serif italic text-white/30 text-lg reveal" style="--delay: 0;">Reviews</span>
+        <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mt-4 reveal" style="--delay: 1;">고객 후기</h2>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+        <div class="bg-white/[0.03] p-8 rounded-xl border border-white/5 reveal" style="--delay: 0;">
+          <div class="flex items-center gap-1 text-white/40 mb-4">
+            <i class="fas fa-star text-xs"></i><i class="fas fa-star text-xs"></i><i class="fas fa-star text-xs"></i><i class="fas fa-star text-xs"></i><i class="fas fa-star text-xs"></i>
+          </div>
+          <p class="text-sm text-white/30 leading-relaxed italic">"프로필 사진이 너무 자연스럽게 나와서 감동이었어요. 강요 없이 편안하게 촬영해주셨습니다."</p>
+          <p class="text-sm font-semibold text-white/60 mt-4">김OO 님</p>
+          <p class="text-xs text-white/20">프로필 촬영</p>
+        </div>
+
+        <div class="bg-white/[0.03] p-8 rounded-xl border border-white/5 reveal" style="--delay: 1;">
+          <div class="flex items-center gap-1 text-white/40 mb-4">
+            <i class="fas fa-star text-xs"></i><i class="fas fa-star text-xs"></i><i class="fas fa-star text-xs"></i><i class="fas fa-star text-xs"></i><i class="fas fa-star text-xs"></i>
+          </div>
+          <p class="text-sm text-white/30 leading-relaxed italic">"웨딩 스냅 퀄리티가 정말 좋았습니다. 감성적인 사진을 원하신다면 여기를 추천합니다."</p>
+          <p class="text-sm font-semibold text-white/60 mt-4">박OO 님</p>
+          <p class="text-xs text-white/20">웨딩 스냅</p>
+        </div>
+
+        <div class="bg-white/[0.03] p-8 rounded-xl border border-white/5 reveal" style="--delay: 2;">
+          <div class="flex items-center gap-1 text-white/40 mb-4">
+            <i class="fas fa-star text-xs"></i><i class="fas fa-star text-xs"></i><i class="fas fa-star text-xs"></i><i class="fas fa-star text-xs"></i><i class="fas fa-star text-xs"></i>
+          </div>
+          <p class="text-sm text-white/30 leading-relaxed italic">"가족사진 찍으러 갔는데 아이가 처음엔 어색했지만 자연스럽게 촬영해주셔서 결과물이 최고였어요."</p>
+          <p class="text-sm font-semibold text-white/60 mt-4">이OO 님</p>
+          <p class="text-xs text-white/20">가족 촬영</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== 예약 ========== -->
+  <section id="reservation" class="py-24 md:py-32 bg-white/[0.02]">
+    <div class="max-w-4xl mx-auto px-4 md:px-8">
+      <div class="text-center mb-12">
+        <span class="font-serif italic text-white/30 text-lg reveal" style="--delay: 0;">Reservation</span>
+        <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mt-4 reveal" style="--delay: 1;">촬영 예약</h2>
+        <p class="text-white/30 text-base mt-4 reveal" style="--delay: 2;">원하시는 날짜와 촬영 유형을 선택해주세요</p>
+      </div>
+
+      <div class="bg-white/[0.03] rounded-2xl p-8 md:p-12 border border-white/5 reveal" style="--delay: 3;">
+        <div class="grid md:grid-cols-2 gap-6">
+          <div>
+            <label class="block text-sm text-white/30 mb-2">이름</label>
+            <input type="text" placeholder="홍길동" class="w-full bg-white/5 border border-white/10 rounded-lg px-5 py-3.5 text-white placeholder-white/15 outline-none focus:border-white/30 transition">
+          </div>
+          <div>
+            <label class="block text-sm text-white/30 mb-2">연락처</label>
+            <input type="tel" placeholder="010-0000-0000" class="w-full bg-white/5 border border-white/10 rounded-lg px-5 py-3.5 text-white placeholder-white/15 outline-none focus:border-white/30 transition">
+          </div>
+          <div>
+            <label class="block text-sm text-white/30 mb-2">촬영 유형</label>
+            <select class="w-full bg-white/5 border border-white/10 rounded-lg px-5 py-3.5 text-white outline-none focus:border-white/30 transition">
+              <option value="">선택해주세요</option>
+              <option>프로필</option>
+              <option>웨딩</option>
+              <option>가족</option>
+              <option>상업</option>
+            </select>
+          </div>
+          <div>
+            <label class="block text-sm text-white/30 mb-2">희망 날짜</label>
+            <input type="date" class="w-full bg-white/5 border border-white/10 rounded-lg px-5 py-3.5 text-white outline-none focus:border-white/30 transition">
+          </div>
+          <div class="md:col-span-2">
+            <label class="block text-sm text-white/30 mb-2">요청사항</label>
+            <textarea rows="3" placeholder="원하시는 촬영 컨셉이나 참고 이미지가 있으면 알려주세요" class="w-full bg-white/5 border border-white/10 rounded-lg px-5 py-3.5 text-white placeholder-white/15 outline-none focus:border-white/30 transition resize-none"></textarea>
+          </div>
+        </div>
+        <button class="w-full mt-8 bg-white text-[#1A1A1A] py-4 rounded-lg font-bold text-lg hover:bg-white/90">예약 신청하기</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== Footer ========== -->
+  <footer class="py-16 md:py-24 bg-[#111111] border-t border-white/5">
+    <div class="max-w-7xl mx-auto px-4 md:px-8">
+      <div class="grid md:grid-cols-3 gap-12 mb-16">
+        <div>
+          <p class="font-serif text-2xl italic text-white/60 mb-4">Moment</p>
+          <p class="text-white/20 text-sm leading-relaxed">서울특별시 성동구 서울숲2길 44<br>모먼트 스튜디오 3층</p>
+          <p class="text-white/20 text-sm mt-2">대표: 김모먼트 | 사업자등록번호: 901-23-45678</p>
+        </div>
+
+        <div class="grid grid-cols-2 gap-8">
+          <div>
+            <p class="text-xs text-white/15 uppercase tracking-wider mb-4">촬영</p>
+            <ul class="space-y-2.5">
+              <li><a href="#types" class="text-white/30 text-sm hover:text-white transition">프로필</a></li>
+              <li><a href="#types" class="text-white/30 text-sm hover:text-white transition">웨딩</a></li>
+              <li><a href="#types" class="text-white/30 text-sm hover:text-white transition">가족</a></li>
+              <li><a href="#types" class="text-white/30 text-sm hover:text-white transition">상업</a></li>
+            </ul>
+          </div>
+          <div>
+            <p class="text-xs text-white/15 uppercase tracking-wider mb-4">정보</p>
+            <ul class="space-y-2.5">
+              <li><a href="#gallery" class="text-white/30 text-sm hover:text-white transition">갤러리</a></li>
+              <li><a href="#about" class="text-white/30 text-sm hover:text-white transition">소개</a></li>
+              <li><a href="#reservation" class="text-white/30 text-sm hover:text-white transition">예약</a></li>
+              <li><a href="#" class="text-white/30 text-sm hover:text-white transition">후기</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <div>
+          <p class="text-xs text-white/15 uppercase tracking-wider mb-4">Contact</p>
+          <p class="text-lg font-semibold text-white/60">02-6789-0123</p>
+          <p class="text-white/20 text-sm mt-2">매일 10:00 - 20:00 (월요일 휴무)</p>
+          <div class="flex gap-3 mt-4">
+            <a href="#" class="w-10 h-10 border border-white/10 rounded-full flex items-center justify-center text-white/30 hover:text-white hover:border-white/30 transition"><i class="fab fa-instagram text-sm"></i></a>
+            <a href="#" class="w-10 h-10 border border-white/10 rounded-full flex items-center justify-center text-white/30 hover:text-white hover:border-white/30 transition"><i class="fas fa-blog text-sm"></i></a>
+          </div>
+        </div>
+      </div>
+
+      <div class="border-t border-white/5 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+        <p class="text-xs text-white/10">&copy; 2024 MOMENT STUDIO. All rights reserved by DLAB.</p>
+        <div class="flex gap-6">
+          <a href="#" class="text-xs text-white/10 hover:text-white/20 transition">개인정보처리방침</a>
+          <a href="#" class="text-xs text-white/10 hover:text-white/20 transition">이용약관</a>
+        </div>
+      </div>
+    </div>
   </footer>
 
-  <script>
-    function toggleStudioModal() {
-      const modal = document.getElementById('studio-modal');
-      modal.classList.toggle('hidden');
-      modal.classList.toggle('flex');
-    }
-  </script>
-
 </div>
+
+<script>
+  (function() {
+    const observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+    document.querySelectorAll('.reveal').forEach(function(el) { observer.observe(el); });
+  })();
+</script>

@@ -1,158 +1,485 @@
-<%# Academy Template - 대치 엘리트 (ELITE ACADEMY) %>
+<%# Academy Template - 에듀플러스 아카데미 (학원/교육센터) %>
 
 <style>
-  /* Supanova Design Upgrade */
+  /* Supanova Design — Education Center Archetype */
   * { word-break: keep-all; }
-  html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+  html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
   h1, h2, h3, h4 { text-wrap: balance; letter-spacing: -0.02em; line-height: 1.3; }
-  a, button { transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1); }
+  a, button { transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1); }
   a:hover, button:hover { transform: scale(1.02); }
   a:active, button:active { transform: scale(0.98); }
 
-  @import url('https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700;800&family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap');
-  
-  .font-serif { font-family: 'Nanum Myeongjo', serif; }
-  .font-sans { font-family: 'Pretendard Variable', 'Pretendard', -apple-system, sans-serif; }
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+  .font-sans { font-family: 'Pretendard Variable', 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, sans-serif; }
+  .font-inter { font-family: 'Inter', sans-serif; }
 
   @media (max-width: 768px) {
-    .mobile-desc { font-size: 14px !important; line-height: 1.6; }
-    .mobile-title { font-size: 32px !important; }
+    .mobile-desc { font-size: 14px !important; line-height: 1.8; }
+    .mobile-title { font-size: 36px !important; }
   }
+
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(2rem); filter: blur(4px); }
+    to { opacity: 1; transform: translateY(0); filter: blur(0); }
+  }
+  .reveal { opacity: 0; transform: translateY(2rem); }
+  .reveal.is-visible { animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards; animation-delay: calc(var(--delay, 0) * 100ms); }
+
+  .curriculum-card { transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1); }
+  .curriculum-card:hover { transform: translateY(-8px); box-shadow: 0 25px 60px -15px rgba(99, 102, 241, 0.15); }
+  .instructor-card { transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1); }
+  .instructor-card:hover { transform: translateY(-4px); }
+  .instructor-card:hover img { transform: scale(1.05); }
 </style>
 
-<div class="bg-white text-slate-900 font-sans selection:bg-[#1B4332] selection:text-white min-h-screen overflow-x-hidden">
+<div class="bg-[#F8FAFC] text-[#1E293B] font-sans selection:bg-[#6366F1] selection:text-white min-h-screen overflow-x-hidden">
 
-  <!-- Rolling Banner -->
-  <div class="bg-[#1B4332] text-white py-2.5 overflow-hidden border-b border-white/10">
-    <div class="flex whitespace-nowrap animate-marquee-slow">
-       <span class="px-8 text-[10px] md:text-xs font-semibold tracking-wide uppercase">🎉 2024 SKY PASSING RATE: 92.4%</span>
-       <span class="px-8 text-[10px] md:text-xs font-semibold tracking-wide uppercase">MEDICAL SCHOOL ADMISSION: 42 STUDENTS</span>
-       <span class="px-8 text-[10px] md:text-xs font-semibold tracking-wide uppercase">IVY LEAGUE ENROLLMENT: 8 STUDENTS</span>
-       <span class="px-8 text-[10px] md:text-xs font-semibold tracking-wide uppercase">TOP 1% SCORE IMPROVEMENT GUARANTEED</span>
-    </div>
-  </div>
-
-  <style>
-    @keyframes marquee-slow {
-      0% { transform: translateX(0); }
-      100% { transform: translateX(-50%); }
-    }
-    .animate-marquee-slow {
-      animation: marquee-slow 30s linear infinite;
-    }
-  </style>
-
-  <!-- Nav -->
-  <nav class="fixed w-full z-50 px-3 md:px-6 py-6 bg-white/9 worst backdrop-blur-md border-b border-slate-100 mt-[36px]">
-    <div class="container mx-auto px-4 md:px-6 flex justify-between items-center flex-nowrap">
-      <div class="flex items-center gap-3">
-         <div class="w-8 h-8 max-h-8 max-w-[35%] shrink object-contain md:w-10 md:h-10 bg-[#1B4332] rounded-xs flex items-center justify-center text-white font-serif font-semibold text-lg md:text-2xl shadow-lg">E</div>
-         <span class="font-semibold text-base md:text-xl shrink truncate text-[#1B4332] tracking-tight uppercase">ELITE<span class="text-emerald-600">ACADEMY</span></span>
-      </div>
-      
-      <div class="hidden md:flex gap-14 text-[11px] font-semibold uppercase tracking-[0.3em] text-slate-400">
-        <a href="#about" class="hover:text-[#1B4332] transition">Instructor</a>
-        <a href="#system" class="hover:text-[#1B4332] transition">LMS System</a>
-        <a href="#admission" class="hover:text-[#1B4332] transition">Admission</a>
-      </div>
-      
-      <div class="flex-nowrap shrink-0 flex gap-10 items-center">
-         <button onclick="toggleAcademyModal()" class="hidden md:block text-[11px] font-semibold uppercase tracking-[0.3em] text-slate-400 hover:text-[#1B4332]" data-mobile-menu-copy="true">Student LMS</button>
-         <button class="hidden md:inline-flex bg-[#1B4332] text-white px-3 py-2 text-xs md:text-sm md:px-6 md:py-2.5 whitespace-nowrap rounded-sm font-semibold text-[11px] tracking-wide uppercase hover:bg-slate-900 transition shadow-xl" data-mobile-menu-copy="true">
-           Counseling
-         </button>
-         <button class="mobile-menu-trigger md:hidden ml-2 sm:ml-4 text-2xl focus:outline-none" style="color: inherit;">
-           <i class="fas fa-bars"></i>
-         </button>
-
-      </div>
-    </div>
-
-      <%= render partial: 'templates/shared/mobile_menu_overlay' %></nav>
-
-  <!-- Hero -->
-  <header class="min-h-screen relative flex items-center justify-center overflow-hidden pt-32 relative overflow-hidden">
-    <div class="absolute inset-0 bg-gradient-to-tr from-white to-slate-50 z-0 opacity-40 pointer-events-none"></div>
-    <div class="absolute inset-0">
-       <div class="absolute top-8 md:p-20 right-[-10%] w-[50%] h-[50%] bg-emerald-50/50 rounded-full blur-[120px]"></div>
-       <div class="absolute bottom-20 left-[-10%] w-[50%] h-[50%] bg-[#1B4332]/5 rounded-full blur-[120px]"></div>
-    </div>
-    
-    <div class="container mx-auto px-3 md:px-6 relative z-10 grid md:grid-cols-2 gap-10 md:p-16 items-center">
-      <div class="space-y-8 text-center md:text-left">
-        <div class="inline-flex items-center gap-2 text-emerald-700 font-semibold bg-white px-4 py-1.5 rounded-lg shadow-sm border border-emerald-100 text-[10px] tracking-wide uppercase">
-           <span class="w-2 h-2 rounded-full bg-emerald-600 animate-pulse"></span> Highest Success Rate in Daechi
+  <!-- ========== Nav ========== -->
+  <nav class="fixed w-full z-50 px-4 md:px-8 py-5 bg-[#F8FAFC]/80 backdrop-blur-xl border-b border-[#6366F1]/5">
+    <div class="max-w-7xl mx-auto flex justify-between items-center">
+      <a href="#" class="flex items-center gap-2">
+        <div class="w-8 h-8 bg-[#6366F1] rounded-lg flex items-center justify-center">
+          <i class="fas fa-graduation-cap text-white text-sm"></i>
         </div>
-        <h1 class="text-2xl md:text-4xl md:text-7xl font-serif font-semibold leading-none tracking-tight text-[#1b4332] mobile-title">
-           결과로 증명하는<br><span class="text-emerald-600 italic">교육의 정점.</span>
+        <span class="font-inter text-xl font-bold tracking-tight text-[#1E293B]">에듀플러스</span>
+      </a>
+
+      <div class="hidden md:flex gap-10 text-[11px] font-semibold uppercase tracking-[0.3em] text-[#1E293B]/40">
+        <a href="#curriculum" class="hover:text-[#6366F1] transition">커리큘럼</a>
+        <a href="#instructors" class="hover:text-[#6366F1] transition">강사진</a>
+        <a href="#reviews" class="hover:text-[#6366F1] transition">후기</a>
+        <a href="#contact" class="hover:text-[#6366F1] transition">상담</a>
+      </div>
+
+      <button class="mobile-menu-trigger md:hidden ml-auto text-2xl focus:outline-none" style="color: inherit;">
+        <i class="fas fa-bars"></i>
+      </button>
+
+      <div class="hidden md:flex gap-4 items-center shrink-0">
+        <button onclick="toggleAcademyModal()" class="text-[11px] font-semibold text-[#1E293B]/40 hover:text-[#6366F1] tracking-[0.2em] uppercase" data-mobile-menu-copy="true">로그인</button>
+        <a href="#contact" class="bg-[#6366F1] text-white px-7 py-3 rounded-full font-semibold text-[11px] tracking-[0.2em] uppercase hover:bg-[#4F46E5] shadow-lg shadow-[#6366F1]/20" data-mobile-menu-copy="true">무료 상담</a>
+      </div>
+    </div>
+
+    <%= render partial: 'templates/shared/mobile_menu_overlay' %>
+  </nav>
+
+  <!-- ========== Hero ========== -->
+  <header class="min-h-[100dvh] relative flex items-center pt-20">
+    <div class="absolute inset-0 overflow-hidden">
+      <div class="absolute top-20 right-0 w-[600px] h-[600px] bg-[#6366F1]/5 rounded-full blur-[120px]"></div>
+      <div class="absolute bottom-0 left-0 w-[400px] h-[400px] bg-[#818CF8]/5 rounded-full blur-[100px]"></div>
+    </div>
+
+    <div class="max-w-7xl mx-auto px-4 md:px-8 relative z-10 grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+      <div class="space-y-8 text-center lg:text-left">
+        <div class="inline-flex items-center gap-3 bg-[#6366F1]/5 rounded-full px-5 py-2 reveal" style="--delay: 0;">
+          <span class="w-2 h-2 bg-[#6366F1] rounded-full animate-pulse"></span>
+          <span class="text-[11px] font-semibold tracking-[0.2em] uppercase text-[#6366F1]">2026 신규 등록 오픈</span>
+        </div>
+
+        <h1 class="text-4xl md:text-5xl lg:text-[4.5rem] font-bold leading-tight tracking-tight mobile-title reveal" style="--delay: 1;">
+          배움의 시작,<br><span class="text-[#6366F1]">성장의 완성.</span>
         </h1>
-        <p class="text-slate-500 text-sm md:text-xl leading-relaxed max-w-md mx-auto md:mx-0 mobile-desc">
-           공부는 기교가 아닌 태도입니다. 엘리트 아카데미는 대치동 1%의 학습 몰입 시스템과 압도적 데이터 기반의 입시 컨설팅으로 당신의 목표를 현실로 바꿉니다.
+
+        <p class="text-[#1E293B]/50 text-base md:text-lg leading-relaxed max-w-lg mx-auto lg:mx-0 mobile-desc reveal" style="--delay: 2;">
+          에듀플러스 아카데미는 학생 개개인의 잠재력을 끌어내는 맞춤형 교육을 제공합니다. 체계적인 커리큘럼과 검증된 강사진이 여러분의 목표 달성을 함께합니다.
         </p>
-        <div class="pt-4 flex flex-col sm:flex-row gap-10 justify-center md:justify-start">
-           <button class="px-12 py-5 bg-[#1b4332] text-white font-semibold text-[11px] tracking-wide uppercase hover:bg-slate-900 transition shadow-2xl">
-              Apply Admission
-           </button>
-           <button class="px-12 py-5 border border-slate-100 text-slate-900 font-semibold text-[11px] tracking-wide uppercase hover:bg-slate-50 transition">
-              View Instructors
-           </button>
+
+        <div class="pt-2 flex flex-col sm:flex-row gap-4 justify-center lg:justify-start reveal" style="--delay: 3;">
+          <a href="#contact" class="inline-flex items-center justify-center gap-3 px-9 py-4 bg-[#6366F1] text-white font-semibold text-[12px] tracking-[0.15em] uppercase hover:bg-[#4F46E5] rounded-2xl shadow-xl shadow-[#6366F1]/20">
+            무료 상담 예약 <i class="fas fa-arrow-right text-[10px]"></i>
+          </a>
+          <a href="#curriculum" class="inline-flex items-center justify-center px-9 py-4 border border-[#6366F1]/20 text-[#6366F1] font-semibold text-[12px] tracking-[0.15em] uppercase hover:bg-[#6366F1]/5 rounded-2xl">
+            커리큘럼 보기
+          </a>
+        </div>
+
+        <div class="grid grid-cols-3 gap-6 pt-6 reveal" style="--delay: 4;">
+          <div class="text-center lg:text-left">
+            <p class="text-2xl md:text-3xl font-bold text-[#6366F1]">98%</p>
+            <p class="text-[11px] text-[#1E293B]/40 mt-1 font-medium">목표 달성률</p>
+          </div>
+          <div class="text-center lg:text-left">
+            <p class="text-2xl md:text-3xl font-bold text-[#6366F1]">1,200+</p>
+            <p class="text-[11px] text-[#1E293B]/40 mt-1 font-medium">수강생 배출</p>
+          </div>
+          <div class="text-center lg:text-left">
+            <p class="text-2xl md:text-3xl font-bold text-[#6366F1]">15년</p>
+            <p class="text-[11px] text-[#1E293B]/40 mt-1 font-medium">교육 노하우</p>
+          </div>
         </div>
       </div>
-      
-      <div class="relative hidden md:block">
-         <div class="absolute -inset-20 bg-emerald-600/5 rounded-full blur-[120px]"></div>
-         <div class="relative z-10">
-            <div class="relative group">
-               <img src="https://images.unsplash.com/photo-1544377193-33dcf4d68fb5?q=80&w=1200" alt="학습" class="w-full aspect-[4/5] object-cover rounded-[3rem_3rem_1rem_1rem] border-8 border-white shadow-2xl grayscale brightness-75 transition duration-700 group-hover:grayscale-0 group-hover:brightness-100">
-               <div class="absolute -bottom-10 -left-10 bg-[#1b4332] p-8 rounded-2xl shadow-2xl text-white rotate-[-3deg]">
-                  <p class="text-[10px] font-semibold text-emerald-400 uppercase tracking-wide mb-2">Student Performance</p>
-                  <p class="text-2xl font-serif font-semibold">TOP 0.1%</p>
-                  <p class="text-[9px] font-semibold text-emerald-300 uppercase tracking-wide mt-1">Average Improvement Rate</p>
-               </div>
+
+      <div class="relative reveal" style="--delay: 2;">
+        <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=1200" alt="교육 현장" class="w-full aspect-[4/5] object-cover rounded-[2.5rem] shadow-2xl" loading="eager">
+        <div class="absolute -bottom-6 -left-6 bg-white p-6 rounded-2xl shadow-xl border border-[#6366F1]/5">
+          <div class="flex items-center gap-3">
+            <div class="w-12 h-12 bg-[#6366F1]/10 rounded-xl flex items-center justify-center">
+              <i class="fas fa-trophy text-[#6366F1]"></i>
             </div>
-         </div>
+            <div>
+              <p class="text-sm font-bold text-[#1E293B]">2026 교육 대상</p>
+              <p class="text-[11px] text-[#1E293B]/40">올해의 학원 선정</p>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </header>
 
-  <!-- Login Modal -->
-  <div id="academy-modal" class="fixed inset-0 z-[100] hidden items-center justify-center p-4 bg-[#1B4332]/ worse backdrop-blur-md">
-    <div class="bg-white w-full max-w-sm p-12 shadow-2xl relative rounded-2xl border border-emerald-50">
-      <button onclick="toggleAcademyModal()" class="absolute top-10 right-10 text-slate-300 hover:text-emerald-600 transition text-2xl font-light">&times;</button>
-      
-      <div class="text-center mb-10">
-        <h2 class="text-xl font-serif tracking-[0.4em] text-[#1b4332] mb-2 font-semibold uppercase">STUDENT_LMS</h2>
-        <p class="text-[9px] text-emerald-600 font-semibold tracking-[0.2em] uppercase">Elite Learning Management System</p>
+  <!-- ========== About ========== -->
+  <section id="about" class="py-24 md:py-32">
+    <div class="max-w-7xl mx-auto px-4 md:px-8 grid lg:grid-cols-2 gap-16 lg:gap-24 items-center">
+      <div class="relative reveal" style="--delay: 0;">
+        <div class="grid grid-cols-2 gap-4">
+          <div class="space-y-4">
+            <div class="overflow-hidden rounded-2xl">
+              <img src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?q=80&w=600" alt="수업 장면" class="w-full aspect-[3/4] object-cover" loading="lazy" decoding="async">
+            </div>
+            <div class="bg-[#6366F1] rounded-2xl p-6 text-white text-center">
+              <p class="text-3xl font-bold">15</p>
+              <p class="text-[11px] font-medium text-white/70 mt-1">Years of Excellence</p>
+            </div>
+          </div>
+          <div class="pt-8">
+            <div class="overflow-hidden rounded-2xl">
+              <img src="https://images.unsplash.com/photo-1427504494785-3a9ca7044f45?q=80&w=600" alt="학생들" class="w-full aspect-[3/5] object-cover" loading="lazy" decoding="async">
+            </div>
+          </div>
+        </div>
       </div>
-      
-      <div class="space-y-6">
-        <input type="text" placeholder="STUDENT ID" class="w-full bg-slate-50 border-none rounded-2xl py-5 px-6 outline-none focus:ring-1 focus:ring-emerald-600 transition text-[11px] font-semibold tracking-wide uppercase">
-        <button class="w-full bg-[#1b4332] text-white py-5 rounded-2xl text-[10px] tracking-[0.4em] font-semibold uppercase hover:bg-slate-900 transition shadow-lg shadow-emerald-100">
-           Authorize Session
-        </button>
-        <div class="flex justify-center gap-14 pt-4">
-           <a href="#" class="text-[9px] text-slate-400 tracking-[0.2em] font-semibold uppercase hover:text-[#1b4332] transition font-serif italic">New Enrollment</a>
-           <a href="#" class="text-[9px] text-slate-400 tracking-[0.2em] font-semibold uppercase hover:text-[#1b4332] transition font-serif italic">Parents Room</a>
+
+      <div class="space-y-8 reveal" style="--delay: 1;">
+        <span class="inline-block rounded-full px-4 py-1.5 text-[11px] uppercase tracking-[0.15em] font-semibold bg-[#6366F1]/5 text-[#6366F1]">About Us</span>
+        <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold leading-snug">
+          학생의 미래를<br>설계하는 교육
+        </h2>
+        <p class="text-[#1E293B]/50 text-base md:text-lg leading-relaxed">
+          에듀플러스 아카데미는 단순한 점수 향상이 아닌, 학생 스스로 문제를 해결하는 힘을 길러주는 교육 철학을 가지고 있습니다. 소수 정예 수업과 1:1 맞춤 관리로 모든 학생이 자신의 목표에 도달할 수 있도록 돕습니다.
+        </p>
+        <div class="grid grid-cols-2 gap-4">
+          <div class="bg-white rounded-2xl p-5 border border-[#6366F1]/5">
+            <i class="fas fa-user-friends text-[#6366F1] text-lg mb-3"></i>
+            <p class="font-semibold text-sm">소수 정예 클래스</p>
+            <p class="text-[12px] text-[#1E293B]/40 mt-1">반당 최대 8명</p>
+          </div>
+          <div class="bg-white rounded-2xl p-5 border border-[#6366F1]/5">
+            <i class="fas fa-chart-line text-[#6366F1] text-lg mb-3"></i>
+            <p class="font-semibold text-sm">성적 관리 시스템</p>
+            <p class="text-[12px] text-[#1E293B]/40 mt-1">실시간 성적 분석</p>
+          </div>
+          <div class="bg-white rounded-2xl p-5 border border-[#6366F1]/5">
+            <i class="fas fa-book-reader text-[#6366F1] text-lg mb-3"></i>
+            <p class="font-semibold text-sm">자체 교재 개발</p>
+            <p class="text-[12px] text-[#1E293B]/40 mt-1">최신 출제 경향 반영</p>
+          </div>
+          <div class="bg-white rounded-2xl p-5 border border-[#6366F1]/5">
+            <i class="fas fa-headset text-[#6366F1] text-lg mb-3"></i>
+            <p class="font-semibold text-sm">학부모 상담</p>
+            <p class="text-[12px] text-[#1E293B]/40 mt-1">월 1회 정기 상담</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== Curriculum ========== -->
+  <section id="curriculum" class="py-24 md:py-32 bg-white">
+    <div class="max-w-7xl mx-auto px-4 md:px-8">
+      <div class="text-center mb-16">
+        <span class="inline-block rounded-full px-4 py-1.5 text-[11px] uppercase tracking-[0.15em] font-semibold bg-[#6366F1]/5 text-[#6366F1] reveal" style="--delay: 0;">Curriculum</span>
+        <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold leading-snug mt-6 reveal" style="--delay: 1;">
+          체계적인 커리큘럼으로<br>확실한 결과를
+        </h2>
+        <p class="text-[#1E293B]/50 text-base md:text-lg mt-4 max-w-xl mx-auto reveal" style="--delay: 2;">
+          학년별, 수준별 맞춤 프로그램으로 효율적인 학습을 설계합니다.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div class="curriculum-card bg-[#F8FAFC] rounded-3xl p-8 border border-[#6366F1]/5 reveal" style="--delay: 0;">
+          <div class="w-14 h-14 bg-[#6366F1]/10 rounded-2xl flex items-center justify-center mb-6">
+            <i class="fas fa-calculator text-[#6366F1] text-xl"></i>
+          </div>
+          <h3 class="text-lg font-bold mb-3">수학 심화반</h3>
+          <p class="text-[13px] text-[#1E293B]/50 leading-relaxed mb-4">개념 이해부터 고난도 문제 풀이까지, 수학적 사고력을 키우는 체계적 과정</p>
+          <div class="flex items-center gap-2 text-[#6366F1]">
+            <span class="text-[11px] font-semibold uppercase tracking-[0.1em]">자세히 보기</span>
+            <i class="fas fa-arrow-right text-[9px]"></i>
+          </div>
+        </div>
+
+        <div class="curriculum-card bg-[#F8FAFC] rounded-3xl p-8 border border-[#6366F1]/5 reveal" style="--delay: 1;">
+          <div class="w-14 h-14 bg-[#6366F1]/10 rounded-2xl flex items-center justify-center mb-6">
+            <i class="fas fa-language text-[#6366F1] text-xl"></i>
+          </div>
+          <h3 class="text-lg font-bold mb-3">국어 독해반</h3>
+          <p class="text-[13px] text-[#1E293B]/50 leading-relaxed mb-4">비문학 독해와 문학 감상력을 동시에 향상시키는 통합 국어 프로그램</p>
+          <div class="flex items-center gap-2 text-[#6366F1]">
+            <span class="text-[11px] font-semibold uppercase tracking-[0.1em]">자세히 보기</span>
+            <i class="fas fa-arrow-right text-[9px]"></i>
+          </div>
+        </div>
+
+        <div class="curriculum-card bg-[#F8FAFC] rounded-3xl p-8 border border-[#6366F1]/5 reveal" style="--delay: 2;">
+          <div class="w-14 h-14 bg-[#6366F1]/10 rounded-2xl flex items-center justify-center mb-6">
+            <i class="fas fa-flask text-[#6366F1] text-xl"></i>
+          </div>
+          <h3 class="text-lg font-bold mb-3">과학 탐구반</h3>
+          <p class="text-[13px] text-[#1E293B]/50 leading-relaxed mb-4">실험과 탐구 활동 중심의 과학 수업으로 원리를 직접 체험하는 학습</p>
+          <div class="flex items-center gap-2 text-[#6366F1]">
+            <span class="text-[11px] font-semibold uppercase tracking-[0.1em]">자세히 보기</span>
+            <i class="fas fa-arrow-right text-[9px]"></i>
+          </div>
+        </div>
+
+        <div class="curriculum-card bg-[#F8FAFC] rounded-3xl p-8 border border-[#6366F1]/5 reveal" style="--delay: 3;">
+          <div class="w-14 h-14 bg-[#6366F1]/10 rounded-2xl flex items-center justify-center mb-6">
+            <i class="fas fa-globe-americas text-[#6366F1] text-xl"></i>
+          </div>
+          <h3 class="text-lg font-bold mb-3">영어 집중반</h3>
+          <p class="text-[13px] text-[#1E293B]/50 leading-relaxed mb-4">내신과 수능을 동시에 대비하는 통합 영어 커리큘럼으로 실력 완성</p>
+          <div class="flex items-center gap-2 text-[#6366F1]">
+            <span class="text-[11px] font-semibold uppercase tracking-[0.1em]">자세히 보기</span>
+            <i class="fas fa-arrow-right text-[9px]"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== Instructors ========== -->
+  <section id="instructors" class="py-24 md:py-32">
+    <div class="max-w-7xl mx-auto px-4 md:px-8">
+      <div class="flex flex-col md:flex-row md:items-end md:justify-between mb-16 gap-6">
+        <div>
+          <span class="inline-block rounded-full px-4 py-1.5 text-[11px] uppercase tracking-[0.15em] font-semibold bg-[#6366F1]/5 text-[#6366F1] reveal" style="--delay: 0;">Instructors</span>
+          <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold leading-snug mt-6 reveal" style="--delay: 1;">검증된 강사진</h2>
+        </div>
+        <p class="text-[#1E293B]/50 text-base max-w-md reveal" style="--delay: 2;">
+          명문대 출신, 평균 경력 10년 이상의 전문 강사가 직접 가르칩니다.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div class="instructor-card bg-white rounded-3xl overflow-hidden border border-[#6366F1]/5 reveal" style="--delay: 0;">
+          <div class="overflow-hidden"><img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=600" alt="김서연 선생님" class="w-full aspect-[4/5] object-cover transition-transform duration-700" loading="lazy" decoding="async"></div>
+          <div class="p-6">
+            <h3 class="font-bold text-lg">김서연 선생님</h3>
+            <p class="text-[#6366F1] text-[12px] font-semibold mt-1">수학 | 서울대 수학교육과</p>
+            <p class="text-[12px] text-[#1E293B]/40 mt-2">경력 12년, 수능 만점자 다수 배출</p>
+          </div>
+        </div>
+        <div class="instructor-card bg-white rounded-3xl overflow-hidden border border-[#6366F1]/5 reveal" style="--delay: 1;">
+          <div class="overflow-hidden"><img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=600" alt="박준혁 선생님" class="w-full aspect-[4/5] object-cover transition-transform duration-700" loading="lazy" decoding="async"></div>
+          <div class="p-6">
+            <h3 class="font-bold text-lg">박준혁 선생님</h3>
+            <p class="text-[#6366F1] text-[12px] font-semibold mt-1">국어 | 고려대 국어국문학과</p>
+            <p class="text-[12px] text-[#1E293B]/40 mt-2">경력 10년, 비문학 독해 전문가</p>
+          </div>
+        </div>
+        <div class="instructor-card bg-white rounded-3xl overflow-hidden border border-[#6366F1]/5 reveal" style="--delay: 2;">
+          <div class="overflow-hidden"><img src="https://images.unsplash.com/photo-1580894732444-8ecded7900cd?q=80&w=600" alt="이지은 선생님" class="w-full aspect-[4/5] object-cover transition-transform duration-700" loading="lazy" decoding="async"></div>
+          <div class="p-6">
+            <h3 class="font-bold text-lg">이지은 선생님</h3>
+            <p class="text-[#6366F1] text-[12px] font-semibold mt-1">과학 | KAIST 생명과학과</p>
+            <p class="text-[12px] text-[#1E293B]/40 mt-2">경력 8년, 과학 올림피아드 지도</p>
+          </div>
+        </div>
+        <div class="instructor-card bg-white rounded-3xl overflow-hidden border border-[#6366F1]/5 reveal" style="--delay: 3;">
+          <div class="overflow-hidden"><img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=600" alt="최민수 선생님" class="w-full aspect-[4/5] object-cover transition-transform duration-700" loading="lazy" decoding="async"></div>
+          <div class="p-6">
+            <h3 class="font-bold text-lg">최민수 선생님</h3>
+            <p class="text-[#6366F1] text-[12px] font-semibold mt-1">영어 | 연세대 영어영문학과</p>
+            <p class="text-[12px] text-[#1E293B]/40 mt-2">경력 11년, 원어민급 발음 교정</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== Reviews ========== -->
+  <section id="reviews" class="py-24 md:py-32 bg-[#6366F1]">
+    <div class="max-w-7xl mx-auto px-4 md:px-8">
+      <div class="text-center mb-16">
+        <span class="inline-block rounded-full px-4 py-1.5 text-[11px] uppercase tracking-[0.15em] font-semibold bg-white/10 text-white reveal" style="--delay: 0;">Reviews</span>
+        <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold leading-snug mt-6 text-white reveal" style="--delay: 1;">수강생들의 진짜 이야기</h2>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-6">
+        <div class="bg-white/10 backdrop-blur-sm rounded-3xl p-8 border border-white/10 reveal" style="--delay: 0;">
+          <div class="flex gap-1 text-yellow-300 mb-4"><i class="fas fa-star text-sm"></i><i class="fas fa-star text-sm"></i><i class="fas fa-star text-sm"></i><i class="fas fa-star text-sm"></i><i class="fas fa-star text-sm"></i></div>
+          <p class="text-white/80 text-[14px] leading-relaxed mb-6">수학 성적이 3등급에서 1등급으로 올랐어요. 김서연 선생님의 수업 방식이 정말 저한테 딱 맞았습니다. 개념을 제대로 잡아주시니까 어려운 문제도 풀리더라고요.</p>
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center text-white text-sm font-bold">J</div>
+            <div><p class="text-white font-semibold text-sm">정유진</p><p class="text-white/40 text-[11px]">고3 수학 심화반</p></div>
+          </div>
+        </div>
+        <div class="bg-white/10 backdrop-blur-sm rounded-3xl p-8 border border-white/10 reveal" style="--delay: 1;">
+          <div class="flex gap-1 text-yellow-300 mb-4"><i class="fas fa-star text-sm"></i><i class="fas fa-star text-sm"></i><i class="fas fa-star text-sm"></i><i class="fas fa-star text-sm"></i><i class="fas fa-star text-sm"></i></div>
+          <p class="text-white/80 text-[14px] leading-relaxed mb-6">아이가 공부에 흥미를 잃었었는데, 에듀플러스에 다니고 나서 스스로 책상에 앉게 되었어요. 학부모 상담도 꼼꼼하게 해주셔서 정말 믿음이 갑니다.</p>
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center text-white text-sm font-bold">K</div>
+            <div><p class="text-white font-semibold text-sm">김미영 (학부모)</p><p class="text-white/40 text-[11px]">중2 국어 독해반</p></div>
+          </div>
+        </div>
+        <div class="bg-white/10 backdrop-blur-sm rounded-3xl p-8 border border-white/10 reveal" style="--delay: 2;">
+          <div class="flex gap-1 text-yellow-300 mb-4"><i class="fas fa-star text-sm"></i><i class="fas fa-star text-sm"></i><i class="fas fa-star text-sm"></i><i class="fas fa-star text-sm"></i><i class="fas fa-star-half-alt text-sm"></i></div>
+          <p class="text-white/80 text-[14px] leading-relaxed mb-6">과학 탐구반에서 실험을 직접 하면서 배우니까 이해가 훨씬 잘 돼요. 학교 시험도 자신감 있게 봤고, 과학 탐구 대회에서 상도 받았습니다!</p>
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center text-white text-sm font-bold">L</div>
+            <div><p class="text-white font-semibold text-sm">이현우</p><p class="text-white/40 text-[11px]">중3 과학 탐구반</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== Contact / Consultation ========== -->
+  <section id="contact" class="py-24 md:py-32">
+    <div class="max-w-7xl mx-auto px-4 md:px-8 grid lg:grid-cols-2 gap-16 lg:gap-24 items-start">
+      <div class="space-y-8">
+        <div class="reveal" style="--delay: 0;">
+          <span class="inline-block rounded-full px-4 py-1.5 text-[11px] uppercase tracking-[0.15em] font-semibold bg-[#6366F1]/5 text-[#6366F1]">Contact</span>
+          <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold leading-snug mt-6">무료 상담 예약</h2>
+          <p class="text-[#1E293B]/50 text-base md:text-lg mt-4 leading-relaxed">
+            학생의 현재 수준을 진단하고 맞춤 학습 플랜을 제안해드립니다.
+          </p>
+        </div>
+        <div class="space-y-6 reveal" style="--delay: 1;">
+          <div class="flex gap-4 items-start">
+            <div class="w-12 h-12 bg-[#6366F1]/5 rounded-2xl flex items-center justify-center shrink-0"><i class="fas fa-map-marker-alt text-[#6366F1]"></i></div>
+            <div><p class="font-semibold text-sm">오시는 길</p><p class="text-[13px] text-[#1E293B]/50 mt-1">서울특별시 강남구 테헤란로 123, 에듀플러스 빌딩 3층</p></div>
+          </div>
+          <div class="flex gap-4 items-start">
+            <div class="w-12 h-12 bg-[#6366F1]/5 rounded-2xl flex items-center justify-center shrink-0"><i class="fas fa-phone text-[#6366F1]"></i></div>
+            <div><p class="font-semibold text-sm">전화 상담</p><p class="text-[13px] text-[#1E293B]/50 mt-1">02-555-1234 (평일 10:00 - 21:00)</p></div>
+          </div>
+          <div class="flex gap-4 items-start">
+            <div class="w-12 h-12 bg-[#6366F1]/5 rounded-2xl flex items-center justify-center shrink-0"><i class="fas fa-clock text-[#6366F1]"></i></div>
+            <div><p class="font-semibold text-sm">운영 시간</p><p class="text-[13px] text-[#1E293B]/50 mt-1">월-금 10:00-22:00 / 토 10:00-18:00 / 일 휴무</p></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-3xl p-8 md:p-10 shadow-xl border border-[#6366F1]/5 reveal" style="--delay: 2;">
+        <h3 class="text-xl font-bold mb-6">상담 신청서</h3>
+        <div class="space-y-4">
+          <div><label class="text-[11px] font-semibold text-[#1E293B]/40 uppercase tracking-[0.1em] block mb-2">학생 이름</label><input type="text" placeholder="학생 이름을 입력해주세요" class="w-full bg-[#F8FAFC] border border-[#6366F1]/10 rounded-xl py-4 px-5 outline-none focus:ring-2 focus:ring-[#6366F1]/20 transition text-[13px]"></div>
+          <div><label class="text-[11px] font-semibold text-[#1E293B]/40 uppercase tracking-[0.1em] block mb-2">연락처</label><input type="tel" placeholder="010-0000-0000" class="w-full bg-[#F8FAFC] border border-[#6366F1]/10 rounded-xl py-4 px-5 outline-none focus:ring-2 focus:ring-[#6366F1]/20 transition text-[13px]"></div>
+          <div><label class="text-[11px] font-semibold text-[#1E293B]/40 uppercase tracking-[0.1em] block mb-2">관심 과목</label>
+            <select class="w-full bg-[#F8FAFC] border border-[#6366F1]/10 rounded-xl py-4 px-5 outline-none focus:ring-2 focus:ring-[#6366F1]/20 transition text-[13px] text-[#1E293B]/60">
+              <option>수학 심화반</option><option>국어 독해반</option><option>과학 탐구반</option><option>영어 집중반</option>
+            </select>
+          </div>
+          <div><label class="text-[11px] font-semibold text-[#1E293B]/40 uppercase tracking-[0.1em] block mb-2">상담 내용</label><textarea rows="3" placeholder="궁금한 점을 적어주세요" class="w-full bg-[#F8FAFC] border border-[#6366F1]/10 rounded-xl py-4 px-5 outline-none focus:ring-2 focus:ring-[#6366F1]/20 transition text-[13px] resize-none"></textarea></div>
+          <button class="w-full bg-[#6366F1] text-white py-4 rounded-xl font-semibold text-[12px] tracking-[0.2em] uppercase hover:bg-[#4F46E5] shadow-lg shadow-[#6366F1]/20 mt-2">상담 신청하기</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== CTA ========== -->
+  <section class="py-24 md:py-32 bg-gradient-to-br from-[#6366F1] to-[#4F46E5] relative overflow-hidden">
+    <div class="absolute top-0 right-0 w-96 h-96 bg-white/5 rounded-full blur-[120px]"></div>
+    <div class="absolute bottom-0 left-0 w-72 h-72 bg-[#818CF8]/20 rounded-full blur-[100px]"></div>
+    <div class="max-w-3xl mx-auto px-4 md:px-8 text-center relative z-10">
+      <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold leading-snug text-white reveal" style="--delay: 0;">
+        지금 시작하면,<br>내일이 달라집니다.
+      </h2>
+      <p class="text-white/60 text-base md:text-lg mt-6 max-w-lg mx-auto reveal" style="--delay: 1;">
+        에듀플러스 아카데미에서 당신의 목표를 현실로 만들어보세요. 첫 상담은 무료입니다.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center mt-10 reveal" style="--delay: 2;">
+        <a href="#contact" class="inline-flex items-center justify-center gap-3 px-10 py-5 bg-white text-[#6366F1] font-bold text-[12px] tracking-[0.2em] uppercase rounded-2xl hover:bg-[#F8FAFC] shadow-xl">
+          무료 상담 신청 <i class="fas fa-arrow-right text-[10px]"></i>
+        </a>
+        <a href="tel:02-555-1234" class="inline-flex items-center justify-center gap-3 px-10 py-5 border border-white/20 text-white font-semibold text-[12px] tracking-[0.2em] uppercase rounded-2xl hover:bg-white/10">
+          <i class="fas fa-phone text-sm"></i> 02-555-1234
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== Footer ========== -->
+  <footer class="py-16 md:py-24 bg-[#0F172A]">
+    <div class="max-w-7xl mx-auto px-4 md:px-8">
+      <div class="grid md:grid-cols-3 gap-12 items-start mb-16">
+        <div>
+          <div class="flex items-center gap-2 mb-4">
+            <div class="w-8 h-8 bg-[#6366F1] rounded-lg flex items-center justify-center"><i class="fas fa-graduation-cap text-white text-sm"></i></div>
+            <span class="font-inter text-xl font-bold text-white">에듀플러스</span>
+          </div>
+          <p class="text-white/30 text-sm leading-relaxed max-w-xs">체계적인 커리큘럼과 검증된 강사진으로 학생의 미래를 설계하는 교육 전문 아카데미입니다.</p>
+        </div>
+        <div class="grid grid-cols-2 gap-8">
+          <div>
+            <p class="text-[10px] font-semibold text-white/20 uppercase tracking-[0.3em] mb-4">프로그램</p>
+            <ul class="space-y-2.5">
+              <li><a href="#curriculum" class="text-white/50 text-sm hover:text-[#6366F1] transition">수학 심화반</a></li>
+              <li><a href="#curriculum" class="text-white/50 text-sm hover:text-[#6366F1] transition">국어 독해반</a></li>
+              <li><a href="#curriculum" class="text-white/50 text-sm hover:text-[#6366F1] transition">과학 탐구반</a></li>
+              <li><a href="#curriculum" class="text-white/50 text-sm hover:text-[#6366F1] transition">영어 집중반</a></li>
+            </ul>
+          </div>
+          <div>
+            <p class="text-[10px] font-semibold text-white/20 uppercase tracking-[0.3em] mb-4">안내</p>
+            <ul class="space-y-2.5">
+              <li><a href="#about" class="text-white/50 text-sm hover:text-[#6366F1] transition">학원 소개</a></li>
+              <li><a href="#instructors" class="text-white/50 text-sm hover:text-[#6366F1] transition">강사진</a></li>
+              <li><a href="#reviews" class="text-white/50 text-sm hover:text-[#6366F1] transition">수강 후기</a></li>
+              <li><a href="#contact" class="text-white/50 text-sm hover:text-[#6366F1] transition">상담 예약</a></li>
+            </ul>
+          </div>
+        </div>
+        <div>
+          <p class="text-[10px] font-semibold text-white/20 uppercase tracking-[0.3em] mb-4">Follow</p>
+          <div class="flex gap-3">
+            <a href="#" class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white/50 hover:text-[#6366F1] hover:border-[#6366F1]/30 transition"><i class="fab fa-instagram text-sm"></i></a>
+            <a href="#" class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white/50 hover:text-[#6366F1] hover:border-[#6366F1]/30 transition"><i class="fab fa-youtube text-sm"></i></a>
+            <a href="#" class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white/50 hover:text-[#6366F1] hover:border-[#6366F1]/30 transition"><i class="fas fa-blog text-sm"></i></a>
+          </div>
+        </div>
+      </div>
+      <div class="border-t border-white/5 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+        <p class="text-[10px] text-white/15 tracking-[0.3em] uppercase">&copy; 2026 에듀플러스 아카데미. All rights reserved by DLAB.</p>
+        <div class="flex gap-6">
+          <a href="#" class="text-[10px] text-white/15 tracking-[0.2em] uppercase hover:text-white/40 transition">개인정보처리방침</a>
+          <a href="#" class="text-[10px] text-white/15 tracking-[0.2em] uppercase hover:text-white/40 transition">이용약관</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ========== Login Modal ========== -->
+  <div id="academy-modal" class="fixed inset-0 z-[100] hidden items-center justify-center p-4 bg-[#1E293B]/30 backdrop-blur-3xl">
+    <div class="bg-white w-full max-w-sm p-8 md:p-12 shadow-2xl relative rounded-3xl border border-[#6366F1]/5">
+      <button onclick="toggleAcademyModal()" class="absolute top-6 right-6 w-8 h-8 rounded-full bg-[#F8FAFC] flex items-center justify-center text-[#1E293B]/30 hover:text-[#6366F1] transition text-lg">&times;</button>
+      <div class="text-center mb-10">
+        <div class="w-12 h-12 bg-[#6366F1] rounded-xl flex items-center justify-center mx-auto mb-4"><i class="fas fa-graduation-cap text-white"></i></div>
+        <h2 class="text-xl font-bold text-[#1E293B] mb-1">학부모 포털</h2>
+        <p class="text-[11px] text-[#6366F1] font-semibold tracking-[0.2em] uppercase">Member Login</p>
+      </div>
+      <div class="space-y-4">
+        <div><p class="text-[10px] font-semibold text-[#1E293B]/30 uppercase tracking-[0.15em] mb-2">아이디</p><input type="text" placeholder="your@email.com" class="w-full bg-[#F8FAFC] border border-[#6366F1]/10 rounded-xl py-4 px-5 outline-none focus:ring-2 focus:ring-[#6366F1]/20 transition text-[13px]"></div>
+        <div><p class="text-[10px] font-semibold text-[#1E293B]/30 uppercase tracking-[0.15em] mb-2">비밀번호</p><input type="password" placeholder="Password" class="w-full bg-[#F8FAFC] border border-[#6366F1]/10 rounded-xl py-4 px-5 outline-none focus:ring-2 focus:ring-[#6366F1]/20 transition text-[13px]"></div>
+        <button class="w-full bg-[#6366F1] text-white py-4 rounded-xl text-[12px] tracking-[0.3em] font-semibold uppercase hover:bg-[#4F46E5] shadow-lg shadow-[#6366F1]/20 mt-2">로그인</button>
+        <div class="flex justify-center gap-8 pt-2">
+          <a href="#" class="text-[11px] text-[#1E293B]/40 font-semibold hover:text-[#6366F1] transition">회원가입</a>
+          <a href="#" class="text-[11px] text-[#1E293B]/40 font-semibold hover:text-[#6366F1] transition">비밀번호 찾기</a>
         </div>
       </div>
     </div>
   </div>
-
-  <footer class="py-20 md:py-32 bg-white text-center px-6 border-t border-slate-100">
-     <div class="inline-flex items-center gap-10 mb-8">
-        <span class="font-serif text-2xl tracking-[0.4em] font-semibold uppercase text-[#1B4332]">ELITE</span>
-        <span class="w-12 h-[1px] bg-emerald-100"></span>
-        <span class="text-[10px] font-semibold text-slate-400 tracking-[0.4em] uppercase">Intelligence & Discipline</span>
-     </div>
-     <p class="text-[10px] text-slate-300 tracking-[0.6em] uppercase px-6">© 2024 ELITE EDUCATION NETWORK. ALL RIGHTS RESERVED.</p>
-  </footer>
-
-  <script>
-    function toggleAcademyModal() {
-      const modal = document.getElementById('academy-modal');
-      modal.classList.toggle('hidden');
-      modal.classList.toggle('flex');
-    }
-  </script>
-
 </div>
+
+<script>
+  function toggleAcademyModal() { const m = document.getElementById('academy-modal'); m.classList.toggle('hidden'); m.classList.toggle('flex'); }
+  document.getElementById('academy-modal').addEventListener('click', function(e) { if (e.target === this) toggleAcademyModal(); });
+  (function() {
+    const observer = new IntersectionObserver(function(entries) { entries.forEach(function(entry) { if (entry.isIntersecting) { entry.target.classList.add('is-visible'); observer.unobserve(entry.target); } }); }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+    document.querySelectorAll('.reveal').forEach(function(el) { observer.observe(el); });
+  })();
+</script>

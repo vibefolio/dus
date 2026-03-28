@@ -1,145 +1,610 @@
-<%# Hotel Template - 그랜드 오션 (GRAND OCEAN) %>
+<%# Hotel Template — VELLA RESORT (벨라 리조트) %>
 
 <style>
-  /* Supanova Design Upgrade */
+  /* Supanova Design — Dark Luxury Archetype */
   * { word-break: keep-all; }
-  html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+  html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
   h1, h2, h3, h4 { text-wrap: balance; letter-spacing: -0.02em; line-height: 1.3; }
-  a, button { transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1); }
+  a, button { transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1); }
   a:hover, button:hover { transform: scale(1.02); }
   a:active, button:active { transform: scale(0.98); }
 
-  @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,700;1,400&family=Nanum+Myeongjo:wght@400;700;800&family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap');
-  
-  .font-serif-en { font-family: 'Cormorant Garamond', serif; }
-  .font-serif { font-family: 'Nanum Myeongjo', serif; }
-  .font-sans { font-family: 'Pretendard Variable', 'Pretendard', -apple-system, sans-serif; }
+  @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600&display=swap');
+
+  .font-sans { font-family: 'Pretendard Variable', 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, sans-serif; }
+  .font-serif { font-family: 'Cormorant Garamond', serif; }
 
   @media (max-width: 768px) {
     .mobile-desc { font-size: 14px !important; line-height: 1.8; }
-    .mobile-title { font-size: 40px !important; }
+    .mobile-title { font-size: 36px !important; }
   }
+
+  /* Scroll reveal */
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(2.5rem); filter: blur(6px); }
+    to { opacity: 1; transform: translateY(0); filter: blur(0); }
+  }
+  .reveal {
+    opacity: 0;
+    transform: translateY(2.5rem);
+  }
+  .reveal.is-visible {
+    animation: fadeInUp 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    animation-delay: calc(var(--delay, 0) * 120ms);
+  }
+
+  /* Room card hover */
+  .room-card { transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1); }
+  .room-card:hover { transform: translateY(-10px); }
+  .room-card:hover img { transform: scale(1.08); }
+
+  /* Gallery hover */
+  .gallery-item { transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1); }
+  .gallery-item:hover { transform: scale(1.02); }
+  .gallery-item:hover img { transform: scale(1.06); }
+
+  /* Parallax shimmer */
+  @keyframes shimmer {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 0.6; }
+  }
+
+  /* Gold line animation */
+  @keyframes expandLine {
+    from { width: 0; }
+    to { width: 80px; }
+  }
+  .gold-line.is-visible { animation: expandLine 1s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
 </style>
 
-<div class="bg-[#F6F5F2] text-[#1C1C1C] font-sans selection:bg-[#BFA183] selection:text-white min-h-screen overflow-x-hidden">
+<div class="bg-[#0C1015] text-[#F5F0E8] font-sans selection:bg-[#C9A96E] selection:text-[#0C1015] min-h-screen overflow-x-hidden relative">
 
-  <!-- Nav -->
-  <nav class="fixed w-full z-50 px-8 py-12 md:px-12 bg-[#F6F5F2]/80 backdrop-blur-xl border-b border-[#BFA183]/10">
-    <div class="container mx-auto px-4 md:px-6 flex justify-between items-center flex-nowrap">
-      <div class="flex items-center gap-10">
-         <span class="font-serif-en text-2xl tracking-wide font-semibold italic text-[#1C1C1C]">Grand Ocean</span>
-      </div>
-      
-      <div class="hidden md:flex gap-14 text-[10px] font-semibold uppercase tracking-[0.3em] text-[#1C1C1C]/40">
-        <a href="#suites" class="hover:text-[#BFA183] transition">Suites</a>
-        <a href="#dining" class="hover:text-[#BFA183] transition">Gastronomy</a>
-        <a href="#spa" class="hover:text-[#BFA183] transition">Wellness</a>
-      </div>
-           <button class="mobile-menu-trigger md:hidden ml-auto text-2xl focus:outline-none" style="color: inherit;">
-             <i class="fas fa-bars"></i>
-           </button>
+  <!-- ========== Nav ========== -->
+  <nav class="fixed w-full z-50 px-4 md:px-10 py-5 bg-[#0C1015]/70 backdrop-blur-2xl border-b border-[#C9A96E]/10">
+    <div class="max-w-7xl mx-auto flex justify-between items-center">
+      <a href="#" class="flex items-center gap-3">
+        <span class="font-serif text-2xl md:text-3xl tracking-wide font-semibold italic text-[#C9A96E]">Vella Resort</span>
+      </a>
 
-      
-      <div class="flex-nowrap shrink-0 flex gap-12 items-center">
-         <button onclick="toggleHotelModal()" class="hidden md:block text-[10px] font-semibold uppercase tracking-[0.3em] text-[#1C1C1C]/40 hover:text-[#BFA183]" data-mobile-menu-copy="true">Concierge</button>
-         <button class="hidden md:inline-flex bg-[#1C1C1C] text-white px-4 py-2 text-xs md:text-base md:px-8 md:py-3 whitespace-nowrap rounded-none font-semibold text-[10px] tracking-[0.3em] uppercase hover:bg-[#BFA183] hover:text-white transition shadow-xl" data-mobile-menu-copy="true">
-           Book Your Stay
-         </button>
+      <div class="hidden md:flex gap-12 text-[10px] font-semibold uppercase tracking-[0.4em] text-[#F5F0E8]/30">
+        <a href="#rooms" class="hover:text-[#C9A96E] transition">Rooms</a>
+        <a href="#dining" class="hover:text-[#C9A96E] transition">Dining</a>
+        <a href="#facilities" class="hover:text-[#C9A96E] transition">Facilities</a>
+        <a href="#location" class="hover:text-[#C9A96E] transition">Location</a>
+      </div>
+
+      <button class="mobile-menu-trigger md:hidden ml-auto text-2xl focus:outline-none text-[#C9A96E]">
+        <i class="fas fa-bars"></i>
+      </button>
+
+      <div class="hidden md:flex gap-6 items-center shrink-0">
+        <button onclick="toggleHotelModal()" class="text-[10px] font-semibold uppercase tracking-[0.4em] text-[#F5F0E8]/30 hover:text-[#C9A96E]" data-mobile-menu-copy="true">Concierge</button>
+        <a href="#booking" class="bg-[#C9A96E] text-[#0C1015] px-8 py-3.5 rounded-none font-bold text-[10px] tracking-[0.3em] uppercase hover:bg-[#F5F0E8] transition shadow-lg shadow-[#C9A96E]/20" data-mobile-menu-copy="true">
+          예약하기
+        </a>
       </div>
     </div>
 
-      <%= render partial: 'templates/shared/mobile_menu_overlay' %></nav>
+    <%= render partial: 'templates/shared/mobile_menu_overlay' %>
+  </nav>
 
-  <!-- Hero -->
-  <header class="min-h-screen relative flex items-center justify-center pt-20">
-    <div class="container mx-auto px-3 md:px-6 relative z-10 grid lg:grid-cols-12 gap-16 items-center">
-      <div class="lg:col-span-5 space-y-12">
-        <div class="inline-flex items-center gap-6">
-           <span class="w-12 h-[1px] bg-[#BFA183]"></span>
-           <span class="text-[10px] font-semibold tracking-[0.6em] uppercase text-[#BFA183]">Signature Hospitality</span>
+  <!-- ========== 1. Hero ========== -->
+  <header class="min-h-screen relative flex items-end pb-20 md:pb-32">
+    <div class="absolute inset-0">
+      <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?q=80&w=2000&auto=format" alt="Vella Resort 전경" class="w-full h-full object-cover">
+      <div class="absolute inset-0 bg-gradient-to-t from-[#0C1015] via-[#0C1015]/60 to-transparent"></div>
+      <div class="absolute inset-0 bg-gradient-to-r from-[#0C1015]/80 to-transparent"></div>
+    </div>
+
+    <div class="relative z-10 max-w-7xl mx-auto px-6 md:px-10 w-full">
+      <div class="max-w-2xl space-y-8">
+        <div class="reveal inline-flex items-center gap-6">
+          <span class="w-12 h-[1px] bg-[#C9A96E]"></span>
+          <span class="text-[10px] font-semibold tracking-[0.6em] uppercase text-[#C9A96E]">Premium Resort & Spa</span>
         </div>
-        
-        <h1 class="text-3xl md:text-5xl md:text-[5.5rem] font-serif font-semibold leading-none tracking-tight text-[#1C1C1C] mobile-title">
-           바다의 깊이,<br><span class="italic text-[#BFA183]">품격의 높이.</span>
+
+        <h1 class="reveal text-4xl md:text-7xl font-serif font-semibold leading-[1.1] tracking-tight mobile-title" style="--delay:1">
+          자연이 빚은<br>
+          <span class="italic text-[#C9A96E]">완벽한 휴식.</span>
         </h1>
-        
-        <p class="text-[#1C1C1C]/60 text-sm md:text-lg leading-[1.8] max-w-md mobile-desc border-l-2 border-[#1C1C1C]/5 pl-6">
-           그랜드 오션에서 마주하는 압도적인 파노라마. 일상을 벗어나 가장 완벽한 휴식의 시퀀스를 경험하십시오.
+
+        <p class="reveal text-[#F5F0E8]/50 text-sm md:text-lg leading-[2] max-w-lg mobile-desc" style="--delay:2">
+          제주의 바다와 하늘이 만나는 곳, 벨라 리조트에서<br class="hidden md:block">
+          일상의 무게를 내려놓고 진정한 쉼을 발견하세요.
         </p>
-        
-        <div class="pt-6">
-           <div class="bg-white p-2 inline-flex flex-col md:flex-row shadow-2xl shadow-[#BFA183]/10">
-              <div class="px-8 py-4 border-b md:border-b-0 md:border-r border-[#1C1C1C]/5">
-                 <span class="block text-[9px] font-semibold tracking-[0.2em] text-[#BFA183] uppercase mb-1">Check In</span>
-                 <span class="font-serif-en text-xl italic font-semibold">12. 24</span>
-              </div>
-              <div class="px-8 py-4 border-b md:border-b-0 md:border-r border-[#1C1C1C]/5">
-                 <span class="block text-[9px] font-semibold tracking-[0.2em] text-[#BFA183] uppercase mb-1">Check Out</span>
-                 <span class="font-serif-en text-xl italic font-semibold">12. 26</span>
-              </div>
-              <button class="px-10 py-4 bg-[#BFA183] text-white text-[10px] font-semibold tracking-[0.3em] uppercase hover:bg-[#1C1C1C] transition">
-                Search
-              </button>
-           </div>
+
+        <div class="reveal flex flex-wrap gap-4 pt-4" style="--delay:3">
+          <a href="#rooms" class="bg-[#C9A96E] text-[#0C1015] px-10 py-4 font-bold text-[11px] tracking-[0.3em] uppercase hover:bg-[#F5F0E8] transition">
+            객실 보기
+          </a>
+          <a href="#booking" class="border border-[#C9A96E]/40 text-[#C9A96E] px-10 py-4 font-semibold text-[11px] tracking-[0.3em] uppercase hover:bg-[#C9A96E]/10 transition">
+            예약하기
+          </a>
         </div>
       </div>
 
-      <div class="lg:col-span-7 relative pl-10 hidden lg:block">
-          <div class="aspect-[16/9] relative z-10">
-             <img src="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?q=80&w=1600" alt="Hotel" class="w-full h-full object-cover grayscale hover:grayscale-0 transition duration-1000">
-             
-             <!-- Floating Badge -->
-             <div class="absolute -bottom-10 -left-10 bg-[#1C1C1C] text-white p-10 max-w-[240px] shadow-2xl">
-                <p class="font-serif-en text-3xl italic mb-2">5 Star</p>
-                <p class="text-[9px] font-semibold text-[#BFA183] uppercase tracking-[0.4em]">Luxury Ocean View</p>
-             </div>
-          </div>
-          <!-- Decorative Background -->
-          <div class="absolute -top-10 right-0 w-[80%] h-[120%] bg-[#BFA183]/5 -z-10"></div>
+      <!-- Stats -->
+      <div class="reveal mt-16 grid grid-cols-3 gap-8 max-w-lg" style="--delay:4">
+        <div class="border-l border-[#C9A96E]/30 pl-6">
+          <span class="font-serif text-3xl md:text-4xl italic text-[#C9A96E]">5</span>
+          <span class="block text-[9px] text-[#F5F0E8]/30 tracking-[0.3em] uppercase mt-1">Star Resort</span>
+        </div>
+        <div class="border-l border-[#C9A96E]/30 pl-6">
+          <span class="font-serif text-3xl md:text-4xl italic text-[#C9A96E]">142</span>
+          <span class="block text-[9px] text-[#F5F0E8]/30 tracking-[0.3em] uppercase mt-1">Luxury Rooms</span>
+        </div>
+        <div class="border-l border-[#C9A96E]/30 pl-6">
+          <span class="font-serif text-3xl md:text-4xl italic text-[#C9A96E]">9.4</span>
+          <span class="block text-[9px] text-[#F5F0E8]/30 tracking-[0.3em] uppercase mt-1">Guest Rating</span>
+        </div>
       </div>
     </div>
   </header>
 
-  <!-- Login Modal -->
-  <div id="hotel-modal" class="fixed inset-0 z-[100] hidden items-center justify-center p-4 bg-[#1C1C1C]/60 backdrop-blur-2xl">
-    <div class="bg-white w-full max-w-sm p-6 md:p-16 shadow-2xl relative border-t-8 border-[#BFA183]">
-      <button onclick="toggleHotelModal()" class="absolute top-8 right-8 text-[#1C1C1C]/20 hover:text-[#BFA183] transition text-2xl font-light">&times;</button>
-      
-      <div class="text-center mb-14">
-        <h2 class="text-2xl font-serif-en italic tracking-wide text-[#1C1C1C] mb-3 font-semibold">Member's Suite</h2>
-        <p class="text-[9px] text-[#BFA183] font-semibold tracking-[0.3em] uppercase">Grand Ocean Privilege</p>
+  <!-- ========== 2. 객실 소개 (4종) ========== -->
+  <section id="rooms" class="py-24 md:py-40 px-6 md:px-10">
+    <div class="max-w-7xl mx-auto">
+      <div class="text-center mb-20 reveal">
+        <span class="text-[10px] font-semibold tracking-[0.6em] uppercase text-[#C9A96E]">Rooms & Suites</span>
+        <h2 class="font-serif text-3xl md:text-5xl italic mt-4 text-[#F5F0E8]">특별한 공간, 완벽한 하루</h2>
+        <div class="w-16 h-[1px] bg-[#C9A96E]/40 mx-auto mt-8"></div>
       </div>
-      
-      <div class="space-y-8">
-        <div class="space-y-3">
-           <input type="text" placeholder="MEMBERSHIP NO." class="w-full bg-[#F6F5F2] border-none py-6 px-8 outline-none focus:ring-1 focus:ring-[#BFA183] transition text-[11px] font-semibold tracking-wide text-[#1C1C1C]">
+
+      <div class="grid md:grid-cols-2 gap-6 md:gap-8">
+        <!-- 디럭스 트윈 -->
+        <div class="room-card group relative overflow-hidden reveal" style="--delay:0">
+          <div class="aspect-[4/3] overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1618773928121-c32242e63f39?q=80&w=1200&auto=format" alt="디럭스 트윈" class="w-full h-full object-cover transition-transform duration-700">
+          </div>
+          <div class="absolute inset-0 bg-gradient-to-t from-[#0C1015] via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+          <div class="p-8 bg-[#0C1015] border border-[#C9A96E]/10 border-t-0">
+            <div class="flex justify-between items-start">
+              <div>
+                <span class="text-[9px] text-[#C9A96E] tracking-[0.4em] uppercase font-semibold">Deluxe Twin</span>
+                <h3 class="font-serif text-2xl italic mt-2">디럭스 트윈</h3>
+                <p class="text-[#F5F0E8]/40 text-sm mt-3 leading-relaxed">36m² · 오션뷰 · 트윈베드 · 최대 2인</p>
+              </div>
+              <div class="text-right">
+                <span class="font-serif text-2xl italic text-[#C9A96E]">₩280,000</span>
+                <span class="block text-[10px] text-[#F5F0E8]/30 mt-1">1박 기준</span>
+              </div>
+            </div>
+          </div>
         </div>
-        <button class="w-full bg-[#1C1C1C] text-white py-6 text-[10px] tracking-[0.4em] font-semibold uppercase hover:bg-[#BFA183] transition shadow-xl">
-           Access Lounge
+
+        <!-- 슈페리어 더블 -->
+        <div class="room-card group relative overflow-hidden reveal" style="--delay:1">
+          <div class="aspect-[4/3] overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1590490360182-c33d7d9d4866?q=80&w=1200&auto=format" alt="슈페리어 더블" class="w-full h-full object-cover transition-transform duration-700">
+          </div>
+          <div class="absolute inset-0 bg-gradient-to-t from-[#0C1015] via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+          <div class="p-8 bg-[#0C1015] border border-[#C9A96E]/10 border-t-0">
+            <div class="flex justify-between items-start">
+              <div>
+                <span class="text-[9px] text-[#C9A96E] tracking-[0.4em] uppercase font-semibold">Superior Double</span>
+                <h3 class="font-serif text-2xl italic mt-2">슈페리어 더블</h3>
+                <p class="text-[#F5F0E8]/40 text-sm mt-3 leading-relaxed">42m² · 오션뷰 · 킹베드 · 최대 2인</p>
+              </div>
+              <div class="text-right">
+                <span class="font-serif text-2xl italic text-[#C9A96E]">₩380,000</span>
+                <span class="block text-[10px] text-[#F5F0E8]/30 mt-1">1박 기준</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 프리미엄 스위트 -->
+        <div class="room-card group relative overflow-hidden reveal" style="--delay:2">
+          <div class="aspect-[4/3] overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?q=80&w=1200&auto=format" alt="프리미엄 스위트" class="w-full h-full object-cover transition-transform duration-700">
+          </div>
+          <div class="absolute inset-0 bg-gradient-to-t from-[#0C1015] via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+          <div class="p-8 bg-[#0C1015] border border-[#C9A96E]/10 border-t-0">
+            <div class="flex justify-between items-start">
+              <div>
+                <span class="text-[9px] text-[#C9A96E] tracking-[0.4em] uppercase font-semibold">Premium Suite</span>
+                <h3 class="font-serif text-2xl italic mt-2">프리미엄 스위트</h3>
+                <p class="text-[#F5F0E8]/40 text-sm mt-3 leading-relaxed">68m² · 파노라마뷰 · 거실+침실 · 최대 3인</p>
+              </div>
+              <div class="text-right">
+                <span class="font-serif text-2xl italic text-[#C9A96E]">₩580,000</span>
+                <span class="block text-[10px] text-[#F5F0E8]/30 mt-1">1박 기준</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 로얄 펜트하우스 -->
+        <div class="room-card group relative overflow-hidden reveal" style="--delay:3">
+          <div class="aspect-[4/3] overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1631049307264-da0ec9d70304?q=80&w=1200&auto=format" alt="로얄 펜트하우스" class="w-full h-full object-cover transition-transform duration-700">
+          </div>
+          <div class="absolute inset-0 bg-gradient-to-t from-[#0C1015] via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+          <div class="p-8 bg-[#0C1015] border border-[#C9A96E]/10 border-t-0">
+            <div class="flex justify-between items-start">
+              <div>
+                <span class="text-[9px] text-[#C9A96E] tracking-[0.4em] uppercase font-semibold">Royal Penthouse</span>
+                <h3 class="font-serif text-2xl italic mt-2">로얄 펜트하우스</h3>
+                <p class="text-[#F5F0E8]/40 text-sm mt-3 leading-relaxed">120m² · 루프탑 테라스 · 프라이빗 풀 · 최대 4인</p>
+              </div>
+              <div class="text-right">
+                <span class="font-serif text-2xl italic text-[#C9A96E]">₩1,200,000</span>
+                <span class="block text-[10px] text-[#F5F0E8]/30 mt-1">1박 기준</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== 3. 다이닝 ========== -->
+  <section id="dining" class="py-24 md:py-40 px-6 md:px-10 bg-[#0F151A]">
+    <div class="max-w-7xl mx-auto">
+      <div class="grid lg:grid-cols-2 gap-16 lg:gap-24 items-center">
+        <div class="space-y-10 reveal">
+          <div class="inline-flex items-center gap-6">
+            <span class="w-12 h-[1px] bg-[#C9A96E]"></span>
+            <span class="text-[10px] font-semibold tracking-[0.6em] uppercase text-[#C9A96E]">Gastronomy</span>
+          </div>
+
+          <h2 class="font-serif text-3xl md:text-5xl italic leading-tight">
+            미식의 정수,<br><span class="text-[#C9A96E]">바다를 담다.</span>
+          </h2>
+
+          <p class="text-[#F5F0E8]/40 text-sm md:text-base leading-[2] mobile-desc">
+            벨라 리조트의 셰프 테이블에서는 제주 청정 식재료로<br class="hidden md:block">
+            완성한 모던 한식 코스를 선보입니다. 일몰과 함께하는<br class="hidden md:block">
+            다이닝은 잊을 수 없는 특별한 경험이 됩니다.
+          </p>
+
+          <div class="space-y-6 pt-4">
+            <div class="flex items-center gap-6 group">
+              <span class="w-10 h-10 flex items-center justify-center border border-[#C9A96E]/20 text-[#C9A96E] text-sm group-hover:bg-[#C9A96E] group-hover:text-[#0C1015] transition">01</span>
+              <div>
+                <h4 class="font-serif text-lg italic">오션 뷰 레스토랑</h4>
+                <p class="text-[#F5F0E8]/30 text-xs mt-1">조식 뷔페 · 런치 코스 · 디너 코스</p>
+              </div>
+            </div>
+            <div class="flex items-center gap-6 group">
+              <span class="w-10 h-10 flex items-center justify-center border border-[#C9A96E]/20 text-[#C9A96E] text-sm group-hover:bg-[#C9A96E] group-hover:text-[#0C1015] transition">02</span>
+              <div>
+                <h4 class="font-serif text-lg italic">스카이 바 & 라운지</h4>
+                <p class="text-[#F5F0E8]/30 text-xs mt-1">시그니처 칵테일 · 와인 셀렉션 · 타파스</p>
+              </div>
+            </div>
+            <div class="flex items-center gap-6 group">
+              <span class="w-10 h-10 flex items-center justify-center border border-[#C9A96E]/20 text-[#C9A96E] text-sm group-hover:bg-[#C9A96E] group-hover:text-[#0C1015] transition">03</span>
+              <div>
+                <h4 class="font-serif text-lg italic">프라이빗 다이닝</h4>
+                <p class="text-[#F5F0E8]/30 text-xs mt-1">2~10인 전용 룸 · 맞춤 코스 · 소믈리에 서비스</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="reveal" style="--delay:2">
+          <div class="relative">
+            <div class="aspect-[3/4] overflow-hidden">
+              <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?q=80&w=1200&auto=format" alt="다이닝" class="w-full h-full object-cover grayscale hover:grayscale-0 transition duration-1000">
+            </div>
+            <div class="absolute -bottom-8 -left-8 bg-[#C9A96E] text-[#0C1015] p-8 md:p-10 max-w-[220px]">
+              <p class="font-serif text-3xl italic font-semibold">Chef's<br>Table</p>
+              <p class="text-[9px] font-bold tracking-[0.3em] uppercase mt-2 opacity-60">Reservation Only</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== 4. 시설 갤러리 ========== -->
+  <section id="facilities" class="py-24 md:py-40 px-6 md:px-10">
+    <div class="max-w-7xl mx-auto">
+      <div class="text-center mb-20 reveal">
+        <span class="text-[10px] font-semibold tracking-[0.6em] uppercase text-[#C9A96E]">Facilities</span>
+        <h2 class="font-serif text-3xl md:text-5xl italic mt-4">리조트의 모든 순간</h2>
+        <div class="w-16 h-[1px] bg-[#C9A96E]/40 mx-auto mt-8"></div>
+      </div>
+
+      <div class="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-5">
+        <div class="gallery-item overflow-hidden col-span-2 row-span-2 reveal" style="--delay:0">
+          <div class="aspect-square md:aspect-auto md:h-full overflow-hidden relative group">
+            <img src="https://images.unsplash.com/photo-1540555700478-4be289fbec6e?q=80&w=1200&auto=format" alt="인피니티 풀" class="w-full h-full object-cover transition-transform duration-700">
+            <div class="absolute inset-0 bg-gradient-to-t from-[#0C1015]/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end p-8">
+              <div>
+                <h4 class="font-serif text-xl italic text-[#C9A96E]">인피니티 풀</h4>
+                <p class="text-[#F5F0E8]/50 text-xs mt-1">바다와 하나되는 수영장</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="gallery-item overflow-hidden reveal" style="--delay:1">
+          <div class="aspect-square overflow-hidden relative group">
+            <img src="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?q=80&w=800&auto=format" alt="스파" class="w-full h-full object-cover transition-transform duration-700">
+            <div class="absolute inset-0 bg-gradient-to-t from-[#0C1015]/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end p-6">
+              <h4 class="font-serif text-lg italic text-[#C9A96E]">아로마 스파</h4>
+            </div>
+          </div>
+        </div>
+
+        <div class="gallery-item overflow-hidden reveal" style="--delay:2">
+          <div class="aspect-square overflow-hidden relative group">
+            <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=800&auto=format" alt="피트니스" class="w-full h-full object-cover transition-transform duration-700">
+            <div class="absolute inset-0 bg-gradient-to-t from-[#0C1015]/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end p-6">
+              <h4 class="font-serif text-lg italic text-[#C9A96E]">피트니스 센터</h4>
+            </div>
+          </div>
+        </div>
+
+        <div class="gallery-item overflow-hidden reveal" style="--delay:3">
+          <div class="aspect-square overflow-hidden relative group">
+            <img src="https://images.unsplash.com/photo-1507652313519-d4e9174996dd?q=80&w=800&auto=format" alt="프라이빗 비치" class="w-full h-full object-cover transition-transform duration-700">
+            <div class="absolute inset-0 bg-gradient-to-t from-[#0C1015]/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end p-6">
+              <h4 class="font-serif text-lg italic text-[#C9A96E]">프라이빗 비치</h4>
+            </div>
+          </div>
+        </div>
+
+        <div class="gallery-item overflow-hidden col-span-2 reveal" style="--delay:4">
+          <div class="aspect-[2/1] overflow-hidden relative group">
+            <img src="https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?q=80&w=1200&auto=format" alt="키즈 라운지" class="w-full h-full object-cover transition-transform duration-700">
+            <div class="absolute inset-0 bg-gradient-to-t from-[#0C1015]/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end p-8">
+              <div>
+                <h4 class="font-serif text-xl italic text-[#C9A96E]">키즈 라운지 & 놀이시설</h4>
+                <p class="text-[#F5F0E8]/50 text-xs mt-1">가족 여행객을 위한 특별한 공간</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== 5. 인용구 배너 ========== -->
+  <section class="py-32 md:py-48 relative">
+    <div class="absolute inset-0">
+      <img src="https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?q=80&w=2000&auto=format" alt="리조트 일몰" class="w-full h-full object-cover">
+      <div class="absolute inset-0 bg-[#0C1015]/70"></div>
+    </div>
+    <div class="relative z-10 max-w-4xl mx-auto text-center px-6 reveal">
+      <span class="text-[#C9A96E] font-serif text-6xl md:text-8xl italic leading-none">&ldquo;</span>
+      <p class="font-serif text-2xl md:text-4xl italic leading-relaxed -mt-6 md:-mt-10">
+        여행의 끝에서 만나는<br>가장 완벽한 순간
+      </p>
+      <div class="w-12 h-[1px] bg-[#C9A96E] mx-auto mt-10"></div>
+      <p class="text-[10px] text-[#F5F0E8]/30 tracking-[0.5em] uppercase mt-6">Vella Resort & Spa, Jeju</p>
+    </div>
+  </section>
+
+  <!-- ========== 6. 위치/교통 ========== -->
+  <section id="location" class="py-24 md:py-40 px-6 md:px-10 bg-[#0F151A]">
+    <div class="max-w-7xl mx-auto">
+      <div class="grid lg:grid-cols-2 gap-16 items-center">
+        <div class="reveal">
+          <div class="aspect-video bg-[#1A2028] overflow-hidden border border-[#C9A96E]/10">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d106413.45799798028!2d126.49288!3d33.38!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x350cfb5c43b4c81d%3A0x867e07eb58d6c989!2z7KCc7KO87Yq567OE7J6Q7LmY64-E!5e0!3m2!1sko!2skr!4v1" width="100%" height="100%" style="border:0; min-height:300px;" allowfullscreen="" loading="lazy"></iframe>
+          </div>
+        </div>
+
+        <div class="space-y-10 reveal" style="--delay:1">
+          <div class="inline-flex items-center gap-6">
+            <span class="w-12 h-[1px] bg-[#C9A96E]"></span>
+            <span class="text-[10px] font-semibold tracking-[0.6em] uppercase text-[#C9A96E]">Location</span>
+          </div>
+
+          <h2 class="font-serif text-3xl md:text-4xl italic">오시는 길</h2>
+
+          <div class="space-y-6">
+            <div class="flex gap-6 items-start">
+              <span class="w-10 h-10 flex items-center justify-center bg-[#C9A96E]/10 text-[#C9A96E] text-sm shrink-0"><i class="fas fa-map-marker-alt"></i></span>
+              <div>
+                <h4 class="text-sm font-semibold mb-1">주소</h4>
+                <p class="text-[#F5F0E8]/40 text-sm">제주특별자치도 서귀포시 중문관광로 72번길 75</p>
+              </div>
+            </div>
+            <div class="flex gap-6 items-start">
+              <span class="w-10 h-10 flex items-center justify-center bg-[#C9A96E]/10 text-[#C9A96E] text-sm shrink-0"><i class="fas fa-plane"></i></span>
+              <div>
+                <h4 class="text-sm font-semibold mb-1">제주공항에서</h4>
+                <p class="text-[#F5F0E8]/40 text-sm">차량 약 50분 · 리무진 버스 600번 · 공항 픽업 가능</p>
+              </div>
+            </div>
+            <div class="flex gap-6 items-start">
+              <span class="w-10 h-10 flex items-center justify-center bg-[#C9A96E]/10 text-[#C9A96E] text-sm shrink-0"><i class="fas fa-phone"></i></span>
+              <div>
+                <h4 class="text-sm font-semibold mb-1">문의</h4>
+                <p class="text-[#F5F0E8]/40 text-sm">064-738-0000 · concierge@vellaresort.co.kr</p>
+              </div>
+            </div>
+            <div class="flex gap-6 items-start">
+              <span class="w-10 h-10 flex items-center justify-center bg-[#C9A96E]/10 text-[#C9A96E] text-sm shrink-0"><i class="fas fa-clock"></i></span>
+              <div>
+                <h4 class="text-sm font-semibold mb-1">체크인 / 체크아웃</h4>
+                <p class="text-[#F5F0E8]/40 text-sm">체크인 15:00 · 체크아웃 11:00</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== 7. 예약 CTA ========== -->
+  <section id="booking" class="py-24 md:py-40 px-6 md:px-10">
+    <div class="max-w-4xl mx-auto text-center">
+      <div class="reveal">
+        <span class="text-[10px] font-semibold tracking-[0.6em] uppercase text-[#C9A96E]">Reservation</span>
+        <h2 class="font-serif text-3xl md:text-5xl italic mt-4">지금, 특별한 여정을 시작하세요</h2>
+        <p class="text-[#F5F0E8]/40 text-sm md:text-base leading-[2] mt-8 max-w-xl mx-auto mobile-desc">
+          벨라 리조트만의 시그니처 패키지와 함께<br class="hidden md:block">
+          잊을 수 없는 제주의 시간을 선물하세요.
+        </p>
+      </div>
+
+      <div class="reveal mt-12 bg-[#0F151A] border border-[#C9A96E]/10 p-8 md:p-14" style="--delay:1">
+        <div class="grid md:grid-cols-4 gap-6">
+          <div class="text-left">
+            <label class="text-[9px] font-semibold text-[#C9A96E] uppercase tracking-[0.3em] block mb-3">체크인</label>
+            <input type="date" class="w-full bg-transparent border border-[#C9A96E]/20 text-[#F5F0E8] py-4 px-5 text-sm focus:border-[#C9A96E] outline-none transition">
+          </div>
+          <div class="text-left">
+            <label class="text-[9px] font-semibold text-[#C9A96E] uppercase tracking-[0.3em] block mb-3">체크아웃</label>
+            <input type="date" class="w-full bg-transparent border border-[#C9A96E]/20 text-[#F5F0E8] py-4 px-5 text-sm focus:border-[#C9A96E] outline-none transition">
+          </div>
+          <div class="text-left">
+            <label class="text-[9px] font-semibold text-[#C9A96E] uppercase tracking-[0.3em] block mb-3">객실 유형</label>
+            <select class="w-full bg-transparent border border-[#C9A96E]/20 text-[#F5F0E8] py-4 px-5 text-sm focus:border-[#C9A96E] outline-none transition appearance-none">
+              <option value="">선택하세요</option>
+              <option>디럭스 트윈</option>
+              <option>슈페리어 더블</option>
+              <option>프리미엄 스위트</option>
+              <option>로얄 펜트하우스</option>
+            </select>
+          </div>
+          <div class="flex items-end">
+            <button class="w-full bg-[#C9A96E] text-[#0C1015] py-4 font-bold text-[11px] tracking-[0.3em] uppercase hover:bg-[#F5F0E8] transition">
+              예약 조회
+            </button>
+          </div>
+        </div>
+
+        <div class="flex flex-wrap justify-center gap-8 mt-10 pt-8 border-t border-[#C9A96E]/10">
+          <div class="flex items-center gap-3 text-[#F5F0E8]/30 text-xs">
+            <i class="fas fa-shield-alt text-[#C9A96E]"></i>
+            <span>안전한 결제</span>
+          </div>
+          <div class="flex items-center gap-3 text-[#F5F0E8]/30 text-xs">
+            <i class="fas fa-undo text-[#C9A96E]"></i>
+            <span>48시간 전 무료 취소</span>
+          </div>
+          <div class="flex items-center gap-3 text-[#F5F0E8]/30 text-xs">
+            <i class="fas fa-tag text-[#C9A96E]"></i>
+            <span>최저가 보장</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="reveal mt-8 flex flex-col md:flex-row justify-center gap-4 text-sm" style="--delay:2">
+        <a href="tel:064-738-0000" class="text-[#C9A96E] hover:text-[#F5F0E8] transition">
+          <i class="fas fa-phone mr-2"></i>064-738-0000
+        </a>
+        <span class="hidden md:inline text-[#F5F0E8]/10">|</span>
+        <a href="mailto:concierge@vellaresort.co.kr" class="text-[#C9A96E] hover:text-[#F5F0E8] transition">
+          <i class="fas fa-envelope mr-2"></i>concierge@vellaresort.co.kr
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== 8. Footer ========== -->
+  <footer class="py-20 md:py-32 bg-[#080B0E] px-6 md:px-10">
+    <div class="max-w-7xl mx-auto">
+      <div class="grid md:grid-cols-4 gap-12 md:gap-16 mb-16">
+        <div class="md:col-span-2">
+          <span class="font-serif text-3xl italic text-[#C9A96E]">Vella Resort</span>
+          <p class="text-[#F5F0E8]/20 text-sm leading-relaxed mt-6 max-w-sm">
+            제주의 자연과 최상의 서비스가 어우러진 프리미엄 리조트.
+            벨라 리조트에서 일상을 넘어선 특별한 경험을 만나보세요.
+          </p>
+          <div class="flex gap-4 mt-8">
+            <a href="#" class="w-10 h-10 flex items-center justify-center border border-[#C9A96E]/20 text-[#C9A96E] hover:bg-[#C9A96E] hover:text-[#0C1015] transition text-sm"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="w-10 h-10 flex items-center justify-center border border-[#C9A96E]/20 text-[#C9A96E] hover:bg-[#C9A96E] hover:text-[#0C1015] transition text-sm"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" class="w-10 h-10 flex items-center justify-center border border-[#C9A96E]/20 text-[#C9A96E] hover:bg-[#C9A96E] hover:text-[#0C1015] transition text-sm"><i class="fab fa-youtube"></i></a>
+          </div>
+        </div>
+
+        <div>
+          <h4 class="text-[10px] font-semibold tracking-[0.4em] uppercase text-[#C9A96E] mb-6">Quick Links</h4>
+          <div class="space-y-4">
+            <a href="#rooms" class="block text-[#F5F0E8]/30 text-sm hover:text-[#C9A96E] transition">객실 안내</a>
+            <a href="#dining" class="block text-[#F5F0E8]/30 text-sm hover:text-[#C9A96E] transition">다이닝</a>
+            <a href="#facilities" class="block text-[#F5F0E8]/30 text-sm hover:text-[#C9A96E] transition">시설 안내</a>
+            <a href="#booking" class="block text-[#F5F0E8]/30 text-sm hover:text-[#C9A96E] transition">예약하기</a>
+          </div>
+        </div>
+
+        <div>
+          <h4 class="text-[10px] font-semibold tracking-[0.4em] uppercase text-[#C9A96E] mb-6">Contact</h4>
+          <div class="space-y-4 text-[#F5F0E8]/30 text-sm">
+            <p>제주특별자치도 서귀포시<br>중문관광로 72번길 75</p>
+            <p>064-738-0000</p>
+            <p>concierge@vellaresort.co.kr</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="border-t border-[#F5F0E8]/5 pt-10 flex flex-col md:flex-row justify-between items-center gap-4">
+        <p class="text-[10px] text-[#F5F0E8]/10 tracking-[0.5em] uppercase">
+          &copy; 2024 Vella Resort & Spa. All rights reserved.
+        </p>
+        <div class="flex gap-6">
+          <a href="#" class="text-[10px] text-[#F5F0E8]/10 tracking-[0.2em] uppercase hover:text-[#C9A96E] transition">Privacy</a>
+          <a href="#" class="text-[10px] text-[#F5F0E8]/10 tracking-[0.2em] uppercase hover:text-[#C9A96E] transition">Terms</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ========== Login Modal ========== -->
+  <div id="hotel-modal" class="fixed inset-0 z-[100] hidden items-center justify-center p-4 bg-[#0C1015]/60 backdrop-blur-3xl">
+    <div class="bg-[#0F151A] w-full max-w-sm p-10 md:p-14 shadow-2xl relative border border-[#C9A96E]/20">
+      <button onclick="toggleHotelModal()" class="absolute top-6 right-6 w-8 h-8 flex items-center justify-center text-[#F5F0E8]/30 hover:text-[#C9A96E] transition text-xl">&times;</button>
+
+      <div class="text-center mb-12">
+        <h2 class="font-serif text-2xl italic text-[#C9A96E] mb-3">Concierge</h2>
+        <p class="text-[9px] text-[#F5F0E8]/30 font-semibold tracking-[0.3em] uppercase">Member Access</p>
+      </div>
+
+      <div class="space-y-5">
+        <div class="space-y-2">
+          <p class="text-[10px] font-semibold text-[#C9A96E]/60 uppercase tracking-[0.2em] ml-1">ID</p>
+          <input type="text" placeholder="your@email.com" class="w-full bg-[#0C1015] border border-[#C9A96E]/20 py-4 px-6 outline-none focus:border-[#C9A96E] transition text-sm text-[#F5F0E8]">
+        </div>
+        <div class="space-y-2">
+          <p class="text-[10px] font-semibold text-[#C9A96E]/60 uppercase tracking-[0.2em] ml-1">Password</p>
+          <input type="password" placeholder="Password" class="w-full bg-[#0C1015] border border-[#C9A96E]/20 py-4 px-6 outline-none focus:border-[#C9A96E] transition text-sm text-[#F5F0E8]">
+        </div>
+        <button class="w-full bg-[#C9A96E] text-[#0C1015] py-4 text-[11px] tracking-[0.4em] font-bold uppercase hover:bg-[#F5F0E8] transition mt-2">
+          로그인
         </button>
-        <div class="flex justify-center gap-14 pt-4">
-           <a href="#" class="text-[9px] text-[#1C1C1C]/40 tracking-[0.3em] font-semibold uppercase hover:text-[#BFA183] transition italic">Join Club</a>
-           <a href="#" class="text-[9px] text-[#1C1C1C]/40 tracking-[0.3em] font-semibold uppercase hover:text-[#BFA183] transition italic">Reservation Lookup</a>
+        <div class="flex justify-center gap-10 pt-2">
+          <a href="#" class="text-[10px] text-[#F5F0E8]/30 tracking-[0.2em] font-semibold uppercase hover:text-[#C9A96E] transition">회원가입</a>
+          <a href="#" class="text-[10px] text-[#F5F0E8]/30 tracking-[0.2em] font-semibold uppercase hover:text-[#C9A96E] transition">도움말</a>
         </div>
       </div>
     </div>
   </div>
 
-  <footer class="py-24 md:py-40 bg-[#1C1C1C] text-center px-6">
-     <div class="inline-flex flex-col items-center gap-12 mb-12">
-        <span class="font-serif-en text-3xl text-white tracking-wide italic">Grand Ocean</span>
-        <span class="w-12 h-[1px] bg-white/10"></span>
-        <span class="text-[10px] font-semibold text-white/30 tracking-[0.6em] uppercase">The Ultimate Escape</span>
-     </div>
-     <p class="text-[10px] text-white/10 tracking-[1em] uppercase px-6">© 2024 GRAND OCEAN HOTEL. ALL RIGHTS RESERVED.</p>
-  </footer>
-
-  <script>
-    function toggleHotelModal() {
-      const modal = document.getElementById('hotel-modal');
-      modal.classList.toggle('hidden');
-      modal.classList.toggle('flex');
-    }
-  </script>
-
 </div>
+
+<script>
+  // Modal
+  function toggleHotelModal() {
+    const modal = document.getElementById('hotel-modal');
+    modal.classList.toggle('hidden');
+    modal.classList.toggle('flex');
+  }
+  document.getElementById('hotel-modal').addEventListener('click', function(e) {
+    if (e.target === this) toggleHotelModal();
+  });
+
+  // IntersectionObserver
+  (function() {
+    const observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    });
+    document.querySelectorAll('.reveal').forEach(function(el) {
+      observer.observe(el);
+    });
+  })();
+</script>
