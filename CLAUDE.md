@@ -2,6 +2,11 @@
 - **전략 진단 리포트**: `data/STRATEGY_ANALYSIS.md`
 - **PM 공통 지침**: 맥미니 루트 `pm.md`
 
+### 빌더 공통 지침
+- **gstack 빌더 철학**: 맥미니 루트 `gstack.md` — Boil the Lake, Search Before Building, 스프린트 프로세스
+- **개발 프로세스**: Think → Plan → Build → Review → Test → Ship → Reflect
+- **핵심 규칙**: 테스트 동시 작성, 새 패턴 도입 전 검색, 압축률 기반 추정
+
 ### 전략 핵심 요약
 - **Vision**: AI 기반 디자인 템플릿 + 멀티테넌시 플랫폼으로 웹 에이전시 생산성 10배 향상
 - **Beachhead**: 한국 1-3인 웹 에이전시 (초기 50개 타겟)

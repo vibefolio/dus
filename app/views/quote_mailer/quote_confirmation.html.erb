@@ -1,54 +1,54 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8">
-  <style>
-    body { font-family: 'Pretendard', -apple-system, sans-serif; line-height: 1.6; color: #333; }
-    .container { max-width: 600px; margin: 0 auto; padding: 20px; }
-    .header { background: linear-gradient(135deg, #00a859 0%, #00d670 100%); color: white; padding: 40px 30px; text-align: center; border-radius: 10px 10px 0 0; }
-    .content { background: #ffffff; padding: 40px 30px; border: 1px solid #e5e7eb; border-top: none; border-radius: 0 0 10px 10px; }
-    .highlight-box { background: #f0fdf4; border-left: 4px solid #00a859; padding: 20px; border-radius: 8px; margin: 25px 0; }
-    .footer { text-align: center; margin-top: 30px; padding-top: 20px; border-top: 1px solid #e5e7eb; color: #6b7280; font-size: 14px; }
-    .logo { font-size: 32px; font-weight: bold; margin-bottom: 10px; }
-  </style>
-</head>
-<body>
-  <div class="container">
-    <div class="header">
-      <div class="logo">DLAB</div>
-      <h1 style="margin: 0; font-size: 24px;">견적 문의가 접수되었습니다</h1>
-    </div>
-    
-    <div class="content">
-      <p><strong><%= @quote.contact_name %></strong>님, 안녕하세요!</p>
-      
-      <p>DLAB에 관심을 가져주셔서 감사합니다.<br>
-      견적 문의가 성공적으로 접수되었습니다.</p>
-      
-      <div class="highlight-box">
-        <h3 style="margin-top: 0; color: #00a859;">📋 접수된 내용</h3>
-        <p><strong>프로젝트 유형:</strong> <%= @quote.project_type %></p>
-        <% if @quote.budget.present? %>
-          <p><strong>예산:</strong> <%= @quote.budget %></p>
-        <% end %>
-        <p><strong>접수 시간:</strong> <%= @quote.created_at.strftime("%Y년 %m월 %d일 %H:%M") %></p>
-      </div>
-      
-      <p>담당자가 검토 후 <strong>영업일 기준 1~2일 이내</strong>에 연락드리겠습니다.</p>
-      
-      <p>급하신 경우, 아래 연락처로 직접 문의해 주세요:</p>
-      <ul style="list-style: none; padding: 0;">
-        <li>📧 이메일: contact@dlab-website.com</li>
-        <li>📱 전화: 02-1234-5678</li>
-        <li>💬 카카오톡: @dlab</li>
-      </ul>
-      
-      <div class="footer">
-        <p>최고의 결과물로 보답하겠습니다.</p>
-        <p style="margin-top: 20px; font-weight: bold; color: #00a859;">DLAB 팀 드림</p>
-        <p style="font-size: 12px; color: #9ca3af; margin-top: 20px;">© 2024 DLAB. All rights reserved.</p>
-      </div>
-    </div>
-  </div>
-</body>
-</html>
+<p style="font-size: 18px; font-weight: 700; color: #1f2937; margin: 0 0 8px 0;">
+  견적 문의가 접수되었습니다
+</p>
+<p style="font-size: 15px; color: #6b7280; margin: 0 0 28px 0; line-height: 1.6;">
+  <strong style="color: #1f2937;"><%= @quote.contact_name %></strong>님, 안녕하세요!<br>
+  D.us에 관심을 가져주셔서 감사합니다.
+</p>
+
+<div style="background: #f0fdf4; border-left: 4px solid #00a859; padding: 20px 24px; border-radius: 12px; margin-bottom: 28px;">
+  <p style="font-size: 14px; font-weight: 700; color: #00a859; margin: 0 0 16px 0;">접수된 내용</p>
+  <table style="width: 100%; border-collapse: collapse;">
+    <tr>
+      <td style="padding: 6px 0; font-size: 14px; color: #6b7280; width: 120px;">프로젝트 유형</td>
+      <td style="padding: 6px 0; font-size: 14px; color: #1f2937; font-weight: 600;"><%= @quote.project_type %></td>
+    </tr>
+    <% if @quote.budget.present? %>
+    <tr>
+      <td style="padding: 6px 0; font-size: 14px; color: #6b7280;">예산</td>
+      <td style="padding: 6px 0; font-size: 14px; color: #1f2937; font-weight: 600;"><%= @quote.budget %></td>
+    </tr>
+    <% end %>
+    <tr>
+      <td style="padding: 6px 0; font-size: 14px; color: #6b7280;">접수 시간</td>
+      <td style="padding: 6px 0; font-size: 14px; color: #1f2937; font-weight: 600;"><%= @quote.created_at.strftime("%Y년 %m월 %d일 %H:%M") %></td>
+    </tr>
+  </table>
+</div>
+
+<p style="font-size: 15px; color: #374151; line-height: 1.8; margin: 0 0 8px 0;">
+  담당자가 검토 후 <strong>영업일 기준 1~2일 이내</strong>에 연락드리겠습니다.
+</p>
+<p style="font-size: 15px; color: #374151; line-height: 1.8; margin: 0 0 20px 0;">
+  급하신 경우, 아래 연락처로 직접 문의해 주세요.
+</p>
+
+<div style="background: #f9fafb; padding: 16px 20px; border-radius: 12px; margin-bottom: 28px; border: 1px solid #e5e7eb;">
+  <table style="width: 100%; border-collapse: collapse;">
+    <tr>
+      <td style="padding: 4px 0; font-size: 14px; color: #6b7280;">이메일</td>
+      <td style="padding: 4px 0; font-size: 14px; color: #1f2937;">contact@designd.co.kr</td>
+    </tr>
+    <tr>
+      <td style="padding: 4px 0; font-size: 14px; color: #6b7280;">카카오톡</td>
+      <td style="padding: 4px 0; font-size: 14px; color: #1f2937;">@dus</td>
+    </tr>
+  </table>
+</div>
+
+<p style="font-size: 15px; color: #374151; margin: 0;">
+  최고의 결과물로 보답하겠습니다.
+</p>
+<p style="font-size: 15px; font-weight: 700; color: #00a859; margin: 8px 0 0 0;">
+  D.us 팀 드림
+</p>

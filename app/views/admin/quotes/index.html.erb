@@ -6,11 +6,11 @@
 
   <div style="flex: 1; max-width: 600px;">
     <%= form_with url: admin_quotes_path, method: :get, class: "flex gap-2 items-center", local: true do |f| %>
-      <%= f.select :status, [["모든 상태", ""]] + [["대기중", "pending"], ["처리완료", "completed"]], { selected: params[:status] }, class: "block rounded-md border-gray-300 shadow-sm focus:border-emerald-500 focus:ring-emerald-500 sm:text-sm p-2 bg-white border" %>
-      <%= f.text_field :query, value: params[:query], placeholder: "이름, 회사, 이메일 검색", class: "block w-full rounded-md border-gray-300 shadow-sm focus:border-emerald-500 focus:ring-emerald-500 sm:text-sm p-2 bg-white border" %>
-      <%= f.submit "검색", class: "btn btn-primary" %>
+      <%= f.select :status, [["모든 상태", ""]] + [["대기중", "pending"], ["처리완료", "completed"]], { selected: params[:status] }, class: "block rounded-xl border-gray-200 shadow-sm focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500 sm:text-sm p-3 bg-white border", style: "outline: none;" %>
+      <%= f.text_field :query, value: params[:query], placeholder: "이름, 회사, 이메일 검색", class: "block w-full rounded-xl border-gray-200 shadow-sm focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500 sm:text-sm p-3 bg-white border", style: "outline: none;" %>
+      <%= f.submit "검색", style: "padding: 12px 24px; background: linear-gradient(to right, #00a859, #00d670); color: white; border: none; border-radius: 12px; font-size: 14px; font-weight: 600; cursor: pointer; transition: all 0.3s; white-space: nowrap;", onmouseover: "this.style.boxShadow='0 4px 12px rgba(0,168,89,0.3)'", onmouseout: "this.style.boxShadow='none'" %>
       <% if params[:query].present? || params[:status].present? %>
-        <%= link_to "초기화", admin_quotes_path, class: "btn btn-outline" %>
+        <%= link_to "초기화", admin_quotes_path, style: "padding: 12px 24px; border: 2px solid #00a859; color: #00a859; border-radius: 12px; font-size: 14px; font-weight: 600; text-decoration: none; display: inline-block; white-space: nowrap; transition: all 0.3s;", onmouseover: "this.style.backgroundColor='#00a859'; this.style.color='white'", onmouseout: "this.style.backgroundColor='transparent'; this.style.color='#00a859'" %>
       <% end %>
     <% end %>
   </div>
@@ -24,8 +24,10 @@
         <input type="checkbox" id="select-all-quotes" style="width: 16px; height: 16px;">
         <span style="font-size: var(--text-sm); font-weight: 600;">전체 선택</span>
       </label>
-      <button type="submit" class="btn btn-sm btn-danger" id="bulk-delete-btn" disabled 
-              data-confirm="선택한 문의 내역을 정말 삭제하시겠습니까?">
+      <button type="submit" id="bulk-delete-btn" disabled
+              data-confirm="선택한 문의 내역을 정말 삭제하시겠습니까?"
+              style="padding: 8px 16px; background: #ef4444; color: white; border: none; border-radius: 12px; font-size: 13px; font-weight: 600; cursor: pointer; transition: all 0.2s; opacity: 0.5;"
+              onmouseover="if(!this.disabled) this.style.background='#dc2626'" onmouseout="this.style.background='#ef4444'">
         선택 삭제
       </button>
     </div>
@@ -97,9 +99,9 @@
           <p style="font-size: var(--text-xs); color: var(--color-gray-500);">
             <%= quote.created_at.strftime("%Y-%m-%d %H:%M") %>
           </p>
-          <div class="flex gap-2">
-            <%= link_to "삭제", admin_quote_path(quote), data: { turbo_method: :delete, turbo_confirm: "정말 삭제하시겠습니까?" }, class: "btn btn-sm btn-danger" %>
-            <%= link_to "상세보기", admin_quote_path(quote), class: "btn btn-sm btn-primary" %>
+          <div style="display: flex; gap: 8px;">
+            <%= link_to "삭제", admin_quote_path(quote), data: { turbo_method: :delete, turbo_confirm: "정말 삭제하시겠습니까?" }, style: "padding: 8px 16px; background: #fef2f2; color: #ef4444; border: 1px solid #fecaca; border-radius: 12px; font-size: 13px; font-weight: 600; text-decoration: none; transition: all 0.2s;", onmouseover: "this.style.background='#ef4444'; this.style.color='white'", onmouseout: "this.style.background='#fef2f2'; this.style.color='#ef4444'" %>
+            <%= link_to "상세보기", admin_quote_path(quote), style: "padding: 8px 16px; background: linear-gradient(to right, #00a859, #00d670); color: white; border-radius: 12px; font-size: 13px; font-weight: 600; text-decoration: none; transition: all 0.2s;", onmouseover: "this.style.boxShadow='0 4px 12px rgba(0,168,89,0.3)'", onmouseout: "this.style.boxShadow='none'" %>
           </div>
         </div>
       </div>

@@ -1,25 +1,73 @@
-<h2>Change your password</h2>
+<% content_for :title, "비밀번호 재설정 - 디어스" %>
 
-<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
-  <%= f.hidden_field :reset_password_token %>
+<div style="min-height: calc(100vh - 80px); display: flex; align-items: center; justify-content: center; background: #f9fafb; padding: 20px;">
+  <!-- Double-Bezel Card (Outer Shell) -->
+  <div class="card-premium" style="width: 100%; max-width: 440px;">
+    <!-- Double-Bezel Card (Inner Core) -->
+    <div class="card-premium-inner" style="padding: 40px;">
 
-  <div class="field">
-    <%= f.label :password, "New password" %><br />
-    <% if @minimum_password_length %>
-      <em>(<%= @minimum_password_length %> characters minimum)</em><br />
-    <% end %>
-    <%= f.password_field :password, autofocus: true, autocomplete: "new-password" %>
+      <div style="text-align: center; margin-bottom: 30px;">
+        <!-- Eyebrow Tag -->
+        <span class="eyebrow" style="margin-bottom: 16px; display: inline-block;">비밀번호 재설정</span>
+        <h2 style="font-size: 28px; font-weight: 800; color: #111; margin-bottom: 8px; letter-spacing: -0.02em; line-height: 1.3;">새 비밀번호 설정</h2>
+        <p style="color: #6b7280; font-size: 15px; word-break: keep-all;">안전한 새 비밀번호를 입력해주세요.</p>
+      </div>
+
+      <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put, data: { turbo: false } }) do |f| %>
+        <%= f.hidden_field :reset_password_token %>
+
+        <!-- Error Messages -->
+        <% if resource.errors.any? %>
+          <div style="background-color: #fef2f2; color: #dc2626; padding: 12px; border-radius: 12px; font-size: 14px; margin-bottom: 20px; border: 1px solid #fee2e2;">
+            <ul style="list-style: disc; margin-left: 20px;">
+              <% resource.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+              <% end %>
+            </ul>
+          </div>
+        <% end %>
+
+        <div style="margin-bottom: 20px;">
+          <%= f.label :password, "새 비밀번호", style: "display: block; font-size: 14px; font-weight: 600; color: #374151; margin-bottom: 8px;" %>
+          <%= f.password_field :password, autofocus: true, autocomplete: "new-password", placeholder: "6자 이상 입력해주세요", style: "width: 100%; padding: 14px 16px; border: 1px solid #e5e7eb; border-radius: 14px; font-size: 15px; background: #f9fafb; transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); font-family: var(--font-display);", class: "form-input" %>
+          <% if @minimum_password_length %>
+            <p style="font-size: 12px; color: #9ca3af; margin-top: 6px;">* 최소 <%= @minimum_password_length %>자 이상</p>
+          <% end %>
+        </div>
+
+        <div style="margin-bottom: 30px;">
+          <%= f.label :password_confirmation, "비밀번호 확인", style: "display: block; font-size: 14px; font-weight: 600; color: #374151; margin-bottom: 8px;" %>
+          <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: "비밀번호를 다시 입력해주세요", style: "width: 100%; padding: 14px 16px; border: 1px solid #e5e7eb; border-radius: 14px; font-size: 15px; background: #f9fafb; transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); font-family: var(--font-display);", class: "form-input" %>
+        </div>
+
+        <div style="margin-bottom: 24px;">
+          <%= f.submit "비밀번호 변경하기", style: "width: 100%; padding: 16px; background: var(--color-primary); color: white; font-weight: 700; border: none; border-radius: 9999px; cursor: pointer; font-size: 16px; font-family: var(--font-display); transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);", class: "btn-login-submit" %>
+        </div>
+      <% end %>
+
+      <div style="text-align: center; margin-top: 24px; padding-top: 24px; border-top: 1px solid #f3f4f6;">
+        <p style="font-size: 14px; color: #6b7280;">
+          로그인 페이지로 돌아가기
+          <%= link_to "로그인", new_session_path(resource_name), style: "color: var(--color-primary); font-weight: 600; text-decoration: none; margin-left: 4px;" %>
+        </p>
+      </div>
+    </div>
   </div>
+</div>
 
-  <div class="field">
-    <%= f.label :password_confirmation, "Confirm new password" %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Change my password" %>
-  </div>
-<% end %>
-
-<%= render "devise/shared/links" %>
+<style>
+  .form-input:focus {
+    outline: none;
+    border-color: var(--color-primary) !important;
+    background: white !important;
+    box-shadow: 0 0 0 4px rgba(0, 168, 89, 0.08);
+  }
+  .btn-login-submit:hover {
+    background: var(--color-primary-dark) !important;
+    transform: scale(1.02);
+    box-shadow: 0 8px 24px -4px rgba(0, 168, 89, 0.3);
+  }
+  .btn-login-submit:active {
+    transform: scale(0.98);
+  }
+</style>

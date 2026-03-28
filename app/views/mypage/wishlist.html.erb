@@ -4,8 +4,9 @@
   <div class="container mx-auto px-4 max-w-6xl">
     <!-- 헤더 -->
     <div class="mb-8">
-      <h1 class="text-3xl font-bold text-gray-900 mb-2">위시리스트</h1>
-      <p class="text-gray-600">마음에 드는 템플릿을 저장하고 관리하세요</p>
+      <span class="inline-block rounded-full px-3 py-1 text-xs uppercase tracking-widest font-medium bg-emerald-50 text-emerald-600 mb-3" style="font-size: 11px; letter-spacing: 0.15em;">Wishlist</span>
+      <h1 class="text-3xl font-bold text-gray-900 mb-2" style="word-break: keep-all;">위시리스트</h1>
+      <p class="text-gray-600" style="word-break: keep-all;">마음에 드는 템플릿을 저장하고 관리하세요</p>
     </div>
 
     <!-- 탭 메뉴 -->
@@ -27,7 +28,7 @@
       <!-- 템플릿 그리드 -->
       <div class="grid md:grid-cols-3 gap-6">
         <% @liked_templates.each do |template| %>
-          <div class="bg-white rounded-xl shadow-sm overflow-hidden hover:shadow-lg transition group">
+          <div class="bg-white rounded-2xl overflow-hidden group" style="background: rgba(0,0,0,0.03); padding: 6px; transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);" onmouseover="this.style.transform='translateY(-4px)'; this.style.boxShadow='0 20px 60px -15px rgba(0,0,0,0.08)';" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none';">
             <!-- 썸네일 -->
             <div class="relative aspect-video overflow-hidden bg-gray-100">
               <% if template.thumbnail_url.present? %>
@@ -53,7 +54,7 @@
                 <div class="text-xl font-bold text-emerald-600">
                   <%= number_to_currency(template.price, unit: '₩', precision: 0) %>
                 </div>
-                <%= button_to "장바구니 담기", add_to_cart_path(design_template_id: template.id), method: :post, data: { turbo: false }, class: "px-4 py-2 bg-emerald-600 text-white text-sm rounded-lg hover:bg-emerald-700 transition font-medium" %>
+                <%= button_to "장바구니 담기", add_to_cart_path(design_template_id: template.id), method: :post, data: { turbo: false }, class: "px-4 py-2.5 bg-emerald-600 text-white text-sm rounded-full hover:bg-emerald-700 font-medium", style: "transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); border: none; cursor: pointer;" %>
               </div>
             </div>
           </div>
@@ -67,7 +68,7 @@
         </svg>
         <h2 class="text-2xl font-bold text-gray-900 mb-2">위시리스트가 비어있습니다</h2>
         <p class="text-gray-600 mb-8">마음에 드는 템플릿을 찾아 저장해보세요</p>
-        <%= link_to "템플릿 둘러보기", design_templates_path, class: "inline-flex items-center gap-2 px-6 py-3 bg-emerald-600 text-white rounded-lg hover:bg-emerald-700 transition font-medium" %>
+        <%= link_to "템플릿 둘러보기", design_templates_path, class: "inline-flex items-center gap-2 px-6 py-3.5 bg-emerald-600 text-white rounded-full hover:bg-emerald-700 font-medium", style: "transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);" %>
       </div>
     <% end %>
   </div>
