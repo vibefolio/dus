@@ -1,142 +1,575 @@
 <%# Cafe Template - 데일리 크럼 (DAILY CRUMB) %>
 
 <style>
-  /* Supanova Design Upgrade */
+  /* Supanova Design — Warm Editorial Archetype */
   * { word-break: keep-all; }
-  html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+  html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
   h1, h2, h3, h4 { text-wrap: balance; letter-spacing: -0.02em; line-height: 1.3; }
-  a, button { transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1); }
+  a, button { transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1); }
   a:hover, button:hover { transform: scale(1.02); }
   a:active, button:active { transform: scale(0.98); }
 
-  @import url('https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700;800&family=Noto+Sans+KR:wght@300;400;500;700;900&family=Playfair+Display:ital,wght@0,400;0,900;1,400&display=swap');
-  
-  .font-serif { font-family: 'Nanum Myeongjo', serif; }
-  .font-sans { font-family: 'Pretendard Variable', 'Pretendard', -apple-system, sans-serif; }
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,900;1,400;1,500;1,600&display=swap');
+
+  .font-sans { font-family: 'Pretendard Variable', 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, sans-serif; }
   .font-playfair { font-family: 'Playfair Display', serif; }
 
   @media (max-width: 768px) {
     .mobile-desc { font-size: 14px !important; line-height: 1.8; }
-    .mobile-title { font-size: 40px !important; }
+    .mobile-title { font-size: 42px !important; }
   }
 
   .grain-overlay {
     background-image: url("https://www.transparenttextures.com/patterns/natural-paper.png");
-    opacity: 0.5;
+    opacity: 0.4;
+  }
+
+  /* Scroll reveal */
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(2rem); filter: blur(4px); }
+    to { opacity: 1; transform: translateY(0); filter: blur(0); }
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(2rem);
+  }
+
+  .reveal.is-visible {
+    animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    animation-delay: calc(var(--delay, 0) * 100ms);
+  }
+
+  /* Menu card hover */
+  .menu-card {
+    transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .menu-card:hover {
+    transform: translateY(-8px);
+  }
+  .menu-card:hover img {
+    transform: scale(1.05);
+  }
+
+  /* Gallery image hover */
+  .gallery-item {
+    transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .gallery-item:hover {
+    transform: scale(1.02);
+  }
+  .gallery-item:hover img {
+    transform: scale(1.08);
+  }
+
+  /* Floating animation for decorative elements */
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-12px); }
   }
 </style>
 
 <div class="bg-[#FAF9F6] text-[#433D3C] font-sans selection:bg-[#BC9D84] selection:text-white min-h-screen overflow-x-hidden relative">
-  <div class="fixed inset-0 grain-overlay pointer-events-none"></div>
+  <div class="fixed inset-0 grain-overlay pointer-events-none z-[60]"></div>
 
-  <!-- Nav -->
-  <nav class="fixed w-full z-50 px-8 py-12 md:px-12 bg-[#FAF9F6]/80 backdrop-blur-xl border-b border-[#BC9D84]/10">
-    <div class="container mx-auto px-4 md:px-6 flex justify-between items-center flex-nowrap">
-      <div class="flex items-center gap-10">
-         <span class="font-playfair text-2xl tracking-tight font-semibold italic text-[#8B735B]">Daily Crumb</span>
-      </div>
-      
-      <div class="hidden md:flex gap-14 text-[10px] font-semibold uppercase tracking-[0.4em] text-[#433D3C]/40">
-        <a href="#about" class="hover:text-[#8B735B] transition">Bakery</a>
-        <a href="#menu" class="hover:text-[#8B735B] transition">Patisserie</a>
-        <a href="#location" class="hover:text-[#8B735B] transition">Atelier</a>
-      </div>
-           <button class="mobile-menu-trigger md:hidden ml-auto text-2xl focus:outline-none" style="color: inherit;">
-             <i class="fas fa-bars"></i>
-           </button>
+  <!-- ========== Nav ========== -->
+  <nav class="fixed w-full z-50 px-4 md:px-8 py-5 bg-[#FAF9F6]/80 backdrop-blur-xl border-b border-[#BC9D84]/10">
+    <div class="max-w-7xl mx-auto flex justify-between items-center">
+      <a href="#" class="flex items-center gap-3">
+        <span class="font-playfair text-2xl tracking-tight font-semibold italic text-[#8B735B]">Daily Crumb</span>
+      </a>
 
-      
-      <div class="flex-nowrap shrink-0 flex gap-12 items-center">
-         <button onclick="toggleCafeModal()" class="hidden md:block text-[10px] font-semibold uppercase tracking-[0.4em] text-[#433D3C]/40 hover:text-[#8B735B]" data-mobile-menu-copy="true">Club Crumb</button>
-         <button class="hidden md:block bg-[#8B735B] text-white px-10 py-3.5 rounded-lg font-semibold text-[10px] tracking-[0.4em] uppercase hover:bg-[#433D3C] transition shadow-2xl shadow-[#8B735B]/20" data-mobile-menu-copy="true">
-           Order Online
-         </button>
+      <div class="hidden md:flex gap-12 text-[10px] font-semibold uppercase tracking-[0.4em] text-[#433D3C]/40">
+        <a href="#about" class="hover:text-[#8B735B] transition">About</a>
+        <a href="#menu" class="hover:text-[#8B735B] transition">Menu</a>
+        <a href="#gallery" class="hover:text-[#8B735B] transition">Gallery</a>
+        <a href="#location" class="hover:text-[#8B735B] transition">Location</a>
+      </div>
+
+      <button class="mobile-menu-trigger md:hidden ml-auto text-2xl focus:outline-none" style="color: inherit;">
+        <i class="fas fa-bars"></i>
+      </button>
+
+      <div class="hidden md:flex gap-6 items-center shrink-0">
+        <button onclick="toggleCafeModal()" class="text-[10px] font-semibold uppercase tracking-[0.4em] text-[#433D3C]/40 hover:text-[#8B735B]" data-mobile-menu-copy="true">Club Crumb</button>
+        <button class="bg-[#8B735B] text-white px-8 py-3.5 rounded-full font-semibold text-[10px] tracking-[0.3em] uppercase hover:bg-[#433D3C] transition shadow-lg shadow-[#8B735B]/20" data-mobile-menu-copy="true">
+          Order Online
+        </button>
       </div>
     </div>
 
-      <%= render partial: 'templates/shared/mobile_menu_overlay' %></nav>
+    <%= render partial: 'templates/shared/mobile_menu_overlay' %>
+  </nav>
 
-  <!-- Hero -->
-  <header class="min-h-screen relative flex items-center justify-center pt-20">
-    <div class="container mx-auto px-3 md:px-6 relative z-10 grid lg:grid-cols-2 gap-12 md:p-20 items-center">
-      <div class="space-y-12 text-center lg:text-left">
-        <div class="inline-flex items-center gap-6">
-           <span class="w-12 h-[1px] bg-[#BC9D84]"></span>
-           <span class="text-[10px] font-semibold tracking-[0.6em] uppercase text-[#BC9D84]">Artisan Boulangerie</span>
+  <!-- ========== Hero ========== -->
+  <header class="min-h-[100dvh] relative flex items-center justify-center pt-20">
+    <div class="max-w-7xl mx-auto px-4 md:px-8 relative z-10 grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+      <div class="space-y-10 text-center lg:text-left">
+        <div class="inline-flex items-center gap-5 reveal" style="--delay: 0;">
+          <span class="w-10 h-[1px] bg-[#BC9D84]"></span>
+          <span class="text-[10px] font-semibold tracking-[0.6em] uppercase text-[#BC9D84]">Artisan Boulangerie</span>
         </div>
-        
-        <h1 class="text-3xl md:text-5xl md:text-[8rem] font-serif font-semibold leading-none tracking-tight text-[#433D3C] mobile-title">
-           따스한 향기,<br><span class="italic text-[#BC9D84]">매일의 휴식.</span>
+
+        <h1 class="text-4xl md:text-6xl lg:text-[5.5rem] font-playfair font-semibold leading-tight tracking-tight text-[#433D3C] mobile-title reveal" style="--delay: 1;">
+          따스한 향기,<br><span class="italic text-[#BC9D84]">매일의 휴식.</span>
         </h1>
-        
-        <p class="text-[#433D3C]/60 text-sm md:text-xl leading-[2] max-w-lg mx-auto lg:mx-0 mobile-desc">
-           천연 발효종과 유기농 밀가루로 구워낸 정직한 빵. 데일리 크럼은 당신의 평범한 아침을 가장 특별한 순간으로 바꿉니다.
+
+        <p class="text-[#433D3C]/60 text-sm md:text-lg leading-relaxed max-w-lg mx-auto lg:mx-0 mobile-desc reveal" style="--delay: 2;">
+          천연 발효종과 유기농 밀가루로 구워낸 정직한 빵. 데일리 크럼은 당신의 평범한 아침을 가장 특별한 순간으로 바꿉니다.
         </p>
-        
-        <div class="pt-6 flex flex-col sm:flex-row gap-12 justify-center lg:justify-start">
-           <button class="px-14 py-6 bg-[#433D3C] text-white font-semibold text-[11px] tracking-[0.4em] uppercase hover:bg-[#8B735B] transition-all shadow-2xl">
-              Morning Batch
-           </button>
-           <button class="px-14 py-6 border border-[#BC9D84]/30 text-[#8B735B] font-semibold text-[11px] tracking-[0.4em] uppercase hover:bg-white transition-all">
-              Bakery Story
-           </button>
+
+        <div class="pt-4 flex flex-col sm:flex-row gap-5 justify-center lg:justify-start reveal" style="--delay: 3;">
+          <a href="#menu" class="inline-flex items-center justify-center gap-3 px-10 py-5 bg-[#433D3C] text-white font-semibold text-[11px] tracking-[0.3em] uppercase hover:bg-[#8B735B] rounded-full shadow-xl">
+            Morning Batch
+            <span class="w-7 h-7 rounded-full bg-white/10 flex items-center justify-center">
+              <i class="fas fa-arrow-right text-[10px]"></i>
+            </span>
+          </a>
+          <a href="#about" class="inline-flex items-center justify-center px-10 py-5 border border-[#BC9D84]/30 text-[#8B735B] font-semibold text-[11px] tracking-[0.3em] uppercase hover:bg-white rounded-full">
+            Bakery Story
+          </a>
         </div>
       </div>
 
-      <div class="relative">
-         <div class="absolute -top-8 md:p-20 -right-20 w-80 h-80 bg-[#BC9D84]/10 rounded-full blur-[120px]"></div>
-         <div class="relative group">
-            <img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?q=80&w=1200" alt="Bakery" class="w-full aspect-square object-cover rounded-[5rem_2rem_5rem_2rem] shadow-2xl group-hover:scale-105 transition duration-1000">
-            <div class="absolute -bottom-10 -left-10 bg-white p-12 rounded-2xl shadow-2xl border border-[#BC9D84]/10 max-w-[300px]">
-               <p class="text-[10px] font-semibold text-[#BC9D84] uppercase tracking-[0.4em] mb-4">Slow Baking Ritual</p>
-               <p class="text-2xl font-playfair italic font-semibold text-[#433D3C]">Fermented with Care.</p>
-            </div>
-         </div>
+      <div class="relative reveal" style="--delay: 2;">
+        <div class="absolute -top-12 -right-12 w-72 h-72 bg-[#BC9D84]/10 rounded-full blur-[100px]"></div>
+        <div class="relative group">
+          <img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?q=80&w=1200" alt="갓 구워낸 빵" class="w-full aspect-[4/5] object-cover rounded-[3rem] shadow-2xl group-hover:shadow-[0_30px_80px_-20px_rgba(139,115,91,0.3)] transition-all duration-700" loading="eager">
+          <div class="absolute -bottom-6 -left-6 md:-bottom-8 md:-left-8 bg-white p-8 md:p-10 rounded-2xl shadow-xl border border-[#BC9D84]/10 max-w-[260px]" style="animation: float 6s ease-in-out infinite;">
+            <p class="text-[10px] font-semibold text-[#BC9D84] uppercase tracking-[0.4em] mb-3">Slow Baking Ritual</p>
+            <p class="text-xl font-playfair italic font-semibold text-[#433D3C]">Fermented with Care.</p>
+          </div>
+        </div>
       </div>
     </div>
   </header>
 
-  <!-- Login Modal -->
-  <div id="cafe-modal" class="fixed inset-0 z-[100] hidden items-center justify-center p-4 bg-[#433D3C]/20 backdrop-blur-3xl">
-    <div class="bg-white w-full max-w-sm p-6 md:p-16 shadow-2xl relative rounded-[4rem] border border-[#BC9D84]/10">
-      <button onclick="toggleCafeModal()" class="absolute top-12 right-12 text-[#433D3C]/20 hover:text-[#8B735B] transition text-2xl font-light">&times;</button>
-      
-      <div class="text-center mb-14">
-        <h2 class="text-xl font-playfair tracking-[0.2em] italic text-[#433D3C] mb-3 font-semibold">Club Crumb Access</h2>
-        <p class="text-[9px] text-[#BC9D84] font-semibold tracking-[0.3em] uppercase">Private Member Session</p>
-      </div>
-      
-      <div class="space-y-8">
-        <div class="space-y-3">
-           <p class="text-[9px] font-semibold text-[#433D3C]/30 uppercase tracking-[0.2em] ml-1">Member ID</p>
-           <input type="text" placeholder="BREAD_LOVER_ID" class="w-full bg-[#FAF9F6] border-none rounded-2xl py-6 px-8 outline-none focus:ring-1 focus:ring-[#8B735B] transition text-[11px] font-semibold tracking-wide text-[#433D3C]">
+  <!-- ========== About Section ========== -->
+  <section id="about" class="py-24 md:py-32">
+    <div class="max-w-7xl mx-auto px-4 md:px-8 grid lg:grid-cols-2 gap-16 lg:gap-24 items-center">
+      <div class="relative reveal" style="--delay: 0;">
+        <div class="absolute -top-8 -left-8 w-60 h-60 bg-[#BC9D84]/8 rounded-full blur-[80px]"></div>
+        <div class="grid grid-cols-5 gap-4">
+          <div class="col-span-3 overflow-hidden rounded-[2rem]">
+            <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?q=80&w=800" alt="베이커리 내부" class="w-full h-full object-cover aspect-[3/4]" loading="lazy" decoding="async">
+          </div>
+          <div class="col-span-2 flex flex-col gap-4">
+            <div class="overflow-hidden rounded-[1.5rem] flex-1">
+              <img src="https://images.unsplash.com/photo-1517433670267-08bbd4be890f?q=80&w=600" alt="반죽 작업" class="w-full h-full object-cover" loading="lazy" decoding="async">
+            </div>
+            <div class="overflow-hidden rounded-[1.5rem] flex-1">
+              <img src="https://images.unsplash.com/photo-1486427944544-d2c246c4d3b1?q=80&w=600" alt="원두와 커피" class="w-full h-full object-cover" loading="lazy" decoding="async">
+            </div>
+          </div>
         </div>
-        <button class="w-full bg-[#8B735B] text-white py-6 rounded-2xl text-[10px] tracking-[0.6em] font-semibold uppercase hover:bg-[#433D3C] transition shadow-xl shadow-[#8B735B]/30">
-           Establish Session
+      </div>
+
+      <div class="space-y-8 reveal" style="--delay: 1;">
+        <div class="inline-flex items-center gap-4">
+          <span class="rounded-full px-4 py-1.5 text-[11px] uppercase tracking-[0.15em] font-medium bg-[#BC9D84]/10 text-[#BC9D84]">Our Story</span>
+        </div>
+
+        <h2 class="text-3xl md:text-4xl lg:text-5xl font-playfair font-semibold leading-snug text-[#433D3C]">
+          빵 하나에 담긴<br>정성스러운 시간
+        </h2>
+
+        <p class="text-[#433D3C]/60 text-base md:text-lg leading-relaxed">
+          데일리 크럼은 2019년 성수동 작은 골목에서 시작했습니다. 매일 새벽 4시, 18시간 발효시킨 천연 사워도우를 구워내는 것으로 하루를 엽니다.
+        </p>
+        <p class="text-[#433D3C]/60 text-base md:text-lg leading-relaxed">
+          우리가 사용하는 밀가루는 국내 농가에서 직접 수매한 우리밀입니다. 좋은 재료를 천천히, 정직하게 다루는 것. 그것이 데일리 크럼이 빵을 대하는 방식입니다.
+        </p>
+
+        <div class="grid grid-cols-3 gap-6 pt-6 border-t border-[#BC9D84]/10">
+          <div>
+            <p class="text-2xl md:text-3xl font-playfair font-semibold text-[#8B735B]">18h</p>
+            <p class="text-[11px] text-[#433D3C]/40 uppercase tracking-[0.1em] mt-1 font-medium">저온 장시간 발효</p>
+          </div>
+          <div>
+            <p class="text-2xl md:text-3xl font-playfair font-semibold text-[#8B735B]">100%</p>
+            <p class="text-[11px] text-[#433D3C]/40 uppercase tracking-[0.1em] mt-1 font-medium">국내산 우리밀</p>
+          </div>
+          <div>
+            <p class="text-2xl md:text-3xl font-playfair font-semibold text-[#8B735B]">6yr</p>
+            <p class="text-[11px] text-[#433D3C]/40 uppercase tracking-[0.1em] mt-1 font-medium">성수동 로컬</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== Signature Menu ========== -->
+  <section id="menu" class="py-24 md:py-32 bg-white relative">
+    <div class="max-w-7xl mx-auto px-4 md:px-8">
+      <div class="text-center mb-16 md:mb-20">
+        <span class="rounded-full px-4 py-1.5 text-[11px] uppercase tracking-[0.15em] font-medium bg-[#BC9D84]/10 text-[#BC9D84] reveal" style="--delay: 0;">Signature</span>
+        <h2 class="text-3xl md:text-4xl lg:text-5xl font-playfair font-semibold leading-snug text-[#433D3C] mt-6 reveal" style="--delay: 1;">
+          매일 아침, 가장 먼저<br>사라지는 메뉴
+        </h2>
+        <p class="text-[#433D3C]/50 text-base md:text-lg mt-4 max-w-xl mx-auto reveal" style="--delay: 2;">
+          오전 7시 오픈과 동시에 줄을 서는 이유, 직접 확인해보세요.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <!-- Menu Item 1 -->
+        <div class="menu-card group reveal" style="--delay: 0;">
+          <div class="bg-[#FAF9F6] rounded-[2rem] p-1.5 ring-1 ring-[#433D3C]/5">
+            <div class="rounded-[calc(2rem-0.375rem)] overflow-hidden">
+              <div class="overflow-hidden">
+                <img src="https://images.unsplash.com/photo-1549931319-a545753467c8?q=80&w=600" alt="사워도우 브레드" class="w-full aspect-square object-cover transition-transform duration-700" loading="lazy" decoding="async">
+              </div>
+              <div class="p-6 bg-[#FAF9F6]">
+                <div class="flex justify-between items-start mb-2">
+                  <h3 class="text-lg font-semibold text-[#433D3C]">사워도우 브레드</h3>
+                  <span class="text-[#8B735B] font-playfair font-semibold text-lg">8,500</span>
+                </div>
+                <p class="text-[13px] text-[#433D3C]/50 leading-relaxed">18시간 저온 발효, 겉은 바삭하고 속은 촉촉한 시그니처</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Menu Item 2 -->
+        <div class="menu-card group reveal" style="--delay: 1;">
+          <div class="bg-[#FAF9F6] rounded-[2rem] p-1.5 ring-1 ring-[#433D3C]/5">
+            <div class="rounded-[calc(2rem-0.375rem)] overflow-hidden">
+              <div class="overflow-hidden">
+                <img src="https://images.unsplash.com/photo-1555507036-ab1f4038024a?q=80&w=600" alt="크루아상" class="w-full aspect-square object-cover transition-transform duration-700" loading="lazy" decoding="async">
+              </div>
+              <div class="p-6 bg-[#FAF9F6]">
+                <div class="flex justify-between items-start mb-2">
+                  <h3 class="text-lg font-semibold text-[#433D3C]">버터 크루아상</h3>
+                  <span class="text-[#8B735B] font-playfair font-semibold text-lg">5,800</span>
+                </div>
+                <p class="text-[13px] text-[#433D3C]/50 leading-relaxed">프랑스산 AOP 버터, 48겹 손접기 공법으로 완성</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Menu Item 3 -->
+        <div class="menu-card group reveal" style="--delay: 2;">
+          <div class="bg-[#FAF9F6] rounded-[2rem] p-1.5 ring-1 ring-[#433D3C]/5">
+            <div class="rounded-[calc(2rem-0.375rem)] overflow-hidden">
+              <div class="overflow-hidden">
+                <img src="https://images.unsplash.com/photo-1558961363-fa8fdf82db35?q=80&w=600" alt="까눌레" class="w-full aspect-square object-cover transition-transform duration-700" loading="lazy" decoding="async">
+              </div>
+              <div class="p-6 bg-[#FAF9F6]">
+                <div class="flex justify-between items-start mb-2">
+                  <h3 class="text-lg font-semibold text-[#433D3C]">바닐라 까눌레</h3>
+                  <span class="text-[#8B735B] font-playfair font-semibold text-lg">4,200</span>
+                </div>
+                <p class="text-[13px] text-[#433D3C]/50 leading-relaxed">마다가스카르 바닐라빈, 캐러멜 크러스트의 정석</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Menu Item 4 -->
+        <div class="menu-card group reveal" style="--delay: 3;">
+          <div class="bg-[#FAF9F6] rounded-[2rem] p-1.5 ring-1 ring-[#433D3C]/5">
+            <div class="rounded-[calc(2rem-0.375rem)] overflow-hidden">
+              <div class="overflow-hidden">
+                <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?q=80&w=600" alt="드립 커피" class="w-full aspect-square object-cover transition-transform duration-700" loading="lazy" decoding="async">
+              </div>
+              <div class="p-6 bg-[#FAF9F6]">
+                <div class="flex justify-between items-start mb-2">
+                  <h3 class="text-lg font-semibold text-[#433D3C]">하우스 드립</h3>
+                  <span class="text-[#8B735B] font-playfair font-semibold text-lg">5,500</span>
+                </div>
+                <p class="text-[13px] text-[#433D3C]/50 leading-relaxed">에티오피아 예가체프 싱글오리진, 핸드드립으로</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="text-center mt-12 reveal" style="--delay: 4;">
+        <a href="#" class="inline-flex items-center gap-3 text-[11px] font-semibold uppercase tracking-[0.3em] text-[#8B735B] hover:text-[#433D3C]">
+          전체 메뉴 보기
+          <span class="w-6 h-6 rounded-full bg-[#8B735B]/10 flex items-center justify-center">
+            <i class="fas fa-arrow-right text-[9px]"></i>
+          </span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== Gallery ========== -->
+  <section id="gallery" class="py-24 md:py-32">
+    <div class="max-w-7xl mx-auto px-4 md:px-8">
+      <div class="flex flex-col md:flex-row md:items-end md:justify-between mb-14 gap-6">
+        <div>
+          <span class="rounded-full px-4 py-1.5 text-[11px] uppercase tracking-[0.15em] font-medium bg-[#BC9D84]/10 text-[#BC9D84] reveal" style="--delay: 0;">Gallery</span>
+          <h2 class="text-3xl md:text-4xl lg:text-5xl font-playfair font-semibold leading-snug text-[#433D3C] mt-6 reveal" style="--delay: 1;">
+            공간의 온도
+          </h2>
+        </div>
+        <p class="text-[#433D3C]/50 text-base max-w-sm reveal" style="--delay: 2;">
+          성수동 골목 사이, 조용히 자리한 우리만의 아틀리에.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-4">
+        <div class="gallery-item overflow-hidden rounded-2xl md:rounded-[2rem] reveal" style="--delay: 0;">
+          <img src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?q=80&w=800" alt="카페 내부" class="w-full aspect-square object-cover transition-transform duration-700" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item overflow-hidden rounded-2xl md:rounded-[2rem] md:row-span-2 reveal" style="--delay: 1;">
+          <img src="https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?q=80&w=800" alt="바리스타" class="w-full h-full object-cover transition-transform duration-700" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item overflow-hidden rounded-2xl md:rounded-[2rem] reveal" style="--delay: 2;">
+          <img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?q=80&w=800" alt="라떼아트" class="w-full aspect-square object-cover transition-transform duration-700" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item overflow-hidden rounded-2xl md:rounded-[2rem] reveal" style="--delay: 3;">
+          <img src="https://images.unsplash.com/photo-1517433367423-c7e5b0f35086?q=80&w=800" alt="진열된 빵" class="w-full aspect-square object-cover transition-transform duration-700" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item overflow-hidden rounded-2xl md:rounded-[2rem] col-span-2 md:col-span-1 reveal" style="--delay: 4;">
+          <img src="https://images.unsplash.com/photo-1445116572660-236099ec97a0?q=80&w=800" alt="테라스 좌석" class="w-full aspect-[2/1] md:aspect-square object-cover transition-transform duration-700" loading="lazy" decoding="async">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== Location & Hours ========== -->
+  <section id="location" class="py-24 md:py-32 bg-[#433D3C] text-white relative overflow-hidden">
+    <div class="absolute top-0 right-0 w-96 h-96 bg-[#BC9D84]/10 rounded-full blur-[120px]"></div>
+    <div class="absolute bottom-0 left-0 w-72 h-72 bg-[#8B735B]/10 rounded-full blur-[100px]"></div>
+
+    <div class="max-w-7xl mx-auto px-4 md:px-8 relative z-10">
+      <div class="grid lg:grid-cols-2 gap-16 lg:gap-24 items-start">
+        <!-- Map placeholder -->
+        <div class="reveal" style="--delay: 0;">
+          <div class="rounded-[2rem] overflow-hidden aspect-[4/3] bg-[#5a5350] relative group">
+            <img src="https://images.unsplash.com/photo-1524492412937-b28074a5d7da?q=80&w=800" alt="카페 외관" class="w-full h-full object-cover opacity-60 group-hover:opacity-80 transition-opacity duration-700" loading="lazy" decoding="async">
+            <div class="absolute inset-0 flex items-center justify-center">
+              <a href="#" class="inline-flex items-center gap-3 bg-white/10 backdrop-blur-xl border border-white/20 text-white px-8 py-4 rounded-full text-[11px] font-semibold uppercase tracking-[0.3em] hover:bg-white/20 transition">
+                <i class="fas fa-map-marker-alt text-[#BC9D84]"></i>
+                지도에서 보기
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Info -->
+        <div class="space-y-10">
+          <div class="reveal" style="--delay: 1;">
+            <span class="rounded-full px-4 py-1.5 text-[11px] uppercase tracking-[0.15em] font-medium bg-white/10 text-[#BC9D84]">Visit Us</span>
+            <h2 class="text-3xl md:text-4xl lg:text-5xl font-playfair font-semibold leading-snug mt-6">
+              오시는 길
+            </h2>
+          </div>
+
+          <div class="space-y-8 reveal" style="--delay: 2;">
+            <div class="flex gap-5">
+              <div class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center shrink-0 mt-0.5">
+                <i class="fas fa-map-pin text-[#BC9D84] text-sm"></i>
+              </div>
+              <div>
+                <p class="text-[10px] font-semibold uppercase tracking-[0.3em] text-white/40 mb-2">Address</p>
+                <p class="text-white/80 text-base leading-relaxed">서울특별시 성동구 성수이로 12길 34<br>1층 데일리 크럼</p>
+              </div>
+            </div>
+
+            <div class="flex gap-5">
+              <div class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center shrink-0 mt-0.5">
+                <i class="fas fa-clock text-[#BC9D84] text-sm"></i>
+              </div>
+              <div>
+                <p class="text-[10px] font-semibold uppercase tracking-[0.3em] text-white/40 mb-2">Hours</p>
+                <div class="space-y-1.5 text-white/80 text-base">
+                  <div class="flex justify-between gap-12">
+                    <span>월 - 금</span>
+                    <span class="font-playfair">07:00 - 21:00</span>
+                  </div>
+                  <div class="flex justify-between gap-12">
+                    <span>토 - 일</span>
+                    <span class="font-playfair">08:00 - 22:00</span>
+                  </div>
+                  <div class="flex justify-between gap-12 text-[#BC9D84]">
+                    <span>공휴일</span>
+                    <span class="font-playfair">09:00 - 20:00</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="flex gap-5">
+              <div class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center shrink-0 mt-0.5">
+                <i class="fas fa-subway text-[#BC9D84] text-sm"></i>
+              </div>
+              <div>
+                <p class="text-[10px] font-semibold uppercase tracking-[0.3em] text-white/40 mb-2">Transport</p>
+                <p class="text-white/80 text-base leading-relaxed">성수역 2번 출구에서 도보 5분<br>주차는 인근 공영주차장 이용</p>
+              </div>
+            </div>
+
+            <div class="flex gap-5">
+              <div class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center shrink-0 mt-0.5">
+                <i class="fas fa-phone text-[#BC9D84] text-sm"></i>
+              </div>
+              <div>
+                <p class="text-[10px] font-semibold uppercase tracking-[0.3em] text-white/40 mb-2">Contact</p>
+                <p class="text-white/80 text-base">02-1234-5678</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== CTA Section ========== -->
+  <section class="py-24 md:py-32 relative overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-br from-[#FAF9F6] via-[#f5efe8] to-[#FAF9F6]"></div>
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-[#BC9D84]/8 rounded-full blur-[120px]"></div>
+
+    <div class="max-w-3xl mx-auto px-4 md:px-8 text-center relative z-10">
+      <div class="reveal" style="--delay: 0;">
+        <span class="font-playfair text-6xl md:text-8xl italic text-[#BC9D84]/20 block mb-6">&ldquo;</span>
+      </div>
+      <h2 class="text-3xl md:text-4xl lg:text-5xl font-playfair font-semibold leading-snug text-[#433D3C] reveal" style="--delay: 1;">
+        내일 아침,<br>가장 먼저 만나는 향기
+      </h2>
+      <p class="text-[#433D3C]/50 text-base md:text-lg mt-6 max-w-lg mx-auto reveal" style="--delay: 2;">
+        데일리 크럼에서 따뜻한 빵 한 조각과 함께 하루를 시작해보세요. 매일 아침 7시, 오븐의 문이 열립니다.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-5 justify-center mt-10 reveal" style="--delay: 3;">
+        <a href="#" class="inline-flex items-center justify-center gap-3 px-10 py-5 bg-[#8B735B] text-white font-semibold text-[11px] tracking-[0.3em] uppercase rounded-full shadow-lg shadow-[#8B735B]/20 hover:bg-[#433D3C]">
+          온라인 주문하기
+          <span class="w-7 h-7 rounded-full bg-white/15 flex items-center justify-center">
+            <i class="fas fa-arrow-right text-[10px]"></i>
+          </span>
+        </a>
+        <a href="https://www.instagram.com/" target="_blank" class="inline-flex items-center justify-center gap-3 px-10 py-5 border border-[#BC9D84]/30 text-[#8B735B] font-semibold text-[11px] tracking-[0.3em] uppercase rounded-full hover:bg-white">
+          <i class="fab fa-instagram text-sm"></i>
+          Instagram
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== Footer ========== -->
+  <footer class="py-16 md:py-24 bg-[#433D3C]">
+    <div class="max-w-7xl mx-auto px-4 md:px-8">
+      <div class="grid md:grid-cols-3 gap-12 items-start mb-16">
+        <div>
+          <span class="font-playfair text-2xl text-white tracking-tight font-semibold italic block mb-4">Daily Crumb</span>
+          <p class="text-white/30 text-sm leading-relaxed max-w-xs">
+            성수동에서 시작된 동네 베이커리. 매일 정직하게 구운 빵과 커피를 드립니다.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-2 gap-8">
+          <div>
+            <p class="text-[10px] font-semibold text-white/20 uppercase tracking-[0.3em] mb-4">Menu</p>
+            <ul class="space-y-2.5">
+              <li><a href="#menu" class="text-white/50 text-sm hover:text-[#BC9D84] transition">Bread</a></li>
+              <li><a href="#menu" class="text-white/50 text-sm hover:text-[#BC9D84] transition">Pastry</a></li>
+              <li><a href="#menu" class="text-white/50 text-sm hover:text-[#BC9D84] transition">Coffee</a></li>
+              <li><a href="#menu" class="text-white/50 text-sm hover:text-[#BC9D84] transition">Seasonal</a></li>
+            </ul>
+          </div>
+          <div>
+            <p class="text-[10px] font-semibold text-white/20 uppercase tracking-[0.3em] mb-4">Info</p>
+            <ul class="space-y-2.5">
+              <li><a href="#about" class="text-white/50 text-sm hover:text-[#BC9D84] transition">About</a></li>
+              <li><a href="#location" class="text-white/50 text-sm hover:text-[#BC9D84] transition">Location</a></li>
+              <li><a href="#" class="text-white/50 text-sm hover:text-[#BC9D84] transition">Catering</a></li>
+              <li><a href="#" class="text-white/50 text-sm hover:text-[#BC9D84] transition">Careers</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <div>
+          <p class="text-[10px] font-semibold text-white/20 uppercase tracking-[0.3em] mb-4">Follow</p>
+          <div class="flex gap-3">
+            <a href="#" class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white/50 hover:text-[#BC9D84] hover:border-[#BC9D84]/30 transition">
+              <i class="fab fa-instagram text-sm"></i>
+            </a>
+            <a href="#" class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white/50 hover:text-[#BC9D84] hover:border-[#BC9D84]/30 transition">
+              <i class="fab fa-facebook-f text-sm"></i>
+            </a>
+            <a href="#" class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white/50 hover:text-[#BC9D84] hover:border-[#BC9D84]/30 transition">
+              <i class="fas fa-blog text-sm"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="border-t border-white/5 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+        <p class="text-[10px] text-white/15 tracking-[0.5em] uppercase">
+          &copy; 2024 Daily Crumb Bakery. All rights reserved by DLAB.
+        </p>
+        <div class="flex gap-6">
+          <a href="#" class="text-[10px] text-white/15 tracking-[0.2em] uppercase hover:text-white/40 transition">Privacy</a>
+          <a href="#" class="text-[10px] text-white/15 tracking-[0.2em] uppercase hover:text-white/40 transition">Terms</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ========== Login Modal ========== -->
+  <div id="cafe-modal" class="fixed inset-0 z-[100] hidden items-center justify-center p-4 bg-[#433D3C]/20 backdrop-blur-3xl">
+    <div class="bg-white w-full max-w-sm p-8 md:p-14 shadow-2xl relative rounded-[3rem] border border-[#BC9D84]/10">
+      <button onclick="toggleCafeModal()" class="absolute top-8 right-8 w-8 h-8 rounded-full bg-[#FAF9F6] flex items-center justify-center text-[#433D3C]/30 hover:text-[#8B735B] hover:bg-[#BC9D84]/10 transition text-lg">&times;</button>
+
+      <div class="text-center mb-12">
+        <h2 class="text-xl font-playfair tracking-[0.1em] italic text-[#433D3C] mb-3 font-semibold">Club Crumb</h2>
+        <p class="text-[9px] text-[#BC9D84] font-semibold tracking-[0.3em] uppercase">Member Access</p>
+      </div>
+
+      <div class="space-y-5">
+        <div class="space-y-2">
+          <p class="text-[10px] font-semibold text-[#433D3C]/30 uppercase tracking-[0.2em] ml-1">Member ID</p>
+          <input type="text" placeholder="your@email.com" class="w-full bg-[#FAF9F6] border-none rounded-2xl py-5 px-6 outline-none focus:ring-1 focus:ring-[#8B735B] transition text-[13px] text-[#433D3C]">
+        </div>
+        <div class="space-y-2">
+          <p class="text-[10px] font-semibold text-[#433D3C]/30 uppercase tracking-[0.2em] ml-1">Password</p>
+          <input type="password" placeholder="Password" class="w-full bg-[#FAF9F6] border-none rounded-2xl py-5 px-6 outline-none focus:ring-1 focus:ring-[#8B735B] transition text-[13px] text-[#433D3C]">
+        </div>
+        <button class="w-full bg-[#8B735B] text-white py-5 rounded-full text-[11px] tracking-[0.4em] font-semibold uppercase hover:bg-[#433D3C] transition shadow-lg shadow-[#8B735B]/20 mt-2">
+          Sign In
         </button>
-        <div class="flex justify-center gap-14 pt-4">
-           <a href="#" class="text-[9px] text-[#433D3C]/40 tracking-[0.4em] font-semibold uppercase hover:text-[#8B735B] transition italic">Join Atelier</a>
-           <a href="#" class="text-[9px] text-[#433D3C]/40 tracking-[0.4em] font-semibold uppercase hover:text-[#8B735B] transition italic">Support</a>
+        <div class="flex justify-center gap-10 pt-2">
+          <a href="#" class="text-[10px] text-[#433D3C]/40 tracking-[0.2em] font-semibold uppercase hover:text-[#8B735B] transition">Join</a>
+          <a href="#" class="text-[10px] text-[#433D3C]/40 tracking-[0.2em] font-semibold uppercase hover:text-[#8B735B] transition">Help</a>
         </div>
       </div>
     </div>
   </div>
 
-  <footer class="py-24 md:py-40 bg-[#433D3C] text-center px-6">
-     <div class="inline-flex items-center gap-14 mb-12">
-        <span class="font-playfair text-2xl text-white tracking-tight font-semibold italic">Daily Crumb</span>
-        <span class="w-[1px] h-10 bg-white/10"></span>
-        <span class="text-[10px] font-semibold text-white/30 tracking-[0.6em] uppercase">Boulangerie & Atelier</span>
-     </div>
-     <p class="text-[10px] text-white/10 tracking-[1em] uppercase px-6">© 2024 DAILY CRUMB BAKERY. ALL RIGHTS RESERVED BY DLAB.</p>
-  </footer>
-
-  <script>
-    function toggleCafeModal() {
-      const modal = document.getElementById('cafe-modal');
-      modal.classList.toggle('hidden');
-      modal.classList.toggle('flex');
-    }
-  </script>
-
 </div>
+
+<script>
+  // Modal toggle
+  function toggleCafeModal() {
+    const modal = document.getElementById('cafe-modal');
+    modal.classList.toggle('hidden');
+    modal.classList.toggle('flex');
+  }
+
+  // Close modal on backdrop click
+  document.getElementById('cafe-modal').addEventListener('click', function(e) {
+    if (e.target === this) toggleCafeModal();
+  });
+
+  // IntersectionObserver for scroll reveal animations
+  (function() {
+    const observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    });
+
+    document.querySelectorAll('.reveal').forEach(function(el) {
+      observer.observe(el);
+    });
+  })();
+</script>
