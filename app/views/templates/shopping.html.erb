@@ -1,163 +1,342 @@
-<%# Shopping Template - 에비뉴 (THE AVENUE) %>
+<%# Shopping Template - MODO (쇼핑몰) %>
 
 <style>
-  /* Supanova Design Upgrade */
+  /* Supanova Design — Minimal Shopping Archetype */
   * { word-break: keep-all; }
-  html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+  html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
   h1, h2, h3, h4 { text-wrap: balance; letter-spacing: -0.02em; line-height: 1.3; }
-  a, button { transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1); }
+  a, button { transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1); }
   a:hover, button:hover { transform: scale(1.02); }
   a:active, button:active { transform: scale(0.98); }
 
-  @import url('https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;0,6..96,600;0,6..96,700;0,6..96,800;0,6..96,900;1,6..96,400&family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap');
-  
-  .font-serif-modern { font-family: 'Bodoni Moda', serif; }
-  .font-sans { font-family: 'Pretendard Variable', 'Pretendard', -apple-system, sans-serif; }
+  @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap');
+
+  .font-sans { font-family: 'Pretendard Variable', 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, sans-serif; }
+  .font-outfit { font-family: 'Outfit', sans-serif; }
 
   @media (max-width: 768px) {
     .mobile-desc { font-size: 14px !important; line-height: 1.8; }
-    .mobile-title { font-size: 40px !important; }
+    .mobile-title { font-size: 38px !important; }
   }
 
-  /* Smooth scroll behavior */
-  html { scroll-behavior: smooth; }
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(2rem); filter: blur(4px); }
+    to { opacity: 1; transform: translateY(0); filter: blur(0); }
+  }
+  .reveal { opacity: 0; transform: translateY(2rem); }
+  .reveal.is-visible { animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards; animation-delay: calc(var(--delay, 0) * 100ms); }
+
+  .product-card { transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1); }
+  .product-card:hover { transform: translateY(-8px); }
+  .product-card:hover img { transform: scale(1.05); }
+  .product-card .cart-btn { opacity: 0; transform: translateY(10px); }
+  .product-card:hover .cart-btn { opacity: 1; transform: translateY(0); }
 </style>
 
-<div class="bg-white text-slate-900 font-sans selection:bg-slate-950 selection:text-white min-h-screen overflow-x-hidden">
+<div class="bg-white text-[#000000] font-sans selection:bg-[#FF4B4B] selection:text-white min-h-screen overflow-x-hidden">
 
-  <!-- Promo Bar -->
-  <div class="bg-slate-950 text-white text-[9px] py-2 text-center tracking-[0.4em] uppercase font-semibold relative z-50">
-     <span class="animate-pulse">Seasonal Archive Sale • Up to 50% Off</span>
-  </div>
+  <!-- ========== Nav ========== -->
+  <nav class="fixed w-full z-50 px-4 md:px-8 py-5 bg-white/80 backdrop-blur-xl border-b border-black/5">
+    <div class="max-w-7xl mx-auto flex justify-between items-center">
+      <a href="#" class="font-outfit text-2xl font-black tracking-tighter">MODO</a>
 
-  <!-- Nav -->
-  <nav class="sticky top-0 z-40 bg-white/80 backdrop-blur-xl border-b border-black/5 transition-all duration-300">
-    <div class="container mx-auto px-4 md:px-6 md: py-6 flex justify-between items-center relative flex-nowrap">
-      <div class="hidden md:flex gap-14 text-[10px] font-semibold tracking-[0.2em] uppercase text-slate-900/40">
-         <a href="#new" class="hover:text-slate-900 transition">Editorial</a>
-         <a href="#collection" class="hover:text-slate-900 transition">Collections</a>
+      <div class="hidden md:flex gap-10 text-[11px] font-semibold uppercase tracking-[0.3em] text-black/30">
+        <a href="#new" class="hover:text-[#FF4B4B] transition">신상품</a>
+        <a href="#category" class="hover:text-[#FF4B4B] transition">카테고리</a>
+        <a href="#best" class="hover:text-[#FF4B4B] transition">베스트</a>
+        <a href="#story" class="hover:text-[#FF4B4B] transition">브랜드</a>
       </div>
-           <button class="mobile-menu-trigger md:hidden ml-auto text-2xl focus:outline-none" style="color: inherit;">
-             <i class="fas fa-bars"></i>
-           </button>
 
-      
-      <a href="#" class="font-serif-modern text-2xl md:text-3xl tracking-[0.1em] font-semibold absolute left-1/2 -translate-x-1/2 uppercase">Avenue</a>
-      
-      <div class="flex-nowrap shrink-0 flex gap-12 text-[10px] font-semibold tracking-[0.2em] uppercase text-slate-900/40 items-center">
-         <button onclick="toggleAvenueModal()" class="hidden md:block hover:text-slate-900 transition" data-mobile-menu-copy="true">Account</button>
-         <button class="hidden md:block hover:text-slate-900 transition flex items-center gap-2" data-mobile-menu-copy="true">
-            Bag <span class="bg-slate-950 text-white w-4 h-4 rounded-full flex items-center justify-center text-[8px] font-semibold">0</span>
-         </button>
-      </div>
-    </div>
+      <button class="mobile-menu-trigger md:hidden ml-auto text-2xl focus:outline-none" style="color: inherit;">
+        <i class="fas fa-bars"></i>
+      </button>
 
-      <%= render partial: 'templates/shared/mobile_menu_overlay' %></nav>
-
-  <!-- Hero -->
-  <header class="h-screen relative overflow-hidden flex items-center justify-center">
-    <!-- Video Background Concept -->
-    <div class="absolute inset-0 z-0">
-       <img src="https://images.unsplash.com/photo-1483985988355-763728e1935b?q=80&w=2400" alt="Fashion" class="w-full h-full object-cover grayscale brightness-90 animate-subtle-zoom">
-       <!-- You would typically use a video here for a real luxury site -->
-       <div class="absolute inset-0 bg-slate-950/10"></div>
-    </div>
-    
-    <div class="relative z-10 text-center text-white space-y-12 px-6 max-w-4xl mx-auto">
-      <div class="inline-block border border-white/30 px-6 py-2 backdrop-blur-md">
-         <p class="font-serif-modern text-lg md:text-xl italic tracking-wide">Fall / Winter 2024</p>
-      </div>
-      
-      <h1 class="text-3xl md:text-5xl md:text-[8rem] font-serif-modern leading-[0.9] tracking-tight uppercase mobile-title">
-        Urban<br><span class="italic font-light">Elegance.</span>
-      </h1>
-      
-      <p class="text-white/80 text-sm md:text-lg leading-relaxed max-w-lg mx-auto font-sans font-light mobile-desc border-t border-white/20 pt-8 mt-8">
-         도시의 감각을 재해석한 새로운 컬렉션. 섬세한 디테일과 과감한 실루엣의 조화를 만나보세요.
-      </p>
-      
-      <div class="pt-8 flex flex-col sm:flex-row gap-10 justify-center">
-         <button class="bg-white text-slate-900 px-6 md:px-16 py-5 text-[10px] font-semibold tracking-[0.4em] uppercase hover:bg-slate-950 hover:text-white transition duration-500 shadow-2xl">
-           Shop Women
-         </button>
-         <button class="border border-white text-white px-6 md:px-16 py-5 text-[10px] font-semibold tracking-[0.4em] uppercase hover:bg-white hover:text-slate-900 transition duration-500 backdrop-blur-sm">
-           Shop Men
-         </button>
+      <div class="hidden md:flex gap-5 items-center shrink-0">
+        <button onclick="toggleShoppingModal()" class="text-black/30 hover:text-black transition" data-mobile-menu-copy="true"><i class="far fa-user text-lg"></i></button>
+        <a href="#" class="text-black/30 hover:text-black transition"><i class="far fa-heart text-lg"></i></a>
+        <a href="#" class="relative text-black/30 hover:text-black transition">
+          <i class="fas fa-shopping-bag text-lg"></i>
+          <span class="absolute -top-1 -right-1 w-4 h-4 bg-[#FF4B4B] rounded-full text-white text-[9px] flex items-center justify-center font-bold">2</span>
+        </a>
       </div>
     </div>
-    
-    <style>
-       @keyframes subtle-zoom {
-          0% { transform: scale(1); }
-          100% { transform: scale(1.05); }
-       }
-       .animate-subtle-zoom { animation: subtle-zoom 20s infinite alternate ease-in-out; }
-    </style>
+
+    <%= render partial: 'templates/shared/mobile_menu_overlay' %>
+  </nav>
+
+  <!-- ========== Hero ========== -->
+  <header class="min-h-[100dvh] relative flex items-center pt-20">
+    <div class="max-w-7xl mx-auto px-4 md:px-8 relative z-10 grid lg:grid-cols-2 gap-12 lg:gap-8 items-center">
+      <div class="space-y-8 text-center lg:text-left">
+        <div class="inline-flex items-center gap-2 reveal" style="--delay: 0;">
+          <span class="w-2 h-2 bg-[#FF4B4B] rounded-full"></span>
+          <span class="text-[11px] font-bold tracking-[0.3em] uppercase text-[#FF4B4B]">New Season 2026</span>
+        </div>
+
+        <h1 class="text-4xl md:text-6xl lg:text-[5rem] font-black leading-none tracking-tighter font-outfit mobile-title reveal" style="--delay: 1;">
+          Less is<br><span class="text-[#FF4B4B]">More.</span>
+        </h1>
+
+        <p class="text-black/40 text-base md:text-lg leading-relaxed max-w-md mx-auto lg:mx-0 mobile-desc reveal" style="--delay: 2;">
+          미니멀한 디자인, 최고의 품질. MODO는 당신의 일상에 세련된 스타일을 더합니다.
+        </p>
+
+        <div class="pt-2 flex flex-col sm:flex-row gap-4 justify-center lg:justify-start reveal" style="--delay: 3;">
+          <a href="#new" class="inline-flex items-center justify-center gap-3 px-10 py-4 bg-black text-white font-bold text-[12px] tracking-[0.2em] uppercase hover:bg-[#FF4B4B] rounded-none">
+            Shop Now <i class="fas fa-arrow-right text-[10px]"></i>
+          </a>
+        </div>
+      </div>
+
+      <div class="relative reveal" style="--delay: 1;">
+        <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?q=80&w=1200" alt="쇼핑" class="w-full aspect-[3/4] object-cover" loading="eager">
+      </div>
+    </div>
   </header>
 
-  <!-- Category Grid (Teaser) -->
-  <section class="grid grid-cols-1 md:grid-cols-2">
-     <div class="h-[600px] relative group overflow-hidden cursor-pointer">
-        <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?q=80&w=1200" class="w-full h-full object-cover transition duration-1000 group-hover:scale-105" alt="New Arrivals">
-        <div class="absolute inset-0 bg-slate-950/20 group-hover:bg-slate-950/40 transition duration-500 flex items-center justify-center">
-           <div class="text-center">
-              <h3 class="text-3xl font-serif-modern text-white italic mb-4 translate-y-8 group-hover:translate-y-0 transition duration-500 opacity-0 group-hover:opacity-100">New Arrivals</h3>
-              <span class="text-white text-[10px] font-semibold tracking-[0.4em] uppercase border-b border-white pb-1">Discover</span>
-           </div>
-        </div>
-     </div>
-     <div class="h-[600px] relative group overflow-hidden cursor-pointer">
-        <img src="https://images.unsplash.com/photo-1529139574466-a302d2052574?q=80&w=1200" class="w-full h-full object-cover transition duration-1000 group-hover:scale-105" alt="Accessories">
-         <div class="absolute inset-0 bg-slate-950/20 group-hover:bg-slate-950/40 transition duration-500 flex items-center justify-center">
-           <div class="text-center">
-              <h3 class="text-3xl font-serif-modern text-white italic mb-4 translate-y-8 group-hover:translate-y-0 transition duration-500 opacity-0 group-hover:opacity-100">Accessories</h3>
-              <span class="text-white text-[10px] font-semibold tracking-[0.4em] uppercase border-b border-white pb-1">Discover</span>
-           </div>
-        </div>
-     </div>
+  <!-- ========== About ========== -->
+  <section id="about" class="py-24 md:py-32 bg-[#FAFAFA]">
+    <div class="max-w-7xl mx-auto px-4 md:px-8 text-center">
+      <span class="text-[11px] font-bold tracking-[0.4em] uppercase text-[#FF4B4B] reveal" style="--delay: 0;">About MODO</span>
+      <h2 class="text-3xl md:text-4xl lg:text-5xl font-black tracking-tighter font-outfit mt-6 reveal" style="--delay: 1;">
+        단순함 속에 담긴<br>완벽한 스타일
+      </h2>
+      <p class="text-black/40 text-base md:text-lg mt-6 max-w-2xl mx-auto reveal" style="--delay: 2;">
+        MODO는 불필요한 것을 덜어내고 본질에 집중하는 라이프스타일 쇼핑몰입니다. 엄격한 기준으로 선별된 제품만을 소개합니다.
+      </p>
+      <div class="grid grid-cols-4 gap-8 max-w-2xl mx-auto mt-16">
+        <div class="reveal" style="--delay: 0;"><p class="text-3xl font-black font-outfit">500+</p><p class="text-[11px] text-black/30 mt-1">큐레이션 아이템</p></div>
+        <div class="reveal" style="--delay: 1;"><p class="text-3xl font-black font-outfit">50K+</p><p class="text-[11px] text-black/30 mt-1">고객 수</p></div>
+        <div class="reveal" style="--delay: 2;"><p class="text-3xl font-black font-outfit">98%</p><p class="text-[11px] text-black/30 mt-1">재구매율</p></div>
+        <div class="reveal" style="--delay: 3;"><p class="text-3xl font-black font-outfit">무료</p><p class="text-[11px] text-black/30 mt-1">배송 · 반품</p></div>
+      </div>
+    </div>
   </section>
 
-  <!-- Login Modal -->
-  <div id="avenue-modal" class="fixed inset-0 z-[100] hidden items-center justify-center p-4 bg-white/80 backdrop-blur-2xl">
-    <div class="bg-white w-full max-w-sm p-6 md:p-16 shadow-2xl relative border border-black/5">
-      <button onclick="toggleAvenueModal()" class="absolute top-8 right-8 text-slate-900/20 hover:text-slate-900 transition text-2xl font-light">&times;</button>
-      
-      <div class="text-center mb-14">
-        <h2 class="text-2xl font-serif-modern tracking-wide text-slate-900 mb-2 italic">Avenue Club</h2>
-        <p class="font-sans text-[9px] text-slate-900/40 tracking-[0.3em] uppercase font-semibold">Exclusive Member Access</p>
-      </div>
-      
-      <div class="space-y-8">
-        <div class="relative group">
-           <input type="email" placeholder="EMAIL ADDRESS" class="w-full bg-transparent border-b border-black/10 py-4 text-[11px] font-semibold tracking-[0.2em] placeholder-black/30 uppercase outline-none focus:border-black transition">
-           <span class="absolute bottom-0 left-0 w-0 h-[1px] bg-slate-950 transition-all duration-500 group-hover:w-full"></span>
+  <!-- ========== New Arrivals ========== -->
+  <section id="new" class="py-24 md:py-32">
+    <div class="max-w-7xl mx-auto px-4 md:px-8">
+      <div class="flex items-end justify-between mb-14">
+        <div>
+          <span class="text-[11px] font-bold tracking-[0.4em] uppercase text-[#FF4B4B] reveal" style="--delay: 0;">New Arrivals</span>
+          <h2 class="text-3xl md:text-4xl lg:text-5xl font-black tracking-tighter font-outfit mt-4 reveal" style="--delay: 1;">신상품</h2>
         </div>
-        <button class="w-full bg-slate-950 text-white py-5 text-[10px] tracking-[0.4em] font-semibold uppercase hover:bg-gray-900 transition shadow-xl">
-           Sign In
-        </button>
-        <div class="flex justify-between pt-4 border-t border-black/5">
-           <a href="#" class="text-[9px] text-slate-900/40 tracking-[0.2em] font-semibold uppercase hover:text-slate-900 transition">Create Account</a>
-           <a href="#" class="text-[9px] text-slate-900/40 tracking-[0.2em] font-semibold uppercase hover:text-slate-900 transition">Assistance</a>
+        <a href="#" class="hidden md:flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.2em] text-black/30 hover:text-[#FF4B4B] reveal" style="--delay: 2;">
+          전체 보기 <i class="fas fa-arrow-right text-[9px]"></i>
+        </a>
+      </div>
+
+      <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
+        <div class="product-card group reveal" style="--delay: 0;">
+          <div class="relative overflow-hidden bg-[#F5F5F5] mb-4">
+            <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?q=80&w=600" alt="시계" class="w-full aspect-[3/4] object-cover transition-transform duration-700" loading="lazy" decoding="async">
+            <div class="absolute top-3 left-3"><span class="bg-[#FF4B4B] text-white text-[10px] font-bold px-2.5 py-1 uppercase tracking-wider">New</span></div>
+            <button class="cart-btn absolute bottom-3 left-3 right-3 bg-black text-white py-3 text-[11px] font-bold uppercase tracking-[0.2em] hover:bg-[#FF4B4B] transition-all duration-500">Add to Cart</button>
+          </div>
+          <h3 class="font-semibold text-sm">미니멀 손목시계</h3>
+          <p class="text-black/40 text-[12px] mt-1">MODO Essential</p>
+          <p class="font-bold text-sm mt-2 font-outfit">189,000원</p>
+        </div>
+
+        <div class="product-card group reveal" style="--delay: 1;">
+          <div class="relative overflow-hidden bg-[#F5F5F5] mb-4">
+            <img src="https://images.unsplash.com/photo-1491637639811-60e2756cc1c7?q=80&w=600" alt="선글라스" class="w-full aspect-[3/4] object-cover transition-transform duration-700" loading="lazy" decoding="async">
+            <div class="absolute top-3 left-3"><span class="bg-[#FF4B4B] text-white text-[10px] font-bold px-2.5 py-1 uppercase tracking-wider">New</span></div>
+            <button class="cart-btn absolute bottom-3 left-3 right-3 bg-black text-white py-3 text-[11px] font-bold uppercase tracking-[0.2em] hover:bg-[#FF4B4B] transition-all duration-500">Add to Cart</button>
+          </div>
+          <h3 class="font-semibold text-sm">클래식 선글라스</h3>
+          <p class="text-black/40 text-[12px] mt-1">MODO Eyewear</p>
+          <p class="font-bold text-sm mt-2 font-outfit">129,000원</p>
+        </div>
+
+        <div class="product-card group reveal" style="--delay: 2;">
+          <div class="relative overflow-hidden bg-[#F5F5F5] mb-4">
+            <img src="https://images.unsplash.com/photo-1553062407-98eeb64c6a62?q=80&w=600" alt="가방" class="w-full aspect-[3/4] object-cover transition-transform duration-700" loading="lazy" decoding="async">
+            <button class="cart-btn absolute bottom-3 left-3 right-3 bg-black text-white py-3 text-[11px] font-bold uppercase tracking-[0.2em] hover:bg-[#FF4B4B] transition-all duration-500">Add to Cart</button>
+          </div>
+          <h3 class="font-semibold text-sm">레더 토트백</h3>
+          <p class="text-black/40 text-[12px] mt-1">MODO Bag</p>
+          <p class="font-bold text-sm mt-2 font-outfit">249,000원</p>
+        </div>
+
+        <div class="product-card group reveal" style="--delay: 3;">
+          <div class="relative overflow-hidden bg-[#F5F5F5] mb-4">
+            <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?q=80&w=600" alt="스니커즈" class="w-full aspect-[3/4] object-cover transition-transform duration-700" loading="lazy" decoding="async">
+            <button class="cart-btn absolute bottom-3 left-3 right-3 bg-black text-white py-3 text-[11px] font-bold uppercase tracking-[0.2em] hover:bg-[#FF4B4B] transition-all duration-500">Add to Cart</button>
+          </div>
+          <h3 class="font-semibold text-sm">화이트 스니커즈</h3>
+          <p class="text-black/40 text-[12px] mt-1">MODO Shoes</p>
+          <p class="font-bold text-sm mt-2 font-outfit">159,000원</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== Category ========== -->
+  <section id="category" class="py-24 md:py-32 bg-[#FAFAFA]">
+    <div class="max-w-7xl mx-auto px-4 md:px-8">
+      <div class="text-center mb-14">
+        <span class="text-[11px] font-bold tracking-[0.4em] uppercase text-[#FF4B4B] reveal" style="--delay: 0;">Categories</span>
+        <h2 class="text-3xl md:text-4xl lg:text-5xl font-black tracking-tighter font-outfit mt-4 reveal" style="--delay: 1;">카테고리</h2>
+      </div>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+        <a href="#" class="group relative overflow-hidden aspect-[3/4] reveal" style="--delay: 0;">
+          <img src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?q=80&w=600" alt="의류" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy" decoding="async">
+          <div class="absolute inset-0 bg-black/30 group-hover:bg-black/50 transition-colors duration-500"></div>
+          <div class="absolute bottom-6 left-6"><p class="text-white font-bold text-lg font-outfit">의류</p><p class="text-white/60 text-[11px] uppercase tracking-wider mt-1">Clothing</p></div>
+        </a>
+        <a href="#" class="group relative overflow-hidden aspect-[3/4] reveal" style="--delay: 1;">
+          <img src="https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?q=80&w=600" alt="신발" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy" decoding="async">
+          <div class="absolute inset-0 bg-black/30 group-hover:bg-black/50 transition-colors duration-500"></div>
+          <div class="absolute bottom-6 left-6"><p class="text-white font-bold text-lg font-outfit">신발</p><p class="text-white/60 text-[11px] uppercase tracking-wider mt-1">Shoes</p></div>
+        </a>
+        <a href="#" class="group relative overflow-hidden aspect-[3/4] reveal" style="--delay: 2;">
+          <img src="https://images.unsplash.com/photo-1611923134239-b9be5816e23c?q=80&w=600" alt="가방" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy" decoding="async">
+          <div class="absolute inset-0 bg-black/30 group-hover:bg-black/50 transition-colors duration-500"></div>
+          <div class="absolute bottom-6 left-6"><p class="text-white font-bold text-lg font-outfit">가방</p><p class="text-white/60 text-[11px] uppercase tracking-wider mt-1">Bags</p></div>
+        </a>
+        <a href="#" class="group relative overflow-hidden aspect-[3/4] reveal" style="--delay: 3;">
+          <img src="https://images.unsplash.com/photo-1612817159949-195b6eb9e31a?q=80&w=600" alt="액세서리" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy" decoding="async">
+          <div class="absolute inset-0 bg-black/30 group-hover:bg-black/50 transition-colors duration-500"></div>
+          <div class="absolute bottom-6 left-6"><p class="text-white font-bold text-lg font-outfit">액세서리</p><p class="text-white/60 text-[11px] uppercase tracking-wider mt-1">Accessories</p></div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== Best Sellers ========== -->
+  <section id="best" class="py-24 md:py-32">
+    <div class="max-w-7xl mx-auto px-4 md:px-8">
+      <div class="text-center mb-14">
+        <span class="text-[11px] font-bold tracking-[0.4em] uppercase text-[#FF4B4B] reveal" style="--delay: 0;">Best Sellers</span>
+        <h2 class="text-3xl md:text-4xl lg:text-5xl font-black tracking-tighter font-outfit mt-4 reveal" style="--delay: 1;">베스트셀러</h2>
+      </div>
+      <div class="grid md:grid-cols-3 gap-6">
+        <div class="group relative overflow-hidden reveal" style="--delay: 0;">
+          <img src="https://images.unsplash.com/photo-1516762689617-e1cffcef479d?q=80&w=800" alt="베스트 1" class="w-full aspect-[3/4] object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy" decoding="async">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+          <div class="absolute bottom-6 left-6 right-6">
+            <span class="text-[#FF4B4B] text-[10px] font-bold uppercase tracking-wider">#1 Best Seller</span>
+            <h3 class="text-white font-bold text-lg mt-1">오버사이즈 코트</h3>
+            <p class="text-white/60 text-sm font-outfit mt-1">329,000원</p>
+          </div>
+        </div>
+        <div class="group relative overflow-hidden reveal" style="--delay: 1;">
+          <img src="https://images.unsplash.com/photo-1560343090-f0409e92791a?q=80&w=800" alt="베스트 2" class="w-full aspect-[3/4] object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy" decoding="async">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+          <div class="absolute bottom-6 left-6 right-6">
+            <span class="text-[#FF4B4B] text-[10px] font-bold uppercase tracking-wider">#2 Best Seller</span>
+            <h3 class="text-white font-bold text-lg mt-1">모노크롬 스니커즈</h3>
+            <p class="text-white/60 text-sm font-outfit mt-1">179,000원</p>
+          </div>
+        </div>
+        <div class="group relative overflow-hidden reveal" style="--delay: 2;">
+          <img src="https://images.unsplash.com/photo-1594938298603-c8148c4dae35?q=80&w=800" alt="베스트 3" class="w-full aspect-[3/4] object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy" decoding="async">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+          <div class="absolute bottom-6 left-6 right-6">
+            <span class="text-[#FF4B4B] text-[10px] font-bold uppercase tracking-wider">#3 Best Seller</span>
+            <h3 class="text-white font-bold text-lg mt-1">미니멀 크로스백</h3>
+            <p class="text-white/60 text-sm font-outfit mt-1">198,000원</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== Brand Story ========== -->
+  <section id="story" class="py-24 md:py-32 bg-black text-white">
+    <div class="max-w-7xl mx-auto px-4 md:px-8 grid lg:grid-cols-2 gap-16 items-center">
+      <div class="space-y-8 reveal" style="--delay: 0;">
+        <span class="text-[11px] font-bold tracking-[0.4em] uppercase text-[#FF4B4B]">Brand Story</span>
+        <h2 class="text-3xl md:text-4xl lg:text-5xl font-black tracking-tighter font-outfit">
+          본질에 집중하는<br>브랜드 철학
+        </h2>
+        <p class="text-white/40 text-base md:text-lg leading-relaxed">
+          MODO는 '방식'이라는 뜻의 이탈리아어에서 영감을 받았습니다. 불필요한 장식을 걷어내고, 제품 본연의 아름다움과 기능성에 집중합니다. 우리가 제안하는 것은 트렌드가 아닌, 시간이 지나도 변하지 않는 스타일입니다.
+        </p>
+        <a href="#" class="inline-flex items-center gap-3 text-[11px] font-bold uppercase tracking-[0.3em] text-[#FF4B4B] hover:text-white">
+          브랜드 스토리 전체 보기 <i class="fas fa-arrow-right text-[9px]"></i>
+        </a>
+      </div>
+      <div class="reveal" style="--delay: 1;">
+        <img src="https://images.unsplash.com/photo-1441984904996-e0b6ba687e04?q=80&w=800" alt="브랜드 스토리" class="w-full aspect-square object-cover" loading="lazy" decoding="async">
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== CTA ========== -->
+  <section class="py-24 md:py-32 relative overflow-hidden">
+    <div class="max-w-3xl mx-auto px-4 md:px-8 text-center">
+      <h2 class="text-3xl md:text-4xl lg:text-5xl font-black tracking-tighter font-outfit reveal" style="--delay: 0;">
+        지금 가입하고<br><span class="text-[#FF4B4B]">15% 할인</span> 받으세요
+      </h2>
+      <p class="text-black/40 text-base md:text-lg mt-6 reveal" style="--delay: 1;">
+        첫 구매 회원에게 드리는 웰컴 쿠폰. 뉴스레터를 구독하시면 신상품 소식을 가장 먼저 받아보실 수 있습니다.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-3 max-w-md mx-auto mt-10 reveal" style="--delay: 2;">
+        <input type="email" placeholder="이메일 주소" class="flex-1 bg-[#F5F5F5] border-none py-4 px-6 outline-none focus:ring-2 focus:ring-black/10 text-[13px]">
+        <button class="bg-black text-white px-8 py-4 font-bold text-[12px] uppercase tracking-[0.2em] hover:bg-[#FF4B4B]">구독</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== Footer ========== -->
+  <footer class="py-16 md:py-24 bg-black text-white">
+    <div class="max-w-7xl mx-auto px-4 md:px-8">
+      <div class="grid md:grid-cols-4 gap-12 items-start mb-16">
+        <div>
+          <span class="font-outfit text-2xl font-black tracking-tighter block mb-4">MODO</span>
+          <p class="text-white/30 text-sm leading-relaxed">Less is More. 본질에 집중하는 라이프스타일 쇼핑몰.</p>
+        </div>
+        <div>
+          <p class="text-[10px] font-semibold text-white/20 uppercase tracking-[0.3em] mb-4">Shop</p>
+          <ul class="space-y-2.5"><li><a href="#" class="text-white/50 text-sm hover:text-[#FF4B4B] transition">신상품</a></li><li><a href="#" class="text-white/50 text-sm hover:text-[#FF4B4B] transition">베스트셀러</a></li><li><a href="#" class="text-white/50 text-sm hover:text-[#FF4B4B] transition">세일</a></li></ul>
+        </div>
+        <div>
+          <p class="text-[10px] font-semibold text-white/20 uppercase tracking-[0.3em] mb-4">고객센터</p>
+          <ul class="space-y-2.5"><li><a href="#" class="text-white/50 text-sm hover:text-[#FF4B4B] transition">배송/반품</a></li><li><a href="#" class="text-white/50 text-sm hover:text-[#FF4B4B] transition">FAQ</a></li><li><a href="#" class="text-white/50 text-sm hover:text-[#FF4B4B] transition">1:1 문의</a></li></ul>
+        </div>
+        <div>
+          <p class="text-[10px] font-semibold text-white/20 uppercase tracking-[0.3em] mb-4">Follow</p>
+          <div class="flex gap-3">
+            <a href="#" class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white/50 hover:text-[#FF4B4B] transition"><i class="fab fa-instagram text-sm"></i></a>
+            <a href="#" class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white/50 hover:text-[#FF4B4B] transition"><i class="fab fa-facebook-f text-sm"></i></a>
+          </div>
+        </div>
+      </div>
+      <div class="border-t border-white/5 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+        <p class="text-[10px] text-white/15 tracking-[0.3em] uppercase">&copy; 2026 MODO. All rights reserved by DLAB.</p>
+        <div class="flex gap-6"><a href="#" class="text-[10px] text-white/15 tracking-[0.2em] uppercase hover:text-white/40 transition">개인정보처리방침</a><a href="#" class="text-[10px] text-white/15 tracking-[0.2em] uppercase hover:text-white/40 transition">이용약관</a></div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ========== Login Modal ========== -->
+  <div id="shopping-modal" class="fixed inset-0 z-[100] hidden items-center justify-center p-4 bg-black/20 backdrop-blur-3xl">
+    <div class="bg-white w-full max-w-sm p-8 md:p-12 shadow-2xl relative">
+      <button onclick="toggleShoppingModal()" class="absolute top-6 right-6 text-black/30 hover:text-black transition text-2xl">&times;</button>
+      <div class="text-center mb-10">
+        <span class="font-outfit text-2xl font-black tracking-tighter">MODO</span>
+        <p class="text-[11px] text-[#FF4B4B] font-bold tracking-[0.3em] uppercase mt-2">Member Login</p>
+      </div>
+      <div class="space-y-4">
+        <input type="text" placeholder="이메일" class="w-full bg-[#F5F5F5] border-none py-4 px-5 outline-none focus:ring-1 focus:ring-black/10 text-[13px]">
+        <input type="password" placeholder="비밀번호" class="w-full bg-[#F5F5F5] border-none py-4 px-5 outline-none focus:ring-1 focus:ring-black/10 text-[13px]">
+        <button class="w-full bg-black text-white py-4 font-bold text-[12px] uppercase tracking-[0.3em] hover:bg-[#FF4B4B] mt-2">로그인</button>
+        <div class="flex justify-center gap-8 pt-2">
+          <a href="#" class="text-[11px] text-black/30 font-semibold hover:text-black transition">회원가입</a>
+          <a href="#" class="text-[11px] text-black/30 font-semibold hover:text-black transition">비밀번호 찾기</a>
         </div>
       </div>
     </div>
   </div>
-
-  <footer class="py-24 md:py-40 bg-white text-slate-900 border-t border-black/5 text-center">
-     <div class="inline-flex flex-col items-center gap-12 mb-12">
-        <span class="font-serif-modern text-2xl md:text-4xl tracking-[0.1em] uppercase">Avenue</span>
-        <div class="w-12 h-[1px] bg-slate-950"></div>
-        <span class="text-[10px] font-semibold text-slate-900/40 tracking-[0.4em] uppercase">The Art of Luxury Retail</span>
-     </div>
-     <p class="text-[10px] text-slate-900/20 tracking-[0.8em] uppercase px-6">© 2024 THE AVENUE. SEOUL.</p>
-  </footer>
-
-  <script>
-    function toggleAvenueModal() {
-      const modal = document.getElementById('avenue-modal');
-      modal.classList.toggle('hidden');
-      modal.classList.toggle('flex');
-    }
-  </script>
-
 </div>
+
+<script>
+  function toggleShoppingModal() { const m = document.getElementById('shopping-modal'); m.classList.toggle('hidden'); m.classList.toggle('flex'); }
+  document.getElementById('shopping-modal').addEventListener('click', function(e) { if (e.target === this) toggleShoppingModal(); });
+  (function() {
+    const observer = new IntersectionObserver(function(entries) { entries.forEach(function(entry) { if (entry.isIntersecting) { entry.target.classList.add('is-visible'); observer.unobserve(entry.target); } }); }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+    document.querySelectorAll('.reveal').forEach(function(el) { observer.observe(el); });
+  })();
+</script>

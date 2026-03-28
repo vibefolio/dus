@@ -1,163 +1,389 @@
-<%# Agency Template - 에이전시X (AGENCY X) %>
+<%# Agency Template - WAVE %>
 
 <style>
-  /* Supanova Design Upgrade */
+  /* Supanova Design — Bold Agency Archetype */
   * { word-break: keep-all; }
-  html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+  html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
   h1, h2, h3, h4 { text-wrap: balance; letter-spacing: -0.02em; line-height: 1.3; }
-  a, button { transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1); }
+  a, button { transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1); }
   a:hover, button:hover { transform: scale(1.02); }
   a:active, button:active { transform: scale(0.98); }
 
-  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700;900&family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap');
-  
-  .font-inter { font-family: 'Inter', sans-serif; }
+  @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+
   .font-sans { font-family: 'Pretendard Variable', 'Pretendard', -apple-system, sans-serif; }
+  .font-display { font-family: 'Space Grotesk', sans-serif; }
 
   @media (max-width: 768px) {
-    .mobile-desc { font-size: 14px !important; line-height: 1.6; }
-    .mobile-title { font-size: 40px !important; }
+    .mobile-desc { font-size: 14px !important; line-height: 1.8; }
+    .mobile-title { font-size: 36px !important; }
   }
 
-  .noise {
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
-    opacity: 0.05;
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(2rem); filter: blur(4px); }
+    to { opacity: 1; transform: translateY(0); filter: blur(0); }
   }
+  .reveal { opacity: 0; transform: translateY(2rem); }
+  .reveal.is-visible { animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards; animation-delay: calc(var(--delay, 0) * 100ms); }
+
+  .service-card { transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1); }
+  .service-card:hover { transform: translateY(-8px); box-shadow: 0 20px 40px rgba(255,107,107,0.12); }
 </style>
 
-<div class="bg-[#050505] text-white font-sans selection:bg-[#BEF264] selection:text-slate-900 min-h-screen overflow-x-hidden relative">
-  <div class="fixed inset-0 noise pointer-events-none"></div>
+<div class="bg-[#FFFFFF] text-[#1E293B] font-sans selection:bg-[#FF6B6B] selection:text-white min-h-screen overflow-x-hidden">
 
-  <!-- Nav -->
-  <nav class="fixed w-full z-50 px-3 md:px-6 py-6 border-b border-white/5 bg-[#050505]/80 backdrop-blur-xl">
-    <div class="container mx-auto px-4 md:px-6 flex justify-between items-center flex-nowrap">
-      <div class="flex items-center gap-3 group cursor-pointer">
-         <div class="w-2 h-2 bg-[#BEF264] rounded-full group-hover:animate-ping"></div>
-         <span class="font-inter font-semibold text-2xl tracking-tight uppercase italic">AGENCY<span class="text-[#BEF264]">X</span></span>
-      </div>
-      
-      <div class="hidden md:flex gap-16 text-[10px] font-semibold uppercase tracking-[0.4em] text-white/40">
-        <a href="#projects" class="hover:text-[#BEF264] transition">Artifacts</a>
-        <a href="#vision" class="hover:text-[#BEF264] transition">Our_Vision</a>
-        <a href="#lab" class="hover:text-[#BEF264] transition">X_Lab</a>
-      </div>
-           <button class="mobile-menu-trigger md:hidden ml-auto text-2xl focus:outline-none" style="color: inherit;">
-             <i class="fas fa-bars"></i>
-           </button>
+  <!-- ========== Nav ========== -->
+  <nav class="fixed w-full z-50 px-4 md:px-8 py-4 bg-white/80 backdrop-blur-xl border-b border-slate-100">
+    <div class="max-w-7xl mx-auto flex justify-between items-center">
+      <a href="#" class="font-display font-bold text-2xl tracking-tight">W<span class="text-[#FF6B6B]">AVE</span></a>
 
-      
-      <div class="flex-nowrap shrink-0 flex gap-12 items-center">
-         <button onclick="toggleAgencyModal()" class="hidden md:block text-[10px] font-semibold uppercase tracking-[0.4em] text-white/40 hover:text-white" data-mobile-menu-copy="true">Admin_X</button>
-         <button class="hidden md:inline-flex bg-[#BEF264] text-slate-900 px-4 py-2 text-xs md:text-base md:px-8 md:py-3 whitespace-nowrap rounded-none font-semibold text-[10px] tracking-[0.4em] uppercase hover:bg-white transition-all" data-mobile-menu-copy="true">
-           Initiate Project
-         </button>
+      <div class="hidden md:flex gap-10 text-sm font-medium text-slate-400">
+        <a href="#services" class="hover:text-[#FF6B6B] transition">서비스</a>
+        <a href="#portfolio" class="hover:text-[#FF6B6B] transition">포트폴리오</a>
+        <a href="#about" class="hover:text-[#FF6B6B] transition">소개</a>
+        <a href="#contact" class="hover:text-[#FF6B6B] transition">문의</a>
+      </div>
+
+      <button class="mobile-menu-trigger md:hidden ml-auto text-2xl focus:outline-none" style="color: inherit;">
+        <i class="fas fa-bars"></i>
+      </button>
+
+      <div class="hidden md:flex gap-4 items-center">
+        <a href="#contact" class="bg-[#FF6B6B] text-white px-6 py-2.5 rounded-full text-sm font-semibold hover:bg-[#EF4444] shadow-lg shadow-[#FF6B6B]/20" data-mobile-menu-copy="true">프로젝트 의뢰</a>
       </div>
     </div>
 
-      <%= render partial: 'templates/shared/mobile_menu_overlay' %></nav>
+    <%= render partial: 'templates/shared/mobile_menu_overlay' %>
+  </nav>
 
-  <!-- Hero -->
-  <header class="min-h-screen relative flex items-center pt-24 overflow-hidden">
-    <div class="absolute inset-0 z-0">
-       <div class="absolute top-[20%] right-[-10%] w-[60%] h-[60%] bg-[#BEF264]/10 rounded-full blur-[150px]"></div>
-       <div class="absolute bottom-[10%] left-[-10%] w-[50%] h-[50%] bg-blue-600/5 rounded-full blur-[150px]"></div>
-    </div>
-    
-    <div class="container mx-auto px-3 md:px-6 relative z-10 grid lg:grid-cols-12 gap-16 items-center">
-      <div class="lg:col-span-8 space-y-12">
-        <div class="inline-flex items-center gap-6 text-[#BEF264] text-[10px] font-semibold tracking-[0.5em] uppercase border-l-2 border-[#BEF264] pl-6">
-           Breaking the digital ceiling
-        </div>
-        
-        <h1 class="text-3xl md:text-5xl md:text-[10rem] font-inter font-semibold leading-[0.9] tracking-tight mobile-title">
-           EVOLVE<br>THE<br><span class="italic text-transparent bg-clip-text bg-gradient-to-r from-[#BEF264] to-emerald-500">SYSTEM.</span>
-        </h1>
-        
-        <div class="flex flex-col md:flex-row gap-16 items-start">
-           <p class="max-w-[400px] text-white/40 text-sm md:text-lg leading-relaxed mobile-desc">
-             우리는 단순한 웹사이트를 넘어서, 브랜드의 생존과 진화를 위한 디지털 엔진을 설계합니다. AGENCY X의 결과물은 곧 표준이 됩니다.
-           </p>
-           <div class="pt-4">
-              <button class="w-16 h-16 rounded-full border border-white/20 flex items-center justify-center hover:bg-[#BEF264] hover:text-slate-900 transition-all group">
-                 <span class="text-2xl group-hover:translate-x-1 transition">→</span>
-              </button>
-           </div>
-        </div>
-      </div>
-      
-      <div class="lg:col-span-4 relative hidden lg:block">
-         <div class="aspect-[3/4] bg-white/5 border border-white/10 rounded-2xl overflow-hidden group">
-            <img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?q=80&w=1200" alt="Creative" class="w-full h-full object-cover transition-all duration-700 group-hover:scale-110 grayscale group-hover:grayscale-0">
-            <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent"></div>
-            <div class="absolute bottom-10 left-10">
-               <p class="text-[10px] font-semibold tracking-[0.4em] uppercase text-[#BEF264]">Latest Artifact</p>
-               <h3 class="text-2xl font-inter font-semibold uppercase mt-2">CYBER_DYNE 2024</h3>
+  <!-- ========== Hero ========== -->
+  <header class="min-h-[100dvh] relative flex items-center pt-20 overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-br from-[#FFF1F1] via-white to-[#FFE4E4]"></div>
+    <div class="absolute top-20 right-20 w-[500px] h-[500px] bg-[#FF6B6B]/5 rounded-full blur-[150px]"></div>
+
+    <div class="max-w-7xl mx-auto px-4 md:px-8 relative z-10 w-full py-20">
+      <div class="grid lg:grid-cols-2 gap-12 items-center">
+        <div class="space-y-8 text-center lg:text-left">
+          <div class="inline-flex items-center gap-2 bg-white px-4 py-2 rounded-full border border-[#FF6B6B]/20 shadow-sm reveal" style="--delay: 0;">
+            <span class="w-2 h-2 bg-[#FF6B6B] rounded-full animate-pulse"></span>
+            <span class="text-sm font-semibold text-[#FF6B6B]">디지털 마케팅 전문</span>
+          </div>
+
+          <h1 class="text-5xl md:text-6xl lg:text-7xl font-bold leading-tight mobile-title reveal" style="--delay: 1;">
+            브랜드에<br>
+            <span class="text-[#FF6B6B]">파도를 일으킵니다</span>
+          </h1>
+
+          <p class="text-slate-400 text-base md:text-lg leading-relaxed max-w-md mx-auto lg:mx-0 mobile-desc reveal" style="--delay: 2;">
+            WAVE는 데이터 기반 디지털 마케팅 에이전시입니다. 브랜딩, 퍼포먼스 마케팅, 콘텐츠 제작까지 원스톱으로 제공합니다.
+          </p>
+
+          <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start reveal" style="--delay: 3;">
+            <a href="#contact" class="inline-flex items-center justify-center gap-2 px-10 py-4 bg-[#FF6B6B] text-white rounded-full font-semibold shadow-lg shadow-[#FF6B6B]/25 hover:bg-[#EF4444]">
+              무료 컨설팅 받기
+            </a>
+            <a href="#portfolio" class="inline-flex items-center justify-center gap-2 px-10 py-4 border border-slate-200 rounded-full font-semibold text-slate-600 hover:border-[#FF6B6B] hover:text-[#FF6B6B]">
+              포트폴리오 보기
+            </a>
+          </div>
+
+          <div class="flex items-center gap-8 justify-center lg:justify-start pt-4 reveal" style="--delay: 4;">
+            <div class="text-center">
+              <p class="text-2xl font-bold text-[#FF6B6B]">300+</p>
+              <p class="text-xs text-slate-400 mt-1">프로젝트</p>
             </div>
-         </div>
+            <div class="w-px h-8 bg-slate-200"></div>
+            <div class="text-center">
+              <p class="text-2xl font-bold text-[#FF6B6B]">150+</p>
+              <p class="text-xs text-slate-400 mt-1">파트너</p>
+            </div>
+            <div class="w-px h-8 bg-slate-200"></div>
+            <div class="text-center">
+              <p class="text-2xl font-bold text-[#FF6B6B]">ROAS 5x</p>
+              <p class="text-xs text-slate-400 mt-1">평균 성과</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="relative hidden lg:block reveal" style="--delay: 2;">
+          <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=800" alt="팀 미팅" class="w-full h-[550px] object-cover rounded-3xl shadow-2xl">
+        </div>
       </div>
     </div>
   </header>
 
-  <!-- Marquee -->
-  <div class="py-20 border-y border-white/5 bg-white text-slate-900 overflow-hidden relative z-20">
-    <div class="whitespace-nowrap flex gap-16 font-inter font-semibold text-2xl md:text-5xl animate-marquee-fast italic">
-       <span>STRATEGY_</span> <span>-</span> <span>DEVELOPMENT_</span> <span>-</span> <span>BRANDING_</span> <span>-</span> <span>MOTION_</span> <span>-</span> <span>EXPERIENCE_</span> <span>-</span>
-       <span>STRATEGY_</span> <span>-</span> <span>DEVELOPMENT_</span> <span>-</span> <span>BRANDING_</span> <span>-</span> <span>MOTION_</span> <span>-</span> <span>EXPERIENCE_</span> <span>-</span>
-    </div>
-  </div>
-
-  <style>
-    @keyframes marquee-fast {
-      0% { transform: translateX(0); }
-      100% { transform: translateX(-50%); }
-    }
-    .animate-marquee-fast { animation: marquee-fast 20s linear infinite; }
-  </style>
-
-  <!-- Login Modal -->
-  <div id="agency-modal" class="fixed inset-0 z-[100] hidden items-center justify-center p-4 bg-slate-950/95 backdrop-blur-3xl">
-    <div class="bg-[#0F0F0F] w-full max-w-sm p-14 shadow-2xl relative border border-white/10">
-      <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-[#BEF264] to-emerald-500"></div>
-      <button onclick="toggleAgencyModal()" class="absolute top-10 right-10 text-white/20 hover:text-[#BEF264] transition text-2xl font-light">&times;</button>
-      
-      <div class="text-center mb-14">
-        <h2 class="text-xl font-inter tracking-[0.5em] text-white mb-2 font-semibold uppercase italic">ACCESS_X</h2>
-        <p class="text-[9px] text-[#BEF264] font-semibold tracking-[0.3em] uppercase">Authorized personnel only</p>
+  <!-- ========== 서비스 ========== -->
+  <section id="services" class="py-24 md:py-32 bg-[#FAFAFA]">
+    <div class="max-w-7xl mx-auto px-4 md:px-8">
+      <div class="text-center mb-16">
+        <span class="text-sm font-semibold text-[#FF6B6B] tracking-wider uppercase reveal" style="--delay: 0;">Services</span>
+        <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mt-4 reveal" style="--delay: 1;">마케팅 서비스</h2>
+        <p class="text-slate-400 text-base mt-4 max-w-lg mx-auto reveal" style="--delay: 2;">데이터와 크리에이티브의 완벽한 조합</p>
       </div>
-      
-      <div class="space-y-8">
-        <div class="space-y-4">
-           <div class="flex justify-between items-center px-1">
-              <span class="text-[9px] font-semibold tracking-[0.4em] uppercase text-white/30">Entry Code</span>
-              <span class="text-[8px] font-semibold tracking-[0.4em] uppercase text-[#BEF264]">Encrypted</span>
-           </div>
-           <input type="password" placeholder="********" class="w-full bg-white/5 border border-white/10 py-5 px-6 outline-none focus:border-[#BEF264] transition text-[11px] font-semibold tracking-[0.4em] text-white">
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div class="service-card bg-white p-8 rounded-2xl border border-slate-100 reveal" style="--delay: 0;">
+          <div class="w-14 h-14 bg-[#FF6B6B]/10 rounded-xl flex items-center justify-center mb-6">
+            <i class="fas fa-bullseye text-[#FF6B6B] text-xl"></i>
+          </div>
+          <h3 class="text-lg font-bold mb-3">퍼포먼스 마케팅</h3>
+          <p class="text-sm text-slate-400 leading-relaxed">Google, Meta, 네이버 등 광고 플랫폼 최적화로 ROAS를 극대화합니다.</p>
         </div>
-        <button class="w-full bg-white text-slate-900 py-5 font-inter font-semibold text-[10px] tracking-[0.4em] uppercase hover:bg-[#BEF264] transition-all">
-           BOOT_PROTOCOL
-        </button>
-        <div class="flex flex-col items-center gap-10 pt-4">
-           <a href="#" class="text-[9px] text-white/20 tracking-[0.4em] font-semibold uppercase hover:text-[#BEF264] transition underline decoration-1 underline-offset-8">Request Project Access</a>
+
+        <div class="service-card bg-white p-8 rounded-2xl border border-slate-100 reveal" style="--delay: 1;">
+          <div class="w-14 h-14 bg-[#FF6B6B]/10 rounded-xl flex items-center justify-center mb-6">
+            <i class="fas fa-pen-nib text-[#FF6B6B] text-xl"></i>
+          </div>
+          <h3 class="text-lg font-bold mb-3">브랜드 전략</h3>
+          <p class="text-sm text-slate-400 leading-relaxed">브랜드 아이덴티티, 네이밍, 포지셔닝 등 전략적 브랜딩 서비스.</p>
+        </div>
+
+        <div class="service-card bg-white p-8 rounded-2xl border border-slate-100 reveal" style="--delay: 2;">
+          <div class="w-14 h-14 bg-[#FF6B6B]/10 rounded-xl flex items-center justify-center mb-6">
+            <i class="fas fa-video text-[#FF6B6B] text-xl"></i>
+          </div>
+          <h3 class="text-lg font-bold mb-3">콘텐츠 제작</h3>
+          <p class="text-sm text-slate-400 leading-relaxed">SNS 콘텐츠, 영상, 카피라이팅 등 크리에이티브 콘텐츠 제작.</p>
+        </div>
+
+        <div class="service-card bg-white p-8 rounded-2xl border border-slate-100 reveal" style="--delay: 3;">
+          <div class="w-14 h-14 bg-[#FF6B6B]/10 rounded-xl flex items-center justify-center mb-6">
+            <i class="fas fa-chart-bar text-[#FF6B6B] text-xl"></i>
+          </div>
+          <h3 class="text-lg font-bold mb-3">데이터 분석</h3>
+          <p class="text-sm text-slate-400 leading-relaxed">GA4, 전환 추적, A/B 테스트 등 데이터 기반 의사결정 지원.</p>
         </div>
       </div>
     </div>
-  </div>
+  </section>
 
-  <footer class="py-24 md:py-40 bg-[#050505] text-center px-6 relative z-10 border-t border-white/5">
-     <div class="inline-flex items-center gap-14 mb-12">
-        <span class="font-inter text-2xl tracking-tight font-semibold uppercase text-white/10 italic">AGENCY<span class="text-white/5">X</span></span>
-        <div class="w-12 h-[1px] bg-white/5"></div>
-        <span class="text-[10px] font-semibold text-white/20 tracking-[0.6em] uppercase">Defining the Edge</span>
-     </div>
-     <p class="text-[10px] text-white/10 tracking-[1em] uppercase px-6">© 2024 AGENCY X CREATIVE. NO MORE BOUNDARIES.</p>
+  <!-- ========== 포트폴리오 ========== -->
+  <section id="portfolio" class="py-24 md:py-32">
+    <div class="max-w-7xl mx-auto px-4 md:px-8">
+      <div class="text-center mb-16">
+        <span class="text-sm font-semibold text-[#FF6B6B] tracking-wider uppercase reveal" style="--delay: 0;">Portfolio</span>
+        <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mt-4 reveal" style="--delay: 1;">최근 프로젝트</h2>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div class="group reveal" style="--delay: 0;">
+          <div class="overflow-hidden rounded-2xl">
+            <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=800" alt="포트폴리오 1" class="w-full aspect-video object-cover group-hover:scale-105 transition duration-700" loading="lazy">
+          </div>
+          <div class="mt-4">
+            <span class="text-xs font-semibold text-[#FF6B6B]">Performance</span>
+            <h3 class="font-bold text-lg mt-1">F&B 브랜드 런칭</h3>
+            <p class="text-sm text-slate-400 mt-1">3개월 만에 MAU 50만 달성. ROAS 720% 기록.</p>
+          </div>
+        </div>
+
+        <div class="group reveal" style="--delay: 1;">
+          <div class="overflow-hidden rounded-2xl">
+            <img src="https://images.unsplash.com/photo-1553895501-af9e282e7fc1?q=80&w=800" alt="포트폴리오 2" class="w-full aspect-video object-cover group-hover:scale-105 transition duration-700" loading="lazy">
+          </div>
+          <div class="mt-4">
+            <span class="text-xs font-semibold text-[#FF6B6B]">Branding</span>
+            <h3 class="font-bold text-lg mt-1">패션 브랜드 리브랜딩</h3>
+            <p class="text-sm text-slate-400 mt-1">브랜드 인지도 300% 향상. SNS 팔로워 10만 돌파.</p>
+          </div>
+        </div>
+
+        <div class="group reveal" style="--delay: 2;">
+          <div class="overflow-hidden rounded-2xl">
+            <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=800" alt="포트폴리오 3" class="w-full aspect-video object-cover group-hover:scale-105 transition duration-700" loading="lazy">
+          </div>
+          <div class="mt-4">
+            <span class="text-xs font-semibold text-[#FF6B6B]">Content</span>
+            <h3 class="font-bold text-lg mt-1">테크 스타트업 마케팅</h3>
+            <p class="text-sm text-slate-400 mt-1">콘텐츠 마케팅으로 리드 생성 500% 증가.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== 소개 ========== -->
+  <section id="about" class="py-24 md:py-32 bg-[#FAFAFA]">
+    <div class="max-w-7xl mx-auto px-4 md:px-8">
+      <div class="grid lg:grid-cols-2 gap-16 items-center">
+        <div class="space-y-8">
+          <div>
+            <span class="text-sm font-semibold text-[#FF6B6B] tracking-wider uppercase reveal" style="--delay: 0;">About</span>
+            <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mt-4 reveal" style="--delay: 1;">파도를 만드는 사람들</h2>
+          </div>
+
+          <p class="text-slate-400 text-base md:text-lg leading-relaxed reveal" style="--delay: 2;">
+            WAVE는 2018년 설립된 풀서비스 디지털 마케팅 에이전시입니다. 브랜드 전략, 퍼포먼스 마케팅, 크리에이티브 콘텐츠를 통합적으로 제공하여 클라이언트의 비즈니스 성장을 돕습니다.
+          </p>
+
+          <div class="grid grid-cols-2 gap-6 reveal" style="--delay: 3;">
+            <div class="bg-white p-6 rounded-xl border border-slate-100">
+              <p class="text-3xl font-bold text-[#FF6B6B]">25명</p>
+              <p class="text-sm text-slate-400 mt-1">전문 팀원</p>
+            </div>
+            <div class="bg-white p-6 rounded-xl border border-slate-100">
+              <p class="text-3xl font-bold text-[#FF6B6B]">6년</p>
+              <p class="text-sm text-slate-400 mt-1">업계 경험</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="relative reveal" style="--delay: 0;">
+          <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=700" alt="팀" class="w-full aspect-[4/3] object-cover rounded-3xl shadow-xl" loading="lazy">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== 고객 후기 ========== -->
+  <section class="py-24 md:py-32">
+    <div class="max-w-7xl mx-auto px-4 md:px-8">
+      <div class="text-center mb-16">
+        <span class="text-sm font-semibold text-[#FF6B6B] tracking-wider uppercase reveal" style="--delay: 0;">Testimonials</span>
+        <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mt-4 reveal" style="--delay: 1;">클라이언트 후기</h2>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+        <div class="bg-[#FFF1F1] p-8 rounded-2xl reveal" style="--delay: 0;">
+          <div class="flex items-center gap-1 text-[#FF6B6B] mb-4">
+            <i class="fas fa-star text-xs"></i><i class="fas fa-star text-xs"></i><i class="fas fa-star text-xs"></i><i class="fas fa-star text-xs"></i><i class="fas fa-star text-xs"></i>
+          </div>
+          <p class="text-sm text-slate-500 leading-relaxed italic">"ROAS가 3배나 올랐습니다. 데이터 기반 접근이 확실히 다르다는 것을 체감했어요."</p>
+          <p class="text-sm font-bold mt-4">김OO 대표</p>
+          <p class="text-xs text-slate-400">뷰티 브랜드</p>
+        </div>
+
+        <div class="bg-[#FFF1F1] p-8 rounded-2xl reveal" style="--delay: 1;">
+          <div class="flex items-center gap-1 text-[#FF6B6B] mb-4">
+            <i class="fas fa-star text-xs"></i><i class="fas fa-star text-xs"></i><i class="fas fa-star text-xs"></i><i class="fas fa-star text-xs"></i><i class="fas fa-star text-xs"></i>
+          </div>
+          <p class="text-sm text-slate-500 leading-relaxed italic">"브랜딩 리뉴얼 후 고객 반응이 확 달라졌어요. 전략적인 접근이 인상적이었습니다."</p>
+          <p class="text-sm font-bold mt-4">박OO 이사</p>
+          <p class="text-xs text-slate-400">F&B 프랜차이즈</p>
+        </div>
+
+        <div class="bg-[#FFF1F1] p-8 rounded-2xl reveal" style="--delay: 2;">
+          <div class="flex items-center gap-1 text-[#FF6B6B] mb-4">
+            <i class="fas fa-star text-xs"></i><i class="fas fa-star text-xs"></i><i class="fas fa-star text-xs"></i><i class="fas fa-star text-xs"></i><i class="fas fa-star text-xs"></i>
+          </div>
+          <p class="text-sm text-slate-500 leading-relaxed italic">"콘텐츠 제작부터 광고 운영까지 원스톱으로 해결되니 정말 편했습니다."</p>
+          <p class="text-sm font-bold mt-4">이OO 팀장</p>
+          <p class="text-xs text-slate-400">테크 스타트업</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== 문의 ========== -->
+  <section id="contact" class="py-24 md:py-32 bg-gradient-to-br from-[#FF6B6B] to-[#EF4444] text-white relative overflow-hidden">
+    <div class="absolute top-0 left-0 w-96 h-96 bg-white/5 rounded-full blur-[100px]"></div>
+
+    <div class="max-w-4xl mx-auto px-4 md:px-8 relative z-10">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold reveal" style="--delay: 0;">프로젝트 문의</h2>
+        <p class="text-white/70 text-base mt-4 reveal" style="--delay: 1;">무료 컨설팅을 통해 최적의 마케팅 전략을 제안드립니다</p>
+      </div>
+
+      <div class="bg-white/10 backdrop-blur-xl rounded-3xl p-8 md:p-12 reveal" style="--delay: 2;">
+        <div class="grid md:grid-cols-2 gap-6">
+          <div>
+            <label class="block text-sm font-medium text-white/80 mb-2">회사명</label>
+            <input type="text" placeholder="회사명" class="w-full bg-white/10 border border-white/20 rounded-xl px-5 py-3.5 text-white placeholder-white/40 outline-none focus:border-white/60 transition">
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-white/80 mb-2">담당자</label>
+            <input type="text" placeholder="이름" class="w-full bg-white/10 border border-white/20 rounded-xl px-5 py-3.5 text-white placeholder-white/40 outline-none focus:border-white/60 transition">
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-white/80 mb-2">이메일</label>
+            <input type="email" placeholder="email@company.com" class="w-full bg-white/10 border border-white/20 rounded-xl px-5 py-3.5 text-white placeholder-white/40 outline-none focus:border-white/60 transition">
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-white/80 mb-2">관심 서비스</label>
+            <select class="w-full bg-white/10 border border-white/20 rounded-xl px-5 py-3.5 text-white outline-none focus:border-white/60 transition">
+              <option value="">선택해주세요</option>
+              <option>퍼포먼스 마케팅</option>
+              <option>브랜드 전략</option>
+              <option>콘텐츠 제작</option>
+              <option>데이터 분석</option>
+              <option>통합 마케팅</option>
+            </select>
+          </div>
+          <div class="md:col-span-2">
+            <label class="block text-sm font-medium text-white/80 mb-2">프로젝트 설명</label>
+            <textarea rows="3" placeholder="마케팅 목표와 현재 상황을 알려주세요" class="w-full bg-white/10 border border-white/20 rounded-xl px-5 py-3.5 text-white placeholder-white/40 outline-none focus:border-white/60 transition resize-none"></textarea>
+          </div>
+        </div>
+        <button class="w-full mt-8 bg-white text-[#FF6B6B] py-4 rounded-full font-bold text-lg hover:bg-[#FFF1F1] shadow-lg">문의 보내기</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== Footer ========== -->
+  <footer class="py-16 md:py-24 bg-[#0F172A] text-white">
+    <div class="max-w-7xl mx-auto px-4 md:px-8">
+      <div class="grid md:grid-cols-3 gap-12 mb-16">
+        <div>
+          <p class="font-display font-bold text-xl mb-4">W<span class="text-[#FF6B6B]">AVE</span></p>
+          <p class="text-white/30 text-sm leading-relaxed">서울특별시 마포구 양화로 186<br>웨이브 빌딩 5층</p>
+          <p class="text-white/30 text-sm mt-2">대표: 이웨이브 | 사업자등록번호: 012-34-56789</p>
+        </div>
+
+        <div class="grid grid-cols-2 gap-8">
+          <div>
+            <p class="text-xs font-semibold text-white/20 uppercase tracking-wider mb-4">서비스</p>
+            <ul class="space-y-2.5">
+              <li><a href="#services" class="text-white/40 text-sm hover:text-[#FF6B6B] transition">퍼포먼스</a></li>
+              <li><a href="#services" class="text-white/40 text-sm hover:text-[#FF6B6B] transition">브랜딩</a></li>
+              <li><a href="#services" class="text-white/40 text-sm hover:text-[#FF6B6B] transition">콘텐츠</a></li>
+              <li><a href="#services" class="text-white/40 text-sm hover:text-[#FF6B6B] transition">데이터</a></li>
+            </ul>
+          </div>
+          <div>
+            <p class="text-xs font-semibold text-white/20 uppercase tracking-wider mb-4">회사</p>
+            <ul class="space-y-2.5">
+              <li><a href="#about" class="text-white/40 text-sm hover:text-[#FF6B6B] transition">소개</a></li>
+              <li><a href="#portfolio" class="text-white/40 text-sm hover:text-[#FF6B6B] transition">포트폴리오</a></li>
+              <li><a href="#" class="text-white/40 text-sm hover:text-[#FF6B6B] transition">채용</a></li>
+              <li><a href="#contact" class="text-white/40 text-sm hover:text-[#FF6B6B] transition">문의</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <div>
+          <p class="text-xs font-semibold text-white/20 uppercase tracking-wider mb-4">연락처</p>
+          <p class="text-sm text-white/30">hello@wave.agency</p>
+          <p class="text-sm text-white/30 mt-1">02-333-4444</p>
+          <div class="flex gap-3 mt-4">
+            <a href="#" class="w-10 h-10 bg-white/5 rounded-lg flex items-center justify-center text-white/40 hover:text-[#FF6B6B] hover:bg-white/10 transition"><i class="fab fa-instagram text-sm"></i></a>
+            <a href="#" class="w-10 h-10 bg-white/5 rounded-lg flex items-center justify-center text-white/40 hover:text-[#FF6B6B] hover:bg-white/10 transition"><i class="fab fa-linkedin text-sm"></i></a>
+            <a href="#" class="w-10 h-10 bg-white/5 rounded-lg flex items-center justify-center text-white/40 hover:text-[#FF6B6B] hover:bg-white/10 transition"><i class="fab fa-youtube text-sm"></i></a>
+          </div>
+        </div>
+      </div>
+
+      <div class="border-t border-white/5 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+        <p class="text-xs text-white/15">&copy; 2024 WAVE. All rights reserved by DLAB.</p>
+        <div class="flex gap-6">
+          <a href="#" class="text-xs text-white/15 hover:text-white/30 transition">개인정보처리방침</a>
+          <a href="#" class="text-xs text-white/15 hover:text-white/30 transition">이용약관</a>
+        </div>
+      </div>
+    </div>
   </footer>
 
-  <script>
-    function toggleAgencyModal() {
-      const modal = document.getElementById('agency-modal');
-      modal.classList.toggle('hidden');
-      modal.classList.toggle('flex');
-    }
-  </script>
-
 </div>
+
+<script>
+  (function() {
+    const observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+    document.querySelectorAll('.reveal').forEach(function(el) { observer.observe(el); });
+  })();
+</script>

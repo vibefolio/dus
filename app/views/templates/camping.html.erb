@@ -1,148 +1,583 @@
-<%# Camping Template - 와일드 캠프 (WILD CAMP) %>
+<%# Camping Template — WILDCAMP (캠핑장/글램핑) %>
 
 <style>
-  /* Supanova Design Upgrade */
+  /* Supanova Design — Dark Outdoor Archetype */
   * { word-break: keep-all; }
-  html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+  html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
   h1, h2, h3, h4 { text-wrap: balance; letter-spacing: -0.02em; line-height: 1.3; }
-  a, button { transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1); }
+  a, button { transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1); }
   a:hover, button:hover { transform: scale(1.02); }
   a:active, button:active { transform: scale(0.98); }
 
-  @import url('https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700;800&family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap');
-  
-  .font-serif { font-family: 'Nanum Myeongjo', serif; }
-  .font-sans { font-family: 'Pretendard Variable', 'Pretendard', -apple-system, sans-serif; }
+  @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+
+  .font-sans { font-family: 'Space Grotesk', 'Pretendard Variable', -apple-system, sans-serif; }
+  .font-display { font-family: 'Bebas Neue', sans-serif; }
 
   @media (max-width: 768px) {
     .mobile-desc { font-size: 14px !important; line-height: 1.8; }
-    .mobile-title { font-size: 40px !important; }
+    .mobile-title { font-size: 42px !important; }
   }
 
-  .topo-pattern {
-    background-image: url("https://www.transparenttextures.com/patterns/black-felt.png");
-    opacity: 0.1;
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(2.5rem); filter: blur(6px); }
+    to { opacity: 1; transform: translateY(0); filter: blur(0); }
   }
+  .reveal {
+    opacity: 0;
+    transform: translateY(2.5rem);
+  }
+  .reveal.is-visible {
+    animation: fadeInUp 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    animation-delay: calc(var(--delay, 0) * 120ms);
+  }
+
+  .camp-card { transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1); }
+  .camp-card:hover { transform: translateY(-10px); }
+  .camp-card:hover img { transform: scale(1.08); }
+
+  .gallery-item { transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1); }
+  .gallery-item:hover { transform: scale(1.02); }
+  .gallery-item:hover img { transform: scale(1.06); }
+
+  .glow-yellow { text-shadow: 0 0 40px rgba(232, 185, 49, 0.3); }
 </style>
 
-<div class="bg-[#1C1C1E] text-[#E5E5EA] font-sans selection:bg-[#FF4500] selection:text-white min-h-screen overflow-x-hidden relative">
-  <div class="fixed inset-0 topo-pattern pointer-events-none"></div>
+<div class="bg-[#1B2420] text-[#F5F0E0] font-sans selection:bg-[#E8B931] selection:text-[#1B2420] min-h-screen overflow-x-hidden relative">
 
-  <!-- Nav -->
-  <nav class="fixed w-full z-50 px-8 py-12 md:px-12 bg-[#1C1C1E]/80 backdrop-blur-xl border-b border-white/5">
-    <div class="container mx-auto px-4 md:px-6 flex justify-between items-center flex-nowrap">
-      <div class="flex items-center gap-6">
-         <span class="text-2xl">🔥</span>
-         <span class="font-semibold text-2xl tracking-[0.2em] uppercase text-white">Wild<span class="text-[#FF4500]">Camp</span></span>
-      </div>
-      
-      <div class="hidden md:flex gap-14 text-[10px] font-semibold uppercase tracking-[0.4em] text-white/40">
-        <a href="#zones" class="hover:text-[#FF4500] transition">Basecamp</a>
-        <a href="#gear" class="hover:text-[#FF4500] transition">Gear</a>
-        <a href="#expedition" class="hover:text-[#FF4500] transition">Expedition</a>
-      </div>
-           <button class="mobile-menu-trigger md:hidden ml-auto text-2xl focus:outline-none" style="color: inherit;">
-             <i class="fas fa-bars"></i>
-           </button>
+  <!-- ========== Nav ========== -->
+  <nav class="fixed w-full z-50 px-4 md:px-10 py-5 bg-[#1B2420]/80 backdrop-blur-2xl border-b border-[#E8B931]/10">
+    <div class="max-w-7xl mx-auto flex justify-between items-center">
+      <a href="#" class="flex items-center gap-3">
+        <span class="font-display text-3xl tracking-wider text-[#E8B931]">WILDCAMP</span>
+      </a>
 
-      
-      <div class="flex-nowrap shrink-0 flex gap-12 items-center">
-         <button onclick="toggleCampModal()" class="hidden md:block text-[10px] font-semibold uppercase tracking-[0.4em] text-white/40 hover:text-[#FF4500]" data-mobile-menu-copy="true">Explorer_ID</button>
-         <button class="hidden md:block bg-[#FF4500] text-white px-10 py-3.5 rounded-none font-semibold text-[10px] tracking-[0.4em] uppercase hover:bg-white hover:text-slate-900 transition shadow-2xl" data-mobile-menu-copy="true">
-           Join Adventure
-         </button>
+      <div class="hidden md:flex gap-12 text-[10px] font-semibold uppercase tracking-[0.4em] text-[#F5F0E0]/30">
+        <a href="#sites" class="hover:text-[#E8B931] transition">Sites</a>
+        <a href="#facilities" class="hover:text-[#E8B931] transition">Facilities</a>
+        <a href="#gallery" class="hover:text-[#E8B931] transition">Gallery</a>
+        <a href="#directions" class="hover:text-[#E8B931] transition">Access</a>
+      </div>
+
+      <button class="mobile-menu-trigger md:hidden ml-auto text-2xl focus:outline-none text-[#E8B931]">
+        <i class="fas fa-bars"></i>
+      </button>
+
+      <div class="hidden md:flex gap-6 items-center shrink-0">
+        <button onclick="toggleCampModal()" class="text-[10px] font-semibold uppercase tracking-[0.4em] text-[#F5F0E0]/30 hover:text-[#E8B931]" data-mobile-menu-copy="true">Member</button>
+        <a href="#booking" class="bg-[#E8B931] text-[#1B2420] px-8 py-3.5 rounded-none font-bold text-[10px] tracking-[0.3em] uppercase hover:bg-[#F5F0E0] transition shadow-lg shadow-[#E8B931]/20" data-mobile-menu-copy="true">
+          예약하기
+        </a>
       </div>
     </div>
 
-      <%= render partial: 'templates/shared/mobile_menu_overlay' %></nav>
+    <%= render partial: 'templates/shared/mobile_menu_overlay' %>
+  </nav>
 
-  <!-- Hero -->
-  <header class="min-h-screen relative flex items-center justify-center pt-20">
-    <div class="absolute inset-0 z-0">
-       <div class="absolute inset-0 bg-gradient-to-t from-[#1C1C1E] via-transparent to-[#1C1C1E]"></div>
-       <img src="https://images.unsplash.com/photo-1523987355523-c7b5b0dd90a7?q=80&w=2400" alt="Camping" class="w-full h-full object-cover grayscale brightness-50 contrast-125">
+  <!-- ========== 1. Hero ========== -->
+  <header class="min-h-screen relative flex items-center justify-center">
+    <div class="absolute inset-0">
+      <img src="https://images.unsplash.com/photo-1504851149312-7a075b496cc7?q=80&w=2000&auto=format" alt="WILDCAMP" class="w-full h-full object-cover">
+      <div class="absolute inset-0 bg-[#1B2420]/60"></div>
+      <div class="absolute inset-0 bg-gradient-to-t from-[#1B2420] via-transparent to-[#1B2420]/30"></div>
     </div>
-    
-    <div class="container mx-auto px-3 md:px-6 relative z-10 grid lg:grid-cols-2 gap-10 md:p-16 items-center">
-      <div class="space-y-12 text-center lg:text-left">
-        <div class="inline-flex items-center gap-6">
-           <span class="w-12 h-[2px] bg-[#FF4500]"></span>
-           <span class="text-[10px] font-semibold tracking-[0.6em] uppercase text-[#FF4500]">Raw Nature Experience</span>
-        </div>
-        
-        <h1 class="text-3xl md:text-5xl md:text-[7.5rem] font-serif font-semibold leading-none tracking-tight text-white mobile-title">
-           야생의 본능,<br><span class="italic text-[#FF4500]">자유의 숨결.</span>
-        </h1>
-        
-        <p class="text-white/40 text-sm md:text-xl leading-[1.8] max-w-lg mx-auto lg:mx-0 mobile-desc">
-           도시의 소음이 멈추는 곳. 타닥거리는 장작 소리와 서늘한 밤공기만이 존재하는 와일드 캠프에서 진짜 나를 마주하십시오.
-        </p>
-        
-        <div class="pt-6 flex flex-col sm:flex-row gap-12 justify-center lg:justify-start">
-           <button class="px-14 py-6 bg-[#FF4500] text-white font-semibold text-[11px] tracking-[0.4em] uppercase hover:bg-white hover:text-slate-900 transition-all shadow-2xl">
-              Start Journey
-           </button>
-           <button class="px-14 py-6 border border-white/10 text-white font-semibold text-[11px] tracking-[0.4em] uppercase hover:bg-white/5 transition-all">
-              View Sites
-           </button>
-        </div>
+
+    <div class="relative z-10 text-center px-6 max-w-4xl">
+      <div class="reveal">
+        <span class="text-[10px] font-semibold tracking-[0.8em] uppercase text-[#E8B931]">Premium Camping & Glamping</span>
       </div>
 
-      <div class="relative hidden lg:block">
-         <div class="relative group cursor-pointer">
-            <div class="absolute -top-6 -right-6 w-full h-full border-2 border-[#FF4500]/20 pointer-events-none group-hover:top-0 group-hover:right-0 transition-all duration-500"></div>
-            <img src="https://images.unsplash.com/photo-1478131143081-80f7f84ca84d?q=80&w=1200" alt="Bonfire" class="w-full aspect-square object-cover grayscale brightness-75 group-hover:grayscale-0 transition duration-1000 border border-white/10">
-            <div class="absolute bottom-10 left-10 bg-[#1C1C1E]/90 backdrop-blur-md p-8 border border-white/5">
-               <p class="text-[10px] font-semibold text-[#FF4500] uppercase tracking-[0.4em] mb-2">Into the Wild</p>
-               <h3 class="font-serif text-2xl font-semibold text-white italic">Disconnect to Reconnect.</h3>
-            </div>
-         </div>
+      <h1 class="reveal font-display text-6xl md:text-[10rem] leading-none tracking-wider text-[#F5F0E0] mt-6 glow-yellow mobile-title" style="--delay:1">
+        WILDCAMP
+      </h1>
+
+      <p class="reveal text-[#F5F0E0]/50 text-sm md:text-lg leading-[2] mt-8 max-w-lg mx-auto mobile-desc" style="--delay:2">
+        별이 쏟아지는 가평의 밤, 자연 그대로의 캠핑.<br class="hidden md:block">
+        도심을 떠나 진짜 아웃도어를 경험하세요.
+      </p>
+
+      <div class="reveal flex flex-wrap justify-center gap-4 mt-10" style="--delay:3">
+        <a href="#sites" class="bg-[#E8B931] text-[#1B2420] px-10 py-4 font-bold text-[11px] tracking-[0.3em] uppercase hover:bg-[#F5F0E0] transition">
+          사이트 보기
+        </a>
+        <a href="#booking" class="border border-[#E8B931]/40 text-[#E8B931] px-10 py-4 font-semibold text-[11px] tracking-[0.3em] uppercase hover:bg-[#E8B931]/10 transition">
+          예약하기
+        </a>
+      </div>
+
+      <div class="reveal absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3" style="--delay:5">
+        <span class="text-[9px] tracking-[0.5em] uppercase text-[#F5F0E0]/20">Scroll</span>
+        <div class="w-[1px] h-8 bg-gradient-to-b from-[#E8B931]/50 to-transparent"></div>
       </div>
     </div>
   </header>
 
-  <!-- Login Modal -->
-  <div id="camp-modal" class="fixed inset-0 z-[100] hidden items-center justify-center p-4 bg-slate-950/95 backdrop-blur-2xl">
-    <div class="bg-[#2C2C2E] w-full max-w-sm p-6 md:p-16 shadow-2xl relative border border-[#FF4500]/20">
-      <div class="absolute top-0 left-0 w-full h-[2px] bg-[#FF4500]"></div>
-      <button onclick="toggleCampModal()" class="absolute top-12 right-12 text-white/20 hover:text-[#FF4500] transition text-2xl font-light">&times;</button>
-      
-      <div class="text-center mb-14">
-        <h2 class="text-2xl font-semibold tracking-[0.4em] text-white mb-3 uppercase italic">EXPLORER_ID</h2>
-        <p class="text-[9px] text-[#FF4500] font-semibold tracking-[0.3em] uppercase">Adventure Access Pass</p>
+  <!-- ========== 2. 사이트 소개 (4종) ========== -->
+  <section id="sites" class="py-24 md:py-40 px-6 md:px-10">
+    <div class="max-w-7xl mx-auto">
+      <div class="text-center mb-20 reveal">
+        <span class="text-[10px] font-semibold tracking-[0.6em] uppercase text-[#E8B931]">Camp Sites</span>
+        <h2 class="font-display text-4xl md:text-6xl tracking-wider mt-4">CHOOSE YOUR SITE</h2>
+        <div class="w-16 h-[2px] bg-[#E8B931] mx-auto mt-8"></div>
       </div>
-      
-      <div class="space-y-8">
-        <div class="space-y-3">
-           <p class="text-[9px] font-semibold text-white/20 uppercase tracking-[0.2em] ml-1">Reservation Code</p>
-           <input type="text" placeholder="WILD-XXXX-XXXX" class="w-full bg-[#1C1C1E] border border-white/5 py-6 px-8 outline-none focus:border-[#FF4500] transition text-[11px] font-semibold tracking-[0.2em] text-white uppercase">
+
+      <div class="grid md:grid-cols-2 gap-6 md:gap-8">
+        <!-- 오토캠핑 -->
+        <div class="camp-card group relative overflow-hidden reveal" style="--delay:0">
+          <div class="aspect-[16/10] overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1478131143081-80f7f84ca84d?q=80&w=1200&auto=format" alt="오토캠핑" class="w-full h-full object-cover transition-transform duration-700">
+          </div>
+          <div class="p-8 bg-[#1B2420] border border-[#E8B931]/10 border-t-0">
+            <div class="flex justify-between items-start">
+              <div>
+                <span class="font-display text-lg tracking-wider text-[#E8B931]">AUTO CAMPING</span>
+                <h3 class="text-xl font-bold mt-1">오토캠핑 사이트</h3>
+                <p class="text-[#F5F0E0]/40 text-sm mt-3 leading-relaxed">10m x 10m · 전기 30A · 개수대 · 차량 진입 가능</p>
+              </div>
+              <div class="text-right">
+                <span class="font-display text-2xl text-[#E8B931]">₩40,000</span>
+                <span class="block text-[10px] text-[#F5F0E0]/30">평일 기준</span>
+              </div>
+            </div>
+            <div class="flex gap-3 mt-5 flex-wrap">
+              <span class="px-3 py-1 border border-[#E8B931]/20 text-[#E8B931] text-[10px]">전기</span>
+              <span class="px-3 py-1 border border-[#E8B931]/20 text-[#E8B931] text-[10px]">차량</span>
+              <span class="px-3 py-1 border border-[#E8B931]/20 text-[#E8B931] text-[10px]">개수대</span>
+            </div>
+          </div>
         </div>
-        <button class="w-full bg-[#FF4500] text-white py-6 text-[10px] tracking-[0.4em] font-semibold uppercase hover:bg-white hover:text-slate-900 transition shadow-xl shadow-[#FF4500]/10">
-           Enter Basecamp
+
+        <!-- 글램핑 -->
+        <div class="camp-card group relative overflow-hidden reveal" style="--delay:1">
+          <div class="aspect-[16/10] overflow-hidden relative">
+            <img src="https://images.unsplash.com/photo-1510672981848-a1c4f1cb5ccf?q=80&w=1200&auto=format" alt="글램핑" class="w-full h-full object-cover transition-transform duration-700">
+            <div class="absolute top-4 right-4 bg-[#E8B931] text-[#1B2420] px-4 py-1.5 text-[10px] font-bold tracking-wider">BEST</div>
+          </div>
+          <div class="p-8 bg-[#1B2420] border border-[#E8B931]/10 border-t-0">
+            <div class="flex justify-between items-start">
+              <div>
+                <span class="font-display text-lg tracking-wider text-[#E8B931]">GLAMPING</span>
+                <h3 class="text-xl font-bold mt-1">글램핑 텐트</h3>
+                <p class="text-[#F5F0E0]/40 text-sm mt-3 leading-relaxed">30m² · 에어컨 · 더블베드 · 전용 바베큐 · 최대 4인</p>
+              </div>
+              <div class="text-right">
+                <span class="font-display text-2xl text-[#E8B931]">₩120,000</span>
+                <span class="block text-[10px] text-[#F5F0E0]/30">평일 기준</span>
+              </div>
+            </div>
+            <div class="flex gap-3 mt-5 flex-wrap">
+              <span class="px-3 py-1 border border-[#E8B931]/20 text-[#E8B931] text-[10px]">침구</span>
+              <span class="px-3 py-1 border border-[#E8B931]/20 text-[#E8B931] text-[10px]">에어컨</span>
+              <span class="px-3 py-1 border border-[#E8B931]/20 text-[#E8B931] text-[10px]">바베큐</span>
+              <span class="px-3 py-1 border border-[#E8B931]/20 text-[#E8B931] text-[10px]">화장실</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 카라반 -->
+        <div class="camp-card group relative overflow-hidden reveal" style="--delay:2">
+          <div class="aspect-[16/10] overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1523987355523-c7b5b0dd90a7?q=80&w=1200&auto=format" alt="카라반" class="w-full h-full object-cover transition-transform duration-700">
+          </div>
+          <div class="p-8 bg-[#1B2420] border border-[#E8B931]/10 border-t-0">
+            <div class="flex justify-between items-start">
+              <div>
+                <span class="font-display text-lg tracking-wider text-[#E8B931]">CARAVAN</span>
+                <h3 class="text-xl font-bold mt-1">카라반</h3>
+                <p class="text-[#F5F0E0]/40 text-sm mt-3 leading-relaxed">24m² · 퀸베드 · 미니 주방 · 전용 데크 · 최대 3인</p>
+              </div>
+              <div class="text-right">
+                <span class="font-display text-2xl text-[#E8B931]">₩150,000</span>
+                <span class="block text-[10px] text-[#F5F0E0]/30">평일 기준</span>
+              </div>
+            </div>
+            <div class="flex gap-3 mt-5 flex-wrap">
+              <span class="px-3 py-1 border border-[#E8B931]/20 text-[#E8B931] text-[10px]">주방</span>
+              <span class="px-3 py-1 border border-[#E8B931]/20 text-[#E8B931] text-[10px]">화장실</span>
+              <span class="px-3 py-1 border border-[#E8B931]/20 text-[#E8B931] text-[10px]">데크</span>
+              <span class="px-3 py-1 border border-[#E8B931]/20 text-[#E8B931] text-[10px]">냉난방</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 프리미엄 글램핑 -->
+        <div class="camp-card group relative overflow-hidden reveal" style="--delay:3">
+          <div class="aspect-[16/10] overflow-hidden relative">
+            <img src="https://images.unsplash.com/photo-1618767689160-da18bc673e8c?q=80&w=1200&auto=format" alt="프리미엄 글램핑" class="w-full h-full object-cover transition-transform duration-700">
+            <div class="absolute top-4 right-4 bg-[#F5F0E0] text-[#1B2420] px-4 py-1.5 text-[10px] font-bold tracking-wider">PREMIUM</div>
+          </div>
+          <div class="p-8 bg-[#1B2420] border border-[#E8B931]/10 border-t-0">
+            <div class="flex justify-between items-start">
+              <div>
+                <span class="font-display text-lg tracking-wider text-[#E8B931]">PREMIUM GLAMPING</span>
+                <h3 class="text-xl font-bold mt-1">프리미엄 글램핑</h3>
+                <p class="text-[#F5F0E0]/40 text-sm mt-3 leading-relaxed">42m² · 킹베드 · 전용 풀장 · 프라이빗 가든 · 최대 4인</p>
+              </div>
+              <div class="text-right">
+                <span class="font-display text-2xl text-[#E8B931]">₩250,000</span>
+                <span class="block text-[10px] text-[#F5F0E0]/30">평일 기준</span>
+              </div>
+            </div>
+            <div class="flex gap-3 mt-5 flex-wrap">
+              <span class="px-3 py-1 border border-[#E8B931]/20 text-[#E8B931] text-[10px]">풀장</span>
+              <span class="px-3 py-1 border border-[#E8B931]/20 text-[#E8B931] text-[10px]">가든</span>
+              <span class="px-3 py-1 border border-[#E8B931]/20 text-[#E8B931] text-[10px]">파이어핏</span>
+              <span class="px-3 py-1 border border-[#E8B931]/20 text-[#E8B931] text-[10px]">조식</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== 3. 시설 안내 ========== -->
+  <section id="facilities" class="py-24 md:py-40 px-6 md:px-10 bg-[#141C18]">
+    <div class="max-w-7xl mx-auto">
+      <div class="text-center mb-20 reveal">
+        <span class="text-[10px] font-semibold tracking-[0.6em] uppercase text-[#E8B931]">Facilities</span>
+        <h2 class="font-display text-4xl md:text-6xl tracking-wider mt-4">BASE CAMP GEAR</h2>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div class="bg-[#1B2420] border border-[#E8B931]/10 p-8 reveal hover:border-[#E8B931]/30 transition" style="--delay:0">
+          <span class="text-3xl text-[#E8B931]"><i class="fas fa-restroom"></i></span>
+          <h4 class="font-bold text-lg mt-4">샤워실 & 화장실</h4>
+          <p class="text-[#F5F0E0]/40 text-sm mt-3 leading-relaxed">24시간 온수 샤워 · 남녀 분리 · 장애인 시설 완비</p>
+        </div>
+
+        <div class="bg-[#1B2420] border border-[#E8B931]/10 p-8 reveal hover:border-[#E8B931]/30 transition" style="--delay:1">
+          <span class="text-3xl text-[#E8B931]"><i class="fas fa-fire"></i></span>
+          <h4 class="font-bold text-lg mt-4">캠프파이어</h4>
+          <p class="text-[#F5F0E0]/40 text-sm mt-3 leading-relaxed">매일 저녁 8시 공용 캠프파이어 · 마시멜로 무료 제공</p>
+        </div>
+
+        <div class="bg-[#1B2420] border border-[#E8B931]/10 p-8 reveal hover:border-[#E8B931]/30 transition" style="--delay:2">
+          <span class="text-3xl text-[#E8B931]"><i class="fas fa-store"></i></span>
+          <h4 class="font-bold text-lg mt-4">매점 & 장비 대여</h4>
+          <p class="text-[#F5F0E0]/40 text-sm mt-3 leading-relaxed">그릴·테이블·랜턴 대여 · 숯·식재료·음료 판매</p>
+        </div>
+
+        <div class="bg-[#1B2420] border border-[#E8B931]/10 p-8 reveal hover:border-[#E8B931]/30 transition" style="--delay:3">
+          <span class="text-3xl text-[#E8B931]"><i class="fas fa-swimmer"></i></span>
+          <h4 class="font-bold text-lg mt-4">물놀이장</h4>
+          <p class="text-[#F5F0E0]/40 text-sm mt-3 leading-relaxed">여름 시즌 한정 · 어린이 물놀이장 + 워터슬라이드</p>
+        </div>
+
+        <div class="bg-[#1B2420] border border-[#E8B931]/10 p-8 reveal hover:border-[#E8B931]/30 transition" style="--delay:4">
+          <span class="text-3xl text-[#E8B931]"><i class="fas fa-hiking"></i></span>
+          <h4 class="font-bold text-lg mt-4">트레일 코스</h4>
+          <p class="text-[#F5F0E0]/40 text-sm mt-3 leading-relaxed">캠핑장 내 숲속 산책로 2km · 전망대 코스 30분</p>
+        </div>
+
+        <div class="bg-[#1B2420] border border-[#E8B931]/10 p-8 reveal hover:border-[#E8B931]/30 transition" style="--delay:5">
+          <span class="text-3xl text-[#E8B931]"><i class="fas fa-dog"></i></span>
+          <h4 class="font-bold text-lg mt-4">반려동물 동반</h4>
+          <p class="text-[#F5F0E0]/40 text-sm mt-3 leading-relaxed">오토캠핑 구역 허용 · 목줄 필수 · 배변봉투 제공</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== 4. 갤러리 ========== -->
+  <section id="gallery" class="py-24 md:py-40 px-6 md:px-10">
+    <div class="max-w-7xl mx-auto">
+      <div class="text-center mb-20 reveal">
+        <span class="text-[10px] font-semibold tracking-[0.6em] uppercase text-[#E8B931]">Gallery</span>
+        <h2 class="font-display text-4xl md:text-6xl tracking-wider mt-4">WILD MOMENTS</h2>
+      </div>
+
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
+        <div class="gallery-item overflow-hidden col-span-2 row-span-2 reveal" style="--delay:0">
+          <div class="aspect-square overflow-hidden relative group">
+            <img src="https://images.unsplash.com/photo-1533873984035-25970ab07461?q=80&w=1200&auto=format" alt="캠프파이어" class="w-full h-full object-cover transition-transform duration-700">
+            <div class="absolute inset-0 bg-gradient-to-t from-[#1B2420]/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end p-8">
+              <span class="font-display text-xl tracking-wider text-[#E8B931]">CAMPFIRE NIGHT</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="gallery-item overflow-hidden reveal" style="--delay:1">
+          <div class="aspect-square overflow-hidden relative group">
+            <img src="https://images.unsplash.com/photo-1445308394109-4ec2920981b1?q=80&w=600&auto=format" alt="별" class="w-full h-full object-cover transition-transform duration-700">
+            <div class="absolute inset-0 bg-gradient-to-t from-[#1B2420]/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end p-4">
+              <span class="text-[#E8B931] text-xs font-bold tracking-wider">STARGAZING</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="gallery-item overflow-hidden reveal" style="--delay:2">
+          <div class="aspect-square overflow-hidden relative group">
+            <img src="https://images.unsplash.com/photo-1528823872057-9c018a7a7553?q=80&w=600&auto=format" alt="바베큐" class="w-full h-full object-cover transition-transform duration-700">
+            <div class="absolute inset-0 bg-gradient-to-t from-[#1B2420]/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end p-4">
+              <span class="text-[#E8B931] text-xs font-bold tracking-wider">BBQ TIME</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="gallery-item overflow-hidden reveal" style="--delay:3">
+          <div class="aspect-square overflow-hidden relative group">
+            <img src="https://images.unsplash.com/photo-1487730116645-74489c95b41b?q=80&w=600&auto=format" alt="아침" class="w-full h-full object-cover transition-transform duration-700">
+            <div class="absolute inset-0 bg-gradient-to-t from-[#1B2420]/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end p-4">
+              <span class="text-[#E8B931] text-xs font-bold tracking-wider">MORNING LIGHT</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="gallery-item overflow-hidden reveal" style="--delay:4">
+          <div class="aspect-square overflow-hidden relative group">
+            <img src="https://images.unsplash.com/photo-1471115853179-bb1d604434e0?q=80&w=600&auto=format" alt="숲" class="w-full h-full object-cover transition-transform duration-700">
+            <div class="absolute inset-0 bg-gradient-to-t from-[#1B2420]/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end p-4">
+              <span class="text-[#E8B931] text-xs font-bold tracking-wider">FOREST WALK</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="gallery-item overflow-hidden col-span-2 reveal" style="--delay:5">
+          <div class="aspect-[2/1] overflow-hidden relative group">
+            <img src="https://images.unsplash.com/photo-1517824806704-9040b037703b?q=80&w=1200&auto=format" alt="글램핑 내부" class="w-full h-full object-cover transition-transform duration-700">
+            <div class="absolute inset-0 bg-gradient-to-t from-[#1B2420]/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end p-8">
+              <span class="font-display text-xl tracking-wider text-[#E8B931]">GLAMPING INTERIOR</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== 5. 예약 ========== -->
+  <section id="booking" class="py-24 md:py-40 px-6 md:px-10 bg-[#141C18]">
+    <div class="max-w-4xl mx-auto text-center">
+      <div class="reveal">
+        <span class="text-[10px] font-semibold tracking-[0.6em] uppercase text-[#E8B931]">Reservation</span>
+        <h2 class="font-display text-4xl md:text-6xl tracking-wider mt-4">BOOK YOUR SITE</h2>
+        <p class="text-[#F5F0E0]/40 text-sm mt-6 max-w-md mx-auto">
+          원하시는 사이트와 날짜를 선택하세요.<br>
+          주말과 성수기는 조기 마감될 수 있습니다.
+        </p>
+      </div>
+
+      <div class="reveal mt-12 bg-[#1B2420] border border-[#E8B931]/10 p-8 md:p-14" style="--delay:1">
+        <div class="grid md:grid-cols-2 gap-6 text-left">
+          <div>
+            <label class="text-[9px] font-semibold text-[#E8B931] uppercase tracking-[0.3em] block mb-3">체크인</label>
+            <input type="date" class="w-full bg-transparent border border-[#E8B931]/20 text-[#F5F0E0] py-4 px-5 text-sm focus:border-[#E8B931] outline-none transition">
+          </div>
+          <div>
+            <label class="text-[9px] font-semibold text-[#E8B931] uppercase tracking-[0.3em] block mb-3">체크아웃</label>
+            <input type="date" class="w-full bg-transparent border border-[#E8B931]/20 text-[#F5F0E0] py-4 px-5 text-sm focus:border-[#E8B931] outline-none transition">
+          </div>
+          <div>
+            <label class="text-[9px] font-semibold text-[#E8B931] uppercase tracking-[0.3em] block mb-3">사이트 유형</label>
+            <select class="w-full bg-transparent border border-[#E8B931]/20 text-[#F5F0E0] py-4 px-5 text-sm focus:border-[#E8B931] outline-none transition appearance-none">
+              <option value="" style="background:#1B2420">선택하세요</option>
+              <option style="background:#1B2420">오토캠핑 사이트</option>
+              <option style="background:#1B2420">글램핑 텐트</option>
+              <option style="background:#1B2420">카라반</option>
+              <option style="background:#1B2420">프리미엄 글램핑</option>
+            </select>
+          </div>
+          <div>
+            <label class="text-[9px] font-semibold text-[#E8B931] uppercase tracking-[0.3em] block mb-3">인원</label>
+            <select class="w-full bg-transparent border border-[#E8B931]/20 text-[#F5F0E0] py-4 px-5 text-sm focus:border-[#E8B931] outline-none transition appearance-none">
+              <option style="background:#1B2420">2명</option>
+              <option style="background:#1B2420">3명</option>
+              <option style="background:#1B2420">4명</option>
+              <option style="background:#1B2420">5명 이상</option>
+            </select>
+          </div>
+        </div>
+
+        <button class="w-full mt-8 bg-[#E8B931] text-[#1B2420] py-4 font-bold text-[11px] tracking-[0.3em] uppercase hover:bg-[#F5F0E0] transition">
+          예약 조회
         </button>
-        <div class="flex justify-center gap-14 pt-4">
-           <a href="#" class="text-[9px] text-white/20 tracking-[0.3em] font-semibold uppercase hover:text-[#FF4500] transition">My Gear</a>
-           <a href="#" class="text-[9px] text-white/20 tracking-[0.3em] font-semibold uppercase hover:text-[#FF4500] transition">Map</a>
+
+        <div class="flex flex-wrap justify-center gap-8 mt-8 pt-6 border-t border-[#E8B931]/10">
+          <div class="flex items-center gap-2 text-[#F5F0E0]/30 text-xs">
+            <i class="fas fa-check text-[#E8B931]"></i>
+            <span>즉시 확인</span>
+          </div>
+          <div class="flex items-center gap-2 text-[#F5F0E0]/30 text-xs">
+            <i class="fas fa-check text-[#E8B931]"></i>
+            <span>3일 전 무료 취소</span>
+          </div>
+          <div class="flex items-center gap-2 text-[#F5F0E0]/30 text-xs">
+            <i class="fas fa-check text-[#E8B931]"></i>
+            <span>네이버페이 결제</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== 6. 오시는 길 ========== -->
+  <section id="directions" class="py-24 md:py-40 px-6 md:px-10">
+    <div class="max-w-7xl mx-auto">
+      <div class="grid lg:grid-cols-2 gap-16 items-center">
+        <div class="space-y-10 reveal">
+          <div class="inline-flex items-center gap-6">
+            <span class="w-12 h-[2px] bg-[#E8B931]"></span>
+            <span class="text-[10px] font-semibold tracking-[0.6em] uppercase text-[#E8B931]">Access</span>
+          </div>
+
+          <h2 class="font-display text-3xl md:text-5xl tracking-wider">HOW TO GET HERE</h2>
+
+          <div class="space-y-6">
+            <div class="flex gap-5 items-start">
+              <span class="w-10 h-10 flex items-center justify-center bg-[#E8B931]/10 text-[#E8B931] text-sm shrink-0"><i class="fas fa-map-marker-alt"></i></span>
+              <div>
+                <h4 class="text-sm font-semibold mb-1">주소</h4>
+                <p class="text-[#F5F0E0]/40 text-sm">경기도 가평군 북면 백둔로 123-45</p>
+              </div>
+            </div>
+            <div class="flex gap-5 items-start">
+              <span class="w-10 h-10 flex items-center justify-center bg-[#E8B931]/10 text-[#E8B931] text-sm shrink-0"><i class="fas fa-car"></i></span>
+              <div>
+                <h4 class="text-sm font-semibold mb-1">자가용</h4>
+                <p class="text-[#F5F0E0]/40 text-sm">서울에서 약 1시간 20분 (경춘고속도로)<br>네비게이션: "와일드캠프" 검색</p>
+              </div>
+            </div>
+            <div class="flex gap-5 items-start">
+              <span class="w-10 h-10 flex items-center justify-center bg-[#E8B931]/10 text-[#E8B931] text-sm shrink-0"><i class="fas fa-train"></i></span>
+              <div>
+                <h4 class="text-sm font-semibold mb-1">대중교통</h4>
+                <p class="text-[#F5F0E0]/40 text-sm">ITX-청춘 가평역 하차 (50분)<br>가평역 셔틀버스 운행 (예약 필수)</p>
+              </div>
+            </div>
+            <div class="flex gap-5 items-start">
+              <span class="w-10 h-10 flex items-center justify-center bg-[#E8B931]/10 text-[#E8B931] text-sm shrink-0"><i class="fas fa-phone"></i></span>
+              <div>
+                <h4 class="text-sm font-semibold mb-1">문의</h4>
+                <p class="text-[#F5F0E0]/40 text-sm">031-585-0000 · info@wildcamp.co.kr</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="reveal" style="--delay:1">
+          <div class="aspect-video bg-[#141C18] overflow-hidden border border-[#E8B931]/10">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d50587.78!2d127.51!3d37.83!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3562e0!2z6rCA7Y-J!5e0!3m2!1sko!2skr!4v1" width="100%" height="100%" style="border:0; min-height:300px;" allowfullscreen="" loading="lazy"></iframe>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== 7. 인용구 배너 ========== -->
+  <section class="py-32 md:py-48 relative">
+    <div class="absolute inset-0">
+      <img src="https://images.unsplash.com/photo-1419242902214-272b3f66ee7a?q=80&w=2000&auto=format" alt="밤하늘" class="w-full h-full object-cover">
+      <div class="absolute inset-0 bg-[#1B2420]/70"></div>
+    </div>
+    <div class="relative z-10 max-w-3xl mx-auto text-center px-6 reveal">
+      <p class="font-display text-3xl md:text-6xl tracking-wider leading-relaxed text-[#F5F0E0] glow-yellow">
+        "THE STARS ARE<br>CLOSER THAN<br>YOU THINK."
+      </p>
+      <div class="w-12 h-[2px] bg-[#E8B931] mx-auto mt-10"></div>
+      <p class="text-[10px] text-[#F5F0E0]/30 tracking-[0.5em] uppercase mt-6">WILDCAMP, Gapyeong</p>
+    </div>
+  </section>
+
+  <!-- ========== 8. Footer ========== -->
+  <footer class="py-20 md:py-32 bg-[#0E1612] px-6 md:px-10">
+    <div class="max-w-7xl mx-auto">
+      <div class="grid md:grid-cols-4 gap-12 md:gap-16 mb-16">
+        <div class="md:col-span-2">
+          <span class="font-display text-4xl tracking-wider text-[#E8B931]">WILDCAMP</span>
+          <p class="text-[#F5F0E0]/20 text-sm leading-relaxed mt-6 max-w-sm">
+            가평의 자연 속, 프리미엄 캠핑 & 글램핑.
+            도심을 떠나 별 아래에서의 하룻밤을 선물합니다.
+          </p>
+          <div class="flex gap-4 mt-8">
+            <a href="#" class="w-10 h-10 flex items-center justify-center border border-[#E8B931]/20 text-[#E8B931] hover:bg-[#E8B931] hover:text-[#1B2420] transition text-sm"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="w-10 h-10 flex items-center justify-center border border-[#E8B931]/20 text-[#E8B931] hover:bg-[#E8B931] hover:text-[#1B2420] transition text-sm"><i class="fab fa-youtube"></i></a>
+            <a href="#" class="w-10 h-10 flex items-center justify-center border border-[#E8B931]/20 text-[#E8B931] hover:bg-[#E8B931] hover:text-[#1B2420] transition text-sm"><i class="fas fa-blog"></i></a>
+          </div>
+        </div>
+
+        <div>
+          <h4 class="text-[10px] font-semibold tracking-[0.4em] uppercase text-[#E8B931] mb-6">Quick Links</h4>
+          <div class="space-y-4">
+            <a href="#sites" class="block text-[#F5F0E0]/30 text-sm hover:text-[#E8B931] transition">사이트 안내</a>
+            <a href="#facilities" class="block text-[#F5F0E0]/30 text-sm hover:text-[#E8B931] transition">시설 안내</a>
+            <a href="#gallery" class="block text-[#F5F0E0]/30 text-sm hover:text-[#E8B931] transition">갤러리</a>
+            <a href="#booking" class="block text-[#F5F0E0]/30 text-sm hover:text-[#E8B931] transition">예약하기</a>
+          </div>
+        </div>
+
+        <div>
+          <h4 class="text-[10px] font-semibold tracking-[0.4em] uppercase text-[#E8B931] mb-6">Contact</h4>
+          <div class="space-y-4 text-[#F5F0E0]/30 text-sm">
+            <p>경기도 가평군 북면<br>백둔로 123-45</p>
+            <p>031-585-0000</p>
+            <p>info@wildcamp.co.kr</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="border-t border-[#F5F0E0]/5 pt-10 flex flex-col md:flex-row justify-between items-center gap-4">
+        <p class="text-[10px] text-[#F5F0E0]/10 tracking-[0.5em] uppercase">
+          &copy; 2024 WILDCAMP. All rights reserved.
+        </p>
+        <div class="flex gap-6">
+          <a href="#" class="text-[10px] text-[#F5F0E0]/10 tracking-[0.2em] uppercase hover:text-[#E8B931] transition">Privacy</a>
+          <a href="#" class="text-[10px] text-[#F5F0E0]/10 tracking-[0.2em] uppercase hover:text-[#E8B931] transition">Terms</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ========== Member Modal ========== -->
+  <div id="camp-modal" class="fixed inset-0 z-[100] hidden items-center justify-center p-4 bg-[#1B2420]/60 backdrop-blur-3xl">
+    <div class="bg-[#141C18] w-full max-w-sm p-10 md:p-14 shadow-2xl relative border border-[#E8B931]/20">
+      <button onclick="toggleCampModal()" class="absolute top-6 right-6 w-8 h-8 flex items-center justify-center text-[#F5F0E0]/30 hover:text-[#E8B931] transition text-xl">&times;</button>
+
+      <div class="text-center mb-12">
+        <h2 class="font-display text-2xl tracking-wider text-[#E8B931] mb-3">MEMBER</h2>
+        <p class="text-[9px] text-[#F5F0E0]/30 font-semibold tracking-[0.3em] uppercase">Wildcamp Club</p>
+      </div>
+
+      <div class="space-y-5">
+        <input type="text" placeholder="이메일" class="w-full bg-[#1B2420] border border-[#E8B931]/20 py-4 px-6 outline-none focus:border-[#E8B931] transition text-sm text-[#F5F0E0]">
+        <input type="password" placeholder="비밀번호" class="w-full bg-[#1B2420] border border-[#E8B931]/20 py-4 px-6 outline-none focus:border-[#E8B931] transition text-sm text-[#F5F0E0]">
+        <button class="w-full bg-[#E8B931] text-[#1B2420] py-4 text-[11px] tracking-[0.4em] font-bold uppercase hover:bg-[#F5F0E0] transition mt-2">
+          로그인
+        </button>
+        <div class="flex justify-center gap-10 pt-2">
+          <a href="#" class="text-[10px] text-[#F5F0E0]/30 tracking-[0.2em] font-semibold uppercase hover:text-[#E8B931] transition">회원가입</a>
+          <a href="#" class="text-[10px] text-[#F5F0E0]/30 tracking-[0.2em] font-semibold uppercase hover:text-[#E8B931] transition">도움말</a>
         </div>
       </div>
     </div>
   </div>
 
-  <footer class="py-24 md:py-40 bg-[#1C1C1E] text-center px-6 border-t border-white/5">
-     <div class="inline-flex items-center gap-14 mb-12">
-        <span class="font-semibold text-2xl text-white tracking-[0.4em] uppercase italic">WILD<span class="text-[#FF4500]">CAMP</span></span>
-        <div class="w-12 h-[1px] bg-white/10"></div>
-        <span class="text-[10px] font-semibold text-white/20 tracking-[0.6em] uppercase">Survival & Leisure</span>
-     </div>
-     <p class="text-[10px] text-white/10 tracking-[1em] uppercase px-6">© 2024 WILD CAMP. ALL RIGHTS RESERVED.</p>
-  </footer>
-
-  <script>
-    function toggleCampModal() {
-      const modal = document.getElementById('camp-modal');
-      modal.classList.toggle('hidden');
-      modal.classList.toggle('flex');
-    }
-  </script>
-
 </div>
+
+<script>
+  // Modal
+  function toggleCampModal() {
+    const modal = document.getElementById('camp-modal');
+    modal.classList.toggle('hidden');
+    modal.classList.toggle('flex');
+  }
+  document.getElementById('camp-modal').addEventListener('click', function(e) {
+    if (e.target === this) toggleCampModal();
+  });
+
+  // IntersectionObserver
+  (function() {
+    const observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    });
+    document.querySelectorAll('.reveal').forEach(function(el) {
+      observer.observe(el);
+    });
+  })();
+</script>

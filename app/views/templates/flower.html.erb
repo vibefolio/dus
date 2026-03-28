@@ -1,156 +1,391 @@
-<%# Flower Template - 블룸 앤 가든 (BLOOM & GARDEN) %>
+<%# Flower Template - 블룸 플라워 (BLOOM FLOWER) %>
 
 <style>
-  /* Supanova Design Upgrade */
+  /* Supanova Design — Soft Botanical Archetype */
   * { word-break: keep-all; }
-  html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+  html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
   h1, h2, h3, h4 { text-wrap: balance; letter-spacing: -0.02em; line-height: 1.3; }
-  a, button { transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1); }
+  a, button { transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1); }
   a:hover, button:hover { transform: scale(1.02); }
   a:active, button:active { transform: scale(0.98); }
 
-  @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400;1,600&family=Noto+Sans+KR:wght@300;400;500;700&display=swap');
-  
-  .font-serif-display { font-family: 'Cormorant Garamond', serif; }
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap');
+
   .font-sans { font-family: 'Pretendard Variable', 'Pretendard', -apple-system, sans-serif; }
+  .font-serif { font-family: 'Playfair Display', serif; }
 
   @media (max-width: 768px) {
     .mobile-desc { font-size: 14px !important; line-height: 1.8; }
-    .mobile-title { font-size: 40px !important; }
+    .mobile-title { font-size: 34px !important; }
   }
 
-  .floral-pattern {
-    background-image: radial-gradient(#FBCFE8 2px, transparent 2px);
-    background-size: 40px 40px;
-    opacity: 0.3;
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(2rem); filter: blur(4px); }
+    to { opacity: 1; transform: translateY(0); filter: blur(0); }
   }
+  .reveal { opacity: 0; transform: translateY(2rem); }
+  .reveal.is-visible { animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards; animation-delay: calc(var(--delay, 0) * 100ms); }
+
+  .product-card { transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1); }
+  .product-card:hover { transform: translateY(-8px); }
+  .product-card:hover img { transform: scale(1.05); }
 </style>
 
-<div class="bg-[#FFFCF8] text-[#4A4238] font-sans selection:bg-[#F9A8D4] selection:text-white min-h-screen overflow-x-hidden relative">
-  <div class="fixed inset-0 floral-pattern pointer-events-none"></div>
+<div class="bg-[#FAF8F5] text-[#3D3129] font-sans selection:bg-[#D97706] selection:text-white min-h-screen overflow-x-hidden">
 
-  <!-- Nav -->
-  <nav class="fixed w-full z-50 px-8 py-6 bg-[#FFFCF8]/80 backdrop-blur-md border-b border-[#F9A8D4]/10">
-    <div class="container mx-auto px-4 md:px-6 flex justify-between items-center flex-nowrap">
-      <div class="flex items-center gap-2">
-        <span class="text-2xl text-[#F472B6]">✤</span>
-        <span class="font-serif-display font-semibold text-2xl tracking-wide text-[#5D5447]">Bloom<span class="italic text-[#F472B6]">&</span>Garden</span>
-      </div>
-      
-      <div class="hidden md:flex gap-16 text-[10px] font-semibold uppercase tracking-[0.2em] text-[#9CA3AF]">
-        <a href="#workshop" class="hover:text-[#F472B6] transition">Workshop</a>
-        <a href="#bouquet" class="hover:text-[#F472B6] transition">Bouquet</a>
-        <a href="#wedding" class="hover:text-[#F472B6] transition">Wedding</a>
-      </div>
-           <button class="mobile-menu-trigger md:hidden ml-auto text-2xl focus:outline-none" style="color: inherit;">
-             <i class="fas fa-bars"></i>
-           </button>
+  <!-- ========== Nav ========== -->
+  <nav class="fixed w-full z-50 px-4 md:px-8 py-4 bg-[#FAF8F5]/80 backdrop-blur-xl border-b border-[#D97706]/10">
+    <div class="max-w-7xl mx-auto flex justify-between items-center">
+      <a href="#" class="flex items-center gap-2">
+        <i class="fas fa-seedling text-[#D97706] text-xl"></i>
+        <span class="font-serif text-2xl font-semibold italic text-[#D97706]">Bloom</span>
+        <span class="font-serif text-2xl font-light italic text-[#3D3129]/50">Flower</span>
+      </a>
 
-      
-      <div class="flex-nowrap shrink-0 flex gap-10 items-center">
-         <button onclick="toggleFlowerModal()" class="hidden md:block text-[10px] font-semibold uppercase tracking-[0.2em] text-[#9CA3AF] hover:text-[#F472B6]" data-mobile-menu-copy="true">My Garden</button>
-         <button class="hidden md:inline-flex border border-[#F472B6]/30 text-[#5D5447] px-3 py-2 text-xs md:text-sm md:px-6 md:py-2.5 whitespace-nowrap rounded-lg font-serif-display font-medium text-sm hover:bg-[#FDF2F8] hover:border-[#F472B6] transition" data-mobile-menu-copy="true">
-           Subscribe
-         </button>
+      <div class="hidden md:flex gap-10 text-sm font-medium text-[#3D3129]/40">
+        <a href="#products" class="hover:text-[#D97706] transition">상품</a>
+        <a href="#gallery" class="hover:text-[#D97706] transition">갤러리</a>
+        <a href="#about" class="hover:text-[#D97706] transition">소개</a>
+        <a href="#order" class="hover:text-[#D97706] transition">주문</a>
+      </div>
+
+      <button class="mobile-menu-trigger md:hidden ml-auto text-2xl focus:outline-none" style="color: inherit;">
+        <i class="fas fa-bars"></i>
+      </button>
+
+      <div class="hidden md:flex gap-4 items-center">
+        <a href="#order" class="bg-[#D97706] text-white px-6 py-2.5 rounded-full text-sm font-semibold hover:bg-[#B45309] shadow-lg shadow-[#D97706]/20" data-mobile-menu-copy="true">주문하기</a>
       </div>
     </div>
 
-      <%= render partial: 'templates/shared/mobile_menu_overlay' %></nav>
+    <%= render partial: 'templates/shared/mobile_menu_overlay' %>
+  </nav>
 
-  <!-- Hero -->
-  <header class="min-h-screen relative flex items-center justify-center pt-24 overflow-hidden">
-    <!-- Soft Organic Shapes -->
-    <div class="absolute top-0 right-0 w-[50vw] h-[80vh] bg-[#FFF1F2] rounded-bl-[15rem] -z-10 opacity-70"></div>
-    <div class="absolute bottom-0 left-0 w-[40vw] h-[60vh] bg-[#F3F4F6] rounded-tr-[15rem] -z-10 opacity-50"></div>
+  <!-- ========== Hero ========== -->
+  <header class="min-h-[100dvh] relative flex items-center pt-20 overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-br from-[#FFFBEB] via-[#FAF8F5] to-[#FEF3C7]"></div>
+    <div class="absolute top-20 right-20 w-[400px] h-[400px] bg-[#D97706]/5 rounded-full blur-[120px]"></div>
 
-    <div class="container mx-auto px-3 md:px-6 relative z-10 grid lg:grid-cols-2 gap-12 md:p-20 items-center">
-      <div class="space-y-10 text-center lg:text-left order-2 lg:order-1">
-        <div class="inline-flex items-center gap-3 justify-center lg:justify-start">
-           <span class="w-8 h-[1px] bg-[#F472B6]"></span>
-           <span class="text-[11px] font-serif-display italic text-[#F472B6] text-lg tracking-wide">French Modern Floristry</span>
+    <div class="max-w-7xl mx-auto px-4 md:px-8 relative z-10 grid lg:grid-cols-2 gap-12 items-center w-full">
+      <div class="space-y-8 text-center lg:text-left">
+        <div class="inline-flex items-center gap-2 bg-white px-4 py-2 rounded-full border border-[#D97706]/20 shadow-sm reveal" style="--delay: 0;">
+          <i class="fas fa-leaf text-[#D97706] text-sm"></i>
+          <span class="text-sm font-medium text-[#D97706]">매일 새벽 산지 직송</span>
         </div>
-        
-        <h1 class="text-2xl md:text-4xl md:text-[6rem] font-serif-display font-light leading-[1] text-[#4A4238] mobile-title">
-           Nature's<br>
-           <span class="italic text-[#F472B6]">Poetry</span> in<br>
-           Your Hands.
+
+        <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mobile-title reveal" style="--delay: 1;">
+          꽃으로 전하는<br>
+          <span class="font-serif italic text-[#D97706]">당신의 마음</span>
         </h1>
-        
-        <p class="text-[#4A4238]/70 text-sm md:text-lg leading-relaxed max-w-md mx-auto lg:mx-0 mobile-desc font-light">
-           계절의 숨결을 담은 가장 아름다운 순간.<br>
-           블룸 앤 가든에서 당신의 일상에 향기를 더하세요.
+
+        <p class="text-[#3D3129]/50 text-base md:text-lg leading-relaxed max-w-md mx-auto lg:mx-0 mobile-desc reveal" style="--delay: 2;">
+          블룸 플라워는 매일 새벽 산지에서 직송한 신선한 꽃으로 특별한 순간을 더 아름답게 만듭니다.
         </p>
-        
-        <div class="flex flex-col sm:flex-row gap-10 justify-center lg:justify-start pt-6">
-           <button class="px-10 py-4 bg-[#5D5447] text-white font-serif-display italic text-lg tracking-wide rounded-sm hover:bg-[#F472B6] transition shadow-xl shadow-[#F9A8D4]/30">
-             Shop Flowers
-           </button>
-           <button class="px-10 py-4 text-[#5D5447] font-serif-display italic text-lg tracking-wide border-b border-[#5D5447]/20 hover:border-[#F472B6] hover:text-[#F472B6] transition">
-             View Class
-           </button>
+
+        <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start reveal" style="--delay: 3;">
+          <a href="#products" class="inline-flex items-center justify-center gap-2 px-8 py-4 bg-[#D97706] text-white rounded-full font-semibold shadow-lg shadow-[#D97706]/25 hover:bg-[#B45309]">
+            <i class="fas fa-shopping-bag text-sm"></i> 상품 보기
+          </a>
+          <a href="#order" class="inline-flex items-center justify-center gap-2 px-8 py-4 border border-[#D97706]/30 rounded-full font-semibold text-[#D97706] hover:bg-[#D97706] hover:text-white">
+            꽃다발 주문
+          </a>
         </div>
       </div>
-      
-      <div class="relative order-1 lg:order-2 flex justify-center">
-         <div class="relative z-10 w-[350px] md:w-[450px] aspect-[3/4]">
-            <div class="absolute inset-0 bg-white p-4 pb-20 shadow-2xl rotate-3 transform transition-transform duration-700 hover:rotate-0">
-               <img src="https://images.unsplash.com/photo-1563241527-3004b7be0ee0?q=80&w=800" alt="Artistic Flower Arrangement" class="w-full h-full object-cover grayscale-[10%] hover:grayscale-0 transition duration-700">
-               <div class="absolute bottom-6 left-0 w-full text-center">
-                  <p class="font-serif-display italic text-2xl text-[#4A4238]">Spring Collection</p>
-                  <p class="text-[9px] uppercase tracking-[0.2em] text-[#9CA3AF] mt-1">Limited Edition</p>
-               </div>
+
+      <div class="relative hidden lg:block reveal" style="--delay: 2;">
+        <img src="https://images.unsplash.com/photo-1487530811176-3780de880c2d?q=80&w=800" alt="꽃다발" class="w-full h-[550px] object-cover rounded-3xl shadow-2xl">
+        <div class="absolute -bottom-6 -left-6 bg-white p-5 rounded-2xl shadow-xl border border-[#D97706]/10">
+          <div class="flex items-center gap-3">
+            <div class="w-12 h-12 bg-[#D97706]/10 rounded-full flex items-center justify-center">
+              <i class="fas fa-truck text-[#D97706]"></i>
             </div>
-            
-            <!-- Floating Petals Decoration (CSS Only) -->
-            <div class="absolute -top-10 -right-10 text-3xl opacity-50 animate-bounce delay-700">🌸</div>
-            <div class="absolute bottom-20 -left-10 text-2xl opacity-40 animate-bounce">🍃</div>
-         </div>
+            <div>
+              <p class="font-bold text-sm">당일 배송</p>
+              <p class="text-xs text-[#3D3129]/40">오후 2시 전 주문</p>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </header>
 
-  <!-- Login Modal -->
-  <div id="flower-modal" class="fixed inset-0 z-[100] hidden items-center justify-center p-4 bg-[#5D5447]/10 backdrop-blur-md">
-    <div class="bg-[#FFFCF8] w-full max-w-sm p-14 shadow-2xl relative border border-[#F9A8D4]/20">
-      <button onclick="toggleFlowerModal()" class="absolute top-8 right-8 text-[#9CA3AF] hover:text-[#F472B6] transition text-2xl font-serif-display">&times;</button>
-      
-      <div class="text-center mb-10">
-        <h2 class="text-2xl font-serif-display italic text-[#5D5447] mb-2">My Garden</h2>
-        <p class="text-[10px] text-[#F472B6] font-semibold tracking-[0.3em] uppercase">Join Our Flower Club</p>
+  <!-- ========== 상품 ========== -->
+  <section id="products" class="py-24 md:py-32 bg-white">
+    <div class="max-w-7xl mx-auto px-4 md:px-8">
+      <div class="text-center mb-16">
+        <span class="font-serif italic text-[#D97706] text-lg reveal" style="--delay: 0;">Products</span>
+        <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mt-4 reveal" style="--delay: 1;">인기 상품</h2>
+        <p class="text-[#3D3129]/40 text-base mt-4 max-w-lg mx-auto reveal" style="--delay: 2;">신선한 꽃으로 만든 특별한 작품들</p>
       </div>
-      
-      <div class="space-y-8">
-        <div>
-           <input type="text" placeholder="Garden ID or Email" class="w-full bg-[#FFF1F2] border border-[#FCE7F3] py-4 px-6 text-[12px] font-semibold tracking-wide text-[#5D5447] placeholder-[#9CA3AF] uppercase outline-none focus:border-[#F472B6] transition text-center rounded-sm">
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div class="product-card group reveal" style="--delay: 0;">
+          <div class="overflow-hidden rounded-2xl">
+            <img src="https://images.unsplash.com/photo-1563241527-3004b7be0ffd?q=80&w=600" alt="꽃다발" class="w-full aspect-square object-cover transition duration-700" loading="lazy">
+          </div>
+          <div class="mt-4">
+            <span class="text-xs font-semibold text-[#D97706]">BEST</span>
+            <h3 class="text-lg font-bold mt-1">로맨틱 꽃다발</h3>
+            <p class="text-sm text-[#3D3129]/40 mt-1">장미, 작약, 리시안셔스를 활용한 로맨틱한 꽃다발.</p>
+            <p class="text-[#D97706] font-bold mt-2">55,000원</p>
+          </div>
         </div>
-        
-        <button class="w-full bg-[#5D5447] text-white py-4 text-[12px] tracking-[0.2em] font-semibold uppercase hover:bg-[#F472B6] transition shadow-lg rounded-sm">
-           Open Gate
-        </button>
-        
-        <div class="flex justify-center gap-12 pt-2">
-           <a href="#" class="text-[9px] text-[#9CA3AF] tracking-[0.2em] font-semibold uppercase hover:text-[#F472B6] transition">Sign Up</a>
-           <span class="text-[#9CA3AF]/30">|</span>
-           <a href="#" class="text-[9px] text-[#9CA3AF] tracking-[0.2em] font-semibold uppercase hover:text-[#F472B6] transition">Forgot?</a>
+
+        <div class="product-card group reveal" style="--delay: 1;">
+          <div class="overflow-hidden rounded-2xl">
+            <img src="https://images.unsplash.com/photo-1561181286-d3fee7d55364?q=80&w=600" alt="꽃바구니" class="w-full aspect-square object-cover transition duration-700" loading="lazy">
+          </div>
+          <div class="mt-4">
+            <span class="text-xs font-semibold text-[#D97706]">NEW</span>
+            <h3 class="text-lg font-bold mt-1">시즌 꽃바구니</h3>
+            <p class="text-sm text-[#3D3129]/40 mt-1">계절 생화로 구성한 풍성한 꽃바구니.</p>
+            <p class="text-[#D97706] font-bold mt-2">75,000원</p>
+          </div>
+        </div>
+
+        <div class="product-card group reveal" style="--delay: 2;">
+          <div class="overflow-hidden rounded-2xl">
+            <img src="https://images.unsplash.com/photo-1455659817273-f96807779a8a?q=80&w=600" alt="화환" class="w-full aspect-square object-cover transition duration-700" loading="lazy">
+          </div>
+          <div class="mt-4">
+            <span class="text-xs font-semibold text-[#D97706]">EVENT</span>
+            <h3 class="text-lg font-bold mt-1">축하 화환</h3>
+            <p class="text-sm text-[#3D3129]/40 mt-1">개업, 승진, 축하 행사를 위한 고급 화환.</p>
+            <p class="text-[#D97706] font-bold mt-2">120,000원~</p>
+          </div>
+        </div>
+
+        <div class="product-card group reveal" style="--delay: 3;">
+          <div class="overflow-hidden rounded-2xl">
+            <img src="https://images.unsplash.com/photo-1508610048659-a06b669e3321?q=80&w=600" alt="꽃 정기구독" class="w-full aspect-square object-cover transition duration-700" loading="lazy">
+          </div>
+          <div class="mt-4">
+            <span class="text-xs font-semibold text-[#D97706]">MONTHLY</span>
+            <h3 class="text-lg font-bold mt-1">꽃 정기구독</h3>
+            <p class="text-sm text-[#3D3129]/40 mt-1">매주 혹은 격주로 신선한 꽃을 배달합니다.</p>
+            <p class="text-[#D97706] font-bold mt-2">월 39,000원~</p>
+          </div>
         </div>
       </div>
     </div>
-  </div>
+  </section>
 
-  <footer class="py-20 md:py-32 bg-white text-center px-6 border-t border-[#F3F4F6]">
-     <div class="inline-flex flex-col items-center gap-10 mb-8">
-        <span class="font-serif-display font-semibold text-2xl tracking-wide text-[#5D5447]">Bloom<span class="italic text-[#F472B6]">&</span>Garden</span>
-        <span class="text-[10px] font-semibold text-[#9CA3AF] tracking-[0.3em] uppercase">Floral Design Studio</span>
-     </div>
-     <p class="text-[10px] text-[#9CA3AF]/50 tracking-[0.5em] uppercase px-6">© 2024 BLOOM & GARDEN. SEOUL.</p>
+  <!-- ========== 갤러리 ========== -->
+  <section id="gallery" class="py-24 md:py-32">
+    <div class="max-w-7xl mx-auto px-4 md:px-8">
+      <div class="text-center mb-16">
+        <span class="font-serif italic text-[#D97706] text-lg reveal" style="--delay: 0;">Gallery</span>
+        <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mt-4 reveal" style="--delay: 1;">블룸 갤러리</h2>
+      </div>
+
+      <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+        <div class="overflow-hidden rounded-2xl group reveal" style="--delay: 0;">
+          <img src="https://images.unsplash.com/photo-1487530811176-3780de880c2d?q=80&w=800" alt="플라워 1" class="w-full aspect-square object-cover group-hover:scale-105 transition duration-700" loading="lazy">
+        </div>
+        <div class="overflow-hidden rounded-2xl md:row-span-2 group reveal" style="--delay: 1;">
+          <img src="https://images.unsplash.com/photo-1490750967868-88aa4f44baee?q=80&w=800" alt="플라워 2" class="w-full h-full object-cover group-hover:scale-105 transition duration-700" loading="lazy">
+        </div>
+        <div class="overflow-hidden rounded-2xl group reveal" style="--delay: 2;">
+          <img src="https://images.unsplash.com/photo-1563241527-3004b7be0ffd?q=80&w=800" alt="플라워 3" class="w-full aspect-square object-cover group-hover:scale-105 transition duration-700" loading="lazy">
+        </div>
+        <div class="overflow-hidden rounded-2xl group reveal" style="--delay: 3;">
+          <img src="https://images.unsplash.com/photo-1508610048659-a06b669e3321?q=80&w=800" alt="플라워 4" class="w-full aspect-square object-cover group-hover:scale-105 transition duration-700" loading="lazy">
+        </div>
+        <div class="overflow-hidden rounded-2xl col-span-2 md:col-span-1 group reveal" style="--delay: 4;">
+          <img src="https://images.unsplash.com/photo-1455659817273-f96807779a8a?q=80&w=800" alt="플라워 5" class="w-full aspect-[2/1] md:aspect-square object-cover group-hover:scale-105 transition duration-700" loading="lazy">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== 소개 ========== -->
+  <section id="about" class="py-24 md:py-32 bg-white">
+    <div class="max-w-7xl mx-auto px-4 md:px-8">
+      <div class="grid lg:grid-cols-2 gap-16 items-center">
+        <div class="relative reveal" style="--delay: 0;">
+          <img src="https://images.unsplash.com/photo-1558618666-fcd25c85f82e?q=80&w=700" alt="블룸 플라워 매장" class="w-full aspect-[4/3] object-cover rounded-3xl shadow-xl" loading="lazy">
+        </div>
+
+        <div class="space-y-8">
+          <div>
+            <span class="font-serif italic text-[#D97706] text-lg reveal" style="--delay: 0;">About Us</span>
+            <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mt-4 reveal" style="--delay: 1;">꽃과 함께한 15년</h2>
+          </div>
+
+          <p class="text-[#3D3129]/50 text-base md:text-lg leading-relaxed reveal" style="--delay: 2;">
+            블룸 플라워는 2009년부터 신선한 꽃으로 사람들의 마음을 전하고 있습니다. 매일 새벽 산지에서 직송한 최상의 꽃만을 사용하며, 전문 플로리스트가 한 송이 한 송이 정성껏 만듭니다.
+          </p>
+
+          <div class="grid grid-cols-3 gap-6 pt-4 reveal" style="--delay: 3;">
+            <div class="text-center">
+              <p class="text-3xl font-bold text-[#D97706]">15년</p>
+              <p class="text-xs text-[#3D3129]/40 mt-1">운영 경력</p>
+            </div>
+            <div class="text-center">
+              <p class="text-3xl font-bold text-[#D97706]">50,000+</p>
+              <p class="text-xs text-[#3D3129]/40 mt-1">누적 주문</p>
+            </div>
+            <div class="text-center">
+              <p class="text-3xl font-bold text-[#D97706]">99%</p>
+              <p class="text-xs text-[#3D3129]/40 mt-1">만족도</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== 후기 ========== -->
+  <section class="py-24 md:py-32">
+    <div class="max-w-7xl mx-auto px-4 md:px-8">
+      <div class="text-center mb-16">
+        <span class="font-serif italic text-[#D97706] text-lg reveal" style="--delay: 0;">Reviews</span>
+        <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mt-4 reveal" style="--delay: 1;">고객 후기</h2>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+        <div class="bg-white p-8 rounded-2xl shadow-sm border border-[#D97706]/10 reveal" style="--delay: 0;">
+          <div class="flex items-center gap-1 text-[#D97706] mb-4">
+            <i class="fas fa-star text-xs"></i><i class="fas fa-star text-xs"></i><i class="fas fa-star text-xs"></i><i class="fas fa-star text-xs"></i><i class="fas fa-star text-xs"></i>
+          </div>
+          <p class="text-sm text-[#3D3129]/60 leading-relaxed italic">"꽃다발이 너무 예뻤어요. 받으신 분이 정말 좋아하셨습니다. 다음에도 꼭 여기서 주문할게요!"</p>
+          <p class="text-sm font-bold mt-4">김OO 님</p>
+          <p class="text-xs text-[#3D3129]/30">로맨틱 꽃다발 주문</p>
+        </div>
+
+        <div class="bg-white p-8 rounded-2xl shadow-sm border border-[#D97706]/10 reveal" style="--delay: 1;">
+          <div class="flex items-center gap-1 text-[#D97706] mb-4">
+            <i class="fas fa-star text-xs"></i><i class="fas fa-star text-xs"></i><i class="fas fa-star text-xs"></i><i class="fas fa-star text-xs"></i><i class="fas fa-star text-xs"></i>
+          </div>
+          <p class="text-sm text-[#3D3129]/60 leading-relaxed italic">"정기구독 시작한 지 3개월째인데 매주 집에 꽃이 있으니 분위기가 달라져요."</p>
+          <p class="text-sm font-bold mt-4">박OO 님</p>
+          <p class="text-xs text-[#3D3129]/30">꽃 정기구독</p>
+        </div>
+
+        <div class="bg-white p-8 rounded-2xl shadow-sm border border-[#D97706]/10 reveal" style="--delay: 2;">
+          <div class="flex items-center gap-1 text-[#D97706] mb-4">
+            <i class="fas fa-star text-xs"></i><i class="fas fa-star text-xs"></i><i class="fas fa-star text-xs"></i><i class="fas fa-star text-xs"></i><i class="fas fa-star text-xs"></i>
+          </div>
+          <p class="text-sm text-[#3D3129]/60 leading-relaxed italic">"개업 화환 주문했는데 퀄리티가 남달랐어요. 가격 대비 최고입니다."</p>
+          <p class="text-sm font-bold mt-4">이OO 님</p>
+          <p class="text-xs text-[#3D3129]/30">축하 화환 주문</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== 주문 ========== -->
+  <section id="order" class="py-24 md:py-32 bg-gradient-to-br from-[#D97706] to-[#B45309] text-white relative overflow-hidden">
+    <div class="absolute top-0 right-0 w-96 h-96 bg-white/5 rounded-full blur-[100px]"></div>
+
+    <div class="max-w-4xl mx-auto px-4 md:px-8 relative z-10">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold reveal" style="--delay: 0;">꽃 주문하기</h2>
+        <p class="text-white/70 text-base mt-4 reveal" style="--delay: 1;">소중한 분에게 마음을 담은 꽃을 보내세요</p>
+      </div>
+
+      <div class="bg-white/10 backdrop-blur-xl rounded-3xl p-8 md:p-12 reveal" style="--delay: 2;">
+        <div class="grid md:grid-cols-2 gap-6">
+          <div>
+            <label class="block text-sm font-medium text-white/80 mb-2">주문자</label>
+            <input type="text" placeholder="이름" class="w-full bg-white/10 border border-white/20 rounded-xl px-5 py-3.5 text-white placeholder-white/40 outline-none focus:border-white/60 transition">
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-white/80 mb-2">연락처</label>
+            <input type="tel" placeholder="010-0000-0000" class="w-full bg-white/10 border border-white/20 rounded-xl px-5 py-3.5 text-white placeholder-white/40 outline-none focus:border-white/60 transition">
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-white/80 mb-2">상품 선택</label>
+            <select class="w-full bg-white/10 border border-white/20 rounded-xl px-5 py-3.5 text-white outline-none focus:border-white/60 transition">
+              <option value="">선택해주세요</option>
+              <option>로맨틱 꽃다발</option>
+              <option>시즌 꽃바구니</option>
+              <option>축하 화환</option>
+              <option>꽃 정기구독</option>
+              <option>맞춤 주문</option>
+            </select>
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-white/80 mb-2">배송 날짜</label>
+            <input type="date" class="w-full bg-white/10 border border-white/20 rounded-xl px-5 py-3.5 text-white outline-none focus:border-white/60 transition">
+          </div>
+          <div class="md:col-span-2">
+            <label class="block text-sm font-medium text-white/80 mb-2">배송지 / 요청사항</label>
+            <textarea rows="3" placeholder="배송지 주소와 카드 메시지를 적어주세요" class="w-full bg-white/10 border border-white/20 rounded-xl px-5 py-3.5 text-white placeholder-white/40 outline-none focus:border-white/60 transition resize-none"></textarea>
+          </div>
+        </div>
+        <button class="w-full mt-8 bg-white text-[#D97706] py-4 rounded-full font-bold text-lg hover:bg-[#FFFBEB] shadow-lg">주문 신청하기</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== Footer ========== -->
+  <footer class="py-16 md:py-24 bg-[#1C1610] text-white">
+    <div class="max-w-7xl mx-auto px-4 md:px-8">
+      <div class="grid md:grid-cols-3 gap-12 mb-16">
+        <div>
+          <div class="flex items-center gap-2 mb-4">
+            <i class="fas fa-seedling text-[#D97706]"></i>
+            <span class="font-serif text-xl italic text-[#D97706]">Bloom Flower</span>
+          </div>
+          <p class="text-white/30 text-sm leading-relaxed">서울특별시 용산구 이태원로 54길 8<br>블룸 플라워 1층</p>
+          <p class="text-white/30 text-sm mt-2">대표: 정블룸 | 사업자등록번호: 567-89-01234</p>
+        </div>
+
+        <div class="grid grid-cols-2 gap-8">
+          <div>
+            <p class="text-xs font-semibold text-white/20 uppercase tracking-wider mb-4">상품</p>
+            <ul class="space-y-2.5">
+              <li><a href="#products" class="text-white/40 text-sm hover:text-[#D97706] transition">꽃다발</a></li>
+              <li><a href="#products" class="text-white/40 text-sm hover:text-[#D97706] transition">꽃바구니</a></li>
+              <li><a href="#products" class="text-white/40 text-sm hover:text-[#D97706] transition">화환</a></li>
+              <li><a href="#products" class="text-white/40 text-sm hover:text-[#D97706] transition">정기구독</a></li>
+            </ul>
+          </div>
+          <div>
+            <p class="text-xs font-semibold text-white/20 uppercase tracking-wider mb-4">정보</p>
+            <ul class="space-y-2.5">
+              <li><a href="#gallery" class="text-white/40 text-sm hover:text-[#D97706] transition">갤러리</a></li>
+              <li><a href="#about" class="text-white/40 text-sm hover:text-[#D97706] transition">소개</a></li>
+              <li><a href="#order" class="text-white/40 text-sm hover:text-[#D97706] transition">주문</a></li>
+              <li><a href="#" class="text-white/40 text-sm hover:text-[#D97706] transition">배송안내</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <div>
+          <p class="text-xs font-semibold text-white/20 uppercase tracking-wider mb-4">연락처</p>
+          <p class="text-xl font-bold text-[#D97706]">02-777-3456</p>
+          <p class="text-white/30 text-sm mt-2">매일 08:00 - 20:00</p>
+          <div class="flex gap-3 mt-4">
+            <a href="#" class="w-10 h-10 bg-white/5 rounded-lg flex items-center justify-center text-white/40 hover:text-[#D97706] hover:bg-white/10 transition"><i class="fab fa-instagram text-sm"></i></a>
+            <a href="#" class="w-10 h-10 bg-white/5 rounded-lg flex items-center justify-center text-white/40 hover:text-[#D97706] hover:bg-white/10 transition"><i class="fas fa-blog text-sm"></i></a>
+          </div>
+        </div>
+      </div>
+
+      <div class="border-t border-white/5 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+        <p class="text-xs text-white/15">&copy; 2024 블룸 플라워. All rights reserved by DLAB.</p>
+        <div class="flex gap-6">
+          <a href="#" class="text-xs text-white/15 hover:text-white/30 transition">개인정보처리방침</a>
+          <a href="#" class="text-xs text-white/15 hover:text-white/30 transition">이용약관</a>
+        </div>
+      </div>
+    </div>
   </footer>
 
-  <script>
-    function toggleFlowerModal() {
-      const modal = document.getElementById('flower-modal');
-      modal.classList.toggle('hidden');
-      modal.classList.toggle('flex');
-    }
-  </script>
-
 </div>
+
+<script>
+  (function() {
+    const observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+    document.querySelectorAll('.reveal').forEach(function(el) { observer.observe(el); });
+  })();
+</script>
