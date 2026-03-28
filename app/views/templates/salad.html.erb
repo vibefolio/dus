@@ -1,187 +1,617 @@
-<%# Salad Template - 그린스 앤 그레인 (GREENS & GRAIN) %>
+<%# Salad Template - 그린볼 (GREEN BOWL) %>
 
 <style>
-  /* Supanova Design Upgrade */
+  /* Supanova Design — Fresh Health Archetype */
   * { word-break: keep-all; }
-  html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+  html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
   h1, h2, h3, h4 { text-wrap: balance; letter-spacing: -0.02em; line-height: 1.3; }
-  a, button { transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1); }
+  a, button { transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1); }
   a:hover, button:hover { transform: scale(1.02); }
   a:active, button:active { transform: scale(0.98); }
 
-  @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400&family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap');
-  
-  .font-brand { font-family: 'DM Sans', sans-serif; }
-  .font-sans { font-family: 'Pretendard Variable', 'Pretendard', -apple-system, sans-serif; }
+  @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap');
+
+  .font-sans { font-family: 'Pretendard Variable', 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, sans-serif; }
+  .font-dm { font-family: 'DM Sans', sans-serif; }
 
   @media (max-width: 768px) {
     .mobile-desc { font-size: 14px !important; line-height: 1.8; }
-    .mobile-title { font-size: 40px !important; }
+    .mobile-title { font-size: 42px !important; }
+  }
+
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(2rem); filter: blur(4px); }
+    to { opacity: 1; transform: translateY(0); filter: blur(0); }
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(2rem);
+  }
+
+  .reveal.is-visible {
+    animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    animation-delay: calc(var(--delay, 0) * 100ms);
+  }
+
+  .menu-card {
+    transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .menu-card:hover {
+    transform: translateY(-8px);
+  }
+  .menu-card:hover img {
+    transform: scale(1.05);
+  }
+
+  .gallery-item {
+    transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .gallery-item:hover {
+    transform: scale(1.02);
+  }
+  .gallery-item:hover img {
+    transform: scale(1.08);
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-12px); }
   }
 
   .leaf-pattern {
-     background-image: radial-gradient(#22C55E 0.5px, transparent 0.5px), radial-gradient(#22C55E 0.5px, #F0FDF4 0.5px);
-     background-size: 20px 20px;
-     background-position: 0 0, 10px 10px;
-     opacity: 0.1;
+    background-image: url("https://www.transparenttextures.com/patterns/light-paper-fibers.png");
+    opacity: 0.3;
   }
 </style>
 
-<div class="bg-[#F0FDF4] text-[#14532D] font-sans selection:bg-[#22C55E] selection:text-white min-h-screen overflow-x-hidden relative">
-  <div class="fixed inset-0 leaf-pattern pointer-events-none"></div>
+<div class="bg-[#F0FDF4] text-[#1A1A1A] font-sans selection:bg-[#16A34A] selection:text-white min-h-screen overflow-x-hidden relative">
+  <div class="fixed inset-0 leaf-pattern pointer-events-none z-[60]"></div>
 
-  <!-- Nav -->
-  <nav class="fixed w-full z-50 px-8 py-6 bg-[#F0FDF4]/90 backdrop-blur-xl border-b border-[#22C55E]/10">
-    <div class="container mx-auto px-4 md:px-6 flex justify-between items-center flex-nowrap">
-      <div class="flex items-center gap-2">
-         <div class="w-8 h-8 max-h-8 max-w-[35%] shrink object-contain bg-[#22C55E] rounded-lg flex items-center justify-center text-white text-lg shadow-sm">
-            🥗
-         </div>
-         <span class="font-brand font-semibold text-xl tracking-tight text-[#166534]">Greens<span class="text-[#22C55E] font-medium">&</span>Grain</span>
-      </div>
-      
-      <div class="hidden md:flex gap-14 text-[13px] font-brand font-medium tracking-wide text-[#166534]/60">
-        <a href="#signature" class="hover:text-[#166534] transition">Signature Bowls</a>
-        <a href="#custom" class="hover:text-[#166534] transition">Make Your Own</a>
-        <a href="#subscription" class="hover:text-[#166534] transition">Daily Plan</a>
-      </div>
-           <button class="mobile-menu-trigger md:hidden ml-auto text-2xl focus:outline-none" style="color: inherit;">
-             <i class="fas fa-bars"></i>
-           </button>
+  <!-- ========== Nav ========== -->
+  <nav class="fixed w-full z-50 px-4 md:px-8 py-5 bg-[#F0FDF4]/80 backdrop-blur-xl border-b border-[#16A34A]/10">
+    <div class="max-w-7xl mx-auto flex justify-between items-center">
+      <a href="#" class="flex items-center gap-3">
+        <span class="w-8 h-8 bg-[#16A34A] rounded-full flex items-center justify-center">
+          <i class="fas fa-leaf text-white text-xs"></i>
+        </span>
+        <span class="font-dm text-2xl tracking-tight font-bold text-[#16A34A]">GREEN BOWL</span>
+      </a>
 
-      
-      <div class="flex-nowrap shrink-0 flex gap-6 items-center">
-         <button onclick="toggleSaladModal()" class="hidden md:block text-[13px] font-brand font-semibold text-[#166534] hover:bg-[#22C55E]/10 px-4 py-2 rounded-lg transition" data-mobile-menu-copy="true">Fresh Club</button>
-         <button class="hidden md:inline-flex bg-[#166534] text-white px-3 py-2 text-xs md:text-sm md:px-6 md:py-2.5 whitespace-nowrap rounded-lg font-brand font-semibold text-[13px] hover:bg-[#14532D] transition shadow-lg shadow-[#166534]/20 hover:scale-105 active:scale-95 duration-200" data-mobile-menu-copy="true">
-           Order Now
-         </button>
+      <div class="hidden md:flex gap-12 text-[10px] font-semibold uppercase tracking-[0.4em] text-[#1A1A1A]/40">
+        <a href="#about" class="hover:text-[#16A34A] transition">About</a>
+        <a href="#menu" class="hover:text-[#16A34A] transition">Menu</a>
+        <a href="#nutrition" class="hover:text-[#16A34A] transition">Nutrition</a>
+        <a href="#subscribe" class="hover:text-[#16A34A] transition">Subscribe</a>
+        <a href="#location" class="hover:text-[#16A34A] transition">Location</a>
+      </div>
+
+      <button class="mobile-menu-trigger md:hidden ml-auto text-2xl focus:outline-none" style="color: inherit;">
+        <i class="fas fa-bars"></i>
+      </button>
+
+      <div class="hidden md:flex gap-6 items-center shrink-0">
+        <button onclick="toggleSaladModal()" class="text-[10px] font-semibold uppercase tracking-[0.4em] text-[#1A1A1A]/40 hover:text-[#16A34A]" data-mobile-menu-copy="true">Members</button>
+        <button class="bg-[#16A34A] text-white px-8 py-3.5 rounded-full font-semibold text-[10px] tracking-[0.3em] uppercase hover:bg-[#15803D] transition shadow-lg shadow-[#16A34A]/20" data-mobile-menu-copy="true">
+          Order Now
+        </button>
       </div>
     </div>
 
-      <%= render partial: 'templates/shared/mobile_menu_overlay' %></nav>
+    <%= render partial: 'templates/shared/mobile_menu_overlay' %>
+  </nav>
 
-  <!-- Hero -->
-  <header class="min-h-screen relative flex items-center justify-center pt-24 overflow-hidden">
-    <!-- Organic blobs -->
-    <div class="absolute top-[10%] right-[5%] w-[500px] h-[500px] bg-[#DCFCE7] rounded-full mix-blend-multiply filter blur-3xl opacity-70 animate-blob"></div>
-    <div class="absolute top-[10%] left-[5%] w-[500px] h-[500px] bg-[#FEF3C7] rounded-full mix-blend-multiply filter blur-3xl opacity-70 animate-blob animation-delay-2000"></div>
-    <div class="absolute -bottom-[10%] left-[20%] w-[500px] h-[500px] bg-[#E0E7FF] rounded-full mix-blend-multiply filter blur-3xl opacity-70 animate-blob animation-delay-4000"></div>
-
-    <div class="container mx-auto px-3 md:px-6 relative z-10 grid lg:grid-cols-2 gap-10 md:p-16 items-center">
-      <div class="space-y-10 text-center lg:text-left order-2 lg:order-1">
-        <div class="inline-flex items-center gap-2 bg-white px-3 py-1.5 rounded-lg shadow-sm border border-[#22C55E]/20">
-           <span class="w-2 h-2 rounded-full bg-[#22C55E] animate-pulse"></span>
-           <span class="text-[11px] font-brand font-semibold text-[#166534] uppercase tracking-wide">Farm to Bowl &nbsp;|&nbsp; 100% Organic</span>
+  <!-- ========== Hero ========== -->
+  <header class="min-h-[100dvh] relative flex items-center justify-center pt-20">
+    <div class="max-w-7xl mx-auto px-4 md:px-8 relative z-10 grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+      <div class="space-y-10 text-center lg:text-left">
+        <div class="inline-flex items-center gap-5 reveal" style="--delay: 0;">
+          <span class="w-10 h-[1px] bg-[#16A34A]"></span>
+          <span class="text-[10px] font-semibold tracking-[0.6em] uppercase text-[#16A34A]">Fresh &amp; Healthy</span>
         </div>
-        
-        <h1 class="text-2xl md:text-4xl md:text-6xl font-brand font-semibold leading-[1.05] tracking-tight text-[#052E16] mobile-title">
-           Eat Smart,<br>
-           Fill with <span class="text-[#22C55E]">Nature.</span>
+
+        <h1 class="text-4xl md:text-6xl lg:text-[5.5rem] font-dm font-bold leading-tight tracking-tight text-[#1A1A1A] mobile-title reveal" style="--delay: 1;">
+          신선한 한 끼,<br><span class="text-[#16A34A]">매일의 활력.</span>
         </h1>
-        
-        <p class="text-[#166534]/70 text-lg md:text-xl leading-relaxed max-w-lg mx-auto lg:mx-0 mobile-desc font-medium">
-           아침 농장에서 온 신선함 그대로. <br>
-           내 몸을 깨우는 가장 건강하고 맛있는 한 그릇을 만나보세요.
+
+        <p class="text-[#1A1A1A]/60 text-sm md:text-lg leading-relaxed max-w-lg mx-auto lg:mx-0 mobile-desc reveal" style="--delay: 2;">
+          유기농 채소와 슈퍼푸드로 만든 프리미엄 샐러드. 그린볼은 바쁜 일상 속에서도 건강한 식사를 포기하지 않는 당신을 위해 존재합니다.
         </p>
-        
-        <div class="flex flex-col sm:flex-row gap-6 justify-center lg:justify-start pt-4">
-           <button class="px-8 py-4 bg-[#22C55E] text-white font-brand font-semibold text-base rounded-lg shadow-[0_4px_14px_0_rgba(34,197,94,0.39)] hover:shadow-[0_6px_20px_rgba(34,197,94,0.23)] hover:-translate-y-1 transition-all">
-              Start Your Order
-           </button>
-           <button class="px-8 py-4 bg-white text-[#166534] border border-[#22C55E]/20 font-brand font-semibold text-base rounded-lg hover:bg-[#F0FDF4] transition flex items-center justify-center gap-2">
-              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-              Watch Process
-           </button>
-        </div>
-        
-        <div class="flex items-center justify-center lg:justify-start gap-12 pt-6">
-           <div>
-              <p class="text-2xl font-brand font-semibold text-[#166534]">450<span class="text-sm align-top text-[#22C55E]">+</span></p>
-              <p class="text-xs font-semibold uppercase tracking-wider text-[#166534]/40">Kcal Average</p>
-           </div>
-           <div class="w-px h-10 bg-[#166534]/10"></div>
-           <div>
-              <p class="text-2xl font-brand font-semibold text-[#166534]">20<span class="text-sm align-top text-[#22C55E]">min</span></p>
-              <p class="text-xs font-semibold uppercase tracking-wider text-[#166534]/40">Fast Delivery</p>
-           </div>
+
+        <div class="pt-4 flex flex-col sm:flex-row gap-5 justify-center lg:justify-start reveal" style="--delay: 3;">
+          <a href="#menu" class="inline-flex items-center justify-center gap-3 px-10 py-5 bg-[#16A34A] text-white font-semibold text-[11px] tracking-[0.3em] uppercase hover:bg-[#15803D] rounded-full shadow-xl shadow-[#16A34A]/20">
+            메뉴 보기
+            <span class="w-7 h-7 rounded-full bg-white/15 flex items-center justify-center">
+              <i class="fas fa-arrow-right text-[10px]"></i>
+            </span>
+          </a>
+          <a href="#subscribe" class="inline-flex items-center justify-center px-10 py-5 border border-[#16A34A]/30 text-[#16A34A] font-semibold text-[11px] tracking-[0.3em] uppercase hover:bg-white rounded-full">
+            정기배송 시작
+          </a>
         </div>
       </div>
-      
-      <div class="relative order-1 lg:order-2 flex justify-center">
-         <div class="relative w-[300px] md:w-[500px] aspect-square">
-             <div class="absolute inset-0 bg-[#22C55E]/5 rounded-full blur-3xl transform scale-90"></div>
-             <img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?q=80&w=1000" alt="Fresh Salad Bowl" class="relative z-10 w-full h-full object-contain hover:scale-105 transition duration-700 drop-shadow-2xl">
-             
-             <!-- Floating Badge -->
-             <div class="absolute bottom-10 -left-6 bg-white p-4 rounded-2xl shadow-xl border border-[#22C55E]/10 animate-bounce cursor-pointer hover:bg-[#22C55E] hover:text-white group transition-colors">
-                <div class="flex items-center gap-3">
-                   <div class="w-8 h-8 max-h-8 max-w-[35%] shrink object-contain md:w-10 md:h-10 bg-[#F0FDF4] rounded-full flex items-center justify-center text-xl group-hover:bg-white/20">🥑</div>
-                   <div>
-                      <p class="text-[10px] font-semibold text-[#166534]/50 uppercase tracking-wide group-hover:text-white/60">Best Topping</p>
-                      <p class="font-brand font-semibold text-[#166534] group-hover:text-white">Fresh Avocado</p>
-                   </div>
-                </div>
-             </div>
-         </div>
+
+      <div class="relative reveal" style="--delay: 2;">
+        <div class="absolute -top-12 -right-12 w-72 h-72 bg-[#16A34A]/10 rounded-full blur-[100px]"></div>
+        <div class="relative group">
+          <img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?q=80&w=1200" alt="신선한 샐러드 볼" class="w-full aspect-[4/5] object-cover rounded-[3rem] shadow-2xl group-hover:shadow-[0_30px_80px_-20px_rgba(22,163,74,0.3)] transition-all duration-700" loading="eager">
+          <div class="absolute -bottom-6 -left-6 md:-bottom-8 md:-left-8 bg-white p-8 md:p-10 rounded-2xl shadow-xl border border-[#16A34A]/10 max-w-[260px]" style="animation: float 6s ease-in-out infinite;">
+            <p class="text-[10px] font-semibold text-[#16A34A] uppercase tracking-[0.4em] mb-3">Farm to Bowl</p>
+            <p class="text-xl font-dm font-bold text-[#1A1A1A]">오늘 아침 수확한 재료</p>
+          </div>
+        </div>
       </div>
     </div>
   </header>
 
-   <style>
-      @keyframes blob {
-         0% { transform: translate(0px, 0px) scale(1); }
-         33% { transform: translate(30px, -50px) scale(1.1); }
-         66% { transform: translate(-20px, 20px) scale(0.9); }
-         100% { transform: translate(0px, 0px) scale(1); }
-      }
-      .animate-blob { animation: blob 7s infinite; }
-      .animation-delay-2000 { animation-delay: 2s; }
-      .animation-delay-4000 { animation-delay: 4s; }
-   </style>
-
-  <!-- Login Modal -->
-  <div id="salad-modal" class="fixed inset-0 z-[100] hidden items-center justify-center p-4 bg-[#052E16]/30 backdrop-blur-md">
-    <div class="bg-white w-full max-w-sm p-10 shadow-2xl relative rounded-2xl border border-[#22C55E]/10">
-      <button onclick="toggleSaladModal()" class="absolute top-6 right-6 text-[#166534]/30 hover:text-[#22C55E] transition text-2xl font-brand font-semibold">&times;</button>
-      
-      <div class="text-center mb-8">
-        <div class="w-14 h-14 bg-[#F0FDF4] rounded-2xl flex items-center justify-center text-lg md:text-2xl mx-auto mb-4 text-[#22C55E] shadow-sm">
-           🥗
+  <!-- ========== About / 재료 철학 ========== -->
+  <section id="about" class="py-24 md:py-32">
+    <div class="max-w-7xl mx-auto px-4 md:px-8 grid lg:grid-cols-2 gap-16 lg:gap-24 items-center">
+      <div class="relative reveal" style="--delay: 0;">
+        <div class="absolute -top-8 -left-8 w-60 h-60 bg-[#16A34A]/8 rounded-full blur-[80px]"></div>
+        <div class="grid grid-cols-5 gap-4">
+          <div class="col-span-3 overflow-hidden rounded-[2rem]">
+            <img src="https://images.unsplash.com/photo-1540420773420-3366772f4999?q=80&w=800" alt="유기농 농장" class="w-full h-full object-cover aspect-[3/4]" loading="lazy" decoding="async">
+          </div>
+          <div class="col-span-2 flex flex-col gap-4">
+            <div class="overflow-hidden rounded-[1.5rem] flex-1">
+              <img src="https://images.unsplash.com/photo-1498837167922-ddd27525d352?q=80&w=600" alt="신선한 재료" class="w-full h-full object-cover" loading="lazy" decoding="async">
+            </div>
+            <div class="overflow-hidden rounded-[1.5rem] flex-1">
+              <img src="https://images.unsplash.com/photo-1607532941433-304659e8198a?q=80&w=600" alt="샐러드 준비" class="w-full h-full object-cover" loading="lazy" decoding="async">
+            </div>
+          </div>
         </div>
-        <h2 class="text-2xl font-brand font-semibold text-[#166534] mb-1">Fresh Club</h2>
-        <p class="text-[12px] text-[#22C55E] font-semibold uppercase tracking-wide">Earn points with every bowl</p>
       </div>
-      
-      <div class="space-y-4">
-        <div>
-           <label class="block text-[11px] font-semibold text-[#166534]/50 uppercase tracking-wide mb-1.5 ml-1">Mobile Number</label>
-           <input type="tel" placeholder="010-0000-0000" class="w-full bg-[#F0FDF4] border border-[#DCFCE7] rounded-xl py-3 px-5 outline-none focus:border-[#22C55E] focus:ring-1 focus:ring-[#22C55E] transition text-sm font-semibold text-[#166534]">
+
+      <div class="space-y-8 reveal" style="--delay: 1;">
+        <div class="inline-flex items-center gap-4">
+          <span class="rounded-full px-4 py-1.5 text-[11px] uppercase tracking-[0.15em] font-medium bg-[#16A34A]/10 text-[#16A34A]">Our Philosophy</span>
         </div>
-        
-        <button class="w-full bg-[#166534] text-white py-3.5 rounded-xl text-[13px] font-semibold uppercase tracking-wide hover:bg-[#14532D] transition shadow-lg shadow-[#166534]/20 mt-2">
-           Login / Sign Up
+
+        <h2 class="text-3xl md:text-4xl lg:text-5xl font-dm font-bold leading-snug text-[#1A1A1A]">
+          좋은 재료가<br>좋은 한 끼를 만듭니다
+        </h2>
+
+        <p class="text-[#1A1A1A]/60 text-base md:text-lg leading-relaxed">
+          그린볼은 전국 30여 곳의 유기농 농가와 직접 계약하여 매일 아침 수확한 채소만을 사용합니다. 화학 비료와 농약 없이 자란 건강한 식재료로 만든 샐러드를 약속합니다.
+        </p>
+        <p class="text-[#1A1A1A]/60 text-base md:text-lg leading-relaxed">
+          드레싱 하나까지도 직접 만듭니다. 설탕 대신 유기농 꿀, 인공 첨가물 대신 레몬과 허브. 자연 그대로의 맛을 담았습니다.
+        </p>
+
+        <div class="grid grid-cols-3 gap-6 pt-6 border-t border-[#16A34A]/10">
+          <div>
+            <p class="text-2xl md:text-3xl font-dm font-bold text-[#16A34A]">30+</p>
+            <p class="text-[11px] text-[#1A1A1A]/40 uppercase tracking-[0.1em] mt-1 font-medium">계약 유기농 농가</p>
+          </div>
+          <div>
+            <p class="text-2xl md:text-3xl font-dm font-bold text-[#16A34A]">100%</p>
+            <p class="text-[11px] text-[#1A1A1A]/40 uppercase tracking-[0.1em] mt-1 font-medium">무농약 채소</p>
+          </div>
+          <div>
+            <p class="text-2xl md:text-3xl font-dm font-bold text-[#16A34A]">0</p>
+            <p class="text-[11px] text-[#1A1A1A]/40 uppercase tracking-[0.1em] mt-1 font-medium">인공 첨가물</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== Signature Menu (4개) ========== -->
+  <section id="menu" class="py-24 md:py-32 bg-white relative">
+    <div class="max-w-7xl mx-auto px-4 md:px-8">
+      <div class="text-center mb-16 md:mb-20">
+        <span class="rounded-full px-4 py-1.5 text-[11px] uppercase tracking-[0.15em] font-medium bg-[#16A34A]/10 text-[#16A34A] reveal" style="--delay: 0;">Signature</span>
+        <h2 class="text-3xl md:text-4xl lg:text-5xl font-dm font-bold leading-snug text-[#1A1A1A] mt-6 reveal" style="--delay: 1;">
+          시그니처 메뉴
+        </h2>
+        <p class="text-[#1A1A1A]/50 text-base md:text-lg mt-4 max-w-xl mx-auto reveal" style="--delay: 2;">
+          그린볼의 베스트셀러. 매일 신선하게 준비됩니다.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div class="menu-card bg-[#F0FDF4] rounded-[2rem] overflow-hidden reveal" style="--delay: 0;">
+          <div class="overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?q=80&w=600" alt="아보카도 파워볼" class="w-full aspect-[4/3] object-cover transition-transform duration-700" loading="lazy" decoding="async">
+          </div>
+          <div class="p-6">
+            <div class="flex items-center justify-between mb-3">
+              <span class="text-[10px] font-semibold text-[#16A34A] uppercase tracking-[0.2em]">Best</span>
+              <span class="text-lg font-dm font-bold text-[#16A34A]">₩12,900</span>
+            </div>
+            <h3 class="text-lg font-bold text-[#1A1A1A] mb-2">아보카도 파워볼</h3>
+            <p class="text-[#1A1A1A]/50 text-sm leading-relaxed">아보카도, 퀴노아, 병아리콩, 케일, 방울토마토와 레몬 타히니 드레싱</p>
+          </div>
+        </div>
+
+        <div class="menu-card bg-[#F0FDF4] rounded-[2rem] overflow-hidden reveal" style="--delay: 1;">
+          <div class="overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1604497181015-76590d828b75?q=80&w=600" alt="치킨 시저볼" class="w-full aspect-[4/3] object-cover transition-transform duration-700" loading="lazy" decoding="async">
+          </div>
+          <div class="p-6">
+            <div class="flex items-center justify-between mb-3">
+              <span class="text-[10px] font-semibold text-[#16A34A] uppercase tracking-[0.2em]">Popular</span>
+              <span class="text-lg font-dm font-bold text-[#16A34A]">₩13,500</span>
+            </div>
+            <h3 class="text-lg font-bold text-[#1A1A1A] mb-2">치킨 시저볼</h3>
+            <p class="text-[#1A1A1A]/50 text-sm leading-relaxed">그릴드 치킨, 로메인, 파르메산, 크루통, 홈메이드 시저 드레싱</p>
+          </div>
+        </div>
+
+        <div class="menu-card bg-[#F0FDF4] rounded-[2rem] overflow-hidden reveal" style="--delay: 2;">
+          <div class="overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?q=80&w=600" alt="연어 포케볼" class="w-full aspect-[4/3] object-cover transition-transform duration-700" loading="lazy" decoding="async">
+          </div>
+          <div class="p-6">
+            <div class="flex items-center justify-between mb-3">
+              <span class="text-[10px] font-semibold text-[#16A34A] uppercase tracking-[0.2em]">Premium</span>
+              <span class="text-lg font-dm font-bold text-[#16A34A]">₩15,900</span>
+            </div>
+            <h3 class="text-lg font-bold text-[#1A1A1A] mb-2">연어 포케볼</h3>
+            <p class="text-[#1A1A1A]/50 text-sm leading-relaxed">노르웨이 연어, 현미밥, 에다마메, 망고, 간장 와사비 소스</p>
+          </div>
+        </div>
+
+        <div class="menu-card bg-[#F0FDF4] rounded-[2rem] overflow-hidden reveal" style="--delay: 3;">
+          <div class="overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1511690743698-d9d18f7e20f1?q=80&w=600" alt="비건 그린볼" class="w-full aspect-[4/3] object-cover transition-transform duration-700" loading="lazy" decoding="async">
+          </div>
+          <div class="p-6">
+            <div class="flex items-center justify-between mb-3">
+              <span class="text-[10px] font-semibold text-[#16A34A] uppercase tracking-[0.2em]">Vegan</span>
+              <span class="text-lg font-dm font-bold text-[#16A34A]">₩11,900</span>
+            </div>
+            <h3 class="text-lg font-bold text-[#1A1A1A] mb-2">비건 그린볼</h3>
+            <p class="text-[#1A1A1A]/50 text-sm leading-relaxed">두부, 렌틸콩, 비트, 당근, 시금치, 발사믹 비네그레트</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== Nutrition 영양 정보 ========== -->
+  <section id="nutrition" class="py-24 md:py-32">
+    <div class="max-w-7xl mx-auto px-4 md:px-8">
+      <div class="text-center mb-16 md:mb-20">
+        <span class="rounded-full px-4 py-1.5 text-[11px] uppercase tracking-[0.15em] font-medium bg-[#16A34A]/10 text-[#16A34A] reveal" style="--delay: 0;">Nutrition</span>
+        <h2 class="text-3xl md:text-4xl lg:text-5xl font-dm font-bold leading-snug text-[#1A1A1A] mt-6 reveal" style="--delay: 1;">
+          투명하게 공개하는<br>영양 정보
+        </h2>
+        <p class="text-[#1A1A1A]/50 text-base md:text-lg mt-4 max-w-xl mx-auto reveal" style="--delay: 2;">
+          모든 메뉴의 칼로리와 영양 성분을 공개합니다.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div class="bg-white rounded-[2rem] p-8 text-center reveal" style="--delay: 0;">
+          <div class="w-16 h-16 bg-[#16A34A]/10 rounded-2xl flex items-center justify-center mx-auto mb-6">
+            <i class="fas fa-fire text-[#16A34A] text-xl"></i>
+          </div>
+          <p class="text-3xl font-dm font-bold text-[#16A34A] mb-2">350–520</p>
+          <p class="text-sm text-[#1A1A1A]/60 font-medium">kcal per bowl</p>
+          <p class="text-xs text-[#1A1A1A]/40 mt-3 leading-relaxed">한 끼에 필요한 적정 칼로리를 정확하게 계산했습니다</p>
+        </div>
+
+        <div class="bg-white rounded-[2rem] p-8 text-center reveal" style="--delay: 1;">
+          <div class="w-16 h-16 bg-[#16A34A]/10 rounded-2xl flex items-center justify-center mx-auto mb-6">
+            <i class="fas fa-dumbbell text-[#16A34A] text-xl"></i>
+          </div>
+          <p class="text-3xl font-dm font-bold text-[#16A34A] mb-2">25g+</p>
+          <p class="text-sm text-[#1A1A1A]/60 font-medium">단백질 함량</p>
+          <p class="text-xs text-[#1A1A1A]/40 mt-3 leading-relaxed">운동 후에도 충분한 고단백 식사를 보장합니다</p>
+        </div>
+
+        <div class="bg-white rounded-[2rem] p-8 text-center reveal" style="--delay: 2;">
+          <div class="w-16 h-16 bg-[#16A34A]/10 rounded-2xl flex items-center justify-center mx-auto mb-6">
+            <i class="fas fa-seedling text-[#16A34A] text-xl"></i>
+          </div>
+          <p class="text-3xl font-dm font-bold text-[#16A34A] mb-2">12+</p>
+          <p class="text-sm text-[#1A1A1A]/60 font-medium">슈퍼푸드 종류</p>
+          <p class="text-xs text-[#1A1A1A]/40 mt-3 leading-relaxed">퀴노아, 치아씨드, 아마씨 등 다양한 슈퍼푸드를 담았습니다</p>
+        </div>
+
+        <div class="bg-white rounded-[2rem] p-8 text-center reveal" style="--delay: 3;">
+          <div class="w-16 h-16 bg-[#16A34A]/10 rounded-2xl flex items-center justify-center mx-auto mb-6">
+            <i class="fas fa-heart text-[#16A34A] text-xl"></i>
+          </div>
+          <p class="text-3xl font-dm font-bold text-[#16A34A] mb-2">저당</p>
+          <p class="text-sm text-[#1A1A1A]/60 font-medium">Low Sugar Recipe</p>
+          <p class="text-xs text-[#1A1A1A]/40 mt-3 leading-relaxed">정제당 제로. 천연 감미료만 사용한 건강한 드레싱</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== Gallery ========== -->
+  <section class="py-24 md:py-32 bg-white">
+    <div class="max-w-7xl mx-auto px-4 md:px-8">
+      <div class="text-center mb-16 md:mb-20">
+        <span class="rounded-full px-4 py-1.5 text-[11px] uppercase tracking-[0.15em] font-medium bg-[#16A34A]/10 text-[#16A34A] reveal" style="--delay: 0;">Gallery</span>
+        <h2 class="text-3xl md:text-4xl lg:text-5xl font-dm font-bold leading-snug text-[#1A1A1A] mt-6 reveal" style="--delay: 1;">
+          눈으로 먼저 맛보세요
+        </h2>
+      </div>
+
+      <div class="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
+        <div class="gallery-item overflow-hidden rounded-[1.5rem] reveal" style="--delay: 0;">
+          <img src="https://images.unsplash.com/photo-1543339308-d595c4f5cf98?q=80&w=600" alt="매장 내부" class="w-full aspect-square object-cover transition-transform duration-700" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item overflow-hidden rounded-[1.5rem] reveal" style="--delay: 1;">
+          <img src="https://images.unsplash.com/photo-1572449043416-55f4685c9bb7?q=80&w=600" alt="샐러드 준비" class="w-full aspect-square object-cover transition-transform duration-700" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item overflow-hidden rounded-[1.5rem] reveal" style="--delay: 2;">
+          <img src="https://images.unsplash.com/photo-1490645935967-10de6ba17061?q=80&w=600" alt="재료 디스플레이" class="w-full aspect-square object-cover transition-transform duration-700" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item overflow-hidden rounded-[1.5rem] reveal" style="--delay: 3;">
+          <img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?q=80&w=600" alt="건강한 볼" class="w-full aspect-square object-cover transition-transform duration-700" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item overflow-hidden rounded-[1.5rem] col-span-2 reveal" style="--delay: 4;">
+          <img src="https://images.unsplash.com/photo-1494390248081-4e521a5940db?q=80&w=900" alt="매장 전경" class="w-full aspect-[2/1] object-cover transition-transform duration-700" loading="lazy" decoding="async">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== Subscribe 구독/정기배송 ========== -->
+  <section id="subscribe" class="py-24 md:py-32 relative overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-br from-[#16A34A] to-[#15803D]"></div>
+    <div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/diagmonds.png')] opacity-10"></div>
+
+    <div class="max-w-7xl mx-auto px-4 md:px-8 relative z-10">
+      <div class="grid lg:grid-cols-2 gap-16 items-center">
+        <div class="space-y-8">
+          <span class="rounded-full px-4 py-1.5 text-[11px] uppercase tracking-[0.15em] font-medium bg-white/15 text-white reveal" style="--delay: 0;">Subscription</span>
+          <h2 class="text-3xl md:text-4xl lg:text-5xl font-dm font-bold leading-snug text-white reveal" style="--delay: 1;">
+            매주 받아보는<br>나만의 그린볼
+          </h2>
+          <p class="text-white/70 text-base md:text-lg leading-relaxed reveal" style="--delay: 2;">
+            매주 월·수·금, 원하는 요일에 맞춰 신선한 샐러드를 배송해드립니다. 구독 회원은 모든 메뉴 15% 할인과 무료 배송 혜택을 누리실 수 있습니다.
+          </p>
+
+          <div class="grid grid-cols-2 gap-6 pt-4 reveal" style="--delay: 3;">
+            <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/10">
+              <p class="text-2xl font-dm font-bold text-white mb-1">주 3회</p>
+              <p class="text-white/60 text-sm">₩89,000/월</p>
+            </div>
+            <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/10">
+              <p class="text-2xl font-dm font-bold text-white mb-1">주 5회</p>
+              <p class="text-white/60 text-sm">₩139,000/월</p>
+            </div>
+          </div>
+
+          <a href="#" class="inline-flex items-center justify-center gap-3 px-10 py-5 bg-white text-[#16A34A] font-semibold text-[11px] tracking-[0.3em] uppercase rounded-full hover:bg-[#F0FDF4] shadow-xl reveal" style="--delay: 4;">
+            구독 시작하기
+            <span class="w-7 h-7 rounded-full bg-[#16A34A]/10 flex items-center justify-center">
+              <i class="fas fa-arrow-right text-[10px]"></i>
+            </span>
+          </a>
+        </div>
+
+        <div class="relative reveal" style="--delay: 2;">
+          <img src="https://images.unsplash.com/photo-1547592180-85f173990554?q=80&w=800" alt="정기배송 샐러드" class="w-full aspect-[4/5] object-cover rounded-[3rem] shadow-2xl" loading="lazy" decoding="async">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== Location / Contact ========== -->
+  <section id="location" class="py-24 md:py-32">
+    <div class="max-w-7xl mx-auto px-4 md:px-8">
+      <div class="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+        <div class="overflow-hidden rounded-[2rem] reveal" style="--delay: 0;">
+          <img src="https://images.unsplash.com/photo-1466978913421-dad2ebd01d17?q=80&w=800" alt="매장 외관" class="w-full aspect-[4/3] object-cover" loading="lazy" decoding="async">
+        </div>
+
+        <div class="space-y-8 reveal" style="--delay: 1;">
+          <span class="rounded-full px-4 py-1.5 text-[11px] uppercase tracking-[0.15em] font-medium bg-[#16A34A]/10 text-[#16A34A]">Location</span>
+          <h2 class="text-3xl md:text-4xl lg:text-5xl font-dm font-bold leading-snug text-[#1A1A1A]">
+            오시는 길
+          </h2>
+
+          <div class="space-y-6">
+            <div class="flex gap-5">
+              <div class="w-10 h-10 rounded-full bg-[#16A34A]/10 flex items-center justify-center shrink-0 mt-0.5">
+                <i class="fas fa-map-marker-alt text-[#16A34A] text-sm"></i>
+              </div>
+              <div>
+                <p class="text-[10px] font-semibold uppercase tracking-[0.3em] text-[#1A1A1A]/40 mb-2">Address</p>
+                <p class="text-[#1A1A1A]/80 text-base leading-relaxed">서울시 강남구 신사동 123-45<br>그린빌딩 1층</p>
+              </div>
+            </div>
+
+            <div class="flex gap-5">
+              <div class="w-10 h-10 rounded-full bg-[#16A34A]/10 flex items-center justify-center shrink-0 mt-0.5">
+                <i class="fas fa-clock text-[#16A34A] text-sm"></i>
+              </div>
+              <div>
+                <p class="text-[10px] font-semibold uppercase tracking-[0.3em] text-[#1A1A1A]/40 mb-2">Hours</p>
+                <p class="text-[#1A1A1A]/80 text-base leading-relaxed">매일 08:00 – 21:00<br>매주 일요일 휴무</p>
+              </div>
+            </div>
+
+            <div class="flex gap-5">
+              <div class="w-10 h-10 rounded-full bg-[#16A34A]/10 flex items-center justify-center shrink-0 mt-0.5">
+                <i class="fas fa-subway text-[#16A34A] text-sm"></i>
+              </div>
+              <div>
+                <p class="text-[10px] font-semibold uppercase tracking-[0.3em] text-[#1A1A1A]/40 mb-2">Transport</p>
+                <p class="text-[#1A1A1A]/80 text-base leading-relaxed">신사역 8번 출구에서 도보 3분<br>주차는 건물 지하 주차장 이용</p>
+              </div>
+            </div>
+
+            <div class="flex gap-5">
+              <div class="w-10 h-10 rounded-full bg-[#16A34A]/10 flex items-center justify-center shrink-0 mt-0.5">
+                <i class="fas fa-phone text-[#16A34A] text-sm"></i>
+              </div>
+              <div>
+                <p class="text-[10px] font-semibold uppercase tracking-[0.3em] text-[#1A1A1A]/40 mb-2">Contact</p>
+                <p class="text-[#1A1A1A]/80 text-base">02-1234-5678</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== CTA Section ========== -->
+  <section class="py-24 md:py-32 relative overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-br from-[#F0FDF4] via-[#DCFCE7] to-[#F0FDF4]"></div>
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-[#16A34A]/8 rounded-full blur-[120px]"></div>
+
+    <div class="max-w-3xl mx-auto px-4 md:px-8 text-center relative z-10">
+      <div class="reveal" style="--delay: 0;">
+        <i class="fas fa-leaf text-6xl md:text-8xl text-[#16A34A]/20 block mb-6"></i>
+      </div>
+      <h2 class="text-3xl md:text-4xl lg:text-5xl font-dm font-bold leading-snug text-[#1A1A1A] reveal" style="--delay: 1;">
+        오늘부터<br>건강한 한 끼를 시작하세요
+      </h2>
+      <p class="text-[#1A1A1A]/50 text-base md:text-lg mt-6 max-w-lg mx-auto reveal" style="--delay: 2;">
+        그린볼과 함께라면 바쁜 일상 속에서도 건강한 식사를 포기하지 않아도 됩니다. 지금 첫 주문 시 20% 할인을 드립니다.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-5 justify-center mt-10 reveal" style="--delay: 3;">
+        <a href="#" class="inline-flex items-center justify-center gap-3 px-10 py-5 bg-[#16A34A] text-white font-semibold text-[11px] tracking-[0.3em] uppercase rounded-full shadow-lg shadow-[#16A34A]/20 hover:bg-[#15803D]">
+          지금 주문하기
+          <span class="w-7 h-7 rounded-full bg-white/15 flex items-center justify-center">
+            <i class="fas fa-arrow-right text-[10px]"></i>
+          </span>
+        </a>
+        <a href="https://www.instagram.com/" target="_blank" class="inline-flex items-center justify-center gap-3 px-10 py-5 border border-[#16A34A]/30 text-[#16A34A] font-semibold text-[11px] tracking-[0.3em] uppercase rounded-full hover:bg-white">
+          <i class="fab fa-instagram text-sm"></i>
+          Instagram
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== Footer ========== -->
+  <footer class="py-16 md:py-24 bg-[#1A1A1A]">
+    <div class="max-w-7xl mx-auto px-4 md:px-8">
+      <div class="grid md:grid-cols-3 gap-12 items-start mb-16">
+        <div>
+          <div class="flex items-center gap-3 mb-4">
+            <span class="w-8 h-8 bg-[#16A34A] rounded-full flex items-center justify-center">
+              <i class="fas fa-leaf text-white text-xs"></i>
+            </span>
+            <span class="font-dm text-2xl text-white tracking-tight font-bold">GREEN BOWL</span>
+          </div>
+          <p class="text-white/30 text-sm leading-relaxed max-w-xs">
+            유기농 재료로 만든 건강한 한 끼. 매일 신선하게 준비하는 프리미엄 샐러드 브랜드.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-2 gap-8">
+          <div>
+            <p class="text-[10px] font-semibold text-white/20 uppercase tracking-[0.3em] mb-4">Menu</p>
+            <ul class="space-y-2.5">
+              <li><a href="#menu" class="text-white/50 text-sm hover:text-[#16A34A] transition">Signature</a></li>
+              <li><a href="#menu" class="text-white/50 text-sm hover:text-[#16A34A] transition">Season</a></li>
+              <li><a href="#menu" class="text-white/50 text-sm hover:text-[#16A34A] transition">Dressing</a></li>
+              <li><a href="#menu" class="text-white/50 text-sm hover:text-[#16A34A] transition">Smoothie</a></li>
+            </ul>
+          </div>
+          <div>
+            <p class="text-[10px] font-semibold text-white/20 uppercase tracking-[0.3em] mb-4">Info</p>
+            <ul class="space-y-2.5">
+              <li><a href="#about" class="text-white/50 text-sm hover:text-[#16A34A] transition">About</a></li>
+              <li><a href="#nutrition" class="text-white/50 text-sm hover:text-[#16A34A] transition">Nutrition</a></li>
+              <li><a href="#subscribe" class="text-white/50 text-sm hover:text-[#16A34A] transition">Subscribe</a></li>
+              <li><a href="#location" class="text-white/50 text-sm hover:text-[#16A34A] transition">Location</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <div>
+          <p class="text-[10px] font-semibold text-white/20 uppercase tracking-[0.3em] mb-4">Follow</p>
+          <div class="flex gap-3">
+            <a href="#" class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white/50 hover:text-[#16A34A] hover:border-[#16A34A]/30 transition">
+              <i class="fab fa-instagram text-sm"></i>
+            </a>
+            <a href="#" class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white/50 hover:text-[#16A34A] hover:border-[#16A34A]/30 transition">
+              <i class="fab fa-facebook-f text-sm"></i>
+            </a>
+            <a href="#" class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white/50 hover:text-[#16A34A] hover:border-[#16A34A]/30 transition">
+              <i class="fas fa-blog text-sm"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="border-t border-white/5 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+        <p class="text-[10px] text-white/15 tracking-[0.5em] uppercase">
+          &copy; 2024 Green Bowl. All rights reserved by DLAB.
+        </p>
+        <div class="flex gap-6">
+          <a href="#" class="text-[10px] text-white/15 tracking-[0.2em] uppercase hover:text-white/40 transition">Privacy</a>
+          <a href="#" class="text-[10px] text-white/15 tracking-[0.2em] uppercase hover:text-white/40 transition">Terms</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ========== Login Modal ========== -->
+  <div id="salad-modal" class="fixed inset-0 z-[100] hidden items-center justify-center p-4 bg-[#1A1A1A]/20 backdrop-blur-3xl">
+    <div class="bg-white w-full max-w-sm p-8 md:p-14 shadow-2xl relative rounded-[3rem] border border-[#16A34A]/10">
+      <button onclick="toggleSaladModal()" class="absolute top-8 right-8 w-8 h-8 rounded-full bg-[#F0FDF4] flex items-center justify-center text-[#1A1A1A]/30 hover:text-[#16A34A] hover:bg-[#16A34A]/10 transition text-lg">&times;</button>
+
+      <div class="text-center mb-12">
+        <h2 class="text-xl font-dm tracking-[0.1em] font-bold text-[#1A1A1A] mb-3">GREEN BOWL</h2>
+        <p class="text-[9px] text-[#16A34A] font-semibold tracking-[0.3em] uppercase">Member Access</p>
+      </div>
+
+      <div class="space-y-5">
+        <div class="space-y-2">
+          <p class="text-[10px] font-semibold text-[#1A1A1A]/30 uppercase tracking-[0.2em] ml-1">Email</p>
+          <input type="text" placeholder="your@email.com" class="w-full bg-[#F0FDF4] border-none rounded-2xl py-5 px-6 outline-none focus:ring-1 focus:ring-[#16A34A] transition text-[13px] text-[#1A1A1A]">
+        </div>
+        <div class="space-y-2">
+          <p class="text-[10px] font-semibold text-[#1A1A1A]/30 uppercase tracking-[0.2em] ml-1">Password</p>
+          <input type="password" placeholder="Password" class="w-full bg-[#F0FDF4] border-none rounded-2xl py-5 px-6 outline-none focus:ring-1 focus:ring-[#16A34A] transition text-[13px] text-[#1A1A1A]">
+        </div>
+        <button class="w-full bg-[#16A34A] text-white py-5 rounded-full text-[11px] tracking-[0.4em] font-semibold uppercase hover:bg-[#15803D] transition shadow-lg shadow-[#16A34A]/20 mt-2">
+          Sign In
         </button>
-        
-        <div class="text-center pt-4 border-t border-[#F0FDF4] mt-6">
-           <p class="text-xs text-[#166534]/60">By continuing, you agree to our <a href="#" class="font-semibold underline">Terms of Service</a></p>
+        <div class="flex justify-center gap-10 pt-2">
+          <a href="#" class="text-[10px] text-[#1A1A1A]/40 tracking-[0.2em] font-semibold uppercase hover:text-[#16A34A] transition">Join</a>
+          <a href="#" class="text-[10px] text-[#1A1A1A]/40 tracking-[0.2em] font-semibold uppercase hover:text-[#16A34A] transition">Help</a>
         </div>
       </div>
     </div>
   </div>
 
-  <footer class="py-20 md:py-32 bg-white text-center px-6 border-t border-[#F0FDF4]">
-     <div class="inline-flex items-center gap-6 mb-6">
-        <span class="font-brand font-semibold text-xl tracking-tight text-[#166534]">Greens<span class="text-[#22C55E] font-medium">&</span>Grain</span>
-     </div>
-     <p class="text-[11px] font-medium text-[#166534]/40 uppercase tracking-wide">Eat clean, live green. © 2024 Greens & Grain.</p>
-  </footer>
-
-  <script>
-    function toggleSaladModal() {
-      const modal = document.getElementById('salad-modal');
-      modal.classList.toggle('hidden');
-      modal.classList.toggle('flex');
-    }
-  </script>
-
 </div>
+
+<script>
+  // Modal toggle
+  function toggleSaladModal() {
+    const modal = document.getElementById('salad-modal');
+    modal.classList.toggle('hidden');
+    modal.classList.toggle('flex');
+  }
+
+  // Close modal on backdrop click
+  document.getElementById('salad-modal').addEventListener('click', function(e) {
+    if (e.target === this) toggleSaladModal();
+  });
+
+  // IntersectionObserver for scroll reveal animations
+  (function() {
+    const observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    });
+
+    document.querySelectorAll('.reveal').forEach(function(el) {
+      observer.observe(el);
+    });
+  })();
+</script>

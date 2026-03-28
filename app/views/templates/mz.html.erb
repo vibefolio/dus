@@ -1,159 +1,554 @@
-<%# Consulting Template - 비저너리 파트너스 (VISIONARY PARTNERS) %>
+<%# MZ Template - 바이브 (VIBE) %>
 
 <style>
-  /* Supanova Design Upgrade */
+  /* Supanova Design — MZ Gen Bold Archetype */
   * { word-break: keep-all; }
-  html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+  html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
   h1, h2, h3, h4 { text-wrap: balance; letter-spacing: -0.02em; line-height: 1.3; }
-  a, button { transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1); }
+  a, button { transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1); }
   a:hover, button:hover { transform: scale(1.02); }
   a:active, button:active { transform: scale(0.98); }
 
-  @import url('https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700;800&family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap');
-  
-  .font-serif { font-family: 'Nanum Myeongjo', serif; }
-  .font-sans { font-family: 'Pretendard Variable', 'Pretendard', -apple-system, sans-serif; }
+  @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap');
+
+  .font-sans { font-family: 'Pretendard Variable', 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, sans-serif; }
+  .font-grotesk { font-family: 'Space Grotesk', sans-serif; }
 
   @media (max-width: 768px) {
     .mobile-desc { font-size: 14px !important; line-height: 1.8; }
-    .mobile-title { font-size: 40px !important; }
+    .mobile-title { font-size: 42px !important; }
+  }
+
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(2rem); filter: blur(4px); }
+    to { opacity: 1; transform: translateY(0); filter: blur(0); }
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(2rem);
+  }
+
+  .reveal.is-visible {
+    animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    animation-delay: calc(var(--delay, 0) * 100ms);
+  }
+
+  .product-card {
+    transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .product-card:hover {
+    transform: translateY(-8px);
+  }
+  .product-card:hover img {
+    transform: scale(1.05);
+  }
+
+  .gallery-item {
+    transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .gallery-item:hover {
+    transform: scale(1.02);
+  }
+  .gallery-item:hover img {
+    transform: scale(1.08);
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-12px); }
+  }
+
+  .gradient-text {
+    background: linear-gradient(135deg, #A855F7, #EC4899);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .gradient-bg {
+    background: linear-gradient(135deg, #A855F7, #EC4899);
+  }
+
+  .noise-overlay {
+    background-image: url("https://www.transparenttextures.com/patterns/asfalt-dark.png");
+    opacity: 0.15;
   }
 </style>
 
-<div class="bg-white text-[#111827] font-sans selection:bg-[#F59E0B] selection:text-white min-h-screen overflow-x-hidden">
+<div class="bg-[#0A0A0A] text-white font-sans selection:bg-[#A855F7] selection:text-white min-h-screen overflow-x-hidden relative">
+  <div class="fixed inset-0 noise-overlay pointer-events-none z-[60]"></div>
 
-  <!-- Nav -->
-  <nav class="fixed w-full z-50 px-8 py-6 bg-white/90 backdrop-blur-xl border-b border-[#F59E0B]/20">
-    <div class="container mx-auto px-4 md:px-6 flex justify-between items-center flex-nowrap">
-      <div class="flex items-center gap-6">
-         <div class="w-2 h-8 bg-[#F59E0B]"></div>
-         <div class="flex flex-col">
-            <span class="font-serif text-xl font-semibold tracking-tight text-[#111827] leading-none">VISIONARY</span>
-            <span class="text-[9px] font-semibold tracking-[0.2em] uppercase text-[#F59E0B] mt-0.5">Partners Group</span>
-         </div>
-      </div>
-      
-      <div class="hidden md:flex gap-14 text-[11px] font-semibold uppercase tracking-[0.2em] text-[#111827]/40">
-        <a href="#strategy" class="hover:text-[#F59E0B] transition">Strategy</a>
-        <a href="#digital" class="hover:text-[#F59E0B] transition">Digital</a>
-        <a href="#cases" class="hover:text-[#F59E0B] transition">Performance</a>
-      </div>
-      
-      <div class="flex-nowrap shrink-0 flex gap-12 items-center">
-         <button onclick="toggleConsultModal()" class="hidden md:block text-[11px] font-semibold uppercase tracking-[0.2em] text-[#111827]/40 hover:text-[#F59E0B]" data-mobile-menu-copy="true">Partner Access</button>
-         <button class="hidden md:inline-flex bg-[#111827] text-white px-4 py-2 text-xs md:text-base md:px-8 md:py-3 whitespace-nowrap rounded-none font-semibold text-[11px] tracking-wide uppercase hover:bg-[#F59E0B] transition shadow-xl" data-mobile-menu-copy="true">
-           Get Inquiry
-         </button>
-         <button class="mobile-menu-trigger md:hidden ml-2 sm:ml-4 text-2xl focus:outline-none" style="color: inherit;">
-           <i class="fas fa-bars"></i>
-         </button>
+  <!-- ========== Nav ========== -->
+  <nav class="fixed w-full z-50 px-4 md:px-8 py-5 bg-[#0A0A0A]/80 backdrop-blur-xl border-b border-white/5">
+    <div class="max-w-7xl mx-auto flex justify-between items-center">
+      <a href="#" class="flex items-center gap-3">
+        <span class="font-grotesk text-2xl tracking-tight font-bold gradient-text">VIBE</span>
+      </a>
 
+      <div class="hidden md:flex gap-12 text-[10px] font-semibold uppercase tracking-[0.4em] text-white/40">
+        <a href="#products" class="hover:text-[#A855F7] transition">Products</a>
+        <a href="#mood" class="hover:text-[#A855F7] transition">Mood</a>
+        <a href="#community" class="hover:text-[#A855F7] transition">Community</a>
+        <a href="#gallery" class="hover:text-[#A855F7] transition">Gallery</a>
+        <a href="#event" class="hover:text-[#A855F7] transition">Event</a>
+      </div>
+
+      <button class="mobile-menu-trigger md:hidden ml-auto text-2xl focus:outline-none" style="color: inherit;">
+        <i class="fas fa-bars"></i>
+      </button>
+
+      <div class="hidden md:flex gap-6 items-center shrink-0">
+        <button onclick="toggleMzModal()" class="text-[10px] font-semibold uppercase tracking-[0.4em] text-white/40 hover:text-[#A855F7]" data-mobile-menu-copy="true">Login</button>
+        <button class="gradient-bg text-white px-8 py-3.5 rounded-full font-bold text-[10px] tracking-[0.3em] uppercase hover:opacity-90 transition shadow-lg shadow-[#A855F7]/20" data-mobile-menu-copy="true">
+          Shop Now
+        </button>
       </div>
     </div>
 
-      <%= render partial: 'templates/shared/mobile_menu_overlay' %></nav>
+    <%= render partial: 'templates/shared/mobile_menu_overlay' %>
+  </nav>
 
-  <!-- Hero -->
-  <header class="min-h-screen relative flex items-center justify-center pt-20">
-    <div class="absolute inset-0 bg-[#F3F4F6] -z-20"></div>
-    <div class="absolute right-0 top-0 w-[40%] h-full bg-[#E5E7EB] -z-10 hidden lg:block"></div>
-    
-    <div class="container mx-auto px-3 md:px-6 relative z-10 grid lg:grid-cols-2 gap-12 md:p-20 items-center">
-      <div class="space-y-12 text-center lg:text-left">
-        <div class="inline-flex items-center gap-6">
-           <span class="w-12 h-[2px] bg-[#F59E0B]"></span>
-           <span class="text-[10px] font-semibold tracking-[0.4em] uppercase text-[#F59E0B]">Global Strategy Excellence</span>
+  <!-- ========== Hero ========== -->
+  <header class="min-h-[100dvh] relative flex items-center justify-center pt-20">
+    <div class="absolute inset-0">
+      <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-[#A855F7]/20 rounded-full blur-[150px]"></div>
+      <div class="absolute bottom-1/4 right-1/4 w-80 h-80 bg-[#EC4899]/20 rounded-full blur-[150px]"></div>
+    </div>
+
+    <div class="max-w-7xl mx-auto px-4 md:px-8 relative z-10 grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+      <div class="space-y-10 text-center lg:text-left">
+        <div class="inline-flex items-center gap-5 reveal" style="--delay: 0;">
+          <span class="w-2 h-2 rounded-full gradient-bg"></span>
+          <span class="text-[10px] font-semibold tracking-[0.6em] uppercase text-white/40">New Generation Brand</span>
         </div>
-        
-        <h1 class="text-2xl md:text-4xl md:text-6xl font-serif font-semibold leading-[1.2] tracking-tight text-[#111827] mobile-title">
-           관점의 전환,<br>
-           <span class="italic text-transparent bg-clip-text bg-gradient-to-r from-[#F59E0B] to-[#111827]">성장의 가속화.</span>
+
+        <h1 class="text-4xl md:text-6xl lg:text-[5.5rem] font-grotesk font-bold leading-tight tracking-tight mobile-title reveal" style="--delay: 1;">
+          너의 <span class="gradient-text">바이브</span>를<br>깨워봐.
         </h1>
-        
-        <p class="text-[#374151] text-sm md:text-lg leading-relaxed max-w-lg mx-auto lg:mx-0 mobile-desc">
-           변화의 핵심을 꿰뚫는 통찰과 데이터 기반의 실행 전략. 비저너리 파트너스는 귀하의 비즈니스를 승리로 이끄는 가장 확실한 로드맵입니다.
-        </p>
-        
-        <div class="pt-6 flex flex-col sm:flex-row gap-10 justify-center lg:justify-start">
-           <button class="px-12 py-5 bg-[#F59E0B] text-white font-semibold text-[11px] tracking-wide uppercase hover:bg-[#111827] transition shadow-xl">
-              Our Solutions
-           </button>
-           <button class="px-12 py-5 border border-[#111827]/20 text-[#111827] font-semibold text-[11px] tracking-wide uppercase hover:bg-white transition">
-              Client Stories
-           </button>
-        </div>
 
-        <div class="pt-10 flex gap-16 border-t border-[#111827]/10 items-center justify-center lg:justify-start opacity-70 grayscale">
-            <span class="font-serif font-semibold text-xl text-[#111827]">SAMSUNG</span>
-            <span class="font-serif font-semibold text-xl text-[#111827]">Hyundai</span>
-            <span class="font-serif font-semibold text-xl text-[#111827]">SK</span>
-            <span class="font-serif font-semibold text-xl text-[#111827]">LG</span>
+        <p class="text-white/50 text-sm md:text-lg leading-relaxed max-w-lg mx-auto lg:mx-0 mobile-desc reveal" style="--delay: 2;">
+          트렌드를 따라가지 마. 트렌드를 만들어. VIBE는 MZ세대의 자유로운 감성을 담은 라이프스타일 브랜드입니다.
+        </p>
+
+        <div class="pt-4 flex flex-col sm:flex-row gap-5 justify-center lg:justify-start reveal" style="--delay: 3;">
+          <a href="#products" class="inline-flex items-center justify-center gap-3 px-10 py-5 gradient-bg text-white font-bold text-[11px] tracking-[0.3em] uppercase rounded-full shadow-xl shadow-[#A855F7]/20 hover:opacity-90">
+            컬렉션 보기
+            <span class="w-7 h-7 rounded-full bg-white/15 flex items-center justify-center">
+              <i class="fas fa-arrow-right text-[10px]"></i>
+            </span>
+          </a>
+          <a href="#mood" class="inline-flex items-center justify-center px-10 py-5 border border-white/10 text-white/70 font-semibold text-[11px] tracking-[0.3em] uppercase hover:bg-white/5 rounded-full">
+            Brand Story
+          </a>
         </div>
       </div>
-      
-      <div class="relative hidden lg:block">
-         <div class="relative z-10 bg-white p-12 shadow-2xl border-t-8 border-[#F59E0B]">
-            <div class="aspect-[4/3] bg-gray-100 mb-8 overflow-hidden relative group">
-               <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=1200" alt="Strategy Meeting" class="w-full h-full object-cover transition duration-700 group-hover:scale-110 grayscale group-hover:grayscale-0">
-            </div>
-            <div class="flex justify-between items-end">
-               <div>
-                  <p class="text-[10px] font-semibold text-[#F59E0B] uppercase tracking-[0.2em] mb-2">Latest Insight</p>
-                  <h3 class="text-2xl font-serif font-semibold text-[#111827] mb-2">Future of DX</h3>
-                  <p class="text-xs text-gray-500 max-w-xs">디지털 전환 시대, 기업이 갖춰야 할 5가지 핵심 역량 보고서</p>
-               </div>
-               <button class="w-12 h-12 bg-[#111827] text-white flex items-center justify-center hover:bg-[#F59E0B] transition">
-                  <span class="text-xl">→</span>
-               </button>
-            </div>
-         </div>
-         <!-- Decorative Elements -->
-         <div class="absolute -bottom-10 -right-10 w-40 h-40 border-r-8 border-b-8 border-[#111827]/10"></div>
+
+      <div class="relative reveal" style="--delay: 2;">
+        <div class="absolute -top-12 -right-12 w-72 h-72 bg-[#EC4899]/15 rounded-full blur-[100px]"></div>
+        <div class="relative group">
+          <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?q=80&w=1200" alt="VIBE 제품" class="w-full aspect-[4/5] object-cover rounded-[3rem] shadow-2xl group-hover:shadow-[0_30px_80px_-20px_rgba(168,85,247,0.3)] transition-all duration-700" loading="eager">
+          <div class="absolute -bottom-6 -left-6 md:-bottom-8 md:-left-8 bg-[#151515] p-8 md:p-10 rounded-2xl shadow-xl border border-white/5 max-w-[260px]" style="animation: float 6s ease-in-out infinite;">
+            <p class="text-[10px] font-semibold gradient-text uppercase tracking-[0.4em] mb-3">Limited Drop</p>
+            <p class="text-xl font-grotesk font-bold text-white">SS26 Collection</p>
+          </div>
+        </div>
       </div>
     </div>
   </header>
 
-  <!-- Login Modal -->
-  <div id="consult-modal" class="fixed inset-0 z-[100] hidden items-center justify-center p-4 bg-[#111827]/90 backdrop-blur-xl">
-    <div class="bg-white w-full max-w-sm p-14 shadow-2xl relative border-l-8 border-[#F59E0B]">
-      <button onclick="toggleConsultModal()" class="absolute top-8 right-8 text-[#111827]/30 hover:text-[#F59E0B] transition text-2xl font-light">&times;</button>
-      
-      <div class="text-center mb-12">
-        <h2 class="text-xl font-serif font-semibold tracking-tight text-[#111827] mb-2 uppercase">PARTNER_PORTAL</h2>
-        <p class="text-[9px] text-[#F59E0B] font-semibold tracking-[0.2em] uppercase">Confidential Data Room</p>
+  <!-- ========== Products (4개) ========== -->
+  <section id="products" class="py-24 md:py-32">
+    <div class="max-w-7xl mx-auto px-4 md:px-8">
+      <div class="text-center mb-16 md:mb-20">
+        <span class="rounded-full px-4 py-1.5 text-[11px] uppercase tracking-[0.15em] font-medium bg-white/5 text-[#A855F7] border border-white/10 reveal" style="--delay: 0;">Products</span>
+        <h2 class="text-3xl md:text-4xl lg:text-5xl font-grotesk font-bold leading-snug text-white mt-6 reveal" style="--delay: 1;">
+          지금 가장 핫한<br><span class="gradient-text">아이템</span>
+        </h2>
+        <p class="text-white/40 text-base md:text-lg mt-4 max-w-xl mx-auto reveal" style="--delay: 2;">
+          한정 수량, 빠르게 품절되는 아이템들을 놓치지 마세요.
+        </p>
       </div>
-      
-      <div class="space-y-8">
-        <div class="space-y-2">
-            <p class="text-[9px] font-semibold text-[#111827]/40 uppercase tracking-wide ml-1">Access Code</p>
-            <input type="password" placeholder="********" class="w-full bg-[#F3F4F6] border border-[#111827]/5 py-5 px-6 outline-none focus:border-[#F59E0B] transition text-[11px] font-semibold uppercase tracking-wide text-[#111827]">
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div class="product-card bg-[#151515] rounded-[2rem] overflow-hidden border border-white/5 reveal" style="--delay: 0;">
+          <div class="overflow-hidden relative">
+            <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?q=80&w=600" alt="스니커즈" class="w-full aspect-[4/3] object-cover transition-transform duration-700" loading="lazy" decoding="async">
+            <span class="absolute top-4 left-4 px-3 py-1.5 gradient-bg rounded-full text-[10px] font-bold uppercase tracking-wider">Hot</span>
+          </div>
+          <div class="p-6">
+            <p class="text-[10px] font-semibold text-[#A855F7] uppercase tracking-[0.2em] mb-2">Footwear</p>
+            <h3 class="text-lg font-bold text-white mb-2">바이브 러너 V2</h3>
+            <div class="flex items-center justify-between">
+              <span class="text-lg font-grotesk font-bold gradient-text">₩189,000</span>
+              <span class="text-white/30 text-xs line-through">₩229,000</span>
+            </div>
+          </div>
         </div>
-        <button class="w-full bg-[#111827] text-white py-5 text-[10px] tracking-[0.4em] font-semibold uppercase hover:bg-[#F59E0B] transition shadow-xl">
-           Secure Connect
+
+        <div class="product-card bg-[#151515] rounded-[2rem] overflow-hidden border border-white/5 reveal" style="--delay: 1;">
+          <div class="overflow-hidden relative">
+            <img src="https://images.unsplash.com/photo-1556306535-0f09a537f0a3?q=80&w=600" alt="후디" class="w-full aspect-[4/3] object-cover transition-transform duration-700" loading="lazy" decoding="async">
+            <span class="absolute top-4 left-4 px-3 py-1.5 bg-white/10 backdrop-blur-sm rounded-full text-[10px] font-bold uppercase tracking-wider text-white">New</span>
+          </div>
+          <div class="p-6">
+            <p class="text-[10px] font-semibold text-[#EC4899] uppercase tracking-[0.2em] mb-2">Apparel</p>
+            <h3 class="text-lg font-bold text-white mb-2">오버사이즈 후디</h3>
+            <div class="flex items-center justify-between">
+              <span class="text-lg font-grotesk font-bold gradient-text">₩89,000</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card bg-[#151515] rounded-[2rem] overflow-hidden border border-white/5 reveal" style="--delay: 2;">
+          <div class="overflow-hidden relative">
+            <img src="https://images.unsplash.com/photo-1553062407-98eeb64c6a62?q=80&w=600" alt="백팩" class="w-full aspect-[4/3] object-cover transition-transform duration-700" loading="lazy" decoding="async">
+            <span class="absolute top-4 left-4 px-3 py-1.5 bg-white/10 backdrop-blur-sm rounded-full text-[10px] font-bold uppercase tracking-wider text-white">Limited</span>
+          </div>
+          <div class="p-6">
+            <p class="text-[10px] font-semibold text-[#A855F7] uppercase tracking-[0.2em] mb-2">Bag</p>
+            <h3 class="text-lg font-bold text-white mb-2">유틸리티 백팩</h3>
+            <div class="flex items-center justify-between">
+              <span class="text-lg font-grotesk font-bold gradient-text">₩149,000</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card bg-[#151515] rounded-[2rem] overflow-hidden border border-white/5 reveal" style="--delay: 3;">
+          <div class="overflow-hidden relative">
+            <img src="https://images.unsplash.com/photo-1434056886845-dbe89f0b9571?q=80&w=600" alt="선글라스" class="w-full aspect-[4/3] object-cover transition-transform duration-700" loading="lazy" decoding="async">
+            <span class="absolute top-4 left-4 px-3 py-1.5 gradient-bg rounded-full text-[10px] font-bold uppercase tracking-wider">Sold Out</span>
+          </div>
+          <div class="p-6">
+            <p class="text-[10px] font-semibold text-[#EC4899] uppercase tracking-[0.2em] mb-2">Accessory</p>
+            <h3 class="text-lg font-bold text-white mb-2">레트로 선글라스</h3>
+            <div class="flex items-center justify-between">
+              <span class="text-lg font-grotesk font-bold gradient-text">₩69,000</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== Brand Mood ========== -->
+  <section id="mood" class="py-24 md:py-32 relative overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-b from-[#0A0A0A] via-[#0F0515] to-[#0A0A0A]"></div>
+
+    <div class="max-w-7xl mx-auto px-4 md:px-8 relative z-10 grid lg:grid-cols-2 gap-16 lg:gap-24 items-center">
+      <div class="relative reveal" style="--delay: 0;">
+        <div class="absolute -top-8 -left-8 w-60 h-60 bg-[#A855F7]/10 rounded-full blur-[80px]"></div>
+        <div class="grid grid-cols-5 gap-4">
+          <div class="col-span-3 overflow-hidden rounded-[2rem]">
+            <img src="https://images.unsplash.com/photo-1529139574466-a303027c1d8b?q=80&w=800" alt="브랜드 무드" class="w-full h-full object-cover aspect-[3/4]" loading="lazy" decoding="async">
+          </div>
+          <div class="col-span-2 flex flex-col gap-4">
+            <div class="overflow-hidden rounded-[1.5rem] flex-1">
+              <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?q=80&w=600" alt="스트리트 패션" class="w-full h-full object-cover" loading="lazy" decoding="async">
+            </div>
+            <div class="overflow-hidden rounded-[1.5rem] flex-1">
+              <img src="https://images.unsplash.com/photo-1506634572416-48cdfe530110?q=80&w=600" alt="라이프스타일" class="w-full h-full object-cover" loading="lazy" decoding="async">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="space-y-8 reveal" style="--delay: 1;">
+        <span class="rounded-full px-4 py-1.5 text-[11px] uppercase tracking-[0.15em] font-medium bg-white/5 text-[#EC4899] border border-white/10">Our Mood</span>
+
+        <h2 class="text-3xl md:text-4xl lg:text-5xl font-grotesk font-bold leading-snug text-white">
+          규칙은 없어.<br><span class="gradient-text">감각만 있을 뿐.</span>
+        </h2>
+
+        <p class="text-white/50 text-base md:text-lg leading-relaxed">
+          VIBE는 누구의 기준도 따르지 않습니다. 우리는 스트리트에서 영감을 받고, 디지털 세대의 에너지를 디자인에 담습니다. 옷이 아니라 태도를 입는 것.
+        </p>
+        <p class="text-white/50 text-base md:text-lg leading-relaxed">
+          서울 홍대에서 시작해 도쿄, 방콕, LA까지. MZ세대가 공감하는 글로벌 스트리트 무드를 만들어가고 있습니다.
+        </p>
+
+        <div class="grid grid-cols-3 gap-6 pt-6 border-t border-white/5">
+          <div>
+            <p class="text-2xl md:text-3xl font-grotesk font-bold gradient-text">50K+</p>
+            <p class="text-[11px] text-white/30 uppercase tracking-[0.1em] mt-1 font-medium">커뮤니티 멤버</p>
+          </div>
+          <div>
+            <p class="text-2xl md:text-3xl font-grotesk font-bold gradient-text">4개국</p>
+            <p class="text-[11px] text-white/30 uppercase tracking-[0.1em] mt-1 font-medium">글로벌 진출</p>
+          </div>
+          <div>
+            <p class="text-2xl md:text-3xl font-grotesk font-bold gradient-text">Gen Z</p>
+            <p class="text-[11px] text-white/30 uppercase tracking-[0.1em] mt-1 font-medium">Core Target</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== Community ========== -->
+  <section id="community" class="py-24 md:py-32">
+    <div class="max-w-7xl mx-auto px-4 md:px-8">
+      <div class="text-center mb-16 md:mb-20">
+        <span class="rounded-full px-4 py-1.5 text-[11px] uppercase tracking-[0.15em] font-medium bg-white/5 text-[#A855F7] border border-white/10 reveal" style="--delay: 0;">Community</span>
+        <h2 class="text-3xl md:text-4xl lg:text-5xl font-grotesk font-bold leading-snug text-white mt-6 reveal" style="--delay: 1;">
+          바이브 크루와 함께
+        </h2>
+        <p class="text-white/40 text-base md:text-lg mt-4 max-w-xl mx-auto reveal" style="--delay: 2;">
+          단순한 브랜드가 아닌, 하나의 문화. VIBE 크루가 만들어가는 이야기.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-6">
+        <div class="bg-[#151515] rounded-[2rem] p-8 border border-white/5 reveal" style="--delay: 0;">
+          <div class="w-14 h-14 gradient-bg rounded-2xl flex items-center justify-center mb-6">
+            <i class="fas fa-users text-white text-lg"></i>
+          </div>
+          <h3 class="text-xl font-bold text-white mb-3">크루 밋업</h3>
+          <p class="text-white/40 text-sm leading-relaxed">매월 서울, 부산에서 열리는 크루 밋업. 스타일링 워크숍과 네트워킹 파티가 함께합니다.</p>
+        </div>
+
+        <div class="bg-[#151515] rounded-[2rem] p-8 border border-white/5 reveal" style="--delay: 1;">
+          <div class="w-14 h-14 gradient-bg rounded-2xl flex items-center justify-center mb-6">
+            <i class="fas fa-palette text-white text-lg"></i>
+          </div>
+          <h3 class="text-xl font-bold text-white mb-3">콜라보 프로젝트</h3>
+          <p class="text-white/40 text-sm leading-relaxed">아티스트, 뮤지션, 크리에이터와의 한정판 협업. 매 시즌 새로운 콜라보가 공개됩니다.</p>
+        </div>
+
+        <div class="bg-[#151515] rounded-[2rem] p-8 border border-white/5 reveal" style="--delay: 2;">
+          <div class="w-14 h-14 gradient-bg rounded-2xl flex items-center justify-center mb-6">
+            <i class="fas fa-bolt text-white text-lg"></i>
+          </div>
+          <h3 class="text-xl font-bold text-white mb-3">얼리 액세스</h3>
+          <p class="text-white/40 text-sm leading-relaxed">크루 멤버만의 특권. 신제품 48시간 선공개와 멤버 전용 할인을 만나보세요.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== SNS Gallery ========== -->
+  <section id="gallery" class="py-24 md:py-32 relative overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-b from-[#0A0A0A] via-[#100A15] to-[#0A0A0A]"></div>
+
+    <div class="max-w-7xl mx-auto px-4 md:px-8 relative z-10">
+      <div class="text-center mb-16 md:mb-20">
+        <span class="rounded-full px-4 py-1.5 text-[11px] uppercase tracking-[0.15em] font-medium bg-white/5 text-[#EC4899] border border-white/10 reveal" style="--delay: 0;">@vibe_official</span>
+        <h2 class="text-3xl md:text-4xl lg:text-5xl font-grotesk font-bold leading-snug text-white mt-6 reveal" style="--delay: 1;">
+          #VIBECREW
+        </h2>
+      </div>
+
+      <div class="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
+        <div class="gallery-item overflow-hidden rounded-[1.5rem] reveal" style="--delay: 0;">
+          <img src="https://images.unsplash.com/photo-1509631179647-0177331693ae?q=80&w=600" alt="스트리트 룩" class="w-full aspect-square object-cover transition-transform duration-700" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item overflow-hidden rounded-[1.5rem] reveal" style="--delay: 1;">
+          <img src="https://images.unsplash.com/photo-1552374196-1ab2a1c593e8?q=80&w=600" alt="유스 컬처" class="w-full aspect-square object-cover transition-transform duration-700" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item overflow-hidden rounded-[1.5rem] reveal" style="--delay: 2;">
+          <img src="https://images.unsplash.com/photo-1495121605193-b116b5b9c5fe?q=80&w=600" alt="스니커즈" class="w-full aspect-square object-cover transition-transform duration-700" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item overflow-hidden rounded-[1.5rem] reveal" style="--delay: 3;">
+          <img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?q=80&w=600" alt="티셔츠" class="w-full aspect-square object-cover transition-transform duration-700" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item overflow-hidden rounded-[1.5rem] col-span-2 reveal" style="--delay: 4;">
+          <img src="https://images.unsplash.com/photo-1511556820780-d912e42b4980?q=80&w=900" alt="브랜드 캠페인" class="w-full aspect-[2/1] object-cover transition-transform duration-700" loading="lazy" decoding="async">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== Event ========== -->
+  <section id="event" class="py-24 md:py-32">
+    <div class="max-w-7xl mx-auto px-4 md:px-8">
+      <div class="grid lg:grid-cols-2 gap-16 items-center">
+        <div class="space-y-8 reveal" style="--delay: 0;">
+          <span class="rounded-full px-4 py-1.5 text-[11px] uppercase tracking-[0.15em] font-medium bg-white/5 text-[#EC4899] border border-white/10">Event</span>
+          <h2 class="text-3xl md:text-4xl lg:text-5xl font-grotesk font-bold leading-snug text-white">
+            VIBE POP-UP<br><span class="gradient-text">SEOUL 2026</span>
+          </h2>
+          <p class="text-white/50 text-base md:text-lg leading-relaxed">
+            성수동에서 열리는 VIBE의 첫 번째 팝업 스토어. 한정판 아이템과 라이브 DJ, 포토존까지. 3일간의 바이브를 경험하세요.
+          </p>
+
+          <div class="grid grid-cols-2 gap-6">
+            <div class="bg-[#151515] rounded-2xl p-6 border border-white/5">
+              <p class="text-[10px] font-semibold text-white/30 uppercase tracking-[0.2em] mb-2">Date</p>
+              <p class="text-white font-bold text-lg">4.18 – 4.20</p>
+            </div>
+            <div class="bg-[#151515] rounded-2xl p-6 border border-white/5">
+              <p class="text-[10px] font-semibold text-white/30 uppercase tracking-[0.2em] mb-2">Location</p>
+              <p class="text-white font-bold text-lg">서울 성수동</p>
+            </div>
+          </div>
+
+          <a href="#" class="inline-flex items-center justify-center gap-3 px-10 py-5 gradient-bg text-white font-bold text-[11px] tracking-[0.3em] uppercase rounded-full shadow-xl shadow-[#A855F7]/20 hover:opacity-90">
+            사전등록 하기
+            <span class="w-7 h-7 rounded-full bg-white/15 flex items-center justify-center">
+              <i class="fas fa-arrow-right text-[10px]"></i>
+            </span>
+          </a>
+        </div>
+
+        <div class="relative reveal" style="--delay: 1;">
+          <div class="absolute -top-12 -right-12 w-72 h-72 bg-[#A855F7]/10 rounded-full blur-[100px]"></div>
+          <img src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?q=80&w=800" alt="팝업 스토어" class="w-full aspect-[4/5] object-cover rounded-[3rem] shadow-2xl" loading="lazy" decoding="async">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== CTA Section ========== -->
+  <section class="py-24 md:py-32 relative overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-br from-[#0A0A0A] via-[#150A1A] to-[#0A0A0A]"></div>
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-[#A855F7]/10 rounded-full blur-[120px]"></div>
+
+    <div class="max-w-3xl mx-auto px-4 md:px-8 text-center relative z-10">
+      <div class="reveal" style="--delay: 0;">
+        <span class="text-6xl md:text-8xl gradient-text font-grotesk font-bold block mb-6">V</span>
+      </div>
+      <h2 class="text-3xl md:text-4xl lg:text-5xl font-grotesk font-bold leading-snug text-white reveal" style="--delay: 1;">
+        지금 크루에<br>합류하세요
+      </h2>
+      <p class="text-white/40 text-base md:text-lg mt-6 max-w-lg mx-auto reveal" style="--delay: 2;">
+        VIBE 크루가 되면 신제품 선공개, 멤버 전용 할인, 크루 밋업 초대까지. 당신만의 바이브를 함께 만들어가요.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-5 justify-center mt-10 reveal" style="--delay: 3;">
+        <a href="#" class="inline-flex items-center justify-center gap-3 px-10 py-5 gradient-bg text-white font-bold text-[11px] tracking-[0.3em] uppercase rounded-full shadow-lg shadow-[#A855F7]/20 hover:opacity-90">
+          크루 가입하기
+          <span class="w-7 h-7 rounded-full bg-white/15 flex items-center justify-center">
+            <i class="fas fa-arrow-right text-[10px]"></i>
+          </span>
+        </a>
+        <a href="https://www.instagram.com/" target="_blank" class="inline-flex items-center justify-center gap-3 px-10 py-5 border border-white/10 text-white/70 font-semibold text-[11px] tracking-[0.3em] uppercase rounded-full hover:bg-white/5">
+          <i class="fab fa-instagram text-sm"></i>
+          Instagram
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== Footer ========== -->
+  <footer class="py-16 md:py-24 bg-[#050505] border-t border-white/5">
+    <div class="max-w-7xl mx-auto px-4 md:px-8">
+      <div class="grid md:grid-cols-3 gap-12 items-start mb-16">
+        <div>
+          <span class="font-grotesk text-2xl tracking-tight font-bold gradient-text block mb-4">VIBE</span>
+          <p class="text-white/30 text-sm leading-relaxed max-w-xs">
+            MZ세대의 자유로운 감성을 담은 라이프스타일 브랜드. 트렌드를 만들어갑니다.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-2 gap-8">
+          <div>
+            <p class="text-[10px] font-semibold text-white/20 uppercase tracking-[0.3em] mb-4">Shop</p>
+            <ul class="space-y-2.5">
+              <li><a href="#products" class="text-white/50 text-sm hover:text-[#A855F7] transition">Footwear</a></li>
+              <li><a href="#products" class="text-white/50 text-sm hover:text-[#A855F7] transition">Apparel</a></li>
+              <li><a href="#products" class="text-white/50 text-sm hover:text-[#A855F7] transition">Bags</a></li>
+              <li><a href="#products" class="text-white/50 text-sm hover:text-[#A855F7] transition">Accessories</a></li>
+            </ul>
+          </div>
+          <div>
+            <p class="text-[10px] font-semibold text-white/20 uppercase tracking-[0.3em] mb-4">Info</p>
+            <ul class="space-y-2.5">
+              <li><a href="#mood" class="text-white/50 text-sm hover:text-[#A855F7] transition">About</a></li>
+              <li><a href="#community" class="text-white/50 text-sm hover:text-[#A855F7] transition">Community</a></li>
+              <li><a href="#event" class="text-white/50 text-sm hover:text-[#A855F7] transition">Event</a></li>
+              <li><a href="#" class="text-white/50 text-sm hover:text-[#A855F7] transition">Careers</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <div>
+          <p class="text-[10px] font-semibold text-white/20 uppercase tracking-[0.3em] mb-4">Follow</p>
+          <div class="flex gap-3">
+            <a href="#" class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white/50 hover:text-[#A855F7] hover:border-[#A855F7]/30 transition">
+              <i class="fab fa-instagram text-sm"></i>
+            </a>
+            <a href="#" class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white/50 hover:text-[#A855F7] hover:border-[#A855F7]/30 transition">
+              <i class="fab fa-tiktok text-sm"></i>
+            </a>
+            <a href="#" class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white/50 hover:text-[#A855F7] hover:border-[#A855F7]/30 transition">
+              <i class="fab fa-youtube text-sm"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="border-t border-white/5 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+        <p class="text-[10px] text-white/15 tracking-[0.5em] uppercase">
+          &copy; 2024 VIBE. All rights reserved by DLAB.
+        </p>
+        <div class="flex gap-6">
+          <a href="#" class="text-[10px] text-white/15 tracking-[0.2em] uppercase hover:text-white/40 transition">Privacy</a>
+          <a href="#" class="text-[10px] text-white/15 tracking-[0.2em] uppercase hover:text-white/40 transition">Terms</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ========== Login Modal ========== -->
+  <div id="mz-modal" class="fixed inset-0 z-[100] hidden items-center justify-center p-4 bg-black/40 backdrop-blur-3xl">
+    <div class="bg-[#151515] w-full max-w-sm p-8 md:p-14 shadow-2xl relative rounded-[3rem] border border-white/5">
+      <button onclick="toggleMzModal()" class="absolute top-8 right-8 w-8 h-8 rounded-full bg-white/5 flex items-center justify-center text-white/30 hover:text-[#A855F7] hover:bg-[#A855F7]/10 transition text-lg">&times;</button>
+
+      <div class="text-center mb-12">
+        <h2 class="text-xl font-grotesk tracking-[0.1em] font-bold gradient-text mb-3">VIBE</h2>
+        <p class="text-[9px] text-white/30 font-semibold tracking-[0.3em] uppercase">Crew Access</p>
+      </div>
+
+      <div class="space-y-5">
+        <div class="space-y-2">
+          <p class="text-[10px] font-semibold text-white/30 uppercase tracking-[0.2em] ml-1">Email</p>
+          <input type="text" placeholder="your@email.com" class="w-full bg-white/5 border border-white/10 rounded-2xl py-5 px-6 outline-none focus:ring-1 focus:ring-[#A855F7] transition text-[13px] text-white">
+        </div>
+        <div class="space-y-2">
+          <p class="text-[10px] font-semibold text-white/30 uppercase tracking-[0.2em] ml-1">Password</p>
+          <input type="password" placeholder="Password" class="w-full bg-white/5 border border-white/10 rounded-2xl py-5 px-6 outline-none focus:ring-1 focus:ring-[#A855F7] transition text-[13px] text-white">
+        </div>
+        <button class="w-full gradient-bg text-white py-5 rounded-full text-[11px] tracking-[0.4em] font-bold uppercase hover:opacity-90 transition shadow-lg shadow-[#A855F7]/20 mt-2">
+          Sign In
         </button>
-        <div class="flex justify-center gap-14 pt-4">
-           <a href="#" class="text-[9px] text-[#111827]/40 tracking-[0.2em] font-semibold uppercase hover:text-[#F59E0B] transition">Request Access</a>
-           <a href="#" class="text-[9px] text-[#111827]/40 tracking-[0.2em] font-semibold uppercase hover:text-[#F59E0B] transition">Support</a>
+        <div class="flex justify-center gap-10 pt-2">
+          <a href="#" class="text-[10px] text-white/40 tracking-[0.2em] font-semibold uppercase hover:text-[#A855F7] transition">Join</a>
+          <a href="#" class="text-[10px] text-white/40 tracking-[0.2em] font-semibold uppercase hover:text-[#A855F7] transition">Help</a>
         </div>
       </div>
     </div>
   </div>
 
-  <footer class="py-20 md:py-32 bg-[#111827] text-center px-6">
-     <div class="inline-flex items-center gap-10 mb-8">
-        <span class="font-serif font-semibold text-2xl text-white tracking-wide">VISIONARY</span>
-        <span class="w-12 h-[1px] bg-white/20"></span>
-        <span class="text-[10px] font-semibold text-white/40 tracking-[0.4em] uppercase">Partners Group</span>
-     </div>
-     <p class="text-[10px] text-white/20 tracking-[0.6em] uppercase px-6">© 2024 VISIONARY PARTNERS. SEOUL HQ.</p>
-  </footer>
-
-  <script>
-    function toggleConsultModal() {
-      const modal = document.getElementById('consult-modal');
-      modal.classList.toggle('hidden');
-      modal.classList.toggle('flex');
-    }
-  </script>
-
 </div>
+
+<script>
+  // Modal toggle
+  function toggleMzModal() {
+    const modal = document.getElementById('mz-modal');
+    modal.classList.toggle('hidden');
+    modal.classList.toggle('flex');
+  }
+
+  // Close modal on backdrop click
+  document.getElementById('mz-modal').addEventListener('click', function(e) {
+    if (e.target === this) toggleMzModal();
+  });
+
+  // IntersectionObserver for scroll reveal animations
+  (function() {
+    const observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    });
+
+    document.querySelectorAll('.reveal').forEach(function(el) {
+      observer.observe(el);
+    });
+  })();
+</script>

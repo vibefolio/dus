@@ -1,146 +1,463 @@
-<%# Artistry Template - MUA 진 (JIN ARTISTRY) %>
+<%# Artistry Template - 아뜰리에 (ATELIER) %>
 
 <style>
-  /* Supanova Design Upgrade */
+  /* Supanova Design — Art Studio Archetype */
   * { word-break: keep-all; }
-  html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+  html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
   h1, h2, h3, h4 { text-wrap: balance; letter-spacing: -0.02em; line-height: 1.3; }
-  a, button { transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1); }
+  a, button { transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1); }
   a:hover, button:hover { transform: scale(1.02); }
   a:active, button:active { transform: scale(0.98); }
 
-  @import url('https://fonts.googleapis.com/css2?family=Italiana&family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap');
-  
-  .font-gallery { font-family: 'Italiana', serif; }
-  .font-sans { font-family: 'Pretendard Variable', 'Pretendard', -apple-system, sans-serif; }
+  @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&display=swap');
+
+  .font-sans { font-family: 'Pretendard Variable', 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, sans-serif; }
+  .font-cormorant { font-family: 'Cormorant Garamond', serif; }
 
   @media (max-width: 768px) {
     .mobile-desc { font-size: 14px !important; line-height: 1.8; }
-    .mobile-title { font-size: 44px !important; }
+    .mobile-title { font-size: 42px !important; }
   }
 
-  .canvas-texture {
-    background: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E");
+  .paper-texture { background-image: url("https://www.transparenttextures.com/patterns/handmade-paper.png"); opacity: 0.3; }
+
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(2rem); filter: blur(4px); }
+    to { opacity: 1; transform: translateY(0); filter: blur(0); }
+  }
+
+  .reveal { opacity: 0; transform: translateY(2rem); }
+  .reveal.is-visible {
+    animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    animation-delay: calc(var(--delay, 0) * 100ms);
+  }
+
+  .class-card { transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1); }
+  .class-card:hover { transform: translateY(-8px); }
+  .class-card:hover img { transform: scale(1.05); }
+
+  .gallery-item { transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1); }
+  .gallery-item:hover { transform: scale(1.02); }
+  .gallery-item:hover img { transform: scale(1.08); }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-12px); }
   }
 </style>
 
-<div class="bg-white text-slate-900 font-sans selection:bg-slate-950 selection:text-white min-h-screen overflow-x-hidden relative">
-  <div class="fixed inset-0 canvas-texture pointer-events-none"></div>
+<div class="bg-[#FAF9F6] text-[#2C2C2C] font-sans selection:bg-[#92400E] selection:text-white min-h-screen overflow-x-hidden relative">
+  <div class="fixed inset-0 paper-texture pointer-events-none z-[60]"></div>
 
-  <!-- Nav -->
-  <nav class="fixed w-full z-50 px-8 py-12 mix-blend-difference text-white">
-    <div class="container mx-auto px-4 md:px-6 flex justify-between items-center flex-nowrap">
-      <div class="flex items-center gap-6">
-         <span class="font-gallery text-2xl tracking-[0.1em] font-normal">Jin<span class="font-semibold">Artistry</span></span>
-      </div>
-      
-      <div class="hidden md:flex gap-10 md:p-16 text-xs font-sans font-semibold tracking-[0.2em] uppercase">
-        <a href="#portfolio" class="hover:underline underline-offset-4 decoration-1">Portfolio</a>
-        <a href="#philosophy" class="hover:underline underline-offset-4 decoration-1">Philosophy</a>
-        <a href="#contact" class="hover:underline underline-offset-4 decoration-1">Contact</a>
-      </div>
-           <button class="mobile-menu-trigger md:hidden ml-auto text-2xl focus:outline-none" style="color: inherit;">
-             <i class="fas fa-bars"></i>
-           </button>
+  <!-- ========== Nav ========== -->
+  <nav class="fixed w-full z-50 px-4 md:px-8 py-5 bg-[#FAF9F6]/80 backdrop-blur-xl border-b border-[#92400E]/10">
+    <div class="max-w-7xl mx-auto flex justify-between items-center">
+      <a href="#" class="flex items-center gap-3">
+        <span class="font-cormorant text-2xl tracking-tight font-semibold italic text-[#92400E]">Atelier</span>
+      </a>
 
-      
-      <div class="flex-nowrap shrink-0 flex gap-10 items-center">
-         <button onclick="toggleArtistryModal()" class="hidden md:block text-[10px] font-semibold uppercase tracking-[0.2em] hover:underline underline-offset-4 decoration-1" data-mobile-menu-copy="true">Artist Login</button>
-         <button class="hidden md:block border border-white px-6 py-2 rounded-lg font-gallery text-sm hover:bg-white hover:text-slate-900 transition duration-300" data-mobile-menu-copy="true">
-           Book Now
-         </button>
+      <div class="hidden md:flex gap-12 text-[10px] font-semibold uppercase tracking-[0.4em] text-[#2C2C2C]/40">
+        <a href="#about" class="hover:text-[#92400E] transition">Artist</a>
+        <a href="#classes" class="hover:text-[#92400E] transition">Class</a>
+        <a href="#gallery" class="hover:text-[#92400E] transition">Gallery</a>
+        <a href="#reservation" class="hover:text-[#92400E] transition">Reserve</a>
+        <a href="#location" class="hover:text-[#92400E] transition">Location</a>
       </div>
-    </div>
 
-      <%= render partial: 'templates/shared/mobile_menu_overlay' %></nav>
+      <button class="mobile-menu-trigger md:hidden ml-auto text-2xl focus:outline-none" style="color: inherit;">
+        <i class="fas fa-bars"></i>
+      </button>
 
-  <!-- Hero with Parallax Feel -->
-  <header class="min-h-screen relative flex items-center justify-center overflow-hidden">
-    <div class="absolute inset-0 z-0">
-        <img src="https://images.unsplash.com/photo-1522337660859-02fbefca4702?q=80&w=1920" alt="Artistic Makeup" class="w-full h-full object-cover filter grayscale contrast-125 brightness-110">
-    </div>
-    
-    <!-- Heavy Overlay -->
-    <div class="absolute inset-0 bg-white/10 backdrop-grayscale-[0.5]"></div>
-
-    <!-- Center Content -->
-    <div class="container mx-auto px-3 md:px-6 relative z-10 text-center">
-      <div class="inline-block border border-black/30 bg-white/80 backdrop-blur-sm px-6 py-2 mb-8">
-         <span class="text-[10px] font-semibold tracking-[0.4em] uppercase text-slate-900">Professional Makeup Direction</span>
-      </div>
-      
-      <h1 class="text-3xl md:text-5xl md:text-8xl font-gallery leading-none text-slate-900 mobile-title mix-blend-multiply">
-         Pure<br>
-         <span class="italic font-light opacity-60">Authentication.</span>
-      </h1>
-      
-      <div class="mt-12 max-w-lg mx-auto bg-white/70 backdrop-blur-xl p-8 border border-white/40 shadow-2xl">
-         <p class="text-slate-900/80 text-sm md:text-base leading-loose mobile-desc font-medium">
-            가면을 씌우는 것이 아닌, 당신의 고유한 서사를 드러내는 작업.<br>
-            진 아티스트리는 아름다움의 본질을 탐구합니다.
-         </p>
-         <div class="mt-8 flex justify-center gap-12">
-             <a href="#portfolio" class="text-xs font-semibold uppercase tracking-[0.2em] border-b border-black pb-1 hover:border-transparent transition">View Works</a>
-             <a href="#contact" class="text-xs font-semibold uppercase tracking-[0.2em] border-b border-black pb-1 hover:border-transparent transition">Studio Info</a>
-         </div>
-      </div>
-    </div>
-    
-    <!-- Floating Abstract Elements -->
-    <div class="absolute top-1/4 left-10 w-20 h-20 bg-slate-950 rounded-full mix-blend-overlay opacity-50 animate-float hidden md:block"></div>
-    <div class="absolute bottom-1/4 right-10 w-32 h-32 border border-black rounded-full opacity-30 animate-float-delayed hidden md:block"></div>
-  </header>
-  
-  <style>
-     @keyframes float {
-        0%, 100% { transform: translateY(0); }
-        50% { transform: translateY(-20px); }
-     }
-     .animate-float { animation: float 6s infinite ease-in-out; }
-     .animate-float-delayed { animation: float 7s infinite ease-in-out 1s; }
-  </style>
-
-  <!-- Login Modal -->
-  <div id="artistry-modal" class="fixed inset-0 z-[100] hidden items-center justify-center p-4 bg-white/90 backdrop-blur-xl">
-    <div class="bg-white w-full max-w-md p-6 md:p-16 shadow-[0_0_80px_rgba(0,0,0,0.1)] relative border border-black/5">
-      <button onclick="toggleArtistryModal()" class="absolute top-8 right-8 text-slate-900/30 hover:text-slate-900 transition text-2xl font-gallery">&times;</button>
-      
-      <div class="text-center mb-16">
-        <h2 class="text-3xl font-gallery text-slate-900 mb-4">Atelier Access</h2>
-        <div class="w-12 h-[1px] bg-slate-950 mx-auto"></div>
-        <p class="text-[10px] text-gray-400 font-semibold tracking-[0.4em] uppercase mt-4">Private Client Area</p>
-      </div>
-      
-      <div class="space-y-10">
-        <div class="relative group">
-           <input type="text" placeholder="Passcode" class="w-full bg-transparent border-b border-gray-200 py-4 text-center text-xl font-gallery text-slate-900 placeholder-gray-200 outline-none focus:border-black transition">
-        </div>
-        
-        <button class="w-full bg-slate-950 text-white py-5 text-[10px] tracking-[0.4em] font-semibold uppercase hover:bg-gray-900 transition hover:shadow-xl">
-           Enter Studio
+      <div class="hidden md:flex gap-6 items-center shrink-0">
+        <button onclick="toggleArtistryModal()" class="text-[10px] font-semibold uppercase tracking-[0.4em] text-[#2C2C2C]/40 hover:text-[#92400E]" data-mobile-menu-copy="true">Members</button>
+        <button class="bg-[#92400E] text-white px-8 py-3.5 rounded-full font-semibold text-[10px] tracking-[0.3em] uppercase hover:bg-[#78350F] transition shadow-lg shadow-[#92400E]/20" data-mobile-menu-copy="true">
+          클래스 예약
         </button>
-        
-        <div class="text-center">
-           <a href="#" class="text-[9px] text-gray-400 tracking-[0.2em] uppercase hover:text-slate-900 transition border-b border-transparent hover:border-black pb-0.5">Application for Membership</a>
+      </div>
+    </div>
+
+    <%= render partial: 'templates/shared/mobile_menu_overlay' %>
+  </nav>
+
+  <!-- ========== Hero ========== -->
+  <header class="min-h-[100dvh] relative flex items-center justify-center pt-20">
+    <div class="max-w-7xl mx-auto px-4 md:px-8 relative z-10 grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+      <div class="space-y-10 text-center lg:text-left">
+        <div class="inline-flex items-center gap-5 reveal" style="--delay: 0;">
+          <span class="w-10 h-[1px] bg-[#92400E]"></span>
+          <span class="text-[10px] font-semibold tracking-[0.6em] uppercase text-[#92400E]">Art Workshop</span>
+        </div>
+
+        <h1 class="text-4xl md:text-6xl lg:text-[5.5rem] font-cormorant font-semibold leading-tight tracking-tight text-[#2C2C2C] mobile-title reveal" style="--delay: 1;">
+          손끝에서 피어나는<br><span class="italic text-[#92400E]">예술의 순간.</span>
+        </h1>
+
+        <p class="text-[#2C2C2C]/60 text-sm md:text-lg leading-relaxed max-w-lg mx-auto lg:mx-0 mobile-desc reveal" style="--delay: 2;">
+          도자기, 캘리그라피, 드로잉, 레진아트까지. 아뜰리에에서 당신만의 예술 작품을 만들어보세요. 초보자도 환영합니다.
+        </p>
+
+        <div class="pt-4 flex flex-col sm:flex-row gap-5 justify-center lg:justify-start reveal" style="--delay: 3;">
+          <a href="#classes" class="inline-flex items-center justify-center gap-3 px-10 py-5 bg-[#2C2C2C] text-white font-semibold text-[11px] tracking-[0.3em] uppercase hover:bg-[#92400E] rounded-full shadow-xl">
+            클래스 보기
+            <span class="w-7 h-7 rounded-full bg-white/10 flex items-center justify-center">
+              <i class="fas fa-arrow-right text-[10px]"></i>
+            </span>
+          </a>
+          <a href="#about" class="inline-flex items-center justify-center px-10 py-5 border border-[#92400E]/30 text-[#92400E] font-semibold text-[11px] tracking-[0.3em] uppercase hover:bg-white rounded-full">
+            작가 소개
+          </a>
+        </div>
+      </div>
+
+      <div class="relative reveal" style="--delay: 2;">
+        <div class="absolute -top-12 -right-12 w-72 h-72 bg-[#92400E]/10 rounded-full blur-[100px]"></div>
+        <div class="relative group">
+          <img src="https://images.unsplash.com/photo-1565193566173-7a0ee3dbe261?q=80&w=1200" alt="도자기 작업" class="w-full aspect-[4/5] object-cover rounded-[3rem] shadow-2xl group-hover:shadow-[0_30px_80px_-20px_rgba(146,64,14,0.3)] transition-all duration-700" loading="eager">
+          <div class="absolute -bottom-6 -left-6 md:-bottom-8 md:-left-8 bg-white p-8 md:p-10 rounded-2xl shadow-xl border border-[#92400E]/10 max-w-[260px]" style="animation: float 6s ease-in-out infinite;">
+            <p class="text-[10px] font-semibold text-[#92400E] uppercase tracking-[0.4em] mb-3">Handmade Art</p>
+            <p class="text-xl font-cormorant italic font-semibold text-[#2C2C2C]">Create with Passion</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ========== About / 작가 소개 ========== -->
+  <section id="about" class="py-24 md:py-32">
+    <div class="max-w-7xl mx-auto px-4 md:px-8 grid lg:grid-cols-2 gap-16 lg:gap-24 items-center">
+      <div class="relative reveal" style="--delay: 0;">
+        <div class="absolute -top-8 -left-8 w-60 h-60 bg-[#92400E]/8 rounded-full blur-[80px]"></div>
+        <div class="grid grid-cols-5 gap-4">
+          <div class="col-span-3 overflow-hidden rounded-[2rem]">
+            <img src="https://images.unsplash.com/photo-1460661419201-fd4cecdf8a8b?q=80&w=800" alt="작업 공간" class="w-full h-full object-cover aspect-[3/4]" loading="lazy" decoding="async">
+          </div>
+          <div class="col-span-2 flex flex-col gap-4">
+            <div class="overflow-hidden rounded-[1.5rem] flex-1">
+              <img src="https://images.unsplash.com/photo-1513364776144-60967b0f800f?q=80&w=600" alt="작품 디테일" class="w-full h-full object-cover" loading="lazy" decoding="async">
+            </div>
+            <div class="overflow-hidden rounded-[1.5rem] flex-1">
+              <img src="https://images.unsplash.com/photo-1452587925148-ce544e77e70d?q=80&w=600" alt="작가 작업" class="w-full h-full object-cover" loading="lazy" decoding="async">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="space-y-8 reveal" style="--delay: 1;">
+        <span class="rounded-full px-4 py-1.5 text-[11px] uppercase tracking-[0.15em] font-medium bg-[#92400E]/10 text-[#92400E]">Artist</span>
+
+        <h2 class="text-3xl md:text-4xl lg:text-5xl font-cormorant font-semibold leading-snug text-[#2C2C2C]">
+          흙과 불, 그리고<br>시간이 만든 예술
+        </h2>
+
+        <p class="text-[#2C2C2C]/60 text-base md:text-lg leading-relaxed">
+          아뜰리에를 이끄는 김서연 작가는 일본 무사시노 미술대학에서 도예를 전공하고, 10년간 유럽과 아시아를 오가며 다양한 공예 기법을 연구했습니다.
+        </p>
+        <p class="text-[#2C2C2C]/60 text-base md:text-lg leading-relaxed">
+          "예술은 특별한 사람만의 것이 아닙니다. 누구나 손끝으로 자신만의 아름다움을 만들어낼 수 있어요." 아뜰리에는 이 철학을 바탕으로 모든 분에게 열린 공간입니다.
+        </p>
+
+        <div class="grid grid-cols-3 gap-6 pt-6 border-t border-[#92400E]/10">
+          <div>
+            <p class="text-2xl md:text-3xl font-cormorant font-semibold text-[#92400E]">10yr</p>
+            <p class="text-[11px] text-[#2C2C2C]/40 uppercase tracking-[0.1em] mt-1 font-medium">작가 경력</p>
+          </div>
+          <div>
+            <p class="text-2xl md:text-3xl font-cormorant font-semibold text-[#92400E]">3,000+</p>
+            <p class="text-[11px] text-[#2C2C2C]/40 uppercase tracking-[0.1em] mt-1 font-medium">수강생</p>
+          </div>
+          <div>
+            <p class="text-2xl md:text-3xl font-cormorant font-semibold text-[#92400E]">4</p>
+            <p class="text-[11px] text-[#2C2C2C]/40 uppercase tracking-[0.1em] mt-1 font-medium">클래스 종류</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== Classes (4개) ========== -->
+  <section id="classes" class="py-24 md:py-32 bg-white relative">
+    <div class="max-w-7xl mx-auto px-4 md:px-8">
+      <div class="text-center mb-16 md:mb-20">
+        <span class="rounded-full px-4 py-1.5 text-[11px] uppercase tracking-[0.15em] font-medium bg-[#92400E]/10 text-[#92400E] reveal" style="--delay: 0;">Class</span>
+        <h2 class="text-3xl md:text-4xl lg:text-5xl font-cormorant font-semibold leading-snug text-[#2C2C2C] mt-6 reveal" style="--delay: 1;">아뜰리에 클래스</h2>
+        <p class="text-[#2C2C2C]/50 text-base md:text-lg mt-4 max-w-xl mx-auto reveal" style="--delay: 2;">초보자부터 숙련자까지, 레벨에 맞는 클래스를 선택하세요.</p>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div class="class-card bg-[#FAF9F6] rounded-[2rem] overflow-hidden reveal" style="--delay: 0;">
+          <div class="overflow-hidden"><img src="https://images.unsplash.com/photo-1565193566173-7a0ee3dbe261?q=80&w=600" alt="도자기 클래스" class="w-full aspect-[4/3] object-cover transition-transform duration-700" loading="lazy" decoding="async"></div>
+          <div class="p-6">
+            <div class="flex items-center justify-between mb-3">
+              <span class="text-[10px] font-semibold text-[#92400E] uppercase tracking-[0.2em]">인기</span>
+              <span class="text-lg font-cormorant font-semibold text-[#92400E]">₩85,000</span>
+            </div>
+            <h3 class="text-lg font-bold text-[#2C2C2C] mb-2">도자기 클래스</h3>
+            <p class="text-[#2C2C2C]/50 text-sm leading-relaxed">물레 체험부터 초벌·재벌까지. 나만의 도자기 완성 (3회 과정)</p>
+          </div>
+        </div>
+
+        <div class="class-card bg-[#FAF9F6] rounded-[2rem] overflow-hidden reveal" style="--delay: 1;">
+          <div class="overflow-hidden"><img src="https://images.unsplash.com/photo-1513364776144-60967b0f800f?q=80&w=600" alt="캘리그라피" class="w-full aspect-[4/3] object-cover transition-transform duration-700" loading="lazy" decoding="async"></div>
+          <div class="p-6">
+            <div class="flex items-center justify-between mb-3">
+              <span class="text-[10px] font-semibold text-[#92400E] uppercase tracking-[0.2em]">원데이</span>
+              <span class="text-lg font-cormorant font-semibold text-[#92400E]">₩55,000</span>
+            </div>
+            <h3 class="text-lg font-bold text-[#2C2C2C] mb-2">캘리그라피</h3>
+            <p class="text-[#2C2C2C]/50 text-sm leading-relaxed">붓펜과 잉크로 쓰는 아름다운 글씨. 엽서 2장 완성</p>
+          </div>
+        </div>
+
+        <div class="class-card bg-[#FAF9F6] rounded-[2rem] overflow-hidden reveal" style="--delay: 2;">
+          <div class="overflow-hidden"><img src="https://images.unsplash.com/photo-1513542789411-b6a5d4f31634?q=80&w=600" alt="드로잉" class="w-full aspect-[4/3] object-cover transition-transform duration-700" loading="lazy" decoding="async"></div>
+          <div class="p-6">
+            <div class="flex items-center justify-between mb-3">
+              <span class="text-[10px] font-semibold text-[#92400E] uppercase tracking-[0.2em]">정규</span>
+              <span class="text-lg font-cormorant font-semibold text-[#92400E]">₩120,000</span>
+            </div>
+            <h3 class="text-lg font-bold text-[#2C2C2C] mb-2">수채화 드로잉</h3>
+            <p class="text-[#2C2C2C]/50 text-sm leading-relaxed">기초 데생부터 수채화까지. 4주 완성 정규 과정</p>
+          </div>
+        </div>
+
+        <div class="class-card bg-[#FAF9F6] rounded-[2rem] overflow-hidden reveal" style="--delay: 3;">
+          <div class="overflow-hidden"><img src="https://images.unsplash.com/photo-1603910234616-bdf3a41b8ae7?q=80&w=600" alt="레진아트" class="w-full aspect-[4/3] object-cover transition-transform duration-700" loading="lazy" decoding="async"></div>
+          <div class="p-6">
+            <div class="flex items-center justify-between mb-3">
+              <span class="text-[10px] font-semibold text-[#92400E] uppercase tracking-[0.2em]">신규</span>
+              <span class="text-lg font-cormorant font-semibold text-[#92400E]">₩65,000</span>
+            </div>
+            <h3 class="text-lg font-bold text-[#2C2C2C] mb-2">레진아트</h3>
+            <p class="text-[#2C2C2C]/50 text-sm leading-relaxed">투명한 레진으로 만드는 악세서리와 오브제. 당일 완성</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== Gallery ========== -->
+  <section id="gallery" class="py-24 md:py-32">
+    <div class="max-w-7xl mx-auto px-4 md:px-8">
+      <div class="text-center mb-16 md:mb-20">
+        <span class="rounded-full px-4 py-1.5 text-[11px] uppercase tracking-[0.15em] font-medium bg-[#92400E]/10 text-[#92400E] reveal" style="--delay: 0;">Gallery</span>
+        <h2 class="text-3xl md:text-4xl lg:text-5xl font-cormorant font-semibold leading-snug text-[#2C2C2C] mt-6 reveal" style="--delay: 1;">수강생 작품 갤러리</h2>
+      </div>
+
+      <div class="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
+        <div class="gallery-item overflow-hidden rounded-[1.5rem] reveal" style="--delay: 0;"><img src="https://images.unsplash.com/photo-1490312278390-ab64016e0aa9?q=80&w=600" alt="도자기 작품" class="w-full aspect-square object-cover transition-transform duration-700" loading="lazy" decoding="async"></div>
+        <div class="gallery-item overflow-hidden rounded-[1.5rem] reveal" style="--delay: 1;"><img src="https://images.unsplash.com/photo-1579783900882-c0d0c508fc7a?q=80&w=600" alt="캘리그라피 작품" class="w-full aspect-square object-cover transition-transform duration-700" loading="lazy" decoding="async"></div>
+        <div class="gallery-item overflow-hidden rounded-[1.5rem] reveal" style="--delay: 2;"><img src="https://images.unsplash.com/photo-1513364776144-60967b0f800f?q=80&w=600" alt="드로잉 작품" class="w-full aspect-square object-cover transition-transform duration-700" loading="lazy" decoding="async"></div>
+        <div class="gallery-item overflow-hidden rounded-[1.5rem] reveal" style="--delay: 3;"><img src="https://images.unsplash.com/photo-1581783898377-1c85bf937427?q=80&w=600" alt="공방 분위기" class="w-full aspect-square object-cover transition-transform duration-700" loading="lazy" decoding="async"></div>
+        <div class="gallery-item overflow-hidden rounded-[1.5rem] col-span-2 reveal" style="--delay: 4;"><img src="https://images.unsplash.com/photo-1513519245088-0e12902e5a38?q=80&w=900" alt="아뜰리에 전경" class="w-full aspect-[2/1] object-cover transition-transform duration-700" loading="lazy" decoding="async"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== 원데이클래스 예약 ========== -->
+  <section id="reservation" class="py-24 md:py-32 relative overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-br from-[#92400E] to-[#78350F]"></div>
+    <div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/handmade-paper.png')] opacity-10"></div>
+
+    <div class="max-w-7xl mx-auto px-4 md:px-8 relative z-10">
+      <div class="grid lg:grid-cols-2 gap-16 items-center">
+        <div class="space-y-8">
+          <span class="rounded-full px-4 py-1.5 text-[11px] uppercase tracking-[0.15em] font-medium bg-white/15 text-white reveal" style="--delay: 0;">One-Day Class</span>
+          <h2 class="text-3xl md:text-4xl lg:text-5xl font-cormorant font-semibold leading-snug text-white reveal" style="--delay: 1;">
+            원데이클래스로<br>예술을 경험하세요
+          </h2>
+          <p class="text-white/70 text-base md:text-lg leading-relaxed reveal" style="--delay: 2;">
+            하루 만에 완성하는 나만의 작품. 재료비 포함, 초보자 환영. 소수 정원(6명)으로 운영되어 세심한 지도를 받을 수 있습니다.
+          </p>
+
+          <div class="grid grid-cols-2 gap-6 pt-4 reveal" style="--delay: 3;">
+            <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/10">
+              <p class="text-2xl font-cormorant font-semibold text-white mb-1">주말반</p>
+              <p class="text-white/60 text-sm">토·일 10:00 / 14:00</p>
+            </div>
+            <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/10">
+              <p class="text-2xl font-cormorant font-semibold text-white mb-1">평일반</p>
+              <p class="text-white/60 text-sm">화–금 14:00 / 19:00</p>
+            </div>
+          </div>
+
+          <a href="#" class="inline-flex items-center justify-center gap-3 px-10 py-5 bg-white text-[#92400E] font-semibold text-[11px] tracking-[0.3em] uppercase rounded-full hover:bg-[#FAF9F6] shadow-xl reveal" style="--delay: 4;">
+            예약하기
+            <span class="w-7 h-7 rounded-full bg-[#92400E]/10 flex items-center justify-center"><i class="fas fa-arrow-right text-[10px]"></i></span>
+          </a>
+        </div>
+
+        <div class="relative reveal" style="--delay: 2;">
+          <img src="https://images.unsplash.com/photo-1460661419201-fd4cecdf8a8b?q=80&w=800" alt="원데이 클래스" class="w-full aspect-[4/5] object-cover rounded-[3rem] shadow-2xl" loading="lazy" decoding="async">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== Location ========== -->
+  <section id="location" class="py-24 md:py-32">
+    <div class="max-w-7xl mx-auto px-4 md:px-8">
+      <div class="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+        <div class="overflow-hidden rounded-[2rem] reveal" style="--delay: 0;">
+          <img src="https://images.unsplash.com/photo-1558618666-fcd25c85f82e?q=80&w=800" alt="공방 외관" class="w-full aspect-[4/3] object-cover" loading="lazy" decoding="async">
+        </div>
+
+        <div class="space-y-8 reveal" style="--delay: 1;">
+          <span class="rounded-full px-4 py-1.5 text-[11px] uppercase tracking-[0.15em] font-medium bg-[#92400E]/10 text-[#92400E]">Location</span>
+          <h2 class="text-3xl md:text-4xl lg:text-5xl font-cormorant font-semibold leading-snug text-[#2C2C2C]">오시는 길</h2>
+
+          <div class="space-y-6">
+            <div class="flex gap-5">
+              <div class="w-10 h-10 rounded-full bg-[#92400E]/10 flex items-center justify-center shrink-0 mt-0.5"><i class="fas fa-map-marker-alt text-[#92400E] text-sm"></i></div>
+              <div>
+                <p class="text-[10px] font-semibold uppercase tracking-[0.3em] text-[#2C2C2C]/40 mb-2">Address</p>
+                <p class="text-[#2C2C2C]/80 text-base leading-relaxed">서울시 종로구 삼청로 45<br>아뜰리에 공방 2층</p>
+              </div>
+            </div>
+            <div class="flex gap-5">
+              <div class="w-10 h-10 rounded-full bg-[#92400E]/10 flex items-center justify-center shrink-0 mt-0.5"><i class="fas fa-clock text-[#92400E] text-sm"></i></div>
+              <div>
+                <p class="text-[10px] font-semibold uppercase tracking-[0.3em] text-[#2C2C2C]/40 mb-2">Hours</p>
+                <p class="text-[#2C2C2C]/80 text-base leading-relaxed">화–금 10:00 – 21:00<br>토·일 10:00 – 18:00<br>매주 월요일 휴무</p>
+              </div>
+            </div>
+            <div class="flex gap-5">
+              <div class="w-10 h-10 rounded-full bg-[#92400E]/10 flex items-center justify-center shrink-0 mt-0.5"><i class="fas fa-phone text-[#92400E] text-sm"></i></div>
+              <div>
+                <p class="text-[10px] font-semibold uppercase tracking-[0.3em] text-[#2C2C2C]/40 mb-2">Contact</p>
+                <p class="text-[#2C2C2C]/80 text-base">02-765-4321</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== CTA Section ========== -->
+  <section class="py-24 md:py-32 relative overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-br from-[#FAF9F6] via-[#F5F0EB] to-[#FAF9F6]"></div>
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-[#92400E]/8 rounded-full blur-[120px]"></div>
+
+    <div class="max-w-3xl mx-auto px-4 md:px-8 text-center relative z-10">
+      <div class="reveal" style="--delay: 0;">
+        <span class="font-cormorant text-6xl md:text-8xl italic text-[#92400E]/20 block mb-6">&ldquo;</span>
+      </div>
+      <h2 class="text-3xl md:text-4xl lg:text-5xl font-cormorant font-semibold leading-snug text-[#2C2C2C] reveal" style="--delay: 1;">
+        당신 안의 예술가를<br>깨워보세요
+      </h2>
+      <p class="text-[#2C2C2C]/50 text-base md:text-lg mt-6 max-w-lg mx-auto reveal" style="--delay: 2;">
+        처음이어도 괜찮습니다. 아뜰리에에서 손끝으로 만들어내는 특별한 경험이 당신을 기다리고 있습니다.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-5 justify-center mt-10 reveal" style="--delay: 3;">
+        <a href="#" class="inline-flex items-center justify-center gap-3 px-10 py-5 bg-[#92400E] text-white font-semibold text-[11px] tracking-[0.3em] uppercase rounded-full shadow-lg shadow-[#92400E]/20 hover:bg-[#78350F]">
+          원데이클래스 신청
+          <span class="w-7 h-7 rounded-full bg-white/15 flex items-center justify-center"><i class="fas fa-arrow-right text-[10px]"></i></span>
+        </a>
+        <a href="https://www.instagram.com/" target="_blank" class="inline-flex items-center justify-center gap-3 px-10 py-5 border border-[#92400E]/30 text-[#92400E] font-semibold text-[11px] tracking-[0.3em] uppercase rounded-full hover:bg-white">
+          <i class="fab fa-instagram text-sm"></i> Instagram
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== Footer ========== -->
+  <footer class="py-16 md:py-24 bg-[#2C2C2C]">
+    <div class="max-w-7xl mx-auto px-4 md:px-8">
+      <div class="grid md:grid-cols-3 gap-12 items-start mb-16">
+        <div>
+          <span class="font-cormorant text-2xl text-white tracking-tight font-semibold italic block mb-4">Atelier</span>
+          <p class="text-white/30 text-sm leading-relaxed max-w-xs">삼청동의 작은 공방. 누구나 손끝으로 예술을 경험할 수 있는 공간입니다.</p>
+        </div>
+        <div class="grid grid-cols-2 gap-8">
+          <div>
+            <p class="text-[10px] font-semibold text-white/20 uppercase tracking-[0.3em] mb-4">Class</p>
+            <ul class="space-y-2.5">
+              <li><a href="#classes" class="text-white/50 text-sm hover:text-[#92400E] transition">도자기</a></li>
+              <li><a href="#classes" class="text-white/50 text-sm hover:text-[#92400E] transition">캘리그라피</a></li>
+              <li><a href="#classes" class="text-white/50 text-sm hover:text-[#92400E] transition">드로잉</a></li>
+              <li><a href="#classes" class="text-white/50 text-sm hover:text-[#92400E] transition">레진아트</a></li>
+            </ul>
+          </div>
+          <div>
+            <p class="text-[10px] font-semibold text-white/20 uppercase tracking-[0.3em] mb-4">Info</p>
+            <ul class="space-y-2.5">
+              <li><a href="#about" class="text-white/50 text-sm hover:text-[#92400E] transition">작가 소개</a></li>
+              <li><a href="#gallery" class="text-white/50 text-sm hover:text-[#92400E] transition">갤러리</a></li>
+              <li><a href="#reservation" class="text-white/50 text-sm hover:text-[#92400E] transition">예약</a></li>
+              <li><a href="#location" class="text-white/50 text-sm hover:text-[#92400E] transition">오시는 길</a></li>
+            </ul>
+          </div>
+        </div>
+        <div>
+          <p class="text-[10px] font-semibold text-white/20 uppercase tracking-[0.3em] mb-4">Follow</p>
+          <div class="flex gap-3">
+            <a href="#" class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white/50 hover:text-[#92400E] hover:border-[#92400E]/30 transition"><i class="fab fa-instagram text-sm"></i></a>
+            <a href="#" class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white/50 hover:text-[#92400E] hover:border-[#92400E]/30 transition"><i class="fab fa-facebook-f text-sm"></i></a>
+            <a href="#" class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white/50 hover:text-[#92400E] hover:border-[#92400E]/30 transition"><i class="fas fa-blog text-sm"></i></a>
+          </div>
+        </div>
+      </div>
+      <div class="border-t border-white/5 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+        <p class="text-[10px] text-white/15 tracking-[0.5em] uppercase">&copy; 2024 Atelier. All rights reserved by DLAB.</p>
+        <div class="flex gap-6">
+          <a href="#" class="text-[10px] text-white/15 tracking-[0.2em] uppercase hover:text-white/40 transition">Privacy</a>
+          <a href="#" class="text-[10px] text-white/15 tracking-[0.2em] uppercase hover:text-white/40 transition">Terms</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ========== Login Modal ========== -->
+  <div id="artistry-modal" class="fixed inset-0 z-[100] hidden items-center justify-center p-4 bg-[#2C2C2C]/20 backdrop-blur-3xl">
+    <div class="bg-white w-full max-w-sm p-8 md:p-14 shadow-2xl relative rounded-[3rem] border border-[#92400E]/10">
+      <button onclick="toggleArtistryModal()" class="absolute top-8 right-8 w-8 h-8 rounded-full bg-[#FAF9F6] flex items-center justify-center text-[#2C2C2C]/30 hover:text-[#92400E] hover:bg-[#92400E]/10 transition text-lg">&times;</button>
+      <div class="text-center mb-12">
+        <h2 class="text-xl font-cormorant tracking-[0.1em] italic text-[#2C2C2C] mb-3 font-semibold">Atelier</h2>
+        <p class="text-[9px] text-[#92400E] font-semibold tracking-[0.3em] uppercase">Member Access</p>
+      </div>
+      <div class="space-y-5">
+        <div class="space-y-2">
+          <p class="text-[10px] font-semibold text-[#2C2C2C]/30 uppercase tracking-[0.2em] ml-1">Email</p>
+          <input type="text" placeholder="your@email.com" class="w-full bg-[#FAF9F6] border-none rounded-2xl py-5 px-6 outline-none focus:ring-1 focus:ring-[#92400E] transition text-[13px] text-[#2C2C2C]">
+        </div>
+        <div class="space-y-2">
+          <p class="text-[10px] font-semibold text-[#2C2C2C]/30 uppercase tracking-[0.2em] ml-1">Password</p>
+          <input type="password" placeholder="Password" class="w-full bg-[#FAF9F6] border-none rounded-2xl py-5 px-6 outline-none focus:ring-1 focus:ring-[#92400E] transition text-[13px] text-[#2C2C2C]">
+        </div>
+        <button class="w-full bg-[#92400E] text-white py-5 rounded-full text-[11px] tracking-[0.4em] font-semibold uppercase hover:bg-[#78350F] transition shadow-lg shadow-[#92400E]/20 mt-2">Sign In</button>
+        <div class="flex justify-center gap-10 pt-2">
+          <a href="#" class="text-[10px] text-[#2C2C2C]/40 tracking-[0.2em] font-semibold uppercase hover:text-[#92400E] transition">Join</a>
+          <a href="#" class="text-[10px] text-[#2C2C2C]/40 tracking-[0.2em] font-semibold uppercase hover:text-[#92400E] transition">Help</a>
         </div>
       </div>
     </div>
   </div>
 
-  <footer class="py-20 md:py-32 bg-white text-center px-6 border-t border-black/5">
-     <div class="inline-flex flex-col items-center gap-12 mb-8">
-        <span class="font-gallery text-3xl tracking-tight text-slate-900">Jin<span class="font-semibold">Artistry</span></span>
-        <span class="text-[10px] font-semibold text-gray-400 tracking-[0.4em] uppercase">Seoul . Paris . New York</span>
-     </div>
-     <p class="text-[9px] text-gray-300 tracking-[0.4em] uppercase px-6">© 2024 JIN ARTISTRY. ALL RIGHTS RESERVED.</p>
-  </footer>
-
-  <script>
-    function toggleArtistryModal() {
-      const modal = document.getElementById('artistry-modal');
-      modal.classList.toggle('hidden');
-      modal.classList.toggle('flex');
-    }
-  </script>
-
 </div>
+
+<script>
+  function toggleArtistryModal() {
+    const modal = document.getElementById('artistry-modal');
+    modal.classList.toggle('hidden');
+    modal.classList.toggle('flex');
+  }
+
+  document.getElementById('artistry-modal').addEventListener('click', function(e) {
+    if (e.target === this) toggleArtistryModal();
+  });
+
+  (function() {
+    const observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+    document.querySelectorAll('.reveal').forEach(function(el) {
+      observer.observe(el);
+    });
+  })();
+</script>
