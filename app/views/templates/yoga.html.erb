@@ -1,10 +1,18 @@
-<%# Yoga Template - 요가 플로우 (YOGA FLOW) %>
+<%# Yoga Template - 숨 요가 스튜디오 (SUM YOGA) %>
 
 <style>
+  /* Supanova Design — Calm Natural Archetype */
+  * { word-break: keep-all; }
+  html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+  h1, h2, h3, h4 { text-wrap: balance; letter-spacing: -0.02em; line-height: 1.3; }
+  a, button { transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1); }
+  a:hover, button:hover { transform: scale(1.02); }
+  a:active, button:active { transform: scale(0.98); }
+
   @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300..700;1,300..700&family=Noto+Sans+KR:wght@300;400;500;700&display=swap');
-  
+
   .font-serif-flow { font-family: 'Cormorant Garamond', serif; }
-  .font-sans { font-family: 'Noto Sans KR', sans-serif; }
+  .font-sans { font-family: 'Pretendard Variable', 'Pretendard', -apple-system, sans-serif; }
 
   @media (max-width: 768px) {
     .mobile-desc { font-size: 14px !important; line-height: 1.8; }
@@ -13,134 +21,581 @@
 
   .paper-texture {
     background-image: url("https://www.transparenttextures.com/patterns/natural-paper.png");
-    opacity: 0.6;
+    opacity: 0.5;
   }
+
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(2rem); filter: blur(4px); }
+    to { opacity: 1; transform: translateY(0); filter: blur(0); }
+  }
+  .reveal { opacity: 0; transform: translateY(2rem); }
+  .reveal.is-visible { animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards; animation-delay: calc(var(--delay, 0) * 100ms); }
+
+  .program-card { transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1); }
+  .program-card:hover { transform: translateY(-8px); }
+  .program-card:hover img { transform: scale(1.05); }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+  }
+
+  @keyframes morph-slow {
+    0%, 100% { border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; }
+    50% { border-radius: 70% 30% 30% 70% / 70% 70% 30% 30%; }
+  }
+  .animate-morph { animation: morph-slow 10s ease-in-out infinite; }
 </style>
 
-<div class="bg-[#F0EFEB] text-[#4A4843] font-sans selection:bg-[#8B9178] selection:text-white min-h-screen overflow-x-hidden relative">
-  <div class="fixed inset-0 paper-texture pointer-events-none"></div>
+<div class="bg-[#F7F5F0] text-[#2D2D2D] font-sans selection:bg-[#7B8F6B] selection:text-white min-h-screen overflow-x-hidden relative">
+  <div class="fixed inset-0 paper-texture pointer-events-none z-[1]"></div>
 
-  <!-- Nav -->
-  <nav class="fixed w-full z-50 px-8 py-12 md:px-12 bg-[#F0EFEB]/80 backdrop-blur-xl border-b border-[#4A4843]/5">
-    <div class="container mx-auto px-4 md:px-6 flex justify-between items-center flex-nowrap">
-      <div class="flex items-center gap-6">
-         <span class="font-serif-flow text-2xl font-medium tracking-wide italic leading-none">Yoga<span class="text-[#8B9178]">Flow</span></span>
-      </div>
-      
-      <div class="hidden md:flex gap-14 text-[10px] font-semibold uppercase tracking-[0.3em] text-[#4A4843]/40">
-        <a href="#mind" class="hover:text-[#8B9178] transition">Mindfulness</a>
-        <a href="#body" class="hover:text-[#8B9178] transition">Asana</a>
-        <a href="#studio" class="hover:text-[#8B9178] transition">Sanctuary</a>
-      </div>
-           <button class="mobile-menu-trigger md:hidden ml-auto text-2xl focus:outline-none" style="color: inherit;">
-             <i class="fas fa-bars"></i>
-           </button>
+  <!-- ========== Nav ========== -->
+  <nav class="fixed w-full z-50 px-4 md:px-8 py-5 bg-[#F7F5F0]/80 backdrop-blur-xl border-b border-[#7B8F6B]/10">
+    <div class="max-w-7xl mx-auto flex justify-between items-center">
+      <a href="#" class="flex items-center gap-3">
+        <span class="font-serif-flow text-3xl tracking-wide font-medium italic text-[#2D2D2D]">Sum<span class="text-[#7B8F6B]">Yoga</span></span>
+      </a>
 
-      
-      <div class="flex-nowrap shrink-0 flex gap-12 items-center">
-         <button onclick="toggleYogaModal()" class="hidden md:block text-[10px] font-semibold uppercase tracking-[0.3em] text-[#4A4843]/40 hover:text-[#8B9178]" data-mobile-menu-copy="true">Member ID</button>
-         <button class="hidden md:inline-flex bg-[#8B9178] text-white px-4 py-2 text-xs md:text-base md:px-8 md:py-3 whitespace-nowrap rounded-lg font-semibold text-[10px] tracking-[0.3em] uppercase hover:bg-[#4A4843] transition shadow-lg shadow-[#8B9178]/20" data-mobile-menu-copy="true">
-           Book Mat
-         </button>
+      <div class="hidden md:flex gap-12 text-[10px] font-semibold uppercase tracking-[0.4em] text-[#2D2D2D]/40">
+        <a href="#about" class="hover:text-[#7B8F6B] transition">About</a>
+        <a href="#programs" class="hover:text-[#7B8F6B] transition">Programs</a>
+        <a href="#schedule" class="hover:text-[#7B8F6B] transition">Schedule</a>
+        <a href="#location" class="hover:text-[#7B8F6B] transition">Location</a>
+      </div>
+
+      <button class="mobile-menu-trigger md:hidden ml-auto text-2xl focus:outline-none" style="color: inherit;">
+        <i class="fas fa-bars"></i>
+      </button>
+
+      <div class="hidden md:flex gap-6 items-center shrink-0">
+        <button onclick="toggleYogaModal()" class="text-[10px] font-semibold uppercase tracking-[0.4em] text-[#2D2D2D]/40 hover:text-[#7B8F6B]" data-mobile-menu-copy="true">Member</button>
+        <button class="bg-[#7B8F6B] text-white px-8 py-3.5 rounded-full font-semibold text-[10px] tracking-[0.3em] uppercase hover:bg-[#2D2D2D] transition shadow-lg shadow-[#7B8F6B]/20" data-mobile-menu-copy="true">
+          체험 신청
+        </button>
       </div>
     </div>
 
-      <%= render partial: 'templates/shared/mobile_menu_overlay' %></nav>
+    <%= render partial: 'templates/shared/mobile_menu_overlay' %>
+  </nav>
 
-  <!-- Hero -->
-  <header class="min-h-screen relative flex items-center justify-center pt-20">
-    <!-- Organic blobs -->
-    <div class="absolute top-[20%] left-[10%] w-[500px] h-[500px] bg-[#E2E1D9] rounded-[30%_70%_70%_30%/30%_30%_70%_70%] mix-blend-multiply filter blur-2xl opacity-70 animate-morph-slow"></div>
-    <div class="absolute bottom-[10%] right-[10%] w-[400px] h-[400px] bg-[#D4D3CB] rounded-[70%_30%_30%_70%/60%_40%_60%_40%] mix-blend-multiply filter blur-2xl opacity-70 animate-morph-slower"></div>
+  <!-- ========== Hero ========== -->
+  <header class="min-h-[100dvh] relative flex items-center justify-center pt-20">
+    <div class="absolute top-[20%] left-[10%] w-[400px] h-[400px] bg-[#7B8F6B]/8 animate-morph mix-blend-multiply filter blur-2xl"></div>
+    <div class="absolute bottom-[15%] right-[10%] w-[350px] h-[350px] bg-[#D4CFC4]/20 animate-morph mix-blend-multiply filter blur-2xl" style="animation-delay: -5s;"></div>
 
-    <div class="container mx-auto px-3 md:px-6 relative z-10 grid lg:grid-cols-2 gap-12 md:p-20 items-center">
-      <div class="space-y-12 text-center lg:text-left">
-        <div class="inline-flex items-center gap-6">
-           <span class="w-12 h-[1px] bg-[#8B9178]"></span>
-           <span class="text-[10px] font-semibold tracking-[0.4em] uppercase text-[#8B9178]">Balance of Life</span>
+    <div class="max-w-7xl mx-auto px-4 md:px-8 relative z-10 grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+      <div class="space-y-10 text-center lg:text-left">
+        <div class="inline-flex items-center gap-5 reveal" style="--delay: 0;">
+          <span class="w-10 h-[1px] bg-[#7B8F6B]"></span>
+          <span class="text-[10px] font-semibold tracking-[0.6em] uppercase text-[#7B8F6B]">Yoga &amp; Meditation</span>
         </div>
-        
-        <h1 class="text-3xl md:text-5xl md:text-[8rem] font-serif-flow font-light leading-[0.9] tracking-tight text-[#4A4843] mobile-title">
-           Breathe,<br><span class="italic text-[#8B9178]">Become.</span>
+
+        <h1 class="text-4xl md:text-6xl lg:text-[5.5rem] font-serif-flow font-light leading-tight tracking-tight text-[#2D2D2D] mobile-title reveal" style="--delay: 1;">
+          호흡으로 만나는<br><span class="italic text-[#7B8F6B]">온전한 나.</span>
         </h1>
-        
-        <p class="text-[#4A4843]/60 text-sm md:text-xl leading-[1.8] max-w-md mx-auto lg:mx-0 mobile-desc">
-           매트 위에서 마주하는 온전한 나. 호흡과 동작이 하나가 되는 순간, 내면의 고요한 숲을 만나보세요.
+
+        <p class="text-[#2D2D2D]/60 text-sm md:text-lg leading-relaxed max-w-lg mx-auto lg:mx-0 mobile-desc reveal" style="--delay: 2;">
+          매트 위에서 시작되는 내면으로의 여정. 숨 요가는 호흡과 동작이 하나가 되는 순간, 진정한 균형을 찾도록 안내합니다.
         </p>
-        
-        <div class="pt-6 flex flex-col sm:flex-row gap-12 justify-center lg:justify-start">
-           <button class="px-12 py-5 bg-[#4A4843] text-white font-semibold text-[11px] tracking-[0.4em] uppercase rounded-lg hover:bg-[#8B9178] transition shadow-xl">
-              Start Journey
-           </button>
-           <button class="px-12 py-5 border border-[#4A4843]/10 text-[#4A4843] font-semibold text-[11px] tracking-[0.4em] uppercase rounded-lg hover:bg-white transition">
-              View Schedule
-           </button>
+
+        <div class="pt-4 flex flex-col sm:flex-row gap-5 justify-center lg:justify-start reveal" style="--delay: 3;">
+          <a href="#programs" class="inline-flex items-center justify-center gap-3 px-10 py-5 bg-[#2D2D2D] text-white font-semibold text-[11px] tracking-[0.3em] uppercase hover:bg-[#7B8F6B] rounded-full shadow-xl">
+            프로그램 보기
+            <span class="w-7 h-7 rounded-full bg-white/10 flex items-center justify-center">
+              <i class="fas fa-arrow-right text-[10px]"></i>
+            </span>
+          </a>
+          <a href="#schedule" class="inline-flex items-center justify-center px-10 py-5 border border-[#7B8F6B]/30 text-[#7B8F6B] font-semibold text-[11px] tracking-[0.3em] uppercase hover:bg-white rounded-full">
+            시간표 확인
+          </a>
         </div>
       </div>
-      
-      <div class="relative hidden lg:block">
-         <div class="aspect-[4/5] rounded-[10rem_10rem_0_0] overflow-hidden relative group">
-            <img src="https://images.unsplash.com/photo-1599447332191-aaa5d52540c4?q=80&w=1200" alt="Yoga Practice" class="w-full h-full object-cover transition duration-[2s] group-hover:scale-105">
-            <div class="absolute inset-0 bg-gradient-to-t from-[#8B9178]/20 to-transparent pointer-events-none"></div>
-         </div>
+
+      <div class="relative hidden lg:block reveal" style="--delay: 2;">
+        <div class="aspect-[4/5] rounded-[8rem_8rem_2rem_2rem] overflow-hidden relative group">
+          <img src="https://images.unsplash.com/photo-1599447332191-aaa5d52540c4?q=80&w=1200" alt="요가 수련" class="w-full h-full object-cover transition duration-[2s] group-hover:scale-105" loading="eager">
+          <div class="absolute inset-0 bg-gradient-to-t from-[#7B8F6B]/20 to-transparent pointer-events-none"></div>
+        </div>
+        <div class="absolute -bottom-6 -left-6 md:-bottom-8 md:-left-8 bg-white p-8 md:p-10 rounded-2xl shadow-xl border border-[#7B8F6B]/10 max-w-[240px]" style="animation: float 6s ease-in-out infinite;">
+          <p class="text-[10px] font-semibold text-[#7B8F6B] uppercase tracking-[0.4em] mb-3">Daily Flow</p>
+          <p class="text-base font-serif-flow italic text-[#2D2D2D]">오늘도 한 호흡, 나를 위한 시간.</p>
+        </div>
       </div>
     </div>
   </header>
 
-   <style>
-      @keyframes morph-slow {
-         0%, 100% { border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; }
-         50% { border-radius: 70% 30% 30% 70% / 70% 70% 30% 30%; }
-      }
-      @keyframes morph-slower {
-         0%, 100% { border-radius: 70% 30% 30% 70% / 60% 40% 60% 40%; }
-         50% { border-radius: 30% 70% 70% 30% / 40% 60% 40% 60%; }
-      }
-      .animate-morph-slow { animation: morph-slow 10s ease-in-out infinite; }
-      .animate-morph-slower { animation: morph-slower 12s ease-in-out infinite; }
-   </style>
-
-  <!-- Login Modal -->
-  <div id="yoga-modal" class="fixed inset-0 z-[100] hidden items-center justify-center p-4 bg-[#4A4843]/10 backdrop-blur-xl">
-    <div class="bg-[#F0EFEB] w-full max-w-sm p-6 md:p-16 shadow-2xl relative rounded-2xl border border-[#8B9178]/10">
-      <button onclick="toggleYogaModal()" class="absolute top-10 right-10 text-[#4A4843]/30 hover:text-[#8B9178] transition text-2xl font-light">&times;</button>
-      
-      <div class="text-center mb-14">
-        <h2 class="text-2xl font-serif-flow text-[#4A4843] mb-2 italic">Flow ID</h2>
-        <p class="text-[9px] text-[#8B9178] font-semibold tracking-[0.3em] uppercase">Private Studio Space</p>
-      </div>
-      
-      <div class="space-y-8">
-        <div class="space-y-3">
-           <p class="text-[9px] font-semibold text-[#4A4843]/30 uppercase tracking-[0.2em] ml-2">Member Email</p>
-           <input type="text" placeholder="yogi@flow.com" class="w-full bg-white border-none rounded-2xl py-5 px-6 outline-none focus:ring-1 focus:ring-[#8B9178]/50 transition text-[11px] font-semibold tracking-wide text-[#4A4843]">
+  <!-- ========== About ========== -->
+  <section id="about" class="py-24 md:py-32 relative z-10">
+    <div class="max-w-7xl mx-auto px-4 md:px-8 grid lg:grid-cols-2 gap-16 lg:gap-24 items-center">
+      <div class="relative reveal" style="--delay: 0;">
+        <div class="grid grid-cols-2 gap-4">
+          <div class="overflow-hidden rounded-[2rem]">
+            <img src="https://images.unsplash.com/photo-1545389336-cf090694435e?q=80&w=600" alt="요가 스튜디오" class="w-full aspect-[3/4] object-cover" loading="lazy">
+          </div>
+          <div class="overflow-hidden rounded-[2rem] mt-8">
+            <img src="https://images.unsplash.com/photo-1506126613408-eca07ce68773?q=80&w=600" alt="명상" class="w-full aspect-[3/4] object-cover" loading="lazy">
+          </div>
         </div>
-        <button class="w-full bg-[#8B9178] text-white py-5 rounded-2xl text-[10px] tracking-[0.4em] font-semibold uppercase hover:bg-[#4A4843] transition shadow-xl shadow-[#8B9178]/20">
-           Enter Studio
+      </div>
+
+      <div class="space-y-8 reveal" style="--delay: 1;">
+        <div class="inline-flex items-center gap-4">
+          <span class="rounded-full px-4 py-1.5 text-[11px] uppercase tracking-[0.15em] font-medium bg-[#7B8F6B]/10 text-[#7B8F6B]">Our Philosophy</span>
+        </div>
+
+        <h2 class="text-3xl md:text-4xl lg:text-5xl font-serif-flow font-medium leading-snug text-[#2D2D2D]">
+          몸과 마음의<br>자연스러운 균형
+        </h2>
+
+        <p class="text-[#2D2D2D]/60 text-base md:text-lg leading-relaxed">
+          숨 요가는 2019년 연남동의 오래된 한옥을 개조하여 시작되었습니다. 자연광이 들어오는 따뜻한 공간에서, 숙련된 강사와 함께 몸과 마음의 조화를 경험합니다.
+        </p>
+        <p class="text-[#2D2D2D]/60 text-base md:text-lg leading-relaxed">
+          빠르게 흘러가는 일상에서 잠시 멈추는 연습. 숨 요가는 당신이 다시 자신과 연결되는 공간이 되고 싶습니다.
+        </p>
+
+        <div class="grid grid-cols-3 gap-6 pt-6 border-t border-[#7B8F6B]/10">
+          <div>
+            <p class="text-2xl md:text-3xl font-serif-flow font-medium text-[#7B8F6B]">6yr</p>
+            <p class="text-[11px] text-[#2D2D2D]/40 uppercase tracking-[0.1em] mt-1 font-medium">연남동 한옥</p>
+          </div>
+          <div>
+            <p class="text-2xl md:text-3xl font-serif-flow font-medium text-[#7B8F6B]">12명</p>
+            <p class="text-[11px] text-[#2D2D2D]/40 uppercase tracking-[0.1em] mt-1 font-medium">소수 정원</p>
+          </div>
+          <div>
+            <p class="text-2xl md:text-3xl font-serif-flow font-medium text-[#7B8F6B]">4+</p>
+            <p class="text-[11px] text-[#2D2D2D]/40 uppercase tracking-[0.1em] mt-1 font-medium">전문 강사</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== 프로그램 ========== -->
+  <section id="programs" class="py-24 md:py-32 bg-white relative z-10">
+    <div class="max-w-7xl mx-auto px-4 md:px-8">
+      <div class="text-center mb-16 md:mb-20">
+        <span class="rounded-full px-4 py-1.5 text-[11px] uppercase tracking-[0.15em] font-medium bg-[#7B8F6B]/10 text-[#7B8F6B] reveal" style="--delay: 0;">Programs</span>
+        <h2 class="text-3xl md:text-4xl lg:text-5xl font-serif-flow font-medium leading-snug text-[#2D2D2D] mt-6 reveal" style="--delay: 1;">
+          당신에게 맞는<br>요가 여정
+        </h2>
+        <p class="text-[#2D2D2D]/50 text-base md:text-lg mt-4 max-w-xl mx-auto reveal" style="--delay: 2;">
+          초보자부터 숙련자까지, 단계별 맞춤 프로그램을 제공합니다
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <!-- 프로그램 1 -->
+        <div class="program-card group reveal" style="--delay: 0;">
+          <div class="bg-[#F7F5F0] rounded-[2rem] p-1.5 ring-1 ring-[#2D2D2D]/5">
+            <div class="rounded-[calc(2rem-0.375rem)] overflow-hidden">
+              <div class="overflow-hidden">
+                <img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?q=80&w=600" alt="하타 요가" class="w-full aspect-square object-cover transition-transform duration-700" loading="lazy">
+              </div>
+              <div class="p-6 bg-[#F7F5F0]">
+                <span class="text-[10px] text-[#7B8F6B] font-semibold uppercase tracking-[0.2em]">Beginner</span>
+                <h3 class="text-lg font-semibold text-[#2D2D2D] mt-2">하타 요가</h3>
+                <p class="text-[13px] text-[#2D2D2D]/50 leading-relaxed mt-2">기본 아사나와 호흡법을 배우는 입문 클래스. 유연성과 균형감 향상.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 프로그램 2 -->
+        <div class="program-card group reveal" style="--delay: 1;">
+          <div class="bg-[#F7F5F0] rounded-[2rem] p-1.5 ring-1 ring-[#2D2D2D]/5">
+            <div class="rounded-[calc(2rem-0.375rem)] overflow-hidden">
+              <div class="overflow-hidden">
+                <img src="https://images.unsplash.com/photo-1599447332191-aaa5d52540c4?q=80&w=600" alt="빈야사 플로우" class="w-full aspect-square object-cover transition-transform duration-700" loading="lazy">
+              </div>
+              <div class="p-6 bg-[#F7F5F0]">
+                <span class="text-[10px] text-[#7B8F6B] font-semibold uppercase tracking-[0.2em]">Intermediate</span>
+                <h3 class="text-lg font-semibold text-[#2D2D2D] mt-2">빈야사 플로우</h3>
+                <p class="text-[13px] text-[#2D2D2D]/50 leading-relaxed mt-2">호흡과 동작을 연결하는 다이나믹한 시퀀스. 체력과 집중력 강화.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 프로그램 3 -->
+        <div class="program-card group reveal" style="--delay: 2;">
+          <div class="bg-[#F7F5F0] rounded-[2rem] p-1.5 ring-1 ring-[#2D2D2D]/5">
+            <div class="rounded-[calc(2rem-0.375rem)] overflow-hidden">
+              <div class="overflow-hidden">
+                <img src="https://images.unsplash.com/photo-1506126613408-eca07ce68773?q=80&w=600" alt="음양 요가" class="w-full aspect-square object-cover transition-transform duration-700" loading="lazy">
+              </div>
+              <div class="p-6 bg-[#F7F5F0]">
+                <span class="text-[10px] text-[#7B8F6B] font-semibold uppercase tracking-[0.2em]">Restorative</span>
+                <h3 class="text-lg font-semibold text-[#2D2D2D] mt-2">음양 요가</h3>
+                <p class="text-[13px] text-[#2D2D2D]/50 leading-relaxed mt-2">깊은 이완과 근막 이완에 집중. 스트레스 해소와 회복에 최적.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 프로그램 4 -->
+        <div class="program-card group reveal" style="--delay: 3;">
+          <div class="bg-[#F7F5F0] rounded-[2rem] p-1.5 ring-1 ring-[#2D2D2D]/5">
+            <div class="rounded-[calc(2rem-0.375rem)] overflow-hidden">
+              <div class="overflow-hidden">
+                <img src="https://images.unsplash.com/photo-1545389336-cf090694435e?q=80&w=600" alt="명상 클래스" class="w-full aspect-square object-cover transition-transform duration-700" loading="lazy">
+              </div>
+              <div class="p-6 bg-[#F7F5F0]">
+                <span class="text-[10px] text-[#7B8F6B] font-semibold uppercase tracking-[0.2em]">Mindfulness</span>
+                <h3 class="text-lg font-semibold text-[#2D2D2D] mt-2">마음챙김 명상</h3>
+                <p class="text-[13px] text-[#2D2D2D]/50 leading-relaxed mt-2">호흡 명상과 바디스캔으로 내면의 고요함을 찾는 시간.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== 강사 소개 ========== -->
+  <section class="py-24 md:py-32 relative z-10">
+    <div class="max-w-7xl mx-auto px-4 md:px-8">
+      <div class="text-center mb-16 md:mb-20">
+        <span class="rounded-full px-4 py-1.5 text-[11px] uppercase tracking-[0.15em] font-medium bg-[#7B8F6B]/10 text-[#7B8F6B] reveal" style="--delay: 0;">Instructors</span>
+        <h2 class="text-3xl md:text-4xl lg:text-5xl font-serif-flow font-medium leading-snug text-[#2D2D2D] mt-6 reveal" style="--delay: 1;">
+          함께하는 안내자
+        </h2>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+        <div class="flex flex-col md:flex-row gap-6 items-center md:items-start text-center md:text-left reveal" style="--delay: 0;">
+          <div class="w-32 h-32 rounded-full overflow-hidden shrink-0">
+            <img src="https://images.unsplash.com/photo-1594381898411-846e7d193883?q=80&w=400" alt="강사 1" class="w-full h-full object-cover" loading="lazy">
+          </div>
+          <div>
+            <h3 class="text-xl font-serif-flow font-medium text-[#2D2D2D] mb-1">윤 서영</h3>
+            <p class="text-[11px] text-[#7B8F6B] uppercase tracking-[0.3em] font-semibold mb-3">Lead Instructor</p>
+            <p class="text-sm text-[#2D2D2D]/50 leading-relaxed">인도 리시케시 200h RYT 자격. 10년 수련 경력. 빈야사와 하타 요가 전문. 부드럽지만 깊이 있는 수업을 지향합니다.</p>
+          </div>
+        </div>
+
+        <div class="flex flex-col md:flex-row gap-6 items-center md:items-start text-center md:text-left reveal" style="--delay: 1;">
+          <div class="w-32 h-32 rounded-full overflow-hidden shrink-0">
+            <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&w=400" alt="강사 2" class="w-full h-full object-cover" loading="lazy">
+          </div>
+          <div>
+            <h3 class="text-xl font-serif-flow font-medium text-[#2D2D2D] mb-1">김 하늘</h3>
+            <p class="text-[11px] text-[#7B8F6B] uppercase tracking-[0.3em] font-semibold mb-3">Meditation Guide</p>
+            <p class="text-sm text-[#2D2D2D]/50 leading-relaxed">MBSR 마음챙김 인증 강사. 음양 요가와 명상 전문. 일상에서 실천할 수 있는 마음챙김을 가르칩니다.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== 시간표 ========== -->
+  <section id="schedule" class="py-24 md:py-32 bg-white relative z-10">
+    <div class="max-w-5xl mx-auto px-4 md:px-8">
+      <div class="text-center mb-16 md:mb-20">
+        <span class="rounded-full px-4 py-1.5 text-[11px] uppercase tracking-[0.15em] font-medium bg-[#7B8F6B]/10 text-[#7B8F6B] reveal" style="--delay: 0;">Weekly Schedule</span>
+        <h2 class="text-3xl md:text-4xl lg:text-5xl font-serif-flow font-medium leading-snug text-[#2D2D2D] mt-6 reveal" style="--delay: 1;">
+          주간 시간표
+        </h2>
+      </div>
+
+      <div class="overflow-x-auto reveal" style="--delay: 2;">
+        <table class="w-full text-sm">
+          <thead>
+            <tr class="border-b-2 border-[#7B8F6B]/20">
+              <th class="py-4 px-3 text-left text-[10px] font-semibold uppercase tracking-[0.3em] text-[#7B8F6B]">시간</th>
+              <th class="py-4 px-3 text-center text-[10px] font-semibold uppercase tracking-[0.3em] text-[#2D2D2D]/40">월</th>
+              <th class="py-4 px-3 text-center text-[10px] font-semibold uppercase tracking-[0.3em] text-[#2D2D2D]/40">화</th>
+              <th class="py-4 px-3 text-center text-[10px] font-semibold uppercase tracking-[0.3em] text-[#2D2D2D]/40">수</th>
+              <th class="py-4 px-3 text-center text-[10px] font-semibold uppercase tracking-[0.3em] text-[#2D2D2D]/40">목</th>
+              <th class="py-4 px-3 text-center text-[10px] font-semibold uppercase tracking-[0.3em] text-[#2D2D2D]/40">금</th>
+              <th class="py-4 px-3 text-center text-[10px] font-semibold uppercase tracking-[0.3em] text-[#2D2D2D]/40">토</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="border-b border-[#2D2D2D]/5">
+              <td class="py-5 px-3 font-serif-flow font-medium text-[#2D2D2D]">07:00</td>
+              <td class="py-5 px-3 text-center"><span class="inline-block bg-[#7B8F6B]/10 text-[#7B8F6B] text-[12px] font-medium px-3 py-1.5 rounded-full">하타</span></td>
+              <td class="py-5 px-3 text-center text-[#2D2D2D]/20">-</td>
+              <td class="py-5 px-3 text-center"><span class="inline-block bg-[#7B8F6B]/10 text-[#7B8F6B] text-[12px] font-medium px-3 py-1.5 rounded-full">하타</span></td>
+              <td class="py-5 px-3 text-center text-[#2D2D2D]/20">-</td>
+              <td class="py-5 px-3 text-center"><span class="inline-block bg-[#7B8F6B]/10 text-[#7B8F6B] text-[12px] font-medium px-3 py-1.5 rounded-full">하타</span></td>
+              <td class="py-5 px-3 text-center"><span class="inline-block bg-[#7B8F6B]/10 text-[#7B8F6B] text-[12px] font-medium px-3 py-1.5 rounded-full">명상</span></td>
+            </tr>
+            <tr class="border-b border-[#2D2D2D]/5">
+              <td class="py-5 px-3 font-serif-flow font-medium text-[#2D2D2D]">10:00</td>
+              <td class="py-5 px-3 text-center"><span class="inline-block bg-[#D4CFC4]/30 text-[#2D2D2D]/60 text-[12px] font-medium px-3 py-1.5 rounded-full">빈야사</span></td>
+              <td class="py-5 px-3 text-center"><span class="inline-block bg-[#7B8F6B]/10 text-[#7B8F6B] text-[12px] font-medium px-3 py-1.5 rounded-full">하타</span></td>
+              <td class="py-5 px-3 text-center"><span class="inline-block bg-[#D4CFC4]/30 text-[#2D2D2D]/60 text-[12px] font-medium px-3 py-1.5 rounded-full">빈야사</span></td>
+              <td class="py-5 px-3 text-center"><span class="inline-block bg-[#7B8F6B]/10 text-[#7B8F6B] text-[12px] font-medium px-3 py-1.5 rounded-full">하타</span></td>
+              <td class="py-5 px-3 text-center"><span class="inline-block bg-[#D4CFC4]/30 text-[#2D2D2D]/60 text-[12px] font-medium px-3 py-1.5 rounded-full">빈야사</span></td>
+              <td class="py-5 px-3 text-center"><span class="inline-block bg-[#D4CFC4]/30 text-[#2D2D2D]/60 text-[12px] font-medium px-3 py-1.5 rounded-full">빈야사</span></td>
+            </tr>
+            <tr class="border-b border-[#2D2D2D]/5">
+              <td class="py-5 px-3 font-serif-flow font-medium text-[#2D2D2D]">14:00</td>
+              <td class="py-5 px-3 text-center text-[#2D2D2D]/20">-</td>
+              <td class="py-5 px-3 text-center"><span class="inline-block bg-[#E8E4DA] text-[#2D2D2D]/50 text-[12px] font-medium px-3 py-1.5 rounded-full">음양</span></td>
+              <td class="py-5 px-3 text-center text-[#2D2D2D]/20">-</td>
+              <td class="py-5 px-3 text-center"><span class="inline-block bg-[#E8E4DA] text-[#2D2D2D]/50 text-[12px] font-medium px-3 py-1.5 rounded-full">음양</span></td>
+              <td class="py-5 px-3 text-center text-[#2D2D2D]/20">-</td>
+              <td class="py-5 px-3 text-center text-[#2D2D2D]/20">-</td>
+            </tr>
+            <tr>
+              <td class="py-5 px-3 font-serif-flow font-medium text-[#2D2D2D]">19:00</td>
+              <td class="py-5 px-3 text-center"><span class="inline-block bg-[#D4CFC4]/30 text-[#2D2D2D]/60 text-[12px] font-medium px-3 py-1.5 rounded-full">빈야사</span></td>
+              <td class="py-5 px-3 text-center"><span class="inline-block bg-[#7B8F6B]/10 text-[#7B8F6B] text-[12px] font-medium px-3 py-1.5 rounded-full">명상</span></td>
+              <td class="py-5 px-3 text-center"><span class="inline-block bg-[#D4CFC4]/30 text-[#2D2D2D]/60 text-[12px] font-medium px-3 py-1.5 rounded-full">빈야사</span></td>
+              <td class="py-5 px-3 text-center"><span class="inline-block bg-[#7B8F6B]/10 text-[#7B8F6B] text-[12px] font-medium px-3 py-1.5 rounded-full">명상</span></td>
+              <td class="py-5 px-3 text-center"><span class="inline-block bg-[#E8E4DA] text-[#2D2D2D]/50 text-[12px] font-medium px-3 py-1.5 rounded-full">음양</span></td>
+              <td class="py-5 px-3 text-center text-[#2D2D2D]/20">-</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="text-center mt-10 reveal" style="--delay: 3;">
+        <p class="text-[13px] text-[#2D2D2D]/40">* 일요일 휴무 / 공휴일 스케줄은 별도 공지</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== Location ========== -->
+  <section id="location" class="py-24 md:py-32 bg-[#2D2D2D] text-white relative overflow-hidden z-10">
+    <div class="absolute top-0 right-0 w-96 h-96 bg-[#7B8F6B]/10 rounded-full blur-[120px]"></div>
+
+    <div class="max-w-7xl mx-auto px-4 md:px-8 relative z-10">
+      <div class="grid lg:grid-cols-2 gap-16 lg:gap-24 items-start">
+        <div class="reveal" style="--delay: 0;">
+          <div class="rounded-[2rem] overflow-hidden aspect-[4/3] bg-[#444] relative group">
+            <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=800" alt="스튜디오 외관" class="w-full h-full object-cover opacity-60 group-hover:opacity-80 transition-opacity duration-700" loading="lazy">
+            <div class="absolute inset-0 flex items-center justify-center">
+              <a href="#" class="inline-flex items-center gap-3 bg-white/10 backdrop-blur-xl border border-white/20 text-white px-8 py-4 rounded-full text-[11px] font-semibold uppercase tracking-[0.3em] hover:bg-white/20 transition">
+                <i class="fas fa-map-marker-alt text-[#7B8F6B]"></i>
+                지도에서 보기
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="space-y-10">
+          <div class="reveal" style="--delay: 1;">
+            <span class="rounded-full px-4 py-1.5 text-[11px] uppercase tracking-[0.15em] font-medium bg-white/10 text-[#7B8F6B]">Visit Us</span>
+            <h2 class="text-3xl md:text-4xl lg:text-5xl font-serif-flow font-medium leading-snug mt-6">
+              오시는 길
+            </h2>
+          </div>
+
+          <div class="space-y-8 reveal" style="--delay: 2;">
+            <div class="flex gap-5">
+              <div class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center shrink-0 mt-0.5">
+                <i class="fas fa-map-pin text-[#7B8F6B] text-sm"></i>
+              </div>
+              <div>
+                <p class="text-[10px] font-semibold uppercase tracking-[0.3em] text-white/40 mb-2">Address</p>
+                <p class="text-white/80 text-base leading-relaxed">서울특별시 마포구 연남로 11길 28<br>숨 요가 스튜디오</p>
+              </div>
+            </div>
+
+            <div class="flex gap-5">
+              <div class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center shrink-0 mt-0.5">
+                <i class="fas fa-clock text-[#7B8F6B] text-sm"></i>
+              </div>
+              <div>
+                <p class="text-[10px] font-semibold uppercase tracking-[0.3em] text-white/40 mb-2">Hours</p>
+                <div class="space-y-1.5 text-white/80 text-base">
+                  <div class="flex justify-between gap-12">
+                    <span>월 - 금</span>
+                    <span class="font-serif-flow">06:30 - 21:00</span>
+                  </div>
+                  <div class="flex justify-between gap-12">
+                    <span>토요일</span>
+                    <span class="font-serif-flow">08:00 - 17:00</span>
+                  </div>
+                  <div class="flex justify-between gap-12 text-[#7B8F6B]">
+                    <span>일요일</span>
+                    <span class="font-serif-flow">정기 휴무</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="flex gap-5">
+              <div class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center shrink-0 mt-0.5">
+                <i class="fas fa-subway text-[#7B8F6B] text-sm"></i>
+              </div>
+              <div>
+                <p class="text-[10px] font-semibold uppercase tracking-[0.3em] text-white/40 mb-2">Transport</p>
+                <p class="text-white/80 text-base leading-relaxed">홍대입구역 3번 출구 도보 10분<br>연남동 경의선숲길 인근</p>
+              </div>
+            </div>
+
+            <div class="flex gap-5">
+              <div class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center shrink-0 mt-0.5">
+                <i class="fas fa-phone text-[#7B8F6B] text-sm"></i>
+              </div>
+              <div>
+                <p class="text-[10px] font-semibold uppercase tracking-[0.3em] text-white/40 mb-2">Contact</p>
+                <p class="text-white/80 text-base">02-333-7890</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== CTA ========== -->
+  <section class="py-24 md:py-32 relative overflow-hidden z-10">
+    <div class="absolute inset-0 bg-gradient-to-br from-[#F7F5F0] via-[#ede9e0] to-[#F7F5F0]"></div>
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-[#7B8F6B]/8 rounded-full blur-[120px]"></div>
+
+    <div class="max-w-3xl mx-auto px-4 md:px-8 text-center relative z-10">
+      <div class="reveal" style="--delay: 0;">
+        <span class="font-serif-flow text-6xl md:text-8xl italic text-[#7B8F6B]/20 block mb-6">&ldquo;</span>
+      </div>
+      <h2 class="text-3xl md:text-4xl lg:text-5xl font-serif-flow font-medium leading-snug text-[#2D2D2D] reveal" style="--delay: 1;">
+        오늘 하루,<br>나를 위한 한 호흡
+      </h2>
+      <p class="text-[#2D2D2D]/50 text-base md:text-lg mt-6 max-w-lg mx-auto reveal" style="--delay: 2;">
+        첫 수업은 무료 체험으로 시작하세요. 당신에게 맞는 요가를 함께 찾아드립니다.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-5 justify-center mt-10 reveal" style="--delay: 3;">
+        <a href="#" class="inline-flex items-center justify-center gap-3 px-10 py-5 bg-[#7B8F6B] text-white font-semibold text-[11px] tracking-[0.3em] uppercase rounded-full shadow-lg shadow-[#7B8F6B]/20 hover:bg-[#2D2D2D]">
+          무료 체험 신청
+          <span class="w-7 h-7 rounded-full bg-white/15 flex items-center justify-center">
+            <i class="fas fa-arrow-right text-[10px]"></i>
+          </span>
+        </a>
+        <a href="https://www.instagram.com/" target="_blank" class="inline-flex items-center justify-center gap-3 px-10 py-5 border border-[#7B8F6B]/30 text-[#7B8F6B] font-semibold text-[11px] tracking-[0.3em] uppercase rounded-full hover:bg-white">
+          <i class="fab fa-instagram text-sm"></i>
+          Instagram
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== Footer ========== -->
+  <footer class="py-16 md:py-24 bg-[#2D2D2D] relative z-10">
+    <div class="max-w-7xl mx-auto px-4 md:px-8">
+      <div class="grid md:grid-cols-3 gap-12 items-start mb-16">
+        <div>
+          <span class="font-serif-flow text-2xl text-white tracking-wide font-medium italic block mb-4">SumYoga</span>
+          <p class="text-white/30 text-sm leading-relaxed max-w-xs">
+            연남동 한옥에서 시작된 요가 스튜디오. 호흡과 함께 몸과 마음의 균형을 찾아갑니다.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-2 gap-8">
+          <div>
+            <p class="text-[10px] font-semibold text-white/20 uppercase tracking-[0.3em] mb-4">Program</p>
+            <ul class="space-y-2.5">
+              <li><a href="#programs" class="text-white/50 text-sm hover:text-[#7B8F6B] transition">Hatha</a></li>
+              <li><a href="#programs" class="text-white/50 text-sm hover:text-[#7B8F6B] transition">Vinyasa</a></li>
+              <li><a href="#programs" class="text-white/50 text-sm hover:text-[#7B8F6B] transition">Yin Yang</a></li>
+              <li><a href="#programs" class="text-white/50 text-sm hover:text-[#7B8F6B] transition">Meditation</a></li>
+            </ul>
+          </div>
+          <div>
+            <p class="text-[10px] font-semibold text-white/20 uppercase tracking-[0.3em] mb-4">Info</p>
+            <ul class="space-y-2.5">
+              <li><a href="#about" class="text-white/50 text-sm hover:text-[#7B8F6B] transition">About</a></li>
+              <li><a href="#schedule" class="text-white/50 text-sm hover:text-[#7B8F6B] transition">Schedule</a></li>
+              <li><a href="#location" class="text-white/50 text-sm hover:text-[#7B8F6B] transition">Location</a></li>
+              <li><a href="#" class="text-white/50 text-sm hover:text-[#7B8F6B] transition">Careers</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <div>
+          <p class="text-[10px] font-semibold text-white/20 uppercase tracking-[0.3em] mb-4">Follow</p>
+          <div class="flex gap-3">
+            <a href="#" class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white/50 hover:text-[#7B8F6B] hover:border-[#7B8F6B]/30 transition">
+              <i class="fab fa-instagram text-sm"></i>
+            </a>
+            <a href="#" class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white/50 hover:text-[#7B8F6B] hover:border-[#7B8F6B]/30 transition">
+              <i class="fab fa-youtube text-sm"></i>
+            </a>
+            <a href="#" class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white/50 hover:text-[#7B8F6B] hover:border-[#7B8F6B]/30 transition">
+              <i class="fas fa-blog text-sm"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="border-t border-white/5 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+        <p class="text-[10px] text-white/15 tracking-[0.5em] uppercase">
+          &copy; 2024 Sum Yoga Studio. All rights reserved by DLAB.
+        </p>
+        <div class="flex gap-6">
+          <a href="#" class="text-[10px] text-white/15 tracking-[0.2em] uppercase hover:text-white/40 transition">Privacy</a>
+          <a href="#" class="text-[10px] text-white/15 tracking-[0.2em] uppercase hover:text-white/40 transition">Terms</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ========== Login Modal ========== -->
+  <div id="yoga-modal" class="fixed inset-0 z-[100] hidden items-center justify-center p-4 bg-[#2D2D2D]/20 backdrop-blur-3xl">
+    <div class="bg-[#F7F5F0] w-full max-w-sm p-8 md:p-14 shadow-2xl relative rounded-[3rem] border border-[#7B8F6B]/10">
+      <button onclick="toggleYogaModal()" class="absolute top-8 right-8 w-8 h-8 rounded-full bg-white flex items-center justify-center text-[#2D2D2D]/30 hover:text-[#7B8F6B] hover:bg-[#7B8F6B]/10 transition text-lg">&times;</button>
+
+      <div class="text-center mb-12">
+        <h2 class="text-2xl font-serif-flow italic text-[#2D2D2D] mb-3">Flow Member</h2>
+        <p class="text-[9px] text-[#7B8F6B] font-semibold tracking-[0.3em] uppercase">Studio Access</p>
+      </div>
+
+      <div class="space-y-5">
+        <div class="space-y-2">
+          <p class="text-[10px] font-semibold text-[#2D2D2D]/30 uppercase tracking-[0.2em] ml-1">Email</p>
+          <input type="text" placeholder="yogi@sum.com" class="w-full bg-white border-none rounded-2xl py-5 px-6 outline-none focus:ring-1 focus:ring-[#7B8F6B]/50 transition text-[13px] text-[#2D2D2D]">
+        </div>
+        <div class="space-y-2">
+          <p class="text-[10px] font-semibold text-[#2D2D2D]/30 uppercase tracking-[0.2em] ml-1">Password</p>
+          <input type="password" placeholder="Password" class="w-full bg-white border-none rounded-2xl py-5 px-6 outline-none focus:ring-1 focus:ring-[#7B8F6B]/50 transition text-[13px] text-[#2D2D2D]">
+        </div>
+        <button class="w-full bg-[#7B8F6B] text-white py-5 rounded-full text-[11px] tracking-[0.4em] font-semibold uppercase hover:bg-[#2D2D2D] transition shadow-lg shadow-[#7B8F6B]/20 mt-2">
+          Enter Studio
         </button>
-        <div class="flex justify-center gap-14 pt-4">
-           <a href="#" class="text-[9px] text-[#4A4843]/40 tracking-[0.2em] font-semibold uppercase hover:text-[#8B9178] transition">New Member</a>
-           <a href="#" class="text-[9px] text-[#4A4843]/40 tracking-[0.2em] font-semibold uppercase hover:text-[#8B9178] transition">My Journey</a>
+        <div class="flex justify-center gap-10 pt-2">
+          <a href="#" class="text-[10px] text-[#2D2D2D]/40 tracking-[0.2em] font-semibold uppercase hover:text-[#7B8F6B] transition">Join</a>
+          <a href="#" class="text-[10px] text-[#2D2D2D]/40 tracking-[0.2em] font-semibold uppercase hover:text-[#7B8F6B] transition">Help</a>
         </div>
       </div>
     </div>
   </div>
 
-  <footer class="py-20 md:py-32 bg-[#F0EFEB] text-center px-6 border-t border-[#4A4843]/5">
-     <div class="inline-flex flex-col items-center gap-10 mb-8">
-        <span class="font-serif-flow text-2xl text-[#4A4843] tracking-wide italic">YogaFlow</span>
-        <div class="w-12 h-[1px] bg-[#4A4843]/10"></div>
-        <span class="text-[10px] font-semibold text-[#4A4843]/30 tracking-[0.4em] uppercase">Natural Balance Sanctuary</span>
-     </div>
-     <p class="text-[10px] text-[#4A4843]/20 tracking-[0.8em] uppercase px-6">© 2024 YOGA FLOW. SEOUL.</p>
-  </footer>
-
-  <script>
-    function toggleYogaModal() {
-      const modal = document.getElementById('yoga-modal');
-      modal.classList.toggle('hidden');
-      modal.classList.toggle('flex');
-    }
-  </script>
-
 </div>
+
+<script>
+  // Modal toggle
+  function toggleYogaModal() {
+    const modal = document.getElementById('yoga-modal');
+    modal.classList.toggle('hidden');
+    modal.classList.toggle('flex');
+  }
+
+  // Close modal on backdrop click
+  document.getElementById('yoga-modal').addEventListener('click', function(e) {
+    if (e.target === this) toggleYogaModal();
+  });
+
+  // IntersectionObserver for scroll reveal animations
+  (function() {
+    const observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    });
+
+    document.querySelectorAll('.reveal').forEach(function(el) {
+      observer.observe(el);
+    });
+  })();
+</script>

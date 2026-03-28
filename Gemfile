@@ -85,7 +85,7 @@ group :development, :test do
   # Omakase Ruby styling [https://github.com/rails/rubocop-rails-omakase/]
   # gem "rubocop-rails-omakase", require: false
   
-  # N+1 query detection
+  # N+1 query detection (로컬에서 bundle install 후 사용)
   # gem "bullet"
 end
 
@@ -114,3 +114,7 @@ gem "litestream", "~> 0.14.0"
 gem "aws-sdk-s3", "~> 1.211", require: false
 
 gem "instagram_basic_display", "~> 0.2.3"
+
+# 에러 추적
+gem "sentry-ruby"
+gem "sentry-rails"

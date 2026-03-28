@@ -1,15 +1,26 @@
-# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+# 테스트용 에이전시 데이터
 
-one:
-  name: MyString
-  subdomain: MyString
-  owner: one
-  settings: MyText
-  active: false
+main_agency:
+  name: "테스트 에이전시"
+  subdomain: "test-agency"
+  owner: owner
+  settings: '{"theme": "default"}'
+  admin_ids: '[]'
+  active: true
 
-two:
-  name: MyString
-  subdomain: MyString
-  owner: two
-  settings: MyText
+sub_agency:
+  name: "하위 에이전시"
+  subdomain: "sub-agency"
+  owner: super_admin
+  parent_agency: main_agency
+  settings: '{}'
+  admin_ids: '[]'
+  active: true
+
+inactive_agency:
+  name: "비활성 에이전시"
+  subdomain: "inactive"
+  owner: admin_user
+  settings: '{}'
+  admin_ids: '[]'
   active: false

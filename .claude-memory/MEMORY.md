@@ -1,0 +1,1 @@
+- [feedback_test_result.md](feedback_test_result.md): 테스트/배포 완료 시 간결하게 결과만 보고하는 방식 선호

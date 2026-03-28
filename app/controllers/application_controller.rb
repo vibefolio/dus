@@ -1,8 +1,13 @@
 class ApplicationController < ActionController::Base
-  # Fly.io 프록시 환경에서 Devise 인증 시 CSRF 문제 우회
-  skip_before_action :verify_authenticity_token, if: :devise_controller?
+  include TurboNativeApp
+  include ErrorHandler
+
+  # OmniAuth 콜백에서만 CSRF 검증 건너뛰기 (전체 Devise 컨트롤러 아님)
+  skip_before_action :verify_authenticity_token, if: :omniauth_controller?
   # Only allow modern browsers supporting webp images, web push, badges, import maps, CSS nesting, and CSS :has.
   allow_browser versions: :modern
+
+  layout :set_app_layout
 
   # Changes to the importmap will invalidate the etag for HTML responses
   # Changes to the importmap will invalidate the etag for HTML responses
@@ -12,6 +17,10 @@ class ApplicationController < ActionController::Base
   before_action :link_user_to_agency
 
   private
+
+  def set_app_layout
+    turbo_native_app? ? "mobile" : "application"
+  end
 
   def set_current_agency
     # subdomain.designd.co.kr or subdomain.faneasy.kr 등에서 서브도메인 추출
@@ -36,6 +45,10 @@ class ApplicationController < ActionController::Base
     end
   end
 
+
+  def omniauth_controller?
+    self.class.name.start_with?('Users::OmniauthCallbacks')
+  end
 
   def authenticate_admin!
     # 1. 기존 하드코딩된 세션 체크 (유지)

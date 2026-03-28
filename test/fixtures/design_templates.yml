@@ -1,0 +1,32 @@
+# 테스트용 디자인 템플릿 데이터
+
+one:
+  title: "모던 비즈니스 템플릿"
+  description: "깔끔한 비즈니스 웹사이트 템플릿"
+  category: "business"
+  price: 99000
+  is_featured: true
+  image_url: "https://example.com/template1.png"
+  preview_url: "https://example.com/preview1"
+  view_count: 100
+
+two:
+  title: "크리에이티브 포트폴리오"
+  description: "포트폴리오 전용 디자인"
+  category: "portfolio"
+  price: 149000
+  is_featured: false
+  image_url: ""
+  preview_url: "https://example.com/preview2"
+  view_count: 50
+
+three:
+  title: "쇼핑몰 템플릿"
+  description: "이커머스 전문 디자인 템플릿"
+  category: "ecommerce"
+  price: 199000
+  is_featured: true
+  image_url: "https://example.com/template3.png"
+  mobile_image_url: "https://example.com/template3_m.png"
+  preview_url: "https://example.com/preview3"
+  view_count: 200

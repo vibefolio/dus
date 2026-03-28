@@ -1,10 +1,18 @@
-<%# Gym Template - 리밋 브레이커 (LIMIT BREAKER) %>
+<%# Gym Template - 리밋 피트니스 (LIMIT FITNESS) %>
 
 <style>
+  /* Supanova Design — Bold Energetic Archetype */
+  * { word-break: keep-all; }
+  html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+  h1, h2, h3, h4 { text-wrap: balance; letter-spacing: -0.02em; line-height: 1.3; }
+  a, button { transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1); }
+  a:hover, button:hover { transform: scale(1.02); }
+  a:active, button:active { transform: scale(0.98); }
+
   @import url('https://fonts.googleapis.com/css2?family=Teko:wght@300;400;500;600;700&family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap');
-  
+
   .font-titling { font-family: 'Teko', sans-serif; }
-  .font-sans { font-family: 'Noto Sans KR', sans-serif; }
+  .font-sans { font-family: 'Pretendard Variable', 'Pretendard', -apple-system, sans-serif; }
 
   @media (max-width: 768px) {
     .mobile-desc { font-size: 14px !important; line-height: 1.8; }
@@ -20,146 +28,574 @@
     background-color: #09090B;
     opacity: 0.1;
   }
+
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(2rem); filter: blur(4px); }
+    to { opacity: 1; transform: translateY(0); filter: blur(0); }
+  }
+  .reveal { opacity: 0; transform: translateY(2rem); }
+  .reveal.is-visible { animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards; animation-delay: calc(var(--delay, 0) * 100ms); }
+
+  .program-card { transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1); }
+  .program-card:hover { transform: translateY(-8px); }
+  .program-card:hover img { transform: scale(1.05); }
 </style>
 
-<div class="bg-slate-950 text-white font-sans selection:bg-[#EAB308] selection:text-slate-900 min-h-screen overflow-x-hidden relative">
+<div class="bg-[#0F0F0F] text-white font-sans selection:bg-[#FF4444] selection:text-white min-h-screen overflow-x-hidden relative">
   <div class="fixed inset-0 carbon-fiber pointer-events-none"></div>
 
-  <!-- Nav -->
-  <nav class="fixed w-full z-50 px-8 py-6 bg-slate-950/80 backdrop-blur-md border-b border-white/5">
-    <div class="container mx-auto px-4 md:px-6 flex justify-between items-center flex-nowrap">
-      <div class="flex items-center gap-1">
-         <div class="w-8 h-8 max-h-8 max-w-[35%] shrink object-contain bg-[#EAB308] skew-x-[-15deg] flex items-center justify-center mr-1">
-            <span class="font-semibold text-slate-900 text-xl skew-x-[15deg]">L</span>
-         </div>
-         <span class="font-titling font-semibold text-2xl tracking-wide uppercase leading-none mt-1">Limit<span class="text-[#EAB308]">Breaker</span></span>
-      </div>
-      
-      <div class="hidden md:flex gap-16 text-sm font-titling font-medium tracking-[0.1em] text-white/40 uppercase mt-1">
-        <a href="#programs" class="hover:text-[#EAB308] transition">Programs</a>
-        <a href="#trainers" class="hover:text-[#EAB308] transition">Coaches</a>
-        <a href="#schedule" class="hover:text-[#EAB308] transition">Schedule</a>
-      </div>
-           <button class="mobile-menu-trigger md:hidden ml-auto text-2xl focus:outline-none" style="color: inherit;">
-             <i class="fas fa-bars"></i>
-           </button>
+  <!-- ========== Nav ========== -->
+  <nav class="fixed w-full z-50 px-4 md:px-8 py-5 bg-[#0F0F0F]/80 backdrop-blur-xl border-b border-white/5">
+    <div class="max-w-7xl mx-auto flex justify-between items-center">
+      <a href="#" class="flex items-center gap-2">
+        <div class="w-8 h-8 bg-[#FF4444] skew-x-[-12deg] flex items-center justify-center">
+          <span class="font-semibold text-white text-xl skew-x-[12deg]">L</span>
+        </div>
+        <span class="font-titling font-semibold text-2xl tracking-wide uppercase leading-none mt-1">Limit<span class="text-[#FF4444]">Fitness</span></span>
+      </a>
 
-      
-      <div class="flex-nowrap shrink-0 flex gap-6 items-center">
-         <button onclick="toggleGymModal()" class="hidden md:block text-sm font-titling font-medium tracking-wide uppercase text-white/40 hover:text-[#EAB308] mt-1" data-mobile-menu-copy="true">Member Login</button>
-         <button class="hidden md:block bg-[#EAB308] text-slate-900 px-8 py-2 skew-x-[-15deg] font-titling font-semibold text-xl uppercase hover:bg-white transition" data-mobile-menu-copy="true">
-           <span class="skew-x-[15deg] inline-block">Join Now</span>
-         </button>
+      <div class="hidden md:flex gap-14 text-sm font-titling font-medium tracking-[0.1em] text-white/40 uppercase mt-1">
+        <a href="#about" class="hover:text-[#FF4444] transition">About</a>
+        <a href="#programs" class="hover:text-[#FF4444] transition">Programs</a>
+        <a href="#facility" class="hover:text-[#FF4444] transition">Facility</a>
+        <a href="#location" class="hover:text-[#FF4444] transition">Location</a>
+      </div>
+
+      <button class="mobile-menu-trigger md:hidden ml-auto text-2xl focus:outline-none" style="color: inherit;">
+        <i class="fas fa-bars"></i>
+      </button>
+
+      <div class="hidden md:flex gap-6 items-center shrink-0">
+        <button onclick="toggleGymModal()" class="text-sm font-titling font-medium tracking-wide uppercase text-white/40 hover:text-[#FF4444] mt-1" data-mobile-menu-copy="true">Member</button>
+        <button class="bg-[#FF4444] text-white px-8 py-2.5 skew-x-[-12deg] font-titling font-semibold text-lg uppercase hover:bg-white hover:text-[#0F0F0F] transition" data-mobile-menu-copy="true">
+          <span class="skew-x-[12deg] inline-block">가입하기</span>
+        </button>
       </div>
     </div>
 
-      <%= render partial: 'templates/shared/mobile_menu_overlay' %></nav>
+    <%= render partial: 'templates/shared/mobile_menu_overlay' %>
+  </nav>
 
-  <!-- Hero -->
-  <header class="min-h-screen relative flex items-center justify-center pt-24 overflow-hidden">
-    <!-- Dynamic Lighting -->
-    <div class="absolute top-0 right-0 w-[80vw] h-full bg-gradient-to-l from-[#EAB308]/20 to-transparent skew-x-[-20deg] mix-blend-screen pointer-events-none"></div>
-    <div class="absolute bottom-0 left-[20%] w-[2px] h-full bg-white/10 rotate-[20deg] pointer-events-none"></div>
-    <div class="absolute bottom-0 left-[30%] w-[1px] h-full bg-white/5 rotate-[20deg] pointer-events-none"></div>
+  <!-- ========== Hero ========== -->
+  <header class="min-h-[100dvh] relative flex items-center justify-center pt-20 overflow-hidden">
+    <div class="absolute top-0 right-0 w-[60vw] h-full bg-gradient-to-l from-[#FF4444]/15 to-transparent skew-x-[-15deg] pointer-events-none"></div>
+    <div class="absolute bottom-0 left-[20%] w-[2px] h-full bg-white/5 rotate-[15deg] pointer-events-none"></div>
 
-    <div class="container mx-auto px-3 md:px-6 relative z-10 grid lg:grid-cols-2 gap-10 md:p-16 items-center">
+    <div class="max-w-7xl mx-auto px-4 md:px-8 relative z-10 grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
       <div class="space-y-8 text-center lg:text-left">
-        <div class="inline-flex items-center gap-2 bg-[#18181B] px-3 py-1 border-l-4 border-[#EAB308]">
-           <span class="text-xs font-semibold font-titling tracking-[0.2em] text-[#EAB308] uppercase">We Build Machines</span>
+        <div class="inline-flex items-center gap-2 bg-[#18181B] px-4 py-1.5 border-l-4 border-[#FF4444] reveal" style="--delay: 0;">
+          <span class="text-xs font-titling font-semibold tracking-[0.2em] text-[#FF4444] uppercase">No Excuses. No Limits.</span>
         </div>
-        
-        <h1 class="text-3xl md:text-5xl md:text-[9rem] font-titling font-semibold leading-[0.8] uppercase text-white mobile-title italic">
-           Push<br>
-           Past<br>
-           <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#EAB308] to-[#CA8A04]">Limits.</span>
+
+        <h1 class="text-4xl md:text-6xl lg:text-[7rem] font-titling font-semibold leading-[0.85] uppercase text-white mobile-title reveal" style="--delay: 1;">
+          한계를<br>뛰어넘는<br>
+          <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#FF4444] to-[#FF6B6B]">당신.</span>
         </h1>
-        
-        <p class="text-white/50 text-base md:text-xl shrink truncate leading-relaxed max-w-md mx-auto lg:mx-0 mobile-desc font-medium">
-           당신의 한계를 깨부수는 곳. 리밋 브레이커는 단순한 체육관이 아닌, 당신을 다시 태어나게 할 훈련소입니다.
+
+        <p class="text-white/40 text-sm md:text-lg leading-relaxed max-w-md mx-auto lg:mx-0 mobile-desc reveal" style="--delay: 2;">
+          리밋 피트니스는 단순한 운동 공간이 아닙니다. 당신의 한계를 새로 정의하고, 매일 더 강해지는 변화를 만드는 곳입니다.
         </p>
-        
-        <div class="flex flex-col sm:flex-row gap-10 justify-center lg:justify-start pt-6">
-           <button class="px-10 py-4 bg-white text-slate-900 font-titling font-semibold text-2xl uppercase tracking-wide skew-x-[-10deg] hover:bg-[#EAB308] transition shadow-[4px_4px_0_rgba(255,255,255,0.2)] hover:shadow-none">
-              Start Training
-           </button>
-           <button class="px-10 py-4 border border-white/20 text-white font-titling font-semibold text-2xl uppercase tracking-wide skew-x-[-10deg] hover:border-[#EAB308] hover:text-[#EAB308] transition">
-              Free Pass
-           </button>
+
+        <div class="pt-4 flex flex-col sm:flex-row gap-5 justify-center lg:justify-start reveal" style="--delay: 3;">
+          <a href="#programs" class="inline-flex items-center justify-center gap-3 px-10 py-5 bg-white text-[#0F0F0F] font-titling font-semibold text-xl uppercase tracking-wide skew-x-[-8deg] hover:bg-[#FF4444] hover:text-white shadow-xl">
+            <span class="skew-x-[8deg] inline-block">프로그램 보기</span>
+          </a>
+          <a href="#" class="inline-flex items-center justify-center gap-3 px-10 py-5 border border-white/15 text-white font-titling font-semibold text-xl uppercase tracking-wide skew-x-[-8deg] hover:border-[#FF4444] hover:text-[#FF4444]">
+            <span class="skew-x-[8deg] inline-block">무료 패스</span>
+          </a>
         </div>
-        
-        <div class="pt-8 flex items-center gap-12 justify-center lg:justify-start opacity-70">
-           <div>
-              <p class="text-2xl font-titling font-semibold text-[#EAB308]">24/7</p>
-              <p class="text-[10px] uppercase tracking-wider text-white/40">Access</p>
-           </div>
-           <div class="w-px h-8 bg-white/10"></div>
-           <div>
-              <p class="text-2xl font-titling font-semibold text-[#EAB308]">100+</p>
-              <p class="text-[10px] uppercase tracking-wider text-white/40">Machines</p>
-           </div>
-           <div class="w-px h-8 bg-white/10"></div>
-           <div>
-              <p class="text-2xl font-titling font-semibold text-[#EAB308]">PT</p>
-              <p class="text-[10px] uppercase tracking-wider text-white/40">Experts</p>
-           </div>
+
+        <div class="pt-6 flex items-center gap-10 justify-center lg:justify-start reveal" style="--delay: 4;">
+          <div>
+            <p class="text-2xl font-titling font-semibold text-[#FF4444]">24/7</p>
+            <p class="text-[10px] uppercase tracking-wider text-white/30">연중무휴</p>
+          </div>
+          <div class="w-px h-8 bg-white/10"></div>
+          <div>
+            <p class="text-2xl font-titling font-semibold text-[#FF4444]">100+</p>
+            <p class="text-[10px] uppercase tracking-wider text-white/30">최신 머신</p>
+          </div>
+          <div class="w-px h-8 bg-white/10"></div>
+          <div>
+            <p class="text-2xl font-titling font-semibold text-[#FF4444]">PT</p>
+            <p class="text-[10px] uppercase tracking-wider text-white/30">전문 트레이너</p>
+          </div>
         </div>
       </div>
-      
-      <div class="relative hidden lg:block h-full">
-         <div class="absolute inset-0 bg-[#EAB308] mix-blend-color z-10 opacity-0 hover:opacity-10 transition duration-300 pointer-events-none"></div>
-         <img src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?q=80&w=800" alt="Gym Workout" class="w-full h-[600px] object-cover skew-x-[-5deg] grayscale contrast-125 brightness-75 border-r-8 border-[#EAB308] shadow-2xl">
-         
-         <!-- Stat Card -->
-         <div class="absolute bottom-20 -left-10 bg-slate-950 p-6 border border-[#EAB308]/50 skew-x-[-5deg]">
-             <p class="font-titling font-semibold text-2xl text-white uppercase">Pro Equipment</p>
-             <p class="text-xs text-white/40 uppercase tracking-wide">Technogym & Hammer Strength</p>
-         </div>
+
+      <div class="relative hidden lg:block reveal" style="--delay: 2;">
+        <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=800" alt="피트니스" class="w-full h-[600px] object-cover skew-x-[-3deg] grayscale contrast-125 brightness-75 border-r-4 border-[#FF4444] shadow-2xl">
+        <div class="absolute bottom-16 -left-8 bg-[#0F0F0F] p-6 border border-[#FF4444]/30 skew-x-[-3deg]">
+          <p class="font-titling font-semibold text-xl text-white uppercase">Pro Equipment</p>
+          <p class="text-xs text-white/40 uppercase tracking-wide">Technogym & Life Fitness</p>
+        </div>
       </div>
     </div>
   </header>
 
-  <!-- Login Modal -->
-  <div id="gym-modal" class="fixed inset-0 z-[100] hidden items-center justify-center p-4 bg-slate-950/90 backdrop-blur-md">
-    <div class="bg-slate-950 w-full max-w-sm p-12 shadow-[0_0_50px_rgba(234,179,8,0.2)] relative border border-[#EAB308]/30">
-      <button onclick="toggleGymModal()" class="absolute top-6 right-6 text-white/20 hover:text-[#EAB308] transition text-2xl font-titling font-semibold">&times;</button>
-      
-      <div class="text-center mb-10">
-        <h2 class="text-3xl font-titling font-semibold text-white mb-0 italic uppercase">Warrior Zone</h2>
-        <p class="text-[10px] text-[#EAB308] font-semibold tracking-[0.3em] uppercase bg-white/5 inline-block px-2 py-1">Member Access Only</p>
-      </div>
-      
-      <div class="space-y-6">
-        <div>
-           <label class="block text-[10px] font-semibold text-white/30 uppercase tracking-wide mb-2 font-titling text-sm">Passcode ID</label>
-           <input type="text" placeholder="XXX-XXX" class="w-full bg-[#18181B] border border-white/10 py-4 px-6 outline-none focus:border-[#EAB308] transition text-xl font-titling font-semibold text-white uppercase tracking-wide text-center">
+  <!-- ========== About ========== -->
+  <section id="about" class="py-24 md:py-32 relative">
+    <div class="max-w-7xl mx-auto px-4 md:px-8 grid lg:grid-cols-2 gap-16 lg:gap-24 items-center">
+      <div class="relative reveal" style="--delay: 0;">
+        <div class="grid grid-cols-2 gap-4">
+          <div class="overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1571902943202-507ec2618e8f?q=80&w=600" alt="웨이트 존" class="w-full aspect-[3/4] object-cover grayscale contrast-110 brightness-75" loading="lazy">
+          </div>
+          <div class="overflow-hidden mt-8">
+            <img src="https://images.unsplash.com/photo-1540497077202-7c8a3999166f?q=80&w=600" alt="트레이닝" class="w-full aspect-[3/4] object-cover grayscale contrast-110 brightness-75" loading="lazy">
+          </div>
         </div>
-        
-        <button class="w-full bg-[#EAB308] text-slate-900 py-4 text-2xl font-titling font-semibold uppercase hover:bg-white transition skew-x-[-10deg]">
-           <span class="skew-x-[10deg] inline-block">Enter Gym</span>
+      </div>
+
+      <div class="space-y-8 reveal" style="--delay: 1;">
+        <div class="inline-flex items-center gap-2 bg-[#18181B] px-4 py-1.5 border-l-4 border-[#FF4444]">
+          <span class="text-xs font-titling font-semibold tracking-[0.2em] text-[#FF4444] uppercase">Our Mission</span>
+        </div>
+
+        <h2 class="text-3xl md:text-4xl lg:text-5xl font-titling font-semibold leading-snug text-white uppercase">
+          강해지는 것은<br>선택이 아닌 습관
+        </h2>
+
+        <p class="text-white/40 text-base md:text-lg leading-relaxed">
+          리밋 피트니스는 2020년 강남에서 시작되었습니다. 최신 장비와 과학적 트레이닝 프로그램으로 누구나 자신의 한계를 넘을 수 있도록 돕습니다.
+        </p>
+        <p class="text-white/40 text-base md:text-lg leading-relaxed">
+          초보자든 선수급이든 상관없습니다. 당신이 원하는 목표에 도달할 때까지, 전문 트레이너가 함께합니다.
+        </p>
+
+        <div class="grid grid-cols-3 gap-6 pt-6 border-t border-white/10">
+          <div>
+            <p class="text-3xl md:text-4xl font-titling font-semibold text-[#FF4444]">500+</p>
+            <p class="text-[11px] text-white/30 uppercase tracking-[0.1em] mt-1 font-medium">평 대형 시설</p>
+          </div>
+          <div>
+            <p class="text-3xl md:text-4xl font-titling font-semibold text-[#FF4444]">15+</p>
+            <p class="text-[11px] text-white/30 uppercase tracking-[0.1em] mt-1 font-medium">전문 트레이너</p>
+          </div>
+          <div>
+            <p class="text-3xl md:text-4xl font-titling font-semibold text-[#FF4444]">3K+</p>
+            <p class="text-[11px] text-white/30 uppercase tracking-[0.1em] mt-1 font-medium">활성 회원</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== 프로그램 ========== -->
+  <section id="programs" class="py-24 md:py-32 bg-[#141414] relative">
+    <div class="max-w-7xl mx-auto px-4 md:px-8">
+      <div class="text-center mb-16 md:mb-20">
+        <div class="inline-flex items-center gap-2 bg-[#18181B] px-4 py-1.5 border-l-4 border-[#FF4444] reveal" style="--delay: 0;">
+          <span class="text-xs font-titling font-semibold tracking-[0.2em] text-[#FF4444] uppercase">Training Programs</span>
+        </div>
+        <h2 class="text-3xl md:text-4xl lg:text-5xl font-titling font-semibold leading-snug text-white mt-6 uppercase reveal" style="--delay: 1;">
+          당신의 목표에 맞는<br>트레이닝
+        </h2>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <!-- 프로그램 1 -->
+        <div class="program-card group reveal" style="--delay: 0;">
+          <div class="bg-[#1A1A1A] ring-1 ring-white/5 overflow-hidden">
+            <div class="overflow-hidden">
+              <img src="https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?q=80&w=600" alt="퍼스널 트레이닝" class="w-full aspect-square object-cover grayscale contrast-125 brightness-75 group-hover:grayscale-0 transition-all duration-700" loading="lazy">
+            </div>
+            <div class="p-6">
+              <span class="text-[10px] text-[#FF4444] font-titling font-semibold uppercase tracking-[0.2em]">1:1 Personal</span>
+              <h3 class="text-xl font-titling font-semibold text-white mt-2 uppercase">퍼스널 트레이닝</h3>
+              <p class="text-[13px] text-white/30 leading-relaxed mt-2">체형 분석 기반 맞춤 프로그램. InBody 측정과 식단 관리 포함.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 프로그램 2 -->
+        <div class="program-card group reveal" style="--delay: 1;">
+          <div class="bg-[#1A1A1A] ring-1 ring-white/5 overflow-hidden">
+            <div class="overflow-hidden">
+              <img src="https://images.unsplash.com/photo-1534258936925-c58bed479fcb?q=80&w=600" alt="그룹 피트니스" class="w-full aspect-square object-cover grayscale contrast-125 brightness-75 group-hover:grayscale-0 transition-all duration-700" loading="lazy">
+            </div>
+            <div class="p-6">
+              <span class="text-[10px] text-[#FF4444] font-titling font-semibold uppercase tracking-[0.2em]">Group Class</span>
+              <h3 class="text-xl font-titling font-semibold text-white mt-2 uppercase">그룹 피트니스</h3>
+              <p class="text-[13px] text-white/30 leading-relaxed mt-2">스피닝, HIIT, 서킷 트레이닝 등 다양한 그룹 클래스 운영.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 프로그램 3 -->
+        <div class="program-card group reveal" style="--delay: 2;">
+          <div class="bg-[#1A1A1A] ring-1 ring-white/5 overflow-hidden">
+            <div class="overflow-hidden">
+              <img src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?q=80&w=600" alt="크로스핏" class="w-full aspect-square object-cover grayscale contrast-125 brightness-75 group-hover:grayscale-0 transition-all duration-700" loading="lazy">
+            </div>
+            <div class="p-6">
+              <span class="text-[10px] text-[#FF4444] font-titling font-semibold uppercase tracking-[0.2em]">Functional</span>
+              <h3 class="text-xl font-titling font-semibold text-white mt-2 uppercase">크로스핏</h3>
+              <p class="text-[13px] text-white/30 leading-relaxed mt-2">전신 기능성 운동. 근력, 지구력, 유연성을 동시에 강화.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 프로그램 4 -->
+        <div class="program-card group reveal" style="--delay: 3;">
+          <div class="bg-[#1A1A1A] ring-1 ring-white/5 overflow-hidden">
+            <div class="overflow-hidden">
+              <img src="https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?q=80&w=600" alt="다이어트 프로그램" class="w-full aspect-square object-cover grayscale contrast-125 brightness-75 group-hover:grayscale-0 transition-all duration-700" loading="lazy">
+            </div>
+            <div class="p-6">
+              <span class="text-[10px] text-[#FF4444] font-titling font-semibold uppercase tracking-[0.2em]">Body Shape</span>
+              <h3 class="text-xl font-titling font-semibold text-white mt-2 uppercase">바디 셰이핑</h3>
+              <p class="text-[13px] text-white/30 leading-relaxed mt-2">8주 체계적 다이어트 프로그램. 운동 + 식단 + InBody 추적.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== 시설 갤러리 ========== -->
+  <section id="facility" class="py-24 md:py-32">
+    <div class="max-w-7xl mx-auto px-4 md:px-8">
+      <div class="flex flex-col md:flex-row md:items-end md:justify-between mb-14 gap-6">
+        <div>
+          <div class="inline-flex items-center gap-2 bg-[#18181B] px-4 py-1.5 border-l-4 border-[#FF4444] reveal" style="--delay: 0;">
+            <span class="text-xs font-titling font-semibold tracking-[0.2em] text-[#FF4444] uppercase">Facility</span>
+          </div>
+          <h2 class="text-3xl md:text-4xl lg:text-5xl font-titling font-semibold leading-snug text-white mt-6 uppercase reveal" style="--delay: 1;">
+            최상의 시설
+          </h2>
+        </div>
+        <p class="text-white/30 text-base max-w-sm reveal" style="--delay: 2;">
+          500평 규모의 프리미엄 피트니스 공간을 경험하세요.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-4">
+        <div class="overflow-hidden reveal group" style="--delay: 0;">
+          <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=800" alt="웨이트 존" class="w-full aspect-square object-cover grayscale group-hover:grayscale-0 contrast-110 brightness-75 transition duration-700" loading="lazy">
+        </div>
+        <div class="overflow-hidden md:row-span-2 reveal group" style="--delay: 1;">
+          <img src="https://images.unsplash.com/photo-1571902943202-507ec2618e8f?q=80&w=800" alt="PT 룸" class="w-full h-full object-cover grayscale group-hover:grayscale-0 contrast-110 brightness-75 transition duration-700" loading="lazy">
+        </div>
+        <div class="overflow-hidden reveal group" style="--delay: 2;">
+          <img src="https://images.unsplash.com/photo-1540497077202-7c8a3999166f?q=80&w=800" alt="스피닝 룸" class="w-full aspect-square object-cover grayscale group-hover:grayscale-0 contrast-110 brightness-75 transition duration-700" loading="lazy">
+        </div>
+        <div class="overflow-hidden reveal group" style="--delay: 3;">
+          <img src="https://images.unsplash.com/photo-1558618666-fcd25c85f82e?q=80&w=800" alt="유산소 존" class="w-full aspect-square object-cover grayscale group-hover:grayscale-0 contrast-110 brightness-75 transition duration-700" loading="lazy">
+        </div>
+        <div class="overflow-hidden col-span-2 md:col-span-1 reveal group" style="--delay: 4;">
+          <img src="https://images.unsplash.com/photo-1576678927484-cc907957088c?q=80&w=800" alt="라커룸" class="w-full aspect-[2/1] md:aspect-square object-cover grayscale group-hover:grayscale-0 contrast-110 brightness-75 transition duration-700" loading="lazy">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== 가격/멤버십 ========== -->
+  <section class="py-24 md:py-32 bg-[#141414] relative">
+    <div class="max-w-7xl mx-auto px-4 md:px-8">
+      <div class="text-center mb-16 md:mb-20">
+        <div class="inline-flex items-center gap-2 bg-[#18181B] px-4 py-1.5 border-l-4 border-[#FF4444] reveal" style="--delay: 0;">
+          <span class="text-xs font-titling font-semibold tracking-[0.2em] text-[#FF4444] uppercase">Membership</span>
+        </div>
+        <h2 class="text-3xl md:text-4xl lg:text-5xl font-titling font-semibold leading-snug text-white mt-6 uppercase reveal" style="--delay: 1;">
+          멤버십 플랜
+        </h2>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+        <!-- 플랜 1 -->
+        <div class="bg-[#1A1A1A] p-8 border border-white/5 hover:border-[#FF4444]/30 transition reveal group" style="--delay: 0;">
+          <p class="text-sm font-titling font-semibold text-white/40 uppercase tracking-wide">Basic</p>
+          <div class="mt-4 mb-6">
+            <span class="text-5xl font-titling font-semibold text-white">99,000</span>
+            <span class="text-white/30 text-sm ml-1">/ 월</span>
+          </div>
+          <ul class="space-y-3 text-sm text-white/50 mb-8">
+            <li class="flex items-center gap-3"><i class="fas fa-check text-[#FF4444] text-xs"></i> 헬스장 24시간 이용</li>
+            <li class="flex items-center gap-3"><i class="fas fa-check text-[#FF4444] text-xs"></i> 라커룸 & 샤워실</li>
+            <li class="flex items-center gap-3"><i class="fas fa-check text-[#FF4444] text-xs"></i> 체성분 측정 월 1회</li>
+            <li class="flex items-center gap-3 text-white/20"><i class="fas fa-times text-xs"></i> 그룹 클래스</li>
+            <li class="flex items-center gap-3 text-white/20"><i class="fas fa-times text-xs"></i> PT 세션</li>
+          </ul>
+          <button class="w-full border border-white/10 text-white py-4 font-titling font-semibold text-lg uppercase hover:border-[#FF4444] hover:text-[#FF4444] transition">
+            Select Plan
+          </button>
+        </div>
+
+        <!-- 플랜 2 (추천) -->
+        <div class="bg-[#1A1A1A] p-8 border-2 border-[#FF4444] relative reveal group" style="--delay: 1;">
+          <div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-[#FF4444] text-white px-4 py-1 font-titling font-semibold text-sm uppercase tracking-wide">Best</div>
+          <p class="text-sm font-titling font-semibold text-[#FF4444] uppercase tracking-wide">Premium</p>
+          <div class="mt-4 mb-6">
+            <span class="text-5xl font-titling font-semibold text-white">179,000</span>
+            <span class="text-white/30 text-sm ml-1">/ 월</span>
+          </div>
+          <ul class="space-y-3 text-sm text-white/50 mb-8">
+            <li class="flex items-center gap-3"><i class="fas fa-check text-[#FF4444] text-xs"></i> 헬스장 24시간 이용</li>
+            <li class="flex items-center gap-3"><i class="fas fa-check text-[#FF4444] text-xs"></i> 라커룸 & 샤워실</li>
+            <li class="flex items-center gap-3"><i class="fas fa-check text-[#FF4444] text-xs"></i> 체성분 측정 무제한</li>
+            <li class="flex items-center gap-3"><i class="fas fa-check text-[#FF4444] text-xs"></i> 그룹 클래스 무제한</li>
+            <li class="flex items-center gap-3 text-white/20"><i class="fas fa-times text-xs"></i> PT 세션</li>
+          </ul>
+          <button class="w-full bg-[#FF4444] text-white py-4 font-titling font-semibold text-lg uppercase hover:bg-white hover:text-[#0F0F0F] transition shadow-lg shadow-[#FF4444]/20">
+            Select Plan
+          </button>
+        </div>
+
+        <!-- 플랜 3 -->
+        <div class="bg-[#1A1A1A] p-8 border border-white/5 hover:border-[#FF4444]/30 transition reveal group" style="--delay: 2;">
+          <p class="text-sm font-titling font-semibold text-white/40 uppercase tracking-wide">Elite</p>
+          <div class="mt-4 mb-6">
+            <span class="text-5xl font-titling font-semibold text-white">299,000</span>
+            <span class="text-white/30 text-sm ml-1">/ 월</span>
+          </div>
+          <ul class="space-y-3 text-sm text-white/50 mb-8">
+            <li class="flex items-center gap-3"><i class="fas fa-check text-[#FF4444] text-xs"></i> 헬스장 24시간 이용</li>
+            <li class="flex items-center gap-3"><i class="fas fa-check text-[#FF4444] text-xs"></i> 프리미엄 라커</li>
+            <li class="flex items-center gap-3"><i class="fas fa-check text-[#FF4444] text-xs"></i> 체성분 측정 무제한</li>
+            <li class="flex items-center gap-3"><i class="fas fa-check text-[#FF4444] text-xs"></i> 그룹 클래스 무제한</li>
+            <li class="flex items-center gap-3"><i class="fas fa-check text-[#FF4444] text-xs"></i> PT 주 2회 포함</li>
+          </ul>
+          <button class="w-full border border-white/10 text-white py-4 font-titling font-semibold text-lg uppercase hover:border-[#FF4444] hover:text-[#FF4444] transition">
+            Select Plan
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== Location ========== -->
+  <section id="location" class="py-24 md:py-32 relative overflow-hidden">
+    <div class="absolute top-0 right-0 w-96 h-96 bg-[#FF4444]/5 rounded-full blur-[120px]"></div>
+
+    <div class="max-w-7xl mx-auto px-4 md:px-8 relative z-10">
+      <div class="grid lg:grid-cols-2 gap-16 lg:gap-24 items-start">
+        <div class="reveal" style="--delay: 0;">
+          <div class="overflow-hidden aspect-[4/3] bg-[#1A1A1A] relative group">
+            <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=800" alt="센터 외관" class="w-full h-full object-cover opacity-50 group-hover:opacity-70 grayscale group-hover:grayscale-0 transition duration-700" loading="lazy">
+            <div class="absolute inset-0 flex items-center justify-center">
+              <a href="#" class="inline-flex items-center gap-3 bg-[#0F0F0F]/50 backdrop-blur-xl border border-white/20 text-white px-8 py-4 text-[11px] font-semibold uppercase tracking-[0.3em] hover:bg-[#FF4444] hover:border-[#FF4444] transition">
+                <i class="fas fa-map-marker-alt text-[#FF4444]"></i>
+                지도에서 보기
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="space-y-10">
+          <div class="reveal" style="--delay: 1;">
+            <div class="inline-flex items-center gap-2 bg-[#18181B] px-4 py-1.5 border-l-4 border-[#FF4444]">
+              <span class="text-xs font-titling font-semibold tracking-[0.2em] text-[#FF4444] uppercase">Visit Us</span>
+            </div>
+            <h2 class="text-3xl md:text-4xl lg:text-5xl font-titling font-semibold leading-snug mt-6 uppercase">
+              오시는 길
+            </h2>
+          </div>
+
+          <div class="space-y-8 reveal" style="--delay: 2;">
+            <div class="flex gap-5">
+              <div class="w-10 h-10 bg-white/5 border border-white/10 flex items-center justify-center shrink-0 mt-0.5">
+                <i class="fas fa-map-pin text-[#FF4444] text-sm"></i>
+              </div>
+              <div>
+                <p class="text-[10px] font-semibold uppercase tracking-[0.3em] text-white/30 mb-2">Address</p>
+                <p class="text-white/70 text-base leading-relaxed">서울특별시 강남구 테헤란로 152<br>리밋 피트니스 빌딩 B1-3F</p>
+              </div>
+            </div>
+
+            <div class="flex gap-5">
+              <div class="w-10 h-10 bg-white/5 border border-white/10 flex items-center justify-center shrink-0 mt-0.5">
+                <i class="fas fa-clock text-[#FF4444] text-sm"></i>
+              </div>
+              <div>
+                <p class="text-[10px] font-semibold uppercase tracking-[0.3em] text-white/30 mb-2">Hours</p>
+                <div class="space-y-1.5 text-white/70 text-base">
+                  <div class="flex justify-between gap-12">
+                    <span>매일</span>
+                    <span class="font-titling text-lg">24시간 운영</span>
+                  </div>
+                  <div class="flex justify-between gap-12 text-[#FF4444]">
+                    <span>스태프</span>
+                    <span class="font-titling text-lg">06:00 - 23:00</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="flex gap-5">
+              <div class="w-10 h-10 bg-white/5 border border-white/10 flex items-center justify-center shrink-0 mt-0.5">
+                <i class="fas fa-subway text-[#FF4444] text-sm"></i>
+              </div>
+              <div>
+                <p class="text-[10px] font-semibold uppercase tracking-[0.3em] text-white/30 mb-2">Transport</p>
+                <p class="text-white/70 text-base leading-relaxed">강남역 11번 출구 도보 3분<br>지하 주차장 2시간 무료</p>
+              </div>
+            </div>
+
+            <div class="flex gap-5">
+              <div class="w-10 h-10 bg-white/5 border border-white/10 flex items-center justify-center shrink-0 mt-0.5">
+                <i class="fas fa-phone text-[#FF4444] text-sm"></i>
+              </div>
+              <div>
+                <p class="text-[10px] font-semibold uppercase tracking-[0.3em] text-white/30 mb-2">Contact</p>
+                <p class="text-white/70 text-base">02-555-9999</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== CTA ========== -->
+  <section class="py-24 md:py-32 bg-[#141414] relative overflow-hidden">
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-[#FF4444]/5 rounded-full blur-[120px]"></div>
+
+    <div class="max-w-3xl mx-auto px-4 md:px-8 text-center relative z-10">
+      <h2 class="text-4xl md:text-5xl lg:text-6xl font-titling font-semibold leading-snug text-white uppercase reveal" style="--delay: 0;">
+        지금이<br>
+        <span class="text-[#FF4444]">시작할 때다.</span>
+      </h2>
+      <p class="text-white/30 text-base md:text-lg mt-6 max-w-lg mx-auto reveal" style="--delay: 1;">
+        첫 방문 고객에게 3일 무료 이용권을 드립니다. 리밋 피트니스에서 새로운 나를 만나세요.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-5 justify-center mt-10 reveal" style="--delay: 2;">
+        <a href="#" class="inline-flex items-center justify-center gap-3 px-12 py-5 bg-[#FF4444] text-white font-titling font-semibold text-xl uppercase skew-x-[-8deg] shadow-lg shadow-[#FF4444]/20 hover:bg-white hover:text-[#0F0F0F]">
+          <span class="skew-x-[8deg] inline-block">무료 체험 신청</span>
+        </a>
+        <a href="tel:02-555-9999" class="inline-flex items-center justify-center gap-3 px-12 py-5 border border-white/15 text-white font-titling font-semibold text-xl uppercase skew-x-[-8deg] hover:border-[#FF4444] hover:text-[#FF4444]">
+          <span class="skew-x-[8deg] inline-flex items-center gap-2"><i class="fas fa-phone text-sm"></i> 전화 상담</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== Footer ========== -->
+  <footer class="py-16 md:py-24 bg-[#080808]">
+    <div class="max-w-7xl mx-auto px-4 md:px-8">
+      <div class="grid md:grid-cols-3 gap-12 items-start mb-16">
+        <div>
+          <div class="flex items-center gap-2 mb-4">
+            <div class="w-7 h-7 bg-[#FF4444] skew-x-[-12deg] flex items-center justify-center">
+              <span class="font-semibold text-white text-lg skew-x-[12deg]">L</span>
+            </div>
+            <span class="font-titling font-semibold text-xl tracking-wide uppercase text-white">Limit<span class="text-[#FF4444]">Fitness</span></span>
+          </div>
+          <p class="text-white/20 text-sm leading-relaxed max-w-xs">
+            강남 프리미엄 24시 피트니스. 한계를 뛰어넘는 당신을 위한 최상의 트레이닝 공간.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-2 gap-8">
+          <div>
+            <p class="text-[10px] font-semibold text-white/15 uppercase tracking-[0.3em] mb-4">Program</p>
+            <ul class="space-y-2.5">
+              <li><a href="#programs" class="text-white/40 text-sm hover:text-[#FF4444] transition">PT</a></li>
+              <li><a href="#programs" class="text-white/40 text-sm hover:text-[#FF4444] transition">Group</a></li>
+              <li><a href="#programs" class="text-white/40 text-sm hover:text-[#FF4444] transition">CrossFit</a></li>
+              <li><a href="#programs" class="text-white/40 text-sm hover:text-[#FF4444] transition">Body Shape</a></li>
+            </ul>
+          </div>
+          <div>
+            <p class="text-[10px] font-semibold text-white/15 uppercase tracking-[0.3em] mb-4">Info</p>
+            <ul class="space-y-2.5">
+              <li><a href="#about" class="text-white/40 text-sm hover:text-[#FF4444] transition">About</a></li>
+              <li><a href="#facility" class="text-white/40 text-sm hover:text-[#FF4444] transition">Facility</a></li>
+              <li><a href="#location" class="text-white/40 text-sm hover:text-[#FF4444] transition">Location</a></li>
+              <li><a href="#" class="text-white/40 text-sm hover:text-[#FF4444] transition">Careers</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <div>
+          <p class="text-[10px] font-semibold text-white/15 uppercase tracking-[0.3em] mb-4">Follow</p>
+          <div class="flex gap-3">
+            <a href="#" class="w-10 h-10 bg-white/5 border border-white/10 flex items-center justify-center text-white/40 hover:text-[#FF4444] hover:border-[#FF4444]/30 transition">
+              <i class="fab fa-instagram text-sm"></i>
+            </a>
+            <a href="#" class="w-10 h-10 bg-white/5 border border-white/10 flex items-center justify-center text-white/40 hover:text-[#FF4444] hover:border-[#FF4444]/30 transition">
+              <i class="fab fa-youtube text-sm"></i>
+            </a>
+            <a href="#" class="w-10 h-10 bg-white/5 border border-white/10 flex items-center justify-center text-white/40 hover:text-[#FF4444] hover:border-[#FF4444]/30 transition">
+              <i class="fas fa-blog text-sm"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="border-t border-white/5 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+        <p class="text-[10px] text-white/10 tracking-[0.5em] uppercase">
+          &copy; 2024 Limit Fitness. All rights reserved by DLAB.
+        </p>
+        <div class="flex gap-6">
+          <a href="#" class="text-[10px] text-white/10 tracking-[0.2em] uppercase hover:text-white/30 transition">Privacy</a>
+          <a href="#" class="text-[10px] text-white/10 tracking-[0.2em] uppercase hover:text-white/30 transition">Terms</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ========== Login Modal ========== -->
+  <div id="gym-modal" class="fixed inset-0 z-[100] hidden items-center justify-center p-4 bg-[#0F0F0F]/90 backdrop-blur-xl">
+    <div class="bg-[#0F0F0F] w-full max-w-sm p-8 md:p-12 shadow-[0_0_50px_rgba(255,68,68,0.15)] relative border border-[#FF4444]/20">
+      <button onclick="toggleGymModal()" class="absolute top-6 right-6 text-white/20 hover:text-[#FF4444] transition text-2xl font-titling font-semibold">&times;</button>
+
+      <div class="text-center mb-10">
+        <h2 class="text-3xl font-titling font-semibold text-white uppercase">Member Zone</h2>
+        <p class="text-[10px] text-[#FF4444] font-semibold tracking-[0.3em] uppercase bg-white/5 inline-block px-3 py-1 mt-2">Access Only</p>
+      </div>
+
+      <div class="space-y-5">
+        <div>
+          <label class="block text-[10px] font-semibold text-white/30 uppercase tracking-wide mb-2 font-titling text-sm">Member ID</label>
+          <input type="text" placeholder="XXX-XXX" class="w-full bg-[#18181B] border border-white/10 py-4 px-6 outline-none focus:border-[#FF4444] transition text-lg font-titling font-semibold text-white uppercase tracking-wide text-center">
+        </div>
+        <div>
+          <label class="block text-[10px] font-semibold text-white/30 uppercase tracking-wide mb-2 font-titling text-sm">Password</label>
+          <input type="password" placeholder="Password" class="w-full bg-[#18181B] border border-white/10 py-4 px-6 outline-none focus:border-[#FF4444] transition text-lg font-titling font-semibold text-white uppercase tracking-wide text-center">
+        </div>
+        <button class="w-full bg-[#FF4444] text-white py-4 font-titling font-semibold text-xl uppercase hover:bg-white hover:text-[#0F0F0F] transition shadow-lg shadow-[#FF4444]/20 skew-x-[-8deg] mt-2">
+          <span class="skew-x-[8deg] inline-block">Enter Gym</span>
         </button>
-        
-        <div class="flex justify-center gap-10 pt-4 border-t border-white/5 mt-4">
-           <a href="#" class="text-xs text-white/40 tracking-wider uppercase hover:text-[#EAB308] transition font-titling font-medium">Register</a>
-           <a href="#" class="text-xs text-white/40 tracking-wider uppercase hover:text-[#EAB308] transition font-titling font-medium">Lost ID</a>
+        <div class="flex justify-center gap-10 pt-4 border-t border-white/5">
+          <a href="#" class="text-xs text-white/30 tracking-wider uppercase hover:text-[#FF4444] transition font-titling font-medium">Register</a>
+          <a href="#" class="text-xs text-white/30 tracking-wider uppercase hover:text-[#FF4444] transition font-titling font-medium">Lost ID</a>
         </div>
       </div>
     </div>
   </div>
 
-  <footer class="py-20 md:py-32 bg-slate-950 text-center px-6 border-t border-white/10">
-     <div class="inline-flex flex-col items-center gap-6 mb-8">
-        <span class="font-titling font-semibold text-2xl tracking-wide uppercase text-white">Limit<span class="text-[#EAB308]">Breaker</span></span>
-        <span class="text-[10px] font-semibold text-white/20 tracking-[0.4em] uppercase">No Pain No Gain</span>
-     </div>
-     <p class="text-[10px] text-white/10 tracking-[0.6em] uppercase px-6">© 2024 LIMIT BREAKER GYM. SEOUL.</p>
-  </footer>
-
-  <script>
-    function toggleGymModal() {
-      const modal = document.getElementById('gym-modal');
-      modal.classList.toggle('hidden');
-      modal.classList.toggle('flex');
-    }
-  </script>
-
 </div>
+
+<script>
+  // Modal toggle
+  function toggleGymModal() {
+    const modal = document.getElementById('gym-modal');
+    modal.classList.toggle('hidden');
+    modal.classList.toggle('flex');
+  }
+
+  // Close modal on backdrop click
+  document.getElementById('gym-modal').addEventListener('click', function(e) {
+    if (e.target === this) toggleGymModal();
+  });
+
+  // IntersectionObserver for scroll reveal animations
+  (function() {
+    const observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    });
+
+    document.querySelectorAll('.reveal').forEach(function(el) {
+      observer.observe(el);
+    });
+  })();
+</script>

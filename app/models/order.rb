@@ -15,6 +15,47 @@ class Order < ApplicationRecord
     refunded: 'refunded'          # 환불
   }, default: 'pending'
 
+  # 상태 전환 메서드
+  def pay!
+    raise "결제 대기 상태에서만 결제할 수 있습니다." unless pending?
+    transaction do
+      update!(status: 'paid')
+      if order_items.any? { |oi| oi.design_template_id.present? }
+        create_agency_for_user
+      end
+      NotificationService.notify_order_status(self)
+    end
+  end
+
+  def process!
+    raise "결제 완료 상태에서만 처리할 수 있습니다." unless paid?
+    update!(status: 'processing')
+    NotificationService.notify_order_status(self)
+  end
+
+  def complete!
+    raise "처리 중 상태에서만 완료할 수 있습니다." unless processing?
+    update!(status: 'completed')
+    NotificationService.notify_order_status(self)
+  end
+
+  def cancel!
+    raise "이미 완료되었거나 취소된 주문입니다." if completed? || cancelled?
+    update!(status: 'cancelled')
+    NotificationService.notify_order_status(self)
+  end
+
+  def refund!
+    raise "결제 완료된 주문만 환불할 수 있습니다." unless paid?
+    update!(status: 'refunded')
+    NotificationService.notify_order_status(self)
+  end
+
+  def status_label
+    { 'pending' => '결제 대기', 'paid' => '결제 완료', 'processing' => '처리 중',
+      'completed' => '완료', 'cancelled' => '취소', 'refunded' => '환불' }[status]
+  end
+
   # 총액 계산
   def calculate_total
     order_items.sum { |item| item.price * item.quantity }
