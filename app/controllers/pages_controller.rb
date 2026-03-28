@@ -103,13 +103,7 @@ class PagesController < ApplicationController
     end
   end
 
-  private
-
-  def send_quote_emails(quote)
-    QuoteMailer.new_quote_notification(quote).deliver_now
-    QuoteMailer.quote_confirmation(quote).deliver_now
-  end
-
+  # SEO: robots.txt
   def robots
     robots_txt = <<~TEXT
       User-agent: *
@@ -121,6 +115,7 @@ class PagesController < ApplicationController
     render plain: robots_txt
   end
 
+  # SEO: sitemap.xml
   def sitemap
     @base_url = request.base_url
     begin
@@ -131,11 +126,16 @@ class PagesController < ApplicationController
       @templates = []
       @portfolios = []
     end
-    
+
     render formats: :xml
   end
 
   private
+
+  def send_quote_emails(quote)
+    QuoteMailer.new_quote_notification(quote).deliver_now
+    QuoteMailer.quote_confirmation(quote).deliver_now
+  end
 
   def quote_params
     params.require(:quote).permit(:contact_name, :company_name, :email, :phone, :project_type, :budget, :message, :preferred_domain, :nickname)

@@ -14,6 +14,7 @@ Rails.application.routes.draw do
     collection do
       post 'create_from_cart'
       get 'fail'
+      get 'complete'
     end
   end
   

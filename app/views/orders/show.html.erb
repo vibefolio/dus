@@ -53,7 +53,7 @@
           <div class="space-y-6">
             <% @order.order_items.each do |item| %>
               <div class="flex gap-6 items-start">
-                <% if item.design_template&.thumbnail_url.present? %>
+                <% if item.design_template&.pc_thumbnail_url.present? %>
                   <%= image_tag item.design_template.thumbnail_url, class: "w-24 h-24 rounded-lg object-cover bg-gray-100" %>
                 <% else %>
                   <div class="w-24 h-24 rounded-lg bg-gray-100 flex items-center justify-center text-gray-400">
@@ -64,7 +64,7 @@
                 <% end %>
                 
                 <div class="flex-1">
-                  <h3 class="text-lg font-bold text-gray-900 mb-1"><%= item.design_template&.name || '알 수 없는 상품' %></h3>
+                  <h3 class="text-lg font-bold text-gray-900 mb-1"><%= item.design_template&.title || '알 수 없는 상품' %></h3>
                   <div class="text-gray-500 text-sm mb-2">카테고리: <%= item.design_template&.category || '-' %></div>
                   <div class="flex items-center text-sm text-gray-600">
                     <span>수량: <%= item.quantity %>개</span>

@@ -85,12 +85,12 @@ class OrdersController < ApplicationController
       total_amount: 0
     )
 
-    # 장바구니 아이템을 주문 아이템으로 변환
+    # 장바구니 아이템을 주문 아이템으로 변환 (cart_item.item은 polymorphic)
     cart.cart_items.each do |cart_item|
       @order.order_items.build(
-        design_template: cart_item.design_template,
+        design_template: cart_item.item,
         quantity: cart_item.quantity,
-        price: cart_item.design_template.price
+        price: cart_item.item.price
       )
     end
 
@@ -140,8 +140,13 @@ class OrdersController < ApplicationController
   def fail
     error_code = params[:code]
     error_msg = params[:message]
-    
+
     redirect_to products_path, alert: "결제 실패: #{error_msg} (#{error_code})"
+  end
+
+  # 결제 완료 리다이렉트 페이지 (PortOne redirectUrl 용)
+  def complete
+    @order = current_user&.orders&.order(created_at: :desc)&.first
   end
 
   private

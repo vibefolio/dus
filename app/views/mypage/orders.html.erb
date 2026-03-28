@@ -59,13 +59,13 @@
                   <div class="space-y-4 mb-6">
                     <% order.order_items.each do |item| %>
                       <div class="flex items-center gap-4">
-                        <% if item.design_template&.thumbnail_url.present? %>
-                          <%= image_tag item.design_template.thumbnail_url, class: "w-16 h-16 rounded-xl object-cover", loading: "lazy", decoding: "async" %>
+                        <% if item.design_template&.pc_thumbnail_url.present? %>
+                          <%= image_tag item.design_template.pc_thumbnail_url, class: "w-16 h-16 rounded-xl object-cover", loading: "lazy", decoding: "async" %>
                         <% else %>
                           <div class="w-16 h-16 rounded-xl bg-gradient-to-br from-[#00a859]/10 to-[#00d670]/10"></div>
                         <% end %>
                         <div class="flex-1">
-                          <div class="font-medium text-gray-900"><%= item.design_template&.name || '템플릿' %></div>
+                          <div class="font-medium text-gray-900"><%= item.design_template&.title || '템플릿' %></div>
                           <div class="text-sm text-gray-400">수량: <%= item.quantity %></div>
                         </div>
                         <div class="text-right">
