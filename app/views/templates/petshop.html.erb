@@ -1,192 +1,413 @@
-<%# Petshop Template - 위드 펫 (WITH PET) %>
+<%# Petshop Template - 펫프렌즈 (PET FRIENDS) %>
 
 <style>
-  /* Supanova Design Upgrade */
+  /* Supanova Design — Playful Pet Archetype */
   * { word-break: keep-all; }
-  html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+  html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
   h1, h2, h3, h4 { text-wrap: balance; letter-spacing: -0.02em; line-height: 1.3; }
-  a, button { transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1); }
+  a, button { transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1); }
   a:hover, button:hover { transform: scale(1.02); }
   a:active, button:active { transform: scale(0.98); }
 
-  @import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@300;400;500;600;700&family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap');
-  
-  .font-rounded { font-family: 'Fredoka', sans-serif; }
+  @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap');
+
   .font-sans { font-family: 'Pretendard Variable', 'Pretendard', -apple-system, sans-serif; }
+  .font-display { font-family: 'Nunito', sans-serif; }
 
   @media (max-width: 768px) {
     .mobile-desc { font-size: 14px !important; line-height: 1.8; }
-    .mobile-title { font-size: 40px !important; }
+    .mobile-title { font-size: 32px !important; }
   }
 
-  .paw-pattern {
-    background-image: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11.6 15.6c-.6 0-1.2-.5-1.2-1.1 0-.6.5-1.1 1.2-1.1.6 0 1.2.5 1.2 1.1 0 .6-.5 1.1-1.2 1.1zm6-4.9c-.6 0-1.2-.5-1.2-1.1 0-.6.5-1.1 1.2-1.1.6 0 1.2.5 1.2 1.1 0 .6-.5 1.1-1.2 1.1zm5.1 4.5c-.6 0-1.2-.5-1.2-1.1 0-.6.5-1.1 1.2-1.1.6 0 1.2.5 1.2 1.1 0 .6-.6 1.1-1.2 1.1zm-8.2 4.6c-1.3 0-2.4-.9-2.6-2.2-.2-1.5.8-2.8 2.3-3 .2 0 .4 0 .6 0 1.4.1 2.5 1.3 2.5 2.7 0 1.3-1.1 2.4-2.5 2.5h-.3zm4.5 0c-1.3 0-2.4-.9-2.6-2.2-.2-1.5.8-2.8 2.3-3 .2 0 .4 0 .6 0 1.4.1 2.5 1.3 2.5 2.7 0 1.3-1.1 2.4-2.5 2.5h-.3z' fill='%23F97316' fill-opacity='0.1' fill-rule='evenodd'/%3E%3C/g%3E%3C/svg%3E");
-    opacity: 0.6;
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(2rem); filter: blur(4px); }
+    to { opacity: 1; transform: translateY(0); filter: blur(0); }
   }
+  .reveal { opacity: 0; transform: translateY(2rem); }
+  .reveal.is-visible { animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards; animation-delay: calc(var(--delay, 0) * 100ms); }
+
+  .shop-card { transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1); }
+  .shop-card:hover { transform: translateY(-8px); box-shadow: 0 20px 40px rgba(236,72,153,0.12); }
+  .shop-card:hover img { transform: scale(1.05); }
 </style>
 
-<div class="bg-[#FFF7ED] text-[#431407] font-sans selection:bg-[#F97316] selection:text-white min-h-screen overflow-x-hidden relative">
-  <div class="fixed inset-0 paw-pattern pointer-events-none"></div>
+<div class="bg-[#FFFFFF] text-[#1E293B] font-sans selection:bg-[#EC4899] selection:text-white min-h-screen overflow-x-hidden">
 
-  <!-- Nav -->
-  <nav class="fixed w-full z-50 px-3 md:px-6 py-4 top-0">
-    <div class="container mx-auto px-4 md:px-6 flex items-center justify-between flex-nowrap">
-      <div class="bg-white/90 backdrop-blur-xl border-b-4 border-[#F97316] rounded-full px-4 py-2 text-xs md:text-base md:px-8 md:py-3 whitespace-nowrap flex justify-between items-center shadow-lg shadow-[#F97316]/10">
-        <div class="flex items-center gap-2">
-           <div class="w-8 h-8 max-h-8 max-w-[35%] shrink object-contain md:w-10 md:h-10 bg-[#FCD34D] rounded-full flex items-center justify-center text-lg md:text-2xl shadow-sm rotate-12">
-              🐾
-           </div>
-           <span class="font-rounded font-semibold text-lg md:text-2xl text-[#431407] tracking-tight">With<span class="text-[#F97316]">Pet</span></span>
+  <!-- ========== Nav ========== -->
+  <nav class="fixed w-full z-50 px-4 md:px-8 py-4 bg-white/80 backdrop-blur-xl border-b border-[#EC4899]/10">
+    <div class="max-w-7xl mx-auto flex justify-between items-center">
+      <a href="#" class="flex items-center gap-2">
+        <div class="w-9 h-9 bg-[#EC4899] rounded-xl flex items-center justify-center">
+          <i class="fas fa-paw text-white text-sm"></i>
         </div>
-        
-        <div class="hidden md:flex gap-12 text-[15px] font-rounded font-semibold text-[#431407]/60">
-          <a href="#grooming" class="hover:text-[#F97316] transition">Grooming</a>
-          <a href="#hotel" class="hover:text-[#F97316] transition">Hotel</a>
-          <a href="#gallery" class="hover:text-[#F97316] transition">Happy Tails</a>
-        </div>
-           <button class="mobile-menu-trigger md:hidden ml-auto text-2xl focus:outline-none" style="color: inherit;">
-             <i class="fas fa-bars"></i>
-           </button>
+        <span class="font-display font-extrabold text-xl">펫<span class="text-[#EC4899]">프렌즈</span></span>
+      </a>
 
-        
-        <div class="flex-nowrap shrink-0 flex gap-6 items-center">
-         <button onclick="togglePetModal()" class="hidden md:block text-[14px] font-rounded font-semibold text-[#F97316] bg-[#FFEDD5] px-4 py-2 rounded-lg hover:bg-[#FED7AA] transition" data-mobile-menu-copy="true">My Pet</button>
-           <button class="hidden md:inline-flex bg-[#F97316] text-white px-3 py-2 text-xs md:text-sm md:px-6 md:py-2.5 whitespace-nowrap rounded-lg font-rounded font-semibold text-[14px] shadow-[0_4px_0_#EA580C] hover:translate-y-1 hover:shadow-none transition-all" data-mobile-menu-copy="true">
-             Book Now
-           </button>
-        </div>
+      <div class="hidden md:flex gap-10 text-sm font-medium text-slate-400">
+        <a href="#products" class="hover:text-[#EC4899] transition">상품</a>
+        <a href="#services" class="hover:text-[#EC4899] transition">서비스</a>
+        <a href="#adopt" class="hover:text-[#EC4899] transition">입양</a>
+        <a href="#contact" class="hover:text-[#EC4899] transition">문의</a>
+      </div>
+
+      <button class="mobile-menu-trigger md:hidden ml-auto text-2xl focus:outline-none" style="color: inherit;">
+        <i class="fas fa-bars"></i>
+      </button>
+
+      <div class="hidden md:flex gap-4 items-center">
+        <a href="#contact" class="bg-[#EC4899] text-white px-6 py-2.5 rounded-full text-sm font-semibold hover:bg-[#DB2777] shadow-lg shadow-[#EC4899]/20" data-mobile-menu-copy="true">방문 예약</a>
       </div>
     </div>
 
-      <%= render partial: 'templates/shared/mobile_menu_overlay' %></nav>
+    <%= render partial: 'templates/shared/mobile_menu_overlay' %>
+  </nav>
 
-  <!-- Hero -->
-  <header class="min-h-screen relative flex items-center justify-center pt-24 overflow-hidden">
-    <!-- Floating Bones -->
-    <div class="absolute top-[20%] left-[8%] text-2xl md:text-4xl animate-float opacity-80 cursor-pointer hover:rotate-12 transition">🦴</div>
-    <div class="absolute bottom-[25%] right-[8%] text-2xl md:text-4xl animate-float animation-delay-2000 opacity-80 cursor-pointer hover:-rotate-12 transition">🎾</div>
-    
-    <div class="absolute top-0 right-0 w-[50%] h-[100%] bg-[#FFEDD5] rounded-l-[15rem] -z-10 opacity-60"></div>
+  <!-- ========== Hero ========== -->
+  <header class="min-h-[100dvh] relative flex items-center pt-20 overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-br from-[#FDF2F8] via-white to-[#FCE7F3]"></div>
+    <div class="absolute bottom-0 right-0 w-[500px] h-[500px] bg-[#EC4899]/5 rounded-full blur-[120px]"></div>
 
-    <div class="container mx-auto px-3 md:px-6 relative z-10 grid lg:grid-cols-2 gap-10 md:p-16 items-center">
-       <div class="space-y-8 text-center lg:text-left order-2 lg:order-1">
-         <div class="inline-flex items-center gap-2 bg-white px-4 py-2 rounded-lg border border-[#F97316]/30 shadow-sm text-[#EA580C] font-rounded font-semibold text-sm tracking-wide">
-            <span class="w-2 h-2 rounded-full bg-[#EA580C] animate-pulse"></span>
-            Happy Tail Guarantee
-         </div>
-         
-         <h1 class="text-2xl md:text-4xl md:text-6xl font-rounded font-semibold leading-[1.1] text-[#431407] mobile-title">
-            Making<br>
-            <span class="text-[#F97316]">Tails Wag</span><br>
-            Everyday!
-         </h1>
-         
-         <p class="text-[#431407]/70 text-lg md:text-xl leading-relaxed max-w-lg mx-auto lg:mx-0 mobile-desc font-medium">
-            반려견을 위한 프리미엄 그루밍 & 케어 서비스.<br>
-            사랑하는 아이에게 최고의 하루를 선물하세요.
-         </p>
-         
-         <div class="flex flex-col sm:flex-row gap-6 justify-center lg:justify-start pt-4">
-            <button class="px-8 py-4 bg-[#431407] text-white font-rounded font-semibold text-lg rounded-[1.5rem] shadow-xl hover:bg-[#F97316] transition-colors">
-               Our Services
-            </button>
-            <button class="px-8 py-4 bg-white text-[#F97316] border-2 border-[#F97316] font-rounded font-semibold text-lg rounded-[1.5rem] hover:bg-[#FFF7ED] transition">
-               Gallery
-            </button>
-         </div>
+    <div class="max-w-7xl mx-auto px-4 md:px-8 relative z-10 grid lg:grid-cols-2 gap-12 items-center w-full">
+      <div class="space-y-8 text-center lg:text-left">
+        <div class="inline-flex items-center gap-2 bg-[#FDF2F8] px-4 py-2 rounded-full border border-[#EC4899]/20 reveal" style="--delay: 0;">
+          <i class="fas fa-heart text-[#EC4899] text-sm"></i>
+          <span class="text-sm font-medium text-[#EC4899]">반려동물과 함께하는 행복</span>
+        </div>
 
-         <div class="pt-8 flex items-center justify-center lg:justify-start gap-6">
-            <div class="flex -space-x-4">
-               <img class="w-12 h-12 rounded-full border-2 border-white" src="https://images.unsplash.com/photo-1543466835-00a7907e9de1?q=80&w=100" alt="Pet 1">
-               <img class="w-12 h-12 rounded-full border-2 border-white" src="https://images.unsplash.com/photo-1537151608828-ea2b11777ee8?q=80&w=100" alt="Pet 2">
-               <img class="w-12 h-12 rounded-full border-2 border-white" src="https://images.unsplash.com/photo-1583511655857-d19b40a7a54e?q=80&w=100" alt="Pet 3">
-               <div class="w-12 h-12 rounded-full border-2 border-white bg-[#F97316] flex items-center justify-center text-white font-semibold text-xs">+2k</div>
+        <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mobile-title reveal" style="--delay: 1;">
+          행복한 반려생활<br>
+          <span class="text-[#EC4899]">펫프렌즈</span>
+        </h1>
+
+        <p class="text-slate-400 text-base md:text-lg leading-relaxed max-w-md mx-auto lg:mx-0 mobile-desc reveal" style="--delay: 2;">
+          프리미엄 사료부터 장난감, 미용, 호텔까지. 반려동물의 모든 것을 한곳에서 만나보세요.
+        </p>
+
+        <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start reveal" style="--delay: 3;">
+          <a href="#products" class="inline-flex items-center justify-center gap-2 px-8 py-4 bg-[#EC4899] text-white rounded-full font-semibold shadow-lg shadow-[#EC4899]/25 hover:bg-[#DB2777]">
+            <i class="fas fa-shopping-bag text-sm"></i> 상품 보기
+          </a>
+          <a href="#adopt" class="inline-flex items-center justify-center gap-2 px-8 py-4 border border-[#EC4899]/30 rounded-full font-semibold text-[#EC4899] hover:bg-[#EC4899] hover:text-white">
+            <i class="fas fa-home text-sm"></i> 입양 안내
+          </a>
+        </div>
+      </div>
+
+      <div class="relative hidden lg:block reveal" style="--delay: 2;">
+        <img src="https://images.unsplash.com/photo-1601758228041-f3b2795255f1?q=80&w=800" alt="강아지" class="w-full h-[550px] object-cover rounded-3xl shadow-2xl">
+        <div class="absolute -bottom-6 -right-6 bg-white p-5 rounded-2xl shadow-xl border border-[#EC4899]/10">
+          <div class="flex items-center gap-3">
+            <div class="w-12 h-12 bg-[#EC4899]/10 rounded-full flex items-center justify-center">
+              <i class="fas fa-star text-[#EC4899]"></i>
             </div>
-            <p class="text-sm font-semibold text-[#431407]/60">Happy Friends</p>
-         </div>
-       </div>
-       
-       <div class="relative order-1 lg:order-2 flex justify-center">
-          <div class="relative group cursor-pointer w-[300px] md:w-[450px]">
-             <!-- Abstract Shape -->
-             <div class="absolute inset-0 bg-[#FCD34D] rounded-2xl transform rotate-6 -z-10 group-hover:rotate-3 transition duration-500"></div>
-             
-             <img src="https://images.unsplash.com/photo-1516734212186-a967f81ad0d7?q=80&w=800" alt="Happy Dog" class="w-full h-auto object-cover rounded-2xl border-8 border-white shadow-2xl transform -rotate-3 group-hover:rotate-0 transition duration-500">
-             
-             <!-- Floating Badge -->
-             <div class="absolute bottom-10 -left-6 bg-white py-3 px-5 rounded-2xl shadow-xl border border-[#F97316]/20 animate-bounce-slow flex items-center gap-3">
-                <span class="text-2xl">✂️</span>
-                <div>
-                  <p class="text-[10px] font-semibold text-[#9CA3AF] uppercase">Style of Month</p>
-                  <p class="font-rounded font-semibold text-[#F97316]">Teddy Bear Cut</p>
-                </div>
-             </div>
+            <div>
+              <p class="font-bold text-sm">고객 만족도</p>
+              <p class="text-xs text-slate-400">4.9 / 5.0</p>
+            </div>
           </div>
-       </div>
+        </div>
+      </div>
     </div>
   </header>
 
-   <style>
-      @keyframes float {
-         0%, 100% { transform: translateY(0); }
-         50% { transform: translateY(-20px); }
-      }
-      .animate-float { animation: float 6s ease-in-out infinite; }
-      .animation-delay-2000 { animation-delay: 2s; }
-      @keyframes bounce-slow {
-         0%, 100% { transform: translateY(0); }
-         50% { transform: translateY(-10px); }
-      }
-      .animate-bounce-slow { animation: bounce-slow 3s ease-in-out infinite; }
-   </style>
-
-  <!-- Login Modal -->
-  <div id="pet-modal" class="fixed inset-0 z-[100] hidden items-center justify-center p-4 bg-[#431407]/30 backdrop-blur-md">
-    <div class="bg-white w-full max-w-sm p-10 shadow-[0_20px_50px_rgba(249,115,22,0.3)] relative rounded-[2.5rem] border-t-8 border-[#F97316]">
-      <button onclick="togglePetModal()" class="absolute top-6 right-6 text-[#9CA3AF] hover:text-[#F97316] transition text-2xl font-rounded font-semibold">&times;</button>
-      
-      <div class="text-center mb-8">
-        <div class="w-16 h-16 bg-[#FFEDD5] rounded-full flex items-center justify-center text-2xl mx-auto mb-4 border-2 border-[#F97316]/20">
-           🏠
-        </div>
-        <h2 class="text-lg md:text-2xl font-rounded font-semibold text-[#431407] mb-1">My Pet Lounge</h2>
-        <p class="text-[13px] text-[#F97316] font-semibold uppercase tracking-wide">Check Status & Schedule</p>
+  <!-- ========== 상품 ========== -->
+  <section id="products" class="py-24 md:py-32 bg-[#FAFAFA]">
+    <div class="max-w-7xl mx-auto px-4 md:px-8">
+      <div class="text-center mb-16">
+        <span class="text-sm font-semibold text-[#EC4899] tracking-wider uppercase reveal" style="--delay: 0;">Products</span>
+        <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mt-4 reveal" style="--delay: 1;">인기 상품</h2>
+        <p class="text-slate-400 text-base mt-4 max-w-lg mx-auto reveal" style="--delay: 2;">엄선된 프리미엄 반려동물 용품을 만나보세요</p>
       </div>
-      
-      <div class="space-y-4">
-        <div>
-           <label class="block text-[11px] font-semibold text-[#431407]/50 uppercase tracking-wide mb-1.5 ml-1">Pet Name / ID</label>
-           <input type="text" placeholder="e.g. Bella" class="w-full bg-[#FFF7ED] border-2 border-[#FED7AA] rounded-2xl py-3 px-6 outline-none focus:border-[#F97316] focus:bg-white transition text-lg font-rounded font-semibold text-[#431407] text-center">
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div class="shop-card bg-white rounded-2xl overflow-hidden border border-slate-100 reveal" style="--delay: 0;">
+          <div class="overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1589924691995-400dc9ecc119?q=80&w=600" alt="프리미엄 사료" class="w-full aspect-square object-cover transition duration-700" loading="lazy">
+          </div>
+          <div class="p-5">
+            <span class="text-xs font-semibold text-[#EC4899]">BEST</span>
+            <h3 class="font-bold mt-1">프리미엄 사료</h3>
+            <p class="text-sm text-slate-400 mt-1">유기농 원료로 만든 맞춤형 사료.</p>
+            <p class="text-[#EC4899] font-bold mt-2">35,000원~</p>
+          </div>
         </div>
-        
-        <button class="w-full bg-[#F97316] text-white py-4 rounded-2xl font-rounded font-semibold text-[18px] shadow-[0_6px_0_#EA580C] hover:translate-y-1 hover:shadow-none transition-all mt-2">
-           Open Door
-        </button>
-        
-        <div class="flex justify-center gap-10 pt-4 text-sm font-rounded font-semibold text-[#9CA3AF]">
-           <a href="#" class="hover:text-[#F97316] transition">New Friend?</a>
-           <span>•</span>
-           <a href="#" class="hover:text-[#F97316] transition">Support</a>
+
+        <div class="shop-card bg-white rounded-2xl overflow-hidden border border-slate-100 reveal" style="--delay: 1;">
+          <div class="overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1535930749574-1399327ce78f?q=80&w=600" alt="장난감 세트" class="w-full aspect-square object-cover transition duration-700" loading="lazy">
+          </div>
+          <div class="p-5">
+            <span class="text-xs font-semibold text-[#EC4899]">NEW</span>
+            <h3 class="font-bold mt-1">장난감 세트</h3>
+            <p class="text-sm text-slate-400 mt-1">안전한 소재의 인터랙티브 장난감.</p>
+            <p class="text-[#EC4899] font-bold mt-2">25,000원~</p>
+          </div>
+        </div>
+
+        <div class="shop-card bg-white rounded-2xl overflow-hidden border border-slate-100 reveal" style="--delay: 2;">
+          <div class="overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1583337130417-13571e35e2da?q=80&w=600" alt="반려동물 침대" class="w-full aspect-square object-cover transition duration-700" loading="lazy">
+          </div>
+          <div class="p-5">
+            <span class="text-xs font-semibold text-[#EC4899]">HOT</span>
+            <h3 class="font-bold mt-1">프리미엄 침대</h3>
+            <p class="text-sm text-slate-400 mt-1">메모리폼 반려동물 전용 침대.</p>
+            <p class="text-[#EC4899] font-bold mt-2">89,000원~</p>
+          </div>
+        </div>
+
+        <div class="shop-card bg-white rounded-2xl overflow-hidden border border-slate-100 reveal" style="--delay: 3;">
+          <div class="overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1583511655857-d19b40a7a54e?q=80&w=600" alt="건강 간식" class="w-full aspect-square object-cover transition duration-700" loading="lazy">
+          </div>
+          <div class="p-5">
+            <span class="text-xs font-semibold text-[#EC4899]">SALE</span>
+            <h3 class="font-bold mt-1">건강 간식</h3>
+            <p class="text-sm text-slate-400 mt-1">수의사가 추천하는 건강 간식.</p>
+            <p class="text-[#EC4899] font-bold mt-2">12,000원~</p>
+          </div>
         </div>
       </div>
     </div>
-  </div>
+  </section>
 
-  <footer class="py-20 md:py-32 bg-white text-center px-6 border-t border-[#FFF7ED]">
-     <div class="inline-flex flex-col items-center gap-6 mb-8">
-        <span class="text-3xl">🐕</span>
-        <span class="font-rounded font-semibold text-lg md:text-2xl text-[#431407]">With<span class="text-[#F97316]">Pet</span></span>
-        <p class="text-[12px] font-semibold text-[#9CA3AF] uppercase tracking-wide">Premium Pet Care Service</p>
-     </div>
-     <p class="text-[10px] text-[#9CA3AF]/60 tracking-wider font-semibold">© 2024 WITH PET. ALL RIGHTS RESERVED.</p>
+  <!-- ========== 서비스 ========== -->
+  <section id="services" class="py-24 md:py-32">
+    <div class="max-w-7xl mx-auto px-4 md:px-8">
+      <div class="text-center mb-16">
+        <span class="text-sm font-semibold text-[#EC4899] tracking-wider uppercase reveal" style="--delay: 0;">Services</span>
+        <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mt-4 reveal" style="--delay: 1;">펫 서비스</h2>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-8">
+        <div class="bg-[#FDF2F8] p-8 rounded-2xl text-center reveal" style="--delay: 0;">
+          <div class="w-16 h-16 bg-[#EC4899] rounded-2xl flex items-center justify-center mx-auto mb-6">
+            <i class="fas fa-cut text-white text-2xl"></i>
+          </div>
+          <h3 class="font-bold text-lg mb-3">펫 미용</h3>
+          <p class="text-sm text-slate-400 leading-relaxed">목욕, 미용, 스파 등 전문 그루머가 반려동물을 케어합니다.</p>
+          <p class="text-[#EC4899] font-bold text-sm mt-4">기본 미용 30,000원~</p>
+        </div>
+
+        <div class="bg-[#FDF2F8] p-8 rounded-2xl text-center reveal" style="--delay: 1;">
+          <div class="w-16 h-16 bg-[#EC4899] rounded-2xl flex items-center justify-center mx-auto mb-6">
+            <i class="fas fa-hotel text-white text-2xl"></i>
+          </div>
+          <h3 class="font-bold text-lg mb-3">펫 호텔</h3>
+          <p class="text-sm text-slate-400 leading-relaxed">24시간 CCTV 모니터링, 개별 룸 운영. 안전하고 편안한 호텔.</p>
+          <p class="text-[#EC4899] font-bold text-sm mt-4">1박 40,000원~</p>
+        </div>
+
+        <div class="bg-[#FDF2F8] p-8 rounded-2xl text-center reveal" style="--delay: 2;">
+          <div class="w-16 h-16 bg-[#EC4899] rounded-2xl flex items-center justify-center mx-auto mb-6">
+            <i class="fas fa-dog text-white text-2xl"></i>
+          </div>
+          <h3 class="font-bold text-lg mb-3">펫 유치원</h3>
+          <p class="text-sm text-slate-400 leading-relaxed">사회화 교육과 놀이 프로그램. 전문 훈련사가 함께합니다.</p>
+          <p class="text-[#EC4899] font-bold text-sm mt-4">일일 25,000원~</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== 입양 ========== -->
+  <section id="adopt" class="py-24 md:py-32 bg-[#FAFAFA]">
+    <div class="max-w-7xl mx-auto px-4 md:px-8">
+      <div class="grid lg:grid-cols-2 gap-16 items-center">
+        <div class="space-y-8">
+          <div>
+            <span class="text-sm font-semibold text-[#EC4899] tracking-wider uppercase reveal" style="--delay: 0;">Adoption</span>
+            <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mt-4 reveal" style="--delay: 1;">사랑을 나눠주세요</h2>
+          </div>
+
+          <p class="text-slate-400 text-base md:text-lg leading-relaxed reveal" style="--delay: 2;">
+            펫프렌즈는 유기동물 입양을 돕고 있습니다. 건강 검진, 예방 접종, 중성화 수술을 완료한 아이들이 새로운 가족을 기다리고 있어요.
+          </p>
+
+          <div class="space-y-4 reveal" style="--delay: 3;">
+            <div class="flex items-center gap-3">
+              <i class="fas fa-check-circle text-[#EC4899]"></i>
+              <span class="text-slate-600">건강검진 및 예방접종 완료</span>
+            </div>
+            <div class="flex items-center gap-3">
+              <i class="fas fa-check-circle text-[#EC4899]"></i>
+              <span class="text-slate-600">중성화 수술 완료</span>
+            </div>
+            <div class="flex items-center gap-3">
+              <i class="fas fa-check-circle text-[#EC4899]"></i>
+              <span class="text-slate-600">입양 후 2주간 건강 보증</span>
+            </div>
+            <div class="flex items-center gap-3">
+              <i class="fas fa-check-circle text-[#EC4899]"></i>
+              <span class="text-slate-600">입양 상담 및 사후 관리</span>
+            </div>
+          </div>
+
+          <a href="#contact" class="inline-flex items-center justify-center gap-2 px-8 py-4 bg-[#EC4899] text-white rounded-full font-semibold shadow-lg shadow-[#EC4899]/25 hover:bg-[#DB2777] reveal" style="--delay: 4;">
+            입양 문의하기
+          </a>
+        </div>
+
+        <div class="relative reveal" style="--delay: 0;">
+          <img src="https://images.unsplash.com/photo-1548199973-03cce0bbc87b?q=80&w=700" alt="입양 대기 강아지" class="w-full aspect-[4/3] object-cover rounded-3xl shadow-xl" loading="lazy">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== 후기 ========== -->
+  <section class="py-24 md:py-32">
+    <div class="max-w-7xl mx-auto px-4 md:px-8">
+      <div class="text-center mb-16">
+        <span class="text-sm font-semibold text-[#EC4899] tracking-wider uppercase reveal" style="--delay: 0;">Reviews</span>
+        <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mt-4 reveal" style="--delay: 1;">고객 후기</h2>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+        <div class="bg-[#FDF2F8] p-8 rounded-2xl reveal" style="--delay: 0;">
+          <div class="flex items-center gap-1 text-[#EC4899] mb-4">
+            <i class="fas fa-star text-xs"></i><i class="fas fa-star text-xs"></i><i class="fas fa-star text-xs"></i><i class="fas fa-star text-xs"></i><i class="fas fa-star text-xs"></i>
+          </div>
+          <p class="text-sm text-slate-500 leading-relaxed italic">"미용 서비스 최고예요! 우리 강아지가 완전 다른 아이처럼 변신했어요."</p>
+          <p class="text-sm font-bold mt-4">김OO 님</p>
+          <p class="text-xs text-slate-400">포메라니안 보호자</p>
+        </div>
+
+        <div class="bg-[#FDF2F8] p-8 rounded-2xl reveal" style="--delay: 1;">
+          <div class="flex items-center gap-1 text-[#EC4899] mb-4">
+            <i class="fas fa-star text-xs"></i><i class="fas fa-star text-xs"></i><i class="fas fa-star text-xs"></i><i class="fas fa-star text-xs"></i><i class="fas fa-star text-xs"></i>
+          </div>
+          <p class="text-sm text-slate-500 leading-relaxed italic">"펫 호텔에 맡기고 여행 갔는데 CCTV로 확인할 수 있어서 안심이었어요."</p>
+          <p class="text-sm font-bold mt-4">박OO 님</p>
+          <p class="text-xs text-slate-400">골든리트리버 보호자</p>
+        </div>
+
+        <div class="bg-[#FDF2F8] p-8 rounded-2xl reveal" style="--delay: 2;">
+          <div class="flex items-center gap-1 text-[#EC4899] mb-4">
+            <i class="fas fa-star text-xs"></i><i class="fas fa-star text-xs"></i><i class="fas fa-star text-xs"></i><i class="fas fa-star text-xs"></i><i class="fas fa-star text-xs"></i>
+          </div>
+          <p class="text-sm text-slate-500 leading-relaxed italic">"입양 상담 정말 친절했어요. 새 가족을 만나서 너무 행복합니다!"</p>
+          <p class="text-sm font-bold mt-4">이OO 님</p>
+          <p class="text-xs text-slate-400">믹스견 입양</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== 문의 ========== -->
+  <section id="contact" class="py-24 md:py-32 bg-gradient-to-br from-[#EC4899] to-[#DB2777] text-white relative overflow-hidden">
+    <div class="absolute top-0 left-0 w-96 h-96 bg-white/5 rounded-full blur-[100px]"></div>
+
+    <div class="max-w-4xl mx-auto px-4 md:px-8 relative z-10">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold reveal" style="--delay: 0;">문의 / 방문 예약</h2>
+        <p class="text-white/70 text-base mt-4 reveal" style="--delay: 1;">궁금한 점이 있으시면 편하게 문의해주세요</p>
+      </div>
+
+      <div class="bg-white/10 backdrop-blur-xl rounded-3xl p-8 md:p-12 reveal" style="--delay: 2;">
+        <div class="grid md:grid-cols-2 gap-6">
+          <div>
+            <label class="block text-sm font-medium text-white/80 mb-2">이름</label>
+            <input type="text" placeholder="홍길동" class="w-full bg-white/10 border border-white/20 rounded-xl px-5 py-3.5 text-white placeholder-white/40 outline-none focus:border-white/60 transition">
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-white/80 mb-2">연락처</label>
+            <input type="tel" placeholder="010-0000-0000" class="w-full bg-white/10 border border-white/20 rounded-xl px-5 py-3.5 text-white placeholder-white/40 outline-none focus:border-white/60 transition">
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-white/80 mb-2">문의 유형</label>
+            <select class="w-full bg-white/10 border border-white/20 rounded-xl px-5 py-3.5 text-white outline-none focus:border-white/60 transition">
+              <option value="">선택해주세요</option>
+              <option>상품 문의</option>
+              <option>미용 예약</option>
+              <option>호텔 예약</option>
+              <option>입양 상담</option>
+            </select>
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-white/80 mb-2">희망 날짜</label>
+            <input type="date" class="w-full bg-white/10 border border-white/20 rounded-xl px-5 py-3.5 text-white outline-none focus:border-white/60 transition">
+          </div>
+          <div class="md:col-span-2">
+            <label class="block text-sm font-medium text-white/80 mb-2">상세 내용</label>
+            <textarea rows="3" placeholder="문의 내용을 적어주세요" class="w-full bg-white/10 border border-white/20 rounded-xl px-5 py-3.5 text-white placeholder-white/40 outline-none focus:border-white/60 transition resize-none"></textarea>
+          </div>
+        </div>
+        <button class="w-full mt-8 bg-white text-[#EC4899] py-4 rounded-full font-bold text-lg hover:bg-[#FDF2F8] shadow-lg">문의 보내기</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== Footer ========== -->
+  <footer class="py-16 md:py-24 bg-[#0F172A] text-white">
+    <div class="max-w-7xl mx-auto px-4 md:px-8">
+      <div class="grid md:grid-cols-3 gap-12 mb-16">
+        <div>
+          <div class="flex items-center gap-2 mb-4">
+            <div class="w-8 h-8 bg-[#EC4899] rounded-xl flex items-center justify-center"><i class="fas fa-paw text-white text-xs"></i></div>
+            <span class="font-display font-extrabold text-lg">펫프렌즈</span>
+          </div>
+          <p class="text-white/30 text-sm leading-relaxed">서울특별시 성동구 서울숲길 17<br>펫프렌즈 빌딩 1-2층</p>
+          <p class="text-white/30 text-sm mt-2">대표: 강펫 | 사업자등록번호: 678-90-12345</p>
+        </div>
+
+        <div class="grid grid-cols-2 gap-8">
+          <div>
+            <p class="text-xs font-semibold text-white/20 uppercase tracking-wider mb-4">서비스</p>
+            <ul class="space-y-2.5">
+              <li><a href="#products" class="text-white/40 text-sm hover:text-[#EC4899] transition">상품</a></li>
+              <li><a href="#services" class="text-white/40 text-sm hover:text-[#EC4899] transition">미용</a></li>
+              <li><a href="#services" class="text-white/40 text-sm hover:text-[#EC4899] transition">호텔</a></li>
+              <li><a href="#adopt" class="text-white/40 text-sm hover:text-[#EC4899] transition">입양</a></li>
+            </ul>
+          </div>
+          <div>
+            <p class="text-xs font-semibold text-white/20 uppercase tracking-wider mb-4">정보</p>
+            <ul class="space-y-2.5">
+              <li><a href="#" class="text-white/40 text-sm hover:text-[#EC4899] transition">매장 안내</a></li>
+              <li><a href="#contact" class="text-white/40 text-sm hover:text-[#EC4899] transition">문의</a></li>
+              <li><a href="#" class="text-white/40 text-sm hover:text-[#EC4899] transition">이벤트</a></li>
+              <li><a href="#" class="text-white/40 text-sm hover:text-[#EC4899] transition">블로그</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <div>
+          <p class="text-xs font-semibold text-white/20 uppercase tracking-wider mb-4">영업시간</p>
+          <div class="space-y-1.5 text-sm text-white/40">
+            <div class="flex justify-between"><span>매일</span><span class="text-white/60">10:00 - 21:00</span></div>
+            <div class="flex justify-between text-[#EC4899]"><span>설/추석</span><span>휴무</span></div>
+          </div>
+          <p class="text-xl font-bold text-[#EC4899] mt-4">02-444-7979</p>
+          <div class="flex gap-3 mt-4">
+            <a href="#" class="w-10 h-10 bg-white/5 rounded-lg flex items-center justify-center text-white/40 hover:text-[#EC4899] hover:bg-white/10 transition"><i class="fab fa-instagram text-sm"></i></a>
+            <a href="#" class="w-10 h-10 bg-white/5 rounded-lg flex items-center justify-center text-white/40 hover:text-[#EC4899] hover:bg-white/10 transition"><i class="fab fa-youtube text-sm"></i></a>
+          </div>
+        </div>
+      </div>
+
+      <div class="border-t border-white/5 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+        <p class="text-xs text-white/15">&copy; 2024 펫프렌즈. All rights reserved by DLAB.</p>
+        <div class="flex gap-6">
+          <a href="#" class="text-xs text-white/15 hover:text-white/30 transition">개인정보처리방침</a>
+          <a href="#" class="text-xs text-white/15 hover:text-white/30 transition">이용약관</a>
+        </div>
+      </div>
+    </div>
   </footer>
 
-  <script>
-    function togglePetModal() {
-      const modal = document.getElementById('pet-modal');
-      modal.classList.toggle('hidden');
-      modal.classList.toggle('flex');
-    }
-  </script>
-
 </div>
+
+<script>
+  (function() {
+    const observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+    document.querySelectorAll('.reveal').forEach(function(el) { observer.observe(el); });
+  })();
+</script>

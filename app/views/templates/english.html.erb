@@ -1,169 +1,428 @@
-<%# English Template - 잉글리시 타운 (ETOWN ACADEMY) %>
+<%# English Template - SPEAK UP (영어 학원) %>
 
 <style>
-  /* Supanova Design Upgrade */
+  /* Supanova Design — English Academy Archetype */
   * { word-break: keep-all; }
-  html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+  html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
   h1, h2, h3, h4 { text-wrap: balance; letter-spacing: -0.02em; line-height: 1.3; }
-  a, button { transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1); }
+  a, button { transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1); }
   a:hover, button:hover { transform: scale(1.02); }
   a:active, button:active { transform: scale(0.98); }
 
-  @import url('https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,300..900;1,300..900&family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap');
-  
-  .font-display { font-family: 'Jost', sans-serif; }
-  .font-sans { font-family: 'Pretendard Variable', 'Pretendard', -apple-system, sans-serif; }
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
+
+  .font-sans { font-family: 'Pretendard Variable', 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, sans-serif; }
+  .font-poppins { font-family: 'Poppins', sans-serif; }
 
   @media (max-width: 768px) {
     .mobile-desc { font-size: 14px !important; line-height: 1.8; }
-    .mobile-title { font-size: 40px !important; }
+    .mobile-title { font-size: 38px !important; }
   }
 
-  .grid-bg {
-    background-image: linear-gradient(to right, rgba(59, 130, 246, 0.05) 1px, transparent 1px),
-                      linear-gradient(to bottom, rgba(59, 130, 246, 0.05) 1px, transparent 1px);
-    background-size: 40px 40px;
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(2rem); filter: blur(4px); }
+    to { opacity: 1; transform: translateY(0); filter: blur(0); }
   }
+  .reveal { opacity: 0; transform: translateY(2rem); }
+  .reveal.is-visible { animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards; animation-delay: calc(var(--delay, 0) * 100ms); }
+
+  .program-card { transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1); }
+  .program-card:hover { transform: translateY(-8px); }
+  .program-card:hover .program-icon { transform: scale(1.1) rotate(-5deg); }
 </style>
 
-<div class="bg-white text-slate-900 font-sans selection:bg-blue-600 selection:text-white min-h-screen overflow-x-hidden relative grid-bg">
+<div class="bg-white text-[#1F2937] font-sans selection:bg-[#F97316] selection:text-white min-h-screen overflow-x-hidden">
 
-  <!-- Nav -->
-  <nav class="fixed w-full z-50 px-8 py-6 bg-white/90 backdrop-blur-xl border-b border-blue-50">
-    <div class="container mx-auto px-4 md:px-6 flex justify-between items-center flex-nowrap">
-      <div class="flex items-center gap-3">
-         <div class="w-8 h-8 max-h-8 max-w-[35%] shrink object-contain rounded-lg bg-blue-600 flex items-center justify-center text-white font-semibold text-sm italic shadow-lg shadow-blue-200 transform -skew-x-12">
-            E
-         </div>
-         <span class="font-display text-2xl font-semibold tracking-tight uppercase text-slate-900 italic">Etown<span class="text-blue-600">Academy</span></span>
-      </div>
-      
-      <div class="hidden md:flex gap-16 text-[11px] font-semibold uppercase tracking-[0.2em] text-slate-400">
-        <a href="#about" class="hover:text-blue-600 transition">About</a>
-        <a href="#programs" class="hover:text-blue-600 transition">Programs</a>
-        <a href="#teachers" class="hover:text-blue-600 transition">Teachers</a>
-      </div>
-           <button class="mobile-menu-trigger md:hidden ml-auto text-2xl focus:outline-none" style="color: inherit;">
-             <i class="fas fa-bars"></i>
-           </button>
+  <!-- ========== Nav ========== -->
+  <nav class="fixed w-full z-50 px-4 md:px-8 py-5 bg-white/80 backdrop-blur-xl border-b border-[#F97316]/5">
+    <div class="max-w-7xl mx-auto flex justify-between items-center">
+      <a href="#" class="flex items-center gap-2">
+        <span class="font-poppins text-2xl font-black tracking-tight text-[#F97316]">SPEAK</span>
+        <span class="font-poppins text-2xl font-black tracking-tight text-[#1F2937]">UP</span>
+      </a>
 
-      
-      <div class="flex-nowrap shrink-0 flex gap-10 items-center">
-         <button onclick="toggleEnglishModal()" class="hidden md:block text-[11px] font-semibold uppercase tracking-[0.2em] text-slate-400 hover:text-blue-600" data-mobile-menu-copy="true">LMS Portal</button>
-         <button class="hidden md:inline-flex bg-slate-900 text-white px-4 py-2 text-xs md:text-base md:px-8 md:py-3 whitespace-nowrap rounded-lg font-semibold text-[11px] tracking-wide uppercase hover:bg-blue-600 transition shadow-xl shadow-slate-200" data-mobile-menu-copy="true">
-           Free Level Test
-         </button>
+      <div class="hidden md:flex gap-10 text-[11px] font-semibold uppercase tracking-[0.3em] text-[#1F2937]/40">
+        <a href="#programs" class="hover:text-[#F97316] transition">프로그램</a>
+        <a href="#level-test" class="hover:text-[#F97316] transition">레벨테스트</a>
+        <a href="#reviews" class="hover:text-[#F97316] transition">후기</a>
+        <a href="#contact" class="hover:text-[#F97316] transition">상담</a>
+      </div>
+
+      <button class="mobile-menu-trigger md:hidden ml-auto text-2xl focus:outline-none" style="color: inherit;">
+        <i class="fas fa-bars"></i>
+      </button>
+
+      <div class="hidden md:flex gap-4 items-center shrink-0">
+        <button onclick="toggleEnglishModal()" class="text-[11px] font-semibold text-[#1F2937]/40 hover:text-[#F97316] tracking-[0.2em] uppercase" data-mobile-menu-copy="true">로그인</button>
+        <a href="#contact" class="bg-[#F97316] text-white px-7 py-3 rounded-full font-semibold text-[11px] tracking-[0.2em] uppercase hover:bg-[#EA580C] shadow-lg shadow-[#F97316]/20" data-mobile-menu-copy="true">무료 레벨테스트</a>
       </div>
     </div>
 
-      <%= render partial: 'templates/shared/mobile_menu_overlay' %></nav>
+    <%= render partial: 'templates/shared/mobile_menu_overlay' %>
+  </nav>
 
-  <!-- Hero -->
-  <header class="min-h-screen relative flex items-center justify-center pt-20">
-    <div class="absolute top-0 right-0 w-[60%] h-full bg-slate-50 skew-x-12 -z-10 translate-x-1/4"></div>
-    
-    <div class="container mx-auto px-3 md:px-6 relative z-10 grid lg:grid-cols-2 gap-10 md:p-16 items-center">
-      <div class="space-y-10 text-center lg:text-left">
-        <div class="inline-flex items-center gap-2 bg-blue-50 border border-blue-100 px-4 py-1.5 rounded-lg shadow-sm text-blue-700">
-           <span class="w-2 h-2 rounded-full bg-blue-600 animate-pulse"></span>
-           <span class="text-[10px] font-semibold tracking-wide uppercase">Global Enrollment Open</span>
+  <!-- ========== Hero ========== -->
+  <header class="min-h-[100dvh] relative flex items-center pt-20 overflow-hidden">
+    <div class="absolute top-0 right-0 w-[50%] h-full bg-[#FFF7ED] rounded-bl-[4rem] hidden lg:block"></div>
+    <div class="absolute top-40 left-10 w-20 h-20 bg-[#F97316]/10 rounded-full blur-[40px]"></div>
+    <div class="absolute bottom-20 right-20 w-32 h-32 bg-[#FDBA74]/20 rounded-full blur-[60px]"></div>
+
+    <div class="max-w-7xl mx-auto px-4 md:px-8 relative z-10 grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+      <div class="space-y-8 text-center lg:text-left">
+        <div class="inline-flex items-center gap-3 bg-[#F97316]/5 rounded-full px-5 py-2 reveal" style="--delay: 0;">
+          <span class="text-[11px] font-bold tracking-[0.2em] uppercase text-[#F97316]">English Made Fun</span>
         </div>
-        
-        <h1 class="text-2xl md:text-4xl md:text-7xl font-display font-semibold leading-[0.9] tracking-tight text-slate-900 mobile-title italic">
-           Speak<br>
-           <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-cyan-500">The Future.</span>
+
+        <h1 class="text-4xl md:text-5xl lg:text-[4.5rem] font-bold leading-tight tracking-tight mobile-title reveal" style="--delay: 1;">
+          말하는 영어,<br><span class="text-[#F97316] font-poppins">Speak Up!</span>
         </h1>
-        
-        <p class="text-slate-500 text-sm md:text-xl leading-relaxed max-w-lg mx-auto lg:mx-0 mobile-desc font-medium">
-           단순한 암기가 아닌, 언어의 본질을 깨우는 프리미엄 어학교육.<br>
-           검증된 커리큘럼으로 당신의 잠재력을 글로벌 무대와 연결합니다.
-        </p>
-        
-        <div class="pt-6 flex flex-col sm:flex-row gap-6 justify-center lg:justify-start">
-           <button class="px-8 py-4 bg-blue-600 text-white font-semibold text-[11px] tracking-wide uppercase rounded-xl hover:bg-slate-900 transition shadow-xl shadow-blue-200 transform hover:-translate-y-1">
-              Start Learning
-           </button>
-           <button class="px-8 py-4 bg-white border border-slate-200 text-slate-600 font-semibold text-[11px] tracking-wide uppercase rounded-xl hover:border-blue-200 hover:text-blue-600 transition shadow-sm">
-              Watch Class Demo
-           </button>
-        </div>
 
-        <div class="pt-10 flex gap-12 items-center justify-center lg:justify-start border-t border-slate-100">
-             <div class="flex -space-x-4">
-               <div class="w-8 h-8 max-h-8 max-w-[35%] shrink object-contain md:w-10 md:h-10 rounded-full border-2 border-white bg-slate-200"></div>
-               <div class="w-8 h-8 max-h-8 max-w-[35%] shrink object-contain md:w-10 md:h-10 rounded-full border-2 border-white bg-slate-300"></div>
-               <div class="w-8 h-8 max-h-8 max-w-[35%] shrink object-contain md:w-10 md:h-10 rounded-full border-2 border-white bg-slate-400"></div>
-               <div class="w-8 h-8 max-h-8 max-w-[35%] shrink object-contain md:w-10 md:h-10 rounded-full border-2 border-white bg-blue-100 flex items-center justify-center text-[10px] font-semibold text-blue-600">+2k</div>
-             </div>
-             <div>
-                <p class="text-[10px] font-semibold text-slate-400 uppercase tracking-wide">Active Students</p>
-                <div class="flex items-center gap-1 text-yellow-400 text-xs">★★★★★ <span class="text-slate-900 font-semibold ml-1">4.9/5</span></div>
-             </div>
+        <p class="text-[#1F2937]/50 text-base md:text-lg leading-relaxed max-w-lg mx-auto lg:mx-0 mobile-desc reveal" style="--delay: 2;">
+          원어민 강사와 함께하는 실전 회화 중심의 영어 교육. 듣기만 하는 영어는 그만, 직접 말하고 소통하는 진짜 영어를 경험하세요.
+        </p>
+
+        <div class="pt-2 flex flex-col sm:flex-row gap-4 justify-center lg:justify-start reveal" style="--delay: 3;">
+          <a href="#level-test" class="inline-flex items-center justify-center gap-3 px-9 py-4 bg-[#F97316] text-white font-bold text-[12px] tracking-[0.15em] uppercase hover:bg-[#EA580C] rounded-full shadow-xl shadow-[#F97316]/20">
+            무료 레벨테스트 <i class="fas fa-arrow-right text-[10px]"></i>
+          </a>
+          <a href="#programs" class="inline-flex items-center justify-center px-9 py-4 border-2 border-[#1F2937]/10 text-[#1F2937] font-semibold text-[12px] tracking-[0.15em] uppercase hover:border-[#F97316]/30 rounded-full">
+            프로그램 보기
+          </a>
         </div>
       </div>
-      
-      <div class="relative hidden lg:block">
-         <div class="relative group">
-            <div class="absolute -inset-4 bg-gradient-to-tr from-blue-200 to-cyan-200 rounded-2xl -rotate-3 group-hover:rotate-0 transition duration-700 opacity-60"></div>
-            <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=1200" alt="Education" class="relative z-10 w-full aspect-[4/5] object-cover rounded-[1.5rem] shadow-2xl transform transition hover:scale-[1.02] duration-500">
-            
-            <div class="absolute bottom-10 -right-10 z-20 bg-white p-8 rounded-2xl shadow-xl border border-slate-100 max-w-[260px] transform rotate-3 hover:rotate-0 transition duration-500">
-               <div class="flex items-center gap-6 mb-4">
-                  <div class="w-8 h-8 max-h-8 max-w-[35%] shrink object-contain md:w-10 md:h-10 rounded-full bg-blue-50 flex items-center justify-center text-blue-600 font-semibold italic">
-                     A+
-                  </div>
-                  <div>
-                     <p class="text-[10px] font-semibold text-slate-400 uppercase tracking-wide">Global Standard</p>
-                     <p class="text-lg font-semibold text-slate-900 italic">IELTS Certified</p>
-                  </div>
-               </div>
+
+      <div class="relative reveal" style="--delay: 2;">
+        <div class="bg-[#FFF7ED] rounded-[2.5rem] p-4 lg:p-0 lg:bg-transparent">
+          <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?q=80&w=1200" alt="영어 수업" class="w-full aspect-[4/5] object-cover rounded-[2rem] shadow-2xl" loading="eager">
+        </div>
+        <div class="absolute -bottom-4 -left-4 md:-bottom-6 md:-left-6 bg-white p-5 rounded-2xl shadow-xl border border-[#F97316]/10">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 bg-[#F97316] rounded-full flex items-center justify-center text-white text-lg">
+              <i class="fas fa-comments"></i>
             </div>
-         </div>
+            <div>
+              <p class="text-sm font-bold">회화 중심 수업</p>
+              <p class="text-[11px] text-[#1F2937]/40">Speaking 70%</p>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </header>
 
-  <!-- Login Modal -->
-  <div id="english-modal" class="fixed inset-0 z-[100] hidden items-center justify-center p-4 bg-slate-900/40 backdrop-blur-xl">
-    <div class="bg-white w-full max-w-sm p-12 shadow-2xl relative rounded-2xl">
-      <button onclick="toggleEnglishModal()" class="absolute top-8 right-8 text-slate-300 hover:text-blue-600 transition text-2xl font-light">&times;</button>
-      
-      <div class="text-center mb-10">
-        <h2 class="text-xl font-display font-semibold tracking-tight text-slate-900 mb-2 uppercase italic">Student Portal</h2>
-        <p class="text-[9px] text-blue-600 font-semibold tracking-[0.2em] uppercase">LMS Secure Access</p>
-      </div>
-      
-      <div class="space-y-6">
-        <div class="space-y-2">
-           <p class="text-[9px] font-semibold text-slate-400 uppercase tracking-wide ml-2">Student ID / Email</p>
-           <input type="text" placeholder="STU-2024-XXXX" class="w-full bg-slate-50 border-none rounded-xl py-5 px-6 outline-none focus:ring-2 focus:ring-blue-500/20 transition text-[11px] font-semibold tracking-wide text-slate-800 uppercase">
+  <!-- ========== About ========== -->
+  <section id="about" class="py-24 md:py-32">
+    <div class="max-w-7xl mx-auto px-4 md:px-8 grid lg:grid-cols-2 gap-16 lg:gap-24 items-center">
+      <div class="space-y-8 reveal" style="--delay: 0;">
+        <span class="inline-block rounded-full px-4 py-1.5 text-[11px] uppercase tracking-[0.15em] font-bold bg-[#F97316]/5 text-[#F97316]">About Us</span>
+        <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold leading-snug">
+          영어, 이제<br>자신있게 말하세요
+        </h2>
+        <p class="text-[#1F2937]/50 text-base md:text-lg leading-relaxed">
+          SPEAK UP은 10년간 오직 '말하는 영어'에 집중해온 영어 전문 학원입니다. 원어민 강사와 한국인 강사의 팀티칭 시스템으로 정확한 발음과 자연스러운 표현을 동시에 잡아줍니다.
+        </p>
+        <div class="grid grid-cols-2 gap-6">
+          <div class="text-center p-6 bg-[#FFF7ED] rounded-2xl">
+            <p class="text-3xl font-bold text-[#F97316] font-poppins">5,000+</p>
+            <p class="text-[12px] text-[#1F2937]/50 mt-2 font-medium">누적 수강생</p>
+          </div>
+          <div class="text-center p-6 bg-[#FFF7ED] rounded-2xl">
+            <p class="text-3xl font-bold text-[#F97316] font-poppins">96%</p>
+            <p class="text-[12px] text-[#1F2937]/50 mt-2 font-medium">만족도</p>
+          </div>
+          <div class="text-center p-6 bg-[#FFF7ED] rounded-2xl">
+            <p class="text-3xl font-bold text-[#F97316] font-poppins">12</p>
+            <p class="text-[12px] text-[#1F2937]/50 mt-2 font-medium">원어민 강사</p>
+          </div>
+          <div class="text-center p-6 bg-[#FFF7ED] rounded-2xl">
+            <p class="text-3xl font-bold text-[#F97316] font-poppins">10yr</p>
+            <p class="text-[12px] text-[#1F2937]/50 mt-2 font-medium">교육 경력</p>
+          </div>
         </div>
-        <button class="w-full bg-blue-600 text-white py-5 rounded-xl text-[10px] tracking-[0.4em] font-semibold uppercase hover:bg-slate-900 transition shadow-xl shadow-blue-200">
-           Enter Classroom
-        </button>
-        <div class="flex justify-center gap-12 pt-4">
-           <a href="#" class="text-[9px] text-slate-400 tracking-[0.2em] font-semibold uppercase hover:text-blue-600 transition">Register Class</a>
-           <a href="#" class="text-[9px] text-slate-400 tracking-[0.2em] font-semibold uppercase hover:text-blue-600 transition">Assignment Help</a>
+      </div>
+
+      <div class="relative reveal" style="--delay: 1;">
+        <div class="grid grid-cols-5 gap-3">
+          <div class="col-span-3 overflow-hidden rounded-2xl">
+            <img src="https://images.unsplash.com/photo-1571260899304-425eee4c7efc?q=80&w=800" alt="그룹 수업" class="w-full h-full object-cover aspect-[3/4]" loading="lazy" decoding="async">
+          </div>
+          <div class="col-span-2 flex flex-col gap-3">
+            <div class="overflow-hidden rounded-2xl flex-1">
+              <img src="https://images.unsplash.com/photo-1546410531-bb4caa6b424d?q=80&w=600" alt="1:1 수업" class="w-full h-full object-cover" loading="lazy" decoding="async">
+            </div>
+            <div class="overflow-hidden rounded-2xl flex-1">
+              <img src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?q=80&w=600" alt="토론 수업" class="w-full h-full object-cover" loading="lazy" decoding="async">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== Programs ========== -->
+  <section id="programs" class="py-24 md:py-32 bg-[#FFF7ED]">
+    <div class="max-w-7xl mx-auto px-4 md:px-8">
+      <div class="text-center mb-16">
+        <span class="inline-block rounded-full px-4 py-1.5 text-[11px] uppercase tracking-[0.15em] font-bold bg-[#F97316]/10 text-[#F97316] reveal" style="--delay: 0;">Programs</span>
+        <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold leading-snug mt-6 reveal" style="--delay: 1;">
+          레벨에 맞는<br>최적의 프로그램
+        </h2>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div class="program-card bg-white rounded-3xl p-8 shadow-sm hover:shadow-xl reveal" style="--delay: 0;">
+          <div class="program-icon w-16 h-16 bg-[#F97316] rounded-2xl flex items-center justify-center mb-6 transition-transform duration-500">
+            <i class="fas fa-baby text-white text-2xl"></i>
+          </div>
+          <span class="text-[10px] font-bold text-[#F97316] uppercase tracking-[0.2em]">Beginner</span>
+          <h3 class="text-lg font-bold mt-2 mb-3">기초 영어 회화</h3>
+          <p class="text-[13px] text-[#1F2937]/50 leading-relaxed mb-4">알파벳부터 기본 문장 구조까지, 영어의 첫걸음을 탄탄하게 시작하는 과정</p>
+          <p class="text-[#F97316] font-bold text-lg font-poppins">월 180,000원</p>
+        </div>
+
+        <div class="program-card bg-white rounded-3xl p-8 shadow-sm hover:shadow-xl reveal" style="--delay: 1;">
+          <div class="program-icon w-16 h-16 bg-[#F97316] rounded-2xl flex items-center justify-center mb-6 transition-transform duration-500">
+            <i class="fas fa-comments text-white text-2xl"></i>
+          </div>
+          <span class="text-[10px] font-bold text-[#F97316] uppercase tracking-[0.2em]">Intermediate</span>
+          <h3 class="text-lg font-bold mt-2 mb-3">실전 스피킹</h3>
+          <p class="text-[13px] text-[#1F2937]/50 leading-relaxed mb-4">일상 회화부터 비즈니스 상황까지, 실전에서 바로 쓸 수 있는 표현 학습</p>
+          <p class="text-[#F97316] font-bold text-lg font-poppins">월 220,000원</p>
+        </div>
+
+        <div class="program-card bg-white rounded-3xl p-8 shadow-sm hover:shadow-xl ring-2 ring-[#F97316] reveal" style="--delay: 2;">
+          <div class="absolute -top-3 right-6"><span class="bg-[#F97316] text-white text-[10px] font-bold uppercase tracking-[0.15em] px-3 py-1 rounded-full">인기</span></div>
+          <div class="program-icon w-16 h-16 bg-[#F97316] rounded-2xl flex items-center justify-center mb-6 transition-transform duration-500">
+            <i class="fas fa-microphone text-white text-2xl"></i>
+          </div>
+          <span class="text-[10px] font-bold text-[#F97316] uppercase tracking-[0.2em]">Advanced</span>
+          <h3 class="text-lg font-bold mt-2 mb-3">프리토킹 마스터</h3>
+          <p class="text-[13px] text-[#1F2937]/50 leading-relaxed mb-4">원어민과 자유롭게 토론하며 네이티브에 가까운 영어 실력을 완성하는 과정</p>
+          <p class="text-[#F97316] font-bold text-lg font-poppins">월 280,000원</p>
+        </div>
+
+        <div class="program-card bg-white rounded-3xl p-8 shadow-sm hover:shadow-xl reveal" style="--delay: 3;">
+          <div class="program-icon w-16 h-16 bg-[#F97316] rounded-2xl flex items-center justify-center mb-6 transition-transform duration-500">
+            <i class="fas fa-briefcase text-white text-2xl"></i>
+          </div>
+          <span class="text-[10px] font-bold text-[#F97316] uppercase tracking-[0.2em]">Business</span>
+          <h3 class="text-lg font-bold mt-2 mb-3">비즈니스 영어</h3>
+          <p class="text-[13px] text-[#1F2937]/50 leading-relaxed mb-4">프레젠테이션, 이메일, 미팅 영어까지 직장인을 위한 맞춤 비즈니스 과정</p>
+          <p class="text-[#F97316] font-bold text-lg font-poppins">월 300,000원</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== Level Test ========== -->
+  <section id="level-test" class="py-24 md:py-32 bg-[#1F2937] text-white relative overflow-hidden">
+    <div class="absolute top-0 right-0 w-96 h-96 bg-[#F97316]/10 rounded-full blur-[120px]"></div>
+    <div class="max-w-7xl mx-auto px-4 md:px-8 grid lg:grid-cols-2 gap-16 items-center">
+      <div class="space-y-8">
+        <div class="reveal" style="--delay: 0;">
+          <span class="inline-block rounded-full px-4 py-1.5 text-[11px] uppercase tracking-[0.15em] font-bold bg-[#F97316]/20 text-[#F97316]">Level Test</span>
+          <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold leading-snug mt-6">
+            나의 영어 레벨은?
+          </h2>
+          <p class="text-white/50 text-base md:text-lg mt-4 leading-relaxed">
+            무료 레벨테스트로 현재 실력을 정확하게 진단받으세요. AI 기반 분석과 원어민 강사의 1:1 피드백을 함께 제공합니다.
+          </p>
+        </div>
+        <div class="space-y-4 reveal" style="--delay: 1;">
+          <div class="flex items-center gap-4">
+            <div class="w-10 h-10 bg-[#F97316] rounded-full flex items-center justify-center text-white font-bold font-poppins">1</div>
+            <div><p class="font-semibold">온라인 테스트 (15분)</p><p class="text-white/40 text-[13px]">문법, 어휘, 독해 능력 측정</p></div>
+          </div>
+          <div class="flex items-center gap-4">
+            <div class="w-10 h-10 bg-[#F97316] rounded-full flex items-center justify-center text-white font-bold font-poppins">2</div>
+            <div><p class="font-semibold">1:1 스피킹 인터뷰 (10분)</p><p class="text-white/40 text-[13px]">원어민 강사와 실시간 회화 테스트</p></div>
+          </div>
+          <div class="flex items-center gap-4">
+            <div class="w-10 h-10 bg-[#F97316] rounded-full flex items-center justify-center text-white font-bold font-poppins">3</div>
+            <div><p class="font-semibold">맞춤 학습 플랜 제공</p><p class="text-white/40 text-[13px]">레벨에 맞는 최적의 프로그램 추천</p></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-white/5 backdrop-blur-sm rounded-3xl p-8 md:p-10 border border-white/10 reveal" style="--delay: 2;">
+        <h3 class="text-xl font-bold mb-6 text-white">무료 레벨테스트 신청</h3>
+        <div class="space-y-4">
+          <input type="text" placeholder="이름" class="w-full bg-white/5 border border-white/10 rounded-xl py-4 px-5 outline-none focus:ring-2 focus:ring-[#F97316]/30 transition text-[13px] text-white placeholder-white/30">
+          <input type="tel" placeholder="연락처" class="w-full bg-white/5 border border-white/10 rounded-xl py-4 px-5 outline-none focus:ring-2 focus:ring-[#F97316]/30 transition text-[13px] text-white placeholder-white/30">
+          <select class="w-full bg-white/5 border border-white/10 rounded-xl py-4 px-5 outline-none focus:ring-2 focus:ring-[#F97316]/30 transition text-[13px] text-white/50">
+            <option>현재 영어 수준을 선택하세요</option><option>완전 초보</option><option>기초 (간단한 인사 가능)</option><option>중급 (일상 대화 가능)</option><option>고급 (자유로운 토론 가능)</option>
+          </select>
+          <button class="w-full bg-[#F97316] text-white py-4 rounded-xl font-bold text-[12px] tracking-[0.2em] uppercase hover:bg-[#EA580C] shadow-lg shadow-[#F97316]/20 mt-2">레벨테스트 신청하기</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== Reviews ========== -->
+  <section id="reviews" class="py-24 md:py-32">
+    <div class="max-w-7xl mx-auto px-4 md:px-8">
+      <div class="text-center mb-16">
+        <span class="inline-block rounded-full px-4 py-1.5 text-[11px] uppercase tracking-[0.15em] font-bold bg-[#F97316]/5 text-[#F97316] reveal" style="--delay: 0;">Reviews</span>
+        <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold leading-snug mt-6 reveal" style="--delay: 1;">수강생 후기</h2>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-6">
+        <div class="bg-[#FFF7ED] rounded-3xl p-8 reveal" style="--delay: 0;">
+          <div class="flex gap-1 text-[#F97316] mb-4"><i class="fas fa-star text-sm"></i><i class="fas fa-star text-sm"></i><i class="fas fa-star text-sm"></i><i class="fas fa-star text-sm"></i><i class="fas fa-star text-sm"></i></div>
+          <p class="text-[14px] text-[#1F2937]/70 leading-relaxed mb-6">6개월 다니고 해외 출장에서 통역 없이 미팅을 진행했어요! 비즈니스 영어 과정 정말 추천합니다. 실무에서 바로 쓸 수 있는 표현들을 배웠어요.</p>
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 bg-[#F97316] rounded-full flex items-center justify-center text-white text-sm font-bold">P</div>
+            <div><p class="font-semibold text-sm">박성진</p><p class="text-[#1F2937]/40 text-[11px]">비즈니스 영어 6개월 수강</p></div>
+          </div>
+        </div>
+        <div class="bg-[#FFF7ED] rounded-3xl p-8 reveal" style="--delay: 1;">
+          <div class="flex gap-1 text-[#F97316] mb-4"><i class="fas fa-star text-sm"></i><i class="fas fa-star text-sm"></i><i class="fas fa-star text-sm"></i><i class="fas fa-star text-sm"></i><i class="fas fa-star text-sm"></i></div>
+          <p class="text-[14px] text-[#1F2937]/70 leading-relaxed mb-6">완전 왕초보였는데 3개월 만에 원어민 선생님과 대화가 가능해졌어요. 소그룹이라 말할 기회가 정말 많아서 빠르게 늘었습니다.</p>
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 bg-[#F97316] rounded-full flex items-center justify-center text-white text-sm font-bold">L</div>
+            <div><p class="font-semibold text-sm">이수아</p><p class="text-[#1F2937]/40 text-[11px]">기초 영어 회화 3개월 수강</p></div>
+          </div>
+        </div>
+        <div class="bg-[#FFF7ED] rounded-3xl p-8 reveal" style="--delay: 2;">
+          <div class="flex gap-1 text-[#F97316] mb-4"><i class="fas fa-star text-sm"></i><i class="fas fa-star text-sm"></i><i class="fas fa-star text-sm"></i><i class="fas fa-star text-sm"></i><i class="fas fa-star-half-alt text-sm"></i></div>
+          <p class="text-[14px] text-[#1F2937]/70 leading-relaxed mb-6">프리토킹 수업이 정말 재미있어요! 매주 다른 주제로 토론하니까 지루할 틈이 없고, 다양한 표현도 자연스럽게 익힐 수 있었습니다.</p>
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 bg-[#F97316] rounded-full flex items-center justify-center text-white text-sm font-bold">K</div>
+            <div><p class="font-semibold text-sm">김도윤</p><p class="text-[#1F2937]/40 text-[11px]">프리토킹 마스터 1년 수강</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== Contact ========== -->
+  <section id="contact" class="py-24 md:py-32 bg-[#FFF7ED]">
+    <div class="max-w-7xl mx-auto px-4 md:px-8 grid lg:grid-cols-2 gap-16 items-start">
+      <div class="space-y-8">
+        <div class="reveal" style="--delay: 0;">
+          <span class="inline-block rounded-full px-4 py-1.5 text-[11px] uppercase tracking-[0.15em] font-bold bg-[#F97316]/10 text-[#F97316]">Contact</span>
+          <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold leading-snug mt-6">부담 없이 상담하세요</h2>
+          <p class="text-[#1F2937]/50 text-base md:text-lg mt-4">전화, 카카오톡, 방문 상담 모두 환영합니다.</p>
+        </div>
+        <div class="space-y-5 reveal" style="--delay: 1;">
+          <div class="flex gap-4 items-center bg-white rounded-2xl p-5">
+            <div class="w-12 h-12 bg-[#F97316]/10 rounded-xl flex items-center justify-center"><i class="fas fa-map-marker-alt text-[#F97316]"></i></div>
+            <div><p class="font-semibold text-sm">주소</p><p class="text-[13px] text-[#1F2937]/50">서울특별시 강남구 역삼로 456, 2층</p></div>
+          </div>
+          <div class="flex gap-4 items-center bg-white rounded-2xl p-5">
+            <div class="w-12 h-12 bg-[#F97316]/10 rounded-xl flex items-center justify-center"><i class="fas fa-phone text-[#F97316]"></i></div>
+            <div><p class="font-semibold text-sm">전화</p><p class="text-[13px] text-[#1F2937]/50">02-888-5678</p></div>
+          </div>
+          <div class="flex gap-4 items-center bg-white rounded-2xl p-5">
+            <div class="w-12 h-12 bg-[#F97316]/10 rounded-xl flex items-center justify-center"><i class="fas fa-clock text-[#F97316]"></i></div>
+            <div><p class="font-semibold text-sm">운영시간</p><p class="text-[13px] text-[#1F2937]/50">평일 07:00-22:00 / 토 09:00-18:00 / 일 휴무</p></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="overflow-hidden rounded-3xl reveal" style="--delay: 2;">
+        <img src="https://images.unsplash.com/photo-1577896851231-70ef18881754?q=80&w=800" alt="학원 외관" class="w-full aspect-[4/3] object-cover" loading="lazy" decoding="async">
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== CTA ========== -->
+  <section class="py-24 md:py-32 bg-[#F97316] relative overflow-hidden">
+    <div class="absolute inset-0 opacity-10" style="background-image: url('https://www.transparenttextures.com/patterns/diagmonds-light.png');"></div>
+    <div class="max-w-3xl mx-auto px-4 md:px-8 text-center relative z-10">
+      <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold leading-snug text-white reveal" style="--delay: 0;">
+        영어, 오늘부터<br>자신있게!
+      </h2>
+      <p class="text-white/70 text-base md:text-lg mt-6 max-w-lg mx-auto reveal" style="--delay: 1;">
+        SPEAK UP에서 당신의 영어 실력을 한 단계 업그레이드하세요. 첫 수업 무료 체험!
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center mt-10 reveal" style="--delay: 2;">
+        <a href="#level-test" class="inline-flex items-center justify-center gap-3 px-10 py-5 bg-white text-[#F97316] font-bold text-[12px] tracking-[0.2em] uppercase rounded-full hover:bg-[#FFF7ED] shadow-xl">
+          무료 체험 신청 <i class="fas fa-arrow-right text-[10px]"></i>
+        </a>
+        <a href="tel:02-888-5678" class="inline-flex items-center justify-center gap-3 px-10 py-5 border-2 border-white/30 text-white font-semibold text-[12px] tracking-[0.2em] uppercase rounded-full hover:bg-white/10">
+          <i class="fas fa-phone text-sm"></i> 02-888-5678
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== Footer ========== -->
+  <footer class="py-16 md:py-24 bg-[#1F2937]">
+    <div class="max-w-7xl mx-auto px-4 md:px-8">
+      <div class="grid md:grid-cols-3 gap-12 items-start mb-16">
+        <div>
+          <div class="flex items-center gap-2 mb-4">
+            <span class="font-poppins text-2xl font-black text-[#F97316]">SPEAK</span>
+            <span class="font-poppins text-2xl font-black text-white">UP</span>
+          </div>
+          <p class="text-white/30 text-sm leading-relaxed max-w-xs">말하는 영어, 듣는 영어가 아닌 직접 소통하는 진짜 영어를 가르칩니다.</p>
+        </div>
+        <div class="grid grid-cols-2 gap-8">
+          <div>
+            <p class="text-[10px] font-semibold text-white/20 uppercase tracking-[0.3em] mb-4">프로그램</p>
+            <ul class="space-y-2.5">
+              <li><a href="#programs" class="text-white/50 text-sm hover:text-[#F97316] transition">기초 영어 회화</a></li>
+              <li><a href="#programs" class="text-white/50 text-sm hover:text-[#F97316] transition">실전 스피킹</a></li>
+              <li><a href="#programs" class="text-white/50 text-sm hover:text-[#F97316] transition">프리토킹 마스터</a></li>
+              <li><a href="#programs" class="text-white/50 text-sm hover:text-[#F97316] transition">비즈니스 영어</a></li>
+            </ul>
+          </div>
+          <div>
+            <p class="text-[10px] font-semibold text-white/20 uppercase tracking-[0.3em] mb-4">안내</p>
+            <ul class="space-y-2.5">
+              <li><a href="#about" class="text-white/50 text-sm hover:text-[#F97316] transition">학원 소개</a></li>
+              <li><a href="#level-test" class="text-white/50 text-sm hover:text-[#F97316] transition">레벨테스트</a></li>
+              <li><a href="#reviews" class="text-white/50 text-sm hover:text-[#F97316] transition">수강 후기</a></li>
+              <li><a href="#contact" class="text-white/50 text-sm hover:text-[#F97316] transition">찾아오시는 길</a></li>
+            </ul>
+          </div>
+        </div>
+        <div>
+          <p class="text-[10px] font-semibold text-white/20 uppercase tracking-[0.3em] mb-4">Follow</p>
+          <div class="flex gap-3">
+            <a href="#" class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white/50 hover:text-[#F97316] hover:border-[#F97316]/30 transition"><i class="fab fa-instagram text-sm"></i></a>
+            <a href="#" class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white/50 hover:text-[#F97316] hover:border-[#F97316]/30 transition"><i class="fab fa-youtube text-sm"></i></a>
+            <a href="#" class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white/50 hover:text-[#F97316] hover:border-[#F97316]/30 transition"><i class="fas fa-blog text-sm"></i></a>
+          </div>
+        </div>
+      </div>
+      <div class="border-t border-white/5 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+        <p class="text-[10px] text-white/15 tracking-[0.3em] uppercase">&copy; 2026 SPEAK UP English Academy. All rights reserved by DLAB.</p>
+        <div class="flex gap-6">
+          <a href="#" class="text-[10px] text-white/15 tracking-[0.2em] uppercase hover:text-white/40 transition">개인정보처리방침</a>
+          <a href="#" class="text-[10px] text-white/15 tracking-[0.2em] uppercase hover:text-white/40 transition">이용약관</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ========== Login Modal ========== -->
+  <div id="english-modal" class="fixed inset-0 z-[100] hidden items-center justify-center p-4 bg-[#1F2937]/30 backdrop-blur-3xl">
+    <div class="bg-white w-full max-w-sm p-8 md:p-12 shadow-2xl relative rounded-3xl">
+      <button onclick="toggleEnglishModal()" class="absolute top-6 right-6 w-8 h-8 rounded-full bg-[#FFF7ED] flex items-center justify-center text-[#1F2937]/30 hover:text-[#F97316] transition text-lg">&times;</button>
+      <div class="text-center mb-10">
+        <div class="flex items-center justify-center gap-1 mb-3"><span class="font-poppins text-xl font-black text-[#F97316]">SPEAK</span><span class="font-poppins text-xl font-black text-[#1F2937]">UP</span></div>
+        <p class="text-[11px] text-[#F97316] font-bold tracking-[0.2em] uppercase">Student Portal</p>
+      </div>
+      <div class="space-y-4">
+        <div><p class="text-[10px] font-semibold text-[#1F2937]/30 uppercase tracking-[0.15em] mb-2">아이디</p><input type="text" placeholder="your@email.com" class="w-full bg-[#FFF7ED] border-none rounded-xl py-4 px-5 outline-none focus:ring-2 focus:ring-[#F97316]/20 transition text-[13px]"></div>
+        <div><p class="text-[10px] font-semibold text-[#1F2937]/30 uppercase tracking-[0.15em] mb-2">비밀번호</p><input type="password" placeholder="Password" class="w-full bg-[#FFF7ED] border-none rounded-xl py-4 px-5 outline-none focus:ring-2 focus:ring-[#F97316]/20 transition text-[13px]"></div>
+        <button class="w-full bg-[#F97316] text-white py-4 rounded-full text-[12px] tracking-[0.3em] font-bold uppercase hover:bg-[#EA580C] shadow-lg shadow-[#F97316]/20 mt-2">로그인</button>
+        <div class="flex justify-center gap-8 pt-2">
+          <a href="#" class="text-[11px] text-[#1F2937]/40 font-semibold hover:text-[#F97316] transition">회원가입</a>
+          <a href="#" class="text-[11px] text-[#1F2937]/40 font-semibold hover:text-[#F97316] transition">비밀번호 찾기</a>
         </div>
       </div>
     </div>
   </div>
-
-  <footer class="py-20 md:py-32 bg-white text-center px-6 border-t border-slate-100">
-     <div class="inline-flex items-center gap-10 mb-8">
-        <span class="font-display font-semibold text-2xl tracking-tight uppercase text-slate-900 italic">Etown<span class="text-blue-600">Academy</span></span>
-        <span class="w-12 h-[1px] bg-slate-100"></span>
-        <span class="text-[10px] font-semibold text-slate-400 tracking-[0.3em] uppercase">Language Intelligence</span>
-     </div>
-     <p class="text-[10px] text-slate-300 tracking-[0.6em] uppercase px-6">© 2024 ETOWN ACADEMY. ALL RIGHTS RESERVED.</p>
-  </footer>
-
-  <script>
-    function toggleEnglishModal() {
-      const modal = document.getElementById('english-modal');
-      modal.classList.toggle('hidden');
-      modal.classList.toggle('flex');
-    }
-  </script>
-
 </div>
+
+<script>
+  function toggleEnglishModal() { const m = document.getElementById('english-modal'); m.classList.toggle('hidden'); m.classList.toggle('flex'); }
+  document.getElementById('english-modal').addEventListener('click', function(e) { if (e.target === this) toggleEnglishModal(); });
+  (function() {
+    const observer = new IntersectionObserver(function(entries) { entries.forEach(function(entry) { if (entry.isIntersecting) { entry.target.classList.add('is-visible'); observer.unobserve(entry.target); } }); }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+    document.querySelectorAll('.reveal').forEach(function(el) { observer.observe(el); });
+  })();
+</script>

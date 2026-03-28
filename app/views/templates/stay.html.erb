@@ -1,132 +1,606 @@
-<%# Stay Template - 리버사이드 (RIVERSIDE) %>
+<%# Stay Template — 머무름 (게스트하우스/에어비앤비) %>
 
 <style>
-  /* Supanova Design Upgrade */
+  /* Supanova Design — Natural Warmth Archetype */
   * { word-break: keep-all; }
-  html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+  html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
   h1, h2, h3, h4 { text-wrap: balance; letter-spacing: -0.02em; line-height: 1.3; }
-  a, button { transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1); }
+  a, button { transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1); }
   a:hover, button:hover { transform: scale(1.02); }
   a:active, button:active { transform: scale(0.98); }
 
-  @import url('https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700;800&family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap');
-  
+  @import url('https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700;800&display=swap');
+
+  .font-sans { font-family: 'Pretendard Variable', 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, sans-serif; }
   .font-serif { font-family: 'Nanum Myeongjo', serif; }
-  .font-sans { font-family: 'Pretendard Variable', 'Pretendard', -apple-system, sans-serif; }
 
   @media (max-width: 768px) {
     .mobile-desc { font-size: 14px !important; line-height: 1.8; }
-    .mobile-title { font-size: 44px !important; }
+    .mobile-title { font-size: 34px !important; }
   }
+
+  /* Scroll reveal */
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(2rem); filter: blur(4px); }
+    to { opacity: 1; transform: translateY(0); filter: blur(0); }
+  }
+  .reveal {
+    opacity: 0;
+    transform: translateY(2rem);
+  }
+  .reveal.is-visible {
+    animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    animation-delay: calc(var(--delay, 0) * 100ms);
+  }
+
+  /* Card hover */
+  .stay-card { transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1); }
+  .stay-card:hover { transform: translateY(-8px); box-shadow: 0 20px 60px rgba(91, 140, 90, 0.12); }
+  .stay-card:hover img { transform: scale(1.05); }
+
+  /* Soft texture */
+  .linen-texture {
+    background-image: url("https://www.transparenttextures.com/patterns/cream-paper.png");
+    opacity: 0.3;
+  }
+
+  /* Review card */
+  .review-card { transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); }
+  .review-card:hover { transform: translateY(-4px); }
 </style>
 
-<div class="bg-[#F2F1EE] text-[#1A1A1A] font-sans selection:bg-[#4A4E4D] selection:text-white min-h-screen overflow-x-hidden">
+<div class="bg-[#F7F5F0] text-[#2D2D2D] font-sans selection:bg-[#5B8C5A] selection:text-white min-h-screen overflow-x-hidden relative">
+  <div class="fixed inset-0 linen-texture pointer-events-none z-[60]"></div>
 
-  <!-- Nav -->
-  <nav class="fixed w-full z-50 px-8 py-12 md:px-12 bg-[#F2F1EE]/60 backdrop-blur-2xl border-b border-[#1A1A1A]/5">
-    <div class="container mx-auto px-4 md:px-6 flex justify-between items-center flex-nowrap">
-      <div class="flex items-center gap-10">
-         <span class="font-serif text-2xl tracking-[0.6em] font-semibold uppercase">RIVERSIDE</span>
-         <div class="hidden lg:block w-[1px] h-6 bg-[#1A1A1A]/10"></div>
-         <span class="hidden lg:block text-[9px] font-semibold tracking-[0.4em] uppercase text-[#1A1A1A]/40 uppercase">Quiet Luxury Stay</span>
-      </div>
-      
-      <div class="hidden md:flex gap-14 text-[10px] font-semibold uppercase tracking-[0.4em] text-[#1A1A1A]/40">
-        <a href="#about" class="hover:text-[#1A1A1A] transition">About</a>
-        <a href="#suites" class="hover:text-[#1A1A1A] transition">Suites</a>
-        <a href="#dining" class="hover:text-[#1A1A1A] transition">Dining</a>
-      </div>
-      
-      <div class="flex-nowrap shrink-0 flex gap-12 items-center">
-         <button onclick="toggleStayModal()" class="hidden md:block text-[10px] font-semibold uppercase tracking-[0.4em] text-[#1A1A1A]/40 hover:text-[#1A1A1A]" data-mobile-menu-copy="true">My Reservation</button>
-         <button class="mobile-menu-trigger md:hidden ml-2 sm:ml-4 text-2xl focus:outline-none" style="color: inherit;">
-           <i class="fas fa-bars"></i>
-         </button>
+  <!-- ========== Nav ========== -->
+  <nav class="fixed w-full z-50 px-4 md:px-8 py-5 bg-[#F7F5F0]/85 backdrop-blur-xl border-b border-[#5B8C5A]/10">
+    <div class="max-w-7xl mx-auto flex justify-between items-center">
+      <a href="#" class="flex items-center gap-2">
+        <span class="font-serif text-2xl font-bold text-[#2D2D2D]">머무름</span>
+        <span class="text-[9px] text-[#5B8C5A] font-semibold tracking-[0.3em] uppercase mt-1">Guesthouse</span>
+      </a>
 
-         <button class="hidden md:block bg-[#1A1A1A] text-white px-10 py-3.5 rounded-none font-semibold text-[10px] tracking-[0.4em] uppercase hover:bg-[#4A4E4D] transition shadow-2xl" data-mobile-menu-copy="true">
-           Reserve
-         </button>
+      <div class="hidden md:flex gap-12 text-[10px] font-semibold uppercase tracking-[0.4em] text-[#2D2D2D]/30">
+        <a href="#rooms" class="hover:text-[#5B8C5A] transition">객실</a>
+        <a href="#host" class="hover:text-[#5B8C5A] transition">호스트</a>
+        <a href="#around" class="hover:text-[#5B8C5A] transition">주변</a>
+        <a href="#reviews" class="hover:text-[#5B8C5A] transition">후기</a>
+      </div>
+
+      <button class="mobile-menu-trigger md:hidden ml-auto text-2xl focus:outline-none text-[#2D2D2D]">
+        <i class="fas fa-bars"></i>
+      </button>
+
+      <div class="hidden md:flex gap-6 items-center shrink-0">
+        <button onclick="toggleStayModal()" class="text-[10px] font-semibold uppercase tracking-[0.4em] text-[#2D2D2D]/30 hover:text-[#5B8C5A]" data-mobile-menu-copy="true">로그인</button>
+        <a href="#booking" class="bg-[#5B8C5A] text-white px-8 py-3.5 rounded-full font-semibold text-[10px] tracking-[0.3em] uppercase hover:bg-[#2D2D2D] transition shadow-lg shadow-[#5B8C5A]/20" data-mobile-menu-copy="true">
+          예약하기
+        </a>
       </div>
     </div>
 
-      <%= render partial: 'templates/shared/mobile_menu_overlay' %></nav>
+    <%= render partial: 'templates/shared/mobile_menu_overlay' %>
+  </nav>
 
-  <!-- Hero -->
-  <header class="min-h-screen relative flex items-center justify-center pt-20 relative overflow-hidden">
-    <div class="absolute inset-0 bg-gradient-to-tr from-white to-slate-50 z-0 opacity-40 pointer-events-none"></div>
-    <div class="absolute inset-0">
-       <div class="absolute inset-0 bg-gradient-to-b from-transparent to-[#F2F1EE]"></div>
-       <img src="https://images.unsplash.com/photo-1584132967334-10e028bd69f7?q=80&w=2400" alt="Riverside" class="w-full h-full object-cover grayscale brightness-90">
-    </div>
-    
-    <div class="container mx-auto px-3 md:px-6 relative z-10 text-center space-y-12">
-      <div class="inline-flex flex-col items-center gap-10">
-         <div class="w-[1px] h-24 bg-white/40"></div>
-         <span class="text-[10px] font-semibold tracking-[0.8em] uppercase text-white/60">Nature Intertwined with Luxury</span>
+  <!-- ========== 1. Hero ========== -->
+  <header class="min-h-screen relative flex items-center pt-20">
+    <div class="max-w-7xl mx-auto px-6 md:px-10 w-full grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+      <div class="space-y-8 reveal">
+        <div class="inline-flex items-center gap-4">
+          <span class="w-8 h-8 rounded-full bg-[#5B8C5A]/10 flex items-center justify-center">
+            <span class="text-[#5B8C5A] text-sm">&#x1F33F;</span>
+          </span>
+          <span class="text-[10px] font-semibold tracking-[0.5em] uppercase text-[#5B8C5A]">Stay with warmth</span>
+        </div>
+
+        <h1 class="text-4xl md:text-6xl font-serif font-bold leading-[1.2] mobile-title" style="--delay:1">
+          여행의 쉼표,<br>
+          <span class="text-[#5B8C5A]">머무름에서.</span>
+        </h1>
+
+        <p class="reveal text-[#2D2D2D]/50 text-sm md:text-base leading-[2] max-w-md mobile-desc" style="--delay:2">
+          북촌 한옥마을 골목 안, 조용한 게스트하우스에서<br class="hidden md:block">
+          느린 아침과 따뜻한 대화가 있는 하루를 시작하세요.
+        </p>
+
+        <div class="reveal flex flex-wrap gap-4 pt-4" style="--delay:3">
+          <a href="#rooms" class="bg-[#5B8C5A] text-white px-8 py-4 rounded-full font-semibold text-[11px] tracking-[0.2em] hover:bg-[#2D2D2D] transition shadow-lg shadow-[#5B8C5A]/20">
+            객실 둘러보기
+          </a>
+          <a href="#booking" class="border border-[#5B8C5A]/30 text-[#5B8C5A] px-8 py-4 rounded-full font-semibold text-[11px] tracking-[0.2em] hover:bg-[#5B8C5A]/5 transition">
+            날짜 확인
+          </a>
+        </div>
+
+        <!-- Mini stats -->
+        <div class="reveal flex gap-8 pt-6" style="--delay:4">
+          <div>
+            <span class="font-serif text-2xl font-bold text-[#5B8C5A]">4.9</span>
+            <span class="block text-[10px] text-[#2D2D2D]/30 mt-1">게스트 평점</span>
+          </div>
+          <div class="border-l border-[#2D2D2D]/10 pl-8">
+            <span class="font-serif text-2xl font-bold text-[#5B8C5A]">320+</span>
+            <span class="block text-[10px] text-[#2D2D2D]/30 mt-1">누적 후기</span>
+          </div>
+          <div class="border-l border-[#2D2D2D]/10 pl-8">
+            <span class="font-serif text-2xl font-bold text-[#5B8C5A]">5년</span>
+            <span class="block text-[10px] text-[#2D2D2D]/30 mt-1">운영 경력</span>
+          </div>
+        </div>
       </div>
-      
-      <h1 class="text-3xl md:text-5xl md:text-[8rem] font-serif font-semibold leading-none tracking-tight text-white mobile-title">
-         물결이 머무는,<br><span class="italic text-white/80">완벽한 고요.</span>
-      </h1>
-      
-      <p class="text-white/70 text-sm md:text-xl leading-[2] max-w-2xl mx-auto font-light mobile-desc">
-         복잡한 도심을 뒤로하고 자연의 리듬을 회복하는 시간. 리버사이드는 당신에게 가장 깊은 휴식과 잊지 못할 고요의 순간을 선사합니다.
-      </p>
-      
-      <div class="pt-10">
-         <button class="group inline-flex items-center gap-12 text-white text-[11px] font-semibold uppercase tracking-[0.6em] hover:text-[#1A1A1A] transition">
-            Explore Riverside <span class="w-12 h-[1px] bg-white group-hover:bg-[#1A1A1A] transition"></span>
-         </button>
+
+      <div class="reveal relative" style="--delay:2">
+        <div class="aspect-[4/5] rounded-3xl overflow-hidden shadow-2xl shadow-[#5B8C5A]/10">
+          <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=1200&auto=format" alt="머무름 외관" class="w-full h-full object-cover">
+        </div>
+        <div class="absolute -bottom-6 -left-6 bg-white rounded-2xl p-6 shadow-xl max-w-[200px]">
+          <div class="flex items-center gap-2 mb-2">
+            <span class="text-[#5B8C5A]">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+          </div>
+          <p class="text-sm font-serif leading-relaxed">"마치 친구 집에 온 것 같은 편안함"</p>
+          <p class="text-[10px] text-[#2D2D2D]/40 mt-2">— 김서연님</p>
+        </div>
       </div>
     </div>
   </header>
 
-  <!-- Login Modal -->
-  <div id="stay-modal" class="fixed inset-0 z-[100] hidden items-center justify-center p-4 bg-[#1A1A1A]/80 backdrop-blur-2xl">
-    <div class="bg-[#F2F1EE] w-full max-w-sm p-6 md:p-16 shadow-2xl relative border border-[#1A1A1A]/5">
-      <button onclick="toggleStayModal()" class="absolute top-12 right-12 text-[#1A1A1A]/20 hover:text-[#1A1A1A] transition text-2xl font-light">&times;</button>
-      
-      <div class="text-center mb-12">
-        <h2 class="text-xl font-serif tracking-[0.6em] text-[#1A1A1A] mb-3 font-semibold uppercase">RESERVE_PORTAL</h2>
-        <p class="text-[9px] text-[#1A1A1A]/40 font-semibold tracking-[0.3em] uppercase">Private Guest Archive</p>
+  <!-- ========== 2. 객실 소개 (3종) ========== -->
+  <section id="rooms" class="py-24 md:py-40 px-6 md:px-10">
+    <div class="max-w-7xl mx-auto">
+      <div class="text-center mb-20 reveal">
+        <span class="text-[10px] font-semibold tracking-[0.5em] uppercase text-[#5B8C5A]">Our Rooms</span>
+        <h2 class="font-serif text-3xl md:text-4xl font-bold mt-4">각자의 방식으로 머무르다</h2>
+        <p class="text-[#2D2D2D]/40 text-sm mt-4 max-w-md mx-auto">모든 객실은 따뜻한 우드 톤과 린넨 소재로 꾸며져 있습니다.</p>
       </div>
-      
-      <div class="space-y-8">
-        <div class="space-y-3">
-           <p class="text-[9px] font-semibold text-[#1A1A1A]/20 uppercase tracking-[0.2em] ml-1">Confirmation Number</p>
-           <input type="text" placeholder="XXXX - XXXX - XXXX" class="w-full bg-white border border-[#1A1A1A]/5 py-6 px-8 outline-none focus:ring-1 focus:ring-[#1A1A1A] transition text-[12px] font-semibold tracking-wide uppercase">
+
+      <div class="grid md:grid-cols-3 gap-8">
+        <!-- 싱글룸 -->
+        <div class="stay-card bg-white rounded-3xl overflow-hidden shadow-sm reveal" style="--delay:0">
+          <div class="aspect-[4/3] overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1631049307264-da0ec9d70304?q=80&w=800&auto=format" alt="싱글룸" class="w-full h-full object-cover transition-transform duration-700">
+          </div>
+          <div class="p-8">
+            <div class="flex items-center gap-2 mb-3">
+              <span class="w-2 h-2 rounded-full bg-[#5B8C5A]"></span>
+              <span class="text-[10px] text-[#5B8C5A] font-semibold tracking-[0.3em] uppercase">Single</span>
+            </div>
+            <h3 class="font-serif text-xl font-bold">혼자만의 시간</h3>
+            <p class="text-[#2D2D2D]/40 text-sm mt-3 leading-relaxed">
+              12m² · 싱글베드 · 개인 욕실 · 와이파이<br>
+              조용히 쉬고 싶은 솔로 여행자를 위한 아늑한 공간.
+            </p>
+            <div class="flex justify-between items-end mt-6 pt-6 border-t border-[#2D2D2D]/5">
+              <div>
+                <span class="font-serif text-2xl font-bold text-[#5B8C5A]">₩45,000</span>
+                <span class="text-[10px] text-[#2D2D2D]/30 ml-1">/ 1박</span>
+              </div>
+              <a href="#booking" class="text-[10px] text-[#5B8C5A] font-semibold tracking-[0.2em] uppercase hover:underline">예약 →</a>
+            </div>
+          </div>
         </div>
-        <button class="w-full bg-[#1A1A1A] text-white py-6 text-[10px] tracking-[0.5em] font-semibold uppercase hover:bg-[#4A4E4D] transition shadow-xl">
-           Access Itinerary
+
+        <!-- 더블룸 -->
+        <div class="stay-card bg-white rounded-3xl overflow-hidden shadow-sm reveal" style="--delay:1">
+          <div class="aspect-[4/3] overflow-hidden relative">
+            <img src="https://images.unsplash.com/photo-1586105251261-72a756497a11?q=80&w=800&auto=format" alt="더블룸" class="w-full h-full object-cover transition-transform duration-700">
+            <div class="absolute top-4 right-4 bg-[#5B8C5A] text-white px-3 py-1 rounded-full text-[10px] font-semibold">인기</div>
+          </div>
+          <div class="p-8">
+            <div class="flex items-center gap-2 mb-3">
+              <span class="w-2 h-2 rounded-full bg-[#5B8C5A]"></span>
+              <span class="text-[10px] text-[#5B8C5A] font-semibold tracking-[0.3em] uppercase">Double</span>
+            </div>
+            <h3 class="font-serif text-xl font-bold">둘만의 여유</h3>
+            <p class="text-[#2D2D2D]/40 text-sm mt-3 leading-relaxed">
+              18m² · 더블베드 · 전용 욕실 · 미니 테라스<br>
+              커플과 친구를 위한 넉넉한 공간과 작은 테라스.
+            </p>
+            <div class="flex justify-between items-end mt-6 pt-6 border-t border-[#2D2D2D]/5">
+              <div>
+                <span class="font-serif text-2xl font-bold text-[#5B8C5A]">₩65,000</span>
+                <span class="text-[10px] text-[#2D2D2D]/30 ml-1">/ 1박</span>
+              </div>
+              <a href="#booking" class="text-[10px] text-[#5B8C5A] font-semibold tracking-[0.2em] uppercase hover:underline">예약 →</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- 온돌룸 -->
+        <div class="stay-card bg-white rounded-3xl overflow-hidden shadow-sm reveal" style="--delay:2">
+          <div class="aspect-[4/3] overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?q=80&w=800&auto=format" alt="온돌룸" class="w-full h-full object-cover transition-transform duration-700">
+          </div>
+          <div class="p-8">
+            <div class="flex items-center gap-2 mb-3">
+              <span class="w-2 h-2 rounded-full bg-[#5B8C5A]"></span>
+              <span class="text-[10px] text-[#5B8C5A] font-semibold tracking-[0.3em] uppercase">Ondol Family</span>
+            </div>
+            <h3 class="font-serif text-xl font-bold">가족의 온기</h3>
+            <p class="text-[#2D2D2D]/40 text-sm mt-3 leading-relaxed">
+              26m² · 온돌 난방 · 이불 세트 · 최대 4인<br>
+              한옥의 온기를 담은 전통 온돌 패밀리룸.
+            </p>
+            <div class="flex justify-between items-end mt-6 pt-6 border-t border-[#2D2D2D]/5">
+              <div>
+                <span class="font-serif text-2xl font-bold text-[#5B8C5A]">₩95,000</span>
+                <span class="text-[10px] text-[#2D2D2D]/30 ml-1">/ 1박</span>
+              </div>
+              <a href="#booking" class="text-[10px] text-[#5B8C5A] font-semibold tracking-[0.2em] uppercase hover:underline">예약 →</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 공통 편의시설 -->
+      <div class="mt-16 bg-white rounded-3xl p-8 md:p-12 reveal" style="--delay:1">
+        <h3 class="text-center font-serif text-lg font-bold mb-8">모든 객실 공통 제공</h3>
+        <div class="grid grid-cols-2 md:grid-cols-5 gap-6 text-center">
+          <div>
+            <span class="text-2xl text-[#5B8C5A]"><i class="fas fa-wifi"></i></span>
+            <p class="text-xs text-[#2D2D2D]/50 mt-2">고속 와이파이</p>
+          </div>
+          <div>
+            <span class="text-2xl text-[#5B8C5A]"><i class="fas fa-coffee"></i></span>
+            <p class="text-xs text-[#2D2D2D]/50 mt-2">무료 조식</p>
+          </div>
+          <div>
+            <span class="text-2xl text-[#5B8C5A]"><i class="fas fa-tshirt"></i></span>
+            <p class="text-xs text-[#2D2D2D]/50 mt-2">세탁 시설</p>
+          </div>
+          <div>
+            <span class="text-2xl text-[#5B8C5A]"><i class="fas fa-book"></i></span>
+            <p class="text-xs text-[#2D2D2D]/50 mt-2">공용 라운지</p>
+          </div>
+          <div>
+            <span class="text-2xl text-[#5B8C5A]"><i class="fas fa-bicycle"></i></span>
+            <p class="text-xs text-[#2D2D2D]/50 mt-2">자전거 대여</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== 3. 호스트 소개 ========== -->
+  <section id="host" class="py-24 md:py-40 px-6 md:px-10 bg-[#EDE9E0]">
+    <div class="max-w-7xl mx-auto">
+      <div class="grid lg:grid-cols-2 gap-16 lg:gap-24 items-center">
+        <div class="reveal">
+          <div class="aspect-[4/5] rounded-3xl overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=1000&auto=format" alt="호스트" class="w-full h-full object-cover grayscale hover:grayscale-0 transition duration-1000">
+          </div>
+        </div>
+
+        <div class="space-y-8 reveal" style="--delay:1">
+          <div class="inline-flex items-center gap-4">
+            <span class="w-10 h-[1px] bg-[#5B8C5A]"></span>
+            <span class="text-[10px] font-semibold tracking-[0.5em] uppercase text-[#5B8C5A]">Your Host</span>
+          </div>
+
+          <h2 class="font-serif text-3xl md:text-4xl font-bold leading-tight">
+            안녕하세요,<br>호스트 <span class="text-[#5B8C5A]">민준</span>입니다.
+          </h2>
+
+          <p class="text-[#2D2D2D]/50 text-sm md:text-base leading-[2] mobile-desc">
+            서울 토박이이자 여행 애호가입니다. 2019년부터 이 작은 공간을 운영하며
+            전 세계에서 오시는 게스트분들과 이야기를 나누고 있어요.
+          </p>
+          <p class="text-[#2D2D2D]/50 text-sm md:text-base leading-[2] mobile-desc">
+            매일 아침 직접 내린 커피와 간단한 한식 조식을 준비합니다.
+            북촌의 숨은 맛집이나 산책 코스가 궁금하시면 편하게 물어보세요.
+          </p>
+
+          <div class="flex flex-wrap gap-3 pt-4">
+            <span class="px-4 py-2 bg-[#5B8C5A]/10 text-[#5B8C5A] rounded-full text-xs font-semibold">슈퍼호스트</span>
+            <span class="px-4 py-2 bg-[#5B8C5A]/10 text-[#5B8C5A] rounded-full text-xs font-semibold">응답률 98%</span>
+            <span class="px-4 py-2 bg-[#5B8C5A]/10 text-[#5B8C5A] rounded-full text-xs font-semibold">한/영/일</span>
+          </div>
+
+          <blockquote class="border-l-4 border-[#5B8C5A] pl-6 py-4 mt-6 bg-white/50 rounded-r-2xl">
+            <p class="font-serif text-lg italic leading-relaxed text-[#2D2D2D]/70">
+              "여행은 새로운 곳이 아니라, 새로운 시선으로 보는 것입니다."
+            </p>
+          </blockquote>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== 4. 주변 관광 ========== -->
+  <section id="around" class="py-24 md:py-40 px-6 md:px-10">
+    <div class="max-w-7xl mx-auto">
+      <div class="text-center mb-20 reveal">
+        <span class="text-[10px] font-semibold tracking-[0.5em] uppercase text-[#5B8C5A]">Neighborhood</span>
+        <h2 class="font-serif text-3xl md:text-4xl font-bold mt-4">머무름 주변, 걸어서 만나는 북촌</h2>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div class="stay-card bg-white rounded-2xl overflow-hidden shadow-sm reveal" style="--delay:0">
+          <div class="aspect-square overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1578469550956-0e16b69c6a3d?q=80&w=600&auto=format" alt="북촌 한옥마을" class="w-full h-full object-cover transition-transform duration-700">
+          </div>
+          <div class="p-6">
+            <span class="text-[10px] text-[#5B8C5A] font-semibold">도보 3분</span>
+            <h4 class="font-serif text-base font-bold mt-1">북촌 한옥마을</h4>
+            <p class="text-[#2D2D2D]/40 text-xs mt-2 leading-relaxed">전통 한옥이 모여있는 서울의 대표 관광지</p>
+          </div>
+        </div>
+
+        <div class="stay-card bg-white rounded-2xl overflow-hidden shadow-sm reveal" style="--delay:1">
+          <div class="aspect-square overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1583400225958-2f3a3680186c?q=80&w=600&auto=format" alt="경복궁" class="w-full h-full object-cover transition-transform duration-700">
+          </div>
+          <div class="p-6">
+            <span class="text-[10px] text-[#5B8C5A] font-semibold">도보 10분</span>
+            <h4 class="font-serif text-base font-bold mt-1">경복궁</h4>
+            <p class="text-[#2D2D2D]/40 text-xs mt-2 leading-relaxed">조선의 정궁, 한복 체험과 야간 개장</p>
+          </div>
+        </div>
+
+        <div class="stay-card bg-white rounded-2xl overflow-hidden shadow-sm reveal" style="--delay:2">
+          <div class="aspect-square overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?q=80&w=600&auto=format" alt="삼청동 카페거리" class="w-full h-full object-cover transition-transform duration-700">
+          </div>
+          <div class="p-6">
+            <span class="text-[10px] text-[#5B8C5A] font-semibold">도보 5분</span>
+            <h4 class="font-serif text-base font-bold mt-1">삼청동 카페거리</h4>
+            <p class="text-[#2D2D2D]/40 text-xs mt-2 leading-relaxed">감각적인 카페와 갤러리가 줄지어 있는 거리</p>
+          </div>
+        </div>
+
+        <div class="stay-card bg-white rounded-2xl overflow-hidden shadow-sm reveal" style="--delay:3">
+          <div class="aspect-square overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1572375992501-4b0892d50c69?q=80&w=600&auto=format" alt="인사동" class="w-full h-full object-cover transition-transform duration-700">
+          </div>
+          <div class="p-6">
+            <span class="text-[10px] text-[#5B8C5A] font-semibold">도보 15분</span>
+            <h4 class="font-serif text-base font-bold mt-1">인사동</h4>
+            <p class="text-[#2D2D2D]/40 text-xs mt-2 leading-relaxed">전통 공예품과 길거리 음식의 천국</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== 5. 게스트 후기 ========== -->
+  <section id="reviews" class="py-24 md:py-40 px-6 md:px-10 bg-[#EDE9E0]">
+    <div class="max-w-7xl mx-auto">
+      <div class="text-center mb-20 reveal">
+        <span class="text-[10px] font-semibold tracking-[0.5em] uppercase text-[#5B8C5A]">Reviews</span>
+        <h2 class="font-serif text-3xl md:text-4xl font-bold mt-4">머물렀던 분들의 이야기</h2>
+        <div class="flex items-center justify-center gap-3 mt-6">
+          <span class="text-[#5B8C5A] text-lg">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+          <span class="text-sm text-[#2D2D2D]/50">4.9 / 5.0 (320건)</span>
+        </div>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-8">
+        <div class="review-card bg-white rounded-2xl p-8 reveal" style="--delay:0">
+          <div class="flex items-center gap-3 mb-4">
+            <div class="w-10 h-10 rounded-full bg-[#5B8C5A]/10 flex items-center justify-center text-[#5B8C5A] font-bold text-sm">김</div>
+            <div>
+              <p class="font-semibold text-sm">김서연</p>
+              <p class="text-[10px] text-[#2D2D2D]/30">2024년 11월</p>
+            </div>
+          </div>
+          <div class="text-[#5B8C5A] text-xs mb-3">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <p class="text-[#2D2D2D]/60 text-sm leading-relaxed">
+            호스트분이 정말 친절하세요. 아침마다 직접 만들어주시는 조식이 최고였어요.
+            북촌 골목 산책하기에 위치도 완벽하고, 다음에 서울 오면 꼭 다시 올게요!
+          </p>
+        </div>
+
+        <div class="review-card bg-white rounded-2xl p-8 reveal" style="--delay:1">
+          <div class="flex items-center gap-3 mb-4">
+            <div class="w-10 h-10 rounded-full bg-[#5B8C5A]/10 flex items-center justify-center text-[#5B8C5A] font-bold text-sm">J</div>
+            <div>
+              <p class="font-semibold text-sm">James T.</p>
+              <p class="text-[10px] text-[#2D2D2D]/30">2024년 10월</p>
+            </div>
+          </div>
+          <div class="text-[#5B8C5A] text-xs mb-3">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <p class="text-[#2D2D2D]/60 text-sm leading-relaxed">
+            Best guesthouse experience in Seoul! The ondol room was amazing,
+            and Minjun recommended the most incredible local restaurants.
+            Felt like home away from home.
+          </p>
+        </div>
+
+        <div class="review-card bg-white rounded-2xl p-8 reveal" style="--delay:2">
+          <div class="flex items-center gap-3 mb-4">
+            <div class="w-10 h-10 rounded-full bg-[#5B8C5A]/10 flex items-center justify-center text-[#5B8C5A] font-bold text-sm">박</div>
+            <div>
+              <p class="font-semibold text-sm">박지현</p>
+              <p class="text-[10px] text-[#2D2D2D]/30">2024년 9월</p>
+            </div>
+          </div>
+          <div class="text-[#5B8C5A] text-xs mb-3">&#9733;&#9733;&#9733;&#9733;&#9734;</div>
+          <p class="text-[#2D2D2D]/60 text-sm leading-relaxed">
+            조용하고 깨끗한 숙소예요. 공용 라운지에서 다른 게스트분들과 이야기 나누는 것도
+            즐거웠어요. 자전거 대여해서 한강까지 다녀올 수 있어서 좋았습니다.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== 6. 인용구 배너 ========== -->
+  <section class="py-28 md:py-40 relative">
+    <div class="absolute inset-0">
+      <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?q=80&w=2000&auto=format" alt="서울 전경" class="w-full h-full object-cover">
+      <div class="absolute inset-0 bg-[#2D2D2D]/60"></div>
+    </div>
+    <div class="relative z-10 max-w-3xl mx-auto text-center px-6 reveal">
+      <p class="font-serif text-2xl md:text-4xl text-white font-bold leading-relaxed">
+        "낯선 곳에서의 하루가<br>가장 편안했던 기억이 되도록."
+      </p>
+      <div class="w-10 h-[1px] bg-[#5B8C5A] mx-auto mt-8"></div>
+      <p class="text-[10px] text-white/40 tracking-[0.5em] uppercase mt-4">머무름, 서울 북촌</p>
+    </div>
+  </section>
+
+  <!-- ========== 7. 예약 ========== -->
+  <section id="booking" class="py-24 md:py-40 px-6 md:px-10">
+    <div class="max-w-3xl mx-auto text-center">
+      <div class="reveal">
+        <span class="text-[10px] font-semibold tracking-[0.5em] uppercase text-[#5B8C5A]">Reservation</span>
+        <h2 class="font-serif text-3xl md:text-4xl font-bold mt-4">머무름에서의 하루, 예약하기</h2>
+        <p class="text-[#2D2D2D]/40 text-sm mt-6 max-w-md mx-auto">
+          원하시는 날짜와 객실을 선택하시면 확인 메일을 보내드립니다.
+        </p>
+      </div>
+
+      <div class="reveal mt-12 bg-white rounded-3xl p-8 md:p-12 shadow-lg shadow-[#5B8C5A]/5" style="--delay:1">
+        <div class="grid md:grid-cols-2 gap-6 text-left">
+          <div>
+            <label class="text-[10px] font-semibold text-[#5B8C5A] uppercase tracking-[0.2em] block mb-3">체크인</label>
+            <input type="date" class="w-full border border-[#2D2D2D]/10 rounded-xl py-4 px-5 text-sm focus:border-[#5B8C5A] outline-none transition bg-[#F7F5F0]">
+          </div>
+          <div>
+            <label class="text-[10px] font-semibold text-[#5B8C5A] uppercase tracking-[0.2em] block mb-3">체크아웃</label>
+            <input type="date" class="w-full border border-[#2D2D2D]/10 rounded-xl py-4 px-5 text-sm focus:border-[#5B8C5A] outline-none transition bg-[#F7F5F0]">
+          </div>
+          <div>
+            <label class="text-[10px] font-semibold text-[#5B8C5A] uppercase tracking-[0.2em] block mb-3">객실 유형</label>
+            <select class="w-full border border-[#2D2D2D]/10 rounded-xl py-4 px-5 text-sm focus:border-[#5B8C5A] outline-none transition bg-[#F7F5F0] appearance-none">
+              <option value="">선택하세요</option>
+              <option>혼자만의 시간 (싱글룸)</option>
+              <option>둘만의 여유 (더블룸)</option>
+              <option>가족의 온기 (온돌룸)</option>
+            </select>
+          </div>
+          <div>
+            <label class="text-[10px] font-semibold text-[#5B8C5A] uppercase tracking-[0.2em] block mb-3">인원</label>
+            <select class="w-full border border-[#2D2D2D]/10 rounded-xl py-4 px-5 text-sm focus:border-[#5B8C5A] outline-none transition bg-[#F7F5F0] appearance-none">
+              <option>1명</option>
+              <option>2명</option>
+              <option>3명</option>
+              <option>4명</option>
+            </select>
+          </div>
+        </div>
+
+        <button class="w-full mt-8 bg-[#5B8C5A] text-white py-4 rounded-full font-semibold text-sm tracking-wide hover:bg-[#2D2D2D] transition shadow-lg shadow-[#5B8C5A]/20">
+          예약 문의하기
         </button>
-        <div class="flex justify-center gap-14 pt-4">
-           <a href="#" class="text-[9px] text-[#1A1A1A]/40 tracking-[0.3em] font-semibold uppercase hover:text-[#1A1A1A] transition">Lost Key</a>
-           <a href="#" class="text-[9px] text-[#1A1A1A]/40 tracking-[0.3em] font-semibold uppercase hover:text-[#1A1A1A] transition">E-Concierge</a>
+
+        <p class="text-[10px] text-[#2D2D2D]/30 mt-6">
+          예약 확인은 24시간 이내 카카오톡 또는 이메일로 안내드립니다.
+        </p>
+      </div>
+
+      <div class="reveal flex flex-col md:flex-row justify-center gap-6 mt-10 text-sm" style="--delay:2">
+        <a href="tel:010-1234-5678" class="text-[#5B8C5A] hover:text-[#2D2D2D] transition">
+          <i class="fas fa-phone mr-2"></i>010-1234-5678
+        </a>
+        <a href="#" class="text-[#5B8C5A] hover:text-[#2D2D2D] transition">
+          <i class="fab fa-instagram mr-2"></i>@meomureum_stay
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== 8. Footer ========== -->
+  <footer class="py-20 md:py-28 bg-[#2D2D2D] px-6 md:px-10">
+    <div class="max-w-7xl mx-auto">
+      <div class="grid md:grid-cols-3 gap-12 mb-16">
+        <div>
+          <span class="font-serif text-2xl font-bold text-white">머무름</span>
+          <p class="text-white/30 text-sm leading-relaxed mt-4 max-w-xs">
+            북촌 한옥마을의 따뜻한 게스트하우스.
+            여행자의 쉼터가 되어드립니다.
+          </p>
+          <div class="flex gap-3 mt-6">
+            <a href="#" class="w-9 h-9 flex items-center justify-center rounded-full bg-white/5 text-white/40 hover:bg-[#5B8C5A] hover:text-white transition text-sm"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="w-9 h-9 flex items-center justify-center rounded-full bg-white/5 text-white/40 hover:bg-[#5B8C5A] hover:text-white transition text-sm"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" class="w-9 h-9 flex items-center justify-center rounded-full bg-white/5 text-white/40 hover:bg-[#5B8C5A] hover:text-white transition text-sm"><i class="fas fa-blog"></i></a>
+          </div>
+        </div>
+
+        <div>
+          <h4 class="text-[10px] font-semibold tracking-[0.4em] uppercase text-[#5B8C5A] mb-6">바로가기</h4>
+          <div class="space-y-3">
+            <a href="#rooms" class="block text-white/30 text-sm hover:text-[#5B8C5A] transition">객실 안내</a>
+            <a href="#host" class="block text-white/30 text-sm hover:text-[#5B8C5A] transition">호스트 소개</a>
+            <a href="#around" class="block text-white/30 text-sm hover:text-[#5B8C5A] transition">주변 관광</a>
+            <a href="#booking" class="block text-white/30 text-sm hover:text-[#5B8C5A] transition">예약하기</a>
+          </div>
+        </div>
+
+        <div>
+          <h4 class="text-[10px] font-semibold tracking-[0.4em] uppercase text-[#5B8C5A] mb-6">연락처</h4>
+          <div class="space-y-3 text-white/30 text-sm">
+            <p>서울특별시 종로구 북촌로 11길 24</p>
+            <p>010-1234-5678</p>
+            <p>hello@meomureum.co.kr</p>
+            <p>체크인 16:00 · 체크아웃 11:00</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="border-t border-white/5 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+        <p class="text-[10px] text-white/10 tracking-[0.5em] uppercase">
+          &copy; 2024 머무름 Guesthouse. All rights reserved.
+        </p>
+        <div class="flex gap-6">
+          <a href="#" class="text-[10px] text-white/10 tracking-[0.2em] uppercase hover:text-white/30 transition">Privacy</a>
+          <a href="#" class="text-[10px] text-white/10 tracking-[0.2em] uppercase hover:text-white/30 transition">Terms</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ========== Login Modal ========== -->
+  <div id="stay-modal" class="fixed inset-0 z-[100] hidden items-center justify-center p-4 bg-[#2D2D2D]/20 backdrop-blur-3xl">
+    <div class="bg-white w-full max-w-sm p-8 md:p-12 shadow-2xl relative rounded-3xl">
+      <button onclick="toggleStayModal()" class="absolute top-6 right-6 w-8 h-8 rounded-full bg-[#F7F5F0] flex items-center justify-center text-[#2D2D2D]/30 hover:text-[#5B8C5A] transition text-lg">&times;</button>
+
+      <div class="text-center mb-10">
+        <h2 class="font-serif text-xl font-bold text-[#2D2D2D] mb-2">로그인</h2>
+        <p class="text-[10px] text-[#5B8C5A] font-semibold tracking-[0.3em] uppercase">머무름 회원</p>
+      </div>
+
+      <div class="space-y-5">
+        <input type="text" placeholder="이메일" class="w-full bg-[#F7F5F0] border-none rounded-xl py-4 px-5 outline-none focus:ring-1 focus:ring-[#5B8C5A] transition text-sm">
+        <input type="password" placeholder="비밀번호" class="w-full bg-[#F7F5F0] border-none rounded-xl py-4 px-5 outline-none focus:ring-1 focus:ring-[#5B8C5A] transition text-sm">
+        <button class="w-full bg-[#5B8C5A] text-white py-4 rounded-full text-sm font-semibold hover:bg-[#2D2D2D] transition shadow-lg shadow-[#5B8C5A]/20">
+          로그인
+        </button>
+        <div class="flex justify-center gap-8 pt-2">
+          <a href="#" class="text-[10px] text-[#2D2D2D]/40 font-semibold hover:text-[#5B8C5A] transition">회원가입</a>
+          <a href="#" class="text-[10px] text-[#2D2D2D]/40 font-semibold hover:text-[#5B8C5A] transition">비밀번호 찾기</a>
         </div>
       </div>
     </div>
   </div>
 
-  <footer class="py-24 md:py-40 bg-[#1A1A1A] text-center px-6">
-     <div class="inline-flex items-center gap-14 mb-12">
-        <span class="font-serif text-2xl text-white tracking-[0.8em] font-semibold uppercase">RIVERSIDE</span>
-        <span class="w-[1px] h-10 bg-white/10"></span>
-        <span class="text-[10px] font-semibold text-white/30 tracking-[0.6em] uppercase">Quiet Luxury Estate</span>
-     </div>
-     <div class="max-w-4xl mx-auto grid md:grid-cols-3 gap-16 text-[#F2F1EE]/40 text-[9px] font-semibold uppercase tracking-[0.4em] mb-12 border-y border-white/5 py-20">
-        <div>360 Riverside Dr, Seoul</div>
-        <div>+82 2 1234 5678</div>
-        <div>Inquiry@Riverside.com</div>
-     </div>
-     <p class="text-[10px] text-white/10 tracking-[1em] uppercase px-6">© 2024 RIVERSIDE STAY. ALL ARTWORK BY DLAB.</p>
-  </footer>
-
-  <script>
-    function toggleStayModal() {
-      const modal = document.getElementById('stay-modal');
-      modal.classList.toggle('hidden');
-      modal.classList.toggle('flex');
-    }
-  </script>
-
 </div>
+
+<script>
+  // Modal
+  function toggleStayModal() {
+    const modal = document.getElementById('stay-modal');
+    modal.classList.toggle('hidden');
+    modal.classList.toggle('flex');
+  }
+  document.getElementById('stay-modal').addEventListener('click', function(e) {
+    if (e.target === this) toggleStayModal();
+  });
+
+  // IntersectionObserver
+  (function() {
+    const observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    });
+    document.querySelectorAll('.reveal').forEach(function(el) {
+      observer.observe(el);
+    });
+  })();
+</script>

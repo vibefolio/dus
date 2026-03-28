@@ -1,177 +1,430 @@
-<%# Vet Template - 위드 펫 (WITH PET) %>
+<%# Vet Template - 해피펫 동물병원 (HAPPYPET) %>
 
 <style>
-  /* Supanova Design Upgrade */
+  /* Supanova Design — Warm Pet Archetype */
   * { word-break: keep-all; }
-  html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+  html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
   h1, h2, h3, h4 { text-wrap: balance; letter-spacing: -0.02em; line-height: 1.3; }
-  a, button { transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1); }
+  a, button { transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1); }
   a:hover, button:hover { transform: scale(1.02); }
   a:active, button:active { transform: scale(0.98); }
 
-  @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;500;600;700&family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap');
-  
-  .font-soft { font-family: 'Nunito', sans-serif; }
+  @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap');
+
   .font-sans { font-family: 'Pretendard Variable', 'Pretendard', -apple-system, sans-serif; }
+  .font-display { font-family: 'Nunito', sans-serif; }
 
   @media (max-width: 768px) {
     .mobile-desc { font-size: 14px !important; line-height: 1.8; }
-    .mobile-title { font-size: 40px !important; }
+    .mobile-title { font-size: 32px !important; }
   }
 
-  .paw-print {
-    background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 40c-2 0-3.5-1.5-3.5-3.5s1.5-3.5 3.5-3.5 3.5 1.5 3.5 3.5-1.5 3.5-3.5 3.5zm10-7c-2 0-3.5-1.5-3.5-3.5s1.5-3.5 3.5-3.5 3.5 1.5 3.5 3.5-1.5 3.5-3.5 3.5zm-20 0c-2 0-3.5-1.5-3.5-3.5s1.5-3.5 3.5-3.5 3.5 1.5 3.5 3.5-1.5 3.5-3.5 3.5zm25 15c-3 0-5.5-2.5-6.5-5.5-1 4-5 6-9 6s-8-2-9-6c-1 3-3.5 5.5-6.5 5.5-4 0-7-3-7-7 0-4 10-15 13-15h19c3 0 13 11 13 15 0 4-3 7-7 7z' fill='%233B82F6' fill-opacity='0.05' fill-rule='evenodd'/%3E%3C/g%3E%3C/svg%3E");
-    opacity: 0.5;
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(2rem); filter: blur(4px); }
+    to { opacity: 1; transform: translateY(0); filter: blur(0); }
   }
+  .reveal { opacity: 0; transform: translateY(2rem); }
+  .reveal.is-visible { animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards; animation-delay: calc(var(--delay, 0) * 100ms); }
+
+  .vet-card { transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1); }
+  .vet-card:hover { transform: translateY(-8px); box-shadow: 0 20px 40px rgba(245,158,11,0.12); }
 </style>
 
-<div class="bg-[#F0F9FF] text-[#1E3A8A] font-sans selection:bg-[#60A5FA] selection:text-white min-h-screen overflow-x-hidden relative">
-  <div class="fixed inset-0 paw-print pointer-events-none"></div>
+<div class="bg-[#FFF8F0] text-[#3D2E1C] font-sans selection:bg-[#F59E0B] selection:text-white min-h-screen overflow-x-hidden">
 
-  <!-- Nav -->
-  <nav class="fixed w-full z-50 px-8 py-6 bg-[#F0F9FF]/80 backdrop-blur-xl border-b border-[#BFDBFE]/50">
-    <div class="container mx-auto px-4 md:px-6 flex justify-between items-center flex-nowrap">
-      <div class="flex items-center gap-2">
-         <div class="w-8 h-8 max-h-8 max-w-[35%] shrink object-contain md:w-10 md:h-10 bg-white rounded-xl flex items-center justify-center text-lg md:text-2xl shadow-sm border border-[#BFDBFE]">
-            🩺
-         </div>
-         <span class="font-soft font-semibold text-xl tracking-wide text-[#1E3A8A]">With<span class="text-[#3B82F6]">Pet</span></span>
-      </div>
-      
-      <div class="hidden md:flex gap-14 text-[14px] font-soft font-semibold text-[#60A5FA]">
-        <a href="#about" class="hover:text-[#1E3A8A] transition">About</a>
-        <a href="#services" class="hover:text-[#1E3A8A] transition">Services</a>
-        <a href="#emergency" class="hover:text-[#1E3A8A] transition text-red-400">Emergency</a>
-      </div>
-           <button class="mobile-menu-trigger md:hidden ml-auto text-2xl focus:outline-none" style="color: inherit;">
-             <i class="fas fa-bars"></i>
-           </button>
+  <!-- ========== Nav ========== -->
+  <nav class="fixed w-full z-50 px-4 md:px-8 py-4 bg-[#FFF8F0]/80 backdrop-blur-xl border-b border-[#F59E0B]/10">
+    <div class="max-w-7xl mx-auto flex justify-between items-center">
+      <a href="#" class="flex items-center gap-2">
+        <div class="w-9 h-9 bg-[#F59E0B] rounded-xl flex items-center justify-center">
+          <i class="fas fa-paw text-white text-sm"></i>
+        </div>
+        <span class="font-bold text-xl">해피펫 <span class="text-[#F59E0B]">동물병원</span></span>
+      </a>
 
-      
-      <div class="flex-nowrap shrink-0 flex gap-6 items-center">
-         <button onclick="toggleVetModal()" class="hidden md:block text-[14px] font-soft font-semibold text-[#60A5FA] hover:text-[#1E3A8A] bg-white px-4 py-2 rounded-xl shadow-sm border border-[#BFDBFE] hover:shadow-md transition" data-mobile-menu-copy="true">My Pet</button>
-         <button class="hidden md:inline-flex bg-[#3B82F6] text-white px-3 py-2 text-xs md:text-sm md:px-6 md:py-2.5 whitespace-nowrap rounded-xl font-soft font-semibold text-[14px] hover:bg-[#2563EB] transition shadow-lg shadow-blue-300" data-mobile-menu-copy="true">
-           Book Appointment
-         </button>
+      <div class="hidden md:flex gap-10 text-sm font-medium text-[#3D2E1C]/40">
+        <a href="#treatments" class="hover:text-[#F59E0B] transition">진료과목</a>
+        <a href="#doctors" class="hover:text-[#F59E0B] transition">수의사</a>
+        <a href="#facility" class="hover:text-[#F59E0B] transition">시설</a>
+        <a href="#reservation" class="hover:text-[#F59E0B] transition">예약</a>
+      </div>
+
+      <button class="mobile-menu-trigger md:hidden ml-auto text-2xl focus:outline-none" style="color: inherit;">
+        <i class="fas fa-bars"></i>
+      </button>
+
+      <div class="hidden md:flex gap-4 items-center">
+        <a href="tel:02-333-7979" class="text-sm font-medium text-[#3D2E1C]/50 hover:text-[#F59E0B]"><i class="fas fa-phone mr-1"></i> 02-333-7979</a>
+        <a href="#reservation" class="bg-[#F59E0B] text-white px-6 py-2.5 rounded-full text-sm font-semibold hover:bg-[#D97706] shadow-lg shadow-[#F59E0B]/20" data-mobile-menu-copy="true">예약하기</a>
       </div>
     </div>
 
-      <%= render partial: 'templates/shared/mobile_menu_overlay' %></nav>
+    <%= render partial: 'templates/shared/mobile_menu_overlay' %>
+  </nav>
 
-  <!-- Hero -->
-  <header class="min-h-screen relative flex items-center justify-center pt-24 overflow-hidden">
-    <!-- Soft Blobs -->
-    <div class="absolute top-[10%] left-[10%] w-[500px] h-[500px] bg-[#BFDBFE] rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob"></div>
-    <div class="absolute top-[10%] right-[10%] w-[500px] h-[500px] bg-[#E0F2FE] rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob animation-delay-2000"></div>
+  <!-- ========== Hero ========== -->
+  <header class="min-h-[100dvh] relative flex items-center pt-20 overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-br from-[#FFFBEB] via-[#FFF8F0] to-[#FEF3C7]"></div>
+    <div class="absolute top-40 left-0 w-[400px] h-[400px] bg-[#F59E0B]/8 rounded-full blur-[120px]"></div>
 
-    <div class="container mx-auto px-3 md:px-6 relative z-10 grid lg:grid-cols-2 gap-12 md:p-20 items-center">
-      <div class="space-y-10 text-center lg:text-left order-2 lg:order-1">
-        <div class="inline-flex items-center gap-2 bg-white px-4 py-2 rounded-lg shadow-sm border border-[#BFDBFE]">
-           <span class="w-2 h-2 rounded-full bg-[#3B82F6] animate-pulse"></span>
-           <span class="text-[12px] font-soft font-semibold text-[#3B82F6] uppercase tracking-wide">24/7 Professional Medical Care</span>
+    <div class="max-w-7xl mx-auto px-4 md:px-8 relative z-10 grid lg:grid-cols-2 gap-12 items-center w-full">
+      <div class="space-y-8 text-center lg:text-left">
+        <div class="inline-flex items-center gap-2 bg-white px-4 py-2 rounded-full border border-[#F59E0B]/20 shadow-sm reveal" style="--delay: 0;">
+          <i class="fas fa-heart text-[#F59E0B] text-sm"></i>
+          <span class="text-sm font-medium text-[#F59E0B]">24시간 응급진료 가능</span>
         </div>
-        
-        <h1 class="text-2xl md:text-4xl md:text-6xl font-soft font-semibold leading-[1.1] text-[#1E3A8A] mobile-title">
-           Compassionate<br>
-           Care for Your<br>
-           <span class="text-[#3B82F6]">Best Friend.</span>
+
+        <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mobile-title reveal" style="--delay: 1;">
+          소중한 가족의<br>
+          <span class="text-[#F59E0B]">건강을 지킵니다</span>
         </h1>
-        
-        <p class="text-[#1E3A8A]/70 text-lg md:text-xl leading-relaxed max-w-lg mx-auto lg:mx-0 mobile-desc font-medium">
-           말하지 못하는 아이들의 마음까지 치료합니다.<br>
-           위드 펫 메디컬 센터는 평생의 건강 주치의가 되어드립니다.
+
+        <p class="text-[#3D2E1C]/50 text-base md:text-lg leading-relaxed max-w-md mx-auto lg:mx-0 mobile-desc reveal" style="--delay: 2;">
+          해피펫 동물병원은 반려동물 전문 의료기관입니다. 내과, 외과, 피부과, 치과 등 각 분야 전문 수의사가 최선의 진료를 제공합니다.
         </p>
-        
-        <div class="flex flex-col sm:flex-row gap-6 justify-center lg:justify-start pt-4">
-           <button class="px-8 py-4 bg-[#1E3A8A] text-white font-soft font-semibold text-lg rounded-2xl hover:bg-[#1E40AF] transition shadow-xl">
-             Meet Our Doctors
-           </button>
-           <button class="px-8 py-4 bg-white text-[#1E3A8A] border-2 border-[#BFDBFE] font-soft font-semibold text-lg rounded-2xl hover:bg-[#F0F9FF] transition flex items-center justify-center gap-2 group">
-             <span>📞</span>
-             <span>Emergency Call</span>
-           </button>
+
+        <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start reveal" style="--delay: 3;">
+          <a href="#reservation" class="inline-flex items-center justify-center gap-2 px-8 py-4 bg-[#F59E0B] text-white rounded-full font-semibold shadow-lg shadow-[#F59E0B]/25 hover:bg-[#D97706]">
+            <i class="fas fa-calendar-check text-sm"></i> 진료 예약
+          </a>
+          <a href="tel:02-333-7979" class="inline-flex items-center justify-center gap-2 px-8 py-4 border border-[#F59E0B]/30 rounded-full font-semibold text-[#3D2E1C]/70 hover:border-[#F59E0B] hover:text-[#F59E0B]">
+            <i class="fas fa-phone text-sm"></i> 응급 전화
+          </a>
+        </div>
+
+        <div class="flex items-center gap-8 justify-center lg:justify-start pt-4 reveal" style="--delay: 4;">
+          <div class="text-center">
+            <p class="text-2xl font-bold text-[#F59E0B]">24H</p>
+            <p class="text-xs text-[#3D2E1C]/40 mt-1">응급진료</p>
+          </div>
+          <div class="w-px h-8 bg-[#3D2E1C]/10"></div>
+          <div class="text-center">
+            <p class="text-2xl font-bold text-[#F59E0B]">8명</p>
+            <p class="text-xs text-[#3D2E1C]/40 mt-1">전문 수의사</p>
+          </div>
+          <div class="w-px h-8 bg-[#3D2E1C]/10"></div>
+          <div class="text-center">
+            <p class="text-2xl font-bold text-[#F59E0B]">20,000+</p>
+            <p class="text-xs text-[#3D2E1C]/40 mt-1">진료 케이스</p>
+          </div>
         </div>
       </div>
-      
-      <div class="relative order-1 lg:order-2 flex justify-center">
-         <div class="relative z-10 w-[350px] md:w-[500px] aspect-square group">
-             <div class="absolute inset-0 bg-[#3B82F6] rounded-2xl rotate-3 opacity-10 group-hover:rotate-6 transition duration-700"></div>
-             <img src="https://images.unsplash.com/photo-1628009368231-76033527212e?q=80&w=800" alt="Veterinary Care" class="w-full h-full object-cover rounded-2xl shadow-2xl transform -rotate-3 group-hover:rotate-0 transition duration-700 border-8 border-white">
-             
-             <!-- Floating Badge -->
-             <div class="absolute -bottom-8 -right-8 bg-white p-5 rounded-2xl shadow-xl border border-[#BFDBFE] animate-bounce-slow flex items-center gap-6">
-                <div class="bg-blue-50 p-3 rounded-xl text-lg md:text-2xl">🐶</div>
-                <div>
-                   <p class="font-semibold text-[#1E3A8A] text-lg">98%</p>
-                   <p class="text-[10px] uppercase font-semibold text-[#93C5FD]">Recovery Rate</p>
-                </div>
-             </div>
-         </div>
+
+      <div class="relative hidden lg:block reveal" style="--delay: 2;">
+        <img src="https://images.unsplash.com/photo-1587300003388-59208cc962cb?q=80&w=800" alt="반려견" class="w-full h-[550px] object-cover rounded-3xl shadow-2xl">
+        <div class="absolute -bottom-6 -left-6 bg-white p-5 rounded-2xl shadow-xl border border-[#F59E0B]/10">
+          <div class="flex items-center gap-3">
+            <div class="w-12 h-12 bg-[#F59E0B]/10 rounded-full flex items-center justify-center">
+              <i class="fas fa-stethoscope text-[#F59E0B]"></i>
+            </div>
+            <div>
+              <p class="font-bold text-sm">건강검진 패키지</p>
+              <p class="text-xs text-[#3D2E1C]/40">연 2회 정기검진</p>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </header>
 
-   <style>
-      @keyframes blob {
-         0% { transform: translate(0px, 0px) scale(1); }
-         33% { transform: translate(30px, -50px) scale(1.1); }
-         66% { transform: translate(-20px, 20px) scale(0.9); }
-         100% { transform: translate(0px, 0px) scale(1); }
-      }
-      .animate-blob { animation: blob 7s infinite; }
-      .animation-delay-2000 { animation-delay: 2s; }
-      @keyframes bounce-slow {
-         0%, 100% { transform: translateY(0); }
-         50% { transform: translateY(-10px); }
-      }
-      .animate-bounce-slow { animation: bounce-slow 3s ease-in-out infinite; }
-   </style>
-
-  <!-- Login Modal -->
-  <div id="vet-modal" class="fixed inset-0 z-[100] hidden items-center justify-center p-4 bg-[#1E3A8A]/20 backdrop-blur-md">
-    <div class="bg-white w-full max-w-sm p-10 shadow-2xl relative rounded-[2.5rem] border-4 border-[#BFDBFE]">
-      <button onclick="toggleVetModal()" class="absolute top-6 right-6 text-[#93C5FD] hover:text-[#3B82F6] transition text-2xl font-soft font-semibold">&times;</button>
-      
-      <div class="text-center mb-8">
-        <div class="w-20 h-20 bg-[#EFF6FF] rounded-full flex items-center justify-center text-3xl mx-auto mb-4 border border-[#BFDBFE]">
-           🐕
-        </div>
-        <h2 class="text-2xl font-soft font-semibold text-[#1E3A8A] mb-1">Guardian Portal</h2>
-        <p class="text-[13px] text-[#3B82F6] font-semibold uppercase tracking-wide">Access Pet Health Records</p>
+  <!-- ========== 진료과목 ========== -->
+  <section id="treatments" class="py-24 md:py-32 bg-white">
+    <div class="max-w-7xl mx-auto px-4 md:px-8">
+      <div class="text-center mb-16">
+        <span class="text-sm font-semibold text-[#F59E0B] tracking-wider uppercase reveal" style="--delay: 0;">Departments</span>
+        <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mt-4 reveal" style="--delay: 1;">전문 진료과목</h2>
+        <p class="text-[#3D2E1C]/40 text-base mt-4 max-w-lg mx-auto reveal" style="--delay: 2;">각 분야 전문 수의사가 반려동물의 건강을 책임집니다</p>
       </div>
-      
-      <div class="space-y-4">
-        <div>
-           <input type="text" placeholder="Guardian Phone Number" class="w-full bg-[#F0F9FF] border-2 border-[#E0F2FE] rounded-2xl py-4 px-6 outline-none focus:border-[#3B82F6] focus:bg-white transition text-lg font-soft font-semibold text-[#1E3A8A] text-center placeholder-[#93C5FD]">
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div class="vet-card bg-[#FFF8F0] p-8 rounded-2xl border border-[#F59E0B]/10 reveal" style="--delay: 0;">
+          <div class="w-14 h-14 bg-[#F59E0B]/10 rounded-xl flex items-center justify-center mb-6">
+            <i class="fas fa-heartbeat text-[#F59E0B] text-xl"></i>
+          </div>
+          <h3 class="text-lg font-bold mb-3">내과</h3>
+          <p class="text-sm text-[#3D2E1C]/40 leading-relaxed">소화기, 호흡기, 내분비 질환 등 내과 전반의 정밀 진료를 제공합니다.</p>
         </div>
-        
-        <button class="w-full bg-[#3B82F6] text-white py-4 rounded-2xl font-soft font-semibold text-lg shadow-lg hover:bg-[#2563EB] transition transform active:scale-95">
-           Log In
-        </button>
-        
-        <div class="flex justify-center gap-10 pt-4 text-sm font-soft font-semibold text-[#93C5FD]">
-           <a href="#" class="hover:text-[#3B82F6] transition">Register Pet</a>
-           <span>•</span>
-           <a href="#" class="hover:text-[#3B82F6] transition">Results Inquiry</a>
+
+        <div class="vet-card bg-[#FFF8F0] p-8 rounded-2xl border border-[#F59E0B]/10 reveal" style="--delay: 1;">
+          <div class="w-14 h-14 bg-[#F59E0B]/10 rounded-xl flex items-center justify-center mb-6">
+            <i class="fas fa-bone text-[#F59E0B] text-xl"></i>
+          </div>
+          <h3 class="text-lg font-bold mb-3">외과/정형외과</h3>
+          <p class="text-sm text-[#3D2E1C]/40 leading-relaxed">골절, 관절 질환, 슬개골 탈구 등 정형외과 수술 전문입니다.</p>
+        </div>
+
+        <div class="vet-card bg-[#FFF8F0] p-8 rounded-2xl border border-[#F59E0B]/10 reveal" style="--delay: 2;">
+          <div class="w-14 h-14 bg-[#F59E0B]/10 rounded-xl flex items-center justify-center mb-6">
+            <i class="fas fa-allergies text-[#F59E0B] text-xl"></i>
+          </div>
+          <h3 class="text-lg font-bold mb-3">피부과</h3>
+          <p class="text-sm text-[#3D2E1C]/40 leading-relaxed">알러지, 아토피, 피부감염 등 반려동물 피부 질환을 전문 치료합니다.</p>
+        </div>
+
+        <div class="vet-card bg-[#FFF8F0] p-8 rounded-2xl border border-[#F59E0B]/10 reveal" style="--delay: 3;">
+          <div class="w-14 h-14 bg-[#F59E0B]/10 rounded-xl flex items-center justify-center mb-6">
+            <i class="fas fa-tooth text-[#F59E0B] text-xl"></i>
+          </div>
+          <h3 class="text-lg font-bold mb-3">치과</h3>
+          <p class="text-sm text-[#3D2E1C]/40 leading-relaxed">스케일링, 발치, 구강질환 치료 등 반려동물 치과 진료를 시행합니다.</p>
         </div>
       </div>
     </div>
-  </div>
+  </section>
 
-  <footer class="py-20 md:py-32 bg-white text-center px-6 border-t border-[#F0F9FF]">
-     <div class="inline-flex flex-col items-center gap-6 mb-6">
-        <span class="text-2xl">🐾</span>
-        <span class="font-soft font-semibold text-xl text-[#1E3A8A]">With<span class="text-[#3B82F6]">Pet</span></span>
-     </div>
-     <p class="text-[11px] font-semibold text-[#93C5FD] uppercase tracking-wider">© 2024 WITH PET MEDICAL CENTER.</p>
+  <!-- ========== 수의사 ========== -->
+  <section id="doctors" class="py-24 md:py-32">
+    <div class="max-w-7xl mx-auto px-4 md:px-8">
+      <div class="flex flex-col md:flex-row md:items-end md:justify-between mb-16 gap-6">
+        <div>
+          <span class="text-sm font-semibold text-[#F59E0B] tracking-wider uppercase reveal" style="--delay: 0;">Veterinarians</span>
+          <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mt-4 reveal" style="--delay: 1;">전문 수의사</h2>
+        </div>
+        <p class="text-[#3D2E1C]/40 text-base max-w-sm reveal" style="--delay: 2;">각 분야 전문 수의사가 반려동물의 건강을 지킵니다.</p>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div class="group reveal" style="--delay: 0;">
+          <div class="overflow-hidden rounded-2xl mb-5">
+            <img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?q=80&w=600" alt="박해피 원장" class="w-full aspect-[3/4] object-cover group-hover:scale-105 transition duration-700" loading="lazy">
+          </div>
+          <span class="text-xs font-semibold text-[#F59E0B] tracking-wider">원장</span>
+          <h3 class="text-xl font-bold mt-1">박해피</h3>
+          <p class="text-sm text-[#3D2E1C]/40 mt-2">서울대학교 수의과대학 졸업<br>내과/외과 전문<br>대한수의사회 정회원</p>
+        </div>
+
+        <div class="group reveal" style="--delay: 1;">
+          <div class="overflow-hidden rounded-2xl mb-5">
+            <img src="https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?q=80&w=600" alt="김우리 수의사" class="w-full aspect-[3/4] object-cover group-hover:scale-105 transition duration-700" loading="lazy">
+          </div>
+          <span class="text-xs font-semibold text-[#F59E0B] tracking-wider">수의사</span>
+          <h3 class="text-xl font-bold mt-1">김우리</h3>
+          <p class="text-sm text-[#3D2E1C]/40 mt-2">건국대학교 수의과대학 졸업<br>피부과/알러지 전문<br>한국수의피부학회 정회원</p>
+        </div>
+
+        <div class="group reveal" style="--delay: 2;">
+          <div class="overflow-hidden rounded-2xl mb-5">
+            <img src="https://images.unsplash.com/photo-1622253692010-333f2da6031d?q=80&w=600" alt="이든든 수의사" class="w-full aspect-[3/4] object-cover group-hover:scale-105 transition duration-700" loading="lazy">
+          </div>
+          <span class="text-xs font-semibold text-[#F59E0B] tracking-wider">수의사</span>
+          <h3 class="text-xl font-bold mt-1">이든든</h3>
+          <p class="text-sm text-[#3D2E1C]/40 mt-2">충남대학교 수의과대학 졸업<br>정형외과/재활의학 전문<br>한국수의외과학회 정회원</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== 시설 ========== -->
+  <section id="facility" class="py-24 md:py-32 bg-white">
+    <div class="max-w-7xl mx-auto px-4 md:px-8">
+      <div class="text-center mb-16">
+        <span class="text-sm font-semibold text-[#F59E0B] tracking-wider uppercase reveal" style="--delay: 0;">Facility</span>
+        <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mt-4 reveal" style="--delay: 1;">최신 진료 시설</h2>
+      </div>
+
+      <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+        <div class="overflow-hidden rounded-2xl group reveal" style="--delay: 0;">
+          <img src="https://images.unsplash.com/photo-1628009368231-7bb7cfcb0def?q=80&w=800" alt="진료실" class="w-full aspect-square object-cover group-hover:scale-105 transition duration-700" loading="lazy">
+        </div>
+        <div class="overflow-hidden rounded-2xl md:row-span-2 group reveal" style="--delay: 1;">
+          <img src="https://images.unsplash.com/photo-1548199973-03cce0bbc87b?q=80&w=800" alt="수술실" class="w-full h-full object-cover group-hover:scale-105 transition duration-700" loading="lazy">
+        </div>
+        <div class="overflow-hidden rounded-2xl group reveal" style="--delay: 2;">
+          <img src="https://images.unsplash.com/photo-1601758228041-f3b2795255f1?q=80&w=800" alt="검사실" class="w-full aspect-square object-cover group-hover:scale-105 transition duration-700" loading="lazy">
+        </div>
+        <div class="overflow-hidden rounded-2xl group reveal" style="--delay: 3;">
+          <img src="https://images.unsplash.com/photo-1583337130417-13571e35e2da?q=80&w=800" alt="입원실" class="w-full aspect-square object-cover group-hover:scale-105 transition duration-700" loading="lazy">
+        </div>
+        <div class="overflow-hidden rounded-2xl col-span-2 md:col-span-1 group reveal" style="--delay: 4;">
+          <img src="https://images.unsplash.com/photo-1450778869180-e11c4f1a3d44?q=80&w=800" alt="대기실" class="w-full aspect-[2/1] md:aspect-square object-cover group-hover:scale-105 transition duration-700" loading="lazy">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== 진료안내 ========== -->
+  <section class="py-24 md:py-32">
+    <div class="max-w-7xl mx-auto px-4 md:px-8">
+      <div class="text-center mb-16">
+        <span class="text-sm font-semibold text-[#F59E0B] tracking-wider uppercase reveal" style="--delay: 0;">Information</span>
+        <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mt-4 reveal" style="--delay: 1;">병원 안내</h2>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+        <div class="bg-white p-8 rounded-2xl shadow-sm border border-[#F59E0B]/10 text-center reveal" style="--delay: 0;">
+          <div class="w-16 h-16 bg-[#F59E0B] rounded-2xl flex items-center justify-center mx-auto mb-6">
+            <i class="fas fa-clock text-white text-2xl"></i>
+          </div>
+          <h3 class="font-bold text-lg mb-4">진료시간</h3>
+          <div class="space-y-2 text-sm text-[#3D2E1C]/50">
+            <div class="flex justify-between"><span>평일</span><span class="font-semibold text-[#3D2E1C]/70">10:00 - 20:00</span></div>
+            <div class="flex justify-between"><span>토요일</span><span class="font-semibold text-[#3D2E1C]/70">10:00 - 17:00</span></div>
+            <div class="flex justify-between"><span>일/공휴일</span><span class="font-semibold text-[#3D2E1C]/70">10:00 - 14:00</span></div>
+            <div class="flex justify-between text-[#F59E0B]"><span>응급진료</span><span class="font-semibold">24시간</span></div>
+          </div>
+        </div>
+
+        <div class="bg-white p-8 rounded-2xl shadow-sm border border-[#F59E0B]/10 text-center reveal" style="--delay: 1;">
+          <div class="w-16 h-16 bg-[#F59E0B] rounded-2xl flex items-center justify-center mx-auto mb-6">
+            <i class="fas fa-map-marker-alt text-white text-2xl"></i>
+          </div>
+          <h3 class="font-bold text-lg mb-4">오시는 길</h3>
+          <div class="space-y-2 text-sm text-[#3D2E1C]/50">
+            <p>서울특별시 마포구<br>와우산로 94</p>
+            <p>해피펫 빌딩 1-3층</p>
+            <p class="text-[#F59E0B] font-semibold">홍대입구역 9번 출구 도보 3분</p>
+            <p>주차장 완비</p>
+          </div>
+        </div>
+
+        <div class="bg-white p-8 rounded-2xl shadow-sm border border-[#F59E0B]/10 text-center reveal" style="--delay: 2;">
+          <div class="w-16 h-16 bg-[#F59E0B] rounded-2xl flex items-center justify-center mx-auto mb-6">
+            <i class="fas fa-phone-alt text-white text-2xl"></i>
+          </div>
+          <h3 class="font-bold text-lg mb-4">연락처</h3>
+          <div class="space-y-2 text-sm text-[#3D2E1C]/50">
+            <p class="text-xl font-bold text-[#F59E0B]">02-333-7979</p>
+            <p>응급: 010-9999-7979</p>
+            <p>이메일: hello@happypet.kr</p>
+            <a href="#" class="inline-flex items-center gap-1 text-[#F59E0B] font-semibold mt-2">카카오톡 상담 <i class="fas fa-arrow-right text-xs"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== 예약 ========== -->
+  <section id="reservation" class="py-24 md:py-32 bg-gradient-to-br from-[#F59E0B] to-[#D97706] text-white relative overflow-hidden">
+    <div class="absolute top-0 right-0 w-96 h-96 bg-white/5 rounded-full blur-[100px]"></div>
+
+    <div class="max-w-4xl mx-auto px-4 md:px-8 relative z-10">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold reveal" style="--delay: 0;">진료 예약</h2>
+        <p class="text-white/70 text-base mt-4 reveal" style="--delay: 1;">사랑하는 반려동물의 건강을 위해 미리 예약해주세요</p>
+      </div>
+
+      <div class="bg-white/10 backdrop-blur-xl rounded-3xl p-8 md:p-12 reveal" style="--delay: 2;">
+        <div class="grid md:grid-cols-2 gap-6">
+          <div>
+            <label class="block text-sm font-medium text-white/80 mb-2">보호자 이름</label>
+            <input type="text" placeholder="홍길동" class="w-full bg-white/10 border border-white/20 rounded-xl px-5 py-3.5 text-white placeholder-white/40 outline-none focus:border-white/60 transition">
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-white/80 mb-2">연락처</label>
+            <input type="tel" placeholder="010-0000-0000" class="w-full bg-white/10 border border-white/20 rounded-xl px-5 py-3.5 text-white placeholder-white/40 outline-none focus:border-white/60 transition">
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-white/80 mb-2">반려동물 종류</label>
+            <select class="w-full bg-white/10 border border-white/20 rounded-xl px-5 py-3.5 text-white outline-none focus:border-white/60 transition">
+              <option value="">선택해주세요</option>
+              <option>강아지</option>
+              <option>고양이</option>
+              <option>기타</option>
+            </select>
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-white/80 mb-2">희망 날짜</label>
+            <input type="date" class="w-full bg-white/10 border border-white/20 rounded-xl px-5 py-3.5 text-white outline-none focus:border-white/60 transition">
+          </div>
+          <div class="md:col-span-2">
+            <label class="block text-sm font-medium text-white/80 mb-2">증상 설명</label>
+            <textarea rows="3" placeholder="반려동물의 증상을 간단히 적어주세요" class="w-full bg-white/10 border border-white/20 rounded-xl px-5 py-3.5 text-white placeholder-white/40 outline-none focus:border-white/60 transition resize-none"></textarea>
+          </div>
+        </div>
+        <button class="w-full mt-8 bg-white text-[#F59E0B] py-4 rounded-full font-bold text-lg hover:bg-[#FFFBEB] shadow-lg">예약 신청하기</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== CTA ========== -->
+  <section class="py-24 md:py-32">
+    <div class="max-w-3xl mx-auto px-4 md:px-8 text-center">
+      <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold reveal" style="--delay: 0;">
+        우리 아이가 아파요
+      </h2>
+      <p class="text-[#3D2E1C]/40 text-base md:text-lg mt-6 reveal" style="--delay: 1;">
+        작은 증상도 놓치지 마세요. 해피펫 동물병원이 소중한 가족의 건강을 지켜드립니다.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center mt-10 reveal" style="--delay: 2;">
+        <a href="tel:02-333-7979" class="inline-flex items-center justify-center gap-2 px-10 py-4 bg-[#F59E0B] text-white rounded-full font-semibold shadow-lg shadow-[#F59E0B]/25 hover:bg-[#D97706]">
+          <i class="fas fa-phone text-sm"></i> 02-333-7979
+        </a>
+        <a href="#" class="inline-flex items-center justify-center gap-2 px-10 py-4 border border-[#F59E0B]/30 rounded-full font-semibold text-[#3D2E1C]/70 hover:border-[#F59E0B] hover:text-[#F59E0B]">
+          응급 진료 안내
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== Footer ========== -->
+  <footer class="py-16 md:py-24 bg-[#1C1410] text-white">
+    <div class="max-w-7xl mx-auto px-4 md:px-8">
+      <div class="grid md:grid-cols-3 gap-12 mb-16">
+        <div>
+          <div class="flex items-center gap-2 mb-4">
+            <div class="w-8 h-8 bg-[#F59E0B] rounded-xl flex items-center justify-center">
+              <i class="fas fa-paw text-white text-xs"></i>
+            </div>
+            <span class="font-bold text-lg">해피펫 동물병원</span>
+          </div>
+          <p class="text-white/30 text-sm leading-relaxed">서울특별시 마포구 와우산로 94<br>해피펫 빌딩 1-3층</p>
+          <p class="text-white/30 text-sm mt-2">대표원장: 박해피 | 사업자등록번호: 345-67-89012</p>
+        </div>
+
+        <div class="grid grid-cols-2 gap-8">
+          <div>
+            <p class="text-xs font-semibold text-white/20 uppercase tracking-wider mb-4">진료</p>
+            <ul class="space-y-2.5">
+              <li><a href="#treatments" class="text-white/40 text-sm hover:text-[#F59E0B] transition">내과</a></li>
+              <li><a href="#treatments" class="text-white/40 text-sm hover:text-[#F59E0B] transition">외과/정형외과</a></li>
+              <li><a href="#treatments" class="text-white/40 text-sm hover:text-[#F59E0B] transition">피부과</a></li>
+              <li><a href="#treatments" class="text-white/40 text-sm hover:text-[#F59E0B] transition">치과</a></li>
+            </ul>
+          </div>
+          <div>
+            <p class="text-xs font-semibold text-white/20 uppercase tracking-wider mb-4">정보</p>
+            <ul class="space-y-2.5">
+              <li><a href="#doctors" class="text-white/40 text-sm hover:text-[#F59E0B] transition">수의사</a></li>
+              <li><a href="#facility" class="text-white/40 text-sm hover:text-[#F59E0B] transition">시설안내</a></li>
+              <li><a href="#reservation" class="text-white/40 text-sm hover:text-[#F59E0B] transition">예약</a></li>
+              <li><a href="#" class="text-white/40 text-sm hover:text-[#F59E0B] transition">후기</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <div>
+          <p class="text-xs font-semibold text-white/20 uppercase tracking-wider mb-4">연락처</p>
+          <p class="text-xl font-bold text-[#F59E0B]">02-333-7979</p>
+          <p class="text-white/30 text-sm mt-2">응급: 010-9999-7979 (24시간)</p>
+          <div class="flex gap-3 mt-4">
+            <a href="#" class="w-10 h-10 bg-white/5 rounded-lg flex items-center justify-center text-white/40 hover:text-[#F59E0B] hover:bg-white/10 transition"><i class="fab fa-instagram text-sm"></i></a>
+            <a href="#" class="w-10 h-10 bg-white/5 rounded-lg flex items-center justify-center text-white/40 hover:text-[#F59E0B] hover:bg-white/10 transition"><i class="fas fa-blog text-sm"></i></a>
+          </div>
+        </div>
+      </div>
+
+      <div class="border-t border-white/5 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+        <p class="text-xs text-white/15">&copy; 2024 해피펫 동물병원. All rights reserved by DLAB.</p>
+        <div class="flex gap-6">
+          <a href="#" class="text-xs text-white/15 hover:text-white/30 transition">개인정보처리방침</a>
+          <a href="#" class="text-xs text-white/15 hover:text-white/30 transition">이용약관</a>
+        </div>
+      </div>
+    </div>
   </footer>
 
-  <script>
-    function toggleVetModal() {
-      const modal = document.getElementById('vet-modal');
-      modal.classList.toggle('hidden');
-      modal.classList.toggle('flex');
-    }
-  </script>
-
 </div>
+
+<script>
+  (function() {
+    const observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+    document.querySelectorAll('.reveal').forEach(function(el) { observer.observe(el); });
+  })();
+</script>

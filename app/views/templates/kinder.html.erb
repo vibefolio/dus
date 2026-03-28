@@ -1,194 +1,398 @@
-<%# Kinder Template - 리틀 스타 (LITTLE STAR) %>
+<%# Kinder Template - 해맑은 어린이집 (HAEMALEUN) %>
 
 <style>
-  /* Supanova Design Upgrade */
+  /* Supanova Design — Warm Playful Archetype */
   * { word-break: keep-all; }
-  html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+  html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
   h1, h2, h3, h4 { text-wrap: balance; letter-spacing: -0.02em; line-height: 1.3; }
-  a, button { transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1); }
+  a, button { transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1); }
   a:hover, button:hover { transform: scale(1.02); }
   a:active, button:active { transform: scale(0.98); }
 
-  @import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@300;400;500;600;700&family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap');
-  
-  .font-rounded { font-family: 'Fredoka', sans-serif; }
+  @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap');
+
   .font-sans { font-family: 'Pretendard Variable', 'Pretendard', -apple-system, sans-serif; }
+  .font-display { font-family: 'Nunito', sans-serif; }
 
   @media (max-width: 768px) {
     .mobile-desc { font-size: 14px !important; line-height: 1.8; }
-    .mobile-title { font-size: 40px !important; }
+    .mobile-title { font-size: 32px !important; }
   }
 
-  .doodle-pattern {
-    background-image: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23FCD34D' fill-opacity='0.2' fill-rule='evenodd'%3E%3Cpath d='M0 40L40 0H20L0 20M40 40V20L20 40'/%3E%3C/g%3E%3C/svg%3E");
-    opacity: 0.5;
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(2rem); filter: blur(4px); }
+    to { opacity: 1; transform: translateY(0); filter: blur(0); }
   }
+  .reveal { opacity: 0; transform: translateY(2rem); }
+  .reveal.is-visible { animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards; animation-delay: calc(var(--delay, 0) * 100ms); }
+
+  .program-card { transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1); }
+  .program-card:hover { transform: translateY(-8px); box-shadow: 0 20px 40px rgba(245,158,11,0.12); }
 </style>
 
-<div class="bg-[#FFFBEB] text-[#4B5563] font-sans selection:bg-[#FCD34D] selection:text-[#78350F] min-h-screen overflow-x-hidden relative">
-  <div class="fixed inset-0 doodle-pattern pointer-events-none"></div>
+<div class="bg-[#FFFBEB] text-[#3D2E1C] font-sans selection:bg-[#F59E0B] selection:text-white min-h-screen overflow-x-hidden">
 
-  <!-- Nav -->
-  <nav class="fixed w-full z-50 px-3 md:px-6 py-4 top-0">
-    <div class="container mx-auto px-4 md:px-6 flex items-center justify-between flex-nowrap">
-      <div class="bg-white/90 backdrop-blur-xl border-b-4 border-[#FCD34D] rounded-full px-4 py-2 text-xs md:text-base md:px-8 md:py-3 whitespace-nowrap flex justify-between items-center shadow-lg shadow-[#FCD34D]/10">
-        <div class="flex items-center gap-3">
-           <div class="w-8 h-8 max-h-8 max-w-[35%] shrink object-contain md:w-10 md:h-10 bg-[#FF6B6B] rounded-full flex items-center justify-center text-lg md:text-2xl shadow-sm animate-bounce">
-              🎈
-           </div>
-           <span class="font-rounded font-semibold text-lg md:text-2xl text-[#4B5563] tracking-tight">Little<span class="text-[#FF6B6B]">Star</span></span>
+  <!-- ========== Nav ========== -->
+  <nav class="fixed w-full z-50 px-4 md:px-8 py-4 bg-[#FFFBEB]/80 backdrop-blur-xl border-b border-[#F59E0B]/10">
+    <div class="max-w-7xl mx-auto flex justify-between items-center">
+      <a href="#" class="flex items-center gap-2">
+        <div class="w-9 h-9 bg-[#F59E0B] rounded-xl flex items-center justify-center">
+          <i class="fas fa-sun text-white text-sm"></i>
         </div>
-        
-        <div class="hidden md:flex gap-12 text-[15px] font-rounded font-semibold text-[#4B5563]/60">
-          <a href="#about" class="hover:text-[#FF6B6B] transition">Our Story</a>
-          <a href="#class" class="hover:text-[#4ADE80] transition">Classes</a>
-          <a href="#events" class="hover:text-[#FCD34D] transition">Events</a>
-        </div>
-           <button class="mobile-menu-trigger md:hidden ml-auto text-2xl focus:outline-none" style="color: inherit;">
-             <i class="fas fa-bars"></i>
-           </button>
+        <span class="font-display font-extrabold text-xl">해맑은 <span class="text-[#F59E0B]">어린이집</span></span>
+      </a>
 
-        
-        <div class="flex-nowrap shrink-0 flex gap-6 items-center">
-         <button onclick="toggleParentModal()" class="hidden md:block text-[14px] font-rounded font-semibold text-[#FF6B6B] bg-[#FFF5F5] px-4 py-2 rounded-lg hover:bg-[#FFE4E6] transition" data-mobile-menu-copy="true">Parent Login</button>
-           <button class="hidden md:inline-flex bg-[#4ADE80] text-white px-3 py-2 text-xs md:text-sm md:px-6 md:py-2.5 whitespace-nowrap rounded-lg font-rounded font-semibold text-[14px] shadow-[0_4px_0_#16A34A] hover:translate-y-1 hover:shadow-none transition-all" data-mobile-menu-copy="true">
-             Visit Us
-           </button>
-        </div>
+      <div class="hidden md:flex gap-10 text-sm font-medium text-[#3D2E1C]/40">
+        <a href="#programs" class="hover:text-[#F59E0B] transition">프로그램</a>
+        <a href="#facility" class="hover:text-[#F59E0B] transition">시설</a>
+        <a href="#teachers" class="hover:text-[#F59E0B] transition">교사진</a>
+        <a href="#admission" class="hover:text-[#F59E0B] transition">입학안내</a>
+      </div>
+
+      <button class="mobile-menu-trigger md:hidden ml-auto text-2xl focus:outline-none" style="color: inherit;">
+        <i class="fas fa-bars"></i>
+      </button>
+
+      <div class="hidden md:flex gap-4 items-center">
+        <a href="tel:02-888-1234" class="text-sm font-medium text-[#3D2E1C]/50 hover:text-[#F59E0B]"><i class="fas fa-phone mr-1"></i> 02-888-1234</a>
+        <a href="#admission" class="bg-[#F59E0B] text-white px-6 py-2.5 rounded-full text-sm font-semibold hover:bg-[#D97706] shadow-lg shadow-[#F59E0B]/20" data-mobile-menu-copy="true">입학 상담</a>
       </div>
     </div>
 
-      <%= render partial: 'templates/shared/mobile_menu_overlay' %></nav>
+    <%= render partial: 'templates/shared/mobile_menu_overlay' %>
+  </nav>
 
-  <!-- Hero -->
-  <header class="min-h-screen relative flex items-center justify-center pt-24 overflow-hidden">
-    <!-- Floating Icons -->
-    <div class="absolute top-[15%] left-[10%] text-3xl md:text-5xl animate-wiggle cursor-pointer hover:scale-110 transition">🎨</div>
-    <div class="absolute bottom-[20%] right-[10%] text-3xl md:text-5xl animate-wiggle animation-delay-2000 cursor-pointer hover:scale-110 transition">🚀</div>
-    <div class="absolute top-[30%] right-[20%] w-32 h-32 bg-[#FF6B6B]/10 rounded-full blur-[40px]"></div>
-    <div class="absolute bottom-[10%] left-[20%] w-40 h-40 bg-[#FCD34D]/10 rounded-full blur-[40px]"></div>
+  <!-- ========== Hero ========== -->
+  <header class="min-h-[100dvh] relative flex items-center pt-20 overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-br from-[#FEF3C7] via-[#FFFBEB] to-[#FDE68A]/30"></div>
+    <div class="absolute top-20 right-20 w-[400px] h-[400px] bg-[#F59E0B]/8 rounded-full blur-[120px]"></div>
 
-    <div class="container mx-auto px-3 md:px-6 relative z-10 grid lg:grid-cols-2 gap-10 md:p-16 items-center">
-       <div class="space-y-8 text-center lg:text-left order-2 lg:order-1">
-         <div class="inline-flex items-center gap-2 bg-white px-4 py-2 rounded-lg border-2 border-[#FCD34D] shadow-sm transform -rotate-2">
-            <span class="text-xl">🌟</span>
-            <span class="text-[13px] font-rounded font-semibold text-[#F59E0B] uppercase tracking-wide">Where Fun Meets Learning!</span>
-         </div>
-         
-         <h1 class="text-2xl md:text-4xl md:text-6xl font-rounded font-semibold leading-[1.1] text-[#1F2937] mobile-title">
-            Dream Big,<br>
-            <span class="text-[#FF6B6B]">Play</span> & <span class="text-[#4ADE80]">Grow.</span>
-         </h1>
-         
-         <p class="text-[#4B5563]/70 text-lg md:text-xl leading-relaxed max-w-lg mx-auto lg:mx-0 mobile-desc font-medium">
-            아이들의 반짝이는 호기심이 자라나는 곳.<br>
-            리틀 스타에서 세상에서 가장 즐거운 배움을 시작하세요.
-         </p>
-         
-         <div class="flex flex-col sm:flex-row gap-6 justify-center lg:justify-start pt-4">
-            <button class="px-8 py-4 bg-[#FCD34D] text-[#78350F] font-rounded font-semibold text-lg rounded-[1.5rem] shadow-[0_6px_0_#D97706] hover:translate-y-1 hover:shadow-none transition-all transform hover:rotate-1">
-               Start Adventure
-            </button>
-            <button class="px-8 py-4 bg-white text-[#FF6B6B] border-2 border-[#FF6B6B]/20 font-rounded font-semibold text-lg rounded-[1.5rem] hover:bg-[#FFF5F5] transition transform hover:-rotate-1">
-               Watch Video
-            </button>
-         </div>
+    <div class="max-w-7xl mx-auto px-4 md:px-8 relative z-10 grid lg:grid-cols-2 gap-12 items-center w-full">
+      <div class="space-y-8 text-center lg:text-left">
+        <div class="inline-flex items-center gap-2 bg-white px-4 py-2 rounded-full border border-[#F59E0B]/20 shadow-sm reveal" style="--delay: 0;">
+          <i class="fas fa-child text-[#F59E0B] text-sm"></i>
+          <span class="text-sm font-medium text-[#F59E0B]">2025년 원아 모집 중</span>
+        </div>
 
-         <!-- Stats -->
-         <div class="flex items-center justify-center lg:justify-start gap-12 pt-8">
-            <div class="text-center bg-white p-4 rounded-2xl shadow-sm border border-[#F3F4F6] rotate-[-3deg]">
-               <p class="text-lg md:text-2xl font-rounded font-semibold text-[#4ADE80]">10:1</p>
-               <p class="text-xs font-semibold text-[#9CA3AF]">Teacher Ratio</p>
-            </div>
-            <div class="text-center bg-white p-4 rounded-2xl shadow-sm border border-[#F3F4F6] rotate-[2deg]">
-               <p class="text-lg md:text-2xl font-rounded font-semibold text-[#FF6B6B]">100%</p>
-               <p class="text-xs font-semibold text-[#9CA3AF]">Safety Care</p>
-            </div>
-            <div class="text-center bg-white p-4 rounded-2xl shadow-sm border border-[#F3F4F6]">
-               <p class="text-lg md:text-2xl font-rounded font-semibold text-[#FCD34D]">Organic</p>
-               <p class="text-xs font-semibold text-[#9CA3AF]">Daily Meals</p>
-            </div>
-         </div>
-       </div>
-       
-       <div class="relative order-1 lg:order-2 flex justify-center">
-          <div class="relative group cursor-pointer w-[300px] md:w-[450px]">
-             <!-- Blob Background -->
-             <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" class="absolute inset-0 w-full h-full text-[#E0E7FF] fill-current -z-10 transform scale-110">
-                <path d="M44.7,-76.4C58.9,-69.2,71.8,-59.1,79.6,-46.9C87.4,-34.7,90.1,-20.4,90.9,-6.2C91.7,8,90.6,22.1,83.8,34.1C77,46.1,64.5,56,51.7,63.2C38.9,70.4,25.8,74.9,11.8,77.3C-2.2,79.7,-17.1,80,-31.1,76.6C-45.1,73.2,-58.2,66.1,-68.8,55.4C-79.4,44.7,-87.5,30.4,-89.7,15.2C-91.9,0,-88.2,-16.1,-79.8,-29.6C-71.4,-43.1,-58.3,-54,-44.9,-61.5C-31.5,-69,-17.8,-73.1,-3.3,-73.7C11.2,-74.3,22.4,-71.4,44.7,-76.4Z" transform="translate(100 100)" />
-             </svg>
-             
-             <img src="https://images.unsplash.com/photo-1587652990173-fed31454e2cc?q=80&w=800" alt="Happy Kids" class="w-full h-auto object-cover rounded-2xl border-8 border-white shadow-2xl rotate-2 group-hover:rotate-0 transition duration-500">
-             
-             <!-- Sticker -->
-             <div class="absolute -bottom-6 -right-6 bg-white p-4 rounded-full shadow-xl border-4 border-[#FCD34D] animate-bounce-slow">
-                <span class="text-2xl">🧸</span>
-             </div>
+        <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mobile-title reveal" style="--delay: 1;">
+          아이들의 꿈이<br>
+          <span class="text-[#F59E0B]">자라는 곳</span>
+        </h1>
+
+        <p class="text-[#3D2E1C]/50 text-base md:text-lg leading-relaxed max-w-md mx-auto lg:mx-0 mobile-desc reveal" style="--delay: 2;">
+          해맑은 어린이집은 놀이 중심 교육으로 아이들의 창의력과 사회성을 키우며, 안전하고 행복한 보육 환경을 제공합니다.
+        </p>
+
+        <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start reveal" style="--delay: 3;">
+          <a href="#admission" class="inline-flex items-center justify-center gap-2 px-8 py-4 bg-[#F59E0B] text-white rounded-full font-semibold shadow-lg shadow-[#F59E0B]/25 hover:bg-[#D97706]">
+            <i class="fas fa-pencil-alt text-sm"></i> 입학 상담
+          </a>
+          <a href="#facility" class="inline-flex items-center justify-center gap-2 px-8 py-4 border border-[#F59E0B]/30 rounded-full font-semibold text-[#3D2E1C]/70 hover:border-[#F59E0B] hover:text-[#F59E0B]">
+            시설 둘러보기
+          </a>
+        </div>
+
+        <div class="flex items-center gap-8 justify-center lg:justify-start pt-4 reveal" style="--delay: 4;">
+          <div class="text-center">
+            <p class="text-2xl font-bold text-[#F59E0B]">12년</p>
+            <p class="text-xs text-[#3D2E1C]/40 mt-1">운영 경력</p>
           </div>
-       </div>
+          <div class="w-px h-8 bg-[#3D2E1C]/10"></div>
+          <div class="text-center">
+            <p class="text-2xl font-bold text-[#F59E0B]">1:5</p>
+            <p class="text-xs text-[#3D2E1C]/40 mt-1">교사:원아 비율</p>
+          </div>
+          <div class="w-px h-8 bg-[#3D2E1C]/10"></div>
+          <div class="text-center">
+            <p class="text-2xl font-bold text-[#F59E0B]">CCTV</p>
+            <p class="text-xs text-[#3D2E1C]/40 mt-1">실시간 공개</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="relative hidden lg:block reveal" style="--delay: 2;">
+        <img src="https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?q=80&w=800" alt="어린이" class="w-full h-[550px] object-cover rounded-3xl shadow-2xl">
+        <div class="absolute -bottom-6 -left-6 bg-white p-5 rounded-2xl shadow-xl border border-[#F59E0B]/10">
+          <div class="flex items-center gap-3">
+            <div class="w-12 h-12 bg-[#F59E0B]/10 rounded-full flex items-center justify-center">
+              <i class="fas fa-award text-[#F59E0B]"></i>
+            </div>
+            <div>
+              <p class="font-bold text-sm">평가인증 A등급</p>
+              <p class="text-xs text-[#3D2E1C]/40">보건복지부 인증</p>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </header>
 
-   <style>
-      @keyframes wiggle {
-         0%, 100% { transform: rotate(-3deg); }
-         50% { transform: rotate(3deg); }
-      }
-      .animate-wiggle { animation: wiggle 2s ease-in-out infinite; }
-      .animation-delay-2000 { animation-delay: 1s; }
-      @keyframes bounce-slow {
-         0%, 100% { transform: translateY(0); }
-         50% { transform: translateY(-10px); }
-      }
-      .animate-bounce-slow { animation: bounce-slow 3s ease-in-out infinite; }
-   </style>
-
-  <!-- Login Modal -->
-  <div id="parent-modal" class="fixed inset-0 z-[100] hidden items-center justify-center p-4 bg-[#FF6B6B]/20 backdrop-blur-md">
-    <div class="bg-white w-full max-w-sm p-10 shadow-[0_20px_50px_rgba(255,107,107,0.3)] relative rounded-[2.5rem] border-4 border-[#FF6B6B]/10">
-      <button onclick="toggleParentModal()" class="absolute top-6 right-6 text-[#9CA3AF] hover:text-[#FF6B6B] transition text-2xl font-rounded font-semibold">&times;</button>
-      
-      <div class="text-center mb-8">
-        <div class="w-16 h-16 bg-[#FFF5F5] rounded-full flex items-center justify-center text-2xl mx-auto mb-4 border-2 border-[#FF6B6B]/20">
-           🦄
-        </div>
-        <h2 class="text-lg md:text-2xl font-rounded font-semibold text-[#4B5563] mb-1">Parent Hub</h2>
-        <p class="text-[13px] text-[#FF6B6B] font-semibold uppercase tracking-wide bg-[#FFF5F5] inline-block px-3 py-1 rounded-lg">Secure Family Access</p>
+  <!-- ========== 프로그램 ========== -->
+  <section id="programs" class="py-24 md:py-32 bg-white">
+    <div class="max-w-7xl mx-auto px-4 md:px-8">
+      <div class="text-center mb-16">
+        <span class="text-sm font-semibold text-[#F59E0B] tracking-wider uppercase reveal" style="--delay: 0;">Programs</span>
+        <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mt-4 reveal" style="--delay: 1;">교육 프로그램</h2>
+        <p class="text-[#3D2E1C]/40 text-base mt-4 max-w-lg mx-auto reveal" style="--delay: 2;">놀이와 학습이 어우러진 균형 잡힌 교육 프로그램</p>
       </div>
-      
-      <div class="space-y-4">
-        <div>
-           <input type="text" placeholder="Kids Code (e.g. STAR-01)" class="w-full bg-[#F9FAFB] border-2 border-[#F3F4F6] rounded-2xl py-4 px-6 outline-none focus:border-[#FF6B6B] focus:bg-white transition text-[16px] font-rounded font-semibold text-[#4B5563] text-center placeholder-[#9CA3AF]">
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div class="program-card bg-[#FFFBEB] p-8 rounded-2xl border border-[#F59E0B]/10 reveal" style="--delay: 0;">
+          <div class="w-14 h-14 bg-[#F59E0B]/10 rounded-xl flex items-center justify-center mb-6">
+            <i class="fas fa-palette text-[#F59E0B] text-xl"></i>
+          </div>
+          <h3 class="text-lg font-bold mb-3">창의미술</h3>
+          <p class="text-sm text-[#3D2E1C]/40 leading-relaxed">다양한 재료와 기법으로 창의력과 표현력을 키우는 미술 활동.</p>
         </div>
-        
-        <button class="w-full bg-[#FF6B6B] text-white py-4 rounded-2xl font-rounded font-semibold text-[18px] shadow-[0_6px_0_#DC2626] hover:translate-y-1 hover:shadow-none transition-all">
-           Log In
-        </button>
-        
-        <div class="flex justify-center gap-10 pt-4 text-sm font-rounded font-semibold text-[#9CA3AF]">
-           <a href="#" class="hover:text-[#FF6B6B] transition">Apply</a>
-           <span>•</span>
-           <a href="#" class="hover:text-[#FF6B6B] transition">Help</a>
+
+        <div class="program-card bg-[#FFFBEB] p-8 rounded-2xl border border-[#F59E0B]/10 reveal" style="--delay: 1;">
+          <div class="w-14 h-14 bg-[#F59E0B]/10 rounded-xl flex items-center justify-center mb-6">
+            <i class="fas fa-music text-[#F59E0B] text-xl"></i>
+          </div>
+          <h3 class="text-lg font-bold mb-3">음악놀이</h3>
+          <p class="text-sm text-[#3D2E1C]/40 leading-relaxed">리듬, 노래, 악기 연주를 통해 감성과 표현력을 기릅니다.</p>
+        </div>
+
+        <div class="program-card bg-[#FFFBEB] p-8 rounded-2xl border border-[#F59E0B]/10 reveal" style="--delay: 2;">
+          <div class="w-14 h-14 bg-[#F59E0B]/10 rounded-xl flex items-center justify-center mb-6">
+            <i class="fas fa-seedling text-[#F59E0B] text-xl"></i>
+          </div>
+          <h3 class="text-lg font-bold mb-3">자연탐구</h3>
+          <p class="text-sm text-[#3D2E1C]/40 leading-relaxed">텃밭 가꾸기, 자연 관찰 등 자연과 함께하는 생태 교육.</p>
+        </div>
+
+        <div class="program-card bg-[#FFFBEB] p-8 rounded-2xl border border-[#F59E0B]/10 reveal" style="--delay: 3;">
+          <div class="w-14 h-14 bg-[#F59E0B]/10 rounded-xl flex items-center justify-center mb-6">
+            <i class="fas fa-book-reader text-[#F59E0B] text-xl"></i>
+          </div>
+          <h3 class="text-lg font-bold mb-3">독서놀이</h3>
+          <p class="text-sm text-[#3D2E1C]/40 leading-relaxed">그림책 읽기와 동화 구연으로 언어 능력을 발달시킵니다.</p>
         </div>
       </div>
     </div>
-  </div>
+  </section>
 
-  <footer class="py-20 md:py-32 bg-white text-center px-6 border-t border-[#F3F4F6]">
-     <div class="inline-flex flex-col items-center gap-6 mb-8">
-        <span class="text-3xl">🎈</span>
-        <span class="font-rounded font-semibold text-lg md:text-2xl text-[#4B5563]">Little<span class="text-[#FF6B6B]">Star</span></span>
-        <p class="text-[12px] font-semibold text-[#9CA3AF] uppercase tracking-wide">Premium Kids Education</p>
-     </div>
-     <p class="text-[10px] text-[#9CA3AF]/60 tracking-wider font-semibold">© 2024 LITTLE STAR. ALL RIGHTS RESERVED.</p>
+  <!-- ========== 시설 ========== -->
+  <section id="facility" class="py-24 md:py-32">
+    <div class="max-w-7xl mx-auto px-4 md:px-8">
+      <div class="text-center mb-16">
+        <span class="text-sm font-semibold text-[#F59E0B] tracking-wider uppercase reveal" style="--delay: 0;">Facility</span>
+        <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mt-4 reveal" style="--delay: 1;">안전한 보육 환경</h2>
+      </div>
+
+      <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+        <div class="overflow-hidden rounded-2xl group reveal" style="--delay: 0;">
+          <img src="https://images.unsplash.com/photo-1567057419565-4349c49d8a04?q=80&w=800" alt="교실" class="w-full aspect-square object-cover group-hover:scale-105 transition duration-700" loading="lazy">
+        </div>
+        <div class="overflow-hidden rounded-2xl md:row-span-2 group reveal" style="--delay: 1;">
+          <img src="https://images.unsplash.com/photo-1544776193-352d25ca82cd?q=80&w=800" alt="놀이터" class="w-full h-full object-cover group-hover:scale-105 transition duration-700" loading="lazy">
+        </div>
+        <div class="overflow-hidden rounded-2xl group reveal" style="--delay: 2;">
+          <img src="https://images.unsplash.com/photo-1596464716127-f2a82984de30?q=80&w=800" alt="도서실" class="w-full aspect-square object-cover group-hover:scale-105 transition duration-700" loading="lazy">
+        </div>
+        <div class="overflow-hidden rounded-2xl group reveal" style="--delay: 3;">
+          <img src="https://images.unsplash.com/photo-1580582932707-520aed937b7b?q=80&w=800" alt="급식실" class="w-full aspect-square object-cover group-hover:scale-105 transition duration-700" loading="lazy">
+        </div>
+        <div class="overflow-hidden rounded-2xl col-span-2 md:col-span-1 group reveal" style="--delay: 4;">
+          <img src="https://images.unsplash.com/photo-1564429238961-bf8e8d085e44?q=80&w=800" alt="체육관" class="w-full aspect-[2/1] md:aspect-square object-cover group-hover:scale-105 transition duration-700" loading="lazy">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== 교사진 ========== -->
+  <section id="teachers" class="py-24 md:py-32 bg-white">
+    <div class="max-w-7xl mx-auto px-4 md:px-8">
+      <div class="flex flex-col md:flex-row md:items-end md:justify-between mb-16 gap-6">
+        <div>
+          <span class="text-sm font-semibold text-[#F59E0B] tracking-wider uppercase reveal" style="--delay: 0;">Teachers</span>
+          <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mt-4 reveal" style="--delay: 1;">따뜻한 교사진</h2>
+        </div>
+        <p class="text-[#3D2E1C]/40 text-base max-w-sm reveal" style="--delay: 2;">아이들을 진심으로 사랑하는 전문 보육교사들입니다.</p>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div class="group reveal" style="--delay: 0;">
+          <div class="overflow-hidden rounded-2xl mb-5">
+            <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=600" alt="김해맑 원장" class="w-full aspect-[3/4] object-cover group-hover:scale-105 transition duration-700" loading="lazy">
+          </div>
+          <span class="text-xs font-semibold text-[#F59E0B] tracking-wider">원장</span>
+          <h3 class="text-xl font-bold mt-1">김해맑</h3>
+          <p class="text-sm text-[#3D2E1C]/40 mt-2">유아교육학 석사<br>보육교사 1급<br>12년 보육 경력</p>
+        </div>
+
+        <div class="group reveal" style="--delay: 1;">
+          <div class="overflow-hidden rounded-2xl mb-5">
+            <img src="https://images.unsplash.com/photo-1594744803329-e58b31de8bf5?q=80&w=600" alt="이밝은 교사" class="w-full aspect-[3/4] object-cover group-hover:scale-105 transition duration-700" loading="lazy">
+          </div>
+          <span class="text-xs font-semibold text-[#F59E0B] tracking-wider">수석교사</span>
+          <h3 class="text-xl font-bold mt-1">이밝은</h3>
+          <p class="text-sm text-[#3D2E1C]/40 mt-2">유아교육학 학사<br>보육교사 1급<br>8년 보육 경력</p>
+        </div>
+
+        <div class="group reveal" style="--delay: 2;">
+          <div class="overflow-hidden rounded-2xl mb-5">
+            <img src="https://images.unsplash.com/photo-1580894732444-8ecded7900cd?q=80&w=600" alt="박사랑 교사" class="w-full aspect-[3/4] object-cover group-hover:scale-105 transition duration-700" loading="lazy">
+          </div>
+          <span class="text-xs font-semibold text-[#F59E0B] tracking-wider">교사</span>
+          <h3 class="text-xl font-bold mt-1">박사랑</h3>
+          <p class="text-sm text-[#3D2E1C]/40 mt-2">아동복지학 학사<br>보육교사 2급<br>5년 보육 경력</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== 학부모 후기 ========== -->
+  <section class="py-24 md:py-32">
+    <div class="max-w-7xl mx-auto px-4 md:px-8">
+      <div class="text-center mb-16">
+        <span class="text-sm font-semibold text-[#F59E0B] tracking-wider uppercase reveal" style="--delay: 0;">Reviews</span>
+        <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mt-4 reveal" style="--delay: 1;">학부모 후기</h2>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+        <div class="bg-white p-8 rounded-2xl shadow-sm border border-[#F59E0B]/10 reveal" style="--delay: 0;">
+          <div class="flex items-center gap-1 text-[#F59E0B] mb-4">
+            <i class="fas fa-star text-xs"></i><i class="fas fa-star text-xs"></i><i class="fas fa-star text-xs"></i><i class="fas fa-star text-xs"></i><i class="fas fa-star text-xs"></i>
+          </div>
+          <p class="text-sm text-[#3D2E1C]/60 leading-relaxed italic">"아이가 매일 어린이집 가고 싶다고 해요. 선생님들이 정말 따뜻하게 대해주시는 것 같습니다."</p>
+          <p class="text-sm font-bold mt-4">김OO 학부모님</p>
+          <p class="text-xs text-[#3D2E1C]/30">만 4세 원아 학부모</p>
+        </div>
+
+        <div class="bg-white p-8 rounded-2xl shadow-sm border border-[#F59E0B]/10 reveal" style="--delay: 1;">
+          <div class="flex items-center gap-1 text-[#F59E0B] mb-4">
+            <i class="fas fa-star text-xs"></i><i class="fas fa-star text-xs"></i><i class="fas fa-star text-xs"></i><i class="fas fa-star text-xs"></i><i class="fas fa-star text-xs"></i>
+          </div>
+          <p class="text-sm text-[#3D2E1C]/60 leading-relaxed italic">"급식이 정말 건강하고 맛있어요. CCTV도 실시간으로 볼 수 있어서 안심됩니다."</p>
+          <p class="text-sm font-bold mt-4">박OO 학부모님</p>
+          <p class="text-xs text-[#3D2E1C]/30">만 3세 원아 학부모</p>
+        </div>
+
+        <div class="bg-white p-8 rounded-2xl shadow-sm border border-[#F59E0B]/10 reveal" style="--delay: 2;">
+          <div class="flex items-center gap-1 text-[#F59E0B] mb-4">
+            <i class="fas fa-star text-xs"></i><i class="fas fa-star text-xs"></i><i class="fas fa-star text-xs"></i><i class="fas fa-star text-xs"></i><i class="fas fa-star text-xs"></i>
+          </div>
+          <p class="text-sm text-[#3D2E1C]/60 leading-relaxed italic">"자연탐구 프로그램 덕분에 아이가 식물에 관심이 많아졌어요. 교육 프로그램이 정말 좋습니다."</p>
+          <p class="text-sm font-bold mt-4">이OO 학부모님</p>
+          <p class="text-xs text-[#3D2E1C]/30">만 5세 원아 학부모</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== 입학안내 ========== -->
+  <section id="admission" class="py-24 md:py-32 bg-gradient-to-br from-[#F59E0B] to-[#D97706] text-white relative overflow-hidden">
+    <div class="absolute top-0 left-0 w-96 h-96 bg-white/5 rounded-full blur-[100px]"></div>
+
+    <div class="max-w-4xl mx-auto px-4 md:px-8 relative z-10">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold reveal" style="--delay: 0;">입학 상담 신청</h2>
+        <p class="text-white/70 text-base mt-4 reveal" style="--delay: 1;">해맑은 어린이집에서 아이의 행복한 내일을 시작하세요</p>
+      </div>
+
+      <div class="bg-white/10 backdrop-blur-xl rounded-3xl p-8 md:p-12 reveal" style="--delay: 2;">
+        <div class="grid md:grid-cols-2 gap-6">
+          <div>
+            <label class="block text-sm font-medium text-white/80 mb-2">보호자 이름</label>
+            <input type="text" placeholder="홍길동" class="w-full bg-white/10 border border-white/20 rounded-xl px-5 py-3.5 text-white placeholder-white/40 outline-none focus:border-white/60 transition">
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-white/80 mb-2">연락처</label>
+            <input type="tel" placeholder="010-0000-0000" class="w-full bg-white/10 border border-white/20 rounded-xl px-5 py-3.5 text-white placeholder-white/40 outline-none focus:border-white/60 transition">
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-white/80 mb-2">아이 나이</label>
+            <select class="w-full bg-white/10 border border-white/20 rounded-xl px-5 py-3.5 text-white outline-none focus:border-white/60 transition">
+              <option value="">선택해주세요</option>
+              <option>만 1세</option>
+              <option>만 2세</option>
+              <option>만 3세</option>
+              <option>만 4세</option>
+              <option>만 5세</option>
+            </select>
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-white/80 mb-2">희망 입학 시기</label>
+            <input type="month" class="w-full bg-white/10 border border-white/20 rounded-xl px-5 py-3.5 text-white outline-none focus:border-white/60 transition">
+          </div>
+          <div class="md:col-span-2">
+            <label class="block text-sm font-medium text-white/80 mb-2">추가 문의사항</label>
+            <textarea rows="3" placeholder="궁금한 점을 적어주세요" class="w-full bg-white/10 border border-white/20 rounded-xl px-5 py-3.5 text-white placeholder-white/40 outline-none focus:border-white/60 transition resize-none"></textarea>
+          </div>
+        </div>
+        <button class="w-full mt-8 bg-white text-[#F59E0B] py-4 rounded-full font-bold text-lg hover:bg-[#FFFBEB] shadow-lg">상담 신청하기</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== Footer ========== -->
+  <footer class="py-16 md:py-24 bg-[#1C1610] text-white">
+    <div class="max-w-7xl mx-auto px-4 md:px-8">
+      <div class="grid md:grid-cols-3 gap-12 mb-16">
+        <div>
+          <div class="flex items-center gap-2 mb-4">
+            <div class="w-8 h-8 bg-[#F59E0B] rounded-xl flex items-center justify-center"><i class="fas fa-sun text-white text-xs"></i></div>
+            <span class="font-display font-extrabold text-lg">해맑은 어린이집</span>
+          </div>
+          <p class="text-white/30 text-sm leading-relaxed">서울특별시 송파구 올림픽로 300<br>해맑은 빌딩 1-2층</p>
+          <p class="text-white/30 text-sm mt-2">원장: 김해맑 | 사업자등록번호: 890-12-34567</p>
+        </div>
+
+        <div class="grid grid-cols-2 gap-8">
+          <div>
+            <p class="text-xs font-semibold text-white/20 uppercase tracking-wider mb-4">프로그램</p>
+            <ul class="space-y-2.5">
+              <li><a href="#programs" class="text-white/40 text-sm hover:text-[#F59E0B] transition">창의미술</a></li>
+              <li><a href="#programs" class="text-white/40 text-sm hover:text-[#F59E0B] transition">음악놀이</a></li>
+              <li><a href="#programs" class="text-white/40 text-sm hover:text-[#F59E0B] transition">자연탐구</a></li>
+              <li><a href="#programs" class="text-white/40 text-sm hover:text-[#F59E0B] transition">독서놀이</a></li>
+            </ul>
+          </div>
+          <div>
+            <p class="text-xs font-semibold text-white/20 uppercase tracking-wider mb-4">정보</p>
+            <ul class="space-y-2.5">
+              <li><a href="#facility" class="text-white/40 text-sm hover:text-[#F59E0B] transition">시설</a></li>
+              <li><a href="#teachers" class="text-white/40 text-sm hover:text-[#F59E0B] transition">교사진</a></li>
+              <li><a href="#admission" class="text-white/40 text-sm hover:text-[#F59E0B] transition">입학</a></li>
+              <li><a href="#" class="text-white/40 text-sm hover:text-[#F59E0B] transition">공지사항</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <div>
+          <p class="text-xs font-semibold text-white/20 uppercase tracking-wider mb-4">연락처</p>
+          <p class="text-xl font-bold text-[#F59E0B]">02-888-1234</p>
+          <p class="text-white/30 text-sm mt-2">평일 07:30 - 19:30</p>
+          <div class="flex gap-3 mt-4">
+            <a href="#" class="w-10 h-10 bg-white/5 rounded-lg flex items-center justify-center text-white/40 hover:text-[#F59E0B] hover:bg-white/10 transition"><i class="fab fa-instagram text-sm"></i></a>
+            <a href="#" class="w-10 h-10 bg-white/5 rounded-lg flex items-center justify-center text-white/40 hover:text-[#F59E0B] hover:bg-white/10 transition"><i class="fas fa-blog text-sm"></i></a>
+          </div>
+        </div>
+      </div>
+
+      <div class="border-t border-white/5 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+        <p class="text-xs text-white/15">&copy; 2024 해맑은 어린이집. All rights reserved by DLAB.</p>
+        <div class="flex gap-6">
+          <a href="#" class="text-xs text-white/15 hover:text-white/30 transition">개인정보처리방침</a>
+          <a href="#" class="text-xs text-white/15 hover:text-white/30 transition">이용약관</a>
+        </div>
+      </div>
+    </div>
   </footer>
 
-  <script>
-    function toggleParentModal() {
-      const modal = document.getElementById('parent-modal');
-      modal.classList.toggle('hidden');
-      modal.classList.toggle('flex');
-    }
-  </script>
-
 </div>
+
+<script>
+  (function() {
+    const observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+    document.querySelectorAll('.reveal').forEach(function(el) { observer.observe(el); });
+  })();
+</script>

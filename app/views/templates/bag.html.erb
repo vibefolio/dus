@@ -1,149 +1,318 @@
-<%# Bag Template - 마로캥 (MAROQUIN) %>
+<%# Bag Template - LUMIN (가방/액세서리) %>
 
 <style>
-  /* Supanova Design Upgrade */
+  /* Supanova Design — Luxury Leather Goods Archetype */
   * { word-break: keep-all; }
-  html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+  html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
   h1, h2, h3, h4 { text-wrap: balance; letter-spacing: -0.02em; line-height: 1.3; }
-  a, button { transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1); }
+  a, button { transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1); }
   a:hover, button:hover { transform: scale(1.02); }
   a:active, button:active { transform: scale(0.98); }
 
-  @import url('https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,600;1,6..96,400&family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap');
-  
-  .font-fashion { font-family: 'Bodoni Moda', serif; }
-  .font-sans { font-family: 'Pretendard Variable', 'Pretendard', -apple-system, sans-serif; }
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap');
+
+  .font-sans { font-family: 'Pretendard Variable', 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, sans-serif; }
+  .font-playfair { font-family: 'Playfair Display', serif; }
 
   @media (max-width: 768px) {
     .mobile-desc { font-size: 14px !important; line-height: 1.8; }
     .mobile-title { font-size: 40px !important; }
   }
 
-  .leather-texture {
-    background: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.08'/%3E%3C/svg%3E");
-    background-color: #2D1B15;
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(2rem); filter: blur(4px); }
+    to { opacity: 1; transform: translateY(0); filter: blur(0); }
   }
+  .reveal { opacity: 0; transform: translateY(2rem); }
+  .reveal.is-visible { animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards; animation-delay: calc(var(--delay, 0) * 100ms); }
+
+  .bag-card { transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1); }
+  .bag-card:hover { transform: translateY(-6px); }
+  .bag-card:hover img { transform: scale(1.04); }
 </style>
 
-<div class="bg-[#F5F2EF] text-[#2D1B15] font-sans selection:bg-[#8D6E63] selection:text-white min-h-screen overflow-x-hidden relative">
-  
-  <!-- Nav -->
-  <nav class="fixed w-full z-50 px-8 py-6 bg-[#F5F2EF]/90 backdrop-blur-md border-b border-[#2D1B15]/10">
-    <div class="container mx-auto px-4 md:px-6 flex justify-between items-center flex-nowrap">
-      <div class="flex items-center gap-6">
-         <span class="font-fashion font-semibold text-2xl tracking-[0.1em] text-[#2D1B15]">Maro<span class="italic">quin</span></span>
-      </div>
-      
-      <div class="hidden md:flex gap-16 text-[11px] font-sans font-medium tracking-[0.2em] text-[#8D6E63] uppercase">
-        <a href="#collection" class="hover:text-[#2D1B15] transition">Collection</a>
-        <a href="#craftsmanship" class="hover:text-[#2D1B15] transition">Craftsmanship</a>
-        <a href="#boutique" class="hover:text-[#2D1B15] transition">Boutique</a>
-      </div>
-           <button class="mobile-menu-trigger md:hidden ml-auto text-2xl focus:outline-none" style="color: inherit;">
-             <i class="fas fa-bars"></i>
-           </button>
+<div class="bg-[#FAF8F5] text-[#2C2C2C] font-sans selection:bg-[#8B6914] selection:text-white min-h-screen overflow-x-hidden">
 
-      
-      <div class="flex-nowrap shrink-0 flex gap-6 items-center">
-         <button onclick="toggleBagModal()" class="hidden md:block text-[11px] font-sans font-semibold uppercase tracking-[0.2em] text-[#8D6E63] hover:text-[#2D1B15]" data-mobile-menu-copy="true">VIP Lounge</button>
-         <button class="hidden md:inline-flex bg-[#2D1B15] text-[#F5F2EF] px-3 py-2 text-xs md:text-sm md:px-6 md:py-2.5 whitespace-nowrap rounded-none font-fashion font-medium text-xs tracking-wide uppercase hover:bg-[#8D6E63] transition shadow-lg" data-mobile-menu-copy="true">
-           Shop Now
-         </button>
+  <!-- ========== Nav ========== -->
+  <nav class="fixed w-full z-50 px-4 md:px-8 py-6 bg-[#FAF8F5]/80 backdrop-blur-xl border-b border-[#8B6914]/5">
+    <div class="max-w-7xl mx-auto flex justify-between items-center">
+      <a href="#" class="font-playfair text-2xl font-semibold tracking-[0.1em] text-[#8B6914]">LUMIN</a>
+
+      <div class="hidden md:flex gap-12 text-[10px] font-semibold uppercase tracking-[0.4em] text-[#2C2C2C]/30">
+        <a href="#collection" class="hover:text-[#8B6914] transition">컬렉션</a>
+        <a href="#craftsmanship" class="hover:text-[#8B6914] transition">장인정신</a>
+        <a href="#materials" class="hover:text-[#8B6914] transition">소재</a>
+        <a href="#store" class="hover:text-[#8B6914] transition">매장</a>
+      </div>
+
+      <button class="mobile-menu-trigger md:hidden ml-auto text-2xl focus:outline-none" style="color: inherit;">
+        <i class="fas fa-bars"></i>
+      </button>
+
+      <div class="hidden md:flex gap-5 items-center shrink-0">
+        <button onclick="toggleBagModal()" class="text-[10px] font-semibold text-[#2C2C2C]/30 hover:text-[#8B6914] tracking-[0.3em] uppercase" data-mobile-menu-copy="true">Account</button>
+        <a href="#" class="text-[#2C2C2C]/30 hover:text-[#8B6914] transition"><i class="fas fa-shopping-bag"></i></a>
       </div>
     </div>
 
-      <%= render partial: 'templates/shared/mobile_menu_overlay' %></nav>
+    <%= render partial: 'templates/shared/mobile_menu_overlay' %>
+  </nav>
 
-  <!-- Hero -->
-  <header class="min-h-screen relative flex items-center justify-center pt-24 overflow-hidden">
-    
-    <div class="container mx-auto px-3 md:px-6 relative z-10 grid lg:grid-cols-2 gap-12 md:p-20 items-center h-full">
-      <div class="space-y-12 text-center lg:text-left order-2 lg:order-1">
-        <div class="inline-flex items-center gap-3 border-b border-[#2D1B15] pb-2">
-           <span class="text-[11px] font-semibold text-[#2D1B15] uppercase tracking-[0.2em]">Artisan Leather Goods</span>
+  <!-- ========== Hero ========== -->
+  <header class="min-h-[100dvh] relative flex items-center pt-20">
+    <div class="absolute top-20 right-0 w-[500px] h-[500px] bg-[#8B6914]/5 rounded-full blur-[120px]"></div>
+
+    <div class="max-w-7xl mx-auto px-4 md:px-8 relative z-10 grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+      <div class="space-y-8 text-center lg:text-left">
+        <div class="inline-flex items-center gap-4 reveal" style="--delay: 0;">
+          <span class="w-12 h-[1px] bg-[#8B6914]"></span>
+          <span class="text-[10px] font-semibold tracking-[0.5em] uppercase text-[#8B6914]">Handcrafted Luxury</span>
         </div>
-        
-        <h1 class="text-2xl md:text-4xl md:text-7xl font-fashion font-normal leading-[1.0] text-[#2D1B15] mobile-title">
-           Time<br>
-           Crafted in<br>
-           <span class="italic text-[#8D6E63]">Leather.</span>
+
+        <h1 class="text-4xl md:text-5xl lg:text-[4.5rem] font-playfair font-semibold leading-tight tracking-tight mobile-title reveal" style="--delay: 1;">
+          빛나는 순간,<br><span class="italic text-[#8B6914]">LUMIN.</span>
         </h1>
-        
-        <p class="text-[#8D6E63] text-sm md:text-lg leading-relaxed max-w-md mx-auto lg:mx-0 mobile-desc font-light">
-           시간이 흐를수록 깊어지는 가치.<br>
-           마로캥은 당신의 삶과 함께 익어갑니다.
+
+        <p class="text-[#2C2C2C]/40 text-base md:text-lg leading-relaxed max-w-md mx-auto lg:mx-0 mobile-desc reveal" style="--delay: 2;">
+          최상급 가죽과 장인의 손끝에서 탄생하는 LUMIN의 가방은 시간이 지날수록 깊어지는 아름다움을 선사합니다.
         </p>
-        
-        <div class="flex flex-col sm:flex-row gap-10 justify-center lg:justify-start pt-6">
-           <button class="px-10 py-4 bg-[#8D6E63] text-[#F5F2EF] font-fashion text-lg hover:bg-[#2D1B15] transition shadow-xl rounded-none">
-              Explore 2024 F/W
-           </button>
-           <button class="px-10 py-4 border border-[#2D1B15]/30 text-[#2D1B15] font-fashion text-lg hover:border-[#2D1B15] transition rounded-none">
-              Atelier Story
-           </button>
+
+        <div class="pt-4 flex flex-col sm:flex-row gap-4 justify-center lg:justify-start reveal" style="--delay: 3;">
+          <a href="#collection" class="inline-flex items-center justify-center gap-3 px-10 py-4 bg-[#8B6914] text-white font-semibold text-[10px] tracking-[0.4em] uppercase hover:bg-[#2C2C2C] rounded-full shadow-lg shadow-[#8B6914]/15">
+            컬렉션 보기 <i class="fas fa-arrow-right text-[9px]"></i>
+          </a>
+          <a href="#craftsmanship" class="inline-flex items-center justify-center px-10 py-4 border border-[#8B6914]/20 text-[#8B6914] font-semibold text-[10px] tracking-[0.4em] uppercase hover:bg-[#8B6914]/5 rounded-full">
+            장인정신
+          </a>
         </div>
       </div>
-      
-      <div class="relative order-1 lg:order-2 h-full flex items-center justify-center">
-         <div class="relative w-[400px] h-[500px]">
-             <!-- Leather Texture Background -->
-             <div class="absolute inset-0 leather-texture transform translate-x-6 translate-y-6"></div>
-             
-             <div class="absolute inset-6 border border-[#F5F2EF]/20 z-10"></div>
-             
-             <img src="https://images.unsplash.com/photo-1548036328-c9fa89d128fa?q=80&w=800" alt="Premium Leather Bag" class="w-full h-full object-cover shadow-2xl relative z-20 hover:scale-[1.02] transition duration-700">
-             
-             <div class="absolute top-10 -left-10 bg-[#F5F2EF] p-4 shadow-xl z-30 border border-[#2D1B15]/10 max-w-[150px]">
-                <p class="font-fashion text-sm text-[#2D1B15] font-semibold">LIMITED</p>
-                <p class="text-[10px] uppercase text-[#8D6E63] tracking-wide leading-relaxed">Hand-Stitched in Seoul</p>
-             </div>
-         </div>
+
+      <div class="relative reveal" style="--delay: 1;">
+        <img src="https://images.unsplash.com/photo-1548036328-c9fa89d128fa?q=80&w=1200" alt="LUMIN 가방" class="w-full aspect-[4/5] object-cover rounded-[2rem]" loading="eager">
       </div>
     </div>
   </header>
 
-  <!-- Login Modal -->
-  <div id="bag-modal" class="fixed inset-0 z-[100] hidden items-center justify-center p-4 bg-[#2D1B15]/80 backdrop-blur-sm">
-    <div class="bg-[#F5F2EF] w-full max-w-sm p-14 shadow-2xl relative border border-[#8D6E63]">
-      <button onclick="toggleBagModal()" class="absolute top-8 right-8 text-[#8D6E63] hover:text-[#2D1B15] transition text-2xl font-fashion">&times;</button>
-      
-      <div class="text-center mb-12">
-        <h2 class="text-2xl font-fashion text-[#2D1B15] mb-2 italic">VIP Lounge</h2>
-        <p class="text-[10px] text-[#8D6E63] font-semibold tracking-[0.3em] uppercase">Private Collection Access</p>
+  <!-- ========== About ========== -->
+  <section id="about" class="py-24 md:py-32 bg-white">
+    <div class="max-w-5xl mx-auto px-4 md:px-8 text-center">
+      <span class="text-[10px] font-semibold tracking-[0.5em] uppercase text-[#8B6914] reveal" style="--delay: 0;">Maison LUMIN</span>
+      <h2 class="text-3xl md:text-4xl lg:text-5xl font-playfair font-semibold leading-snug mt-6 reveal" style="--delay: 1;">
+        시간이 증명하는<br>가치
+      </h2>
+      <p class="text-[#2C2C2C]/40 text-base md:text-lg mt-6 max-w-2xl mx-auto leading-relaxed reveal" style="--delay: 2;">
+        2015년 서울에서 시작된 LUMIN은 최상급 이탈리아 가죽과 한국 장인의 섬세한 기술을 결합하여 시간이 흘러도 빛나는 가방을 만듭니다. 모든 제품은 하나하나 수작업으로 완성됩니다.
+      </p>
+      <div class="grid grid-cols-3 gap-8 max-w-xl mx-auto mt-14 pt-10 border-t border-[#8B6914]/10">
+        <div class="reveal" style="--delay: 0;"><p class="text-2xl font-playfair font-semibold text-[#8B6914]">100%</p><p class="text-[11px] text-[#2C2C2C]/30 mt-1">이탈리아 풀그레인</p></div>
+        <div class="reveal" style="--delay: 1;"><p class="text-2xl font-playfair font-semibold text-[#8B6914]">72h</p><p class="text-[11px] text-[#2C2C2C]/30 mt-1">제작 소요 시간</p></div>
+        <div class="reveal" style="--delay: 2;"><p class="text-2xl font-playfair font-semibold text-[#8B6914]">평생</p><p class="text-[11px] text-[#2C2C2C]/30 mt-1">무상 A/S</p></div>
       </div>
-      
-      <div class="space-y-8">
-        <div>
-           <input type="text" placeholder="MEMBERSHIP ID" class="w-full bg-transparent border-b border-[#8D6E63] py-3 px-5 outline-none focus:border-[#2D1B15] transition text-sm font-fashion text-[#2D1B15] text-center placeholder-[#8D6E63]/50 tracking-[0.2em]">
+    </div>
+  </section>
+
+  <!-- ========== Collection ========== -->
+  <section id="collection" class="py-24 md:py-32">
+    <div class="max-w-7xl mx-auto px-4 md:px-8">
+      <div class="text-center mb-16">
+        <span class="text-[10px] font-semibold tracking-[0.5em] uppercase text-[#8B6914] reveal" style="--delay: 0;">Collection</span>
+        <h2 class="text-3xl md:text-4xl lg:text-5xl font-playfair font-semibold leading-snug mt-6 reveal" style="--delay: 1;">2026 컬렉션</h2>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div class="bag-card group reveal" style="--delay: 0;">
+          <div class="overflow-hidden rounded-2xl mb-5 bg-[#F0EDE8]"><img src="https://images.unsplash.com/photo-1584917865442-de89df76afd3?q=80&w=600" alt="토트백" class="w-full aspect-[3/4] object-cover transition-transform duration-700" loading="lazy" decoding="async"></div>
+          <p class="text-[10px] text-[#8B6914] font-semibold uppercase tracking-[0.3em]">Tote</p>
+          <h3 class="font-semibold text-base mt-1">클래식 토트</h3>
+          <p class="text-[#2C2C2C]/40 text-sm mt-1 font-playfair">&#8361;890,000</p>
         </div>
-        
-        <button class="w-full bg-[#2D1B15] text-[#F5F2EF] py-4 text-[11px] tracking-[0.3em] font-sans font-semibold uppercase hover:bg-[#8D6E63] transition shadow-lg rounded-none">
-           Enter
-        </button>
-        
-        <div class="flex justify-center gap-10 pt-2 text-[#8D6E63] text-[10px] tracking-wide uppercase font-sans font-semibold">
-           <a href="#" class="hover:text-[#2D1B15] transition">Apply</a>
-           <span>|</span>
-           <a href="#" class="hover:text-[#2D1B15] transition">Concierge</a>
+        <div class="bag-card group reveal" style="--delay: 1;">
+          <div class="overflow-hidden rounded-2xl mb-5 bg-[#F0EDE8]"><img src="https://images.unsplash.com/photo-1590874103328-eac38a683ce7?q=80&w=600" alt="크로스백" class="w-full aspect-[3/4] object-cover transition-transform duration-700" loading="lazy" decoding="async"></div>
+          <p class="text-[10px] text-[#8B6914] font-semibold uppercase tracking-[0.3em]">Crossbody</p>
+          <h3 class="font-semibold text-base mt-1">미니 크로스</h3>
+          <p class="text-[#2C2C2C]/40 text-sm mt-1 font-playfair">&#8361;580,000</p>
+        </div>
+        <div class="bag-card group reveal" style="--delay: 2;">
+          <div class="overflow-hidden rounded-2xl mb-5 bg-[#F0EDE8]"><img src="https://images.unsplash.com/photo-1553062407-98eeb64c6a62?q=80&w=600" alt="백팩" class="w-full aspect-[3/4] object-cover transition-transform duration-700" loading="lazy" decoding="async"></div>
+          <p class="text-[10px] text-[#8B6914] font-semibold uppercase tracking-[0.3em]">Backpack</p>
+          <h3 class="font-semibold text-base mt-1">시티 백팩</h3>
+          <p class="text-[#2C2C2C]/40 text-sm mt-1 font-playfair">&#8361;720,000</p>
+        </div>
+        <div class="bag-card group reveal" style="--delay: 3;">
+          <div class="overflow-hidden rounded-2xl mb-5 bg-[#F0EDE8]"><img src="https://images.unsplash.com/photo-1594223274512-ad4803739b7c?q=80&w=600" alt="클러치" class="w-full aspect-[3/4] object-cover transition-transform duration-700" loading="lazy" decoding="async"></div>
+          <p class="text-[10px] text-[#8B6914] font-semibold uppercase tracking-[0.3em]">Clutch</p>
+          <h3 class="font-semibold text-base mt-1">이브닝 클러치</h3>
+          <p class="text-[#2C2C2C]/40 text-sm mt-1 font-playfair">&#8361;450,000</p>
         </div>
       </div>
     </div>
-  </div>
+  </section>
 
-  <footer class="py-20 md:py-32 bg-[#F5F2EF] text-center px-6 border-t border-[#2D1B15]/10">
-     <div class="inline-flex flex-col items-center gap-10 mb-8">
-        <span class="font-fashion font-semibold text-2xl tracking-[0.1em] text-[#2D1B15]">Maro<span class="italic text-[#8D6E63]">quin</span></span>
-        <span class="text-[10px] font-semibold text-[#8D6E63] tracking-[0.4em] uppercase">Est. 2024</span>
-     </div>
-     <p class="text-[10px] text-[#8D6E63]/50 tracking-[0.5em] uppercase px-6">© 2024 MAROQUIN. SEOUL.</p>
+  <!-- ========== Craftsmanship ========== -->
+  <section id="craftsmanship" class="py-24 md:py-32 bg-[#2C2C2C] text-white">
+    <div class="max-w-7xl mx-auto px-4 md:px-8 grid lg:grid-cols-2 gap-16 items-center">
+      <div class="relative reveal" style="--delay: 0;">
+        <img src="https://images.unsplash.com/photo-1558618666-fcd25c85f82e?q=80&w=800" alt="장인 작업" class="w-full aspect-[4/5] object-cover rounded-2xl" loading="lazy" decoding="async">
+      </div>
+      <div class="space-y-8 reveal" style="--delay: 1;">
+        <span class="text-[10px] font-semibold tracking-[0.5em] uppercase text-[#8B6914]">Craftsmanship</span>
+        <h2 class="text-3xl md:text-4xl lg:text-5xl font-playfair font-semibold leading-snug">
+          한 땀 한 땀,<br>장인의 손끝에서
+        </h2>
+        <p class="text-white/40 text-base md:text-lg leading-relaxed">
+          LUMIN의 모든 가방은 30년 이상 경력의 가죽 장인이 직접 재단하고 봉제합니다. 기계가 대체할 수 없는 섬세함, 그것이 LUMIN의 차별점입니다.
+        </p>
+        <div class="grid grid-cols-2 gap-4">
+          <div class="border border-white/10 rounded-xl p-5">
+            <p class="font-playfair text-2xl text-[#8B6914] font-semibold">01</p>
+            <p class="font-semibold text-sm mt-2">가죽 선별</p>
+            <p class="text-white/30 text-[12px] mt-1">최상위 5%의 풀그레인 가죽만을 엄선</p>
+          </div>
+          <div class="border border-white/10 rounded-xl p-5">
+            <p class="font-playfair text-2xl text-[#8B6914] font-semibold">02</p>
+            <p class="font-semibold text-sm mt-2">수작업 재단</p>
+            <p class="text-white/30 text-[12px] mt-1">장인이 직접 패턴을 그리고 재단</p>
+          </div>
+          <div class="border border-white/10 rounded-xl p-5">
+            <p class="font-playfair text-2xl text-[#8B6914] font-semibold">03</p>
+            <p class="font-semibold text-sm mt-2">핸드 스티칭</p>
+            <p class="text-white/30 text-[12px] mt-1">하나하나 손으로 봉제하는 정교함</p>
+          </div>
+          <div class="border border-white/10 rounded-xl p-5">
+            <p class="font-playfair text-2xl text-[#8B6914] font-semibold">04</p>
+            <p class="font-semibold text-sm mt-2">마감 & 검수</p>
+            <p class="text-white/30 text-[12px] mt-1">3단계 품질 검수로 완벽을 추구</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== Materials ========== -->
+  <section id="materials" class="py-24 md:py-32 bg-white">
+    <div class="max-w-7xl mx-auto px-4 md:px-8">
+      <div class="text-center mb-16">
+        <span class="text-[10px] font-semibold tracking-[0.5em] uppercase text-[#8B6914] reveal" style="--delay: 0;">Materials</span>
+        <h2 class="text-3xl md:text-4xl lg:text-5xl font-playfair font-semibold leading-snug mt-6 reveal" style="--delay: 1;">최상급 소재</h2>
+      </div>
+      <div class="grid md:grid-cols-3 gap-8">
+        <div class="text-center reveal" style="--delay: 0;">
+          <div class="w-full aspect-square rounded-full overflow-hidden mb-6 mx-auto max-w-[200px]">
+            <img src="https://images.unsplash.com/photo-1563013544-824ae1b704d3?q=80&w=400" alt="풀그레인 가죽" class="w-full h-full object-cover" loading="lazy" decoding="async">
+          </div>
+          <h3 class="font-semibold text-lg">이탈리아 풀그레인</h3>
+          <p class="text-[#2C2C2C]/40 text-[13px] mt-2 max-w-xs mx-auto">토스카나 지역에서 전통 방식으로 무두질한 최상급 풀그레인 가죽. 사용할수록 깊은 광택이 나타납니다.</p>
+        </div>
+        <div class="text-center reveal" style="--delay: 1;">
+          <div class="w-full aspect-square rounded-full overflow-hidden mb-6 mx-auto max-w-[200px]">
+            <img src="https://images.unsplash.com/photo-1618220179428-22790b461013?q=80&w=400" alt="황동 하드웨어" class="w-full h-full object-cover" loading="lazy" decoding="async">
+          </div>
+          <h3 class="font-semibold text-lg">솔리드 황동 금구</h3>
+          <p class="text-[#2C2C2C]/40 text-[13px] mt-2 max-w-xs mx-auto">변색 없는 솔리드 황동 하드웨어. 무광 골드 마감으로 고급스러운 디테일을 완성합니다.</p>
+        </div>
+        <div class="text-center reveal" style="--delay: 2;">
+          <div class="w-full aspect-square rounded-full overflow-hidden mb-6 mx-auto max-w-[200px]">
+            <img src="https://images.unsplash.com/photo-1558171813-4c088753af8f?q=80&w=400" alt="실크 안감" class="w-full h-full object-cover" loading="lazy" decoding="async">
+          </div>
+          <h3 class="font-semibold text-lg">실크 트윌 안감</h3>
+          <p class="text-[#2C2C2C]/40 text-[13px] mt-2 max-w-xs mx-auto">내부까지 최고급 실크 트윌 안감으로 마감. 가방을 열 때마다 특별한 경험을 선사합니다.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== Store ========== -->
+  <section id="store" class="py-24 md:py-32">
+    <div class="max-w-7xl mx-auto px-4 md:px-8 grid lg:grid-cols-2 gap-16 items-center">
+      <div class="space-y-8 reveal" style="--delay: 0;">
+        <span class="text-[10px] font-semibold tracking-[0.5em] uppercase text-[#8B6914]">Boutique</span>
+        <h2 class="text-3xl md:text-4xl font-playfair font-semibold leading-snug">청담 부티크</h2>
+        <p class="text-[#2C2C2C]/40 text-base leading-relaxed">LUMIN의 전 컬렉션을 직접 만나보실 수 있는 유일한 공간입니다. 전문 컨설턴트가 1:1로 상담해드립니다.</p>
+        <div class="space-y-4 text-[#2C2C2C]/50">
+          <p><i class="fas fa-map-marker-alt text-[#8B6914] mr-3"></i>서울특별시 강남구 청담동 123-45, 1층</p>
+          <p><i class="fas fa-clock text-[#8B6914] mr-3"></i>화-토 11:00-20:00 / 일-월 휴무</p>
+          <p><i class="fas fa-phone text-[#8B6914] mr-3"></i>02-3456-7890</p>
+        </div>
+        <a href="#" class="inline-flex items-center gap-3 text-[10px] font-semibold uppercase tracking-[0.4em] text-[#8B6914] hover:text-[#2C2C2C]">
+          방문 예약하기 <i class="fas fa-arrow-right text-[9px]"></i>
+        </a>
+      </div>
+      <div class="reveal" style="--delay: 1;">
+        <img src="https://images.unsplash.com/photo-1555529669-e69e7aa0ba9a?q=80&w=800" alt="부티크" class="w-full aspect-[4/3] object-cover rounded-2xl" loading="lazy" decoding="async">
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== CTA ========== -->
+  <section class="py-24 md:py-32 bg-[#8B6914] relative overflow-hidden">
+    <div class="max-w-3xl mx-auto px-4 md:px-8 text-center relative z-10">
+      <h2 class="text-3xl md:text-4xl lg:text-5xl font-playfair font-semibold leading-snug text-white reveal" style="--delay: 0;">
+        당신의 이야기에<br>빛을 더하다
+      </h2>
+      <p class="text-white/60 text-base mt-6 reveal" style="--delay: 1;">LUMIN 뉴스레터를 구독하시면 신제품 소식과 특별 혜택을 가장 먼저 받아보실 수 있습니다.</p>
+      <div class="flex flex-col sm:flex-row gap-3 max-w-md mx-auto mt-10 reveal" style="--delay: 2;">
+        <input type="email" placeholder="이메일 주소" class="flex-1 bg-white/10 border border-white/20 py-4 px-6 text-white placeholder-white/40 outline-none rounded-full text-[13px]">
+        <button class="bg-white text-[#8B6914] px-8 py-4 font-semibold text-[10px] uppercase tracking-[0.3em] rounded-full hover:bg-[#2C2C2C] hover:text-white">구독</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== Footer ========== -->
+  <footer class="py-16 md:py-24 bg-[#2C2C2C]">
+    <div class="max-w-7xl mx-auto px-4 md:px-8">
+      <div class="grid md:grid-cols-3 gap-12 items-start mb-16">
+        <div>
+          <span class="font-playfair text-2xl font-semibold tracking-[0.1em] text-[#8B6914] block mb-4">LUMIN</span>
+          <p class="text-white/20 text-sm leading-relaxed max-w-xs">시간이 증명하는 가치. 최상급 가죽으로 만드는 핸드크래프트 가방.</p>
+        </div>
+        <div class="grid grid-cols-2 gap-8">
+          <div>
+            <p class="text-[10px] font-semibold text-white/15 uppercase tracking-[0.3em] mb-4">Shop</p>
+            <ul class="space-y-2.5"><li><a href="#" class="text-white/40 text-sm hover:text-[#8B6914] transition">토트</a></li><li><a href="#" class="text-white/40 text-sm hover:text-[#8B6914] transition">크로스백</a></li><li><a href="#" class="text-white/40 text-sm hover:text-[#8B6914] transition">백팩</a></li><li><a href="#" class="text-white/40 text-sm hover:text-[#8B6914] transition">액세서리</a></li></ul>
+          </div>
+          <div>
+            <p class="text-[10px] font-semibold text-white/15 uppercase tracking-[0.3em] mb-4">Info</p>
+            <ul class="space-y-2.5"><li><a href="#" class="text-white/40 text-sm hover:text-[#8B6914] transition">브랜드</a></li><li><a href="#" class="text-white/40 text-sm hover:text-[#8B6914] transition">A/S</a></li><li><a href="#" class="text-white/40 text-sm hover:text-[#8B6914] transition">매장</a></li></ul>
+          </div>
+        </div>
+        <div>
+          <p class="text-[10px] font-semibold text-white/15 uppercase tracking-[0.3em] mb-4">Follow</p>
+          <div class="flex gap-3">
+            <a href="#" class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white/40 hover:text-[#8B6914] transition"><i class="fab fa-instagram text-sm"></i></a>
+            <a href="#" class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white/40 hover:text-[#8B6914] transition"><i class="fab fa-pinterest-p text-sm"></i></a>
+          </div>
+        </div>
+      </div>
+      <div class="border-t border-white/5 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+        <p class="text-[10px] text-white/10 tracking-[0.3em] uppercase">&copy; 2026 LUMIN. All rights reserved by DLAB.</p>
+        <div class="flex gap-6"><a href="#" class="text-[10px] text-white/10 tracking-[0.2em] uppercase hover:text-white/30 transition">개인정보처리방침</a><a href="#" class="text-[10px] text-white/10 tracking-[0.2em] uppercase hover:text-white/30 transition">이용약관</a></div>
+      </div>
+    </div>
   </footer>
 
-  <script>
-    function toggleBagModal() {
-      const modal = document.getElementById('bag-modal');
-      modal.classList.toggle('hidden');
-      modal.classList.toggle('flex');
-    }
-  </script>
-
+  <!-- ========== Login Modal ========== -->
+  <div id="bag-modal" class="fixed inset-0 z-[100] hidden items-center justify-center p-4 bg-[#2C2C2C]/20 backdrop-blur-3xl">
+    <div class="bg-[#FAF8F5] w-full max-w-sm p-8 md:p-12 shadow-2xl relative rounded-2xl">
+      <button onclick="toggleBagModal()" class="absolute top-6 right-6 text-[#2C2C2C]/30 hover:text-[#8B6914] transition text-2xl">&times;</button>
+      <div class="text-center mb-10">
+        <span class="font-playfair text-2xl font-semibold tracking-[0.1em] text-[#8B6914]">LUMIN</span>
+        <p class="text-[10px] text-[#8B6914]/60 font-semibold tracking-[0.4em] uppercase mt-2">Member Access</p>
+      </div>
+      <div class="space-y-4">
+        <input type="text" placeholder="이메일" class="w-full bg-white border border-[#8B6914]/10 rounded-xl py-4 px-5 outline-none focus:ring-1 focus:ring-[#8B6914]/20 text-[13px]">
+        <input type="password" placeholder="비밀번호" class="w-full bg-white border border-[#8B6914]/10 rounded-xl py-4 px-5 outline-none focus:ring-1 focus:ring-[#8B6914]/20 text-[13px]">
+        <button class="w-full bg-[#8B6914] text-white py-4 rounded-full font-semibold text-[10px] uppercase tracking-[0.4em] hover:bg-[#2C2C2C] shadow-lg shadow-[#8B6914]/15 mt-2">로그인</button>
+        <div class="flex justify-center gap-8 pt-2"><a href="#" class="text-[11px] text-[#2C2C2C]/30 font-semibold hover:text-[#8B6914] transition">회원가입</a><a href="#" class="text-[11px] text-[#2C2C2C]/30 font-semibold hover:text-[#8B6914] transition">비밀번호 찾기</a></div>
+      </div>
+    </div>
+  </div>
 </div>
+
+<script>
+  function toggleBagModal() { const m = document.getElementById('bag-modal'); m.classList.toggle('hidden'); m.classList.toggle('flex'); }
+  document.getElementById('bag-modal').addEventListener('click', function(e) { if (e.target === this) toggleBagModal(); });
+  (function() {
+    const observer = new IntersectionObserver(function(entries) { entries.forEach(function(entry) { if (entry.isIntersecting) { entry.target.classList.add('is-visible'); observer.unobserve(entry.target); } }); }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+    document.querySelectorAll('.reveal').forEach(function(el) { observer.observe(el); });
+  })();
+</script>

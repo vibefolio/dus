@@ -1,150 +1,300 @@
-<%# Shoe Template - 어반 킥스 (URBAN KICKS) %>
+<%# Shoe Template - STEP (신발 브랜드) %>
 
 <style>
-  /* Supanova Design Upgrade */
+  /* Supanova Design — Dark Sneaker Brand Archetype */
   * { word-break: keep-all; }
-  html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+  html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
   h1, h2, h3, h4 { text-wrap: balance; letter-spacing: -0.02em; line-height: 1.3; }
-  a, button { transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1); }
+  a, button { transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1); }
   a:hover, button:hover { transform: scale(1.02); }
   a:active, button:active { transform: scale(0.98); }
 
-  @import url('https://fonts.googleapis.com/css2?family=Anton&family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap');
-  
-  .font-display { font-family: 'Anton', sans-serif; }
-  .font-sans { font-family: 'Pretendard Variable', 'Pretendard', -apple-system, sans-serif; }
+  @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+  .font-sans { font-family: 'Pretendard Variable', 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, sans-serif; }
+  .font-bebas { font-family: 'Bebas Neue', sans-serif; }
+  .font-inter { font-family: 'Inter', sans-serif; }
 
   @media (max-width: 768px) {
-    .mobile-desc { font-size: 14px !important; line-height: 1.6; }
-    .mobile-title { font-size: 44px !important; }
+    .mobile-desc { font-size: 14px !important; line-height: 1.8; }
+    .mobile-title { font-size: 48px !important; }
   }
 
-  .grid-pattern {
-    background-image: linear-gradient(#222 1px, transparent 1px), linear-gradient(90deg, #222 1px, transparent 1px);
-    background-size: 40px 40px;
-    opacity: 0.1;
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(2rem); filter: blur(4px); }
+    to { opacity: 1; transform: translateY(0); filter: blur(0); }
   }
+  .reveal { opacity: 0; transform: translateY(2rem); }
+  .reveal.is-visible { animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards; animation-delay: calc(var(--delay, 0) * 100ms); }
+
+  .shoe-card { transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1); }
+  .shoe-card:hover { transform: translateY(-8px); }
+  .shoe-card:hover img { transform: scale(1.05) rotate(-3deg); }
 </style>
 
-<div class="bg-slate-950 text-white font-sans selection:bg-[#CCFF00] selection:text-slate-900 min-h-screen overflow-x-hidden relative">
-  <div class="fixed inset-0 grid-pattern pointer-events-none"></div>
+<div class="bg-[#0A0A0A] text-white font-sans selection:bg-[#FF5722] selection:text-white min-h-screen overflow-x-hidden">
 
-  <!-- Nav -->
-  <nav class="fixed w-full z-50 px-3 md:px-6 py-6 border-b border-white/10 bg-slate-950/90 backdrop-blur-xl">
-    <div class="container mx-auto px-4 md:px-6 flex justify-between items-center flex-nowrap">
-      <div class="flex items-center gap-2">
-         <span class="font-display text-3xl tracking-wide uppercase text-white italic">HYPE<span class="text-[#CCFF00]">BEAST</span></span>
-      </div>
-      
-      <div class="hidden md:flex gap-14 text-[11px] font-semibold uppercase tracking-[0.2em] text-white/40">
-        <a href="#drops" class="hover:text-[#CCFF00] transition">Upcoming Drops</a>
-        <a href="#market" class="hover:text-[#CCFF00] transition">Marketplace</a>
-        <a href="#culture" class="hover:text-[#CCFF00] transition">Culture</a>
-      </div>
-           <button class="mobile-menu-trigger md:hidden ml-auto text-2xl focus:outline-none" style="color: inherit;">
-             <i class="fas fa-bars"></i>
-           </button>
+  <!-- ========== Nav ========== -->
+  <nav class="fixed w-full z-50 px-4 md:px-8 py-5 bg-[#0A0A0A]/80 backdrop-blur-xl border-b border-white/5">
+    <div class="max-w-7xl mx-auto flex justify-between items-center">
+      <a href="#" class="font-bebas text-3xl tracking-wider text-white">STEP</a>
 
-      
-      <div class="flex-nowrap shrink-0 flex gap-10 items-center">
-         <button onclick="toggleShoeModal()" class="hidden md:block text-[11px] font-semibold uppercase tracking-[0.2em] text-white/40 hover:text-white" data-mobile-menu-copy="true">Sign In</button>
-         <div class="relative cursor-pointer group">
-             <div class="bg-[#CCFF00] text-slate-900 w-8 h-8 max-h-8 max-w-[35%] shrink object-contain flex items-center justify-center font-semibold text-xs skew-x-[-10deg] group-hover:scale-110 transition">
-                 0
-             </div>
-         </div>
+      <div class="hidden md:flex gap-10 text-[11px] font-semibold uppercase tracking-[0.3em] text-white/30">
+        <a href="#products" class="hover:text-[#FF5722] transition">신제품</a>
+        <a href="#tech" class="hover:text-[#FF5722] transition">기술력</a>
+        <a href="#size" class="hover:text-[#FF5722] transition">사이즈</a>
+        <a href="#store" class="hover:text-[#FF5722] transition">매장</a>
+      </div>
+
+      <button class="mobile-menu-trigger md:hidden ml-auto text-2xl focus:outline-none" style="color: inherit;">
+        <i class="fas fa-bars"></i>
+      </button>
+
+      <div class="hidden md:flex gap-5 items-center shrink-0">
+        <button onclick="toggleShoeModal()" class="text-white/30 hover:text-white transition" data-mobile-menu-copy="true"><i class="far fa-user text-lg"></i></button>
+        <a href="#" class="relative text-white/30 hover:text-white transition">
+          <i class="fas fa-shopping-cart text-lg"></i>
+          <span class="absolute -top-1 -right-2 w-4 h-4 bg-[#FF5722] rounded-full text-white text-[9px] flex items-center justify-center font-bold">0</span>
+        </a>
       </div>
     </div>
 
-      <%= render partial: 'templates/shared/mobile_menu_overlay' %></nav>
+    <%= render partial: 'templates/shared/mobile_menu_overlay' %>
+  </nav>
 
-  <!-- Hero -->
-  <header class="min-h-screen relative flex items-center justify-center pt-24 overflow-hidden">
-    <div class="absolute top-[20%] right-[-10%] w-[600px] h-[600px] bg-[#CCFF00] rounded-full blur-[200px] opacity-10"></div>
-    <div class="absolute bottom-[20%] left-[-10%] w-[600px] h-[600px] bg-purple-600 rounded-full blur-[200px] opacity-10"></div>
+  <!-- ========== Hero ========== -->
+  <header class="min-h-[100dvh] relative flex items-center pt-20 overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-br from-[#0A0A0A] via-[#1a1a1a] to-[#0A0A0A]"></div>
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[#FF5722]/5 rounded-full blur-[150px]"></div>
 
-    <div class="container mx-auto px-3 md:px-6 relative z-10 grid lg:grid-cols-2 gap-16 items-center">
-      <div class="space-y-10 text-center lg:text-left">
-        <div class="inline-block bg-white/10 backdrop-blur-md px-4 py-2 border border-white/10 skew-x-[-10deg]">
-           <span class="block skew-x-[10deg] text-[10px] font-semibold uppercase tracking-[0.2em] text-[#CCFF00]">Limited Edition Drop</span>
+    <div class="max-w-7xl mx-auto px-4 md:px-8 relative z-10 grid lg:grid-cols-2 gap-12 items-center">
+      <div class="space-y-8 text-center lg:text-left">
+        <div class="inline-flex items-center gap-2 bg-[#FF5722]/10 rounded-full px-4 py-1.5 reveal" style="--delay: 0;">
+          <span class="w-2 h-2 bg-[#FF5722] rounded-full animate-pulse"></span>
+          <span class="text-[11px] font-bold tracking-[0.2em] uppercase text-[#FF5722]">New Drop</span>
         </div>
-        
-        <h1 class="text-3xl md:text-5xl md:text-[9rem] font-display uppercase leading-[0.8] tracking-wide mobile-title">
-           STREET<br>
-           <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#CCFF00] to-white italic">LEGACY</span>
+
+        <h1 class="text-5xl md:text-7xl lg:text-[6rem] font-bebas tracking-wider leading-none mobile-title reveal" style="--delay: 1;">
+          EVERY STEP<br><span class="text-[#FF5722]">COUNTS.</span>
         </h1>
-        
-        <p class="text-white/40 text-sm md:text-xl leading-relaxed max-w-md mx-auto lg:mx-0 mobile-desc">
-           거리의 문화를 정의하는 아이코닉한 디자인. 가장 희귀하고 강력한 스니커즈 컬렉션을 지금 바로 확인하세요.
+
+        <p class="text-white/30 text-base md:text-lg leading-relaxed max-w-md mx-auto lg:mx-0 mobile-desc reveal" style="--delay: 2;">
+          혁신적인 쿠셔닝 기술과 대담한 디자인. STEP은 모든 한 걸음에 퍼포먼스와 스타일을 더합니다.
         </p>
-        
-        <div class="pt-6 flex flex-col sm:flex-row gap-10 justify-center lg:justify-start">
-           <button class="px-12 py-5 bg-[#CCFF00] text-slate-900 font-semibold text-[12px] uppercase tracking-wide hover:bg-white transition-all skew-x-[-10deg] shadow-[5px_5px_0px_#fff]">
-              <span class="block skew-x-[10deg]">Shop Now</span>
-           </button>
-           <button class="px-12 py-5 border border-white/20 text-white font-semibold text-[12px] uppercase tracking-wide hover:bg-white/10 transition-all skew-x-[-10deg]">
-              <span class="block skew-x-[10deg]">View Lookbook</span>
-           </button>
+
+        <div class="pt-2 flex flex-col sm:flex-row gap-4 justify-center lg:justify-start reveal" style="--delay: 3;">
+          <a href="#products" class="inline-flex items-center justify-center gap-3 px-10 py-4 bg-[#FF5722] text-white font-bold text-[12px] tracking-[0.2em] uppercase hover:bg-[#E64A19] rounded-none shadow-xl shadow-[#FF5722]/20">
+            Shop Now <i class="fas fa-arrow-right text-[10px]"></i>
+          </a>
+          <a href="#tech" class="inline-flex items-center justify-center gap-2 px-10 py-4 border border-white/10 text-white/50 font-semibold text-[12px] tracking-[0.2em] uppercase hover:border-[#FF5722]/30 rounded-none">
+            <i class="fas fa-play-circle text-[#FF5722]"></i> 기술력 보기
+          </a>
         </div>
       </div>
-      
-      <div class="relative">
-         <img src="https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?q=80&w=1000" alt="Sneakers" class="w-full max-w-2xl mx-auto object-contain drop-shadow-[0_20px_50px_rgba(204,255,0,0.15)] animate-float rotate-[-15deg]">
-         <style>
-             @keyframes float {
-                 0%, 100% { transform: translateY(0) rotate(-15deg); }
-                 50% { transform: translateY(-20px) rotate(-12deg); }
-             }
-             .animate-float { animation: float 6s ease-in-out infinite; }
-         </style>
+
+      <div class="relative reveal" style="--delay: 1;">
+        <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?q=80&w=1200" alt="신발" class="w-full aspect-square object-contain drop-shadow-[0_30px_60px_rgba(255,87,34,0.3)]" loading="eager">
       </div>
     </div>
   </header>
 
-  <!-- Login Modal -->
-  <div id="shoe-modal" class="fixed inset-0 z-[100] hidden items-center justify-center p-4 bg-slate-950/95 backdrop-blur-2xl">
-    <div class="bg-[#050505] w-full max-w-sm p-14 relative border border-white/10">
-      <div class="absolute top-0 left-0 w-full h-1 bg-[#CCFF00]"></div>
-      <button onclick="toggleShoeModal()" class="absolute top-8 right-8 text-white/20 hover:text-[#CCFF00] transition text-2xl font-light">&times;</button>
-      
-      <div class="text-center mb-12">
-        <h2 class="text-3xl font-display uppercase text-white mb-2 italic tracking-wide">CREW LOGIN</h2>
-        <p class="text-[9px] text-[#CCFF00] font-semibold tracking-[0.3em] uppercase">Private Raffle Access</p>
-      </div>
-      
-      <div class="space-y-6">
-        <div class="space-y-2">
-            <label class="text-[9px] font-semibold text-white/30 uppercase tracking-[0.2em] ml-1">Username / Email</label>
-            <input type="text" placeholder="HYPE_MEMBER" class="w-full bg-[#1A1A1A] border-none py-5 px-6 outline-none focus:ring-1 focus:ring-[#CCFF00] transition text-[11px] font-semibold uppercase tracking-wide text-white skew-x-[-5deg]">
+  <!-- ========== About ========== -->
+  <section id="about" class="py-24 md:py-32 bg-[#111111]">
+    <div class="max-w-7xl mx-auto px-4 md:px-8 text-center">
+      <span class="text-[11px] font-bold tracking-[0.4em] uppercase text-[#FF5722] reveal" style="--delay: 0;">About STEP</span>
+      <h2 class="text-3xl md:text-4xl lg:text-5xl font-bebas tracking-wider mt-6 reveal" style="--delay: 1;">
+        퍼포먼스를 재정의하다
+      </h2>
+      <p class="text-white/30 text-base md:text-lg mt-6 max-w-2xl mx-auto leading-relaxed reveal" style="--delay: 2;">
+        STEP은 프로 선수들과 함께 개발한 기술을 일상 신발에 적용합니다. 러닝, 트레이닝, 캐주얼까지 모든 순간에 최적의 착화감을 제공합니다.
+      </p>
+    </div>
+  </section>
+
+  <!-- ========== New Products ========== -->
+  <section id="products" class="py-24 md:py-32">
+    <div class="max-w-7xl mx-auto px-4 md:px-8">
+      <div class="flex items-end justify-between mb-14">
+        <div>
+          <span class="text-[11px] font-bold tracking-[0.4em] uppercase text-[#FF5722] reveal" style="--delay: 0;">New</span>
+          <h2 class="text-3xl md:text-4xl lg:text-5xl font-bebas tracking-wider mt-4 reveal" style="--delay: 1;">신제품</h2>
         </div>
-        
-        <button class="w-full bg-[#CCFF00] text-slate-900 py-5 text-[11px] tracking-[0.4em] font-semibold uppercase hover:bg-white transition skew-x-[-5deg] mt-4 shadow-[3px_3px_0px_#fff]">
-           <span class="block skew-x-[5deg]">Enter The Drop</span>
-        </button>
-        
-        <div class="flex justify-between pt-6 border-t border-white/5 mt-6">
-           <a href="#" class="text-[9px] text-white/30 tracking-[0.2em] font-semibold uppercase hover:text-[#CCFF00] transition">Create Account</a>
-           <a href="#" class="text-[9px] text-white/30 tracking-[0.2em] font-semibold uppercase hover:text-[#CCFF00] transition">Forgot Password</a>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div class="shoe-card bg-[#1A1A1A] rounded-2xl p-6 reveal" style="--delay: 0;">
+          <div class="overflow-hidden mb-4"><img src="https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?q=80&w=600" alt="러닝화" class="w-full aspect-square object-cover transition-all duration-700" loading="lazy" decoding="async"></div>
+          <span class="text-[10px] font-bold text-[#FF5722] uppercase tracking-wider">Running</span>
+          <h3 class="font-bold text-base mt-1">STEP Air Max</h3>
+          <p class="text-white/30 text-[12px] mt-1">혁신적 에어 쿠셔닝 러닝화</p>
+          <p class="text-[#FF5722] font-bold text-lg mt-3 font-inter">189,000원</p>
+        </div>
+
+        <div class="shoe-card bg-[#1A1A1A] rounded-2xl p-6 reveal" style="--delay: 1;">
+          <div class="overflow-hidden mb-4"><img src="https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?q=80&w=600" alt="캐주얼" class="w-full aspect-square object-cover transition-all duration-700" loading="lazy" decoding="async"></div>
+          <span class="text-[10px] font-bold text-[#FF5722] uppercase tracking-wider">Casual</span>
+          <h3 class="font-bold text-base mt-1">STEP Classic</h3>
+          <p class="text-white/30 text-[12px] mt-1">데일리 캐주얼 스니커즈</p>
+          <p class="text-[#FF5722] font-bold text-lg mt-3 font-inter">139,000원</p>
+        </div>
+
+        <div class="shoe-card bg-[#1A1A1A] rounded-2xl p-6 reveal" style="--delay: 2;">
+          <div class="overflow-hidden mb-4"><img src="https://images.unsplash.com/photo-1551107696-a4b0c5a0d9a2?q=80&w=600" alt="트레이닝" class="w-full aspect-square object-cover transition-all duration-700" loading="lazy" decoding="async"></div>
+          <span class="text-[10px] font-bold text-[#FF5722] uppercase tracking-wider">Training</span>
+          <h3 class="font-bold text-base mt-1">STEP Flex Pro</h3>
+          <p class="text-white/30 text-[12px] mt-1">크로스핏 전용 트레이닝화</p>
+          <p class="text-[#FF5722] font-bold text-lg mt-3 font-inter">169,000원</p>
+        </div>
+
+        <div class="shoe-card bg-[#1A1A1A] rounded-2xl p-6 reveal" style="--delay: 3;">
+          <div class="overflow-hidden mb-4"><img src="https://images.unsplash.com/photo-1600185365926-3a2ce3cdb9eb?q=80&w=600" alt="하이탑" class="w-full aspect-square object-cover transition-all duration-700" loading="lazy" decoding="async"></div>
+          <span class="text-[10px] font-bold text-[#FF5722] uppercase tracking-wider">Limited</span>
+          <h3 class="font-bold text-base mt-1">STEP High X</h3>
+          <p class="text-white/30 text-[12px] mt-1">한정판 하이탑 스니커즈</p>
+          <p class="text-[#FF5722] font-bold text-lg mt-3 font-inter">259,000원</p>
         </div>
       </div>
     </div>
-  </div>
+  </section>
 
-  <footer class="py-20 md:py-32 bg-slate-950 text-center px-6 border-t border-white/10">
-     <div class="inline-flex items-center gap-10 mb-8 transform -skew-x-[10deg]">
-        <span class="font-display text-2xl text-white tracking-wide uppercase italic">Hype<span class="text-[#CCFF00]">Beast</span></span>
-        <span class="w-12 h-[2px] bg-[#CCFF00]"></span>
-        <span class="text-[10px] font-semibold text-white/40 tracking-[0.4em] uppercase">Street & Culture</span>
-     </div>
-     <p class="text-[10px] text-white/10 tracking-[0.8em] uppercase px-6">© 2024 URBAN KICKS. ALL RIGHTS RESERVED.</p>
+  <!-- ========== Technology ========== -->
+  <section id="tech" class="py-24 md:py-32 bg-[#111111]">
+    <div class="max-w-7xl mx-auto px-4 md:px-8 grid lg:grid-cols-2 gap-16 items-center">
+      <div class="space-y-8 reveal" style="--delay: 0;">
+        <span class="text-[11px] font-bold tracking-[0.4em] uppercase text-[#FF5722]">Technology</span>
+        <h2 class="text-3xl md:text-4xl lg:text-5xl font-bebas tracking-wider">기술력</h2>
+        <div class="space-y-6">
+          <div class="bg-[#1A1A1A] rounded-2xl p-6 border border-white/5">
+            <div class="flex items-center gap-3 mb-3">
+              <div class="w-10 h-10 bg-[#FF5722] rounded-lg flex items-center justify-center"><i class="fas fa-cloud text-white"></i></div>
+              <h3 class="font-bold">CloudStep 쿠셔닝</h3>
+            </div>
+            <p class="text-white/30 text-[13px] leading-relaxed">구름 위를 걷는 듯한 초경량 쿠셔닝 기술. 충격 흡수율 40% 향상</p>
+          </div>
+          <div class="bg-[#1A1A1A] rounded-2xl p-6 border border-white/5">
+            <div class="flex items-center gap-3 mb-3">
+              <div class="w-10 h-10 bg-[#FF5722] rounded-lg flex items-center justify-center"><i class="fas fa-leaf text-white"></i></div>
+              <h3 class="font-bold">EcoKnit 소재</h3>
+            </div>
+            <p class="text-white/30 text-[13px] leading-relaxed">재활용 폴리에스터로 제작한 친환경 니트 어퍼. 통기성과 지속가능성 동시에</p>
+          </div>
+          <div class="bg-[#1A1A1A] rounded-2xl p-6 border border-white/5">
+            <div class="flex items-center gap-3 mb-3">
+              <div class="w-10 h-10 bg-[#FF5722] rounded-lg flex items-center justify-center"><i class="fas fa-shoe-prints text-white"></i></div>
+              <h3 class="font-bold">GripMax 아웃솔</h3>
+            </div>
+            <p class="text-white/30 text-[13px] leading-relaxed">어떤 노면에서도 미끄러지지 않는 특수 고무 배합. 내구성 3배 향상</p>
+          </div>
+        </div>
+      </div>
+      <div class="reveal" style="--delay: 1;">
+        <img src="https://images.unsplash.com/photo-1556906781-9a412961c28c?q=80&w=800" alt="기술력" class="w-full aspect-square object-cover rounded-2xl" loading="lazy" decoding="async">
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== Size Guide ========== -->
+  <section id="size" class="py-24 md:py-32">
+    <div class="max-w-4xl mx-auto px-4 md:px-8 text-center">
+      <span class="text-[11px] font-bold tracking-[0.4em] uppercase text-[#FF5722] reveal" style="--delay: 0;">Size Guide</span>
+      <h2 class="text-3xl md:text-4xl lg:text-5xl font-bebas tracking-wider mt-6 reveal" style="--delay: 1;">사이즈 가이드</h2>
+      <p class="text-white/30 text-base mt-4 reveal" style="--delay: 2;">발 길이를 측정하여 정확한 사이즈를 선택하세요.</p>
+
+      <div class="mt-12 overflow-x-auto reveal" style="--delay: 3;">
+        <table class="w-full text-[13px]">
+          <thead><tr class="border-b border-white/10">
+            <th class="py-4 px-4 text-left text-[10px] font-bold uppercase tracking-wider text-[#FF5722]">KR</th>
+            <th class="py-4 px-4 text-left text-[10px] font-bold uppercase tracking-wider text-white/30">US</th>
+            <th class="py-4 px-4 text-left text-[10px] font-bold uppercase tracking-wider text-white/30">EU</th>
+            <th class="py-4 px-4 text-left text-[10px] font-bold uppercase tracking-wider text-white/30">발 길이 (mm)</th>
+          </tr></thead>
+          <tbody class="text-white/50">
+            <tr class="border-b border-white/5"><td class="py-3 px-4 font-semibold text-white">250</td><td class="py-3 px-4">7</td><td class="py-3 px-4">40</td><td class="py-3 px-4">250</td></tr>
+            <tr class="border-b border-white/5"><td class="py-3 px-4 font-semibold text-white">260</td><td class="py-3 px-4">8</td><td class="py-3 px-4">41</td><td class="py-3 px-4">260</td></tr>
+            <tr class="border-b border-white/5"><td class="py-3 px-4 font-semibold text-white">270</td><td class="py-3 px-4">9</td><td class="py-3 px-4">42.5</td><td class="py-3 px-4">270</td></tr>
+            <tr class="border-b border-white/5"><td class="py-3 px-4 font-semibold text-white">280</td><td class="py-3 px-4">10</td><td class="py-3 px-4">44</td><td class="py-3 px-4">280</td></tr>
+            <tr><td class="py-3 px-4 font-semibold text-white">290</td><td class="py-3 px-4">11</td><td class="py-3 px-4">45</td><td class="py-3 px-4">290</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== Store ========== -->
+  <section id="store" class="py-24 md:py-32 bg-[#111111]">
+    <div class="max-w-7xl mx-auto px-4 md:px-8 grid lg:grid-cols-2 gap-16 items-center">
+      <div class="reveal" style="--delay: 0;">
+        <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?q=80&w=800" alt="매장" class="w-full aspect-[4/3] object-cover rounded-2xl" loading="lazy" decoding="async">
+      </div>
+      <div class="space-y-8 reveal" style="--delay: 1;">
+        <span class="text-[11px] font-bold tracking-[0.4em] uppercase text-[#FF5722]">Store</span>
+        <h2 class="text-3xl md:text-4xl font-bebas tracking-wider">플래그십 스토어</h2>
+        <div class="space-y-4 text-white/40">
+          <p><i class="fas fa-map-marker-alt text-[#FF5722] mr-3"></i>서울특별시 강남구 압구정로 234, 1층</p>
+          <p><i class="fas fa-clock text-[#FF5722] mr-3"></i>매일 11:00-21:00 (명절 휴무)</p>
+          <p><i class="fas fa-phone text-[#FF5722] mr-3"></i>02-999-1234</p>
+        </div>
+        <a href="#" class="inline-flex items-center gap-3 bg-[#FF5722] text-white px-8 py-4 font-bold text-[12px] uppercase tracking-[0.2em] hover:bg-[#E64A19] rounded-none">
+          매장 위치 보기 <i class="fas fa-arrow-right text-[10px]"></i>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== CTA ========== -->
+  <section class="py-24 md:py-32 bg-[#FF5722] relative overflow-hidden">
+    <div class="absolute inset-0 opacity-10" style="background-image: url('https://www.transparenttextures.com/patterns/dark-geometric.png');"></div>
+    <div class="max-w-3xl mx-auto px-4 md:px-8 text-center relative z-10">
+      <h2 class="text-4xl md:text-5xl lg:text-6xl font-bebas tracking-wider text-white reveal" style="--delay: 0;">
+        YOUR NEXT<br>STEP STARTS HERE
+      </h2>
+      <p class="text-white/60 text-base mt-6 reveal" style="--delay: 1;">가입하고 신규 회원 10% 할인 쿠폰을 받으세요.</p>
+      <div class="flex flex-col sm:flex-row gap-3 max-w-md mx-auto mt-10 reveal" style="--delay: 2;">
+        <input type="email" placeholder="이메일 주소" class="flex-1 bg-white/10 border border-white/20 py-4 px-6 text-white placeholder-white/40 outline-none text-[13px]">
+        <button class="bg-white text-[#FF5722] px-8 py-4 font-bold text-[12px] uppercase tracking-[0.2em] hover:bg-[#0A0A0A] hover:text-white">가입</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== Footer ========== -->
+  <footer class="py-16 md:py-24 bg-[#050505]">
+    <div class="max-w-7xl mx-auto px-4 md:px-8">
+      <div class="grid md:grid-cols-4 gap-12 items-start mb-16">
+        <div><span class="font-bebas text-3xl tracking-wider block mb-4">STEP</span><p class="text-white/20 text-sm leading-relaxed">Every Step Counts. 퍼포먼스와 스타일의 완벽한 조화.</p></div>
+        <div><p class="text-[10px] font-semibold text-white/15 uppercase tracking-[0.3em] mb-4">Shop</p><ul class="space-y-2.5"><li><a href="#" class="text-white/30 text-sm hover:text-[#FF5722] transition">신제품</a></li><li><a href="#" class="text-white/30 text-sm hover:text-[#FF5722] transition">러닝</a></li><li><a href="#" class="text-white/30 text-sm hover:text-[#FF5722] transition">캐주얼</a></li><li><a href="#" class="text-white/30 text-sm hover:text-[#FF5722] transition">한정판</a></li></ul></div>
+        <div><p class="text-[10px] font-semibold text-white/15 uppercase tracking-[0.3em] mb-4">Support</p><ul class="space-y-2.5"><li><a href="#" class="text-white/30 text-sm hover:text-[#FF5722] transition">사이즈 가이드</a></li><li><a href="#" class="text-white/30 text-sm hover:text-[#FF5722] transition">배송/반품</a></li><li><a href="#" class="text-white/30 text-sm hover:text-[#FF5722] transition">FAQ</a></li></ul></div>
+        <div><p class="text-[10px] font-semibold text-white/15 uppercase tracking-[0.3em] mb-4">Follow</p><div class="flex gap-3"><a href="#" class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white/30 hover:text-[#FF5722] transition"><i class="fab fa-instagram text-sm"></i></a><a href="#" class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white/30 hover:text-[#FF5722] transition"><i class="fab fa-youtube text-sm"></i></a></div></div>
+      </div>
+      <div class="border-t border-white/5 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+        <p class="text-[10px] text-white/10 tracking-[0.3em] uppercase">&copy; 2026 STEP. All rights reserved by DLAB.</p>
+        <div class="flex gap-6"><a href="#" class="text-[10px] text-white/10 tracking-[0.2em] uppercase hover:text-white/30 transition">개인정보처리방침</a><a href="#" class="text-[10px] text-white/10 tracking-[0.2em] uppercase hover:text-white/30 transition">이용약관</a></div>
+      </div>
+    </div>
   </footer>
 
-  <script>
-    function toggleShoeModal() {
-      const modal = document.getElementById('shoe-modal');
-      modal.classList.toggle('hidden');
-      modal.classList.toggle('flex');
-    }
-  </script>
-
+  <!-- ========== Login Modal ========== -->
+  <div id="shoe-modal" class="fixed inset-0 z-[100] hidden items-center justify-center p-4 bg-black/50 backdrop-blur-3xl">
+    <div class="bg-[#1A1A1A] w-full max-w-sm p-8 md:p-12 shadow-2xl relative rounded-2xl border border-white/5">
+      <button onclick="toggleShoeModal()" class="absolute top-6 right-6 text-white/30 hover:text-[#FF5722] transition text-2xl">&times;</button>
+      <div class="text-center mb-10">
+        <span class="font-bebas text-3xl tracking-wider">STEP</span>
+        <p class="text-[11px] text-[#FF5722] font-bold tracking-[0.3em] uppercase mt-2">Member Login</p>
+      </div>
+      <div class="space-y-4">
+        <input type="text" placeholder="이메일" class="w-full bg-white/5 border border-white/10 rounded-lg py-4 px-5 outline-none focus:ring-1 focus:ring-[#FF5722]/30 text-[13px] text-white placeholder-white/20">
+        <input type="password" placeholder="비밀번호" class="w-full bg-white/5 border border-white/10 rounded-lg py-4 px-5 outline-none focus:ring-1 focus:ring-[#FF5722]/30 text-[13px] text-white placeholder-white/20">
+        <button class="w-full bg-[#FF5722] text-white py-4 rounded-lg font-bold text-[12px] uppercase tracking-[0.3em] hover:bg-[#E64A19] mt-2">로그인</button>
+        <div class="flex justify-center gap-8 pt-2"><a href="#" class="text-[11px] text-white/30 font-semibold hover:text-[#FF5722] transition">회원가입</a><a href="#" class="text-[11px] text-white/30 font-semibold hover:text-[#FF5722] transition">비밀번호 찾기</a></div>
+      </div>
+    </div>
+  </div>
 </div>
+
+<script>
+  function toggleShoeModal() { const m = document.getElementById('shoe-modal'); m.classList.toggle('hidden'); m.classList.toggle('flex'); }
+  document.getElementById('shoe-modal').addEventListener('click', function(e) { if (e.target === this) toggleShoeModal(); });
+  (function() {
+    const observer = new IntersectionObserver(function(entries) { entries.forEach(function(entry) { if (entry.isIntersecting) { entry.target.classList.add('is-visible'); observer.unobserve(entry.target); } }); }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+    document.querySelectorAll('.reveal').forEach(function(el) { observer.observe(el); });
+  })();
+</script>
