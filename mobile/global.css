@@ -1,0 +1,69 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  /* Supanova 디자인 시스템 — DUS */
+
+  /* 카드: rounded-3xl, p-5, shadow는 인라인 style로 적용 */
+  .sn-card {
+    @apply bg-white rounded-3xl p-5;
+  }
+
+  /* 버튼 — Primary (둥근 pill, 최소 44pt 터치) */
+  .sn-btn-primary {
+    @apply bg-primary rounded-full py-3.5 px-6 items-center justify-center;
+  }
+
+  .sn-btn-primary-text {
+    @apply text-white text-body font-semibold;
+  }
+
+  /* 버튼 — Outline */
+  .sn-btn-outline {
+    @apply border-2 border-primary rounded-full py-3.5 px-6 items-center justify-center;
+  }
+
+  .sn-btn-outline-text {
+    @apply text-primary text-body font-semibold;
+  }
+
+  /* 입력 필드 */
+  .sn-input {
+    @apply bg-white border border-gray-200 rounded-2xl py-3.5 px-4 text-body text-gray-900;
+  }
+
+  /* 섹션 타이틀 */
+  .sn-section-title {
+    @apply text-heading-2 text-gray-900;
+  }
+
+  /* 배지 */
+  .sn-badge {
+    @apply bg-primary rounded-full px-3 py-1;
+  }
+
+  .sn-badge-text {
+    @apply text-white text-caption font-semibold;
+  }
+
+  /* 템플릿 카드 */
+  .sn-template-card {
+    @apply bg-white rounded-3xl p-4;
+  }
+
+  /* 견적 카드 */
+  .sn-quote-card {
+    @apply bg-gray-50 rounded-3xl p-5 border border-gray-100;
+  }
+
+  /* Eyebrow 라벨 */
+  .sn-eyebrow {
+    @apply text-eyebrow uppercase tracking-[0.15em] font-medium text-gray-400;
+  }
+
+  /* 메뉴 아이템 */
+  .sn-menu-item {
+    @apply bg-white rounded-2xl px-5 py-4 flex-row items-center justify-between;
+  }
+}
