@@ -2,8 +2,7 @@
    DLAB DESIGN SYSTEM
    ========================================== */
 
-/* Google Fonts Import */
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Outfit:wght@300;400;500;600;700;800;900&display=swap");
+/* Paperlogy Font — CDN via jsDelivr */
 
 /* ==========================================
    CSS VARIABLES - Design Tokens
@@ -45,10 +44,8 @@
   );
 
   /* Typography */
-  --font-primary: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI",
-    sans-serif;
-  --font-display: "Outfit", -apple-system, BlinkMacSystemFont, "Segoe UI",
-    sans-serif;
+  --font-primary: 'Paperlogy', system-ui, -apple-system, sans-serif;
+  --font-display: 'Paperlogy', system-ui, -apple-system, sans-serif;
 
   /* Font Sizes */
   --text-xs: 0.75rem; /* 12px */
