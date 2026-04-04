@@ -15,9 +15,7 @@ module.exports = {
         accent: "#00d670",
       },
       fontFamily: {
-        sans: ["Inter", "sans-serif"],
-        serif: ["Noto Serif KR", "serif"],
-        cinzel: ["Cinzel", "serif"],
+        sans: ['Paperlogy', 'system-ui', '-apple-system', 'sans-serif'],
       },
     },
   },
