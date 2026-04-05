@@ -80,4 +80,10 @@ Rails.application.routes.draw do
 
   # Health check
   get "up" => "rails/health#show", as: :rails_health_check
+
+  # Vibers 통합 어드민
+  namespace :api do
+    get  "vibers_admin",           to: "vibers_admin#index"
+    get  "vibers_admin/resource",  to: "vibers_admin#resource"
+  end
 end
