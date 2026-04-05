@@ -46,3 +46,6 @@
 .claude/
 .claude-context/
 session-logs/
+
+# 시크릿
+config/master.key
