@@ -2,6 +2,7 @@ class Order < ApplicationRecord
   belongs_to :user
   belongs_to :product, optional: true  # 기존 호환성 유지
   belongs_to :agency, optional: true
+  belongs_to :partner, optional: true
   has_many :order_items, dependent: :destroy
   has_many :design_templates, through: :order_items
 
@@ -92,15 +93,25 @@ class Order < ApplicationRecord
 
     # 유저 권한 업그레이드
     user.update!(role: 'owner')
-    
+
     # 생성된 에이전시를 주문에 연결
     update!(agency: agency)
+
+    # 세무사 파트너가 있으면 리드 알림 발송
+    notify_partner_lead(agency) if partner_id.present?
   end
 
   # 주문 생성 시 총액 자동 계산
   before_save :set_total_amount, if: :new_record?
 
   private
+
+  def notify_partner_lead(agency)
+    partner.increment!(:lead_count)
+    PartnerMailer.new_lead(partner, user, agency).deliver_later
+  rescue => e
+    Rails.logger.error("[Order] 파트너 리드 알림 실패: #{e.message}")
+  end
 
   def set_total_amount
     self.total_amount ||= calculate_total

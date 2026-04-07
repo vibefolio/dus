@@ -1,0 +1,69 @@
+<%= form_with model: [:admin, partner], class: "space-y-6" do |f| %>
+  <% if partner.errors.any? %>
+    <div style="background: #fee2e2; border-radius: 8px; padding: 16px; margin-bottom: 16px;">
+      <% partner.errors.full_messages.each do |msg| %>
+        <p style="color: #dc2626; font-size: 14px;"><%= msg %></p>
+      <% end %>
+    </div>
+  <% end %>
+
+  <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+    <div>
+      <%= f.label :name, "이름", style: "display: block; font-weight: 600; margin-bottom: 6px;" %>
+      <%= f.text_field :name, placeholder: "홍길동", class: "w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent", style: "width: 100%; padding: 10px 14px; border: 1px solid #d1d5db; border-radius: 8px;" %>
+    </div>
+
+    <div>
+      <%= f.label :partner_type, "파트너 유형", style: "display: block; font-weight: 600; margin-bottom: 6px;" %>
+      <%= f.select :partner_type,
+          Partner::TYPES.map { |k, v| [v, k] },
+          {},
+          style: "width: 100%; padding: 10px 14px; border: 1px solid #d1d5db; border-radius: 8px;" %>
+    </div>
+
+    <div>
+      <%= f.label :email, "이메일", style: "display: block; font-weight: 600; margin-bottom: 6px;" %>
+      <%= f.email_field :email, placeholder: "partner@example.com", style: "width: 100%; padding: 10px 14px; border: 1px solid #d1d5db; border-radius: 8px;" %>
+    </div>
+
+    <div>
+      <%= f.label :phone, "연락처", style: "display: block; font-weight: 600; margin-bottom: 6px;" %>
+      <%= f.text_field :phone, placeholder: "010-0000-0000", style: "width: 100%; padding: 10px 14px; border: 1px solid #d1d5db; border-radius: 8px;" %>
+    </div>
+
+    <div>
+      <%= f.label :company_name, "소속/사무소명", style: "display: block; font-weight: 600; margin-bottom: 6px;" %>
+      <%= f.text_field :company_name, placeholder: "세무법인 예시", style: "width: 100%; padding: 10px 14px; border: 1px solid #d1d5db; border-radius: 8px;" %>
+    </div>
+
+    <div>
+      <%= f.label :license_number, "자격증 번호", style: "display: block; font-weight: 600; margin-bottom: 6px;" %>
+      <%= f.text_field :license_number, placeholder: "123456-00", style: "width: 100%; padding: 10px 14px; border: 1px solid #d1d5db; border-radius: 8px;" %>
+    </div>
+
+    <div>
+      <%= f.label :website_url, "웹사이트", style: "display: block; font-weight: 600; margin-bottom: 6px;" %>
+      <%= f.url_field :website_url, placeholder: "https://", style: "width: 100%; padding: 10px 14px; border: 1px solid #d1d5db; border-radius: 8px;" %>
+    </div>
+
+    <div>
+      <%= f.label :active, "활성 여부", style: "display: block; font-weight: 600; margin-bottom: 6px;" %>
+      <label style="display: flex; align-items: center; gap: 8px; padding: 10px 0;">
+        <%= f.check_box :active %>
+        <span>활성</span>
+      </label>
+    </div>
+  </div>
+
+  <div>
+    <%= f.label :bio, "소개", style: "display: block; font-weight: 600; margin-bottom: 6px;" %>
+    <%= f.text_area :bio, rows: 3, placeholder: "파트너 소개 (고객에게 표시됩니다)", style: "width: 100%; padding: 10px 14px; border: 1px solid #d1d5db; border-radius: 8px;" %>
+  </div>
+
+  <div style="display: flex; gap: 12px; padding-top: 12px;">
+    <%= f.submit partner.persisted? ? "수정 완료" : "파트너 등록",
+        class: "btn btn-primary",
+        style: "padding: 12px 32px; cursor: pointer;" %>
+    <%= link_to "취소", admin_partners_path, class: "btn btn-outline" %>
+  </div>
+<% end %>

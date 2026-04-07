@@ -187,13 +187,232 @@ templates = [
     image_url: "https://images.unsplash.com/photo-1501504905252-473c47e087f8?q=80&w=800",
     is_featured: true
   },
-  { 
-    title: "빈티지 1988", 
-    description: "열정과 시간이 빚어낸 고귀한 와인 컬렉션을 위한 럭셔리 템플릿.", 
-    category: "dining", 
-    preview_url: "/templates/wine", 
+  {
+    title: "빈티지 1988",
+    description: "열정과 시간이 빚어낸 고귀한 와인 컬렉션을 위한 럭셔리 템플릿.",
+    category: "dining",
+    preview_url: "/templates/wine",
     image_url: "https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?q=80&w=800",
     is_featured: true
+  },
+
+  # === Phase 2 추가 템플릿 (27~50) — 팬이지 업종 기반 ===
+
+  {
+    title: "세무사 파트너",
+    description: "소상공인을 위한 세무·회계 전문 파트너 랜딩. 세금 신고, 기장 서비스를 한눈에.",
+    category: "finance",
+    preview_url: "/templates/tax",
+    image_url: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?q=80&w=800",
+    is_featured: true,
+    price: 490000
+  },
+  {
+    title: "인테리어 스튜디오",
+    description: "감각적인 포트폴리오와 상담 예약이 결합된 인테리어 디자인 스튜디오 템플릿.",
+    category: "portfolio",
+    preview_url: "/templates/interior",
+    image_url: "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?q=80&w=800",
+    is_featured: true,
+    price: 390000
+  },
+  {
+    title: "핸드폰 수리점",
+    description: "즉시 수리, 가격 안내, 예약까지 한 번에. 스마트폰 수리 전문점을 위한 실용적 템플릿.",
+    category: "space",
+    preview_url: "/templates/phone-shop",
+    image_url: "https://images.unsplash.com/photo-1601784551446-20c9e07cdbdb?q=80&w=800",
+    is_featured: false,
+    price: 290000
+  },
+  {
+    title: "CPR 교육센터",
+    description: "심폐소생술 및 응급처치 교육 기관을 위한 신뢰감 있는 안전 교육 플랫폼.",
+    category: "academy",
+    preview_url: "/templates/cpr",
+    image_url: "https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?q=80&w=800",
+    is_featured: false,
+    price: 290000
+  },
+  {
+    title: "공연·전시 기획",
+    description: "갤러리, 독립 공연, 팝업 전시를 위한 감성적인 이벤트 에이전시 템플릿.",
+    category: "portfolio",
+    preview_url: "/templates/exhibition",
+    image_url: "https://images.unsplash.com/photo-1540575467063-178a50c2df87?q=80&w=800",
+    is_featured: true,
+    price: 390000
+  },
+  {
+    title: "앱 개발사",
+    description: "스타트업 및 IT 개발사를 위한 서비스 소개와 포트폴리오 중심 테크 템플릿.",
+    category: "corporate",
+    preview_url: "/templates/app-dev",
+    image_url: "https://images.unsplash.com/photo-1555774698-0b77e0d5fac6?q=80&w=800",
+    is_featured: true,
+    price: 490000
+  },
+  {
+    title: "코칭·멘토링",
+    description: "커리어 코치, 라이프 코치를 위한 1:1 상담 및 프로그램 신청 특화 템플릿.",
+    category: "academy",
+    preview_url: "/templates/mentor",
+    image_url: "https://images.unsplash.com/photo-1531482615713-2afd69097998?q=80&w=800",
+    is_featured: false,
+    price: 290000
+  },
+  {
+    title: "야화 한식당",
+    description: "전통과 현대가 만나는 프리미엄 한식 다이닝. 코스 메뉴와 예약 중심의 고급 레스토랑 템플릿.",
+    category: "dining",
+    preview_url: "/templates/korean-dining",
+    image_url: "https://images.unsplash.com/photo-1569050467447-ce54b3bbc37d?q=80&w=800",
+    is_featured: true,
+    price: 390000
+  },
+  {
+    title: "그로스 마케팅",
+    description: "퍼포먼스 마케팅 에이전시를 위한 데이터 기반 성과 중심 비즈니스 템플릿.",
+    category: "corporate",
+    preview_url: "/templates/growth",
+    image_url: "https://images.unsplash.com/photo-1533750349088-cd871a92f312?q=80&w=800",
+    is_featured: false,
+    price: 490000
+  },
+  {
+    title: "마케팅 에이전시",
+    description: "SNS·브랜딩·광고 전문 마케팅 에이전시의 포트폴리오와 서비스 소개 페이지.",
+    category: "corporate",
+    preview_url: "/templates/marketing-agency",
+    image_url: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=800",
+    is_featured: true,
+    price: 490000
+  },
+  {
+    title: "MZ 세대 브랜드",
+    description: "Z세대 타겟 뷰티·패션 브랜드를 위한 숏폼 친화적이고 팝한 무드의 템플릿.",
+    category: "shopping",
+    preview_url: "/templates/mz-brand",
+    image_url: "https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?q=80&w=800",
+    is_featured: true,
+    price: 390000
+  },
+  {
+    title: "인쇄·굿즈 샵",
+    description: "명함, 현수막, 스티커 등 소상공인 인쇄물을 전문으로 하는 B2B 인쇄소 템플릿.",
+    category: "shopping",
+    preview_url: "/templates/print",
+    image_url: "https://images.unsplash.com/photo-1616628188540-925618b98318?q=80&w=800",
+    is_featured: false,
+    price: 290000
+  },
+  {
+    title: "출판사·작가",
+    description: "독립 출판사, 작가, 크리에이터를 위한 책 소개와 팬 커뮤니티 중심 포트폴리오.",
+    category: "portfolio",
+    preview_url: "/templates/publisher",
+    image_url: "https://images.unsplash.com/photo-1497633762265-9d179a990aa6?q=80&w=800",
+    is_featured: false,
+    price: 290000
+  },
+  {
+    title: "테크 스타트업",
+    description: "B2B SaaS 및 기술 스타트업을 위한 기능 설명, 가격 플랜, 문의 폼이 갖춰진 랜딩페이지.",
+    category: "corporate",
+    preview_url: "/templates/tech-startup",
+    image_url: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=800",
+    is_featured: true,
+    price: 590000
+  },
+  {
+    title: "올루올루 카페 (레트로)",
+    description: "복고풍 색감과 레트로 타이포로 개성 넘치는 감성 카페 브랜딩 템플릿.",
+    category: "cafe",
+    preview_url: "/templates/cafe-retro",
+    image_url: "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?q=80&w=800",
+    is_featured: true,
+    price: 390000
+  },
+  {
+    title: "부동산 중개",
+    description: "매물 목록, 지도 연동, 상담 예약이 가능한 부동산 중개법인 전용 템플릿.",
+    category: "space",
+    preview_url: "/templates/realestate",
+    image_url: "https://images.unsplash.com/photo-1560518883-ce09059eeffa?q=80&w=800",
+    is_featured: true,
+    price: 490000
+  },
+  {
+    title: "헤어살롱",
+    description: "포트폴리오와 예약이 결합된 트렌디한 헤어·네일 살롱 전용 템플릿.",
+    category: "beauty",
+    preview_url: "/templates/hair-salon",
+    image_url: "https://images.unsplash.com/photo-1562322140-8baeececf3df?q=80&w=800",
+    is_featured: true,
+    price: 390000
+  },
+  {
+    title: "유기농 식료품점",
+    description: "친환경·로컬 푸드를 판매하는 소규모 식료품점을 위한 따뜻하고 자연스러운 온라인 스토어.",
+    category: "shopping",
+    preview_url: "/templates/organic",
+    image_url: "https://images.unsplash.com/photo-1542838132-92c53300491e?q=80&w=800",
+    is_featured: false,
+    price: 290000
+  },
+  {
+    title: "어린이집·유치원",
+    description: "부모 신뢰를 얻는 따뜻한 톤의 보육시설 홈페이지. 커리큘럼·원장 소개·입소 안내 완비.",
+    category: "academy",
+    preview_url: "/templates/kindergarten",
+    image_url: "https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?q=80&w=800",
+    is_featured: true,
+    price: 390000
+  },
+  {
+    title: "자동차 정비소",
+    description: "신뢰감을 주는 자동차 정비·튜닝샵을 위한 서비스 목록과 예약 중심 실용 템플릿.",
+    category: "space",
+    preview_url: "/templates/auto-repair",
+    image_url: "https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?q=80&w=800",
+    is_featured: false,
+    price: 290000
+  },
+  {
+    title: "물류·배송 서비스",
+    description: "중소 물류사, 퀵서비스, 화물 운송 기업을 위한 서비스 안내 및 견적 요청 페이지.",
+    category: "corporate",
+    preview_url: "/templates/logistics",
+    image_url: "https://images.unsplash.com/photo-1566576912321-d58ddd7a6088?q=80&w=800",
+    is_featured: false,
+    price: 290000
+  },
+  {
+    title: "결혼식장·웨딩홀",
+    description: "프리미엄 웨딩홀과 연회장을 위한 감성적인 웨딩 비즈니스 홈페이지 템플릿.",
+    category: "stay",
+    preview_url: "/templates/wedding-hall",
+    image_url: "https://images.unsplash.com/photo-1519225421980-715cb0215aed?q=80&w=800",
+    is_featured: true,
+    price: 490000
+  },
+  {
+    title: "보험 설계사",
+    description: "고객 신뢰 구축을 위한 개인 보험 설계사 전용 전문가 브랜딩 페이지.",
+    category: "finance",
+    preview_url: "/templates/insurance",
+    image_url: "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?q=80&w=800",
+    is_featured: false,
+    price: 390000
+  },
+  {
+    title: "공인중개사 사무소",
+    description: "개인 공인중개사를 위한 신뢰 기반 원룸·아파트 전문 중개 랜딩페이지.",
+    category: "space",
+    preview_url: "/templates/agent",
+    image_url: "https://images.unsplash.com/photo-1582407947304-fd86f028f716?q=80&w=800",
+    is_featured: true,
+    price: 390000
   }
 ]
 
