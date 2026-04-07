@@ -440,7 +440,7 @@
           </div>
           <div>
             <label style="font-size:13px;font-weight:700;color:#6b7684;display:block;margin-bottom:6px;">연락처 *</label>
-            <%= f.tel_field :phone, placeholder: "010-0000-0000", class: "mxt-input", required: true %>
+            <%= f.text_field :phone, placeholder: "010-0000-0000", class: "mxt-input", required: true, inputmode: "tel" %>
           </div>
           <div>
             <label style="font-size:13px;font-weight:700;color:#6b7684;display:block;margin-bottom:6px;">업종</label>
