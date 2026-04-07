@@ -1,0 +1,44 @@
+<h2>안녕하세요, <%= @partner.name %> <%= @partner.type_label %>님! 👋</h2>
+
+<p>
+  디어스 플랫폼을 통해 새로운 소상공인 고객이 연결되었습니다.
+</p>
+
+<table style="width: 100%; border-collapse: collapse; margin: 20px 0;">
+  <tr style="border-bottom: 1px solid #eee;">
+    <td style="padding: 10px; color: #666; width: 120px;">고객명</td>
+    <td style="padding: 10px; font-weight: bold;"><%= @client.name %></td>
+  </tr>
+  <tr style="border-bottom: 1px solid #eee;">
+    <td style="padding: 10px; color: #666;">이메일</td>
+    <td style="padding: 10px;"><%= @client.email %></td>
+  </tr>
+  <tr style="border-bottom: 1px solid #eee;">
+    <td style="padding: 10px; color: #666;">사이트명</td>
+    <td style="padding: 10px;"><%= @agency.name %></td>
+  </tr>
+  <tr>
+    <td style="padding: 10px; color: #666;">서브도메인</td>
+    <td style="padding: 10px;"><%= @agency.subdomain %>.designd.co.kr</td>
+  </tr>
+</table>
+
+<p>고객에게 먼저 연락하여 세무 서비스를 안내해보세요.</p>
+
+<p>
+  <a href="mailto:<%= @client.email %>" style="
+    display: inline-block;
+    padding: 12px 24px;
+    background-color: #00a859;
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: bold;
+  ">
+    고객에게 이메일 보내기
+  </a>
+</p>
+
+<p style="color: #666; font-size: 14px;">
+  누적 리드: <%= @partner.lead_count %>건 | 문의: no-reply@designd.co.kr
+</p>

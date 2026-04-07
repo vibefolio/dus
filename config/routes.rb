@@ -68,6 +68,7 @@ Rails.application.routes.draw do
         patch :deactivate
       end
     end
+    resources :partners
     resources :users
 
     resources :orders do
