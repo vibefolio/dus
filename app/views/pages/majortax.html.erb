@@ -61,6 +61,7 @@
     .pkg-grid { grid-template-columns: 1fr !important; }
     .stats-grid { grid-template-columns: repeat(2,1fr) !important; }
     .hide-mobile { display: none !important; }
+    .examples-grid { grid-template-columns: repeat(2,1fr) !important; }
   }
 </style>
 <% end %>
@@ -446,6 +447,46 @@
         </div>
       </div>
     <% end %>
+  </div>
+</section>
+
+<!-- ───────── 제작 예시 ───────── -->
+<section style="padding:80px 24px;">
+  <div style="max-width:1080px;margin:0 auto;">
+    <div style="text-align:center;margin-bottom:48px;">
+      <div class="mxt-section-label">제작 예시</div>
+      <h2 style="font-size:clamp(24px,3.5vw,40px);font-weight:900;letter-spacing:-0.04em;margin-top:12px;color:#191f28;">
+        디어스가 만든 실제 사이트들
+      </h2>
+      <p style="color:#6b7684;margin-top:10px;font-size:15px;">클릭하면 실제 사이트로 이동합니다</p>
+    </div>
+
+    <div class="examples-grid" style="display:grid;grid-template-columns:repeat(5,1fr);gap:12px;">
+      <% [
+        ["세모폰", "중고폰 전문 매장", "https://semophone.co.kr", "https://app.semophone.co.kr/images/logo/%EA%B8%B0%EB%B3%B8%EB%A1%9C%EA%B3%A0.png"],
+        ["야화", "프리미엄 바 프랜차이즈", "https://yahwabar.com", "https://yahwabar.com/yahwa/images/ogbg.png"],
+        ["비즈온 마케팅", "프랜차이즈 마케팅 에이전시", "https://bizonmarketing.co.kr", "https://firebasestorage.googleapis.com/v0/b/faneasy-2b0a1.firebasestorage.app/o/faneasy%2Fbanners%2F3eef9cb5-0fbd-4e7f-b6be-9ff51cb4f27c.png?alt=media"],
+        ["CPR 마케팅", "부산 맛집 상위노출 전문", "https://cprmarketing.co.kr", "https://yahwabar.com/cpr/og-cpr.png"],
+        ["올루올루", "프리미엄 아사이볼 프랜차이즈", "https://oluolu.co.kr", "https://yahwabar.com/oluolu/franchise/img_acai_bowl.jpg"]
+      ].each do |name, desc, url, thumb| %>
+        <a href="<%= url %>" target="_blank" rel="noopener" style="display:block;text-decoration:none;border-radius:16px;overflow:hidden;border:1px solid #eaecef;background:#fff;transition:all 0.2s;" onmouseover="this.style.transform='translateY(-4px)';this.style.boxShadow='0 8px 24px rgba(0,0,0,0.1)';this.style.borderColor='#00a859'" onmouseout="this.style.transform='';this.style.boxShadow='';this.style.borderColor='#eaecef'">
+          <div style="height:120px;overflow:hidden;background:#f2f4f8;">
+            <img src="<%= thumb %>" alt="<%= name %>" style="width:100%;height:100%;object-fit:cover;" onerror="this.style.display='none'">
+          </div>
+          <div style="padding:14px;">
+            <div style="font-size:14px;font-weight:800;color:#191f28;margin-bottom:3px;"><%= name %></div>
+            <div style="font-size:12px;color:#8b95a1;line-height:1.4;word-break:keep-all;"><%= desc %></div>
+          </div>
+        </a>
+      <% end %>
+    </div>
+
+    <div style="text-align:center;margin-top:32px;">
+      <a href="<%= portfolio_path %>" style="display:inline-flex;align-items:center;gap:6px;padding:12px 28px;border:1.5px solid #eaecef;border-radius:50px;font-size:14px;font-weight:700;color:#4e5968;text-decoration:none;transition:all 0.2s;" onmouseover="this.style.borderColor='#00a859';this.style.color='#00a859'" onmouseout="this.style.borderColor='#eaecef';this.style.color='#4e5968'">
+        전체 포트폴리오 보기
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
   </div>
 </section>
 
