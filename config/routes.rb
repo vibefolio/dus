@@ -45,6 +45,10 @@ Rails.application.routes.draw do
   get "mypage/orders", to: "mypage#orders", as: :mypage_orders
   get "privacy", to: "pages#privacy"
   get "terms", to: "pages#terms"
+
+  # 파트너 랜딩페이지
+  get  "majortax", to: "pages#majortax"
+  post "majortax", to: "pages#create_majortax_quote", as: :majortax_quote
   # 템플릿 페이지
   resources :design_templates, only: [:index] do
     post 'toggle_like', to: 'likes#toggle', as: :toggle_like

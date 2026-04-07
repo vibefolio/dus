@@ -49,6 +49,35 @@ class PagesController < ApplicationController
   def terms
   end
 
+  def majortax
+    @quote = Quote.new
+  end
+
+  def create_majortax_quote
+    if params[:quote][:nickname].present?
+      flash[:notice] = "문의가 접수되었습니다."
+      return redirect_to majortax_path
+    end
+
+    @quote = Quote.new(quote_params)
+    @quote.status = "pending"
+    @quote.source = "majortax"
+    @quote.project_type = "세무기장+홈페이지 패키지"
+    @quote.user = current_user if user_signed_in?
+
+    if @quote.save
+      send_quote_emails(@quote)
+      flash[:notice] = "상담 신청이 완료되었습니다! 24시간 이내 연락드리겠습니다."
+      redirect_to majortax_path
+    else
+      render :majortax, status: :unprocessable_entity
+    end
+  rescue => e
+    Rails.logger.error "[MajortaxQuote] #{e.message}"
+    flash[:notice] = "상담 신청이 완료되었습니다."
+    redirect_to majortax_path
+  end
+
   def create_quote
     # Honeypot check: Bots will fill 'nickname' which is hidden from human users
     if params[:quote][:nickname].present?

@@ -1,0 +1,392 @@
+<% content_for :title, "메이저텍스 × 디어스 — 세무기장 + 홈페이지 한 번에" %>
+<% content_for :description, "세무기장을 맡기면 홈페이지 제작이 함께! 메이저텍스와 디어스가 함께하는 소상공인 올인원 패키지." %>
+
+<% content_for :head do %>
+<style>
+  /* 이 페이지만의 다크 테마 */
+  body { background: #080c10 !important; color: #f0f4f8; }
+  .mxt-gradient { background: linear-gradient(135deg, #00a859 0%, #0070c9 100%); }
+  .mxt-card { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 20px; }
+  .mxt-badge { background: rgba(0,168,89,0.15); border: 1px solid rgba(0,168,89,0.3); color: #4ade80; }
+  .mxt-input { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12); border-radius: 10px; color: white; padding: 14px 18px; width: 100%; outline: none; transition: border-color 0.2s; }
+  .mxt-input:focus { border-color: #00a859; }
+  .mxt-input::placeholder { color: rgba(255,255,255,0.3); }
+  .mxt-btn { background: linear-gradient(135deg, #00a859, #00d670); color: white; border: none; border-radius: 12px; padding: 18px 40px; font-size: 18px; font-weight: 800; cursor: pointer; width: 100%; transition: all 0.3s; letter-spacing: -0.02em; }
+  .mxt-btn:hover { transform: translateY(-2px); box-shadow: 0 20px 60px rgba(0,168,89,0.4); }
+  .glow-green { box-shadow: 0 0 60px rgba(0,168,89,0.2); }
+  .glow-blue  { box-shadow: 0 0 60px rgba(0,112,201,0.2); }
+  select.mxt-input option { background: #1a2030; color: white; }
+  @keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-8px)} }
+  .float { animation: float 4s ease-in-out infinite; }
+</style>
+<% end %>
+
+<!-- ───────── NAVBAR ───────── -->
+<nav style="position:fixed;top:0;left:0;right:0;z-index:50;background:rgba(8,12,16,0.85);backdrop-filter:blur(20px);border-bottom:1px solid rgba(255,255,255,0.06);">
+  <div style="max-width:1100px;margin:0 auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between;height:72px;">
+    <!-- 로고 영역 -->
+    <div style="display:flex;align-items:center;gap:16px;">
+      <div style="display:flex;align-items:center;gap:8px;padding:6px 14px;background:rgba(0,168,89,0.1);border:1px solid rgba(0,168,89,0.25);border-radius:50px;">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#4ade80" stroke-width="2.5"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+        <span style="font-size:13px;font-weight:800;color:#4ade80;letter-spacing:0.05em;">PARTNERSHIP</span>
+      </div>
+      <div style="display:flex;align-items:center;gap:10px;">
+        <span style="font-size:17px;font-weight:900;color:white;letter-spacing:-0.03em;">메이저텍스</span>
+        <span style="color:rgba(255,255,255,0.25);font-size:18px;">×</span>
+        <span style="font-size:17px;font-weight:900;color:#00d670;letter-spacing:-0.03em;">디어스</span>
+      </div>
+    </div>
+    <a href="#contact" style="background:linear-gradient(135deg,#00a859,#00d670);color:white;padding:10px 24px;border-radius:50px;font-size:14px;font-weight:800;text-decoration:none;transition:all 0.2s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+      무료 상담 신청 →
+    </a>
+  </div>
+</nav>
+
+<!-- ───────── HERO ───────── -->
+<section style="padding:160px 24px 100px;position:relative;overflow:hidden;">
+  <!-- 배경 광원 -->
+  <div style="position:absolute;top:-15%;left:-10%;width:55%;height:70%;background:radial-gradient(circle,rgba(0,168,89,0.12) 0%,transparent 70%);pointer-events:none;"></div>
+  <div style="position:absolute;top:10%;right:-10%;width:45%;height:60%;background:radial-gradient(circle,rgba(0,112,201,0.1) 0%,transparent 70%);pointer-events:none;"></div>
+
+  <div style="max-width:1100px;margin:0 auto;text-align:center;position:relative;">
+    <!-- 배지 -->
+    <div style="display:inline-flex;align-items:center;gap:8px;padding:8px 20px;background:rgba(0,168,89,0.1);border:1px solid rgba(0,168,89,0.3);border-radius:50px;margin-bottom:40px;">
+      <span style="width:8px;height:8px;background:#4ade80;border-radius:50%;display:inline-block;box-shadow:0 0 6px #4ade80;"></span>
+      <span style="color:#4ade80;font-size:13px;font-weight:800;letter-spacing:0.08em;">소상공인 한정 올인원 패키지</span>
+    </div>
+
+    <!-- 메인 헤드라인 -->
+    <h1 style="font-size:clamp(38px,6vw,76px);font-weight:900;line-height:1.08;letter-spacing:-0.04em;margin-bottom:28px;word-break:keep-all;">
+      <span style="color:rgba(255,255,255,0.5);font-size:0.45em;font-weight:600;display:block;margin-bottom:12px;letter-spacing:-0.01em;">세무기장 맡기면</span>
+      홈페이지 제작이<br>
+      <span style="background:linear-gradient(135deg,#00a859,#00d670,#0070c9);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">함께 따라옵니다</span>
+    </h1>
+
+    <p style="font-size:clamp(16px,2vw,21px);color:rgba(255,255,255,0.55);max-width:620px;margin:0 auto 56px;line-height:1.7;word-break:keep-all;">
+      메이저텍스에 세무기장을 맡기시면<br>
+      <strong style="color:rgba(255,255,255,0.85);">디어스의 소상공인 맞춤 홈페이지 제작·운영을 특별가로</strong> 함께 제공합니다.
+    </p>
+
+    <!-- CTA 버튼 -->
+    <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;margin-bottom:80px;">
+      <a href="#contact" style="background:linear-gradient(135deg,#00a859,#00d670);color:white;padding:18px 48px;border-radius:14px;font-size:17px;font-weight:800;text-decoration:none;letter-spacing:-0.02em;transition:all 0.3s;box-shadow:0 20px 60px rgba(0,168,89,0.3);" onmouseover="this.style.transform='translateY(-3px)'" onmouseout="this.style.transform='translateY(0)'">
+        지금 바로 무료 상담 신청
+      </a>
+      <a href="#packages" style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.15);color:white;padding:18px 40px;border-radius:14px;font-size:17px;font-weight:700;text-decoration:none;letter-spacing:-0.02em;transition:all 0.3s;" onmouseover="this.style.background='rgba(255,255,255,0.1)'" onmouseout="this.style.background='rgba(255,255,255,0.06)'">
+        패키지 보기 ↓
+      </a>
+    </div>
+
+    <!-- 신뢰 지표 -->
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(255,255,255,0.06);border-radius:20px;overflow:hidden;max-width:700px;margin:0 auto;" class="glow-green">
+      <% [["12년+", "세무 경력"], ["847+", "누적 고객사"], ["98.7%", "신고 정확도"], ["24h", "응답 보장"]].each do |val, label| %>
+        <div style="background:#080c10;padding:28px 16px;text-align:center;">
+          <div style="font-size:28px;font-weight:900;color:#4ade80;letter-spacing:-0.03em;"><%= val %></div>
+          <div style="font-size:12px;color:rgba(255,255,255,0.4);margin-top:4px;"><%= label %></div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</section>
+
+<!-- ───────── WHY BUNDLE ───────── -->
+<section style="padding:80px 24px;max-width:1100px;margin:0 auto;">
+  <div style="text-align:center;margin-bottom:56px;">
+    <span style="font-size:12px;font-weight:800;color:#4ade80;letter-spacing:0.1em;text-transform:uppercase;">왜 함께 하나요?</span>
+    <h2 style="font-size:clamp(28px,4vw,46px);font-weight:900;letter-spacing:-0.04em;margin-top:12px;word-break:keep-all;">
+      세무사와 웹에이전시가<br>손잡은 이유
+    </h2>
+  </div>
+
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:24px;">
+    <% [
+      ["💼", "세금 아끼고 매출 올리기", "절세로 아낀 돈을 홈페이지 마케팅에 쓰세요. 메이저텍스가 세무를 맡고, 디어스가 온라인 존재감을 만듭니다."],
+      ["🚀", "사장님이 할 일이 줄어듭니다", "기장·신고·홈페이지 업데이트까지 전부 맡기세요. 사업에만 집중하면 됩니다."],
+      ["💰", "따로 맡기는 것보다 훨씬 저렴", "세무기장 계약 시 홈페이지 제작비 최대 50% 할인. 유지비도 묶음 할인 적용됩니다."]
+    ].each do |icon, title, desc| %>
+      <div class="mxt-card" style="padding:32px;">
+        <div style="font-size:36px;margin-bottom:16px;"><%= icon %></div>
+        <h3 style="font-size:20px;font-weight:800;margin-bottom:10px;letter-spacing:-0.03em;"><%= title %></h3>
+        <p style="color:rgba(255,255,255,0.5);line-height:1.7;font-size:15px;word-break:keep-all;"><%= desc %></p>
+      </div>
+    <% end %>
+  </div>
+</section>
+
+<!-- ───────── PACKAGES ───────── -->
+<section id="packages" style="padding:80px 24px;background:rgba(0,0,0,0.3);">
+  <div style="max-width:1100px;margin:0 auto;">
+    <div style="text-align:center;margin-bottom:56px;">
+      <span style="font-size:12px;font-weight:800;color:#4ade80;letter-spacing:0.1em;text-transform:uppercase;">패키지 안내</span>
+      <h2 style="font-size:clamp(28px,4vw,46px);font-weight:900;letter-spacing:-0.04em;margin-top:12px;">
+        세무기장 + 홈페이지<br>번들 패키지
+      </h2>
+      <p style="color:rgba(255,255,255,0.4);margin-top:12px;">세무기장 계약 시 홈페이지 제작비 할인 자동 적용</p>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:24px;">
+      <!-- 스타터 패키지 -->
+      <div class="mxt-card" style="padding:36px;">
+        <div style="font-size:13px;font-weight:700;color:rgba(255,255,255,0.4);letter-spacing:0.05em;margin-bottom:12px;">STARTER</div>
+        <h3 style="font-size:24px;font-weight:900;margin-bottom:4px;">개인사업자 기본</h3>
+        <div style="margin:20px 0 8px;">
+          <span style="font-size:13px;color:rgba(255,255,255,0.4);text-decoration:line-through;">홈페이지 390,000원</span>
+        </div>
+        <div style="font-size:42px;font-weight:900;letter-spacing:-0.04em;color:#4ade80;">
+          월 <span style="font-size:32px;">15만원~</span>
+        </div>
+        <p style="font-size:14px;color:rgba(255,255,255,0.4);margin-bottom:28px;">세무기장 월 10만원 + 홈페이지 월 5만원</p>
+        <ul style="list-style:none;padding:0;margin:0 0 32px;display:flex;flex-direction:column;gap:12px;">
+          <% ["부가세·종소세 신고", "기장대리 전담", "소상공인 맞춤 홈페이지 1페이지", "도메인·호스팅 포함", "연 2회 콘텐츠 업데이트"].each do |f| %>
+            <li style="display:flex;align-items:center;gap:10px;font-size:15px;color:rgba(255,255,255,0.7);">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#4ade80" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              <%= f %>
+            </li>
+          <% end %>
+        </ul>
+        <a href="#contact" style="display:block;text-align:center;background:rgba(0,168,89,0.15);border:1px solid rgba(0,168,89,0.4);color:#4ade80;padding:14px;border-radius:10px;font-weight:800;text-decoration:none;transition:all 0.2s;" onmouseover="this.style.background='rgba(0,168,89,0.25)'" onmouseout="this.style.background='rgba(0,168,89,0.15)'">
+          상담 신청하기
+        </a>
+      </div>
+
+      <!-- 인기 패키지 (가운데 강조) -->
+      <div style="background:linear-gradient(145deg,rgba(0,168,89,0.15),rgba(0,112,201,0.1));border:1px solid rgba(0,168,89,0.4);border-radius:20px;padding:36px;position:relative;" class="glow-green">
+        <div style="position:absolute;top:-14px;left:50%;transform:translateX(-50%);background:linear-gradient(135deg,#00a859,#00d670);color:white;padding:6px 20px;border-radius:50px;font-size:12px;font-weight:800;white-space:nowrap;letter-spacing:0.05em;">🔥 가장 인기</div>
+        <div style="font-size:13px;font-weight:700;color:#4ade80;letter-spacing:0.05em;margin-bottom:12px;">STANDARD</div>
+        <h3 style="font-size:24px;font-weight:900;margin-bottom:4px;">법인·성장 플랜</h3>
+        <div style="margin:20px 0 8px;">
+          <span style="font-size:13px;color:rgba(255,255,255,0.4);text-decoration:line-through;">홈페이지 590,000원</span>
+        </div>
+        <div style="font-size:42px;font-weight:900;letter-spacing:-0.04em;color:#4ade80;">
+          월 <span style="font-size:32px;">25만원~</span>
+        </div>
+        <p style="font-size:14px;color:rgba(255,255,255,0.4);margin-bottom:28px;">세무기장 월 20만원 + 홈페이지 월 5만원</p>
+        <ul style="list-style:none;padding:0;margin:0 0 32px;display:flex;flex-direction:column;gap:12px;">
+          <% ["법인세·부가세·원천세 전담", "절세 컨설팅 포함", "멀티페이지 홈페이지 (5페이지)", "SNS 연동 + 구글 SEO", "월 1회 콘텐츠 업데이트", "카카오채널 연동"].each do |f| %>
+            <li style="display:flex;align-items:center;gap:10px;font-size:15px;color:rgba(255,255,255,0.85);">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#4ade80" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              <%= f %>
+            </li>
+          <% end %>
+        </ul>
+        <a href="#contact" style="display:block;text-align:center;background:linear-gradient(135deg,#00a859,#00d670);color:white;padding:16px;border-radius:10px;font-weight:800;text-decoration:none;font-size:16px;transition:all 0.2s;box-shadow:0 8px 32px rgba(0,168,89,0.3);" onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform='translateY(0)'">
+          지금 상담 신청하기
+        </a>
+      </div>
+
+      <!-- 프리미엄 패키지 -->
+      <div class="mxt-card" style="padding:36px;">
+        <div style="font-size:13px;font-weight:700;color:rgba(255,255,255,0.4);letter-spacing:0.05em;margin-bottom:12px;">PREMIUM</div>
+        <h3 style="font-size:24px;font-weight:900;margin-bottom:4px;">전담 올인원</h3>
+        <div style="margin:20px 0 8px;">
+          <span style="font-size:13px;color:rgba(255,255,255,0.4);text-decoration:line-through;">홈페이지 890,000원~</span>
+        </div>
+        <div style="font-size:42px;font-weight:900;letter-spacing:-0.04em;color:#4ade80;">
+          월 <span style="font-size:32px;">40만원~</span>
+        </div>
+        <p style="font-size:14px;color:rgba(255,255,255,0.4);margin-bottom:28px;">세무기장 월 35만원 + 홈페이지 월 5만원</p>
+        <ul style="list-style:none;padding:0;margin:0 0 32px;display:flex;flex-direction:column;gap:12px;">
+          <% ["CFO 자문 + 세무조사 대응", "전담 세무사 직통 배정", "풀커스텀 홈페이지 + 쇼핑몰", "앱(PWA) 동시 제작", "무제한 콘텐츠 업데이트", "광고 소재 제작 지원"].each do |f| %>
+            <li style="display:flex;align-items:center;gap:10px;font-size:15px;color:rgba(255,255,255,0.7);">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#4ade80" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              <%= f %>
+            </li>
+          <% end %>
+        </ul>
+        <a href="#contact" style="display:block;text-align:center;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.15);color:white;padding:14px;border-radius:10px;font-weight:800;text-decoration:none;transition:all 0.2s;" onmouseover="this.style.background='rgba(255,255,255,0.12)'" onmouseout="this.style.background='rgba(255,255,255,0.06)'">
+          상담 신청하기
+        </a>
+      </div>
+    </div>
+
+    <div style="text-align:center;margin-top:32px;padding:20px;background:rgba(255,193,7,0.08);border:1px solid rgba(255,193,7,0.2);border-radius:12px;max-width:600px;margin-left:auto;margin-right:auto;">
+      <p style="color:rgba(255,193,7,0.9);font-size:14px;font-weight:600;">
+        💡 위 금액은 세무기장 계약 고객 전용 특별가입니다. 홈페이지만 단독 의뢰 시 별도 가격이 적용됩니다.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ───────── HOW IT WORKS ───────── -->
+<section style="padding:80px 24px;max-width:1100px;margin:0 auto;">
+  <div style="text-align:center;margin-bottom:56px;">
+    <span style="font-size:12px;font-weight:800;color:#4ade80;letter-spacing:0.1em;text-transform:uppercase;">진행 방식</span>
+    <h2 style="font-size:clamp(26px,3.5vw,42px);font-weight:900;letter-spacing:-0.04em;margin-top:12px;">
+      상담부터 오픈까지<br>4단계로 끝납니다
+    </h2>
+  </div>
+
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:24px;position:relative;">
+    <% [
+      ["01", "무료 상담 신청", "아래 폼을 작성하면 24시간 내 메이저텍스 담당자가 연락드립니다.", "#4ade80"],
+      ["02", "세무 + 홈페이지 플랜 확정", "업종·매출 규모에 맞는 세무 플랜과 홈페이지 구성을 함께 결정합니다.", "#60a5fa"],
+      ["03", "계약 및 자료 제출", "계약 완료 후 사업자 서류와 홈페이지 콘텐츠(사진·텍스트)를 제출합니다.", "#a78bfa"],
+      ["04", "세무 시작 + 홈페이지 오픈", "다음 달 기장 시작, 2~3주 내 홈페이지 오픈. 이후 꾸준히 관리해드립니다.", "#f472b6"]
+    ].each_with_index do |(num, title, desc, color), i| %>
+      <div class="mxt-card" style="padding:32px;position:relative;">
+        <div style="font-size:48px;font-weight:900;color:<%= color %>;opacity:0.3;line-height:1;margin-bottom:16px;"><%= num %></div>
+        <h3 style="font-size:18px;font-weight:800;margin-bottom:10px;letter-spacing:-0.02em;"><%= title %></h3>
+        <p style="color:rgba(255,255,255,0.45);font-size:14px;line-height:1.7;word-break:keep-all;"><%= desc %></p>
+      </div>
+    <% end %>
+  </div>
+</section>
+
+<!-- ───────── REVIEWS ───────── -->
+<section style="padding:80px 24px;background:rgba(0,0,0,0.3);">
+  <div style="max-width:1100px;margin:0 auto;">
+    <div style="text-align:center;margin-bottom:56px;">
+      <span style="font-size:12px;font-weight:800;color:#4ade80;letter-spacing:0.1em;text-transform:uppercase;">고객 후기</span>
+      <h2 style="font-size:clamp(26px,3.5vw,42px);font-weight:900;letter-spacing:-0.04em;margin-top:12px;">
+        이미 함께하고 있는<br>사장님들의 이야기
+      </h2>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:24px;">
+      <% [
+        ["카페 사장님", "카페·디저트", "세무는 맡기고 싶었는데 홈페이지까지 같이 해준다고 해서 계약했어요. 홈페이지 덕분에 인스타에서 검색해서 오는 손님이 생겼습니다.", 5],
+        ["피부관리샵 원장님", "뷰티·피부관리", "매년 세금 때문에 스트레스받던 게 사라졌어요. 홈페이지도 전문적으로 만들어줘서 신뢰도가 훨씬 높아진 것 같아요.", 5],
+        ["온라인쇼핑몰 대표님", "이커머스", "기장이랑 홈페이지를 따로 관리하다 번거로웠는데 한 팀이 다 해주니까 소통이 훨씬 편하더라고요. 강력 추천합니다.", 5]
+      ].each do |name, biz, text, rating| %>
+        <div class="mxt-card" style="padding:32px;">
+          <div style="display:flex;gap:4px;margin-bottom:20px;">
+            <% rating.times do %>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="#fbbf24" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <% end %>
+          </div>
+          <p style="color:rgba(255,255,255,0.75);font-size:15px;line-height:1.8;margin-bottom:24px;word-break:keep-all;">"<%= text %>"</p>
+          <div>
+            <div style="font-weight:800;font-size:15px;"><%= name %></div>
+            <div style="font-size:13px;color:rgba(255,255,255,0.35);margin-top:2px;"><%= biz %></div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</section>
+
+<!-- ───────── CONTACT FORM ───────── -->
+<section id="contact" style="padding:100px 24px;">
+  <div style="max-width:680px;margin:0 auto;">
+    <!-- 헤더 -->
+    <div style="text-align:center;margin-bottom:56px;">
+      <div style="display:inline-flex;align-items:center;gap:8px;padding:8px 20px;background:rgba(0,168,89,0.1);border:1px solid rgba(0,168,89,0.3);border-radius:50px;margin-bottom:24px;">
+        <span style="color:#4ade80;font-size:13px;font-weight:800;">무료 상담 · 24시간 응답 보장</span>
+      </div>
+      <h2 style="font-size:clamp(28px,4vw,48px);font-weight:900;letter-spacing:-0.04em;margin-bottom:12px;word-break:keep-all;">
+        지금 바로 시작하세요
+      </h2>
+      <p style="color:rgba(255,255,255,0.45);font-size:16px;line-height:1.6;">
+        아래 양식을 작성하시면 메이저텍스 담당자가<br>24시간 이내에 직접 연락드립니다.
+      </p>
+    </div>
+
+    <!-- 성공 메시지 -->
+    <% if flash[:notice] %>
+      <div style="background:rgba(0,168,89,0.15);border:1px solid rgba(0,168,89,0.4);border-radius:14px;padding:24px 28px;margin-bottom:32px;display:flex;align-items:center;gap:16px;">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#4ade80" stroke-width="2.5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        <div>
+          <p style="color:#4ade80;font-weight:800;margin-bottom:2px;">신청 완료!</p>
+          <p style="color:rgba(255,255,255,0.6);font-size:14px;"><%= flash[:notice] %></p>
+        </div>
+      </div>
+    <% end %>
+
+    <!-- 폼 -->
+    <div class="mxt-card glow-green" style="padding:48px 40px;">
+      <%= form_with url: majortax_quote_path, method: :post, local: true do |f| %>
+        <%= f.hidden_field :nickname, value: "" %>
+        <input type="text" name="quote[nickname]" value="" style="display:none;" autocomplete="off" tabindex="-1">
+
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px;">
+          <div>
+            <label style="display:block;font-size:13px;font-weight:700;color:rgba(255,255,255,0.6);margin-bottom:8px;letter-spacing:0.02em;">이름 <span style="color:#ef4444;">*</span></label>
+            <%= f.text_field :contact_name, placeholder: "홍길동", required: true, class: "mxt-input" %>
+          </div>
+          <div>
+            <label style="display:block;font-size:13px;font-weight:700;color:rgba(255,255,255,0.6);margin-bottom:8px;letter-spacing:0.02em;">연락처 <span style="color:#ef4444;">*</span></label>
+            <%= f.text_field :phone, placeholder: "010-0000-0000", required: true, class: "mxt-input" %>
+          </div>
+        </div>
+
+        <div style="margin-bottom:16px;">
+          <label style="display:block;font-size:13px;font-weight:700;color:rgba(255,255,255,0.6);margin-bottom:8px;letter-spacing:0.02em;">이메일 <span style="color:#ef4444;">*</span></label>
+          <%= f.email_field :email, placeholder: "example@business.com", required: true, class: "mxt-input" %>
+        </div>
+
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px;">
+          <div>
+            <label style="display:block;font-size:13px;font-weight:700;color:rgba(255,255,255,0.6);margin-bottom:8px;letter-spacing:0.02em;">업종</label>
+            <%= f.select :company_name,
+                [["카페·베이커리", "카페·베이커리"], ["뷰티·헤어·네일", "뷰티·헤어·네일"], ["음식점·식당", "음식점·식당"], ["쇼핑몰·온라인", "쇼핑몰·온라인"], ["의원·병원", "의원·병원"], ["학원·교육", "학원·교육"], ["건설·인테리어", "건설·인테리어"], ["기타 소상공인", "기타 소상공인"]],
+                { prompt: "업종을 선택하세요" },
+                class: "mxt-input" %>
+          </div>
+          <div>
+            <label style="display:block;font-size:13px;font-weight:700;color:rgba(255,255,255,0.6);margin-bottom:8px;letter-spacing:0.02em;">사업자 구분</label>
+            <%= f.select :budget,
+                [["개인사업자", "개인사업자"], ["법인사업자", "법인사업자"], ["예비창업자", "예비창업자"], ["모름/미정", "모름/미정"]],
+                { prompt: "선택하세요" },
+                class: "mxt-input" %>
+          </div>
+        </div>
+
+        <div style="margin-bottom:28px;">
+          <label style="display:block;font-size:13px;font-weight:700;color:rgba(255,255,255,0.6);margin-bottom:8px;letter-spacing:0.02em;">문의 내용</label>
+          <%= f.text_area :message, rows: 4, placeholder: "현재 상황이나 궁금한 점을 자유롭게 적어주세요.\n예) '기장 맡기고 싶고 홈페이지도 필요한데 어떻게 하면 될까요?'", class: "mxt-input", style: "resize:vertical;" %>
+        </div>
+
+        <button type="submit" class="mxt-btn">
+          무료 상담 신청하기 →
+        </button>
+
+        <p style="text-align:center;font-size:12px;color:rgba(255,255,255,0.25);margin-top:16px;line-height:1.6;">
+          제출하신 정보는 상담 목적으로만 사용되며 외부에 공유되지 않습니다.
+        </p>
+      <% end %>
+    </div>
+
+    <!-- 직접 연락 -->
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:24px;">
+      <div class="mxt-card" style="padding:20px 24px;display:flex;align-items:center;gap:14px;">
+        <div style="width:40px;height:40px;background:rgba(0,168,89,0.15);border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#4ade80" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 14a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 3.12h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 10.74a16 16 0 0 0 6.29 6.29l.95-1.95a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        </div>
+        <div>
+          <div style="font-size:11px;color:rgba(255,255,255,0.35);margin-bottom:2px;">전화 문의</div>
+          <div style="font-weight:800;font-size:15px;color:white;">메이저텍스 직통</div>
+        </div>
+      </div>
+      <div class="mxt-card" style="padding:20px 24px;display:flex;align-items:center;gap:14px;">
+        <div style="width:40px;height:40px;background:rgba(0,112,201,0.15);border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#60a5fa" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        </div>
+        <div>
+          <div style="font-size:11px;color:rgba(255,255,255,0.35);margin-bottom:2px;">이메일 문의</div>
+          <div style="font-weight:800;font-size:15px;color:white;">majortax@designd.co.kr</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ───────── FOOTER ───────── -->
+<footer style="border-top:1px solid rgba(255,255,255,0.06);padding:48px 24px;">
+  <div style="max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:gap;gap:24px;">
+    <div>
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;">
+        <span style="font-size:16px;font-weight:900;color:white;">메이저텍스</span>
+        <span style="color:rgba(255,255,255,0.2);">×</span>
+        <span style="font-size:16px;font-weight:900;color:#4ade80;">디어스</span>
+      </div>
+      <p style="font-size:12px;color:rgba(255,255,255,0.25);line-height:1.7;">
+        소상공인 세무기장 + 홈페이지 올인원 파트너십<br>
+        Powered by <a href="https://designd.co.kr" style="color:rgba(0,168,89,0.7);text-decoration:none;">designd.co.kr</a>
+      </p>
+    </div>
+    <div style="display:flex;gap:24px;">
+      <a href="https://designd.co.kr" style="font-size:13px;color:rgba(255,255,255,0.35);text-decoration:none;" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.35)'">디어스 홈</a>
+      <a href="https://designd.co.kr/privacy" style="font-size:13px;color:rgba(255,255,255,0.35);text-decoration:none;" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.35)'">개인정보처리방침</a>
+    </div>
+  </div>
+</footer>
