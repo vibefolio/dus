@@ -20,9 +20,8 @@ jobs:
           ssh -o StrictHostKeyChecking=no ${{ secrets.NCP_USER }}@${{ secrets.NCP_HOST }} \
             "cd /root/projects/dlab-website && \
              git pull origin main && \
-             docker compose down && \
-             docker compose up -d --build && \
-             sleep 10 && \
+             docker compose up -d --build --no-deps && \
+             sleep 15 && \
              docker compose exec -T dlab-website-app bin/rails db:migrate 2>/dev/null; \
              docker compose ps && \
              echo '✅ DUS 배포 완료'"
