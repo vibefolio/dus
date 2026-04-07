@@ -9,9 +9,9 @@ class Admin::SessionsController < ApplicationController
   end
 
   def create
-    # 1. Check legacy ENV credentials
-    admin_username = ENV.fetch("ADMIN_USERNAME", "admin@designd.co.kr")
-    admin_password = ENV.fetch("ADMIN_PASSWORD", "djemals1234!")
+    # 1. Check legacy ENV credentials (폴백 제거 — 환경변수 미설정 시 ENV 인증 비활성화)
+    admin_username = ENV["ADMIN_USERNAME"]
+    admin_password = ENV["ADMIN_PASSWORD"]
 
     # 2. Check User model records
     user = User.find_by(email: params[:username])

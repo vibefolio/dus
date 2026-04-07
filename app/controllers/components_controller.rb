@@ -1,5 +1,6 @@
 class ComponentsController < ApplicationController
-  layout "admin" 
+  layout "admin"
+  before_action :authenticate_admin!
 
   def index
     # Dummy data for preview
