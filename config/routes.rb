@@ -13,8 +13,9 @@ Rails.application.routes.draw do
   resources :orders do
     collection do
       post 'create_from_cart'
-      get 'fail'
-      get 'complete'
+      get 'success'   # 토스 결제 성공 리다이렉트
+      get 'fail'      # 토스 결제 실패 리다이렉트
+      get 'complete'  # 결제 완료 확인 페이지
     end
   end
   
@@ -61,7 +62,12 @@ Rails.application.routes.draw do
       end
     end
     resources :design_templates
-    resources :agencies
+    resources :agencies do
+      member do
+        patch :approve
+        patch :deactivate
+      end
+    end
     resources :users
 
     resources :orders do

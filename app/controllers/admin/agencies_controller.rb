@@ -1,7 +1,7 @@
 class Admin::AgenciesController < ApplicationController
   layout "admin"
   before_action :authenticate_admin!
-  before_action :set_agency, only: [:show, :edit, :update, :destroy]
+  before_action :set_agency, only: [:show, :edit, :update, :destroy, :approve, :deactivate]
 
   def index
     if session[:admin_id] == "admin" || current_user&.super_admin?
@@ -52,6 +52,19 @@ class Admin::AgenciesController < ApplicationController
   def destroy
     @agency.destroy
     redirect_to admin_agencies_path, notice: "에이전시가 삭제되었습니다."
+  end
+
+  def approve
+    @agency.update!(active: true)
+    AgencyMailer.approved(@agency).deliver_later
+    redirect_to admin_agencies_path, notice: "#{@agency.name} 에이전시가 승인되었습니다."
+  rescue => e
+    redirect_to admin_agencies_path, alert: "승인 중 오류가 발생했습니다: #{e.message}"
+  end
+
+  def deactivate
+    @agency.update!(active: false)
+    redirect_to admin_agencies_path, notice: "#{@agency.name} 에이전시가 비활성화되었습니다."
   end
 
   private
