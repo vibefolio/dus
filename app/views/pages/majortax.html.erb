@@ -237,73 +237,61 @@
     <!-- 3개 플랜 카드 -->
     <div class="pkg-grid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px;align-items:start;">
 
-      <!-- 11만 플랜 -->
+      <!-- SOLO -->
       <div class="pkg-card">
-        <div style="font-size:12px;font-weight:800;color:#8b95a1;letter-spacing:0.08em;margin-bottom:8px;">PRO</div>
-        <div style="font-size:13px;color:#6b7684;margin-bottom:16px;">1인 자영업자 · 소규모 개인사업자</div>
+        <div style="font-size:12px;font-weight:800;color:#8b95a1;letter-spacing:0.08em;margin-bottom:6px;">SOLO</div>
+        <div style="font-size:17px;font-weight:800;color:#191f28;margin-bottom:4px;">프리랜서 · 1인 창업</div>
+        <div style="font-size:13px;color:#6b7684;margin-bottom:16px;">강사, 크리에이터, 1인 자영업자</div>
         <div style="display:inline-block;background:#e8f9f1;color:#00a859;font-size:11px;font-weight:800;padding:4px 10px;border-radius:50px;margin-bottom:16px;">초기비용 0원</div>
 
         <div style="margin-bottom:20px;">
           <div style="font-size:48px;font-weight:900;color:#191f28;letter-spacing:-0.04em;line-height:1;">11만원</div>
-          <div style="font-size:13px;color:#8b95a1;margin-top:6px;">/ 월</div>
-        </div>
-
-        <div style="padding:14px 16px;background:#f8f9fa;border-radius:12px;margin-bottom:20px;">
-          <div style="display:flex;justify-content:space-between;margin-bottom:6px;font-size:13px;color:#4e5968;"><span>세무기장</span><span style="font-weight:700;">7.7만원</span></div>
-          <div style="display:flex;justify-content:space-between;font-size:13px;color:#4e5968;"><span>홈페이지 관리</span><span style="font-weight:700;">3.3만원</span></div>
+          <div style="font-size:13px;color:#8b95a1;margin-top:6px;">/ 월 · 세무 7.7 + 홈페이지 3.3</div>
         </div>
 
         <ul style="list-style:none;padding:0;margin:0 0 24px;display:flex;flex-direction:column;gap:8px;">
-          <% ["랜딩페이지 디자인 제작", "반응형 웹 디자인", "기본 문의 폼", "SEO 기본 설정", "월 1회 콘텐츠 수정", "개인사업자 세무기장", "부가세 신고 포함"].each do |item| %>
+          <% ["개인사업자 세무기장", "부가세 신고 포함", "랜딩페이지 디자인 제작", "반응형 웹 디자인", "기본 문의 폼", "SEO 기본 설정", "월 1회 콘텐츠 수정"].each do |item| %>
             <li style="display:flex;align-items:center;gap:8px;font-size:13px;color:#4e5968;"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#00a859" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg><%= item %></li>
           <% end %>
         </ul>
         <a href="#contact" style="display:block;background:#f0faf5;color:#00a859;text-align:center;padding:14px;border-radius:10px;font-size:15px;font-weight:700;text-decoration:none;border:1.5px solid #c8ecd8;" onmouseover="this.style.background='#e2f5ea'" onmouseout="this.style.background='#f0faf5'">무료 상담 신청</a>
       </div>
 
-      <!-- 22만 플랜 -->
+      <!-- BIZ -->
       <div class="pkg-card featured" style="padding-top:44px;">
-        <div class="pkg-badge">가장 많이 선택</div>
-        <div style="font-size:12px;font-weight:800;color:#00a859;letter-spacing:0.08em;margin-bottom:8px;">BRAND</div>
-        <div style="font-size:13px;color:#6b7684;margin-bottom:16px;">성장 중인 사업자 · 소규모 법인</div>
+        <div class="pkg-badge">창업자 선택 1위</div>
+        <div style="font-size:12px;font-weight:800;color:#00a859;letter-spacing:0.08em;margin-bottom:6px;">BIZ</div>
+        <div style="font-size:17px;font-weight:800;color:#191f28;margin-bottom:4px;">소상공인 · 매장 창업</div>
+        <div style="font-size:13px;color:#6b7684;margin-bottom:16px;">카페, 식당, 쇼핑몰, 서비스업</div>
         <div style="display:inline-block;background:#e8f9f1;color:#00a859;font-size:11px;font-weight:800;padding:4px 10px;border-radius:50px;margin-bottom:16px;">초기비용 0원</div>
 
         <div style="margin-bottom:20px;">
           <div style="font-size:48px;font-weight:900;color:#191f28;letter-spacing:-0.04em;line-height:1;">22만원</div>
-          <div style="font-size:13px;color:#8b95a1;margin-top:6px;">/ 월</div>
-        </div>
-
-        <div style="padding:14px 16px;background:#f8f9fa;border-radius:12px;margin-bottom:20px;">
-          <div style="display:flex;justify-content:space-between;margin-bottom:6px;font-size:13px;color:#4e5968;"><span>세무기장</span><span style="font-weight:700;">16.5만원</span></div>
-          <div style="display:flex;justify-content:space-between;font-size:13px;color:#4e5968;"><span>홈페이지 관리</span><span style="font-weight:700;">5.5만원</span></div>
+          <div style="font-size:13px;color:#8b95a1;margin-top:6px;">/ 월 · 세무 16.5 + 홈페이지 5.5</div>
         </div>
 
         <ul style="list-style:none;padding:0;margin:0 0 24px;display:flex;flex-direction:column;gap:8px;">
-          <% ["브랜드 아이덴티티 적용 디자인", "마케팅 최적화 레이아웃", "카카오톡 채널 연동", "SEO 고급 최적화", "월 2회 콘텐츠 수정", "법인 세무기장", "부가세 · 법인세 신고 포함", "절세 컨설팅"].each do |item| %>
+          <% ["개인·법인 세무기장", "부가세 신고 포함", "절세 컨설팅", "브랜드 홈페이지 디자인", "마케팅 최적화 레이아웃", "카카오톡 채널 연동", "SEO 고급 최적화", "월 2회 콘텐츠 수정"].each do |item| %>
             <li style="display:flex;align-items:center;gap:8px;font-size:13px;color:#4e5968;"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#00a859" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg><%= item %></li>
           <% end %>
         </ul>
         <a href="#contact" style="display:block;background:#00a859;color:white;text-align:center;padding:14px;border-radius:10px;font-size:15px;font-weight:700;text-decoration:none;" onmouseover="this.style.background='#008f4a'" onmouseout="this.style.background='#00a859'">무료 상담 신청</a>
       </div>
 
-      <!-- 33만 플랜 -->
+      <!-- CORP -->
       <div class="pkg-card">
-        <div style="font-size:12px;font-weight:800;color:#8b95a1;letter-spacing:0.08em;margin-bottom:8px;">MASTER</div>
-        <div style="font-size:13px;color:#6b7684;margin-bottom:16px;">중규모 법인 · 프랜차이즈</div>
+        <div style="font-size:12px;font-weight:800;color:#8b95a1;letter-spacing:0.08em;margin-bottom:6px;">CORP</div>
+        <div style="font-size:17px;font-weight:800;color:#191f28;margin-bottom:4px;">법인 · 스타트업 창업</div>
+        <div style="font-size:13px;color:#6b7684;margin-bottom:16px;">법인 설립, 팀 창업, 프랜차이즈</div>
         <div style="display:inline-block;background:#e8f9f1;color:#00a859;font-size:11px;font-weight:800;padding:4px 10px;border-radius:50px;margin-bottom:16px;">초기비용 0원</div>
 
         <div style="margin-bottom:20px;">
           <div style="font-size:48px;font-weight:900;color:#191f28;letter-spacing:-0.04em;line-height:1;">33만원</div>
-          <div style="font-size:13px;color:#8b95a1;margin-top:6px;">/ 월</div>
-        </div>
-
-        <div style="padding:14px 16px;background:#f8f9fa;border-radius:12px;margin-bottom:20px;">
-          <div style="display:flex;justify-content:space-between;margin-bottom:6px;font-size:13px;color:#4e5968;"><span>세무기장</span><span style="font-weight:700;">22만원</span></div>
-          <div style="display:flex;justify-content:space-between;font-size:13px;color:#4e5968;"><span>홈페이지 관리</span><span style="font-weight:700;">11만원</span></div>
+          <div style="font-size:13px;color:#8b95a1;margin-top:6px;">/ 월 · 세무 22 + 홈페이지 11</div>
         </div>
 
         <ul style="list-style:none;padding:0;margin:0 0 24px;display:flex;flex-direction:column;gap:8px;">
-          <% ["풀 커스텀 하이엔드 디자인", "마케팅 자동화 도구 연동", "무제한 콘텐츠 수정", "전담 매니저 직통", "법인 전체 세무 관리", "절세 전략 컨설팅"].each do |item| %>
+          <% ["법인 전체 세무 관리", "법인세 신고 포함", "절세 전략 컨설팅", "풀 커스텀 하이엔드 디자인", "마케팅 자동화 연동", "무제한 콘텐츠 수정", "전담 매니저 직통"].each do |item| %>
             <li style="display:flex;align-items:center;gap:8px;font-size:13px;color:#4e5968;"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#00a859" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg><%= item %></li>
           <% end %>
         </ul>
