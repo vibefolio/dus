@@ -108,33 +108,43 @@ class OrdersController < ApplicationController
     end
   end
 
-  # Payment Success Handling
+  # 토스 페이먼츠 결제 성공 리다이렉트 처리
   def success
     payment_key = params[:paymentKey]
-    order_id = params[:orderId]
-    amount = params[:amount]
-    product_id = params[:product_id]
+    order_uid   = params[:orderId]
+    amount      = params[:amount].to_i
 
-    @product = Product.find(product_id)
+    # orderId 형식: "dus-order-{order.id}-{timestamp}"
+    order_id = order_uid.to_s.split("-")[2]
+    @order = current_user.orders.find_by(id: order_id)
 
-    # 실제로는 여기서 토스 페이먼츠 승인 API (POST https://api.tosspayments.com/v1/payments/confirm)를 호출해야 함
-    # 현재는 테스트를 위해 생략하고 바로 주문 생성
+    unless @order
+      redirect_to mypage_orders_path, alert: "주문을 찾을 수 없습니다."
+      return
+    end
 
-    @order = Order.new(
-      product: @product,
-      customer_name: "Test Customer", # 로그인 기능 연동 시 current_user.name 등 사용
-      amount: amount,
-      status: "paid",
+    if @order.total_amount != amount
+      redirect_to mypage_orders_path, alert: "결제 금액이 일치하지 않습니다."
+      return
+    end
+
+    # 토스 페이먼츠 결제 승인 API 호출
+    result = TossPaymentsService.confirm(
       payment_key: payment_key,
-      order_uid: order_id
+      order_id: order_uid,
+      amount: amount
     )
 
-    if @order.save
-      @order.complete_payment! # Agency 생성 및 유저 권한 업그레이드 실행
-      redirect_to @order, notice: "결제가 성공적으로 완료되었습니다!"
+    if result[:success]
+      @order.update!(payment_key: payment_key, order_uid: order_uid)
+      @order.pay!
+      redirect_to complete_orders_path, notice: "결제가 완료되었습니다! 에이전시 승인 후 서비스를 이용하실 수 있습니다."
     else
-      redirect_to mypage_orders_path, alert: "결제 처리에 실패했습니다."
+      redirect_to fail_orders_path(code: result[:code], message: result[:message])
     end
+  rescue => e
+    Rails.logger.error("[OrdersController#success] 결제 처리 오류: #{e.message}")
+    redirect_to mypage_orders_path, alert: "결제 처리 중 오류가 발생했습니다. 고객센터에 문의해주세요."
   end
 
   def fail

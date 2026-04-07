@@ -34,6 +34,19 @@
             <td style="padding: var(--space-4); text-align: center;">
               <%= link_to "관리", admin_agency_path(agency), class: "btn btn-sm btn-outline" %>
               <%= link_to "수정", edit_admin_agency_path(agency), class: "btn btn-sm btn-outline", style: "margin-left: 4px;" %>
+              <% if !agency.active %>
+                <%= button_to "승인", approve_admin_agency_path(agency),
+                    method: :patch,
+                    class: "btn btn-sm btn-primary",
+                    style: "margin-left: 4px;",
+                    data: { confirm: "#{agency.name} 에이전시를 승인하시겠습니까?" } %>
+              <% else %>
+                <%= button_to "비활성화", deactivate_admin_agency_path(agency),
+                    method: :patch,
+                    class: "btn btn-sm",
+                    style: "margin-left: 4px; background: #f3f4f6; color: #374151;",
+                    data: { confirm: "#{agency.name} 에이전시를 비활성화하시겠습니까?" } %>
+              <% end %>
             </td>
           </tr>
         <% end %>
