@@ -140,14 +140,6 @@ templates = [
     is_featured: true
   },
   { 
-    title: "K-Accounting", 
-    description: "공인회계사회 스타일의 신뢰감 있는 회계/세무 법인 전용 템플릿. 정보 중심의 UI.", 
-    category: "finance", 
-    preview_url: "/templates/accounting", 
-    image_url: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&w=800",
-    is_featured: true
-  },
-  { 
     title: "대치 엘리트", 
     description: "최고의 입시 및 코딩 교육 아카데미를 위한 클래식 세리프 디자인.", 
     category: "academy", 
@@ -198,15 +190,6 @@ templates = [
 
   # === Phase 2 추가 템플릿 (27~50) — 팬이지 업종 기반 ===
 
-  {
-    title: "세무사 파트너",
-    description: "소상공인을 위한 세무·회계 전문 파트너 랜딩. 세금 신고, 기장 서비스를 한눈에.",
-    category: "finance",
-    preview_url: "/templates/tax",
-    image_url: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?q=80&w=800",
-    is_featured: true,
-    price: 490000
-  },
   {
     title: "인테리어 스튜디오",
     description: "감각적인 포트폴리오와 상담 예약이 결합된 인테리어 디자인 스튜디오 템플릿.",
