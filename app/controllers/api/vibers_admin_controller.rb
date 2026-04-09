@@ -3,19 +3,19 @@ class Api::VibersAdminController < ActionController::API
 
   def index
     stats = {
-      totalUsers: User.count,
-      contentCount: Order.count,
+      totalUsers: (Agency.count rescue 0),
+      contentCount: (Order.count rescue 0),
       mau: 0,
-      recentSignups: User.where("created_at > ?", 7.days.ago).count
+      recentSignups: (User.where("created_at > ?", 7.days.ago).count rescue 0)
     }
 
-    recent_activity = User.order(created_at: :desc).limit(5).map do |u|
+    recent_activity = (User.order(created_at: :desc).limit(5).map do |u|
       { id: u.id.to_s, type: "signup", label: u.email, timestamp: u.created_at }
-    end
+    end rescue [])
 
     render json: {
       projectId: "dus",
-      projectName: "디어스",
+      projectName: "디자인US",
       stats: stats,
       recentActivity: recent_activity,
       health: "healthy"
