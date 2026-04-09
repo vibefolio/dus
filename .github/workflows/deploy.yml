@@ -23,5 +23,6 @@ jobs:
              docker compose up -d --build --no-deps && \
              sleep 15 && \
              docker compose exec -T dlab-website-app bin/rails db:migrate 2>/dev/null; \
-             docker compose ps && \
-             echo '✅ DUS 배포 완료'"
+             sleep 10 && \
+             curl -sf http://localhost:4040/up && echo '✅ DUS 배포 완료' || echo '⚠️ 헬스체크 실패' && \
+             docker exec npm-app-1 nginx -s reload || true"
