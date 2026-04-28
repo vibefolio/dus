@@ -413,3 +413,81 @@ templates.each do |t|
 end
 
 puts "Seed Data Updated Successfully: #{DesignTemplate.count} Templates"
+
+# ============================================
+# 포트폴리오 시드 데이터 (FanEasy 실제 클라이언트 작업)
+# ============================================
+puts "\nSeeding Portfolios..."
+
+portfolios = [
+  {
+    title: "올루올루 (OLUOLU)",
+    category: "웹사이트",
+    client: "올루올루",
+    project_date: Date.new(2026, 2, 1),
+    description: "NO.1 프리미엄 아사이볼 & 그릭요거트 브랜드의 메인 마케팅 사이트 + 프랜차이즈 모집 랜딩페이지. 인스타그램 피드 연동, 매장 찾기, 메뉴 슬라이더, 문의 폼 등 6개 페이지 변형 제작. MZ세대 타겟 레트로/프리미엄 디자인 시스템 구축.",
+    image_url: "https://images.unsplash.com/photo-1590301157890-4810ed352733?w=800&q=80",
+    preview_url: "https://oluolu.co.kr"
+  },
+  {
+    title: "야화 (YAHWA)",
+    category: "웹사이트",
+    client: "야화 프랜차이즈",
+    project_date: Date.new(2026, 3, 1),
+    description: "프리미엄 시그니처 칵테일 혼술바 프랜차이즈 마케팅 사이트. 네이버 지도 매장 연동, Recharts 기반 수익 시뮬레이션 차트, 인스타그램 피드 자동 연동, FAQ 스키마 마크업 등 SEO 최적화 풀패키지. 80% 마진율·3개월 BEP 강조 전환율 최적화 설계.",
+    image_url: "https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?w=800&q=80",
+    preview_url: "https://yahwabar.com"
+  },
+  {
+    title: "비즈온 마케팅 (BIZON)",
+    category: "웹사이트",
+    client: "비즈온 마케팅",
+    project_date: Date.new(2026, 1, 15),
+    description: "프랜차이즈 & 자영업 마케팅 컨설팅 에이전시 브랜드 사이트. 스냅 스크롤 기반 풀페이지 인터랙션, 커스텀 타이포그래피(Paperlogy), 실시간 문의 시스템 연동. V1→V5까지 5번의 디자인 이터레이션을 거쳐 전환율 극대화.",
+    image_url: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80",
+    preview_url: "https://bizonmarketing.co.kr"
+  },
+  {
+    title: "CPR 마케팅",
+    category: "웹사이트",
+    client: "CPR 마케팅",
+    project_date: Date.new(2026, 2, 15),
+    description: "부산 지역 맛집 네이버 플레이스 최적화 전문 마케팅 에이전시 사이트. 12개+ 실제 클라이언트 성과 Before/After 포트폴리오, 동적 배경 이미지(Pexels/Unsplash API), A/B 테스트용 2가지 디자인 변형 제작. 자영업자 출신 대표의 진정성을 살린 스토리텔링 기반 설계.",
+    image_url: "https://images.unsplash.com/photo-1533750349088-cd871a92f312?w=800&q=80",
+    preview_url: "https://cprmarketing.co.kr"
+  },
+  {
+    title: "보이는마케팅",
+    category: "웹사이트",
+    client: "보이는마케팅",
+    project_date: Date.new(2026, 4, 1),
+    description: "검색 최적화 마케팅 컨설팅 브랜드 사이트. Framer Motion 기반 3D 돋보기 히어로 인터랙션, 방문자 +340% 증가 등 실제 성과 데이터 시각화, 고급 스크롤 애니메이션. 전환율 중심의 원페이지 랜딩 설계.",
+    image_url: "https://images.unsplash.com/photo-1432888498266-38ffec3eaf0a?w=800&q=80",
+    preview_url: "https://boineun.faneasy.kr"
+  },
+  {
+    title: "깡대표 프리미엄 랜딩",
+    category: "웹사이트",
+    client: "깡대표",
+    project_date: Date.new(2025, 12, 1),
+    description: "인플루언서 '깡대표'의 프리미엄 개인 브랜드 랜딩페이지. 에이전시급 비주얼과 원페이지 스크롤 경험으로 퍼스널 브랜딩 극대화. 문의 폼 연동 및 Firestore 실시간 알림 시스템 구축.",
+    image_url: "https://images.unsplash.com/photo-1557804506-669a67965ba0?w=800&q=80",
+    preview_url: "https://kkang.faneasy.kr"
+  },
+]
+
+portfolios.each do |p|
+  portfolio = Portfolio.find_or_initialize_by(title: p[:title])
+  puts "#{portfolio.new_record? ? 'Creating' : 'Updating'} Portfolio: #{p[:title]}"
+  portfolio.update!(
+    category: p[:category],
+    client: p[:client],
+    project_date: p[:project_date],
+    image_url: p[:image_url],
+    preview_url: p[:preview_url]
+  )
+  # description은 ActionText (has_rich_text)이므로 별도 할당
+  portfolio.update!(description: p[:description]) if portfolio.description.blank? || portfolio.description.to_plain_text != p[:description]
+end
+
+puts "Portfolio Seed Complete: #{Portfolio.count} Portfolios"
