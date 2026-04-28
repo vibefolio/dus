@@ -59,7 +59,7 @@
                 <% end %>
 
                 <% if portfolio.description.present? %>
-                  <p style="color: #9ca3af; font-size: 14px; line-height: 1.6; word-break: keep-all;"><%= truncate(portfolio.description, length: 120) %></p>
+                  <p style="color: #9ca3af; font-size: 14px; line-height: 1.6; word-break: keep-all;"><%= truncate(portfolio.description.to_plain_text, length: 120) %></p>
                 <% end %>
 
                 <div style="margin-top: 20px; display: flex; justify-content: space-between; align-items: center;">
