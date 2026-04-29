@@ -3,7 +3,7 @@
 
 <!-- Portfolio Hero -->
 <section class="hero" style="min-height: 50vh; padding-top: 120px;">
-  <div class="hero-content">
+  <div class="hero-content" style="max-width: 80%; margin: 0 auto;">
     <span class="eyebrow-light" style="margin-bottom: 16px; display: inline-block;">Our Works</span>
     <h1 class="hero-title" style="font-size: var(--text-6xl); word-break: keep-all; line-height: 1.3;">포트폴리오</h1>
     <p class="hero-subtitle" style="word-break: keep-all;">
@@ -14,7 +14,7 @@
 
 <!-- Portfolio Grid -->
 <section style="padding: 96px 0 96px;">
-  <div style="max-width: 80%; margin: 0 auto; padding: 0 16px;">
+  <div class="container">
     <% if @portfolios.any? %>
       <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px;">
         <% @portfolios.each_with_index do |portfolio, idx| %>
