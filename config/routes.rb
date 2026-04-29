@@ -89,6 +89,9 @@ Rails.application.routes.draw do
   # Hotwire Native 설정 엔드포인트
   get 'native/config', to: 'native#config'
 
+  # 카카오 오픈빌더 스킬 (제로클로 AI 챗봇)
+  post "kakao-skill", to: "kakao_skill#create"
+
   # Health check
   get "up" => "rails/health#show", as: :rails_health_check
 
