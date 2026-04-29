@@ -173,10 +173,19 @@
 
     <!-- 경로 탭 -->
     <div style="display:flex;justify-content:center;margin-bottom:40px;">
-      <div style="display:inline-flex;background:#e8eaed;border-radius:12px;padding:4px;gap:4px;flex-wrap:wrap;justify-content:center;">
-        <button onclick="switchPath('dusCustomer')" id="path-tab-dusCustomer" style="padding:10px 20px;border-radius:9px;border:none;font-size:13px;font-weight:700;cursor:pointer;background:#fff;color:#191f28;box-shadow:0 1px 4px rgba(0,0,0,0.08);white-space:nowrap;">디어스 고객 + 세무</button>
-        <button onclick="switchPath('taxCustomer')" id="path-tab-taxCustomer" style="padding:10px 20px;border-radius:9px;border:none;font-size:13px;font-weight:700;cursor:pointer;background:transparent;color:#8b95a1;white-space:nowrap;">메이저텍스 고객 + 홈페이지</button>
-        <button onclick="switchPath('bothNew')" id="path-tab-bothNew" style="padding:10px 20px;border-radius:9px;border:none;font-size:13px;font-weight:700;cursor:pointer;background:transparent;color:#8b95a1;white-space:nowrap;">둘 다 처음이에요</button>
+      <div style="display:inline-flex;background:#e8eaed;border-radius:16px;padding:6px;gap:6px;flex-wrap:wrap;justify-content:center;">
+        <button onclick="switchPath('dusCustomer')" id="path-tab-dusCustomer" style="padding:14px 28px;border-radius:12px;border:none;font-size:16px;font-weight:800;cursor:pointer;background:#fff;color:#191f28;box-shadow:0 2px 8px rgba(0,0,0,0.08);white-space:nowrap;display:flex;align-items:center;gap:10px;letter-spacing:-0.02em;">
+          <span style="width:28px;height:28px;border-radius:50%;background:#00a859;color:white;font-size:13px;font-weight:900;display:inline-flex;align-items:center;justify-content:center;">1</span>
+          디어스 고객 + 세무
+        </button>
+        <button onclick="switchPath('taxCustomer')" id="path-tab-taxCustomer" style="padding:14px 28px;border-radius:12px;border:none;font-size:16px;font-weight:800;cursor:pointer;background:transparent;color:#8b95a1;white-space:nowrap;display:flex;align-items:center;gap:10px;letter-spacing:-0.02em;">
+          <span style="width:28px;height:28px;border-radius:50%;background:#8b95a1;color:white;font-size:13px;font-weight:900;display:inline-flex;align-items:center;justify-content:center;">2</span>
+          메이저텍스 고객 + 홈페이지
+        </button>
+        <button onclick="switchPath('bothNew')" id="path-tab-bothNew" style="padding:14px 28px;border-radius:12px;border:none;font-size:16px;font-weight:800;cursor:pointer;background:transparent;color:#8b95a1;white-space:nowrap;display:flex;align-items:center;gap:10px;letter-spacing:-0.02em;">
+          <span style="width:28px;height:28px;border-radius:50%;background:#8b95a1;color:white;font-size:13px;font-weight:900;display:inline-flex;align-items:center;justify-content:center;">3</span>
+          둘 다 처음이에요
+        </button>
       </div>
     </div>
 
@@ -318,16 +327,19 @@
     paths.forEach(p => {
       const panel = document.getElementById('path-' + p);
       const tab = document.getElementById('path-tab-' + p);
+      const circle = tab ? tab.querySelector('span') : null;
       if (p === path) {
         panel.style.display = 'block';
         tab.style.background = '#fff';
         tab.style.color = '#191f28';
-        tab.style.boxShadow = '0 1px 4px rgba(0,0,0,0.08)';
+        tab.style.boxShadow = '0 2px 8px rgba(0,0,0,0.08)';
+        if (circle) circle.style.background = '#00a859';
       } else {
         panel.style.display = 'none';
         tab.style.background = 'transparent';
         tab.style.color = '#8b95a1';
         tab.style.boxShadow = 'none';
+        if (circle) circle.style.background = '#8b95a1';
       }
     });
   }
@@ -420,15 +432,15 @@
     <div style="text-align:center;margin-bottom:48px;">
       <div class="mxt-section-label">왜 한 번에 해야 할까요</div>
       <h2 style="font-size:clamp(24px,3.5vw,40px);font-weight:900;letter-spacing:-0.04em;margin-top:12px;color:#191f28;">
-        창업에 집중하세요, 나머지는 우리가
+        비즈니스에 집중하세요, 나머지는 우리가
       </h2>
     </div>
 
     <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;">
       <% [
         ["⚡", "빠른 시작", "사업자등록과 동시에 세무기장 + 홈페이지 제작이 병행됩니다. 2주 안에 사업 준비 완료."],
-        ["🎯", "한 곳에서 관리", "세무사와 웹 담당자를 따로 찾을 필요 없습니다. 전담 팀이 세무와 홈페이지를 함께 관리합니다."],
-        ["💰", "초기비용 부담 제로", "목돈 없이 월정액으로 시작. 세무기장과 홈페이지 유지보수 모두 포함된 구독형 솔루션."]
+        ["🤝", "각 분야 전문가가 함께", "세무는 세무사가, 홈페이지는 웹 전문가가. 각자의 전문성으로 최고의 결과를 만듭니다."],
+        ["💰", "합리적인 비용", "파트너십 할인으로 초기 개발비 30% + 유지관리비 최대 3만원 할인. 따로 맡기는 것보다 저렴합니다."]
       ].each do |icon, title, desc| %>
         <div class="mxt-card" style="padding:28px;">
           <div style="font-size:32px;margin-bottom:16px;"><%= icon %></div>
@@ -543,11 +555,12 @@
 
     <!-- 직접 연락 -->
     <div style="text-align:center;margin-top:24px;padding:20px;background:#f8f9fa;border-radius:12px;">
-      <div style="font-size:13px;color:#8b95a1;margin-bottom:8px;">바로 전화 주셔도 됩니다</div>
-      <a href="tel:메이저텍스직통" style="font-size:20px;font-weight:900;color:#191f28;text-decoration:none;letter-spacing:-0.03em;">
-        메이저텍스 직통번호
+      <div style="font-size:13px;color:#8b95a1;margin-bottom:8px;">카카오톡으로 편하게 문의하세요</div>
+      <a href="https://pf.kakao.com/_wtCyn/chat" target="_blank" style="display:inline-flex;align-items:center;gap:10px;padding:12px 28px;background:#FEE500;color:#191f28;font-size:16px;font-weight:800;border-radius:12px;text-decoration:none;transition:all 0.2s;" onmouseover="this.style.background='#FDD835'" onmouseout="this.style.background='#FEE500'">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="#191f28"><path d="M12 3C6.48 3 2 6.58 2 10.94c0 2.8 1.86 5.27 4.67 6.67l-1.19 4.39 5.07-3.34c.47.05.96.08 1.45.08 5.52 0 10-3.58 10-7.94S17.52 3 12 3z"/></svg>
+        카카오톡 상담
       </a>
-      <div style="font-size:12px;color:#b0b8c1;margin-top:4px;">평일 09:00 – 18:00</div>
+      <div style="font-size:12px;color:#b0b8c1;margin-top:8px;">평일 09:00 – 18:00 · 빠른 응답</div>
     </div>
   </div>
 </section>
