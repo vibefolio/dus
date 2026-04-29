@@ -96,5 +96,6 @@ Rails.application.routes.draw do
   namespace :api do
     get  "vibers_admin",           to: "vibers_admin#index"
     get  "vibers_admin/resource",  to: "vibers_admin#resource"
+    post "chatbot",                to: "chatbot#create"
   end
 end
