@@ -34,7 +34,7 @@ templates = [
     description: "심플하고 차분한 무드. 요가 및 명상 센터를 위한 자연 친화적 템플릿.", 
     category: "fitness", 
     preview_url: "/templates/yoga", 
-    image_url: "https://images.unsplash.com/photo-1545208393-2160291ba69e?q=80&w=800",
+    image_url: "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?q=80&w=800",
     is_featured: true
   },
   { 
@@ -128,7 +128,7 @@ templates = [
     description: "신뢰감을 주는 전문 청소 서비스 템플릿. 깔끔한 블루톤과 직관적인 서비스 소개.", 
     category: "space", 
     preview_url: "/templates/cleaning", 
-    image_url: "https://images.unsplash.com/photo-1581578731548-c64695cc6958?q=80&w=800",
+    image_url: "https://images.unsplash.com/photo-1581578731548-c64695cc6952?q=80&w=800",
     is_featured: true
   },
   { 
