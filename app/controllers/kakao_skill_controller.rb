@@ -61,6 +61,7 @@ class KakaoSkillController < ApplicationController
   private
 
   # 카카오 오픈빌더 응답 JSON 포맷
+  # data 필드에 넣으면 텍스트 카드에서 #{response}로 참조 가능
   def kakao_response(text)
     {
       version: "2.0",
@@ -85,6 +86,9 @@ class KakaoSkillController < ApplicationController
             webLinkUrl: "https://designd.co.kr/portfolio"
           }
         ]
+      },
+      data: {
+        response: text
       }
     }
   end
