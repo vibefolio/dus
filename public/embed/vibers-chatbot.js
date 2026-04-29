@@ -142,7 +142,7 @@
     var attachBtn = el('button', { class: 'vb-icon-btn vb-input-icon', 'aria-label': '파일', onclick: function () { fileInput.click(); } });
     attachBtn.innerHTML = SVG.attach;
 
-    var emojiBtn = el('button', { class: 'vb-icon-btn vb-input-icon', 'aria-label': '이모지' });
+    var emojiBtn = el('button', { class: 'vb-icon-btn vb-input-icon', 'aria-label': '이모지', onclick: toggleEmojiPicker });
     emojiBtn.innerHTML = SVG.emoji;
 
     var sendBtn = el('button', { class: 'vb-send-btn', id: 'vb-send', 'aria-label': '전송', onclick: sendMessage });
@@ -321,6 +321,34 @@
     return '<button class="vb-menu-item" id="' + id + '">' + icon + ' ' + esc(label) + '</button>';
   }
 
+  // ━━━ Emoji Picker ━━━
+  var EMOJIS = ['😊','👍','❤️','🙏','😂','🎉','👏','🔥','💯','✨','😍','🤔','😢','😮','👋','🙌','💪','⭐','🌟','💡','📌','✅','❌','⚡','🎯','💬','📝','🏠','📱','💻'];
+
+  function toggleEmojiPicker() {
+    var existing = document.getElementById('vb-emoji-picker');
+    if (existing) { existing.remove(); return; }
+
+    var picker = el('div', { class: 'vb-emoji-picker', id: 'vb-emoji-picker' });
+    var grid = '';
+    for (var i = 0; i < EMOJIS.length; i++) {
+      grid += '<button class="vb-emoji-item" onclick="window.__vbEmoji(\'' + EMOJIS[i] + '\')">' + EMOJIS[i] + '</button>';
+    }
+    picker.innerHTML = grid;
+
+    var inputArea = chatWin.querySelector('.vb-input-area');
+    if (inputArea) inputArea.insertBefore(picker, inputArea.firstChild);
+  }
+
+  window.__vbEmoji = function (emoji) {
+    if (inputEl) {
+      inputEl.value += emoji;
+      inputEl.focus();
+      updateSendBtn();
+    }
+    var picker = document.getElementById('vb-emoji-picker');
+    if (picker) picker.remove();
+  };
+
   // ━━━ Utils ━━━
   function updateSendBtn() {
     var btn = document.getElementById('vb-send');
@@ -400,6 +428,9 @@
 .vb-dots span:nth-child(2){animation-delay:.15s}\
 .vb-dots span:nth-child(3){animation-delay:.3s}\
 @keyframes vb-b{0%,80%,100%{transform:scale(0)}40%{transform:scale(1)}}\
+.vb-emoji-picker{display:grid;grid-template-columns:repeat(10,1fr);gap:2px;padding:8px 12px;border-top:1px solid #f0f0f0;background:#fff;max-height:120px;overflow-y:auto}\
+.vb-emoji-item{border:none;background:none;font-size:20px;cursor:pointer;padding:4px;border-radius:6px;transition:background .1s}\
+.vb-emoji-item:hover{background:#f0f0f0}\
 ';
     document.head.appendChild(css);
   }
