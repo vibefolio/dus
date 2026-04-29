@@ -21,7 +21,7 @@
           <!-- Double-Bezel Card -->
           <div class="card-premium" style="--index: <%= idx %>; opacity: 0; animation: fadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards; animation-delay: calc(var(--index) * 80ms);">
             <div class="card-premium-inner" style="padding: 0; overflow: hidden;">
-              <div class="portfolio-image-wrapper" style="position: relative; width: 100%; height: 250px; overflow: hidden;">
+              <div class="portfolio-image-wrapper" style="position: relative; width: 100%; aspect-ratio: 1200/630; overflow: hidden;">
                 <% if portfolio.image.attached? %>
                   <%= image_tag portfolio.image, alt: portfolio.title, class: "portfolio-img pc-ver", style: "width: 100%; height: 100%; object-fit: cover; transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1); position: absolute; top: 0; left: 0; z-index: 10;" %>
                 <% elsif portfolio.image_url.present? %>
