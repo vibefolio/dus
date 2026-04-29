@@ -115,16 +115,19 @@
           <%= image_tag "logo.png", alt: "디어스", style: "height: 50px; width: auto;" %>
         <% end %>
         
-        <!-- Desktop Menu -->
+        <!-- Desktop Menu (Center) -->
         <ul class="navbar-menu hidden md:flex">
           <li><%= link_to "홈", root_path, class: "navbar-link #{current_page?(root_path) ? 'active' : ''}" %></li>
           <li><%= link_to "디자인 템플릿", design_templates_path, class: "navbar-link #{current_page?(design_templates_path) ? 'active' : ''}" %></li>
           <li><%= link_to "포트폴리오", portfolio_path, class: "navbar-link #{current_page?(portfolio_path) ? 'active' : ''}" %></li>
           <li><%= link_to "요금제", pricing_path, class: "navbar-link #{current_page?(pricing_path) ? 'active' : ''}" %></li>
           <li><%= link_to "문의하기", contact_path, class: "navbar-link #{current_page?(contact_path) ? 'active' : ''}" %></li>
-          
+        </ul>
+
+        <!-- Right: Auth Area -->
+        <div class="hidden md:flex items-center gap-3">
           <% if user_signed_in? %>
-             <li style="margin-left: 10px; display: flex; align-items: center; gap: 15px;">
+            <div style="display: flex; align-items: center; gap: 15px;">
               <%= link_to cart_path, class: "relative text-gray-600 hover:text-emerald-600 transition", title: "장바구니" do %>
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
                 <% if current_user.cart&.cart_items&.any? %>
@@ -244,14 +247,14 @@
                   }
                 })();
               </script>
-            </li>
+            </div>
           <% else %>
-            <li style="margin-left: 10px; display: flex; align-items: center; gap: 10px;">
+            <div style="display: flex; align-items: center; gap: 10px;">
               <%= link_to "로그인", new_user_session_path, class: "navbar-link", style: "font-size: 14px; color: #666;" %>
               <%= link_to "회원가입", new_user_registration_path, class: "btn btn-sm btn-primary", style: "padding: 6px 16px; font-size: 13px; border-radius: 99px; color: white; background: var(--color-primary);" %>
-            </li>
+            </div>
           <% end %>
-        </ul>
+        </div>
 
         <!-- Mobile Menu Button -->
         <button id="mobile-menu-btn" class="md:hidden p-2 text-gray-600 hover:text-emerald-600 focus:outline-none">
