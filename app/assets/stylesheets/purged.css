@@ -181,10 +181,10 @@ a:hover {
    LAYOUT UTILITIES
    ========================================== */
 .container {
-  width: 100%;
-  max-width: 1280px;
+  width: 70%;
+  max-width: 1600px;
   margin: 0 auto;
-  padding: 0 var(--space-6);
+  padding: 0;
 }
 
 .section {
@@ -215,8 +215,10 @@ a:hover {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: var(--space-4) var(--space-6);
-  max-width: 1280px;
+  position: relative;
+  padding: var(--space-4) 0;
+  width: 80%;
+  max-width: 1600px;
   margin: 0 auto;
 }
 
@@ -237,6 +239,9 @@ a:hover {
   display: flex;
   gap: var(--space-8);
   list-style: none;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 .navbar-link {
@@ -407,8 +412,10 @@ a:hover {
   position: relative;
   z-index: 1;
   text-align: center;
-  max-width: 900px;
-  padding: var(--space-6);
+  width: 70%;
+  max-width: 1600px;
+  margin: 0 auto;
+  padding: 0;
 }
 
 .hero-title {
@@ -730,7 +737,7 @@ a:hover {
 
 @media (max-width: 480px) {
   .container {
-    padding: 0 var(--space-4);
+    width: 90%;
   }
 
   .btn {
