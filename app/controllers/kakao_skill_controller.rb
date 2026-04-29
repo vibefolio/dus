@@ -13,7 +13,9 @@ class KakaoSkillController < ApplicationController
 
   # POST /kakao-skill
   def create
-    utterance = params.dig(:userRequest, :utterance).to_s.strip
+    # 오픈빌더는 문자열 키로 보내므로 양쪽 모두 시도
+    utterance = (params.dig("userRequest", "utterance") || params.dig(:userRequest, :utterance)).to_s.strip
+    Rails.logger.info("[KakaoSkill] utterance=#{utterance.inspect}")
 
     if utterance.blank?
       return render json: kakao_response("안녕하세요! 디어스입니다. 궁금한 점을 말씀해주세요.")
@@ -33,9 +35,10 @@ class KakaoSkillController < ApplicationController
       res = http.request(req)
       data = JSON.parse(res.body) rescue {}
 
-      reply = data["response"].to_s.strip
+      raw_reply = data["response"].to_s.strip
+      Rails.logger.info("[KakaoSkill] raw_reply=#{raw_reply.inspect[0..200]}")
       # tool_code 태그 제거 (제로클로 내부 명령이 노출되는 경우)
-      reply = reply.gsub(/<tool_code>.*?<\/tool_code>/m, '').strip
+      reply = raw_reply.gsub(/<tool_code>.*?<\/tool_code>/m, '').strip
 
       if reply.blank?
         reply = "죄송해요, 답변을 준비하지 못했어요. 아래 버튼으로 직접 문의해주시면 빠르게 도와드릴게요."
