@@ -233,6 +233,7 @@ a:hover {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  position: relative;
   padding: var(--space-4) 0;
   width: 80%;
   max-width: 1600px;
@@ -256,6 +257,9 @@ a:hover {
   display: flex;
   gap: var(--space-8);
   list-style: none;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 .navbar-link {

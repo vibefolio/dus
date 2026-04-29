@@ -233,102 +233,57 @@
   </div>
 </section>
 
-<!-- Featured Templates Section -->
+<!-- Portfolio Showcase Section -->
 <section class="section" style="background: white;">
   <div class="container">
     <div class="text-center" style="margin-bottom: 4rem;">
-      <h2 style="font-size: clamp(1.75rem, 5vw, 3rem); margin-top: var(--space-2); margin-bottom: var(--space-4); font-weight: 800; word-break: keep-all; line-height: 1.3;">시간과 돈을 벌어주는 디자인 템플릿</h2>
+      <h2 style="font-size: clamp(1.75rem, 5vw, 3rem); margin-top: var(--space-2); margin-bottom: var(--space-4); font-weight: 800; word-break: keep-all; line-height: 1.3;">함께 성장하는 파트너사</h2>
       <p class="text-gray" style="font-size: clamp(1rem, 4vw, 1.25rem); max-width: 700px; margin: 0 auto; word-break: keep-all; line-height: 1.6;">
-        업종별 최적화된 고퀄리티 디자인으로<br>합리적인 요금제로 빠르게 사업을 시작하세요.
+        실제 운영 중인 클라이언트 사이트입니다.<br>디어스와 함께 비즈니스를 성장시키고 있습니다.
       </p>
     </div>
 
     <div class="grid grid-3" style="gap: var(--space-8);">
-      
-      <% if @featured_templates.present? %>
-      <% @featured_templates.each do |template| %>
-          <div class="card template-card" style="padding: 0; overflow: hidden; border: none; box-shadow: var(--shadow-xl); transition: transform 0.3s, box-shadow 0.3s;" onmouseover="this.style.transform='translateY(-4px)'; this.style.boxShadow='0 25px 50px -12px rgba(0,0,0,0.25)'" onmouseout="this.style.transform=''; this.style.boxShadow='var(--shadow-xl)'">
-            <div style="height: 240px; overflow: hidden; position: relative; cursor: pointer;" onclick="openLiveDemo('<%= template.preview_url %>', '<%= template.title %>')">
-              <% 
-                img_src = if template.try(:pc_image).try(:attached?)
-                            url_for(template.pc_image)
-                          elsif template.respond_to?(:pc_thumbnail_url) && template.pc_thumbnail_url.present?
-                            template.pc_thumbnail_url
-                          elsif template.try(:image_url).present?
-                            template.image_url
-                          else
-                            '/images/templates/portfolio_gallery.png'
-                          end
-              %>
-              <img src="<%= img_src %>" 
-                   loading="lazy" 
-                   decoding="async"
-                   alt="<%= template.title %> - <%= template.category %> 웹사이트 템플릿" 
-                   style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s;" 
-                   class="template-thumb">
-              
-              <!-- Category Badge -->
-              <div style="position: absolute; top: 12px; left: 12px; background: white; padding: 4px 12px; border-radius: 99px; font-size: 11px; font-weight: bold; color: #1a1a1a; z-index: 10; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
-                <%= case template.category
-                   when 'beauty' then '뷰티/살롱'
-                   when 'dining' then '다이닝/F&B'
-                   when 'fitness' then '피트니스/요가'
-                   when 'stay' then '스테이/숙박'
-                   when 'shopping' then '쇼핑몰'
-                   when 'corporate' then '기업/브랜드'
-                   when 'space' then '공간/렌탈'
-                   when 'medical' then '병원/의료'
-                   when 'cafe' then '카페/베이커리'
-                   when 'portfolio' then '포트폴리오'
-                   when 'law' then '법률/전문직'
-                   else '기타'
-                   end
-                %>
-              </div>
-
-              <%
-                diamond_score = case template.category
-                                when 'shopping', 'corporate', 'finance', 'medical', 'dental', 'real_estate', 'hotel', 'stay', 'startup', 'ecommerce', 'rental', 'consulting'
-                                  70
-                                when 'fitness', 'gym', 'yoga', 'law', 'tax', 'academy', 'learnhub', 'english', 'dining', 'restaurant', 'seafood', 'rice', 'burger', 'studio', 'wedding', 'cleaning', 'construction', 'interior', 'vet'
-                                  50
-                                else
-                                  30
-                                end
-              %>
-              <!-- Diamond Badge -->
-              <div style="position: absolute; top: 12px; right: 12px; background: rgba(0,0,0,0.6); backdrop-filter: blur(4px); padding: 4px 10px; border-radius: 99px; font-size: 11px; font-weight: 800; color: #fff; z-index: 10; border: 1px solid rgba(255,255,255,0.2); display: flex; align-items: center; gap: 4px;">
-                <span style="font-size: 10px;">💎</span> <%= diamond_score %>
-              </div>
-              
-              <!-- Hover Overlay -->
-              <div class="thumb-overlay" style="position: absolute; inset: 0; background: rgba(0,0,0,0.4); opacity: 0; transition: opacity 0.3s; display: flex; align-items: center; justify-content: center;">
-                <span style="background: white; padding: 10px 24px; border-radius: 99px; font-weight: bold; font-size: 14px; color: #1a1a1a; transform: scale(0.9); transition: transform 0.3s;">미리보기</span>
-              </div>
+      <% Portfolio.order(project_date: :desc).limit(6).each do |portfolio| %>
+        <div class="card" style="padding: 0; overflow: hidden; border: none; box-shadow: var(--shadow-xl); transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1);" onmouseover="this.style.transform='translateY(-4px)'; this.style.boxShadow='0 25px 50px -12px rgba(0,0,0,0.25)'" onmouseout="this.style.transform=''; this.style.boxShadow='var(--shadow-xl)'">
+          <% if portfolio.preview_url.present? %>
+            <a href="<%= portfolio.preview_url %>" target="_blank" style="display: block; height: 220px; overflow: hidden; position: relative;">
+          <% else %>
+            <div style="height: 220px; overflow: hidden; position: relative;">
+          <% end %>
+            <% if portfolio.image.attached? %>
+              <%= image_tag portfolio.image, alt: portfolio.title, style: "width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s;", loading: "lazy" %>
+            <% elsif portfolio.image_url.present? %>
+              <img src="<%= portfolio.image_url %>" alt="<%= portfolio.title %>" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s;" loading="lazy" />
+            <% end %>
+            <div style="position: absolute; top: 12px; left: 12px; background: rgba(0, 168, 89, 0.9); padding: 4px 12px; border-radius: 99px; font-size: 11px; font-weight: bold; color: white;">
+              운영 중
             </div>
-            <div style="padding: var(--space-6);">
-              <h3 style="font-size: 1.25rem; font-weight: 800; margin-bottom: var(--space-2); color: #111;"><%= template.title %></h3>
+          <% if portfolio.preview_url.present? %>
+            </a>
+          <% else %>
+            </div>
+          <% end %>
+          <div style="padding: var(--space-6);">
+            <h3 style="font-size: 1.25rem; font-weight: 800; margin-bottom: var(--space-2); color: #111;"><%= portfolio.title %></h3>
+            <% if portfolio.description.present? %>
               <p style="color: var(--color-gray-500); font-size: 14px; margin-bottom: var(--space-4); line-height: 1.6; min-height: 44px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; word-break: keep-all;">
-                <%= template.description %>
+                <%= truncate(portfolio.description.to_plain_text, length: 80) %>
               </p>
-              <div style="display: flex; gap: 10px;">
-                <button onclick="openLiveDemo('<%= template.preview_url %>', '<%= template.title %>')" class="btn btn-outline btn-sm" style="flex: 1; text-align: center; font-weight: 700;">둘러보기</button>
-                <%= link_to "제작 의뢰", contact_path(template_id: template.id, template_title: template.title, preview_url: template.preview_url), class: "btn btn-primary btn-sm", style: "flex: 1; text-align: center; font-weight: 700;" %>
-              </div>
-            </div>
+            <% end %>
+            <% if portfolio.preview_url.present? %>
+              <a href="<%= portfolio.preview_url %>" target="_blank" style="display: inline-flex; align-items: center; gap: 6px; padding: 8px 20px; border: 1px solid #e5e7eb; border-radius: 9999px; font-size: 13px; font-weight: 600; color: #374151; text-decoration: none; transition: all 0.3s;" onmouseover="this.style.borderColor='#00a859'; this.style.color='#00a859'" onmouseout="this.style.borderColor='#e5e7eb'; this.style.color='#374151'">
+                사이트 방문
+                <svg width="12" height="12" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+              </a>
+            <% end %>
           </div>
-        <% end %>
-      <% else %>
-        <!-- Fallback if no templates are featured (Optional: Keep one hardcoded or show message) -->
-        <div class="col-span-3 text-center py-10 text-gray-500">
-          표시할 추천 템플릿이 없습니다. 관리자 페이지에서 설정해주세요.
         </div>
       <% end %>
-
     </div>
-    
+
     <div style="text-align: center; margin-top: var(--space-12);">
-      <%= link_to "템플릿 더 보기 →", design_templates_path, class: "btn btn-link", style: "font-size: var(--text-lg); font-weight: 600; color: var(--color-primary);" %>
+      <%= link_to "포트폴리오 더 보기 →", portfolio_path, class: "btn btn-link", style: "font-size: var(--text-lg); font-weight: 600; color: var(--color-primary);" %>
     </div>
   </div>
 </section>
