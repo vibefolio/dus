@@ -164,7 +164,7 @@
 
 <!-- ───────── PACKAGES (경로 기반) ───────── -->
 <section id="packages" style="padding:80px 24px;background:#f2f4f8;">
-  <div style="max-width:1100px;margin:0 auto;">
+  <div style="width:80%;max-width:1600px;margin:0 auto;">
     <div style="text-align:center;margin-bottom:32px;">
       <div class="mxt-section-label">요금제</div>
       <h2 style="font-size:clamp(26px,3.5vw,42px);font-weight:900;letter-spacing:-0.04em;margin-top:12px;color:#191f28;">나에게 맞는 요금제를 확인하세요</h2>
@@ -188,7 +188,7 @@
       <div class="pkg-grid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px;align-items:start;">
 
         <% [
-          ["BASIC + 세무", "개인사업자", "50만원", "3만원", "8만원", "11만원", ["랜딩페이지 (기존 유지)", "월 1회 수정", "개인사업자 세무기장", "부가세 신고 포함", "절세 포인트 안내"], false],
+          ["BASIC + 세무", "개인사업자", "50만원", "3만원", "8만원", "11만원", ["랜딩페이지 (기존 유지)", "월 1회 수정", "개인사업자 세무기장", "세무기장 기본 관리", "절세 포인트 안내"], false],
           ["PRO + 세무", "개인 · 법인", "100만원", "5만원", "8만원~", "13만원~", ["브랜드 홈페이지 (기존 유지)", "월 2회 수정", "개인/법인 세무기장", "부가세·종소세 신고", "절세 컨설팅"], true],
           ["MASTER + 세무", "성장 법인", "200만원", "7만원", "15만원~", "22만원~", ["풀 커스텀 (기존 유지)", "무제한 수정", "법인 전체 세무관리", "법인세·부가세 신고", "전담 세무사 직통"], false]
         ].each do |name, target, init, web, tax, total, features, featured| %>
@@ -268,7 +268,7 @@
       <div class="pkg-grid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px;align-items:start;">
 
         <% [
-          ["BASIC 번들", "1인 창업 · 프리랜서", "35만원", "개인 8만", "2만원", "10만원", ["랜딩페이지 디자인", "반응형 웹 + SEO 기본", "월 1회 수정", "개인사업자 세무기장", "부가세 신고 포함"], false],
+          ["BASIC 번들", "1인 창업 · 프리랜서", "35만원", "개인 8만", "2만원", "10만원", ["랜딩페이지 디자인", "반응형 웹 + SEO 기본", "월 1회 수정", "개인사업자 세무기장", "세무기장 기본 관리"], false],
           ["PRO 번들", "소상공인 · 매장 창업", "70만원", "개인 8만 / 법인 15만", "3만원", "11만원~", ["브랜드 홈페이지 디자인", "카카오채널 + SEO 고급", "월 2회 수정", "개인/법인 세무기장", "절세 컨설팅"], true],
           ["MASTER 번들", "법인 · 프랜차이즈", "140만원", "법인 15만", "4만원", "19만원~", ["풀 커스텀 디자인", "마케팅 자동화 연동", "무제한 수정", "법인 전체 세무관리", "전담 세무사 + 디렉터"], false]
         ].each do |name, target, init, tax, web, total, features, featured| %>
@@ -307,7 +307,7 @@
     <!-- 안내 문구 -->
     <div style="margin-top:24px;padding:14px 20px;background:#fff;border-radius:12px;border:1px solid #eaecef;display:flex;align-items:flex-start;gap:10px;">
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#8b95a1" stroke-width="2" style="margin-top:1px;flex-shrink:0;"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
-      <p style="font-size:13px;color:#8b95a1;margin:0;line-height:1.6;">세무기장료는 매출 규모·업종·직원 수에 따라 달라질 수 있습니다. 종소세·법인세 신고대행 수수료는 별도이며, 정확한 금액은 무료 상담 후 확정됩니다.</p>
+      <p style="font-size:13px;color:#8b95a1;margin:0;line-height:1.6;">세무기장료는 매출 규모·업종·직원 수에 따라 달라질 수 있습니다. 개인사업자 부가세 신고수수료, 법인 결산수수료는 별도이며, 정확한 금액은 무료 상담 후 확정됩니다.</p>
     </div>
   </div>
 </section>
