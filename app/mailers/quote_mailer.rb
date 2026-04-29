@@ -3,11 +3,14 @@ class QuoteMailer < ApplicationMailer
 
   def new_quote_notification(quote)
     @quote = quote
-    @admin_email = ENV.fetch('ADMIN_EMAIL', 'juuuno@naver.com')
-    
+    @admin_emails = [
+      ENV.fetch('ADMIN_EMAIL', 'juuuno@naver.com'),
+      'designd@designd.co.kr'
+    ]
+
     mail(
-      to: @admin_email,
-      subject: "[DLAB] 새로운 견적 문의: #{quote.contact_name}님"
+      to: @admin_emails,
+      subject: "[디어스] 새로운 견적 문의: #{quote.contact_name}님"
     )
   end
 
