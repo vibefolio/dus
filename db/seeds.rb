@@ -245,7 +245,7 @@ templates = [
     price: 290000
   },
   {
-    title: "야화 한식당",
+    title: "향원 한식당",
     description: "전통과 현대가 만나는 프리미엄 한식 다이닝. 코스 메뉴와 예약 중심의 고급 레스토랑 템플릿.",
     category: "dining",
     preview_url: "/templates/dining",
