@@ -407,17 +407,6 @@
       }
     </style>
 
-    <!-- 카카오 채널 플로팅 버튼 -->
-    <a href="http://pf.kakao.com/_wtCyn/chat" target="_blank" id="kakaoChannelBtn"
-       style="position: fixed; bottom: 96px; right: 20px; z-index: 49; display: flex; align-items: center; gap: 8px; background: #FEE500; border-radius: 9999px; padding: 10px 16px 10px 12px; box-shadow: 0 4px 16px rgba(0,0,0,0.15); transition: all 0.3s cubic-bezier(0.16,1,0.3,1); text-decoration: none;"
-       onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 8px 24px rgba(0,0,0,0.2)'"
-       onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 16px rgba(0,0,0,0.15)'">
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="#3A1D1D" style="flex-shrink:0;">
-        <path d="M12 3C6.48 3 2 6.84 2 11.5c0 2.94 1.78 5.53 4.5 7.1L5.5 22l4.1-2.17c.78.14 1.59.17 2.4.17 5.52 0 10-3.84 10-8.5S17.52 3 12 3z"/>
-      </svg>
-      <span style="font-size: 13px; font-weight: 700; color: #3A1D1D; white-space: nowrap;">카카오 상담</span>
-    </a>
-
     <!-- Scroll to Top Button -->
     <button id="scrollToTopBtn" class="fixed bottom-8 right-8 z-50 bg-emerald-600 hover:bg-emerald-700 text-white p-3 rounded-full shadow-lg transition-all transform translate-y-20 opacity-0" onclick="scrollToTop()">
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -433,8 +422,8 @@
       data-api="/api/chatbot"
       data-color="#00a859"
       data-greeting="안녕하세요! 디어스입니다.&#10;AI와 현대적 디자인이 조화된 프리미엄 웹 에이전시 플랫폼이에요.&#10;궁금한 점이 있으시면 편하게 물어봐주세요."
-      data-inquiry="<%= contact_path %>"
-      data-inquiry-label="견적 문의하기"
+      data-inquiry="http://pf.kakao.com/_wtCyn/chat"
+      data-inquiry-label="카카오로 문의하기"
       data-response-time="몇 분 내 답변 받으실 수 있어요"
       data-actions='[{"label":"템플릿 둘러보기","message":"디자인 템플릿을 보고 싶어요"},{"label":"견적 문의","message":"웹사이트 제작 견적이 궁금해요"},{"label":"요금제 안내","message":"요금제가 궁금해요"}]'
       defer
