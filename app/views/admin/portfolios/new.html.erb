@@ -23,17 +23,18 @@
 
     <div class="form-group">
       <%= f.label :category, "카테고리", class: "form-label" %>
-      <%= f.select :category, 
+      <%= f.select :category,
         options_for_select([
           ["선택해주세요", ""],
+          ["앱 및 플랫폼", "앱 및 플랫폼"],
           ["웹사이트", "웹사이트"],
           ["웹 애플리케이션", "웹 애플리케이션"],
           ["모바일 앱", "모바일 앱"],
           ["UI/UX 디자인", "UI/UX 디자인"],
           ["AI/ML", "AI/ML"],
           ["기타", "기타"]
-        ], @portfolio.category), 
-        {}, 
+        ], @portfolio.category),
+        {},
         { class: "form-select" }
       %>
     </div>

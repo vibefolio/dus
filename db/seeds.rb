@@ -415,11 +415,75 @@ end
 puts "Seed Data Updated Successfully: #{DesignTemplate.count} Templates"
 
 # ============================================
-# 포트폴리오 시드 데이터 (FanEasy 실제 클라이언트 작업)
+# 포트폴리오 시드 데이터
 # ============================================
 puts "\nSeeding Portfolios..."
 
 portfolios = [
+  # === 앱 및 플랫폼 ===
+  {
+    title: "와요 (Wayo)",
+    category: "앱 및 플랫폼",
+    client: "계발자들 (Vibers)",
+    project_date: Date.new(2026, 3, 1),
+    description: "소중한 순간을 위한 AI 디지털 초대장 & 이벤트 플랫폼. Rails 8.1 API + Next.js 15 + Expo SDK 54 풀스택. AI 초대장 제작, RSVP 관리, QR 스캔 입장, 공연·전시 이벤트 탐색까지. 가보자고(gabojago) 서브도메인과 연동된 통합 이벤트 생태계.",
+    image_url: "https://wayo.co.kr/og-image.png",
+    preview_url: "https://wayo.co.kr"
+  },
+  {
+    title: "제평가는요? (MyRatingIs)",
+    category: "앱 및 플랫폼",
+    client: "계발자들 (Vibers)",
+    project_date: Date.new(2026, 2, 1),
+    description: "흑백요리사 컨셉의 프로젝트·MVP 전문 평가 플랫폼. Next.js 14 + Supabase + Gemini Pro. 독창성·시장성·완성도 등 6개 지표 평가, 전문가 피드백, AI 분석 리포트 자동 생성. 전문평가위원 50명 × 창작자 50명 양면 플랫폼 구조.",
+    image_url: "https://myratingis.kr/og-image.png",
+    preview_url: "https://myratingis.kr"
+  },
+  {
+    title: "프리미엄페이지 (PremiumPage)",
+    category: "앱 및 플랫폼",
+    client: "계발자들 (Vibers)",
+    project_date: Date.new(2026, 1, 1),
+    description: "기업 홈페이지를 인터랙티브 전자카탈로그로 변환하는 에이전시 플랫폼. Next.js 16 + React 19 + Prisma + SQLite. 23개 전문 템플릿, 다단계 견적 시스템, 최대 3개 템플릿 동시 비교, 라이브 프리뷰. HS-TECH·GENTOP·EMT 등 실제 기업 전자카탈로그 납품.",
+    image_url: "https://premiumpage.kr/images/og-image.png",
+    preview_url: "https://premiumpage.kr"
+  },
+  {
+    title: "팬이지 (FanEasy)",
+    category: "앱 및 플랫폼",
+    client: "계발자들 (Vibers)",
+    project_date: Date.new(2025, 12, 1),
+    description: "인플루언서·소상공인 대상 팬사이트 제작 & 운영 플랫폼. Next.js + Firebase + Vercel. 클라이언트별 독립 브랜드 서브사이트 서빙, 동적 OG 이미지 생성, 사이트 메타 크롤링 API. 올루올루·야화·비즈온·CPR·보이는마케팅 등 다수 브랜드 운영 중.",
+    image_url: "https://faneasy.kr/og-image.png",
+    preview_url: "https://faneasy.kr"
+  },
+  {
+    title: "모노페이지 (Monopage)",
+    category: "앱 및 플랫폼",
+    client: "계발자들 (Vibers)",
+    project_date: Date.new(2025, 11, 1),
+    description: "나를 위한 단 하나의 링크 — 개인 프로필·링크·소개를 하나의 URL로 완성하는 단일 페이지 빌더. Next.js 16 + React 19 + Tailwind CSS 4. 동적 OG 이미지 생성, 외부 URL 메타 크롤링, 완전 반응형. Linktree 대체 솔루션.",
+    image_url: "https://monopage.kr/og-image.png",
+    preview_url: "https://monopage.kr"
+  },
+  {
+    title: "바이브폴리오 (Vibefolio)",
+    category: "앱 및 플랫폼",
+    client: "계발자들 (Vibers)",
+    project_date: Date.new(2025, 10, 1),
+    description: "크리에이터·디자이너를 위한 AI 포트폴리오 아카이빙 & 레퍼런스 공유 플랫폼. Next.js 14 + Supabase + Tailwind. Masonry 그리드 피드, AI 자동 분석·썸네일 생성, 채용담당자 매칭, Pro 플랜(₩4,900/월) 수익 모델. Behance 스타일 국내 특화 플랫폼.",
+    image_url: "https://vibefolio.net/og-image.png",
+    preview_url: "https://vibefolio.net"
+  },
+  {
+    title: "메이트체크 (MateCheck)",
+    category: "앱 및 플랫폼",
+    client: "계발자들 (Vibers)",
+    project_date: Date.new(2025, 9, 1),
+    description: "공유 가구·룸메이트를 위한 공동 생활 관리 플랫폼. Rails 8.1 API + Expo (React Native). Nest(보금자리) 기반 구성원 관리, 공동 가계부, 미션·규칙·일정 관리, 정부 정책 RSS 크롤링. 대학가 쉐어하우스 타겟 생활 밀착형 앱.",
+    image_url: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=1200",
+    preview_url: "https://matecheck.vibers.co.kr"
+  },
   {
     title: "올루올루 (OLUOLU)",
     category: "웹사이트",

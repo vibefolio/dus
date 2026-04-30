@@ -10,10 +10,15 @@ class PagesController < ApplicationController
 
   def portfolio
     begin
-      @portfolios = Portfolio.order(created_at: :desc)
+      all = Portfolio.order(created_at: :desc)
+      # 카테고리 순서: 앱 및 플랫폼 > 웹사이트 > 나머지
+      category_order = ["앱 및 플랫폼", "웹사이트"]
+      @portfolio_groups = all.group_by(&:category).sort_by do |cat, _|
+        category_order.index(cat) || category_order.length
+      end
     rescue => e
       Rails.logger.error "Failed to load portfolios: #{e.message}"
-      @portfolios = []
+      @portfolio_groups = []
     end
   end
 
