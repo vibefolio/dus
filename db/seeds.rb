@@ -476,15 +476,6 @@ portfolios = [
     preview_url: "https://vibefolio.net"
   },
   {
-    title: "메이트체크 (MateCheck)",
-    category: "앱 및 플랫폼",
-    client: "계발자들 (Vibers)",
-    project_date: Date.new(2025, 9, 1),
-    description: "공유 가구·룸메이트를 위한 공동 생활 관리 플랫폼. Rails 8.1 API + Expo (React Native). Nest(보금자리) 기반 구성원 관리, 공동 가계부, 미션·규칙·일정 관리, 정부 정책 RSS 크롤링. 대학가 쉐어하우스 타겟 생활 밀착형 앱.",
-    image_url: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=1200",
-    preview_url: "https://matecheck.vibers.co.kr"
-  },
-  {
     title: "올루올루 (OLUOLU)",
     category: "웹사이트",
     client: "올루올루",
