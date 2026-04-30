@@ -58,10 +58,13 @@
   .toss-step-line.done { background: #00a859; }
 
   @media (max-width: 768px) {
+    .mxt-hero { padding: 80px 20px 48px !important; }
     .pkg-grid { grid-template-columns: 1fr !important; }
     .stats-grid { grid-template-columns: repeat(2,1fr) !important; }
     .hide-mobile { display: none !important; }
     .examples-grid { grid-template-columns: repeat(2,1fr) !important; }
+    .pkg-card { padding: 24px !important; }
+    .mxt-tab { padding: 10px 16px !important; font-size: 13px !important; }
   }
 </style>
 <% end %>
@@ -85,7 +88,7 @@
 </nav>
 
 <!-- ───────── HERO ───────── -->
-<section style="padding:120px 24px 80px;max-width:1080px;margin:0 auto;">
+<section class="mxt-hero" style="padding:100px 24px 64px;max-width:1080px;margin:0 auto;">
   <div style="text-align:center;">
     <div class="mxt-chip" style="margin-bottom:24px;">
       <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#00a859" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>

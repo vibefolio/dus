@@ -2,7 +2,7 @@
 <% content_for :description, "디어스가 완성한 다양한 프로젝트를 확인해보세요. 웹/앱/플랫폼 개발, UI/UX 디자인 등 성공적인 프로젝트 사례를 소개합니다." %>
 
 <!-- Portfolio Hero -->
-<section class="hero" style="min-height: 40vh; padding-top: 120px; padding-bottom: 60px;">
+<section class="hero" style="min-height: 30vh; padding-top: 100px; padding-bottom: 48px;">
   <div class="hero-content">
     <span class="eyebrow-light" style="margin-bottom: 16px; display: inline-block;">Our Works</span>
     <h1 class="hero-title" style="font-size: var(--text-5xl); word-break: keep-all; line-height: 1.3;">포트폴리오</h1>
@@ -13,7 +13,7 @@
 </section>
 
 <!-- Portfolio Sections by Category -->
-<section style="padding: 80px 0 96px;">
+<section class="section-lg" style="padding: 80px 0 96px;">
   <div class="container">
     <% if @portfolio_groups.any? %>
       <% global_idx = 0 %>
@@ -124,10 +124,10 @@
 </section>
 
 <!-- CTA Section -->
-<section style="padding: 96px 0; background: #f9fafb;">
+<section class="section-lg" style="padding: 96px 0; background: #f9fafb;">
   <div class="container" style="text-align: center;">
     <span class="eyebrow" style="margin-bottom: 16px; display: inline-block;">Next Project</span>
-    <h2 style="font-size: 40px; font-weight: 800; margin-bottom: 16px; color: #111; word-break: keep-all; line-height: 1.3;">
+    <h2 class="cta-title" style="font-size: 40px; font-weight: 800; margin-bottom: 16px; color: #111; word-break: keep-all; line-height: 1.3;">
       다음 성공 사례의 주인공이 되어보세요
     </h2>
     <p style="color: #6b7280; font-size: 18px; margin-bottom: 40px; word-break: keep-all;">
@@ -171,10 +171,10 @@
     transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   }
   @media (max-width: 1024px) {
-    .portfolio-grid { grid-template-columns: repeat(2, 1fr) !important; }
+    .portfolio-grid { grid-template-columns: repeat(2, 1fr) !important; gap: 20px !important; }
   }
   @media (max-width: 640px) {
-    .portfolio-grid { grid-template-columns: 1fr !important; }
+    .portfolio-grid { grid-template-columns: 1fr !important; gap: 16px !important; }
     .card-premium { animation-delay: 0ms !important; }
   }
 </style>
