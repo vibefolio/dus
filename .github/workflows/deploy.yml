@@ -20,10 +20,9 @@ jobs:
           ssh -o StrictHostKeyChecking=no ${{ secrets.NCP_USER }}@${{ secrets.NCP_HOST }} \
             "cd /root/projects/dlab-website && \
              git pull origin main && \
-             docker compose up -d --build --no-deps && \
-             sleep 15 && \
+             docker compose build dlab-website-app && \
+             docker compose up -d --wait dlab-website-app && \
              docker compose exec -T dlab-website-app bin/rails db:migrate 2>/dev/null; \
-             sleep 10 && \
              curl -sf http://localhost:4040/up && echo '✅ DUS 배포 완료' || echo '⚠️ 헬스체크 실패' && \
              docker exec npm-app-1 nginx -s reload || true"
 
@@ -35,5 +34,4 @@ jobs:
           username: ${{ secrets.NCP_USER }}
           key: ${{ secrets.NCP_SSH_KEY }}
           script: |
-            docker image prune -af --filter "until=24h"
             docker builder prune -af --filter "until=24h"
