@@ -11,6 +11,11 @@ class KakaoSkillController < ApplicationController
   ZEROCLAW_PORT = ENV.fetch("ZEROCLAW_PORT", "42636")
   TIMEOUT = 25 # 카카오 오픈빌더 스킬 타임아웃: 5초(기본) ~ 최대 30초
 
+  # GET /kakao-skill — 카카오 오픈빌더 스킬 서버 검증용
+  def verify
+    render plain: "OK", status: :ok
+  end
+
   # POST /kakao-skill
   def create
     # 오픈빌더는 문자열 키로 보내므로 양쪽 모두 시도
