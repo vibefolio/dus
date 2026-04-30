@@ -181,7 +181,7 @@ a:hover {
    LAYOUT UTILITIES
    ========================================== */
 .container {
-  width: 70%;
+  width: 75%;
   max-width: 1600px;
   margin: 0 auto;
   padding: 0;
@@ -412,7 +412,7 @@ a:hover {
   position: relative;
   z-index: 1;
   text-align: center;
-  width: 70%;
+  width: 75%;
   max-width: 1600px;
   margin: 0 auto;
   padding: 0;
@@ -733,11 +733,17 @@ a:hover {
   .hero-cta {
     flex-direction: column;
   }
+
+  .hero-content {
+    width: 100%;
+    padding: 0 8px;
+  }
 }
 
 @media (max-width: 480px) {
   .container {
-    width: 90%;
+    width: 100%;
+    padding: 0 2px;
   }
 
   .btn {
