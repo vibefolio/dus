@@ -76,9 +76,12 @@ Rails.application.configure do
 
   # Enable DNS rebinding protection and other `Host` header attacks.
   config.hosts = [
+    "d-us.co.kr",
+    "www.d-us.co.kr",
     "designd.co.kr",
     "www.designd.co.kr",
     "dus.vibers.co.kr",
+    /.*\.d-us\.co\.kr/,
     /.*\.designd\.co\.kr/,
     /.*\.vibers\.co\.kr/
   ]

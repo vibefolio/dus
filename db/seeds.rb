@@ -449,15 +449,6 @@ portfolios = [
     preview_url: "https://premiumpage.kr"
   },
   {
-    title: "팬이지 (FanEasy)",
-    category: "앱 및 플랫폼",
-    client: "계발자들 (Vibers)",
-    project_date: Date.new(2025, 12, 1),
-    description: "인플루언서·소상공인 대상 팬사이트 제작 & 운영 플랫폼. Next.js + Firebase + Vercel. 클라이언트별 독립 브랜드 서브사이트 서빙, 동적 OG 이미지 생성, 사이트 메타 크롤링 API. 올루올루·야화·비즈온·CPR·보이는마케팅 등 다수 브랜드 운영 중.",
-    image_url: "https://faneasy.kr/og-image.png",
-    preview_url: "https://faneasy.kr"
-  },
-  {
     title: "모노페이지 (Monopage)",
     category: "앱 및 플랫폼",
     client: "계발자들 (Vibers)",
