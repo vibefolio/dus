@@ -392,10 +392,10 @@
 #vb-chat-root{position:fixed;bottom:24px;z-index:99999;font-family:"Pretendard",-apple-system,BlinkMacSystemFont,sans-serif;font-size:15px;' + (C.position === 'left' ? 'left:24px' : 'right:24px') + '}\
 .vb-fab{width:56px;height:56px;border-radius:50%;border:none;cursor:pointer;color:#fff;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 16px rgba(0,0,0,.2);transition:transform .2s}\
 .vb-fab:hover{transform:scale(1.1)}\
-.vb-window{display:flex;flex-direction:column;border-radius:16px;overflow:hidden;box-shadow:0 8px 32px rgba(0,0,0,.15);background:#fff;max-height:90vh;position:relative}\
+.vb-window{display:flex;flex-direction:column;border-radius:16px;overflow:hidden;box-shadow:0 8px 32px rgba(0,0,0,.15);background:#fff;max-height:90vh}\
 .vb-animate-in{animation:vb-up .25s ease-out}\
 @keyframes vb-up{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}\
-.vb-header{display:flex;align-items:center;gap:12px;padding:14px 16px;background:#fff;border-bottom:1px solid #f0f0f0;min-height:60px;position:relative;flex-shrink:0}\
+.vb-header{display:flex;align-items:center;gap:12px;padding:14px 16px;background:#fff;border-bottom:1px solid #f0f0f0;min-height:60px;position:relative}\
 .vb-icon-btn{background:none;border:none;cursor:pointer;padding:4px;display:flex;align-items:center;color:#666;font-size:20px}\
 .vb-profile{width:36px;height:36px;border-radius:50%;object-fit:cover;background:#e8ecf1}\
 .vb-profile-fallback{width:36px;height:36px;border-radius:50%;color:#fff;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:600}\
@@ -417,8 +417,8 @@
 .vb-action-btn:hover{color:#fff!important;background:var(--c)}\
 .vb-inquiry-link{display:inline-flex;align-items:center;gap:4px;padding:8px 14px;border-radius:8px;background:#f5f5f5;color:#555;font-size:13px;font-weight:500;cursor:pointer;text-decoration:none;margin-top:8px}\
 .vb-inquiry-link:hover{background:#eee}\
-.vb-input-area{padding:12px 16px;border-top:1px solid #f0f0f0;background:#fff;flex-shrink:0}\
-.vb-input-wrap{display:flex;align-items:flex-end;gap:8px;background:#f5f6f8;border-radius:24px;padding:8px 12px 8px 16px}\
+.vb-input-area{padding:16px 16px 20px;border-top:1px solid #f0f0f0;background:#fff}\
+.vb-input-wrap{display:flex;align-items:center;gap:8px;background:#f5f6f8;border-radius:24px;padding:10px 12px 10px 16px}\
 .vb-input{flex:1;border:none;outline:none;background:transparent;font-size:14px;line-height:1.5;resize:none;max-height:100px;min-height:20px;font-family:inherit;color:#333}\
 .vb-input-icon{color:#999;font-size:18px}\
 .vb-send-btn{width:32px;height:32px;border-radius:50%;border:none;color:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all .15s}\
