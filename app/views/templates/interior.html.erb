@@ -1,0 +1,331 @@
+<%# Interior Template - MAISON 인테리어 디자인 스튜디오 %>
+
+<style>
+  * { word-break: keep-all; }
+  html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+  h1, h2, h3, h4 { text-wrap: balance; letter-spacing: -0.02em; line-height: 1.2; }
+  a, button { transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); }
+  a:hover, button:hover { transform: scale(1.02); }
+
+  @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Noto+Sans+KR:wght@300;400;500;700&display=swap');
+
+  .font-display { font-family: 'Cormorant Garamond', 'Noto Serif KR', serif; }
+  .font-body { font-family: 'Noto Sans KR', -apple-system, sans-serif; }
+
+  @media (max-width: 768px) {
+    .mobile-title { font-size: 42px !important; }
+    .mobile-desc { font-size: 14px !important; line-height: 1.8; }
+  }
+
+  .reveal { opacity: 0; transform: translateY(2rem); }
+  .reveal.is-visible { animation: fadeInUp 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards; animation-delay: calc(var(--delay, 0) * 100ms); }
+  @keyframes fadeInUp { to { opacity: 1; transform: translateY(0); } }
+
+  .img-hover { overflow: hidden; }
+  .img-hover img { transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
+  .img-hover:hover img { transform: scale(1.05); }
+
+  .project-card { border: 1px solid #E8E0D5; transition: all 0.4s ease; }
+  .project-card:hover { border-color: #B5956A; box-shadow: 0 20px 60px rgba(181,149,106,0.15); transform: translateY(-4px); }
+
+  .line-accent { width: 60px; height: 2px; background: #B5956A; display: inline-block; }
+</style>
+
+<div class="bg-[#FAFAF8] text-[#1C1C1C] font-body min-h-screen overflow-x-hidden">
+
+  <!-- Nav -->
+  <nav class="fixed w-full z-50 px-6 py-5 bg-[#FAFAF8]/95 backdrop-blur-xl border-b border-[#E8E0D5]">
+    <div class="max-w-6xl mx-auto flex justify-between items-center">
+      <a href="#" class="font-display text-2xl font-light tracking-widest text-[#1C1C1C]">MAISON<span class="text-[#B5956A]">.</span></a>
+
+      <div class="hidden md:flex gap-10 text-xs font-medium tracking-widest uppercase text-[#1C1C1C]/50">
+        <a href="#portfolio" class="hover:text-[#B5956A] transition">포트폴리오</a>
+        <a href="#services" class="hover:text-[#B5956A] transition">서비스</a>
+        <a href="#about" class="hover:text-[#B5956A] transition">스튜디오</a>
+        <a href="#contact" class="hover:text-[#B5956A] transition">상담</a>
+      </div>
+
+      <button class="mobile-menu-trigger md:hidden text-2xl focus:outline-none" style="color: #1C1C1C;">
+        <i class="fas fa-bars"></i>
+      </button>
+
+      <a href="#contact" class="hidden md:inline-flex items-center gap-2 border border-[#B5956A] text-[#B5956A] px-6 py-2.5 text-xs font-medium tracking-widest uppercase hover:bg-[#B5956A] hover:text-white transition-all">
+        무료 상담
+      </a>
+    </div>
+    <%= render partial: 'templates/shared/mobile_menu_overlay' %>
+  </nav>
+
+  <!-- Hero -->
+  <header class="min-h-screen flex items-end pb-24 pt-40 relative overflow-hidden">
+    <div class="absolute inset-0 z-0">
+      <img src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?q=80&w=1600" alt="인테리어" class="w-full h-full object-cover opacity-30">
+      <div class="absolute inset-0 bg-gradient-to-t from-[#FAFAF8] via-[#FAFAF8]/60 to-transparent"></div>
+    </div>
+    <div class="max-w-6xl mx-auto px-6 md:px-12 relative z-10">
+      <div class="max-w-3xl">
+        <span class="line-accent mb-8 block"></span>
+        <p class="text-xs font-medium tracking-[0.3em] uppercase text-[#B5956A] mb-4">Interior Design Studio</p>
+        <h1 class="font-display text-6xl md:text-8xl font-light leading-none tracking-tight text-[#1C1C1C] mb-8 mobile-title">
+          공간이<br><em class="text-[#B5956A] not-italic">말</em>을<br>건넵니다
+        </h1>
+        <p class="text-base md:text-lg text-[#1C1C1C]/60 max-w-xl leading-relaxed mb-10 mobile-desc">
+          메종은 단순한 인테리어가 아닌, 삶의 방식을 설계합니다. 주거·상업 공간의 본질을 탐구하고, 오래 머물고 싶은 공간을 만듭니다.
+        </p>
+        <div class="flex flex-wrap gap-4 items-center">
+          <a href="#portfolio" class="bg-[#1C1C1C] text-white px-8 py-4 text-sm font-medium tracking-widest uppercase hover:bg-[#B5956A] transition-all">
+            포트폴리오 보기
+          </a>
+          <a href="#contact" class="text-sm font-medium text-[#1C1C1C]/60 hover:text-[#B5956A] transition flex items-center gap-2">
+            <span>무료 상담 신청</span>
+            <i class="fas fa-arrow-right text-xs"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- 수치 -->
+    <div class="absolute bottom-24 right-6 md:right-12 flex gap-12 z-10">
+      <div class="text-right">
+        <p class="font-display text-4xl font-light text-[#B5956A]">200+</p>
+        <p class="text-xs tracking-widest uppercase text-[#1C1C1C]/40 mt-1">프로젝트</p>
+      </div>
+      <div class="text-right">
+        <p class="font-display text-4xl font-light text-[#B5956A]">8년</p>
+        <p class="text-xs tracking-widest uppercase text-[#1C1C1C]/40 mt-1">경력</p>
+      </div>
+      <div class="text-right">
+        <p class="font-display text-4xl font-light text-[#B5956A]">98%</p>
+        <p class="text-xs tracking-widest uppercase text-[#1C1C1C]/40 mt-1">재계약률</p>
+      </div>
+    </div>
+  </header>
+
+  <!-- Portfolio -->
+  <section id="portfolio" class="py-28 px-6 md:px-12">
+    <div class="max-w-6xl mx-auto">
+      <div class="flex items-end justify-between mb-16 reveal">
+        <div>
+          <p class="text-xs font-medium tracking-[0.3em] uppercase text-[#B5956A] mb-3">Portfolio</p>
+          <h2 class="font-display text-4xl md:text-5xl font-light text-[#1C1C1C]">최근 프로젝트</h2>
+        </div>
+        <a href="#" class="text-xs tracking-widest uppercase text-[#1C1C1C]/50 hover:text-[#B5956A] transition hidden md:block">전체 보기 →</a>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div class="project-card col-span-1 md:col-span-2 reveal" style="--delay:1">
+          <div class="img-hover h-80 md:h-96">
+            <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?q=80&w=900" alt="리빙룸" class="w-full h-full object-cover">
+          </div>
+          <div class="p-6">
+            <p class="text-xs tracking-widest uppercase text-[#B5956A] mb-2">Residential</p>
+            <h3 class="font-display text-2xl font-light">서울 성수동 아파트 리노베이션</h3>
+            <p class="text-sm text-[#1C1C1C]/50 mt-2">84m² · 미니멀 모던</p>
+          </div>
+        </div>
+        <div class="project-card reveal" style="--delay:2">
+          <div class="img-hover h-48">
+            <img src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?q=80&w=600" alt="카페 인테리어" class="w-full h-full object-cover">
+          </div>
+          <div class="p-6">
+            <p class="text-xs tracking-widest uppercase text-[#B5956A] mb-2">Commercial</p>
+            <h3 class="font-display text-xl font-light">브런치 카페 플래그십</h3>
+            <p class="text-sm text-[#1C1C1C]/50 mt-2">180m² · 빈티지 모던</p>
+          </div>
+        </div>
+        <div class="project-card reveal" style="--delay:3">
+          <div class="img-hover h-48">
+            <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=600" alt="오피스" class="w-full h-full object-cover">
+          </div>
+          <div class="p-6">
+            <p class="text-xs tracking-widest uppercase text-[#B5956A] mb-2">Office</p>
+            <h3 class="font-display text-xl font-light">스타트업 오피스 리브랜딩</h3>
+            <p class="text-sm text-[#1C1C1C]/50 mt-2">230m² · 인더스트리얼</p>
+          </div>
+        </div>
+        <div class="project-card reveal" style="--delay:4">
+          <div class="img-hover h-48">
+            <img src="https://images.unsplash.com/photo-1560185893-a55cbc8c57e8?q=80&w=600" alt="침실" class="w-full h-full object-cover">
+          </div>
+          <div class="p-6">
+            <p class="text-xs tracking-widest uppercase text-[#B5956A] mb-2">Residential</p>
+            <h3 class="font-display text-xl font-light">한남동 단독주택 풀 인테리어</h3>
+            <p class="text-sm text-[#1C1C1C]/50 mt-2">320m² · 럭셔리 모던</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services -->
+  <section id="services" class="py-28 bg-[#F2EDE6] px-6 md:px-12">
+    <div class="max-w-6xl mx-auto">
+      <div class="reveal mb-16">
+        <p class="text-xs font-medium tracking-[0.3em] uppercase text-[#B5956A] mb-3">Services</p>
+        <h2 class="font-display text-4xl md:text-5xl font-light text-[#1C1C1C]">제공 서비스</h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px bg-[#E8E0D5]">
+        <% [
+          { icon: "fas fa-home", title: "주거 인테리어", desc: "아파트, 빌라, 단독주택. 가족의 일상이 더 풍요로워지는 공간을 설계합니다." },
+          { icon: "fas fa-store", title: "상업 인테리어", desc: "카페, 레스토랑, 쇼룸. 브랜드 경험을 공간에 녹여내는 상업 공간 전문 디자인." },
+          { icon: "fas fa-building", title: "오피스 디자인", desc: "팀의 창의성과 생산성을 높이는 업무 환경. 워크플로우에 맞춘 공간 설계." },
+          { icon: "fas fa-pencil-ruler", title: "3D 시각화", desc: "공사 전 완성된 공간을 미리 경험하세요. 리얼한 3D 렌더링으로 소통합니다." },
+          { icon: "fas fa-couch", title: "가구·소품 셀렉션", desc: "공간에 어울리는 가구, 조명, 패브릭을 선별하고 큐레이션해드립니다." },
+          { icon: "fas fa-hammer", title: "시공 관리", desc: "신뢰할 수 있는 시공팀과 함께. 설계부터 입주까지 전 과정을 책임집니다." }
+        ].each_with_index do |s, i| %>
+          <div class="bg-[#FAFAF8] p-8 reveal" style="--delay:<%= i+1 %>">
+            <div class="w-12 h-12 flex items-center justify-center bg-[#B5956A]/10 rounded-sm mb-6">
+              <i class="<%= s[:icon] %> text-[#B5956A] text-lg"></i>
+            </div>
+            <h3 class="font-display text-xl font-light mb-3 text-[#1C1C1C]"><%= s[:title] %></h3>
+            <p class="text-sm text-[#1C1C1C]/60 leading-relaxed"><%= s[:desc] %></p>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </section>
+
+  <!-- Process -->
+  <section class="py-28 px-6 md:px-12">
+    <div class="max-w-6xl mx-auto">
+      <div class="reveal mb-16">
+        <p class="text-xs font-medium tracking-[0.3em] uppercase text-[#B5956A] mb-3">Process</p>
+        <h2 class="font-display text-4xl md:text-5xl font-light text-[#1C1C1C]">프로젝트 진행 방식</h2>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+        <% [
+          { step: "01", title: "첫 상담", desc: "공간에 대한 비전과 예산, 라이프스타일을 깊이 있게 청취합니다." },
+          { step: "02", title: "콘셉트 제안", desc: "무드보드와 공간 방향성을 제시합니다. 2-3가지 방향으로 제안드립니다." },
+          { step: "03", title: "설계 & 승인", desc: "도면, 마감재, 가구 계획을 세우고 고객의 최종 승인을 받습니다." },
+          { step: "04", title: "시공 & 입주", desc: "전담 코디네이터가 시공 전 과정을 관리합니다. 입주 후도 AS 보장." }
+        ].each_with_index do |p, i| %>
+          <div class="reveal" style="--delay:<%= i+1 %>">
+            <p class="font-display text-5xl font-light text-[#B5956A]/30 mb-4"><%= p[:step] %></p>
+            <h3 class="font-display text-xl font-light text-[#1C1C1C] mb-3"><%= p[:title] %></h3>
+            <p class="text-sm text-[#1C1C1C]/60 leading-relaxed"><%= p[:desc] %></p>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section id="about" class="py-28 bg-[#1C1C1C] text-white px-6 md:px-12">
+    <div class="max-w-6xl mx-auto grid lg:grid-cols-2 gap-16 items-center">
+      <div class="reveal">
+        <p class="text-xs font-medium tracking-[0.3em] uppercase text-[#B5956A] mb-3">About</p>
+        <h2 class="font-display text-4xl md:text-5xl font-light text-white mb-8">공간을 통해<br><em class="text-[#B5956A] not-italic">삶을 바꿉니다</em></h2>
+        <p class="text-base text-white/60 leading-relaxed mb-6">
+          메종은 2016년 창립 이후 200개 이상의 공간 프로젝트를 진행해왔습니다. 주거, 상업, 업무 공간을 아우르며 각 공간에 최적화된 설계와 시공을 제공합니다.
+        </p>
+        <p class="text-base text-white/60 leading-relaxed mb-10">
+          우리의 철학은 단 하나입니다. '오래 머물고 싶은 공간'. 트렌드가 아닌 본질에 집중하는 디자인으로 고객의 98%가 다음 프로젝트에도 메종을 찾습니다.
+        </p>
+        <a href="#contact" class="inline-flex items-center gap-3 border border-[#B5956A] text-[#B5956A] px-8 py-4 text-sm font-medium tracking-widest uppercase hover:bg-[#B5956A] hover:text-white transition-all">
+          스튜디오 방문 예약 <i class="fas fa-arrow-right text-xs"></i>
+        </a>
+      </div>
+      <div class="img-hover rounded-none overflow-hidden reveal" style="--delay:2">
+        <img src="https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?q=80&w=800" alt="스튜디오" class="w-full h-80 md:h-96 object-cover">
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section class="py-28 px-6 md:px-12">
+    <div class="max-w-6xl mx-auto">
+      <div class="reveal mb-16 text-center">
+        <p class="text-xs font-medium tracking-[0.3em] uppercase text-[#B5956A] mb-3">Reviews</p>
+        <h2 class="font-display text-4xl md:text-5xl font-light text-[#1C1C1C]">고객 후기</h2>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <% [
+          { name: "김지수 고객", location: "서울 마포구 아파트 리노베이션", text: "입주 3년이 지났는데도 여전히 제 집이 세상에서 가장 좋습니다. 디자이너님이 저를 너무 잘 이해해주셨어요.", stars: 5 },
+          { name: "박현준 대표", location: "강남 카페 인테리어", text: "오픈 첫 주부터 SNS에서 핫플로 올랐어요. 공간 자체가 마케팅이 되더라고요. 대박입니다.", stars: 5 },
+          { name: "이수연 원장", location: "분당 클리닉 인테리어", text: "환자들이 '여기 분위기가 좋아서 왔어요'라고 하세요. 공간 하나로 신뢰도가 달라진다는 걸 실감했어요.", stars: 5 }
+        ].each_with_index do |r, i| %>
+          <div class="bg-white border border-[#E8E0D5] p-8 reveal" style="--delay:<%= i+1 %>">
+            <div class="flex gap-0.5 mb-4">
+              <% r[:stars].times do %>
+                <i class="fas fa-star text-[#B5956A] text-sm"></i>
+              <% end %>
+            </div>
+            <p class="text-sm text-[#1C1C1C]/70 leading-relaxed mb-6 font-display italic text-lg font-light">"<%= r[:text] %>"</p>
+            <div class="border-t border-[#E8E0D5] pt-4">
+              <p class="text-sm font-medium text-[#1C1C1C]"><%= r[:name] %></p>
+              <p class="text-xs text-[#1C1C1C]/40 mt-1"><%= r[:location] %></p>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact" class="py-28 bg-[#F2EDE6] px-6 md:px-12">
+    <div class="max-w-2xl mx-auto text-center reveal">
+      <p class="text-xs font-medium tracking-[0.3em] uppercase text-[#B5956A] mb-3">Contact</p>
+      <h2 class="font-display text-4xl md:text-5xl font-light text-[#1C1C1C] mb-6">공간 상담 시작하기</h2>
+      <p class="text-base text-[#1C1C1C]/60 leading-relaxed mb-10">
+        첫 상담은 무료입니다. 어떤 공간이든, 어떤 예산이든 부담 없이 연락주세요.
+      </p>
+      <div class="bg-white border border-[#E8E0D5] p-8 text-left">
+        <div class="space-y-4">
+          <div class="grid grid-cols-2 gap-4">
+            <input type="text" placeholder="이름" class="w-full border border-[#E8E0D5] px-4 py-3 text-sm focus:outline-none focus:border-[#B5956A] bg-transparent">
+            <input type="tel" placeholder="연락처" class="w-full border border-[#E8E0D5] px-4 py-3 text-sm focus:outline-none focus:border-[#B5956A] bg-transparent">
+          </div>
+          <select class="w-full border border-[#E8E0D5] px-4 py-3 text-sm focus:outline-none focus:border-[#B5956A] bg-transparent text-[#1C1C1C]/60">
+            <option>서비스 선택</option>
+            <option>주거 인테리어</option>
+            <option>상업 인테리어</option>
+            <option>오피스 디자인</option>
+            <option>기타</option>
+          </select>
+          <textarea placeholder="공간 및 요청사항" rows="4" class="w-full border border-[#E8E0D5] px-4 py-3 text-sm focus:outline-none focus:border-[#B5956A] bg-transparent resize-none"></textarea>
+          <button class="w-full bg-[#1C1C1C] text-white py-4 text-sm font-medium tracking-widest uppercase hover:bg-[#B5956A] transition-all">
+            상담 신청하기
+          </button>
+        </div>
+      </div>
+
+      <div class="flex justify-center gap-12 mt-10">
+        <div class="text-center">
+          <i class="fas fa-phone text-[#B5956A] mb-2"></i>
+          <p class="text-xs text-[#1C1C1C]/50 tracking-wide">02-1234-5678</p>
+        </div>
+        <div class="text-center">
+          <i class="fas fa-envelope text-[#B5956A] mb-2"></i>
+          <p class="text-xs text-[#1C1C1C]/50 tracking-wide">hello@maison.kr</p>
+        </div>
+        <div class="text-center">
+          <i class="fas fa-map-marker-alt text-[#B5956A] mb-2"></i>
+          <p class="text-xs text-[#1C1C1C]/50 tracking-wide">서울시 성수동</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="py-10 px-6 border-t border-[#E8E0D5] bg-[#FAFAF8]">
+    <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
+      <p class="font-display text-xl font-light tracking-widest">MAISON<span class="text-[#B5956A]">.</span></p>
+      <p class="text-xs text-[#1C1C1C]/30 tracking-wide">© 2024 Maison Interior Studio. All rights reserved.</p>
+      <div class="flex gap-4">
+        <a href="#" class="text-[#1C1C1C]/30 hover:text-[#B5956A] transition"><i class="fab fa-instagram"></i></a>
+        <a href="#" class="text-[#1C1C1C]/30 hover:text-[#B5956A] transition"><i class="fab fa-pinterest"></i></a>
+        <a href="#" class="text-[#1C1C1C]/30 hover:text-[#B5956A] transition"><i class="fas fa-link"></i></a>
+      </div>
+    </div>
+  </footer>
+</div>
+
+<script>
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('is-visible'); });
+  }, { threshold: 0.1 });
+  reveals.forEach(r => observer.observe(r));
+</script>

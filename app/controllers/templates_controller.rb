@@ -4,12 +4,13 @@ class TemplatesController < ApplicationController
 
   # All templates in a list for reference
   VALID_TEMPLATES = %w[
-    beauty dining gym study stay corporate ecommerce cafe portfolio 
-    medical law wedding cleaning agency consulting academy sculpt yoga 
-    nail barber flower burger wine salad dessert donut kinder startup 
-    rental finance dental vet tax accounting camping studio petshop hotel pension 
+    beauty dining gym study stay corporate ecommerce cafe portfolio
+    medical law wedding cleaning agency consulting academy sculpt yoga
+    nail barber flower burger wine salad dessert donut kinder startup
+    rental finance dental vet tax accounting camping studio petshop hotel pension
     cloth shoe bag shopping learnhub english artistry artpage bizon
     oluolu_franchise oluolu_marketing kkang mz tech
+    interior hair-salon realestate marketing-agency
   ]
 
   # Theme Data Loaded from Extraction (Advanced)
@@ -60,7 +61,11 @@ class TemplatesController < ApplicationController
     "vet" => { "primary_color" => "#1E3A8A", "font_family" => "sans-serif", "radius" => "rounded-lg" },
     "wedding" => { "primary_color" => "#8C7B6C", "font_family" => "serif", "radius" => "rounded-md" },
     "wine" => { "primary_color" => "#E0C097", "bg_color" => "#1a1a1a", "text_color" => "#ffffff", "font_family" => "serif", "radius" => "rounded-lg" },
-    "yoga" => { "primary_color" => "#8B9178", "font_family" => "serif", "radius" => "rounded-lg" }
+    "yoga" => { "primary_color" => "#8B9178", "font_family" => "serif", "radius" => "rounded-lg" },
+    "interior" => { "primary_color" => "#B5956A", "bg_color" => "#FAFAF8", "text_color" => "#1C1C1C", "font_family" => "serif", "radius" => "rounded-none" },
+    "hair-salon" => { "primary_color" => "#C9A96E", "bg_color" => "#1A1A1A", "text_color" => "#ffffff", "font_family" => "serif", "radius" => "rounded-lg" },
+    "realestate" => { "primary_color" => "#1E3A5F", "bg_color" => "#ffffff", "text_color" => "#1f2937", "font_family" => "sans-serif", "radius" => "rounded-lg" },
+    "marketing-agency" => { "primary_color" => "#FF3D00", "bg_color" => "#0A0A0A", "text_color" => "#ffffff", "font_family" => "sans-serif", "radius" => "rounded-lg" }
   }
 
   def show

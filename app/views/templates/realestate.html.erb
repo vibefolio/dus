@@ -1,0 +1,328 @@
+<%# Realestate Template - 부동산 중개 & 공인중개사 %>
+
+<style>
+  * { word-break: keep-all; }
+  html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+  h1, h2, h3, h4 { text-wrap: balance; letter-spacing: -0.02em; line-height: 1.2; }
+  a, button { transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1); }
+  a:hover { color: #1E3A5F; }
+
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=Inter:wght@300;400;500;600;700&display=swap');
+
+  .font-display { font-family: 'Inter', sans-serif; }
+  .font-body { font-family: 'Noto Sans KR', -apple-system, sans-serif; }
+
+  @media (max-width: 768px) {
+    .mobile-title { font-size: 36px !important; }
+    .mobile-desc { font-size: 14px !important; line-height: 1.8; }
+  }
+
+  .reveal { opacity: 0; transform: translateY(2rem); }
+  .reveal.is-visible { animation: fadeInUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards; animation-delay: calc(var(--delay, 0) * 100ms); }
+  @keyframes fadeInUp { to { opacity: 1; transform: translateY(0); } }
+
+  .property-card { border-radius: 12px; overflow: hidden; border: 1px solid #E5EAF0; transition: all 0.4s ease; }
+  .property-card:hover { border-color: #1E3A5F; box-shadow: 0 16px 48px rgba(30,58,95,0.12); transform: translateY(-4px); }
+
+  .badge { display: inline-flex; align-items: center; gap: 6px; background: #EFF6FF; color: #1E3A5F; padding: 4px 12px; border-radius: 20px; font-size: 11px; font-weight: 600; }
+
+  .stat-card { background: white; border: 1px solid #E5EAF0; border-radius: 12px; padding: 24px; text-align: center; }
+
+  .img-hover { overflow: hidden; }
+  .img-hover img { transition: transform 0.6s ease; }
+  .img-hover:hover img { transform: scale(1.05); }
+</style>
+
+<div class="bg-[#F7F9FC] text-[#1f2937] font-body min-h-screen overflow-x-hidden">
+
+  <!-- Nav -->
+  <nav class="fixed w-full z-50 px-6 py-4 bg-white border-b border-[#E5EAF0] shadow-sm">
+    <div class="max-w-6xl mx-auto flex justify-between items-center">
+      <div class="flex items-center gap-3">
+        <div class="w-9 h-9 bg-[#1E3A5F] rounded-lg flex items-center justify-center">
+          <i class="fas fa-home text-white text-sm"></i>
+        </div>
+        <span class="font-display text-xl font-bold text-[#1E3A5F] tracking-tight">PREMIER<span class="text-[#4A7AB8]">.</span></span>
+      </div>
+
+      <div class="hidden md:flex gap-10 text-[13px] font-medium text-[#1f2937]/50">
+        <a href="#listings" class="hover:text-[#1E3A5F] transition">매물</a>
+        <a href="#services" class="hover:text-[#1E3A5F] transition">서비스</a>
+        <a href="#about" class="hover:text-[#1E3A5F] transition">소개</a>
+        <a href="#contact" class="hover:text-[#1E3A5F] transition">상담</a>
+      </div>
+
+      <button class="mobile-menu-trigger md:hidden text-2xl focus:outline-none text-[#1E3A5F]">
+        <i class="fas fa-bars"></i>
+      </button>
+
+      <a href="#contact" class="hidden md:inline-flex bg-[#1E3A5F] text-white px-5 py-2.5 rounded-lg text-[13px] font-semibold hover:bg-[#2E4A6F] transition shadow-lg shadow-[#1E3A5F]/20">
+        무료 상담 신청
+      </a>
+    </div>
+    <%= render partial: 'templates/shared/mobile_menu_overlay' %>
+  </nav>
+
+  <!-- Hero -->
+  <header class="pt-20 min-h-screen relative flex items-center overflow-hidden">
+    <div class="absolute inset-0 z-0">
+      <img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?q=80&w=1600" alt="부동산" class="w-full h-full object-cover opacity-20">
+      <div class="absolute inset-0 bg-gradient-to-r from-[#F7F9FC] via-[#F7F9FC]/90 to-transparent"></div>
+    </div>
+
+    <div class="max-w-6xl mx-auto px-6 md:px-12 py-24 relative z-10">
+      <div class="max-w-2xl">
+        <div class="badge mb-6">
+          <span class="w-2 h-2 bg-[#1E3A5F] rounded-full"></span>
+          신뢰할 수 있는 공인중개사 사무소
+        </div>
+        <h1 class="font-display text-5xl md:text-7xl font-bold text-[#1E3A5F] mb-6 leading-tight mobile-title">
+          내 집 마련의<br>첫 걸음,<br><span class="text-[#4A7AB8]">함께합니다</span>
+        </h1>
+        <p class="text-base md:text-lg text-[#1f2937]/60 max-w-xl leading-relaxed mb-10 mobile-desc">
+          프리미어는 15년 경력의 전문 공인중개사가 매물 탐색부터 계약, 입주까지 전 과정을 책임집니다. 아파트, 원룸, 상가 모두 전문적으로 안내드립니다.
+        </p>
+
+        <!-- 검색창 -->
+        <div class="bg-white rounded-2xl p-4 shadow-xl flex flex-col md:flex-row gap-3 max-w-xl mb-12">
+          <select class="flex-1 border border-[#E5EAF0] rounded-lg px-4 py-3 text-sm text-[#1f2937]/60 focus:outline-none focus:border-[#1E3A5F]">
+            <option>매물 유형</option>
+            <option>아파트</option>
+            <option>오피스텔</option>
+            <option>원룸</option>
+            <option>상가</option>
+          </select>
+          <select class="flex-1 border border-[#E5EAF0] rounded-lg px-4 py-3 text-sm text-[#1f2937]/60 focus:outline-none focus:border-[#1E3A5F]">
+            <option>거래 유형</option>
+            <option>매매</option>
+            <option>전세</option>
+            <option>월세</option>
+          </select>
+          <button class="bg-[#1E3A5F] text-white px-6 py-3 rounded-lg text-sm font-semibold hover:bg-[#2E4A6F] transition whitespace-nowrap">
+            <i class="fas fa-search mr-2"></i>검색
+          </button>
+        </div>
+
+        <div class="flex flex-wrap gap-2">
+          <% ["강남구", "서초구", "마포구", "용산구", "성동구"].each do |area| %>
+            <button class="text-xs border border-[#E5EAF0] bg-white px-4 py-2 rounded-full text-[#1f2937]/60 hover:border-[#1E3A5F] hover:text-[#1E3A5F] transition"><%= area %></button>
+          <% end %>
+        </div>
+      </div>
+    </div>
+
+    <!-- 통계 -->
+    <div class="absolute right-6 md:right-12 top-1/2 -translate-y-1/2 z-10 hidden lg:grid grid-rows-3 gap-4">
+      <% [
+        { val: "15년", label: "경력" },
+        { val: "1,200+", label: "거래 완료" },
+        { val: "98%", label: "만족도" }
+      ].each do |s| %>
+        <div class="stat-card w-32">
+          <p class="font-display text-2xl font-bold text-[#1E3A5F]"><%= s[:val] %></p>
+          <p class="text-xs text-[#1f2937]/40 mt-1"><%= s[:label] %></p>
+        </div>
+      <% end %>
+    </div>
+  </header>
+
+  <!-- Featured Listings -->
+  <section id="listings" class="py-24 px-6 md:px-12">
+    <div class="max-w-6xl mx-auto">
+      <div class="flex items-end justify-between mb-12 reveal">
+        <div>
+          <p class="text-xs font-semibold tracking-widest uppercase text-[#4A7AB8] mb-2">Featured</p>
+          <h2 class="font-display text-4xl md:text-5xl font-bold text-[#1E3A5F]">추천 매물</h2>
+        </div>
+        <a href="#" class="text-sm text-[#1E3A5F]/40 hover:text-[#1E3A5F] transition hidden md:block">전체 매물 →</a>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <% [
+          { type: "아파트", area: "서울 강남구 대치동", size: "84m²", rent: "매매 9억 8천", img: "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?q=80&w=600", tag: "추천", rooms: "방3/욕2", floor: "10층/20층", built: "2018년" },
+          { type: "오피스텔", area: "서울 마포구 공덕동", size: "33m²", rent: "전세 2억 5천", img: "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?q=80&w=600", tag: "전세", rooms: "방1/욕1", floor: "5층/15층", built: "2020년" },
+          { type: "상가", area: "서울 성동구 성수동", size: "120m²", rent: "월세 350/1억", img: "https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=600", tag: "상가", rooms: "개방형", floor: "1층/6층", built: "2015년" }
+        ].each_with_index do |p, i| %>
+          <div class="property-card bg-white reveal" style="--delay:<%= i+1 %>">
+            <div class="img-hover h-52 relative">
+              <img src="<%= p[:img] %>" alt="매물" class="w-full h-full object-cover">
+              <span class="absolute top-3 left-3 bg-[#1E3A5F] text-white text-xs font-bold px-3 py-1 rounded-full"><%= p[:tag] %></span>
+            </div>
+            <div class="p-5">
+              <p class="text-xs font-semibold text-[#4A7AB8] tracking-widest uppercase mb-1"><%= p[:type] %></p>
+              <h3 class="font-semibold text-[#1E3A5F] text-lg mb-1"><%= p[:area] %></h3>
+              <p class="text-xl font-bold text-[#1f2937] mb-3"><%= p[:rent] %></p>
+              <div class="flex flex-wrap gap-2 text-xs text-[#1f2937]/50">
+                <span class="flex items-center gap-1"><i class="fas fa-expand-arrows-alt"></i><%= p[:size] %></span>
+                <span class="flex items-center gap-1"><i class="fas fa-door-open"></i><%= p[:rooms] %></span>
+                <span class="flex items-center gap-1"><i class="fas fa-building"></i><%= p[:floor] %></span>
+                <span class="flex items-center gap-1"><i class="fas fa-calendar"></i><%= p[:built] %></span>
+              </div>
+              <button class="w-full mt-4 border border-[#1E3A5F] text-[#1E3A5F] py-2.5 text-sm font-semibold rounded-lg hover:bg-[#1E3A5F] hover:text-white transition">
+                상세 보기
+              </button>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services -->
+  <section id="services" class="py-24 bg-[#1E3A5F] px-6 md:px-12">
+    <div class="max-w-6xl mx-auto">
+      <div class="reveal mb-16 text-center">
+        <p class="text-xs font-semibold tracking-widest uppercase text-[#8AABCF] mb-3">Services</p>
+        <h2 class="font-display text-4xl md:text-5xl font-bold text-white">전문 서비스</h2>
+        <p class="text-white/50 mt-4">매물 탐색부터 계약까지, 모든 과정을 함께합니다</p>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <% [
+          { icon: "fas fa-search", title: "매물 탐색", desc: "조건에 맞는 최적 매물을 빠르게 찾아드립니다. 숨겨진 급매물도 놓치지 않습니다." },
+          { icon: "fas fa-file-contract", title: "계약 대행", desc: "복잡한 부동산 계약서를 꼼꼼히 검토하고 안전한 거래를 보장합니다." },
+          { icon: "fas fa-chart-line", title: "시세 분석", desc: "빅데이터 기반 시세 분석으로 합리적인 매매·전세가를 안내드립니다." },
+          { icon: "fas fa-handshake", title: "전세 대출 연계", desc: "은행·보증기관과 연계하여 전세자금 대출 상담 및 신청을 지원합니다." }
+        ].each_with_index do |s, i| %>
+          <div class="bg-white/5 border border-white/10 rounded-xl p-6 hover:bg-white/10 transition reveal" style="--delay:<%= i+1 %>">
+            <div class="w-12 h-12 bg-[#4A7AB8]/30 rounded-lg flex items-center justify-center mb-4">
+              <i class="<%= s[:icon] %> text-[#8AABCF] text-xl"></i>
+            </div>
+            <h3 class="font-bold text-white mb-2"><%= s[:title] %></h3>
+            <p class="text-sm text-white/50 leading-relaxed"><%= s[:desc] %></p>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section id="about" class="py-24 px-6 md:px-12">
+    <div class="max-w-6xl mx-auto grid lg:grid-cols-2 gap-16 items-center">
+      <div class="img-hover rounded-2xl overflow-hidden reveal">
+        <img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?q=80&w=800" alt="공인중개사" class="w-full h-96 object-cover">
+      </div>
+      <div class="reveal" style="--delay:2">
+        <p class="text-xs font-semibold tracking-widest uppercase text-[#4A7AB8] mb-3">About</p>
+        <h2 class="font-display text-4xl md:text-5xl font-bold text-[#1E3A5F] mb-6">15년 신뢰의<br>부동산 파트너</h2>
+        <p class="text-base text-[#1f2937]/60 leading-relaxed mb-6">
+          프리미어공인중개사무소는 강남구, 서초구, 마포구를 중심으로 주거·상업 부동산 전반을 전문으로 합니다.
+        </p>
+        <p class="text-base text-[#1f2937]/60 leading-relaxed mb-8">
+          단순히 매물을 소개하는 것에서 나아가, 고객의 상황과 예산에 맞는 최선의 선택을 함께 찾아드립니다. 1,200건 이상의 거래 성사, 98% 고객 만족도가 저희의 자산입니다.
+        </p>
+        <div class="grid grid-cols-3 gap-6 mb-8">
+          <% [["15년", "경력"], ["1,200+", "거래완료"], ["98%", "만족도"]].each do |val, label| %>
+            <div class="text-center p-4 bg-[#EFF6FF] rounded-xl">
+              <p class="font-display text-2xl font-bold text-[#1E3A5F]"><%= val %></p>
+              <p class="text-xs text-[#1f2937]/50 mt-1"><%= label %></p>
+            </div>
+          <% end %>
+        </div>
+        <a href="#contact" class="inline-flex items-center gap-2 bg-[#1E3A5F] text-white px-8 py-4 rounded-xl font-semibold hover:bg-[#2E4A6F] transition shadow-lg">
+          무료 상담 신청하기 <i class="fas fa-arrow-right text-sm"></i>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section class="py-24 bg-[#F7F9FC] px-6 md:px-12">
+    <div class="max-w-6xl mx-auto">
+      <div class="reveal mb-12 text-center">
+        <p class="text-xs font-semibold tracking-widest uppercase text-[#4A7AB8] mb-2">Reviews</p>
+        <h2 class="font-display text-4xl font-bold text-[#1E3A5F]">고객 후기</h2>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <% [
+          { name: "김현수", location: "대치동 아파트 매매", text: "처음 집을 사는 거라 막막했는데, 처음부터 끝까지 꼼꼼하게 안내해주셔서 안심하고 진행할 수 있었어요." },
+          { name: "이미란", location: "마포구 전세 계약", text: "전세 사기가 무서워서 걱정이 많았는데, 등기부등본부터 임대인 신원까지 하나하나 확인해주셔서 정말 믿음직했습니다." },
+          { name: "박재원", location: "성수동 상가 월세", text: "여러 중개사를 만났는데 이분들이 제일 솔직했어요. 단점도 정확히 짚어주고, 협상도 잘 해주셨습니다." }
+        ].each_with_index do |r, i| %>
+          <div class="bg-white rounded-xl p-6 border border-[#E5EAF0] shadow-sm reveal" style="--delay:<%= i+1 %>">
+            <div class="flex gap-1 mb-4">
+              <% 5.times do %><i class="fas fa-star text-[#F59E0B] text-sm"></i><% end %>
+            </div>
+            <p class="text-sm text-[#1f2937]/70 leading-relaxed mb-5">"<%= r[:text] %>"</p>
+            <div class="flex items-center gap-3 border-t border-[#E5EAF0] pt-4">
+              <div class="w-9 h-9 bg-[#EFF6FF] rounded-full flex items-center justify-center">
+                <i class="fas fa-user text-[#4A7AB8] text-sm"></i>
+              </div>
+              <div>
+                <p class="text-sm font-semibold text-[#1E3A5F]"><%= r[:name] %></p>
+                <p class="text-xs text-[#1f2937]/40"><%= r[:location] %></p>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact" class="py-24 px-6 md:px-12 bg-white">
+    <div class="max-w-2xl mx-auto reveal">
+      <div class="text-center mb-12">
+        <p class="text-xs font-semibold tracking-widest uppercase text-[#4A7AB8] mb-2">Contact</p>
+        <h2 class="font-display text-4xl font-bold text-[#1E3A5F] mb-4">무료 상담 신청</h2>
+        <p class="text-[#1f2937]/50">24시간 이내 전문 상담사가 연락드립니다</p>
+      </div>
+      <div class="space-y-4">
+        <div class="grid grid-cols-2 gap-4">
+          <input type="text" placeholder="이름" class="w-full border border-[#E5EAF0] rounded-lg px-4 py-3 text-sm focus:outline-none focus:border-[#1E3A5F]">
+          <input type="tel" placeholder="연락처" class="w-full border border-[#E5EAF0] rounded-lg px-4 py-3 text-sm focus:outline-none focus:border-[#1E3A5F]">
+        </div>
+        <select class="w-full border border-[#E5EAF0] rounded-lg px-4 py-3 text-sm focus:outline-none focus:border-[#1E3A5F] text-[#1f2937]/50">
+          <option>상담 유형</option>
+          <option>매매 (아파트/빌라)</option>
+          <option>전세</option>
+          <option>월세</option>
+          <option>상가/사무실</option>
+        </select>
+        <input type="text" placeholder="희망 지역" class="w-full border border-[#E5EAF0] rounded-lg px-4 py-3 text-sm focus:outline-none focus:border-[#1E3A5F]">
+        <textarea placeholder="추가 요청사항 (예산, 조건 등)" rows="4" class="w-full border border-[#E5EAF0] rounded-lg px-4 py-3 text-sm focus:outline-none focus:border-[#1E3A5F] resize-none"></textarea>
+        <button class="w-full bg-[#1E3A5F] text-white py-4 rounded-xl text-sm font-bold hover:bg-[#2E4A6F] transition shadow-lg shadow-[#1E3A5F]/20">
+          상담 신청하기
+        </button>
+      </div>
+
+      <div class="flex justify-center gap-12 mt-10 pt-10 border-t border-[#E5EAF0]">
+        <div class="text-center">
+          <i class="fas fa-phone text-[#1E3A5F] text-xl mb-2"></i>
+          <p class="text-xs text-[#1f2937]/50">02-000-0000</p>
+        </div>
+        <div class="text-center">
+          <i class="fas fa-clock text-[#1E3A5F] text-xl mb-2"></i>
+          <p class="text-xs text-[#1f2937]/50">09:00 ~ 18:00<br>주말 상담 가능</p>
+        </div>
+        <div class="text-center">
+          <i class="fas fa-map-marker-alt text-[#1E3A5F] text-xl mb-2"></i>
+          <p class="text-xs text-[#1f2937]/50">서울시 강남구</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="py-10 px-6 bg-[#1E3A5F] text-white">
+    <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
+      <div>
+        <p class="font-display text-lg font-bold">PREMIER 공인중개사무소</p>
+        <p class="text-white/40 text-xs mt-1">중개업 등록번호: 강남 제2024-001호</p>
+      </div>
+      <p class="text-white/30 text-xs">© 2024 Premier Realestate. All rights reserved.</p>
+      <div class="flex gap-4">
+        <a href="#" class="text-white/30 hover:text-white transition"><i class="fab fa-instagram"></i></a>
+        <a href="#" class="text-white/30 hover:text-white transition"><i class="fas fa-comment"></i></a>
+        <a href="#" class="text-white/30 hover:text-white transition"><i class="fas fa-blog"></i></a>
+      </div>
+    </div>
+  </footer>
+</div>
+
+<script>
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('is-visible'); });
+  }, { threshold: 0.1 });
+  reveals.forEach(r => observer.observe(r));
+</script>

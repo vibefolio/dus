@@ -1,0 +1,316 @@
+<%# Marketing Agency Template - BLAZE 마케팅 에이전시 %>
+
+<style>
+  * { word-break: keep-all; }
+  html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+  h1, h2, h3, h4 { text-wrap: balance; letter-spacing: -0.03em; line-height: 1.1; }
+  a, button { transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); }
+
+  @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Noto+Sans+KR:wght@300;400;500;700&display=swap');
+
+  .font-display { font-family: 'Space Grotesk', 'Noto Sans KR', sans-serif; }
+  .font-body { font-family: 'Noto Sans KR', -apple-system, sans-serif; }
+
+  @media (max-width: 768px) {
+    .mobile-title { font-size: 42px !important; }
+    .mobile-desc { font-size: 14px !important; line-height: 1.8; }
+  }
+
+  .reveal { opacity: 0; transform: translateY(2rem); }
+  .reveal.is-visible { animation: fadeInUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards; animation-delay: calc(var(--delay, 0) * 100ms); }
+  @keyframes fadeInUp { to { opacity: 1; transform: translateY(0); } }
+
+  @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+  .marquee-inner { display: flex; animation: marquee 20s linear infinite; width: max-content; }
+  .marquee-inner:hover { animation-play-state: paused; }
+
+  .service-card { border: 1px solid rgba(255,61,0,0.15); background: rgba(255,255,255,0.03); transition: all 0.4s ease; }
+  .service-card:hover { border-color: #FF3D00; background: rgba(255,61,0,0.05); transform: translateY(-4px); }
+
+  .stat-num { font-family: 'Space Grotesk', sans-serif; font-size: 56px; font-weight: 700; line-height: 1; }
+
+  .portfolio-item { overflow: hidden; position: relative; }
+  .portfolio-item::after { content: ''; position: absolute; inset: 0; background: rgba(10,10,10,0.6); opacity: 0; transition: opacity 0.4s ease; }
+  .portfolio-item:hover::after { opacity: 1; }
+  .portfolio-overlay { position: absolute; inset: 0; z-index: 10; display: flex; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.4s ease; }
+  .portfolio-item:hover .portfolio-overlay { opacity: 1; }
+  .portfolio-item img { transition: transform 0.6s ease; }
+  .portfolio-item:hover img { transform: scale(1.08); }
+
+  .glow { box-shadow: 0 0 40px rgba(255,61,0,0.3); }
+  .text-gradient { background: linear-gradient(135deg, #FF3D00, #FF8A00); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+</style>
+
+<div class="bg-[#0A0A0A] text-white font-body min-h-screen overflow-x-hidden">
+
+  <!-- Nav -->
+  <nav class="fixed w-full z-50 px-6 py-5 bg-[#0A0A0A]/90 backdrop-blur-xl border-b border-white/5">
+    <div class="max-w-7xl mx-auto flex justify-between items-center">
+      <a href="#" class="font-display text-2xl font-bold tracking-tight">BL<span class="text-gradient">AZE</span><span class="text-[#FF3D00]">.</span></a>
+
+      <div class="hidden md:flex gap-10 text-[13px] font-medium text-white/40">
+        <a href="#services" class="hover:text-white transition">서비스</a>
+        <a href="#work" class="hover:text-white transition">레퍼런스</a>
+        <a href="#results" class="hover:text-white transition">성과</a>
+        <a href="#about" class="hover:text-white transition">팀</a>
+        <a href="#contact" class="hover:text-white transition">문의</a>
+      </div>
+
+      <button class="mobile-menu-trigger md:hidden text-2xl focus:outline-none text-white/60">
+        <i class="fas fa-bars"></i>
+      </button>
+
+      <a href="#contact" class="hidden md:inline-flex bg-[#FF3D00] text-white px-6 py-2.5 rounded-full text-[13px] font-bold hover:bg-[#FF5500] transition shadow-lg shadow-[#FF3D00]/30 glow">
+        프로젝트 시작하기
+      </a>
+    </div>
+    <%= render partial: 'templates/shared/mobile_menu_overlay' %>
+  </nav>
+
+  <!-- Hero -->
+  <header class="min-h-screen flex items-center pt-24 relative overflow-hidden">
+    <!-- Background decoration -->
+    <div class="absolute top-20 right-20 w-96 h-96 bg-[#FF3D00]/10 rounded-full blur-3xl pointer-events-none"></div>
+    <div class="absolute bottom-20 left-20 w-64 h-64 bg-[#FF8A00]/5 rounded-full blur-3xl pointer-events-none"></div>
+
+    <div class="max-w-7xl mx-auto px-6 md:px-12 py-24 relative z-10">
+      <div class="max-w-4xl">
+        <div class="inline-flex items-center gap-2 border border-[#FF3D00]/30 bg-[#FF3D00]/10 rounded-full px-4 py-1.5 mb-8">
+          <span class="w-2 h-2 bg-[#FF3D00] rounded-full animate-pulse"></span>
+          <span class="text-xs font-bold text-[#FF3D00] tracking-widest uppercase">2024 Marketing Agency of the Year</span>
+        </div>
+
+        <h1 class="font-display text-6xl md:text-8xl font-bold leading-none mb-8 mobile-title">
+          브랜드를<br><span class="text-gradient">폭발</span>시킵니다<span class="text-[#FF3D00]">.</span>
+        </h1>
+
+        <p class="text-lg md:text-xl text-white/50 max-w-2xl leading-relaxed mb-12 mobile-desc">
+          BLAZE는 데이터와 크리에이티브의 경계를 무너뜨립니다. SNS 바이럴부터 퍼포먼스 마케팅까지, 측정 가능한 성장을 만들어냅니다.
+        </p>
+
+        <div class="flex flex-wrap gap-4 items-center mb-16">
+          <a href="#contact" class="bg-[#FF3D00] text-white px-8 py-4 rounded-full text-sm font-bold hover:bg-[#FF5500] transition shadow-xl shadow-[#FF3D00]/30 glow">
+            무료 감사 신청 →
+          </a>
+          <a href="#work" class="border border-white/10 text-white/70 px-8 py-4 rounded-full text-sm font-medium hover:border-white/30 hover:text-white transition">
+            포트폴리오 보기
+          </a>
+        </div>
+
+        <!-- Trust bar -->
+        <div class="flex flex-wrap items-center gap-8">
+          <p class="text-xs text-white/30 font-medium tracking-widest uppercase">신뢰하는 파트너사</p>
+          <% ["올루올루", "야화", "세모폰", "비즈온", "CPR마케팅"].each do |c| %>
+            <span class="text-white/20 text-sm font-bold hover:text-white/40 transition cursor-pointer"><%= c %></span>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Marquee -->
+  <div class="border-y border-white/5 py-4 bg-[#FF3D00] overflow-hidden">
+    <div class="marquee-inner">
+      <% ["SNS 마케팅", "퍼포먼스 광고", "브랜드 전략", "콘텐츠 제작", "인플루언서 마케팅", "SEO 최적화", "영상 제작", "데이터 분석", "CRM 구축", "이메일 마케팅"].cycle(2).each do |item| %>
+        <span class="font-display text-white font-bold text-sm tracking-widest uppercase px-8"><%= item %> ·</span>
+      <% end %>
+    </div>
+  </div>
+
+  <!-- Services -->
+  <section id="services" class="py-28 px-6 md:px-12">
+    <div class="max-w-7xl mx-auto">
+      <div class="reveal mb-16">
+        <p class="text-xs font-bold tracking-[0.3em] uppercase text-[#FF3D00] mb-3">What We Do</p>
+        <h2 class="font-display text-5xl md:text-6xl font-bold text-white">서비스</h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <% [
+          { icon: "fas fa-fire", title: "퍼포먼스 마케팅", desc: "Meta, Google, 카카오 광고 최적화. ROAS 300% 이상을 목표로 집중 운영합니다.", badge: "인기" },
+          { icon: "fas fa-hashtag", title: "SNS 콘텐츠 전략", desc: "인스타그램, 틱톡, 유튜브 채널 운영. 팔로워 증가보다 진짜 구매 전환에 집중합니다.", badge: nil },
+          { icon: "fas fa-video", title: "영상 & 숏폼 제작", desc: "릴스, 틱톡, 유튜브 쇼츠. 브랜드 메시지를 3초 안에 전달하는 영상을 만듭니다.", badge: "HOT" },
+          { icon: "fas fa-search", title: "SEO & 콘텐츠 마케팅", desc: "네이버, 구글 검색 상위 노출. 지속 유입되는 유기 트래픽을 구축합니다.", badge: nil },
+          { icon: "fas fa-bullhorn", title: "인플루언서 마케팅", desc: "마이크로~메가 인플루언서 전략 기획 및 집행. ROI 기반 캠페인 설계.", badge: nil },
+          { icon: "fas fa-chart-bar", title: "마케팅 데이터 분석", desc: "GA4, 메타픽셀, 전환 추적 설정. 데이터 기반 의사결정으로 광고비를 최적화합니다.", badge: nil }
+        ].each_with_index do |s, i| %>
+          <div class="service-card rounded-2xl p-8 reveal" style="--delay:<%= i+1 %>">
+            <div class="flex items-start justify-between mb-6">
+              <div class="w-12 h-12 bg-[#FF3D00]/15 rounded-xl flex items-center justify-center">
+                <i class="<%= s[:icon] %> text-[#FF3D00] text-xl"></i>
+              </div>
+              <% if s[:badge] %>
+                <span class="text-xs font-bold text-[#FF3D00] border border-[#FF3D00]/30 rounded-full px-3 py-1"><%= s[:badge] %></span>
+              <% end %>
+            </div>
+            <h3 class="font-display text-xl font-bold text-white mb-3"><%= s[:title] %></h3>
+            <p class="text-sm text-white/50 leading-relaxed"><%= s[:desc] %></p>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </section>
+
+  <!-- Results -->
+  <section id="results" class="py-28 bg-[#111111] px-6 md:px-12">
+    <div class="max-w-7xl mx-auto">
+      <div class="reveal mb-20 text-center">
+        <p class="text-xs font-bold tracking-[0.3em] uppercase text-[#FF3D00] mb-3">Results</p>
+        <h2 class="font-display text-5xl md:text-6xl font-bold text-white">숫자로 증명합니다</h2>
+      </div>
+
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+        <% [
+          { val: "320+", label: "성공 캠페인", sub: "3년간 누적" },
+          { val: "850%", label: "평균 ROAS", sub: "퍼포먼스 광고 기준" },
+          { val: "2.3M", label: "월 도달 수", sub: "SNS 콘텐츠 통합" },
+          { val: "98%", label: "재계약률", sub: "6개월 이상 협력사" }
+        ].each_with_index do |s, i| %>
+          <div class="text-center reveal" style="--delay:<%= i+1 %>">
+            <p class="stat-num text-gradient mb-2"><%= s[:val] %></p>
+            <p class="font-bold text-white text-base"><%= s[:label] %></p>
+            <p class="text-xs text-white/30 mt-1"><%= s[:sub] %></p>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </section>
+
+  <!-- Work / Portfolio -->
+  <section id="work" class="py-28 px-6 md:px-12">
+    <div class="max-w-7xl mx-auto">
+      <div class="flex items-end justify-between mb-12 reveal">
+        <div>
+          <p class="text-xs font-bold tracking-[0.3em] uppercase text-[#FF3D00] mb-3">Work</p>
+          <h2 class="font-display text-5xl font-bold text-white">레퍼런스</h2>
+        </div>
+        <a href="#" class="text-sm text-white/30 hover:text-white transition hidden md:block">전체 보기 →</a>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div class="portfolio-item rounded-2xl h-72 md:h-80 col-span-1 md:col-span-2 reveal" style="--delay:1">
+          <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=900" alt="캠페인" class="w-full h-full object-cover rounded-2xl">
+          <div class="portfolio-overlay rounded-2xl">
+            <div class="text-center">
+              <p class="font-display text-2xl font-bold text-white mb-2">F&B 브랜드 바이럴</p>
+              <p class="text-[#FF3D00] text-sm font-bold">ROAS 420% · 팔로워 +120K</p>
+            </div>
+          </div>
+        </div>
+        <div class="portfolio-item rounded-2xl h-72 md:h-80 reveal" style="--delay:2">
+          <img src="https://images.unsplash.com/photo-1432888622747-4eb9a8efeb07?q=80&w=600" alt="SNS" class="w-full h-full object-cover rounded-2xl">
+          <div class="portfolio-overlay rounded-2xl">
+            <div class="text-center">
+              <p class="font-display text-xl font-bold text-white mb-2">패션 브랜드 SNS</p>
+              <p class="text-[#FF3D00] text-sm font-bold">조회수 3.2M 달성</p>
+            </div>
+          </div>
+        </div>
+        <div class="portfolio-item rounded-2xl h-56 reveal" style="--delay:3">
+          <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=600" alt="데이터" class="w-full h-full object-cover rounded-2xl">
+          <div class="portfolio-overlay rounded-2xl">
+            <div class="text-center">
+              <p class="font-display text-xl font-bold text-white mb-2">뷰티 퍼포먼스</p>
+              <p class="text-[#FF3D00] text-sm font-bold">CPC -60% 절감</p>
+            </div>
+          </div>
+        </div>
+        <div class="portfolio-item rounded-2xl h-56 col-span-1 md:col-span-2 reveal" style="--delay:4">
+          <img src="https://images.unsplash.com/photo-1533750349088-cd871a92f312?q=80&w=900" alt="마케팅" class="w-full h-full object-cover rounded-2xl">
+          <div class="portfolio-overlay rounded-2xl">
+            <div class="text-center">
+              <p class="font-display text-xl font-bold text-white mb-2">스타트업 런칭 캠페인</p>
+              <p class="text-[#FF3D00] text-sm font-bold">론칭 2주 만에 매출 1억 달성</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Team -->
+  <section id="about" class="py-28 bg-[#111111] px-6 md:px-12">
+    <div class="max-w-7xl mx-auto">
+      <div class="reveal mb-16">
+        <p class="text-xs font-bold tracking-[0.3em] uppercase text-[#FF3D00] mb-3">Team</p>
+        <h2 class="font-display text-5xl font-bold text-white">마케팅 전문가 팀</h2>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <% [
+          { name: "김성훈 대표", role: "Creative Director", career: "전 삼성전자 마케팅팀, 10년 경력", img: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=400" },
+          { name: "이수진 팀장", role: "Head of Performance", career: "Meta, Google 인증 전문가", img: "https://images.unsplash.com/photo-1580618672591-eb180b1a973f?q=80&w=400" },
+          { name: "박지호 리드", role: "Content Lead", career: "유튜브 구독자 50만 채널 운영", img: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=400" }
+        ].each_with_index do |t, i| %>
+          <div class="reveal" style="--delay:<%= i+1 %>">
+            <div class="h-64 rounded-2xl overflow-hidden mb-4">
+              <img src="<%= t[:img] %>" alt="<%= t[:name] %>" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500 scale-110 hover:scale-100">
+            </div>
+            <p class="text-[#FF3D00] text-xs font-bold tracking-widest uppercase mb-1"><%= t[:role] %></p>
+            <h3 class="font-display text-xl font-bold text-white mb-1"><%= t[:name] %></h3>
+            <p class="text-sm text-white/40"><%= t[:career] %></p>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA / Contact -->
+  <section id="contact" class="py-28 px-6 md:px-12 relative overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-br from-[#FF3D00]/20 to-transparent pointer-events-none"></div>
+    <div class="max-w-3xl mx-auto text-center relative z-10">
+      <div class="reveal">
+        <h2 class="font-display text-5xl md:text-7xl font-bold text-white mb-6">
+          지금<br><span class="text-gradient">시작</span>할까요<span class="text-[#FF3D00]">?</span>
+        </h2>
+        <p class="text-lg text-white/50 mb-12">
+          첫 무료 마케팅 감사 신청 시, 현재 브랜드의 성장 기회와 개선점을 분석해드립니다.
+        </p>
+
+        <div class="bg-[#111111] border border-white/10 rounded-3xl p-8 text-left mb-10">
+          <div class="space-y-4">
+            <div class="grid grid-cols-2 gap-4">
+              <input type="text" placeholder="담당자 이름" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-[#FF3D00] placeholder-white/30">
+              <input type="tel" placeholder="연락처" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-[#FF3D00] placeholder-white/30">
+            </div>
+            <input type="text" placeholder="회사명 & 업종" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-[#FF3D00] placeholder-white/30">
+            <select class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm text-white/50 focus:outline-none focus:border-[#FF3D00]">
+              <option>관심 서비스</option>
+              <option>퍼포먼스 마케팅</option>
+              <option>SNS 운영</option>
+              <option>영상 제작</option>
+              <option>전략 컨설팅</option>
+              <option>전체 패키지</option>
+            </select>
+            <input type="text" placeholder="월 마케팅 예산 (선택)" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-[#FF3D00] placeholder-white/30">
+            <button class="w-full bg-[#FF3D00] text-white py-4 rounded-xl text-sm font-bold hover:bg-[#FF5500] transition shadow-2xl shadow-[#FF3D00]/40 glow">
+              무료 마케팅 감사 신청하기 →
+            </button>
+          </div>
+        </div>
+
+        <p class="text-xs text-white/20">영업일 기준 24시간 이내 연락드립니다. 스팸 없음을 약속합니다.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="py-10 px-6 border-t border-white/5">
+    <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
+      <p class="font-display text-xl font-bold tracking-tight">BL<span class="text-gradient">AZE</span><span class="text-[#FF3D00]">.</span></p>
+      <p class="text-white/20 text-xs">© 2024 Blaze Marketing Agency. All rights reserved.</p>
+      <div class="flex gap-4">
+        <a href="#" class="text-white/20 hover:text-[#FF3D00] transition"><i class="fab fa-instagram"></i></a>
+        <a href="#" class="text-white/20 hover:text-[#FF3D00] transition"><i class="fab fa-youtube"></i></a>
+        <a href="#" class="text-white/20 hover:text-[#FF3D00] transition"><i class="fab fa-linkedin"></i></a>
+      </div>
+    </div>
+  </footer>
+</div>
+
+<script>
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('is-visible'); });
+  }, { threshold: 0.1 });
+  reveals.forEach(r => observer.observe(r));
+</script>

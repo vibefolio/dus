@@ -1,0 +1,274 @@
+<%# Hair Salon Template - NOIR 헤어살롱 %>
+
+<style>
+  * { word-break: keep-all; }
+  html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+  h1, h2, h3, h4 { text-wrap: balance; letter-spacing: -0.02em; line-height: 1.2; }
+  a, button { transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); }
+
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Noto+Sans+KR:wght@300;400;500;700&display=swap');
+
+  .font-display { font-family: 'Playfair Display', 'Noto Serif KR', serif; }
+  .font-body { font-family: 'Noto Sans KR', -apple-system, sans-serif; }
+
+  @media (max-width: 768px) {
+    .mobile-title { font-size: 40px !important; }
+    .mobile-desc { font-size: 14px !important; line-height: 1.8; }
+  }
+
+  .reveal { opacity: 0; transform: translateY(2rem); }
+  .reveal.is-visible { animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards; animation-delay: calc(var(--delay, 0) * 100ms); }
+  @keyframes fadeInUp { to { opacity: 1; transform: translateY(0); } }
+
+  .img-hover { overflow: hidden; }
+  .img-hover img { transition: transform 0.8s ease; }
+  .img-hover:hover img { transform: scale(1.06); }
+
+  .gold-line { width: 50px; height: 1px; background: #C9A96E; display: inline-block; }
+
+  .service-item { border-bottom: 1px solid rgba(201,169,110,0.2); transition: all 0.3s ease; }
+  .service-item:hover { border-bottom-color: #C9A96E; padding-left: 12px; }
+
+  .style-card { position: relative; overflow: hidden; }
+  .style-card::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.7), transparent 50%); }
+  .style-card .card-text { position: absolute; bottom: 0; left: 0; right: 0; z-index: 10; padding: 24px; }
+
+  @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+  .float { animation: float 4s ease-in-out infinite; }
+</style>
+
+<div class="bg-[#0F0F0F] text-white font-body min-h-screen overflow-x-hidden">
+
+  <!-- Nav -->
+  <nav class="fixed w-full z-50 px-6 py-5 bg-[#0F0F0F]/90 backdrop-blur-xl border-b border-white/5">
+    <div class="max-w-6xl mx-auto flex justify-between items-center">
+      <a href="#" class="font-display text-2xl font-bold tracking-widest">NOIR<span class="text-[#C9A96E]">.</span></a>
+
+      <div class="hidden md:flex gap-10 text-xs font-medium tracking-widest uppercase text-white/40">
+        <a href="#styles" class="hover:text-[#C9A96E] transition">스타일</a>
+        <a href="#services" class="hover:text-[#C9A96E] transition">서비스</a>
+        <a href="#about" class="hover:text-[#C9A96E] transition">살롱 소개</a>
+        <a href="#booking" class="hover:text-[#C9A96E] transition">예약</a>
+      </div>
+
+      <button class="mobile-menu-trigger md:hidden text-2xl focus:outline-none text-white/60">
+        <i class="fas fa-bars"></i>
+      </button>
+
+      <a href="#booking" class="hidden md:inline-flex bg-[#C9A96E] text-[#0F0F0F] px-6 py-2.5 text-xs font-bold tracking-widest uppercase hover:bg-white transition-all">
+        예약하기
+      </a>
+    </div>
+    <%= render partial: 'templates/shared/mobile_menu_overlay' %>
+  </nav>
+
+  <!-- Hero -->
+  <header class="min-h-screen relative flex items-center overflow-hidden">
+    <div class="absolute inset-0 z-0">
+      <img src="https://images.unsplash.com/photo-1562322140-8baeececf3df?q=80&w=1600" alt="헤어살롱" class="w-full h-full object-cover opacity-40">
+      <div class="absolute inset-0 bg-gradient-to-r from-[#0F0F0F] via-[#0F0F0F]/70 to-transparent"></div>
+    </div>
+
+    <div class="max-w-6xl mx-auto px-6 md:px-12 relative z-10 pt-24">
+      <div class="max-w-2xl">
+        <div class="flex items-center gap-4 mb-8">
+          <span class="gold-line"></span>
+          <p class="text-xs font-medium tracking-[0.3em] uppercase text-[#C9A96E]">Premium Hair Salon · Seoul</p>
+        </div>
+        <h1 class="font-display text-6xl md:text-8xl font-bold text-white mb-6 leading-none mobile-title">
+          아름다움의<br><span class="text-[#C9A96E] italic font-normal">새로운 기준</span>
+        </h1>
+        <p class="text-base md:text-lg text-white/50 max-w-lg leading-relaxed mb-10 mobile-desc">
+          NOIR는 단순한 헤어살롱이 아닙니다. 당신의 개성과 라이프스타일을 반영한 전문적인 스타일링을 제안합니다.
+        </p>
+        <div class="flex flex-wrap gap-4">
+          <a href="#booking" class="bg-[#C9A96E] text-[#0F0F0F] px-8 py-4 text-sm font-bold tracking-widest uppercase hover:bg-white transition-all">
+            예약 바로가기
+          </a>
+          <a href="#styles" class="border border-white/20 text-white/70 px-8 py-4 text-sm font-medium tracking-widest uppercase hover:border-[#C9A96E] hover:text-[#C9A96E] transition-all">
+            스타일 보기
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- 배지 -->
+    <div class="absolute right-6 md:right-12 top-1/2 -translate-y-1/2 z-10 hidden md:block">
+      <div class="float w-32 h-32 rounded-full bg-[#C9A96E] flex flex-col items-center justify-center text-[#0F0F0F]">
+        <p class="font-display text-3xl font-bold">10</p>
+        <p class="text-xs font-bold tracking-widest uppercase">YEARS</p>
+      </div>
+    </div>
+  </header>
+
+  <!-- Styles Gallery -->
+  <section id="styles" class="py-24 px-6 md:px-12">
+    <div class="max-w-6xl mx-auto">
+      <div class="flex items-end justify-between mb-12 reveal">
+        <div>
+          <span class="gold-line mb-4 block"></span>
+          <h2 class="font-display text-4xl md:text-5xl font-bold text-white">STYLE GALLERY</h2>
+        </div>
+        <a href="#" class="text-xs tracking-widest uppercase text-white/30 hover:text-[#C9A96E] transition hidden md:block">전체 보기 →</a>
+      </div>
+
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+        <div class="style-card h-72 md:h-80 img-hover reveal" style="--delay:1">
+          <img src="https://images.unsplash.com/photo-1492106087820-71f1a00d2b11?q=80&w=400" alt="컷" class="w-full h-full object-cover">
+          <div class="card-text"><p class="font-display text-xl font-bold">클래식 컷</p><p class="text-xs text-[#C9A96E] mt-1 tracking-widest uppercase">Classic Cut</p></div>
+        </div>
+        <div class="style-card h-72 md:h-80 img-hover col-span-1 row-span-1 reveal" style="--delay:2">
+          <img src="https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?q=80&w=400" alt="컬러" class="w-full h-full object-cover">
+          <div class="card-text"><p class="font-display text-xl font-bold">프리미엄 컬러</p><p class="text-xs text-[#C9A96E] mt-1 tracking-widest uppercase">Color</p></div>
+        </div>
+        <div class="style-card h-72 md:h-80 img-hover reveal" style="--delay:3">
+          <img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?q=80&w=400" alt="펌" class="w-full h-full object-cover">
+          <div class="card-text"><p class="font-display text-xl font-bold">볼륨 웨이브</p><p class="text-xs text-[#C9A96E] mt-1 tracking-widest uppercase">Perm</p></div>
+        </div>
+        <div class="style-card h-72 md:h-80 img-hover reveal" style="--delay:4">
+          <img src="https://images.unsplash.com/photo-1560869713-da86a9ec0744?q=80&w=400" alt="트리트먼트" class="w-full h-full object-cover">
+          <div class="card-text"><p class="font-display text-xl font-bold">헤어 트리트먼트</p><p class="text-xs text-[#C9A96E] mt-1 tracking-widest uppercase">Treatment</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services & Pricing -->
+  <section id="services" class="py-24 bg-[#181818] px-6 md:px-12">
+    <div class="max-w-6xl mx-auto grid lg:grid-cols-2 gap-16 items-start">
+      <div class="reveal">
+        <span class="gold-line mb-4 block"></span>
+        <h2 class="font-display text-4xl md:text-5xl font-bold text-white mb-4">서비스 & 가격</h2>
+        <p class="text-white/40 mb-10">모든 서비스는 정수리 진단 후 맞춤 제안합니다</p>
+
+        <div class="space-y-0">
+          <% [
+            { name: "프리미엄 컷", desc: "1:1 상담 + 두피 분석 + 헤어컷", price: "80,000" },
+            { name: "풀 컬러링", desc: "전체 염색 (탈색 포함)", price: "150,000~" },
+            { name: "하이라이트", desc: "발레아쥐 / 이자벨라", price: "200,000~" },
+            { name: "볼륨 웨이브펌", desc: "뿌리 볼륨 + 자연스러운 웨이브", price: "180,000~" },
+            { name: "매직 스트레이트", desc: "프리미엄 약제 사용, 손상 최소화", price: "200,000~" },
+            { name: "케라틴 트리트먼트", desc: "글로시 + 손상 집중 케어", price: "120,000~" }
+          ].each_with_index do |s, i| %>
+            <div class="service-item py-5 reveal flex justify-between items-center" style="--delay:<%= i+1 %>">
+              <div>
+                <p class="font-medium text-white text-sm"><%= s[:name] %></p>
+                <p class="text-xs text-white/30 mt-1"><%= s[:desc] %></p>
+              </div>
+              <p class="text-[#C9A96E] font-display text-lg font-bold shrink-0 ml-4"><%= s[:price] %>원</p>
+            </div>
+          <% end %>
+        </div>
+      </div>
+
+      <div class="reveal" style="--delay:3">
+        <div class="img-hover h-[480px]">
+          <img src="https://images.unsplash.com/photo-1634449571010-02389ed0f9b0?q=80&w=700" alt="살롱 인테리어" class="w-full h-full object-cover">
+        </div>
+        <div class="bg-[#C9A96E] p-6 mt-0">
+          <p class="font-display text-xl font-bold text-[#0F0F0F] mb-2">첫 방문 특별 혜택</p>
+          <p class="text-[#0F0F0F]/70 text-sm leading-relaxed">처음 오시는 고객님께 전체 서비스 <strong>20% 할인</strong> 혜택을 드립니다. 예약 시 '첫 방문'이라고 말씀해주세요.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About / Team -->
+  <section id="about" class="py-24 px-6 md:px-12">
+    <div class="max-w-6xl mx-auto">
+      <div class="reveal mb-16 text-center">
+        <span class="gold-line mb-4 block mx-auto"></span>
+        <h2 class="font-display text-4xl md:text-5xl font-bold text-white">MEET THE TEAM</h2>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <% [
+          { name: "이지은 디렉터", role: "수석 헤어 아티스트 · 10년 경력", img: "https://images.unsplash.com/photo-1580618672591-eb180b1a973f?q=80&w=400", desc: "파리 컬레지움 수료. 컬러리스트 자격증 1급. 글로벌 브랜드 전속 아티스트 출신." },
+          { name: "김민준 스타일리스트", role: "펌 & 매직 전문 · 7년 경력", img: "https://images.unsplash.com/photo-1622253692010-333f2da6031d?q=80&w=400", desc: "일본 유학 후 웨이브 펌 전문으로 활동. 자연스러운 질감 연출이 특기." },
+          { name: "박서연 컬러리스트", role: "하이라이트 전문 · 5년 경력", img: "https://images.unsplash.com/photo-1559599101-f09722fb4948?q=80&w=400", desc: "발레아쥐·이자벨라 전문 테크닉 보유. 섬세한 컬러 표현으로 예약이 꽉 찬 스타." }
+        ].each_with_index do |t, i| %>
+          <div class="reveal" style="--delay:<%= i+1 %>">
+            <div class="img-hover h-64 mb-4">
+              <img src="<%= t[:img] %>" alt="<%= t[:name] %>" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500">
+            </div>
+            <p class="text-[#C9A96E] text-xs tracking-widest uppercase mb-1"><%= t[:role] %></p>
+            <h3 class="font-display text-xl font-bold text-white mb-2"><%= t[:name] %></h3>
+            <p class="text-sm text-white/40 leading-relaxed"><%= t[:desc] %></p>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </section>
+
+  <!-- Booking -->
+  <section id="booking" class="py-24 bg-[#C9A96E] px-6 md:px-12">
+    <div class="max-w-2xl mx-auto text-center reveal">
+      <h2 class="font-display text-4xl md:text-5xl font-bold text-[#0F0F0F] mb-4">예약하기</h2>
+      <p class="text-[#0F0F0F]/60 mb-10">원하시는 스타일리스트와 서비스를 선택해주세요</p>
+
+      <div class="bg-white p-8 text-left">
+        <div class="space-y-4">
+          <div class="grid grid-cols-2 gap-4">
+            <input type="text" placeholder="이름" class="w-full border border-gray-200 px-4 py-3 text-sm focus:outline-none focus:border-[#C9A96E]">
+            <input type="tel" placeholder="전화번호" class="w-full border border-gray-200 px-4 py-3 text-sm focus:outline-none focus:border-[#C9A96E]">
+          </div>
+          <select class="w-full border border-gray-200 px-4 py-3 text-sm focus:outline-none focus:border-[#C9A96E] text-gray-500">
+            <option>스타일리스트 선택</option>
+            <option>이지은 디렉터</option>
+            <option>김민준 스타일리스트</option>
+            <option>박서연 컬러리스트</option>
+          </select>
+          <select class="w-full border border-gray-200 px-4 py-3 text-sm focus:outline-none focus:border-[#C9A96E] text-gray-500">
+            <option>원하시는 서비스</option>
+            <option>프리미엄 컷</option>
+            <option>컬러링</option>
+            <option>하이라이트</option>
+            <option>웨이브펌</option>
+            <option>매직 스트레이트</option>
+          </select>
+          <input type="date" class="w-full border border-gray-200 px-4 py-3 text-sm focus:outline-none focus:border-[#C9A96E] text-gray-500">
+          <textarea placeholder="추가 요청사항 (원하시는 스타일, 알레르기 여부 등)" rows="3" class="w-full border border-gray-200 px-4 py-3 text-sm focus:outline-none focus:border-[#C9A96E] resize-none"></textarea>
+          <button class="w-full bg-[#0F0F0F] text-white py-4 text-sm font-bold tracking-widest uppercase hover:bg-[#C9A96E] hover:text-[#0F0F0F] transition-all">
+            예약 완료하기
+          </button>
+        </div>
+      </div>
+
+      <div class="flex justify-center gap-10 mt-8">
+        <div class="text-center">
+          <p class="text-xs font-bold text-[#0F0F0F]/50 tracking-widest uppercase mb-1">운영시간</p>
+          <p class="text-sm font-bold text-[#0F0F0F]">10:00 - 21:00</p>
+          <p class="text-xs text-[#0F0F0F]/40">화요일 정기휴무</p>
+        </div>
+        <div class="text-center">
+          <p class="text-xs font-bold text-[#0F0F0F]/50 tracking-widest uppercase mb-1">주소</p>
+          <p class="text-sm font-bold text-[#0F0F0F]">서울 강남구 청담동</p>
+        </div>
+        <div class="text-center">
+          <p class="text-xs font-bold text-[#0F0F0F]/50 tracking-widest uppercase mb-1">전화</p>
+          <p class="text-sm font-bold text-[#0F0F0F]">02-345-6789</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="py-10 px-6 border-t border-white/5 bg-[#0F0F0F]">
+    <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
+      <p class="font-display text-xl font-bold tracking-widest">NOIR<span class="text-[#C9A96E]">.</span></p>
+      <p class="text-xs text-white/20 tracking-wide">© 2024 Noir Hair Salon. All rights reserved.</p>
+      <div class="flex gap-4">
+        <a href="#" class="text-white/20 hover:text-[#C9A96E] transition"><i class="fab fa-instagram"></i></a>
+        <a href="#" class="text-white/20 hover:text-[#C9A96E] transition"><i class="fab fa-youtube"></i></a>
+        <a href="#" class="text-white/20 hover:text-[#C9A96E] transition"><i class="fas fa-comment"></i></a>
+      </div>
+    </div>
+  </footer>
+</div>
+
+<script>
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('is-visible'); });
+  }, { threshold: 0.1 });
+  reveals.forEach(r => observer.observe(r));
+</script>
