@@ -58,7 +58,7 @@ Rails.application.configure do
   # config.action_mailer.raise_delivery_errors = false
 
   # Set host to be used by links generated in mailer templates.
-  config.action_mailer.default_url_options = { host: "designd.co.kr" }
+  config.action_mailer.default_url_options = { host: "d-us.co.kr" }
 
   # SMTP Configuration
   config.action_mailer.delivery_method = :smtp
@@ -67,7 +67,7 @@ Rails.application.configure do
   config.action_mailer.smtp_settings = {
     address:              ENV.fetch('SMTP_ADDRESS', 'smtp.gmail.com'),
     port:                 ENV.fetch('SMTP_PORT', 587),
-    domain:              'designd.co.kr',
+    domain:              'd-us.co.kr',
     user_name:            ENV.fetch('SMTP_USERNAME', ''),
     password:             ENV.fetch('SMTP_PASSWORD', ''),
     authentication:       'plain',
