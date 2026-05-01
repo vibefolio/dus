@@ -356,6 +356,7 @@
               <th style="padding: 16px 24px; text-align: left; font-size: 13px; font-weight: 700; color: white; letter-spacing: 0.05em;">기능</th>
               <th style="padding: 16px 24px; text-align: center; font-size: 13px; font-weight: 700; color: white; letter-spacing: 0.05em; white-space: nowrap;">개발비 (1회)</th>
               <th style="padding: 16px 24px; text-align: center; font-size: 13px; font-weight: 700; color: white; letter-spacing: 0.05em; white-space: nowrap;">유지관리비 /월</th>
+              <th style="padding: 16px 8px; width: 52px; text-align: center; font-size: 11px; font-weight: 600; color: rgba(255,255,255,0.8);">선택</th>
             </tr>
           </thead>
           <tbody>
@@ -498,14 +499,105 @@
     </div>
 
     <div style="text-align: center; margin-top: 24px;">
-      <p style="color: #9ca3af; font-size: 14px; word-break: keep-all;">* 표시된 금액은 부가세 별도입니다. 일부 기능은 플랜에 따라 포함될 수 있습니다.</p>
-      <%= link_to contact_path, style: "display: inline-flex; align-items: center; gap: 8px; margin-top: 16px; padding: 12px 24px; background: linear-gradient(135deg, #00a859, #00d670); border-radius: 9999px; color: white; font-weight: 700; text-decoration: none; font-size: 14px; transition: all 0.3s;", class: "pricing-cta-btn" do %>
-        추가 기능 상담하기
-        <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14m-7-7l7 7-7 7"/></svg>
-      <% end %>
+      <p style="color: #9ca3af; font-size: 14px; word-break: keep-all;">* 표시된 금액은 부가세 포함 금액입니다. 일부 기능은 플랜에 따라 포함될 수 있습니다.</p>
+      <p style="color: #9ca3af; font-size: 13px; margin-top: 6px;">원하는 기능을 체크하고 한번에 문의하세요.</p>
     </div>
   </div>
 </section>
+
+<!-- Addon 선택 플로팅 바 -->
+<div id="addon-bar" style="position: fixed; bottom: 0; left: 0; right: 0; background: white; box-shadow: 0 -4px 32px rgba(0,0,0,0.14); border-top: 3px solid #00a859; padding: 14px 20px; display: none; z-index: 9999; animation: slideUp 0.3s ease;">
+  <div style="max-width: 960px; margin: 0 auto; display: flex; align-items: center; gap: 16px; flex-wrap: wrap;">
+    <div style="flex: 1; min-width: 0;">
+      <div style="font-size: 12px; color: #6b7280; margin-bottom: 2px;">선택한 추가 기능 <span id="addon-count" style="font-weight: 800; color: #00a859;"></span></div>
+      <div id="addon-selected-list" style="font-size: 13px; font-weight: 600; color: #111; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;"></div>
+    </div>
+    <button onclick="clearAddonSelections()" style="padding: 10px 16px; background: #f3f4f6; border: none; border-radius: 9999px; font-size: 13px; font-weight: 600; color: #6b7280; cursor: pointer; flex-shrink: 0;">취소</button>
+    <a id="addon-contact-btn" href="#" style="padding: 12px 22px; background: linear-gradient(135deg, #00a859, #00d670); color: white; font-weight: 800; border-radius: 9999px; text-decoration: none; font-size: 14px; white-space: nowrap; flex-shrink: 0; box-shadow: 0 4px 16px rgba(0,168,89,0.3);">
+      선택한 기능으로 문의하기 →
+    </a>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    // 각 addon-row에 체크박스 td 주입
+    document.querySelectorAll('.addon-row').forEach(function(row) {
+      var nameEl = row.querySelector('td:first-child div[style*="font-weight: 700; color: #111"]');
+      var featureName = nameEl ? nameEl.innerText.trim() : '';
+      row.dataset.addonName = featureName;
+
+      var td = document.createElement('td');
+      td.style.cssText = 'padding: 18px 8px; text-align: center; vertical-align: middle;';
+      td.innerHTML = '<label style="display:inline-flex; align-items:center; justify-content:center; width:28px; height:28px; border:2px solid #d1d5db; border-radius:8px; cursor:pointer; transition:all 0.2s;" class="addon-check-label"><input type="checkbox" class="addon-checkbox" style="position:absolute; opacity:0; width:0; height:0;"><svg class="check-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" style="display:none;"><polyline points="20 6 9 17 4 12"/></svg></label>';
+      row.appendChild(td);
+
+      var cb = td.querySelector('.addon-checkbox');
+      var label = td.querySelector('.addon-check-label');
+      var icon = td.querySelector('.check-icon');
+
+      cb.addEventListener('change', function() {
+        if (cb.checked) {
+          label.style.background = '#00a859';
+          label.style.borderColor = '#00a859';
+          icon.style.display = 'block';
+          row.style.background = '#f0fdf4';
+        } else {
+          label.style.background = '';
+          label.style.borderColor = '#d1d5db';
+          icon.style.display = 'none';
+          row.style.background = row.dataset.origBg || '';
+        }
+        updateAddonBar();
+      });
+
+      // 행 클릭으로도 체크 가능
+      row.style.cursor = 'pointer';
+      row.addEventListener('click', function(e) {
+        if (e.target.tagName !== 'A' && e.target.tagName !== 'INPUT') {
+          cb.checked = !cb.checked;
+          cb.dispatchEvent(new Event('change'));
+        }
+      });
+    });
+  });
+
+  function updateAddonBar() {
+    var selected = [];
+    document.querySelectorAll('.addon-row').forEach(function(row) {
+      var cb = row.querySelector('.addon-checkbox');
+      if (cb && cb.checked) {
+        selected.push(row.dataset.addonName);
+      }
+    });
+
+    var bar = document.getElementById('addon-bar');
+    if (selected.length === 0) {
+      bar.style.display = 'none';
+    } else {
+      bar.style.display = 'block';
+      document.getElementById('addon-count').textContent = selected.length + '개';
+      document.getElementById('addon-selected-list').textContent = selected.join(' · ');
+      var params = new URLSearchParams({ addons: selected.join(',') });
+      document.getElementById('addon-contact-btn').href = '/contact?' + params.toString();
+    }
+  }
+
+  function clearAddonSelections() {
+    document.querySelectorAll('.addon-checkbox').forEach(function(cb) {
+      cb.checked = false;
+      cb.dispatchEvent(new Event('change'));
+    });
+    document.getElementById('addon-bar').style.display = 'none';
+  }
+</script>
+
+<style>
+  @keyframes slideUp {
+    from { transform: translateY(100%); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+  }
+</style>
 
 <!-- FAQ Section -->
 <section style="padding: 96px 0; background: #f9fafb;">
