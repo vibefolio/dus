@@ -275,15 +275,14 @@ Devise.setup do |config|
     scope: 'userinfo.email, userinfo.profile',
     prompt: 'select_account',
     image_aspect_ratio: 'square',
-    image_size: 50
+    image_size: 50,
+    provider_ignores_state: true
   }
 
   config.omniauth :kakao,
                   ENV['KAKAO_CLIENT_ID'],
                   ENV['KAKAO_CLIENT_SECRET'],
                   scope: 'profile_nickname,profile_image,account_email'
-
-  config.omniauth :naver, ENV['NAVER_CLIENT_ID'], ENV['NAVER_CLIENT_SECRET'], provider_ignores_state: true
 
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or
