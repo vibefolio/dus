@@ -1,0 +1,35 @@
+name: ZeroClaw Knowledge Sync
+
+on:
+  schedule:
+    - cron: '0 15 * * *'  # 매일 자정 KST (UTC 15:00)
+  workflow_dispatch:       # 수동 실행 가능
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Setup SSH
+        uses: webfactory/ssh-agent@v0.9.0
+        with:
+          ssh-private-key: ${{ secrets.NCP_SSH_KEY }}
+
+      - name: Sync knowledge to ZeroClaw
+        run: |
+          ssh -o StrictHostKeyChecking=no ${{ secrets.NCP_USER }}@${{ secrets.NCP_HOST }} << 'EOF'
+            # Rails DB에서 최신 현황 생성
+            KNOWLEDGE=$(docker exec dlab-website-app bin/rails zeroclaw:sync 2>/dev/null)
+
+            if [ -z "$KNOWLEDGE" ]; then
+              echo "⚠️ knowledge 생성 실패"
+              exit 1
+            fi
+
+            # zeroclaw knowledge.md 업데이트
+            echo "$KNOWLEDGE" > /root/projects/zeroclaw-dus/knowledge.md
+
+            # zeroclaw 재시작 (IDENTITY.md는 시스템 프롬프트라 재시작 필요)
+            docker restart zeroclaw-dus
+
+            echo "✅ ZeroClaw knowledge 동기화 완료 ($(date '+%Y-%m-%d %H:%M KST'))"
+          EOF
