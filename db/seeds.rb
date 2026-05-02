@@ -467,15 +467,6 @@ portfolios = [
     preview_url: "https://vibefolio.net"
   },
   {
-    title: "올루올루 (OLUOLU)",
-    category: "웹사이트",
-    client: "올루올루",
-    project_date: Date.new(2026, 2, 1),
-    description: "NO.1 프리미엄 아사이볼 & 그릭요거트 브랜드의 메인 마케팅 사이트 + 프랜차이즈 모집 랜딩페이지. 인스타그램 피드 연동, 매장 찾기, 메뉴 슬라이더, 문의 폼 등 6개 페이지 변형 제작. MZ세대 타겟 레트로/프리미엄 디자인 시스템 구축.",
-    image_url: "https://oluolu.co.kr/oluolu/og-oluolu.png",
-    preview_url: "https://oluolu.co.kr"
-  },
-  {
     title: "야화 (YAHWA)",
     category: "웹사이트",
     client: "야화 프랜차이즈",
@@ -483,33 +474,6 @@ portfolios = [
     description: "프리미엄 시그니처 칵테일 혼술바 프랜차이즈 마케팅 사이트. 네이버 지도 매장 연동, Recharts 기반 수익 시뮬레이션 차트, 인스타그램 피드 자동 연동, FAQ 스키마 마크업 등 SEO 최적화 풀패키지. 80% 마진율·3개월 BEP 강조 전환율 최적화 설계.",
     image_url: "https://yahwabar.com/yahwa/images/ogbg.png",
     preview_url: "https://yahwabar.com"
-  },
-  {
-    title: "비즈온 마케팅 (BIZON)",
-    category: "웹사이트",
-    client: "비즈온 마케팅",
-    project_date: Date.new(2026, 1, 15),
-    description: "프랜차이즈 & 자영업 마케팅 컨설팅 에이전시 브랜드 사이트. 스냅 스크롤 기반 풀페이지 인터랙션, 커스텀 타이포그래피(Paperlogy), 실시간 문의 시스템 연동. V1→V5까지 5번의 디자인 이터레이션을 거쳐 전환율 극대화.",
-    image_url: "https://bizonmarketing.co.kr/bizon/og-bizon.png",
-    preview_url: "https://bizonmarketing.co.kr"
-  },
-  {
-    title: "CPR 마케팅",
-    category: "웹사이트",
-    client: "CPR 마케팅",
-    project_date: Date.new(2026, 2, 15),
-    description: "부산 지역 맛집 네이버 플레이스 최적화 전문 마케팅 에이전시 사이트. 12개+ 실제 클라이언트 성과 Before/After 포트폴리오, 동적 배경 이미지(Pexels/Unsplash API), A/B 테스트용 2가지 디자인 변형 제작. 자영업자 출신 대표의 진정성을 살린 스토리텔링 기반 설계.",
-    image_url: "https://cprmarketing.co.kr/cpr/og-cpr.png",
-    preview_url: "https://cprmarketing.co.kr"
-  },
-  {
-    title: "보이는마케팅",
-    category: "웹사이트",
-    client: "보이는마케팅",
-    project_date: Date.new(2026, 4, 1),
-    description: "검색 최적화 마케팅 컨설팅 브랜드 사이트. Framer Motion 기반 3D 돋보기 히어로 인터랙션, 방문자 +340% 증가 등 실제 성과 데이터 시각화, 고급 스크롤 애니메이션. 전환율 중심의 원페이지 랜딩 설계.",
-    image_url: "https://boineun.faneasy.kr/boineun/og-boineun.png",
-    preview_url: "https://boineun.faneasy.kr"
   },
 ]
 
@@ -593,6 +557,72 @@ collab_portfolios = [
   },
   # 디어스 × 팬이지 — 웹사이트
   {
+    title: "올루올루 (OLUOLU)",
+    category: "협업",
+    sub_category: "웹사이트",
+    collab_partner: "팬이지",
+    client: "올루올루",
+    project_date: Date.new(2026, 2, 1),
+    description: "NO.1 프리미엄 아사이볼 & 그릭요거트 브랜드의 메인 마케팅 사이트 + 프랜차이즈 모집 랜딩페이지. 인스타그램 피드 연동, 매장 찾기, 메뉴 슬라이더, 문의 폼 등 6개 페이지 변형 제작. MZ세대 타겟 레트로/프리미엄 디자인 시스템 구축.",
+    image_url: "https://oluolu.co.kr/oluolu/og-oluolu.png",
+    preview_url: "https://oluolu.co.kr"
+  },
+  {
+    title: "비즈온 마케팅 (BIZON)",
+    category: "협업",
+    sub_category: "웹사이트",
+    collab_partner: "팬이지",
+    client: "비즈온 마케팅",
+    project_date: Date.new(2026, 1, 15),
+    description: "프랜차이즈 & 자영업 마케팅 컨설팅 에이전시 브랜드 사이트. 스냅 스크롤 기반 풀페이지 인터랙션, 커스텀 타이포그래피(Paperlogy), 실시간 문의 시스템 연동. V1→V5까지 5번의 디자인 이터레이션을 거쳐 전환율 극대화.",
+    image_url: "https://bizonmarketing.co.kr/bizon/og-bizon.png",
+    preview_url: "https://bizonmarketing.co.kr"
+  },
+  {
+    title: "CPR 마케팅",
+    category: "협업",
+    sub_category: "웹사이트",
+    collab_partner: "팬이지",
+    client: "CPR 마케팅",
+    project_date: Date.new(2026, 2, 15),
+    description: "부산 지역 맛집 네이버 플레이스 최적화 전문 마케팅 에이전시 사이트. 12개+ 실제 클라이언트 성과 Before/After 포트폴리오, 동적 배경 이미지(Pexels/Unsplash API), A/B 테스트용 2가지 디자인 변형 제작. 자영업자 출신 대표의 진정성을 살린 스토리텔링 기반 설계.",
+    image_url: "https://cprmarketing.co.kr/cpr/og-cpr.png",
+    preview_url: "https://cprmarketing.co.kr"
+  },
+  {
+    title: "보이는마케팅",
+    category: "협업",
+    sub_category: "웹사이트",
+    collab_partner: "팬이지",
+    client: "보이는마케팅",
+    project_date: Date.new(2026, 4, 1),
+    description: "검색 최적화 마케팅 컨설팅 브랜드 사이트. Framer Motion 기반 3D 돋보기 히어로 인터랙션, 방문자 +340% 증가 등 실제 성과 데이터 시각화, 고급 스크롤 애니메이션. 전환율 중심의 원페이지 랜딩 설계.",
+    image_url: "https://boineun.faneasy.kr/boineun/og-boineun.png",
+    preview_url: "https://boineun.faneasy.kr"
+  },
+  {
+    title: "세모폰 (Semophone)",
+    category: "협업",
+    sub_category: "웹사이트",
+    collab_partner: "팬이지",
+    client: "세모폰",
+    project_date: Date.new(2026, 3, 1),
+    description: "팬이지 기반으로 제작된 세모폰 브랜드 사이트.",
+    image_url: nil,
+    preview_url: "https://semophone.faneasy.kr"
+  },
+  {
+    title: "셰프브릿지",
+    category: "협업",
+    sub_category: "웹사이트",
+    collab_partner: "팬이지",
+    client: "셰프브릿지",
+    project_date: Date.new(2026, 4, 1),
+    description: "팬이지 기반으로 제작된 셰프브릿지 브랜드 사이트.",
+    image_url: nil,
+    preview_url: nil
+  },
+  {
     title: "작당페스타",
     category: "협업",
     sub_category: "웹사이트",
@@ -606,7 +636,7 @@ collab_portfolios = [
 ]
 
 collab_portfolios.each do |p|
-  portfolio = Portfolio.find_or_initialize_by(title: p[:title], collab_partner: p[:collab_partner])
+  portfolio = Portfolio.find_or_initialize_by(title: p[:title])
   puts "#{portfolio.new_record? ? 'Creating' : 'Updating'} Collab Portfolio: #{p[:collab_partner]} × #{p[:title]}"
   portfolio.update!(
     category:      p[:category],
