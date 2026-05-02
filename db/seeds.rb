@@ -528,3 +528,96 @@ portfolios.each do |p|
 end
 
 puts "Portfolio Seed Complete: #{Portfolio.count} Portfolios"
+
+# ──────────────────────────────────────────────
+# 협업 포트폴리오
+# ──────────────────────────────────────────────
+puts "\nSeeding Collaboration Portfolios..."
+
+collab_portfolios = [
+  # 디어스 × 프리미엄페이지 — 전자카탈로그
+  {
+    title: "항성산업사",
+    category: "협업",
+    sub_category: "전자카탈로그",
+    collab_partner: "프리미엄페이지",
+    client: "항성산업사",
+    project_date: Date.new(2025, 6, 1),
+    description: "산업용 제품 전문 기업 항성산업사의 인터랙티브 전자카탈로그. 프리미엄페이지 플랫폼 기반 제작.",
+    image_url: "https://premiumpage.kr/images/og-image.png",
+    preview_url: "https://premiumpage.kr"
+  },
+  {
+    title: "젠탑 (GENTOP)",
+    category: "협업",
+    sub_category: "전자카탈로그",
+    collab_partner: "프리미엄페이지",
+    client: "젠탑",
+    project_date: Date.new(2025, 7, 1),
+    description: "GENTOP 제품 라인업을 담은 고품질 전자카탈로그. 프리미엄페이지 플랫폼 기반 제작.",
+    image_url: "https://premiumpage.kr/images/og-image.png",
+    preview_url: "https://premiumpage.kr"
+  },
+  {
+    title: "HS TECH CO.",
+    category: "협업",
+    sub_category: "전자카탈로그",
+    collab_partner: "프리미엄페이지",
+    client: "HS Tech Co.",
+    project_date: Date.new(2025, 8, 1),
+    description: "HS Tech Co.의 기술 제품군 전자카탈로그. 프리미엄페이지 플랫폼 기반 제작.",
+    image_url: "https://premiumpage.kr/images/og-image.png",
+    preview_url: "https://premiumpage.kr"
+  },
+  {
+    title: "HS TECH",
+    category: "협업",
+    sub_category: "전자카탈로그",
+    collab_partner: "프리미엄페이지",
+    client: "HS Tech",
+    project_date: Date.new(2025, 9, 1),
+    description: "HS Tech 제품 전자카탈로그. 프리미엄페이지 플랫폼 기반 제작.",
+    image_url: "https://premiumpage.kr/images/og-image.png",
+    preview_url: "https://premiumpage.kr"
+  },
+  {
+    title: "EMT",
+    category: "협업",
+    sub_category: "전자카탈로그",
+    collab_partner: "프리미엄페이지",
+    client: "EMT",
+    project_date: Date.new(2025, 10, 1),
+    description: "EMT 산업 장비 전자카탈로그. 프리미엄페이지 플랫폼 기반 제작.",
+    image_url: "https://premiumpage.kr/images/og-image.png",
+    preview_url: "https://premiumpage.kr"
+  },
+  # 디어스 × 팬이지 — 웹사이트
+  {
+    title: "작당페스타",
+    category: "협업",
+    sub_category: "웹사이트",
+    collab_partner: "팬이지",
+    client: "작당페스타",
+    project_date: Date.new(2026, 4, 1),
+    description: "크리에이터·팬·브랜드를 잇는 페스타 이벤트 플랫폼. 팬이지 기반으로 제작된 행사 홈페이지.",
+    image_url: nil,
+    preview_url: "https://작당페스타.kr"
+  },
+]
+
+collab_portfolios.each do |p|
+  portfolio = Portfolio.find_or_initialize_by(title: p[:title], collab_partner: p[:collab_partner])
+  puts "#{portfolio.new_record? ? 'Creating' : 'Updating'} Collab Portfolio: #{p[:collab_partner]} × #{p[:title]}"
+  portfolio.update!(
+    category:      p[:category],
+    sub_category:  p[:sub_category],
+    collab_partner: p[:collab_partner],
+    client:        p[:client],
+    project_date:  p[:project_date],
+    image_url:     p[:image_url],
+    preview_url:   p[:preview_url]
+  )
+  portfolio.update!(description: p[:description]) if portfolio.description.blank? || portfolio.description.to_plain_text != p[:description]
+end
+
+puts "Collaboration Portfolio Seed Complete: #{Portfolio.where(category: '협업').count} collab portfolios"

@@ -11,11 +11,14 @@ class PagesController < ApplicationController
   def portfolio
     begin
       all = Portfolio.order(created_at: :desc)
-      # 카테고리 순서: 앱 및 플랫폼 > 웹사이트 > 나머지
+      # 카테고리 순서: 앱 및 플랫폼 > 웹사이트 > 나머지 (협업은 별도)
       category_order = ["앱 및 플랫폼", "웹사이트"]
-      @portfolio_groups = all.group_by(&:category).sort_by do |cat, _|
+      regular = all.where.not(category: "협업")
+      @portfolio_groups = regular.group_by(&:category).sort_by do |cat, _|
         category_order.index(cat) || category_order.length
       end
+      # 협업 포트폴리오: 파트너별 그룹
+      @collab_groups = all.where(category: "협업").order(:collab_partner, :project_date).group_by(&:collab_partner)
     rescue => e
       Rails.logger.error "Failed to load portfolios: #{e.message}"
       @portfolio_groups = []

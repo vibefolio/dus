@@ -123,6 +123,131 @@
   </div>
 </section>
 
+<!-- Collaboration Portfolio Section -->
+<% if @collab_groups.present? %>
+<section class="section-lg" style="padding: 0 0 96px;">
+  <div class="container">
+    <!-- Section Header -->
+    <div style="margin-bottom: 48px;">
+      <div style="display: flex; align-items: center; gap: 16px; margin-bottom: 20px;">
+        <div style="width: 36px; height: 36px; background: linear-gradient(135deg, #f59e0b, #f97316); border-radius: 10px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+          <svg width="18" height="18" fill="none" stroke="white" stroke-width="2" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        </div>
+        <div>
+          <h2 style="font-size: 22px; font-weight: 800; color: #111; line-height: 1.2;">협업 프로젝트</h2>
+          <p style="font-size: 13px; color: #9ca3af; margin-top: 2px;">브랜드 간 협업으로 완성한 작업물</p>
+        </div>
+        <div style="flex: 1; height: 1px; background: #f3f4f6; margin-left: 8px;"></div>
+      </div>
+
+      <!-- Sub-category Filter -->
+      <div id="collab-filter" style="display: flex; gap: 8px; flex-wrap: wrap;">
+        <button onclick="filterCollab('all')" class="collab-filter-btn active" data-filter="all" style="padding: 8px 18px; border-radius: 9999px; font-size: 13px; font-weight: 600; border: 1px solid #00a859; background: #00a859; color: white; cursor: pointer; transition: all 0.3s;">전체</button>
+        <% all_sub_categories = @collab_groups.values.flatten.map(&:sub_category).compact.uniq %>
+        <% all_sub_categories.each do |sub| %>
+          <button onclick="filterCollab('<%= sub %>')" class="collab-filter-btn" data-filter="<%= sub %>" style="padding: 8px 18px; border-radius: 9999px; font-size: 13px; font-weight: 600; border: 1px solid #e5e7eb; background: white; color: #374151; cursor: pointer; transition: all 0.3s;"><%= sub %></button>
+        <% end %>
+      </div>
+    </div>
+
+    <!-- Partner Groups -->
+    <% @collab_groups.each do |partner, portfolios| %>
+      <div class="collab-partner-group" style="margin-bottom: 64px;">
+        <!-- Partner Header Badge -->
+        <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 28px;">
+          <div style="display: inline-flex; align-items: center; gap: 8px; padding: 8px 16px; background: #fff7ed; border: 1px solid #fed7aa; border-radius: 9999px;">
+            <span style="font-size: 13px; color: #9a3412; font-weight: 400;">디어스</span>
+            <span style="color: #f97316; font-weight: 700;">×</span>
+            <span style="font-size: 13px; color: #9a3412; font-weight: 700;"><%= partner %></span>
+          </div>
+          <span style="font-size: 13px; color: #9ca3af;"><%= portfolios.length %>개 프로젝트</span>
+        </div>
+
+        <!-- Cards Grid -->
+        <div class="collab-grid portfolio-grid" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px;">
+          <% portfolios.each_with_index do |portfolio, idx| %>
+            <div class="collab-card card-premium" data-sub="<%= portfolio.sub_category %>" style="opacity: 0; animation: fadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards; animation-delay: <%= idx * 60 %>ms;">
+              <div class="card-premium-inner" style="padding: 0; overflow: hidden;">
+                <div class="portfolio-image-wrapper" style="position: relative; width: 100%; aspect-ratio: 1200/630; overflow: hidden;">
+                  <% if portfolio.image.attached? %>
+                    <%= image_tag portfolio.image, alt: portfolio.title, class: "portfolio-img pc-ver", style: "width: 100%; height: 100%; object-fit: cover; transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1); position: absolute; top: 0; left: 0; z-index: 10;" %>
+                  <% elsif portfolio.image_url.present? %>
+                    <%= image_tag portfolio.image_url, alt: portfolio.title, class: "portfolio-img pc-ver", style: "width: 100%; height: 100%; object-fit: cover; transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1); position: absolute; top: 0; left: 0; z-index: 10;" %>
+                  <% else %>
+                    <div style="width: 100%; height: 100%; background: linear-gradient(135deg, #f59e0b, #f97316); display: flex; align-items: center; justify-content: center; color: white; font-size: 40px; font-weight: 700; position: absolute; top: 0; left: 0; z-index: 10;">
+                      <%= portfolio.title[0] %>
+                    </div>
+                  <% end %>
+                </div>
+
+                <div style="padding: 24px;">
+                  <div style="display: flex; gap: 8px; margin-bottom: 12px; flex-wrap: wrap;">
+                    <% if portfolio.sub_category.present? %>
+                      <span style="display: inline-block; padding: 4px 10px; background: #fff7ed; color: #f97316; border-radius: 6px; font-size: 12px; font-weight: 600;"><%= portfolio.sub_category %></span>
+                    <% end %>
+                    <% if portfolio.collab_partner.present? %>
+                      <span style="display: inline-block; padding: 4px 10px; background: #f9fafb; color: #9ca3af; border-radius: 6px; font-size: 12px; font-weight: 500;">via <%= portfolio.collab_partner %></span>
+                    <% end %>
+                  </div>
+
+                  <h3 style="font-size: 18px; font-weight: 700; color: #111; margin-bottom: 8px; line-height: 1.4; word-break: keep-all;">
+                    <% if portfolio.preview_url.present? %>
+                      <%= link_to portfolio.title, portfolio.preview_url, target: "_blank", style: "color: #111; text-decoration: none; transition: color 0.3s;", class: "portfolio-title-link" %>
+                    <% else %>
+                      <%= portfolio.title %>
+                    <% end %>
+                  </h3>
+
+                  <% if portfolio.description.present? %>
+                    <p style="color: #9ca3af; font-size: 14px; line-height: 1.6; word-break: keep-all;"><%= truncate(portfolio.description.to_plain_text, length: 100) %></p>
+                  <% end %>
+
+                  <div style="margin-top: 20px; display: flex; justify-content: space-between; align-items: center;">
+                    <% if portfolio.project_date.present? %>
+                      <p style="color: #9ca3af; font-size: 13px;"><%= portfolio.project_date.strftime("%Y년 %m월") %></p>
+                    <% end %>
+                    <% if portfolio.preview_url.present? %>
+                      <%= link_to portfolio.preview_url, target: "_blank", style: "display: inline-flex; align-items: center; gap: 6px; padding: 8px 16px; border: 1px solid #e5e7eb; border-radius: 9999px; font-size: 13px; font-weight: 600; color: #374151; text-decoration: none; transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);", class: "portfolio-visit-btn" do %>
+                        사이트 방문 <svg style="display:inline; width:12px; height:12px;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+                      <% end %>
+                    <% end %>
+                  </div>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</section>
+
+<script>
+  function filterCollab(sub) {
+    document.querySelectorAll('.collab-filter-btn').forEach(function(btn) {
+      var isActive = btn.dataset.filter === sub;
+      btn.style.background = isActive ? '#00a859' : 'white';
+      btn.style.color = isActive ? 'white' : '#374151';
+      btn.style.borderColor = isActive ? '#00a859' : '#e5e7eb';
+    });
+
+    document.querySelectorAll('.collab-card').forEach(function(card) {
+      if (sub === 'all' || card.dataset.sub === sub) {
+        card.style.display = '';
+      } else {
+        card.style.display = 'none';
+      }
+    });
+
+    // Hide partner group header if all cards hidden
+    document.querySelectorAll('.collab-partner-group').forEach(function(group) {
+      var visible = group.querySelectorAll('.collab-card:not([style*="display: none"])').length;
+      group.style.display = visible === 0 ? 'none' : '';
+    });
+  }
+</script>
+<% end %>
+
 <!-- CTA Section -->
 <section class="section-lg" style="padding: 96px 0; background: #f9fafb;">
   <div class="container" style="text-align: center;">
