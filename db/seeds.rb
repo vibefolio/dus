@@ -609,7 +609,7 @@ collab_portfolios = [
     project_date: Date.new(2026, 3, 1),
     description: "팬이지 기반으로 제작된 세모폰 브랜드 사이트.",
     image_url: nil,
-    preview_url: "https://semophone.faneasy.kr"
+    preview_url: "https://semophone.co.kr"
   },
   {
     title: "셰프브릿지",
@@ -620,7 +620,7 @@ collab_portfolios = [
     project_date: Date.new(2026, 4, 1),
     description: "팬이지 기반으로 제작된 셰프브릿지 브랜드 사이트.",
     image_url: nil,
-    preview_url: nil
+    preview_url: "https://chefbridge.co.kr"
   },
   {
     title: "작당페스타",
