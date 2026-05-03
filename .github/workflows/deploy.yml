@@ -1,37 +1,78 @@
-name: Deploy to NCP
+name: Deploy dus to NCP Docker
 
 on:
   push:
-    branches:
-      - main
+    branches: [main]
+
+concurrency:
+  group: deploy-${{ github.repository }}
+  cancel-in-progress: false
+
+env:
+  IMAGE_NAME: dlab-website-app:latest
+  CONTAINER: dlab-website-app
+  PROJECT_PATH: /root/projects/dlab-website
+  APP_PORT: 4040
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    timeout-minutes: 25
 
     steps:
-      - name: Setup SSH
-        uses: webfactory/ssh-agent@v0.9.0
-        with:
-          ssh-private-key: ${{ secrets.NCP_SSH_KEY }}
+      - uses: actions/checkout@v4
 
-      - name: Deploy to NCP server
+      - uses: docker/setup-buildx-action@v3
+
+      - name: Build Docker image
         run: |
-          ssh -o StrictHostKeyChecking=no ${{ secrets.NCP_USER }}@${{ secrets.NCP_HOST }} \
-            "cd /root/projects/dlab-website && \
-             git pull origin main && \
-             docker compose build dlab-website-app && \
-             docker compose up -d --wait dlab-website-app && \
-             docker compose exec -T dlab-website-app bin/rails db:migrate 2>/dev/null; \
-             curl -sf http://localhost:4040/up && echo '✅ DUS 배포 완료' || echo '⚠️ 헬스체크 실패' && \
-             docker exec npm-app-1 nginx -s reload || true"
+          docker build -t ${{ env.IMAGE_NAME }} .
+          docker save ${{ env.IMAGE_NAME }} | gzip > /tmp/image.tar.gz
 
-      - name: Cleanup old images
-        if: success()
+      - name: Transfer image to server
+        uses: appleboy/scp-action@v0.1.7
+        with:
+          host: ${{ secrets.NCP_HOST }}
+          username: ${{ secrets.NCP_USER }}
+          key: ${{ secrets.NCP_SSH_KEY }}
+          source: "/tmp/image.tar.gz"
+          target: "/tmp/"
+
+      - name: Deploy
         uses: appleboy/ssh-action@v1.0.3
         with:
           host: ${{ secrets.NCP_HOST }}
           username: ${{ secrets.NCP_USER }}
           key: ${{ secrets.NCP_SSH_KEY }}
+          command_timeout: 15m
           script: |
-            docker builder prune -af --filter "until=24h"
+            set -e
+            cd ${{ env.PROJECT_PATH }}
+
+            echo "=== git pull ==="
+            git checkout -- . 2>/dev/null || true
+            git clean -fd 2>/dev/null || true
+            git pull origin main
+
+            echo "=== docker load ==="
+            docker load < /tmp/image.tar.gz
+            rm -f /tmp/image.tar.gz
+
+            echo "=== docker compose up ==="
+            docker compose up -d --no-build --no-deps --wait dlab-website-app
+
+            echo "=== db:migrate ==="
+            docker compose exec -T dlab-website-app bin/rails db:migrate 2>/dev/null || echo "⚠️ 마이그레이션 스킵"
+
+            echo "=== health check ==="
+            curl -sf http://localhost:${{ env.APP_PORT }}/up && echo "✅ 배포 완료" || (echo "❌ 헬스체크 실패" && docker logs ${{ env.CONTAINER }} --tail 30 && exit 1)
+            docker exec npm-app-1 nginx -s reload || true
+
+      - name: Cleanup old images
+        if: always()
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.NCP_HOST }}
+          username: ${{ secrets.NCP_USER }}
+          key: ${{ secrets.NCP_SSH_KEY }}
+          script: docker image prune -f

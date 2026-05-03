@@ -3,6 +3,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+    image: dlab-website-app:latest
     container_name: dlab-website-app
     restart: unless-stopped
     ports:
