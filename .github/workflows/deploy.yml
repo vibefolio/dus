@@ -27,7 +27,7 @@ jobs:
       - name: Build Docker image
         run: |
           docker build -t ${{ env.IMAGE_NAME }} .
-          docker save ${{ env.IMAGE_NAME }} | gzip > /tmp/image.tar.gz
+          docker save ${{ env.IMAGE_NAME }} | gzip > image.tar.gz
 
       - name: Transfer image to server
         uses: appleboy/scp-action@v0.1.7
@@ -35,7 +35,7 @@ jobs:
           host: ${{ secrets.NCP_HOST }}
           username: ${{ secrets.NCP_USER }}
           key: ${{ secrets.NCP_SSH_KEY }}
-          source: "/tmp/image.tar.gz"
+          source: "image.tar.gz"
           target: "/tmp/"
 
       - name: Deploy
