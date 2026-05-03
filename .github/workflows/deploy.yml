@@ -26,7 +26,7 @@ jobs:
 
       - name: Build Docker image
         run: |
-          docker build -t ${{ env.IMAGE_NAME }} .
+          docker build --load -t ${{ env.IMAGE_NAME }} .
           docker save ${{ env.IMAGE_NAME }} | gzip > image.tar.gz
 
       - name: Transfer image to server
