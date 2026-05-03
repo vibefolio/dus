@@ -69,7 +69,7 @@
       @media (max-width: 768px) {
         .navbar { padding: 0.75rem 1rem; }
         .navbar-container { width: 100%; padding: 0 8px; }
-        .container { width: 100%; padding: 0 2px; }
+        .container { width: 100%; padding: 0 16px; }
       }
       img { max-width: 100%; height: auto; }
       /* Flexbox utilities */
@@ -398,12 +398,18 @@
         #main-footer .footer-bottom { flex-direction: column; text-align: center; }
         /* Hero sections */
         .hero { padding-top: 72px !important; padding-bottom: 32px !important; min-height: auto !important; }
+        .hero-title { font-size: clamp(28px, 8vw, 48px) !important; }
+        .hero-subtitle { font-size: 15px !important; }
         /* Page sections */
         .section-lg { padding-top: 48px !important; padding-bottom: 48px !important; }
         /* CTA sections */
-        .cta-title { font-size: 26px !important; }
+        .cta-title { font-size: clamp(22px, 6vw, 40px) !important; }
         /* Pricing cards */
         .pricing-card-grid { grid-template-columns: 1fr !important; }
+        /* Scroll-to-top: shift up when chatbot visible */
+        #scrollToTopBtn { bottom: 88px !important; right: 16px !important; }
+        /* Tables: horizontal scroll */
+        .table-scroll-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
       }
     </style>
 

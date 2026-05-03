@@ -223,7 +223,7 @@
       </p>
     </div>
 
-    <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px;">
+    <div class="benefits-grid" style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px;">
       <div class="card-premium" style="text-align: center;">
         <div class="card-premium-inner" style="padding: 32px;">
           <div style="width: 60px; height: 60px; background: linear-gradient(135deg, #00a859, #00d670); border-radius: 9999px; display: flex; align-items: center; justify-content: center; margin: 0 auto 16px;">
@@ -290,7 +290,7 @@
       </p>
     </div>
 
-    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; max-width: 960px; margin: 0 auto;">
+    <div class="migration-grid" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; max-width: 960px; margin: 0 auto;">
       <!-- 단순 이전 -->
       <div class="card-premium" style="text-align: center;">
         <div class="card-premium-inner" style="padding: 32px;">
@@ -348,7 +348,7 @@
     </div>
 
     <!-- Add-ons Table -->
-    <div class="card-premium">
+    <div class="card-premium addon-table-wrap">
       <div class="card-premium-inner" style="padding: 0; overflow: hidden;">
         <table style="width: 100%; border-collapse: collapse;">
           <thead>
@@ -718,15 +718,24 @@
   }
 
   @media (max-width: 768px) {
-    section > .container > div[style*="grid-template-columns: repeat(4"] {
-      grid-template-columns: repeat(2, 1fr) !important;
-    }
-    section > .container > div[style*="grid-template-columns: repeat(3"] {
-      grid-template-columns: 1fr !important;
-    }
+    /* 4-col → 2-col */
+    .benefits-grid { grid-template-columns: repeat(2, 1fr) !important; }
+    /* 3-col → 1-col */
+    .migration-grid { grid-template-columns: 1fr !important; }
     .pricing-card .card-premium-inner { padding: 24px !important; }
     .pricing-card-section { padding: 60px 0 !important; }
-    table th, table td { padding: 14px 12px !important; }
-    table th:first-child, table td:first-child { min-width: 140px; }
+    /* Add-ons table */
+    .addon-table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+    .addon-table-wrap table { min-width: 560px; }
+    table th, table td { padding: 12px 10px !important; font-size: 13px !important; }
+    table th:first-child, table td:first-child { min-width: 130px; }
+    /* Floating addon bar */
+    #addon-bar { padding: 10px 12px !important; }
+    #addon-bar > div { flex-direction: column; gap: 8px !important; align-items: stretch !important; }
+    #addon-bar a { text-align: center; }
+    /* Section padding */
+    section[style*="padding: 96px"] { padding: 56px 0 !important; }
+    /* h2 size */
+    h2[style*="font-size: 40px"], h2[style*="font-size: 36px"] { font-size: 24px !important; }
   }
 </style>

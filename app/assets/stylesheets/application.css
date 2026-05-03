@@ -798,7 +798,7 @@ turbo-frame[busy] {
 @media (max-width: 480px) {
   .container {
     width: 100%;
-    padding: 0 2px;
+    padding: 0 16px;
   }
 
   .btn {
@@ -806,6 +806,16 @@ turbo-frame[busy] {
   }
 
   .stats-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero-content {
+    padding: 0 4px;
+  }
+
+  .grid-3 {
     grid-template-columns: 1fr;
   }
 }
