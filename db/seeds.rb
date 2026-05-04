@@ -445,7 +445,7 @@ portfolios = [
     client: "계발자들 (Vibers)",
     project_date: Date.new(2026, 1, 1),
     description: "기업 홈페이지를 인터랙티브 전자카탈로그로 변환하는 에이전시 플랫폼. Next.js 16 + React 19 + Prisma + SQLite. 23개 전문 템플릿, 다단계 견적 시스템, 최대 3개 템플릿 동시 비교, 라이브 프리뷰. HS-TECH·GENTOP·EMT 등 실제 기업 전자카탈로그 납품.",
-    image_url: "https://premiumpage.kr/images/og-image.png",
+    image_url: "https://premiumpage.kr/opengraph-image?acdee0525e5dba29",
     preview_url: "https://premiumpage.kr"
   },
   {
@@ -508,7 +508,7 @@ collab_portfolios = [
     client: "항성산업사",
     project_date: Date.new(2025, 6, 1),
     description: "산업용 제품 전문 기업 항성산업사의 인터랙티브 전자카탈로그. 프리미엄페이지 플랫폼 기반 제작.",
-    image_url: "https://premiumpage.kr/images/og-image.png",
+    image_url: "https://premiumpage.kr/opengraph-image?acdee0525e5dba29",
     preview_url: "https://premiumpage.kr"
   },
   {
@@ -519,7 +519,7 @@ collab_portfolios = [
     client: "젠탑",
     project_date: Date.new(2025, 7, 1),
     description: "GENTOP 제품 라인업을 담은 고품질 전자카탈로그. 프리미엄페이지 플랫폼 기반 제작.",
-    image_url: "https://premiumpage.kr/images/og-image.png",
+    image_url: "https://premiumpage.kr/opengraph-image?acdee0525e5dba29",
     preview_url: "https://premiumpage.kr"
   },
   {
@@ -530,7 +530,7 @@ collab_portfolios = [
     client: "HS Tech Co.",
     project_date: Date.new(2025, 8, 1),
     description: "HS Tech Co.의 기술 제품군 전자카탈로그. 프리미엄페이지 플랫폼 기반 제작.",
-    image_url: "https://premiumpage.kr/images/og-image.png",
+    image_url: "https://premiumpage.kr/opengraph-image?acdee0525e5dba29",
     preview_url: "https://premiumpage.kr"
   },
   {
@@ -541,7 +541,7 @@ collab_portfolios = [
     client: "HS Tech",
     project_date: Date.new(2025, 9, 1),
     description: "HS Tech 제품 전자카탈로그. 프리미엄페이지 플랫폼 기반 제작.",
-    image_url: "https://premiumpage.kr/images/og-image.png",
+    image_url: "https://premiumpage.kr/opengraph-image?acdee0525e5dba29",
     preview_url: "https://premiumpage.kr"
   },
   {
@@ -552,7 +552,7 @@ collab_portfolios = [
     client: "EMT",
     project_date: Date.new(2025, 10, 1),
     description: "EMT 산업 장비 전자카탈로그. 프리미엄페이지 플랫폼 기반 제작.",
-    image_url: "https://premiumpage.kr/images/og-image.png",
+    image_url: "https://premiumpage.kr/opengraph-image?acdee0525e5dba29",
     preview_url: "https://premiumpage.kr"
   },
   # 디어스 × 팬이지 — 웹사이트
