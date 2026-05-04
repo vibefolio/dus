@@ -508,8 +508,8 @@ collab_portfolios = [
     client: "항성산업사",
     project_date: Date.new(2025, 6, 1),
     description: "산업용 제품 전문 기업 항성산업사의 인터랙티브 전자카탈로그. 프리미엄페이지 플랫폼 기반 제작.",
-    image_url: "https://premiumpage.kr/opengraph-image?acdee0525e5dba29",
-    preview_url: "https://premiumpage.kr"
+    image_url: "https://premiumpage.kr/templates/hangseong/opengraph-image.png",
+    preview_url: "https://hangseong.premiumpage.kr"
   },
   {
     title: "젠탑 (GENTOP)",
@@ -519,8 +519,8 @@ collab_portfolios = [
     client: "젠탑",
     project_date: Date.new(2025, 7, 1),
     description: "GENTOP 제품 라인업을 담은 고품질 전자카탈로그. 프리미엄페이지 플랫폼 기반 제작.",
-    image_url: "https://premiumpage.kr/opengraph-image?acdee0525e5dba29",
-    preview_url: "https://premiumpage.kr"
+    image_url: "https://gentop.premiumpage.kr/images/home/hero-bg.png",
+    preview_url: "https://gentop.premiumpage.kr"
   },
   {
     title: "HS TECH CO.",
@@ -530,8 +530,8 @@ collab_portfolios = [
     client: "HS Tech Co.",
     project_date: Date.new(2025, 8, 1),
     description: "HS Tech Co.의 기술 제품군 전자카탈로그. 프리미엄페이지 플랫폼 기반 제작.",
-    image_url: "https://premiumpage.kr/opengraph-image?acdee0525e5dba29",
-    preview_url: "https://premiumpage.kr"
+    image_url: "https://premiumpage.kr/templates/air-hstech/images/hero-1.jpg",
+    preview_url: "https://hstechco.premiumpage.kr"
   },
   {
     title: "HS TECH",
@@ -542,7 +542,7 @@ collab_portfolios = [
     project_date: Date.new(2025, 9, 1),
     description: "HS Tech 제품 전자카탈로그. 프리미엄페이지 플랫폼 기반 제작.",
     image_url: "https://premiumpage.kr/opengraph-image?acdee0525e5dba29",
-    preview_url: "https://premiumpage.kr"
+    preview_url: "https://hstech.premiumpage.kr"
   },
   {
     title: "EMT",
@@ -552,8 +552,8 @@ collab_portfolios = [
     client: "EMT",
     project_date: Date.new(2025, 10, 1),
     description: "EMT 산업 장비 전자카탈로그. 프리미엄페이지 플랫폼 기반 제작.",
-    image_url: "https://premiumpage.kr/opengraph-image?acdee0525e5dba29",
-    preview_url: "https://premiumpage.kr"
+    image_url: "https://premiumpage.kr/og/emt.png",
+    preview_url: "https://emt.premiumpage.kr"
   },
   # 디어스 × 팬이지 — 웹사이트
   {
