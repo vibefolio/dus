@@ -612,6 +612,17 @@ collab_portfolios = [
     preview_url: "https://semophone.co.kr"
   },
   {
+    title: "셰프브릿지",
+    category: "협업",
+    sub_category: "웹사이트",
+    collab_partner: "팬이지",
+    client: "셰프브릿지",
+    project_date: Date.new(2026, 4, 1),
+    description: "팬이지 기반으로 제작된 셰프브릿지 브랜드 사이트.",
+    image_url: "https://chefbridge.co.kr/chefbridge/og-chefbridge.png",
+    preview_url: "https://chefbridge.co.kr"
+  },
+  {
     title: "작당페스타",
     category: "협업",
     sub_category: "웹사이트",
