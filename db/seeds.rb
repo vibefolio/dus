@@ -608,7 +608,7 @@ collab_portfolios = [
     client: "세모폰",
     project_date: Date.new(2026, 3, 1),
     description: "팬이지 기반으로 제작된 세모폰 브랜드 사이트.",
-    image_url: nil,
+    image_url: "https://semophone.co.kr/og-image.png",
     preview_url: "https://semophone.co.kr"
   },
   {
@@ -619,7 +619,7 @@ collab_portfolios = [
     client: "셰프브릿지",
     project_date: Date.new(2026, 4, 1),
     description: "팬이지 기반으로 제작된 셰프브릿지 브랜드 사이트.",
-    image_url: nil,
+    image_url: "https://chefbridge.co.kr/chefbridge/og-chefbridge.png",
     preview_url: "https://chefbridge.co.kr"
   },
   {
@@ -630,7 +630,7 @@ collab_portfolios = [
     client: "작당페스타",
     project_date: Date.new(2026, 4, 1),
     description: "크리에이터·팬·브랜드를 잇는 페스타 이벤트 플랫폼. 팬이지 기반으로 제작된 행사 홈페이지.",
-    image_url: nil,
+    image_url: "https://xn--ok1b401abvd0pl7qd.kr/jakdangfesta/poster1.jpg",
     preview_url: "https://작당페스타.kr"
   },
 ]
