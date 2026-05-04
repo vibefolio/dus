@@ -468,7 +468,7 @@ portfolios = [
   },
   {
     title: "야화 (YAHWA)",
-    category: "웹사이트",
+    category: "프랜차이즈 플랫폼",
     client: "야화 프랜차이즈",
     project_date: Date.new(2026, 3, 1),
     description: "프리미엄 시그니처 칵테일 혼술바 프랜차이즈 마케팅 사이트. 네이버 지도 매장 연동, Recharts 기반 수익 시뮬레이션 차트, 인스타그램 피드 자동 연동, FAQ 스키마 마크업 등 SEO 최적화 풀패키지. 80% 마진율·3개월 BEP 강조 전환율 최적화 설계.",
@@ -610,17 +610,6 @@ collab_portfolios = [
     description: "팬이지 기반으로 제작된 세모폰 브랜드 사이트.",
     image_url: "https://semophone.co.kr/og-image.png",
     preview_url: "https://semophone.co.kr"
-  },
-  {
-    title: "셰프브릿지",
-    category: "협업",
-    sub_category: "웹사이트",
-    collab_partner: "팬이지",
-    client: "셰프브릿지",
-    project_date: Date.new(2026, 4, 1),
-    description: "팬이지 기반으로 제작된 셰프브릿지 브랜드 사이트.",
-    image_url: "https://chefbridge.co.kr/chefbridge/og-chefbridge.png",
-    preview_url: "https://chefbridge.co.kr"
   },
   {
     title: "작당페스타",
