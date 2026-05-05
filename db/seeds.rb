@@ -475,6 +475,15 @@ portfolios = [
     image_url: "https://yahwabar.com/yahwa/images/ogbg.png",
     preview_url: "https://yahwabar.com"
   },
+  {
+    title: "올루올루 프랜차이즈",
+    category: "프랜차이즈 플랫폼",
+    client: "올루올루",
+    project_date: Date.new(2026, 2, 1),
+    description: "성공의 확신, 건강한 성장. 올루올루 프랜차이즈 창업 모집 랜딩페이지.",
+    image_url: "https://oluolu.co.kr/oluolu/og-oluolu-franchise.jpg",
+    preview_url: "https://oluolu.co.kr/franchise"
+  },
 ]
 
 portfolios.each do |p|
