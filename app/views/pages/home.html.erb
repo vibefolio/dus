@@ -191,7 +191,10 @@
 
         <!-- Right Money (Wrapper for PC alignment) -->
         <div class="money-wrapper-right hero-animate hero-animate-delay-4">
-          <img src="/images/money_final.png" class="money-side-img money-right" style="animation-delay: 1.5s;" alt="Money Icon" loading="lazy" decoding="async">
+          <picture>
+            <source srcset="/images/money_final.webp" type="image/webp">
+            <img src="/images/money_final.png" class="money-side-img money-right" style="animation-delay: 1.5s;" alt="Money Icon" loading="lazy" decoding="async">
+          </picture>
         </div>
       </div>
     </div>
@@ -244,7 +247,7 @@
     </div>
 
     <div class="grid grid-3" style="gap: var(--space-8);">
-      <% Portfolio.order(project_date: :desc).limit(6).each do |portfolio| %>
+      <% @recent_portfolios.each do |portfolio| %>
         <div class="card" style="padding: 0; overflow: hidden; border: none; box-shadow: var(--shadow-xl); transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1);" onmouseover="this.style.transform='translateY(-4px)'; this.style.boxShadow='0 25px 50px -12px rgba(0,0,0,0.25)'" onmouseout="this.style.transform=''; this.style.boxShadow='var(--shadow-xl)'">
           <% if portfolio.preview_url.present? %>
             <a href="<%= portfolio.preview_url %>" target="_blank" style="display: block; aspect-ratio: 1200/630; overflow: hidden; position: relative;">

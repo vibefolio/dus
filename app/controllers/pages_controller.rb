@@ -6,6 +6,7 @@ class PagesController < ApplicationController
       Rails.logger.error "Home featured templates error: #{e.message}"
       @featured_templates = []
     end
+    @recent_portfolios = Portfolio.order(project_date: :desc).limit(6)
   end
 
   def portfolio

@@ -71,16 +71,17 @@ class DesignTemplate < ApplicationRecord
 
   # Static data support for database-less architecture
   def self.all_static
-    yml_path = Rails.root.join('config', 'templates.yml')
-    return [] unless File.exist?(yml_path)
-    
-    @static_data = YAML.load_file(yml_path)
-    @static_data.map.with_index do |t, idx|
-      OpenStruct.new(t).tap do |os|
-        os.id = -(idx + 1) # Use negative IDs for static records to avoid conflict
-        os.pc_thumbnail_url = os.image_url.presence || '/images/templates/portfolio_gallery.png'
-        os.mobile_thumbnail_url = os.mobile_image_url.presence || os.pc_thumbnail_url
-        os.is_database = false
+    Rails.cache.fetch("design_templates_static", expires_in: 1.hour) do
+      yml_path = Rails.root.join('config', 'templates.yml')
+      return [] unless File.exist?(yml_path)
+
+      YAML.load_file(yml_path).map.with_index do |t, idx|
+        OpenStruct.new(t).tap do |os|
+          os.id = -(idx + 1)
+          os.pc_thumbnail_url = os.image_url.presence || '/images/templates/portfolio_gallery.png'
+          os.mobile_thumbnail_url = os.mobile_image_url.presence || os.pc_thumbnail_url
+          os.is_database = false
+        end
       end
     end
   end
