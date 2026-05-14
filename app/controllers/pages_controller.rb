@@ -11,7 +11,7 @@ class PagesController < ApplicationController
 
   def portfolio
     cached = Rails.cache.fetch("portfolio_page_data", expires_in: 10.minutes) do
-      all = Portfolio.order(created_at: :desc).to_a
+      all = Portfolio.with_attached_image.with_attached_mobile_image.order(created_at: :desc).to_a
       category_order = ["앱 및 플랫폼", "프랜차이즈 플랫폼"]
       regular = all.reject { |p| p.category == "협업" }
       groups = regular.group_by(&:category).sort_by { |cat, _| category_order.index(cat) || category_order.length }
