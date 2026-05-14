@@ -10,20 +10,20 @@ class PagesController < ApplicationController
   end
 
   def portfolio
-    begin
-      all = Portfolio.order(created_at: :desc)
-      # 카테고리 순서: 앱 및 플랫폼 > 프랜차이즈 플랫폼 > 나머지 (협업은 별도)
+    cached = Rails.cache.fetch("portfolio_page_data", expires_in: 10.minutes) do
+      all = Portfolio.order(created_at: :desc).to_a
       category_order = ["앱 및 플랫폼", "프랜차이즈 플랫폼"]
-      regular = all.where.not(category: "협업")
-      @portfolio_groups = regular.group_by(&:category).sort_by do |cat, _|
-        category_order.index(cat) || category_order.length
-      end
-      # 협업 포트폴리오: 파트너별 그룹
-      @collab_groups = all.where(category: "협업").order(:collab_partner, :project_date).group_by(&:collab_partner)
-    rescue => e
-      Rails.logger.error "Failed to load portfolios: #{e.message}"
-      @portfolio_groups = []
+      regular = all.reject { |p| p.category == "협업" }
+      groups = regular.group_by(&:category).sort_by { |cat, _| category_order.index(cat) || category_order.length }
+      collabs = all.select { |p| p.category == "협업" }.sort_by { |p| [p.collab_partner.to_s, p.project_date.to_s] }.group_by(&:collab_partner)
+      { groups: groups, collabs: collabs }
     end
+    @portfolio_groups = cached[:groups]
+    @collab_groups = cached[:collabs]
+  rescue => e
+    Rails.logger.error "Failed to load portfolios: #{e.message}"
+    @portfolio_groups = []
+    @collab_groups = {}
   end
 
   def contact
