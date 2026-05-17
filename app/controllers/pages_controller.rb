@@ -1,3 +1,5 @@
+require "ostruct"
+
 class PagesController < ApplicationController
   def home
     begin
@@ -177,6 +179,7 @@ class PagesController < ApplicationController
   end
 
   def quote_params
-    params.require(:quote).permit(:contact_name, :company_name, :email, :phone, :project_type, :budget, :message, :preferred_domain, :nickname)
+    # nickname은 허니팟 필드 — Quote 모델에 없으므로 제외
+    params.require(:quote).permit(:contact_name, :company_name, :email, :phone, :project_type, :budget, :message, :preferred_domain)
   end
 end

@@ -2,6 +2,9 @@ ENV["RAILS_ENV"] ||= "test"
 require_relative "../config/environment"
 require "rails/test_help"
 
+# 테스트 환경에서 Rack::Attack 비활성화 (rate limit이 테스트를 방해하므로)
+Rack::Attack.enabled = false
+
 module ActiveSupport
   class TestCase
     # Run tests in parallel with specified workers

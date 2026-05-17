@@ -193,8 +193,9 @@ class UserWorkflowTest < ActionDispatch::IntegrationTest
   end
 
   test "템플릿 장바구니에 추가" do
-    sign_in users(:regular_user)
-    template = design_templates(:one)
+    # admin_user는 cart fixture가 없으므로 깨끗한 상태
+    sign_in users(:admin_user)
+    template = design_templates(:two)
     assert_difference "CartItem.count", 1 do
       post add_to_cart_path, params: {
         item_type: "DesignTemplate",
@@ -207,25 +208,26 @@ class UserWorkflowTest < ActionDispatch::IntegrationTest
   end
 
   test "동일 템플릿 재추가 시 수량 증가 (중복 추가 없음)" do
-    sign_in users(:regular_user)
-    template = design_templates(:one)
+    # admin_user는 cart fixture가 없으므로 깨끗한 상태
+    sign_in users(:admin_user)
+    template = design_templates(:two)
 
     post add_to_cart_path, params: { item_type: "DesignTemplate", item_id: template.id }
     assert_difference "CartItem.count", 0 do
       post add_to_cart_path, params: { item_type: "DesignTemplate", item_id: template.id }
     end
 
-    cart = users(:regular_user).cart
+    cart = users(:admin_user).cart
     item = cart.cart_items.find_by(item_type: "DesignTemplate", item_id: template.id)
     assert_equal 2, item.quantity
   end
 
   test "장바구니 아이템 삭제" do
-    sign_in users(:regular_user)
-    template = design_templates(:one)
+    sign_in users(:admin_user)
+    template = design_templates(:two)
     post add_to_cart_path, params: { item_type: "DesignTemplate", item_id: template.id }
 
-    cart = users(:regular_user).cart
+    cart = users(:admin_user).cart
     item = cart.cart_items.last
 
     assert_difference "CartItem.count", -1 do
