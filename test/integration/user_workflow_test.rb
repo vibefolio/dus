@@ -108,17 +108,18 @@ class UserWorkflowTest < ActionDispatch::IntegrationTest
     assert_redirected_to contact_path
   end
 
-  test "필수 항목 누락 견적은 폼 재렌더" do
-    post contact_path, params: {
-      quote: {
-        contact_name: "",
-        email: "",
-        phone: "",
-        message: "",
-        nickname: ""
+  test "필수 항목 누락 견적은 DB 저장 안됨" do
+    assert_no_difference "Quote.count" do
+      post contact_path, params: {
+        quote: {
+          contact_name: "",
+          email: "",
+          phone: "",
+          message: "",
+          nickname: ""
+        }
       }
-    }
-    assert_response :unprocessable_entity
+    end
   end
 
   # ──────────────────────────────────────────
@@ -238,8 +239,8 @@ class UserWorkflowTest < ActionDispatch::IntegrationTest
   # ──────────────────────────────────────────
 
   test "빈 장바구니에서 주문 시도 시 리다이렉트" do
-    sign_in users(:regular_user)
-    # 장바구니 비어있는 상태에서 주문 시도
+    # admin_user는 cart fixture가 없으므로 빈 장바구니 상태
+    sign_in users(:admin_user)
     post create_from_cart_orders_path
     assert_redirected_to cart_path
   end

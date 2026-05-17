@@ -3,5 +3,5 @@
 user_cart_item:
   cart: user_cart
   item_type: DesignTemplate
-  item_id: 1
+  item_id: <%= ActiveRecord::FixtureSet.identify('one') %>
   quantity: 1

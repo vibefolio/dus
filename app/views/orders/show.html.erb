@@ -54,7 +54,7 @@
             <% @order.order_items.each do |item| %>
               <div class="flex gap-6 items-start">
                 <% if item.design_template&.pc_thumbnail_url.present? %>
-                  <%= image_tag item.design_template.thumbnail_url, class: "w-24 h-24 rounded-lg object-cover bg-gray-100" %>
+                  <%= image_tag item.design_template.pc_thumbnail_url, class: "w-24 h-24 rounded-lg object-cover bg-gray-100" %>
                 <% else %>
                   <div class="w-24 h-24 rounded-lg bg-gray-100 flex items-center justify-center text-gray-400">
                     <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">

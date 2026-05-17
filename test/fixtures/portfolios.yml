@@ -1,17 +1,19 @@
-# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+# 테스트용 포트폴리오 — image_url은 외부 URL로 (asset_path 오류 방지)
 
 one:
-  title: MyString
-  description: MyText
-  client: MyString
-  image_url: MyString
-  project_date: 2025-12-09
-  category: MyString
+  title: "야화 바 랜딩페이지"
+  description: "프리미엄 주류 브랜드 랜딩페이지"
+  client: "야화"
+  image_url: "https://yahwabar.com/og-image.jpg"
+  project_date: 2025-06-01
+  category: "앱 및 플랫폼"
+  preview_url: "https://yahwabar.com"
 
 two:
-  title: MyString
-  description: MyText
-  client: MyString
-  image_url: MyString
-  project_date: 2025-12-09
-  category: MyString
+  title: "올루올루 홈페이지"
+  description: "건강식품 브랜드 공식 사이트"
+  client: "올루올루"
+  image_url: "https://oluolu.co.kr/oluolu/og-image.jpg"
+  project_date: 2025-09-01
+  category: "앱 및 플랫폼"
+  preview_url: "https://oluolu.co.kr"

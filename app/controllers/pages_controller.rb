@@ -99,6 +99,7 @@ class PagesController < ApplicationController
       @quote = Quote.new(quote_params)
       @quote.agency = @current_agency if @current_agency
       @quote.status = "pending"
+      @quote.workflow_status ||= "received"
       @quote.created_at = Time.current # Ensure it has a timestamp for the mailer
       
       if user_signed_in?

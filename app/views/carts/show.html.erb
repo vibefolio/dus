@@ -93,7 +93,7 @@
         storeId: storeId,
         channelKey: channelKey,
         paymentId: paymentId,
-        orderName: "<%= @items.first&.product&.name %> 외 <%= @items.count - 1 %>건",
+        orderName: "<%= @items.first&.item&.try(:name) || @items.first&.item&.try(:title) || '주문' %> 외 <%= @items.count - 1 %>건",
         totalAmount: <%= @cart.total_price %>,
         currency: "CURRENCY_KRW",
         payMethod: "CARD",
