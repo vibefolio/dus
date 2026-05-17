@@ -2,3 +2,6 @@
 
 user_cart:
   user: regular_user
+
+owner_cart:
+  user: owner

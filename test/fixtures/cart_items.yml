@@ -1,11 +1,7 @@
-# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+# 장바구니 아이템 - polymorphic (item_type/item_id)
 
-one:
-  cart: one
-  product: one
-  quantity: 1
-
-two:
-  cart: two
-  product: two
+user_cart_item:
+  cart: user_cart
+  item_type: DesignTemplate
+  item_id: 1
   quantity: 1

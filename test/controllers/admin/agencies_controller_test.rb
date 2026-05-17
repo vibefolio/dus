@@ -1,38 +1,37 @@
 require "test_helper"
 
 class Admin::AgenciesControllerTest < ActionDispatch::IntegrationTest
-  test "should get index" do
-    get admin_agencies_index_url
+  include Devise::Test::IntegrationHelpers
+
+  setup do
+    sign_in users(:super_admin)
+  end
+
+  test "어드민 에이전시 목록" do
+    get admin_agencies_url
     assert_response :success
   end
 
-  test "should get show" do
-    get admin_agencies_show_url
+  test "어드민 새 에이전시 폼" do
+    get new_admin_agency_url
     assert_response :success
   end
 
-  test "should get new" do
-    get admin_agencies_new_url
+  test "어드민 에이전시 상세" do
+    get admin_agency_url(agencies(:main_agency))
     assert_response :success
   end
 
-  test "should get edit" do
-    get admin_agencies_edit_url
-    assert_response :success
+  test "비로그인 어드민 차단" do
+    sign_out users(:super_admin)
+    get admin_agencies_url
+    assert_response :redirect
   end
 
-  test "should get create" do
-    get admin_agencies_create_url
-    assert_response :success
-  end
-
-  test "should get update" do
-    get admin_agencies_update_url
-    assert_response :success
-  end
-
-  test "should get destroy" do
-    get admin_agencies_destroy_url
-    assert_response :success
+  test "일반 유저 어드민 차단" do
+    sign_out users(:super_admin)
+    sign_in users(:regular_user)
+    get admin_agencies_url
+    assert_response :redirect
   end
 end

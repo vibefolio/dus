@@ -43,7 +43,7 @@ gem "jbuilder"
 # gem "bcrypt", "3.1.7"
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-gem "tzinfo-data", platforms: %i[ windows jruby ]
+gem "tzinfo-data", platforms: %i[ mswin mswin64 mingw x64_mingw jruby ]
 
 # Use the database-backed adapters for Rails.cache, Active Job, and Action Cable
 # gem "solid_cache"
@@ -98,6 +98,8 @@ group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
   gem "capybara"
   gem "selenium-webdriver"
+  # Pin minitest to 5.x — minitest 6 changed run() signature incompatible with railties 8.1
+  gem "minitest", "~> 5.25"
 end
 
 # Administration

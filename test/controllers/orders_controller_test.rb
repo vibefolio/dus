@@ -1,48 +1,44 @@
 require "test_helper"
 
 class OrdersControllerTest < ActionDispatch::IntegrationTest
+  include Devise::Test::IntegrationHelpers
+
   setup do
-    @order = orders(:one)
+    @owner_user = users(:owner)
+    sign_in @owner_user
   end
 
-  test "should get index" do
+  test "주문 목록은 마이페이지 주문으로 리다이렉트" do
     get orders_url
+    assert_redirected_to mypage_orders_path
+  end
+
+  test "본인 주문 상세 조회" do
+    order = orders(:paid_order)
+    get order_url(order)
     assert_response :success
   end
 
-  test "should get new" do
-    get new_order_url
-    assert_response :success
+  test "비로그인 주문 접근 차단" do
+    sign_out @owner_user
+    get order_url(orders(:paid_order))
+    assert_redirected_to new_user_session_path
   end
 
-  test "should create order" do
-    assert_difference("Order.count") do
-      post orders_url, params: { order: { amount: @order.amount, customer_name: @order.customer_name, order_uid: @order.order_uid, payment_key: @order.payment_key, product_id: @order.product_id, status: @order.status } }
-    end
-
-    assert_redirected_to order_url(Order.last)
+  test "타인 주문 접근 시 리다이렉트" do
+    # regular_user로 로그인해서 owner의 주문에 접근
+    sign_out @owner_user
+    sign_in users(:regular_user)
+    order = orders(:paid_order)  # owner 소유 주문
+    get order_url(order)
+    assert_redirected_to mypage_orders_path
   end
 
-  test "should show order" do
-    get order_url(@order)
-    assert_response :success
-  end
-
-  test "should get edit" do
-    get edit_order_url(@order)
-    assert_response :success
-  end
-
-  test "should update order" do
-    patch order_url(@order), params: { order: { amount: @order.amount, customer_name: @order.customer_name, order_uid: @order.order_uid, payment_key: @order.payment_key, product_id: @order.product_id, status: @order.status } }
-    assert_redirected_to order_url(@order)
-  end
-
-  test "should destroy order" do
-    assert_difference("Order.count", -1) do
-      delete order_url(@order)
-    end
-
-    assert_redirected_to orders_url
+  test "pending 주문 취소" do
+    sign_out @owner_user
+    sign_in users(:regular_user)
+    order = orders(:pending_order)  # regular_user 소유
+    delete order_url(order)
+    assert_redirected_to mypage_orders_path
   end
 end

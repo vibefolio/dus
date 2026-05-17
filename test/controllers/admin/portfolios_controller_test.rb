@@ -1,33 +1,30 @@
 require "test_helper"
 
 class Admin::PortfoliosControllerTest < ActionDispatch::IntegrationTest
-  test "should get index" do
-    get admin_portfolios_index_url
+  include Devise::Test::IntegrationHelpers
+
+  setup do
+    sign_in users(:super_admin)
+  end
+
+  test "어드민 포트폴리오 목록" do
+    get admin_portfolios_url
     assert_response :success
   end
 
-  test "should get new" do
-    get admin_portfolios_new_url
+  test "어드민 새 포트폴리오 폼" do
+    get new_admin_portfolio_url
     assert_response :success
   end
 
-  test "should get create" do
-    get admin_portfolios_create_url
+  test "어드민 포트폴리오 상세" do
+    get admin_portfolio_url(portfolios(:one))
     assert_response :success
   end
 
-  test "should get edit" do
-    get admin_portfolios_edit_url
-    assert_response :success
-  end
-
-  test "should get update" do
-    get admin_portfolios_update_url
-    assert_response :success
-  end
-
-  test "should get destroy" do
-    get admin_portfolios_destroy_url
-    assert_response :success
+  test "비로그인 어드민 포트폴리오 차단" do
+    sign_out users(:super_admin)
+    get admin_portfolios_url
+    assert_response :redirect
   end
 end
