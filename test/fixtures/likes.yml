@@ -1,9 +1,9 @@
-# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+# 좋아요 데이터 — user/design_template은 실제 fixture 이름으로 참조
 
-one:
-  user: one
+regular_user_likes_one:
+  user: regular_user
   design_template: one
 
-two:
-  user: two
+owner_likes_two:
+  user: owner
   design_template: two
