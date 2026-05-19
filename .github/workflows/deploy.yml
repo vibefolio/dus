@@ -5,7 +5,7 @@ on:
     branches: [main]
 
 concurrency:
-  group: deploy-${{ github.repository }}
+  group: deploy-wero-server
   cancel-in-progress: false
 
 env:
