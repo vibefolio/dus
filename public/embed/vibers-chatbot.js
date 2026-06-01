@@ -75,10 +75,13 @@
     isOpen = true;
     root.innerHTML = '';
 
-    var dim = SIZES[currentSize] || SIZES.large;
+    var isMobile = window.innerWidth <= 480;
+    var dim = isMobile ? [window.innerWidth, Math.floor(window.innerHeight * 0.82)] : (SIZES[currentSize] || SIZES.large);
     chatWin = el('div', { class: 'vb-window vb-animate-in' });
-    chatWin.style.width = dim[0] + 'px';
-    chatWin.style.height = dim[1] + 'px';
+    if (!isMobile) {
+      chatWin.style.width = dim[0] + 'px';
+      chatWin.style.height = dim[1] + 'px';
+    }
 
     // Header
     var header = el('div', { class: 'vb-header' });
@@ -431,6 +434,12 @@
 .vb-emoji-picker{display:grid;grid-template-columns:repeat(10,1fr);gap:2px;padding:8px 12px;border-top:1px solid #f0f0f0;background:#fff;max-height:120px;overflow-y:auto}\
 .vb-emoji-item{border:none;background:none;font-size:20px;cursor:pointer;padding:4px;border-radius:6px;transition:background .1s}\
 .vb-emoji-item:hover{background:#f0f0f0}\
+@media(max-width:480px){\
+  #vb-chat-root{right:0!important;left:0!important;bottom:0!important;}\
+  .vb-fab{position:fixed!important;right:16px!important;bottom:20px!important;bottom:calc(20px + env(safe-area-inset-bottom))!important;}\
+  .vb-window{position:fixed!important;left:0!important;right:0!important;bottom:0!important;width:100%!important;max-height:82vh!important;max-height:82dvh!important;border-radius:20px 20px 0 0!important;box-shadow:0 -4px 32px rgba(0,0,0,.18)!important;}\
+  .vb-close-btn{bottom:-56px;}\
+}\
 ';
     document.head.appendChild(css);
   }

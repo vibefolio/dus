@@ -65,6 +65,8 @@
     .examples-grid { grid-template-columns: repeat(2,1fr) !important; }
     .pkg-card { padding: 24px !important; }
     .mxt-tab { padding: 10px 16px !important; font-size: 13px !important; }
+    .mxt-step-grid { grid-template-columns: 1fr !important; }
+    .mxt-benefit-grid { grid-template-columns: 1fr !important; }
   }
 </style>
 <% end %>
@@ -378,7 +380,7 @@
     <% end %>
   </div>
 
-  <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:16px;">
+  <div class="mxt-step-grid" style="display:grid;grid-template-columns:repeat(2,1fr);gap:16px;">
     <% [
       ["01", "상담 신청", "아래 폼을 작성하거나 전화로 연락주세요. 현재 상황과 원하시는 것을 간단히 알려주시면 됩니다.", "#e8f5ee", "#00a859"],
       ["02", "계약 및 미팅", "담당 세무사와 웹 디렉터가 함께 미팅합니다. 세무 구조와 홈페이지 방향을 한 번에 결정합니다.", "#f0f6ff", "#3182f6"],
@@ -444,7 +446,7 @@
       </h2>
     </div>
 
-    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;">
+    <div class="mxt-benefit-grid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;">
       <% [
         ["⚡", "빠른 시작", "사업자등록과 동시에 세무기장 + 홈페이지 제작이 병행됩니다. 2주 안에 사업 준비 완료."],
         ["🤝", "각 분야 전문가가 함께", "세무는 세무사가, 홈페이지는 웹 전문가가. 각자의 전문성으로 최고의 결과를 만듭니다."],
