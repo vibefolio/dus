@@ -11,35 +11,41 @@
       gtag('config', 'G-CGK1BSBM63');
     </script>
     <meta charset="UTF-8">
-    <title><%= content_for(:title) || "디어스 - AI와 함께하는 디지털 혁신 파트너" %></title>
+    <%
+      _site_brand = request.host.include?("d-us") ? "디어스 D-us" : "디어스"
+      _og_title_default = request.host.include?("d-us") ? "디어스 D-us - AI 프리미엄 웹 에이전시" : "디어스 - AI와 함께하는 디지털 혁신 파트너"
+      _og_title = content_for?(:title) ? "#{content_for(:title)} | #{_site_brand}" : _og_title_default
+    %>
+    <title><%= content_for(:title) ? "#{content_for(:title)} | #{_site_brand}" : _og_title_default %></title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="description" content="<%= content_for(:description) || '디어스는 AI 기술과 창의적인 디자인으로 비즈니스의 성공을 이끄는 프리미엄 개발 에이전시입니다.' %>">
-    <meta name="keywords" content="웹개발, 앱개발, AI개발, UI/UX디자인, 개발에이전시, 디어스, D.US, 홈페이지제작, 랜딩페이지">
-    <meta name="author" content="디어스">
+    <meta name="keywords" content="웹개발, 앱개발, AI개발, UI/UX디자인, 개발에이전시, 디어스, D-us, 홈페이지제작, 랜딩페이지">
+    <meta name="author" content="<%= _site_brand %>">
     <meta name="robots" content="index, follow">
     <meta name="theme-color" content="#00a859">
-    
+
     <!-- Performance Hints -->
     <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
     <link rel="dns-prefetch" href="https://images.unsplash.com">
-    
+
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:locale" content="ko_KR">
+    <meta property="og:site_name" content="<%= _site_brand %>">
     <meta property="og:url" content="<%= request.original_url %>">
-    <meta property="og:title" content="<%= content_for?(:title) ? "#{content_for(:title)} | DLAB" : "DLAB - AI Premium Web Agency" %>">
+    <meta property="og:title" content="<%= _og_title %>">
     <meta property="og:description" content="<%= content_for?(:description) ? content_for(:description) : "AI 기술과 디자인의 완벽한 조화. 디어스에서 당신의 비즈니스를 혁신하세요." %>">
     <meta property="og:image" content="<%= content_for?(:og_image) ? content_for(:og_image) : asset_path('logo.png') %>">
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:url" content="<%= request.original_url %>">
-    <meta name="twitter:title" content="<%= content_for?(:title) ? "#{content_for(:title)} | DLAB" : "DLAB - AI Premium Web Agency" %>">
+    <meta name="twitter:title" content="<%= _og_title %>">
     <meta name="twitter:description" content="<%= content_for?(:description) ? content_for(:description) : "AI 기술과 디자인의 완벽한 조화. 디어스에서 당신의 비즈니스를 혁신하세요." %>">
     <meta name="twitter:image" content="<%= content_for?(:og_image) ? content_for(:og_image) : asset_path('logo.png') %>">
-    
+
     <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="application-name" content="디어스">
+    <meta name="application-name" content="<%= _site_brand %>">
     <meta name="mobile-web-app-capable" content="yes">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
