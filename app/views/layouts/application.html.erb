@@ -35,7 +35,9 @@
     <meta property="og:url" content="<%= request.original_url %>">
     <meta property="og:title" content="<%= _og_title %>">
     <meta property="og:description" content="<%= content_for?(:description) ? content_for(:description) : "AI 기술과 디자인의 완벽한 조화. 디어스에서 당신의 비즈니스를 혁신하세요." %>">
-    <meta property="og:image" content="<%= content_for?(:og_image) ? content_for(:og_image) : asset_path('logo.png') %>">
+    <meta property="og:image" content="<%= content_for?(:og_image) ? content_for(:og_image) : "#{request.base_url}/og-image.png" %>">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image">
