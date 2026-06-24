@@ -1,4 +1,23 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://dlab.vibers.co.kr/sitemap.xml
+# AI 크롤러 명시적 허용 (AEO/GEO - AI 인용 허용)
+User-agent: GPTBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: Amazonbot
+Allow: /
+
+Sitemap: https://designd.co.kr/sitemap.xml

@@ -1,0 +1,32 @@
+# 디어스 (D-us) — AI 에이전트를 위한 사이트 정보
+
+## 사이트 소개
+디어스는 AI 기술과 현대적인 디자인이 조화된 프리미엄 웹 에이전시 플랫폼입니다.
+26개 이상의 검증된 디자인 템플릿과 맞춤형 개발 서비스를 제공합니다.
+
+- 사이트명: 디어스 (D-us)
+- 도메인: https://designd.co.kr
+- 운영사: 계발자들 (Vibers)
+- 연락처: duscontactus@gmail.com
+
+## 주요 서비스
+- 디자인 템플릿 마켓플레이스 (26개 카테고리, 랜딩페이지/쇼핑몰/포트폴리오/식당/학원 등)
+- 맞춤형 웹사이트 제작 (랜딩페이지, 기업홈페이지, 쇼핑몰)
+- AI 기반 세무기장 연계 서비스 (메이저텍스)
+- 에이전시 멀티테넌시 플랫폼 (에이전시 전용 관리 패널)
+
+## 요금
+- BASIC: 월 39,000원 (홈페이지 제작 + 호스팅 포함)
+- PRO: 월 99,000원 (멀티페이지 + 전자상거래)
+- MASTER: 월 199,000원 (완전 커스텀 + AI 기능)
+
+## 주요 페이지
+- 홈: https://designd.co.kr/
+- 디자인 템플릿: https://designd.co.kr/design_templates
+- 포트폴리오: https://designd.co.kr/portfolio
+- 요금제: https://designd.co.kr/pricing
+- 문의하기: https://designd.co.kr/contact
+- 세무기장: https://designd.co.kr/majortax
+
+## 기술 스택
+Ruby on Rails 8, Hotwire (Turbo + Stimulus), Tailwind CSS, SQLite, Devise + Google OAuth

@@ -44,7 +44,10 @@
     <meta name="twitter:url" content="<%= request.original_url %>">
     <meta name="twitter:title" content="<%= _og_title %>">
     <meta name="twitter:description" content="<%= content_for?(:description) ? content_for(:description) : "AI 기술과 디자인의 완벽한 조화. 디어스에서 당신의 비즈니스를 혁신하세요." %>">
-    <meta name="twitter:image" content="<%= content_for?(:og_image) ? content_for(:og_image) : asset_path('logo.png') %>">
+    <meta name="twitter:image" content="<%= content_for?(:og_image) ? content_for(:og_image) : "#{request.base_url}/og-image.png" %>">
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="<%= request.original_url.split('?').first %>">
 
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="application-name" content="<%= _site_brand %>">
@@ -117,6 +120,43 @@
     <%= stylesheet_link_tag "trix", "data-turbo-track": "reload" %>
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
+
+    <!-- JSON-LD 구조화 데이터 -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Organization",
+          "@id": "<%= request.base_url %>/#organization",
+          "name": "<%= _site_brand %>",
+          "url": "<%= request.base_url %>",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "<%= request.base_url %>/logo.png"
+          },
+          "contactPoint": {
+            "@type": "ContactPoint",
+            "email": "duscontactus@gmail.com",
+            "contactType": "customer service",
+            "availableLanguage": "Korean"
+          },
+          "sameAs": []
+        },
+        {
+          "@type": "WebSite",
+          "@id": "<%= request.base_url %>/#website",
+          "url": "<%= request.base_url %>",
+          "name": "<%= _site_brand %>",
+          "description": "AI 기술과 현대적 디자인이 조화된 프리미엄 웹 에이전시 플랫폼",
+          "publisher": {
+            "@id": "<%= request.base_url %>/#organization"
+          },
+          "inLanguage": "ko-KR"
+        }
+      ]
+    }
+    </script>
   </head>
 
   <body>
