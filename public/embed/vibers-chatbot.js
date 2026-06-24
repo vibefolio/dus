@@ -435,10 +435,8 @@
 .vb-emoji-item{border:none;background:none;font-size:20px;cursor:pointer;padding:4px;border-radius:6px;transition:background .1s}\
 .vb-emoji-item:hover{background:#f0f0f0}\
 @media(max-width:480px){\
-  #vb-chat-root{right:0!important;left:0!important;bottom:0!important;}\
-  .vb-fab{position:fixed!important;right:16px!important;bottom:20px!important;bottom:calc(20px + env(safe-area-inset-bottom))!important;}\
-  .vb-window{position:fixed!important;left:0!important;right:0!important;bottom:0!important;width:100%!important;max-height:82vh!important;max-height:82dvh!important;border-radius:20px 20px 0 0!important;box-shadow:0 -4px 32px rgba(0,0,0,.18)!important;}\
-  .vb-close-btn{bottom:-56px;}\
+  .vb-window{position:fixed!important;left:0!important;right:0!important;bottom:0!important;top:auto!important;width:100vw!important;max-height:82dvh!important;max-height:82vh!important;border-radius:20px 20px 0 0!important;box-shadow:0 -4px 32px rgba(0,0,0,.18)!important;}\
+  .vb-close-btn{display:none!important;}\
 }\
 ';
     document.head.appendChild(css);
