@@ -15,8 +15,8 @@ Rails.application.configure do
   # Turn on fragment caching in view templates.
   config.action_controller.perform_caching = true
 
-  # Cache assets for far-future expiry since they are all digest stamped.
-  config.public_file_server.headers = { "cache-control" => "public, max-age=#{1.year.to_i}" }
+  # 정적 파일 캐시: assets(다이제스트 스탬프)는 1주일, robots.txt/llms.txt 등은 짧게 유지되도록 1일로 설정
+  config.public_file_server.headers = { "cache-control" => "public, max-age=#{1.day.to_i}" }
 
   # Enable serving of images, stylesheets, and JavaScripts from an asset server.
   # config.asset_host = "http://assets.example.com"
