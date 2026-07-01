@@ -77,7 +77,7 @@
 
     var isMobile = window.innerWidth <= 480;
     var dim = isMobile ? [window.innerWidth, Math.floor(window.innerHeight * 0.82)] : (SIZES[currentSize] || SIZES.large);
-    chatWin = el('div', { class: 'vb-window vb-animate-in' });
+    chatWin = el('div', { class: 'vb-window vb-animate-in vb-size-' + currentSize });
     if (!isMobile) {
       chatWin.style.width = dim[0] + 'px';
       chatWin.style.height = dim[1] + 'px';
@@ -435,7 +435,10 @@
 .vb-emoji-item{border:none;background:none;font-size:20px;cursor:pointer;padding:4px;border-radius:6px;transition:background .1s}\
 .vb-emoji-item:hover{background:#f0f0f0}\
 @media(max-width:480px){\
-  .vb-window{position:fixed!important;left:0!important;right:0!important;bottom:0!important;top:auto!important;width:100vw!important;max-height:82dvh!important;max-height:82vh!important;border-radius:20px 20px 0 0!important;box-shadow:0 -4px 32px rgba(0,0,0,.18)!important;}\
+  .vb-window{position:fixed!important;left:0!important;right:0!important;bottom:0!important;top:auto!important;width:100vw!important;height:auto!important;border-radius:20px 20px 0 0!important;box-shadow:0 -4px 32px rgba(0,0,0,.18)!important;}\
+  .vb-window.vb-size-small{max-height:55vh!important;max-height:55dvh!important;}\
+  .vb-window.vb-size-medium{max-height:72vh!important;max-height:72dvh!important;}\
+  .vb-window.vb-size-large{max-height:88vh!important;max-height:88dvh!important;}\
   .vb-close-btn{display:none!important;}\
 }\
 ';
