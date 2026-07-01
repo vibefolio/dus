@@ -232,7 +232,7 @@
       <div style="display: flex; gap: 48px; align-items: flex-start; flex-wrap: wrap;">
 
         <!-- 왼쪽: 안내 영역 -->
-        <div style="flex: 1; min-width: 300px; position: sticky; top: 120px;">
+        <div class="contact-info-col" style="flex: 1; min-width: 0; position: sticky; top: 120px;">
           <!-- 3D 아이콘 (악수하는 손) -->
           <div style="width: 120px; height: 120px; background: linear-gradient(135deg, #e8f5ee, #d1fae5); border-radius: 32px; display: flex; align-items: center; justify-content: center; margin-bottom: 32px; box-shadow: 0 8px 32px rgba(0,168,89,0.1);">
             <span style="font-size: 56px;">🤝</span>
@@ -270,7 +270,7 @@
         </div>
 
         <!-- 오른쪽: 문의 폼 -->
-        <div style="flex: 1; min-width: 360px;">
+        <div class="contact-form-col" style="flex: 1; min-width: 0;">
           <div style="background: white; padding: 40px; border-radius: 24px; border: 1px solid #e5e7eb; box-shadow: 0 4px 24px rgba(0,0,0,0.04);">
 
             <%= form_with model: @quote, url: contact_path, local: true, class: "contact-form", html: { onsubmit: "return submitContactForm(this);", id: "contact-form", data: { controller: "honeypot" } } do |f| %>
