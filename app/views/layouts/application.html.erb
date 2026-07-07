@@ -52,6 +52,7 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="application-name" content="<%= _site_brand %>">
     <meta name="mobile-web-app-capable" content="yes">
+    <link rel="manifest" href="/manifest.json">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -72,15 +73,15 @@
       html { font-family: 'Paperlogy', system-ui, -apple-system, sans-serif; line-height: 1.5; }
       body { min-height: 100vh; background-color: #fff; color: #1f2937; }
       img, video, iframe, table { max-width: 100%; }
-      .navbar { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background: rgba(255,255,255,0.85); -webkit-backdrop-filter: blur(20px); backdrop-filter: blur(20px); padding: 1rem 2rem; transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1); border-bottom: 1px solid rgba(0,0,0,0.04); }
+      .navbar { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background: rgba(255,255,255,0.85); -webkit-backdrop-filter: blur(20px); backdrop-filter: blur(20px); padding: 0.6rem 2rem; transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1); border-bottom: 1px solid rgba(0,0,0,0.04); }
       .navbar.scrolled { background: rgba(255,255,255,0.95); box-shadow: 0 4px 24px -4px rgba(0,0,0,0.06); }
       .navbar-container { display: flex; align-items: center; justify-content: space-between; position: relative; width: 90%; max-width: 1600px; margin: 0 auto; }
       .navbar-menu { display: flex; gap: 2rem; list-style: none; position: absolute; left: 50%; transform: translateX(-50%); }
       .navbar-link { text-decoration: none; color: #374151; font-weight: 500; }
       .container { width: 75%; max-width: 1600px; margin: 0 auto; }
-      main { padding-top: 80px; }
+      main { padding-top: 64px; }
       @media (max-width: 768px) {
-        .navbar { padding: 0.75rem 1rem; }
+        .navbar { padding: 0.5rem 1rem; }
         .navbar-container { width: 100%; padding: 0 8px; }
         .container { width: 100%; padding: 0 16px; }
       }
@@ -122,6 +123,15 @@
     <%= stylesheet_link_tag "trix", "data-turbo-track": "reload" %>
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('/service-worker.js').catch((error) => {
+            console.warn('Service worker registration failed:', error);
+          });
+        });
+      }
+    </script>
 
     <!-- JSON-LD 구조화 데이터 -->
     <script type="application/ld+json">
@@ -167,7 +177,7 @@
     <nav class="navbar" id="navbar">
       <div class="navbar-container">
         <%= link_to root_path, class: "navbar-logo" do %>
-          <%= image_tag "logo.png", alt: "디어스", style: "height: 50px; width: auto;" %>
+          <%= image_tag "logo.png", alt: "디어스", style: "height: 38px; width: auto;" %>
         <% end %>
         
         <!-- Desktop Menu (Center) -->
