@@ -10,7 +10,7 @@ class QuoteMailer < ApplicationMailer
 
     mail(
       to: @admin_emails,
-      subject: "[디어스] 새로운 견적 문의: #{quote.contact_name}님"
+      subject: "[디어스] 새로운 견적 문의: #{quote.display_name}님"
     )
   end
 

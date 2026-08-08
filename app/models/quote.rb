@@ -7,12 +7,26 @@ class Quote < ApplicationRecord
   belongs_to :user, optional: true
   belongs_to :agency, optional: true
   
-  validates :contact_name, presence: true
+  # 1단계 접수는 이메일 + 요청사항만 받는다 (2026-08-08).
+  # 담당자명·연락처를 필수로 두면 폼 이탈이 커지는데, 연락은 이메일로도 가능하다.
+  # 나머지 정보는 선택 입력이거나 첫 회신 때 확보한다.
   validates :email, presence: true, format: { with: URI::MailTo::EMAIL_REGEXP }
-  validates :phone, presence: true
   validates :message, presence: true
   validates :status, inclusion: { in: %w[pending completed] }
   validates :workflow_status, inclusion: { in: WORKFLOW_STATUSES }
+
+  # 담당자명이 비어 있을 수 있으므로 표시용 이름을 따로 둔다.
+  # (메일 제목이 "새로운 견적 문의: 님" 처럼 나가는 것을 막는다)
+  def display_name
+    return contact_name if contact_name.present?
+    return email.split("@").first if email.present?
+
+    "이름 미입력"
+  end
+
+  def display_phone
+    phone.presence || "미입력"
+  end
 
   # 상태 전환 메서드
   def advance_to!(new_status)

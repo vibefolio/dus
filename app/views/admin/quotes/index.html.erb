@@ -44,7 +44,7 @@
         <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: var(--space-4); padding-left: var(--space-8);">
           <div>
             <h3 style="font-size: var(--text-xl); font-weight: 700; margin-bottom: var(--space-2);">
-              <%= quote.contact_name %>
+              <%= quote.display_name %>
             </h3>
             <% if quote.company_name.present? %>
               <p style="color: var(--color-gray-600); font-size: var(--text-sm);">
@@ -65,7 +65,7 @@
             </div>
             <div>
               <p style="font-size: var(--text-xs); color: var(--color-gray-500); margin-bottom: var(--space-1);">연락처</p>
-              <p style="font-size: var(--text-sm); color: var(--color-gray-700);"><%= quote.phone %></p>
+              <p style="font-size: var(--text-sm); color: var(--color-gray-700);"><%= quote.display_phone %></p>
             </div>
           </div>
 

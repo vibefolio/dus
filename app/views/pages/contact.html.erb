@@ -100,8 +100,8 @@
               
               <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
                 <div>
-                  <label class="block text-sm font-bold text-gray-700 mb-2">담당자명 *</label>
-                  <%= text_field_tag "quote[contact_name]", nil, class: "w-full px-4 py-3.5 rounded-xl bg-gray-50 border border-gray-200 focus:border-emerald-500 focus:ring-2 focus:ring-emerald-100 transition outline-none", placeholder: "홍길동", required: true %>
+                  <label class="block text-sm font-bold text-gray-700 mb-2">담당자명 <span class="font-medium text-gray-400">(선택)</span></label>
+                  <%= text_field_tag "quote[contact_name]", nil, class: "w-full px-4 py-3.5 rounded-xl bg-gray-50 border border-gray-200 focus:border-emerald-500 focus:ring-2 focus:ring-emerald-100 transition outline-none", placeholder: "홍길동" %>
                 </div>
                 <div>
                   <label class="block text-sm font-bold text-gray-700 mb-2">회사명</label>
@@ -120,8 +120,8 @@
               </div>
               
               <div>
-                <label class="block text-sm font-bold text-gray-700 mb-2">연락처 *</label>
-                <%= text_field_tag "quote[phone]", nil, class: "w-full px-4 py-3.5 rounded-xl bg-gray-50 border border-gray-200 focus:border-emerald-500 focus:ring-2 focus:ring-emerald-100 transition outline-none", placeholder: "010-0000-0000", required: true %>
+                <label class="block text-sm font-bold text-gray-700 mb-2">연락처 <span class="font-medium text-gray-400">(선택)</span></label>
+                <%= text_field_tag "quote[phone]", nil, class: "w-full px-4 py-3.5 rounded-xl bg-gray-50 border border-gray-200 focus:border-emerald-500 focus:ring-2 focus:ring-emerald-100 transition outline-none", placeholder: "010-0000-0000", inputmode: "tel" %>
               </div>
 
               <div>
@@ -273,7 +273,7 @@
 
         <!-- 오른쪽: 문의 폼 -->
         <div class="contact-form-col" style="flex: 1; min-width: 0;">
-          <div style="background: white; padding: 40px; border-radius: 24px; border: 1px solid #e5e7eb; box-shadow: 0 4px 24px rgba(0,0,0,0.04);">
+          <div class="contact-form-card" style="background: white; padding: 40px; border-radius: 24px; border: 1px solid #e5e7eb; box-shadow: 0 4px 24px rgba(0,0,0,0.04);">
 
             <%= render "shared/form_errors", record: @quote %>
 
@@ -282,37 +282,52 @@
                 <%= f.text_field :nickname, tabindex: "-1", autocomplete: "off", data: { honeypot_target: "field" } %>
               </div>
 
-              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
-                <div>
-                  <label style="display: block; font-size: 14px; font-weight: 700; color: #374151; margin-bottom: 6px;">담당자 성함 *</label>
-                  <%= f.text_field :contact_name, style: "width: 100%; padding: 12px 16px; border-radius: 12px; border: 1.5px solid #e5e7eb; background: #f9fafb; font-size: 16px; outline: none; transition: border-color 0.2s;", placeholder: "홍길동", required: true %>
-                </div>
-                <div>
-                  <label style="display: block; font-size: 14px; font-weight: 700; color: #374151; margin-bottom: 6px;">연락처 *</label>
-                  <%= f.text_field :phone, style: "width: 100%; padding: 12px 16px; border-radius: 12px; border: 1.5px solid #e5e7eb; background: #f9fafb; font-size: 16px; outline: none;", placeholder: "010-0000-0000", required: true %>
-                </div>
-              </div>
-
+              <%# 1단계는 이메일 + 프로젝트 내용 2개만 필수. 나머지는 접어 두고 선택 입력으로 둔다.
+                  필수 항목이 5개면 이탈이 크고, 상세 정보는 첫 회신 때 확보하면 된다 (2026-08-08). %>
               <div style="margin-bottom: 16px;">
                 <label style="display: block; font-size: 14px; font-weight: 700; color: #374151; margin-bottom: 6px;">이메일 *</label>
                 <%= f.email_field :email, style: "width: 100%; padding: 12px 16px; border-radius: 12px; border: 1.5px solid #e5e7eb; background: #f9fafb; font-size: 16px; outline: none;", placeholder: "contact@example.com", required: true %>
-              </div>
-
-              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
-                <div>
-                  <label style="display: block; font-size: 14px; font-weight: 700; color: #374151; margin-bottom: 6px;">회사/단체명</label>
-                  <%= f.text_field :company_name, style: "width: 100%; padding: 12px 16px; border-radius: 12px; border: 1.5px solid #e5e7eb; background: #f9fafb; font-size: 16px; outline: none;", placeholder: "(주)디어스" %>
-                </div>
-                <div>
-                  <label style="display: block; font-size: 14px; font-weight: 700; color: #374151; margin-bottom: 6px;">프로젝트 유형 *</label>
-                  <%= f.select :project_type, ["웹사이트 제작", "쇼핑몰 제작", "앱 개발", "유지보수", "기타"], { prompt: "선택" }, style: "width: 100%; padding: 12px 16px; border-radius: 12px; border: 1.5px solid #e5e7eb; background: #f9fafb; font-size: 16px; outline: none; cursor: pointer;", required: true %>
-                </div>
               </div>
 
               <div style="margin-bottom: 16px;">
                 <label style="display: block; font-size: 14px; font-weight: 700; color: #374151; margin-bottom: 6px;">프로젝트 내용 *</label>
                 <%= f.text_area :message, style: "width: 100%; padding: 12px 16px; border-radius: 12px; border: 1.5px solid #e5e7eb; background: #f9fafb; font-size: 16px; outline: none; resize: vertical; min-height: 100px;", rows: 4, placeholder: "프로젝트의 목적, 주요 기능 등을 자유롭게 적어주세요.", required: true %>
               </div>
+
+              <details class="contact-optional" style="margin-bottom: 16px; border: 1.5px solid #e5e7eb; border-radius: 12px; background: #f9fafb;">
+                <summary style="padding: 14px 16px; cursor: pointer; font-size: 14px; font-weight: 700; color: #374151; list-style: none; display: flex; align-items: center; justify-content: space-between; gap: 8px;">
+                  <span>연락처·회사 정보 추가로 남기기 <span style="font-weight: 500; color: #6b7280;">(선택)</span></span>
+                  <svg class="contact-optional-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#6b7280" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+                </summary>
+
+                <div style="padding: 0 16px 16px;">
+                  <p style="font-size: 14px; color: #6b7280; margin-bottom: 14px; line-height: 1.6;">
+                    남겨주시면 더 정확한 상담이 가능해요. 안 적으셔도 이메일로 연락드립니다.
+                  </p>
+
+                  <div class="grid grid-cols-1 sm:grid-cols-2 gap-4" style="margin-bottom: 14px;">
+                    <div>
+                      <label style="display: block; font-size: 14px; font-weight: 700; color: #374151; margin-bottom: 6px;">담당자 성함</label>
+                      <%= f.text_field :contact_name, style: "width: 100%; padding: 12px 16px; border-radius: 12px; border: 1.5px solid #e5e7eb; background: white; font-size: 16px; outline: none; transition: border-color 0.2s;", placeholder: "홍길동" %>
+                    </div>
+                    <div>
+                      <label style="display: block; font-size: 14px; font-weight: 700; color: #374151; margin-bottom: 6px;">연락처</label>
+                      <%= f.text_field :phone, style: "width: 100%; padding: 12px 16px; border-radius: 12px; border: 1.5px solid #e5e7eb; background: white; font-size: 16px; outline: none;", placeholder: "010-0000-0000", inputmode: "tel" %>
+                    </div>
+                  </div>
+
+                  <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                      <label style="display: block; font-size: 14px; font-weight: 700; color: #374151; margin-bottom: 6px;">회사/단체명</label>
+                      <%= f.text_field :company_name, style: "width: 100%; padding: 12px 16px; border-radius: 12px; border: 1.5px solid #e5e7eb; background: white; font-size: 16px; outline: none;", placeholder: "(주)디어스" %>
+                    </div>
+                    <div>
+                      <label style="display: block; font-size: 14px; font-weight: 700; color: #374151; margin-bottom: 6px;">프로젝트 유형</label>
+                      <%= f.select :project_type, ["웹사이트 제작", "쇼핑몰 제작", "앱 개발", "유지보수", "기타"], { prompt: "선택" }, style: "width: 100%; padding: 12px 16px; border-radius: 12px; border: 1.5px solid #e5e7eb; background: white; font-size: 16px; outline: none; cursor: pointer;" %>
+                    </div>
+                  </div>
+                </div>
+              </details>
 
               <button type="submit" id="submit-btn" style="width: 100%; padding: 16px; background: linear-gradient(135deg, #00a859, #00d670); color: white; font-weight: 800; border: none; border-radius: 14px; cursor: pointer; font-size: 16px; transition: all 0.3s; box-shadow: 0 4px 16px rgba(0,168,89,0.2);" class="contact-submit-btn">
                 <span id="btn-text">무료 상담 신청하기</span>
@@ -383,16 +398,25 @@
     .contact-submit-btn:active {
       transform: scale(0.98);
     }
+    /* 선택 정보 접이식 영역 */
+    .contact-optional > summary::-webkit-details-marker { display: none; }
+    .contact-optional > summary::marker { content: ""; }
+    .contact-optional > summary:hover { background: #f3f4f6; border-radius: 12px; }
+    .contact-optional[open] > summary .contact-optional-arrow { transform: rotate(180deg); }
+    .contact-optional-arrow { transition: transform 0.2s ease; flex-shrink: 0; }
+
     @media (max-width: 768px) {
       section > .container > div[style*="grid-template-columns: repeat(3"] {
         grid-template-columns: 1fr !important;
       }
       /* Contact layout: info cards section */
       .contact-info-grid { grid-template-columns: 1fr !important; gap: 16px !important; }
-      /* Sticky sidebar becomes normal on mobile */
-      .sticky { position: static !important; }
-      /* Form padding */
-      .bg-white.p-8 { padding: 20px !important; }
+      /* 모바일에서 sticky 해제.
+         이전에는 Tailwind 클래스 `.sticky` 를 노렸는데 실제 요소는 인라인 position:sticky 라
+         규칙이 적용되지 않았다 → 클래스로 직접 지정 (2026-08-08 수정) */
+      .contact-info-col { position: static !important; top: auto !important; }
+      /* 폼 카드 패딩 축소. 마찬가지로 `.bg-white.p-8` 은 인라인 스타일 요소에 안 먹었다 */
+      .contact-form-card { padding: 20px !important; }
       section[style*="padding: 96px"] { padding: 56px 0 !important; }
     }
   </style>

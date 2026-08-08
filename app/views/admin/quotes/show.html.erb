@@ -7,7 +7,7 @@
   <div class="card" style="padding: var(--space-8);">
     <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: var(--space-6); padding-bottom: var(--space-6); border-bottom: 2px solid var(--color-gray-200);">
       <div>
-        <h2 style="font-size: var(--text-3xl); margin-bottom: var(--space-2);"><%= @quote.contact_name %></h2>
+        <h2 style="font-size: var(--text-3xl); margin-bottom: var(--space-2);"><%= @quote.display_name %></h2>
         <% if @quote.company_name.present? %>
           <p style="color: var(--color-gray-600); font-size: var(--text-lg);"><%= @quote.company_name %></p>
         <% end %>
@@ -32,7 +32,7 @@
           </div>
           <div>
             <p style="font-size: var(--text-xs); color: var(--color-gray-500); margin-bottom: var(--space-1);">전화번호</p>
-            <p style="font-size: var(--text-base); color: var(--color-gray-900);"><%= @quote.phone %></p>
+            <p style="font-size: var(--text-base); color: var(--color-gray-900);"><%= @quote.display_phone %></p>
           </div>
         </div>
       </div>
