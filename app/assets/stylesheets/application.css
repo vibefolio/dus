@@ -192,6 +192,13 @@ a:hover {
   padding: 0;
 }
 
+/* 약관·개인정보처리방침처럼 긴 본문을 읽는 페이지용.
+   .container(70%)만 쓰면 넓은 화면에서 한 줄이 너무 길어져 읽기 힘들다.
+   privacy/terms 가 .container-sm 을 쓰고 있었는데 정의가 없어 동작하지 않았다 (2026-08-08 추가). */
+.container-sm {
+  max-width: 800px;
+}
+
 .container-fluid {
   width: 100%;
   padding: 0 var(--space-6);
