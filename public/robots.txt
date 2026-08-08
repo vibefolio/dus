@@ -1,5 +1,16 @@
+# 이 정적 파일이 실제로 서빙된다.
+# config/routes.rb 의 `get '/robots.txt' => pages#robots` 는 정적 파일에 가려져 동작하지 않는다.
+# 내용을 바꿀 때는 이 파일과 PagesController#robots 를 함께 고칠 것 (2026-08-08 확인).
+
 User-agent: *
 Allow: /
+
+# 색인 가치가 없거나 노출되면 안 되는 경로
+Disallow: /admin
+Disallow: /users
+Disallow: /cart
+Disallow: /mypage
+Disallow: /orders
 
 # AI 크롤러 명시적 허용 (AEO/GEO - AI 인용 허용)
 User-agent: GPTBot
