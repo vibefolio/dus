@@ -149,11 +149,17 @@ class PagesController < ApplicationController
 
   # SEO: robots.txt
   def robots
+    # /templates/* 는 업종별 데모 페이지다. 색인을 막으면 "카페 홈페이지 제작" 같은
+    # 업종 롱테일 검색 유입을 스스로 차단하게 된다 (2026-08-08 허용으로 전환).
+    # 로그인·주문·마이페이지처럼 색인 가치가 없거나 노출되면 안 되는 경로만 막는다.
     robots_txt = <<~TEXT
       User-agent: *
       Allow: /
       Disallow: /admin
-      Disallow: /templates/*
+      Disallow: /users
+      Disallow: /cart
+      Disallow: /mypage
+      Disallow: /orders
       Sitemap: #{request.base_url}/sitemap.xml
     TEXT
     render plain: robots_txt
