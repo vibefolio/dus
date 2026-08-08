@@ -28,7 +28,7 @@
 
         <div style="margin-bottom: 20px;">
           <%= f.label :email, "이메일", style: "display: block; font-size: 14px; font-weight: 600; color: #374151; margin-bottom: 8px;" %>
-          <%= f.email_field :email, autofocus: true, autocomplete: "email", style: "width: 100%; padding: 14px 16px; border: 1px solid #e5e7eb; border-radius: 14px; font-size: 15px; background: #f0f0f0; cursor: not-allowed; font-family: var(--font-display);", disabled: false %>
+          <%= f.email_field :email, autofocus: true, autocomplete: "email", style: "width: 100%; padding: 14px 16px; border: 1px solid #e5e7eb; border-radius: 14px; font-size: 16px; background: #f0f0f0; cursor: not-allowed; font-family: var(--font-display);", disabled: false %>
         </div>
 
         <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
@@ -39,7 +39,7 @@
 
         <div style="margin-bottom: 20px;">
           <%= f.label :password, "새 비밀번호", style: "display: block; font-size: 14px; font-weight: 600; color: #374151; margin-bottom: 8px;" %>
-          <%= f.password_field :password, autocomplete: "new-password", placeholder: "변경하지 않으려면 비워두세요", style: "width: 100%; padding: 14px 16px; border: 1px solid #e5e7eb; border-radius: 14px; font-size: 15px; background: #f9fafb; transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); font-family: var(--font-display);", class: "form-input" %>
+          <%= f.password_field :password, autocomplete: "new-password", placeholder: "변경하지 않으려면 비워두세요", style: "width: 100%; padding: 14px 16px; border: 1px solid #e5e7eb; border-radius: 14px; font-size: 16px; background: #f9fafb; transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); font-family: var(--font-display);", class: "form-input" %>
           <% if @minimum_password_length %>
             <p style="font-size: 12px; color: #9ca3af; margin-top: 6px;">* 최소 <%= @minimum_password_length %>자 이상</p>
           <% end %>
@@ -47,12 +47,12 @@
 
         <div style="margin-bottom: 20px;">
           <%= f.label :password_confirmation, "새 비밀번호 확인", style: "display: block; font-size: 14px; font-weight: 600; color: #374151; margin-bottom: 8px;" %>
-          <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: "새 비밀번호를 다시 입력해주세요", style: "width: 100%; padding: 14px 16px; border: 1px solid #e5e7eb; border-radius: 14px; font-size: 15px; background: #f9fafb; transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); font-family: var(--font-display);", class: "form-input" %>
+          <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: "새 비밀번호를 다시 입력해주세요", style: "width: 100%; padding: 14px 16px; border: 1px solid #e5e7eb; border-radius: 14px; font-size: 16px; background: #f9fafb; transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); font-family: var(--font-display);", class: "form-input" %>
         </div>
 
         <div style="margin-bottom: 30px;">
           <%= f.label :current_password, "현재 비밀번호", style: "display: block; font-size: 14px; font-weight: 600; color: #374151; margin-bottom: 8px;" %>
-          <%= f.password_field :current_password, autocomplete: "current-password", placeholder: "변경을 확인하려면 입력해주세요", style: "width: 100%; padding: 14px 16px; border: 1px solid #e5e7eb; border-radius: 14px; font-size: 15px; background: #f9fafb; transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); font-family: var(--font-display);", class: "form-input" %>
+          <%= f.password_field :current_password, autocomplete: "current-password", placeholder: "변경을 확인하려면 입력해주세요", style: "width: 100%; padding: 14px 16px; border: 1px solid #e5e7eb; border-radius: 14px; font-size: 16px; background: #f9fafb; transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); font-family: var(--font-display);", class: "form-input" %>
         </div>
 
         <div style="margin-bottom: 16px;">

@@ -28,7 +28,7 @@
 
         <div style="margin-bottom: 30px;">
           <%= f.label :email, "이메일 주소", style: "display: block; font-size: 14px; font-weight: 600; color: #374151; margin-bottom: 8px;" %>
-          <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "example@email.com", value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email), style: "width: 100%; padding: 14px 16px; border: 1px solid #e5e7eb; border-radius: 14px; font-size: 15px; background: #f9fafb; transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); font-family: var(--font-display);", class: "form-input" %>
+          <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "example@email.com", value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email), style: "width: 100%; padding: 14px 16px; border: 1px solid #e5e7eb; border-radius: 14px; font-size: 16px; background: #f9fafb; transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); font-family: var(--font-display);", class: "form-input" %>
         </div>
 
         <div style="margin-bottom: 24px;">

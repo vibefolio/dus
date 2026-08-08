@@ -284,6 +284,14 @@ Devise.setup do |config|
                   ENV['KAKAO_CLIENT_SECRET'],
                   scope: 'profile_nickname,profile_image,account_email'
 
+  # 네이버는 키가 있을 때만 등록한다. 키 없이 등록하면 미들웨어가 붙어도 콜백에서 실패하고,
+  # 등록을 아예 빼면 뷰의 네이버 버튼이 죽은 링크가 된다 (2026-08-08 발견).
+  if ENV['NAVER_CLIENT_ID'].present? && ENV['NAVER_CLIENT_SECRET'].present?
+    config.omniauth :naver,
+                    ENV['NAVER_CLIENT_ID'],
+                    ENV['NAVER_CLIENT_SECRET']
+  end
+
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or
   # change the failure app, you can configure them inside the config.warden block.
