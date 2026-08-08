@@ -84,8 +84,9 @@ class PagesController < ApplicationController
       render :majortax, status: :unprocessable_entity
     end
   rescue => e
+    # 저장에 실패했는데 완료라고 안내하면 상담 신청이 조용히 유실된다. 사실대로 알리고 직접 연락 경로를 준다.
     Rails.logger.error "[MajortaxQuote] #{e.message}"
-    flash[:notice] = "상담 신청이 완료되었습니다."
+    flash[:alert] = "일시적인 오류로 상담 신청에 실패했어요. 번거로우시겠지만 duscontactus@gmail.com 으로 보내주시면 바로 확인하겠습니다."
     redirect_to majortax_path
   end
 
@@ -136,10 +137,12 @@ class PagesController < ApplicationController
         send_quote_emails(@fallback_quote)
         flash[:notice] = "문의가 접수되었습니다. (시스템 점검 중이나 메일로 정상 접수되었습니다.)"
       rescue => mail_e
+        # DB·메일 양쪽 다 실패 = 문의가 어디에도 남지 않는다.
+        # 접수됐다고 안내하면 고객은 기다리기만 하고 리드는 조용히 사라진다. 사실대로 알리고 직접 연락 경로를 준다.
         Rails.logger.error "Email delivery also failed: #{mail_e.message}"
-        flash[:notice] = "문의가 접수되었습니다. (시스템 점검 중으로 확인 후 연락드리겠습니다.)"
+        flash[:alert] = "일시적인 오류로 문의 접수에 실패했어요. 번거로우시겠지만 duscontactus@gmail.com 으로 보내주시면 바로 확인하겠습니다."
       end
-      
+
       redirect_to contact_path
     end
   end
