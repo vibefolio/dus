@@ -11,8 +11,8 @@
   /* 공통 chrome을 숨겼으므로 레이아웃 main의 기본 상단 여백(64px)을 제거하고 자체 nav 높이(68px)를 쓴다 */
   main { padding-top: 0 !important; }
 
-  .mxt-chip { display: inline-flex; align-items: center; gap: 6px; padding: 6px 14px; background: #e8f5ee; border-radius: 50px; font-size: 13px; font-weight: 700; color: #00a859; }
-  .mxt-section-label { font-size: 13px; font-weight: 700; color: #00a859; letter-spacing: 0.06em; text-transform: uppercase; }
+  .mxt-chip { display: inline-flex; align-items: center; gap: 6px; padding: 6px 14px; background: #e8f5ee; border-radius: 50px; font-size: 14px; font-weight: 700; color: #00a859; }
+  .mxt-section-label { font-size: 14px; font-weight: 700; color: #00a859; letter-spacing: 0.06em; text-transform: uppercase; }
 
   /* 토스 카드 */
   .mxt-card { background: #fff; border-radius: 20px; border: 1px solid #eaecef; }
@@ -37,7 +37,7 @@
   .pkg-card { background: #fff; border: 1.5px solid #eaecef; border-radius: 20px; padding: 32px; transition: all 0.2s; }
   .pkg-card:hover { border-color: #00a859; box-shadow: 0 8px 32px rgba(0,168,89,0.1); transform: translateY(-4px); }
   .pkg-card.featured { border: 2px solid #00a859; position: relative; }
-  .pkg-badge { position: absolute; top: -14px; left: 50%; transform: translateX(-50%); background: #00a859; color: white; padding: 4px 18px; border-radius: 50px; font-size: 12px; font-weight: 800; white-space: nowrap; }
+  .pkg-badge { position: absolute; top: -14px; left: 50%; transform: translateX(-50%); background: #00a859; color: white; padding: 4px 18px; border-radius: 50px; font-size: 14px; font-weight: 800; white-space: nowrap; }
 
   /* 리뷰 카드 */
   .review-card { background: #fff; border: 1px solid #eaecef; border-radius: 16px; padding: 28px; }
@@ -55,7 +55,7 @@
   /* 토스 스텝 바 */
   .toss-step-bar { display: flex; align-items: center; gap: 0; }
   .toss-step-item { display: flex; align-items: center; gap: 8px; }
-  .toss-step-dot { width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 800; flex-shrink: 0; }
+  .toss-step-dot { width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 800; flex-shrink: 0; }
   .toss-step-dot.done { background: #00a859; color: white; }
   .toss-step-dot.current { background: #191f28; color: white; }
   .toss-step-dot.upcoming { background: #eaecef; color: #8b95a1; }
@@ -69,7 +69,7 @@
     .hide-mobile { display: none !important; }
     .examples-grid { grid-template-columns: repeat(2,1fr) !important; }
     .pkg-card { padding: 24px !important; }
-    .mxt-tab { padding: 10px 16px !important; font-size: 13px !important; }
+    .mxt-tab { padding: 10px 16px !important; font-size: 14px !important; }
     .mxt-step-grid { grid-template-columns: 1fr !important; }
     .mxt-benefit-grid { grid-template-columns: 1fr !important; }
   }
@@ -117,7 +117,7 @@
       <% [["D+14","사이트 오픈"],["저렴한","초기 개발비"],["올인원","세무+웹 통합"]].each do |val, label| %>
         <div style="background:#fff;padding:24px 12px;text-align:center;">
           <div style="font-size:24px;font-weight:900;color:#191f28;letter-spacing:-0.03em;"><%= val %></div>
-          <div style="font-size:12px;color:#8b95a1;margin-top:4px;"><%= label %></div>
+          <div style="font-size:14px;color:#8b95a1;margin-top:4px;"><%= label %></div>
         </div>
       <% end %>
     </div>
@@ -159,7 +159,7 @@
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#00a859" stroke-width="2.5" style="margin-top:1px;flex-shrink:0;"><polyline points="20 6 9 17 4 12"/></svg>
             <div>
               <div style="font-weight:700;color:#191f28;font-size:15px;"><%= title %></div>
-              <div style="font-size:13px;color:#8b95a1;margin-top:2px;"><%= desc %></div>
+              <div style="font-size:14px;color:#8b95a1;margin-top:2px;"><%= desc %></div>
             </div>
           </li>
         <% end %>
@@ -185,15 +185,15 @@
     <div style="display:flex;justify-content:center;margin-bottom:40px;">
       <div style="display:inline-flex;background:#e8eaed;border-radius:16px;padding:6px;gap:6px;flex-wrap:wrap;justify-content:center;">
         <button onclick="switchPath('dusCustomer')" class="mxt-tab" id="path-tab-dusCustomer" style="padding:14px 28px;border-radius:12px;border:none;font-size:16px;font-weight:800;cursor:pointer;background:#fff;color:#191f28;box-shadow:0 2px 8px rgba(0,0,0,0.08);white-space:nowrap;display:flex;align-items:center;gap:10px;letter-spacing:-0.02em;">
-          <span style="width:28px;height:28px;border-radius:50%;background:#00a859;color:white;font-size:13px;font-weight:900;display:inline-flex;align-items:center;justify-content:center;">1</span>
+          <span style="width:28px;height:28px;border-radius:50%;background:#00a859;color:white;font-size:14px;font-weight:900;display:inline-flex;align-items:center;justify-content:center;">1</span>
           디어스 고객 + 세무
         </button>
         <button onclick="switchPath('taxCustomer')" class="mxt-tab" id="path-tab-taxCustomer" style="padding:14px 28px;border-radius:12px;border:none;font-size:16px;font-weight:800;cursor:pointer;background:transparent;color:#8b95a1;white-space:nowrap;display:flex;align-items:center;gap:10px;letter-spacing:-0.02em;">
-          <span style="width:28px;height:28px;border-radius:50%;background:#8b95a1;color:white;font-size:13px;font-weight:900;display:inline-flex;align-items:center;justify-content:center;">2</span>
+          <span style="width:28px;height:28px;border-radius:50%;background:#8b95a1;color:white;font-size:14px;font-weight:900;display:inline-flex;align-items:center;justify-content:center;">2</span>
           메이저텍스 고객 + 홈페이지
         </button>
         <button onclick="switchPath('bothNew')" class="mxt-tab" id="path-tab-bothNew" style="padding:14px 28px;border-radius:12px;border:none;font-size:16px;font-weight:800;cursor:pointer;background:transparent;color:#8b95a1;white-space:nowrap;display:flex;align-items:center;gap:10px;letter-spacing:-0.02em;">
-          <span style="width:28px;height:28px;border-radius:50%;background:#8b95a1;color:white;font-size:13px;font-weight:900;display:inline-flex;align-items:center;justify-content:center;">3</span>
+          <span style="width:28px;height:28px;border-radius:50%;background:#8b95a1;color:white;font-size:14px;font-weight:900;display:inline-flex;align-items:center;justify-content:center;">3</span>
           둘 다 처음이에요
         </button>
       </div>
@@ -201,7 +201,7 @@
 
     <!-- ── 경로 A: 디어스 기존 고객 → 세무기장 추가 ── -->
     <div id="path-dusCustomer">
-      <div style="text-align:center;margin-bottom:24px;padding:12px 20px;background:#f0f6ff;border:1px solid #d4e5ff;border-radius:10px;font-size:13px;color:#1b4eb5;font-weight:600;">
+      <div style="text-align:center;margin-bottom:24px;padding:12px 20px;background:#f0f6ff;border:1px solid #d4e5ff;border-radius:10px;font-size:14px;color:#1b4eb5;font-weight:600;">
         이미 디어스를 이용 중이시라면, 기존 요금제에 세무기장만 추가하세요
       </div>
       <div class="pkg-grid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px;align-items:start;">
@@ -213,22 +213,22 @@
         ].each do |name, target, init, web, tax, total, features, featured| %>
           <div class="pkg-card<%= ' featured' if featured %>" style="<%= 'padding-top:44px;' if featured %>">
             <% if featured %><div class="pkg-badge">가장 많이 선택</div><% end %>
-            <div style="font-size:12px;font-weight:800;color:<%= featured ? '#00a859' : '#8b95a1' %>;letter-spacing:0.08em;margin-bottom:6px;"><%= name %></div>
+            <div style="font-size:14px;font-weight:800;color:<%= featured ? '#00a859' : '#8b95a1' %>;letter-spacing:0.08em;margin-bottom:6px;"><%= name %></div>
             <div style="font-size:15px;font-weight:800;color:#191f28;margin-bottom:16px;"><%= target %></div>
             <div style="padding:10px 16px;background:#f8f9fa;border-radius:12px;margin-bottom:8px;">
-              <div style="font-size:11px;font-weight:700;color:#8b95a1;margin-bottom:2px;">기존 홈페이지 관리</div>
+              <div style="font-size:14px;font-weight:700;color:#8b95a1;margin-bottom:2px;">기존 홈페이지 관리</div>
               <div style="font-size:18px;font-weight:900;color:#191f28;">월 <%= web %></div>
             </div>
             <div style="padding:10px 16px;background:#f0faf5;border-radius:12px;margin-bottom:8px;border:<%= featured ? '1.5px solid #00a859' : '1px solid #c8ecd8' %>;">
-              <div style="font-size:11px;font-weight:700;color:#00a859;margin-bottom:2px;">+ 세무기장 추가</div>
+              <div style="font-size:14px;font-weight:700;color:#00a859;margin-bottom:2px;">+ 세무기장 추가</div>
               <div style="font-size:18px;font-weight:900;color:#191f28;">월 <%= tax %></div>
             </div>
             <div style="padding:12px 16px;background:#191f28;border-radius:12px;margin-bottom:20px;text-align:center;">
-              <div style="font-size:11px;font-weight:700;color:rgba(255,255,255,0.6);margin-bottom:2px;">매월 유지관리비</div>
+              <div style="font-size:14px;font-weight:700;color:rgba(255,255,255,0.6);margin-bottom:2px;">매월 유지관리비</div>
               <div style="font-size:22px;font-weight:900;color:white;"><%= total %></div>
             </div>
             <ul style="list-style:none;padding:0;margin:0 0 20px;display:flex;flex-direction:column;gap:7px;">
-              <% features.each do |i| %><li style="display:flex;align-items:center;gap:7px;font-size:13px;color:#4e5968;"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#00a859" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg><%= i %></li><% end %>
+              <% features.each do |i| %><li style="display:flex;align-items:center;gap:7px;font-size:14px;color:#4e5968;"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#00a859" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg><%= i %></li><% end %>
             </ul>
             <a href="#contact" style="display:block;background:<%= featured ? '#00a859' : '#f0faf5' %>;color:<%= featured ? 'white' : '#00a859' %>;text-align:center;padding:13px;border-radius:10px;font-size:14px;font-weight:700;text-decoration:none;<%= 'border:1.5px solid #c8ecd8;' unless featured %>">상담 신청</a>
           </div>
@@ -239,7 +239,7 @@
 
     <!-- ── 경로 B: 메이저텍스 기존 고객 → 홈페이지 추가 ── -->
     <div id="path-taxCustomer" style="display:none;">
-      <div style="text-align:center;margin-bottom:24px;padding:12px 20px;background:#f0faf5;border:1px solid #c8ecd8;border-radius:10px;font-size:13px;color:#008a47;font-weight:600;">
+      <div style="text-align:center;margin-bottom:24px;padding:12px 20px;background:#f0faf5;border:1px solid #c8ecd8;border-radius:10px;font-size:14px;color:#008a47;font-weight:600;">
         기존 세무기장료에 월 2~4만원만 더하면, 전문 홈페이지까지 함께합니다
       </div>
       <div class="pkg-grid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px;align-items:start;">
@@ -251,37 +251,37 @@
         ].each do |name, target, orig_init, disc_init, orig_monthly, disc_monthly, features, featured| %>
           <div class="pkg-card<%= ' featured' if featured %>" style="<%= 'padding-top:44px;' if featured %>">
             <% if featured %><div class="pkg-badge">가장 많이 선택</div><% end %>
-            <div style="font-size:12px;font-weight:800;color:<%= featured ? '#00a859' : '#8b95a1' %>;letter-spacing:0.08em;margin-bottom:6px;"><%= name %></div>
+            <div style="font-size:14px;font-weight:800;color:<%= featured ? '#00a859' : '#8b95a1' %>;letter-spacing:0.08em;margin-bottom:6px;"><%= name %></div>
             <div style="font-size:15px;font-weight:800;color:#191f28;margin-bottom:16px;"><%= target %></div>
             <div style="padding:12px 16px;background:#f8f9fa;border-radius:12px;margin-bottom:8px;">
-              <div style="font-size:11px;font-weight:700;color:#8b95a1;margin-bottom:4px;">초기 개발비 (1회)</div>
+              <div style="font-size:14px;font-weight:700;color:#8b95a1;margin-bottom:4px;">초기 개발비 (1회)</div>
               <div style="display:flex;align-items:baseline;gap:8px;">
                 <span style="font-size:14px;color:#b0b8c1;text-decoration:line-through;"><%= orig_init %></span>
                 <span style="font-size:24px;font-weight:900;color:#191f28;"><%= disc_init %></span>
-                <span style="background:#ff5252;color:white;font-size:10px;font-weight:800;padding:2px 6px;border-radius:4px;">30%↓</span>
+                <span style="background:#ff5252;color:white;font-size:14px;font-weight:800;padding:2px 6px;border-radius:4px;">30%↓</span>
               </div>
             </div>
             <div style="padding:12px 16px;background:#f0faf5;border-radius:12px;margin-bottom:20px;border:<%= featured ? '1.5px solid #00a859' : '1px solid #c8ecd8' %>;">
-              <div style="font-size:11px;font-weight:700;color:#00a859;margin-bottom:4px;">매월 유지관리비</div>
+              <div style="font-size:14px;font-weight:700;color:#00a859;margin-bottom:4px;">매월 유지관리비</div>
               <div style="display:flex;align-items:baseline;gap:8px;">
                 <span style="font-size:14px;color:#b0b8c1;text-decoration:line-through;"><%= orig_monthly %></span>
                 <span style="font-size:24px;font-weight:900;color:#191f28;">월 <%= disc_monthly %></span>
               </div>
             </div>
             <ul style="list-style:none;padding:0;margin:0 0 20px;display:flex;flex-direction:column;gap:7px;">
-              <% features.each do |i| %><li style="display:flex;align-items:center;gap:7px;font-size:13px;color:#4e5968;"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#00a859" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg><%= i %></li><% end %>
+              <% features.each do |i| %><li style="display:flex;align-items:center;gap:7px;font-size:14px;color:#4e5968;"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#00a859" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg><%= i %></li><% end %>
             </ul>
             <a href="#contact" style="display:block;background:<%= featured ? '#00a859' : '#f0faf5' %>;color:<%= featured ? 'white' : '#00a859' %>;text-align:center;padding:13px;border-radius:10px;font-size:14px;font-weight:700;text-decoration:none;<%= 'border:1.5px solid #c8ecd8;' unless featured %>">상담 신청</a>
           </div>
         <% end %>
 
       </div>
-      <div style="text-align:center;margin-top:16px;font-size:13px;color:#8b95a1;">* 기존 세무기장료는 그대로 유지됩니다</div>
+      <div style="text-align:center;margin-top:16px;font-size:14px;color:#8b95a1;">* 기존 세무기장료는 그대로 유지됩니다</div>
     </div>
 
     <!-- ── 경로 C: 둘 다 처음 ── -->
     <div id="path-bothNew" style="display:none;">
-      <div style="text-align:center;margin-bottom:24px;padding:12px 20px;background:#fffbeb;border:1px solid #fde68a;border-radius:10px;font-size:13px;color:#92400e;font-weight:600;">
+      <div style="text-align:center;margin-bottom:24px;padding:12px 20px;background:#fffbeb;border:1px solid #fde68a;border-radius:10px;font-size:14px;color:#92400e;font-weight:600;">
         세무기장 + 홈페이지를 동시에 시작하면 초기 개발비 30% + 매월 유지관리비 최대 3만원 할인!
       </div>
       <div class="pkg-grid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px;align-items:start;">
@@ -293,28 +293,28 @@
         ].each do |name, target, init, tax, web, total, features, featured| %>
           <div class="pkg-card<%= ' featured' if featured %>" style="<%= 'padding-top:44px;' if featured %>">
             <% if featured %><div class="pkg-badge">창업자 추천</div><% end %>
-            <div style="font-size:12px;font-weight:800;color:<%= featured ? '#00a859' : '#8b95a1' %>;letter-spacing:0.08em;margin-bottom:6px;"><%= name %></div>
+            <div style="font-size:14px;font-weight:800;color:<%= featured ? '#00a859' : '#8b95a1' %>;letter-spacing:0.08em;margin-bottom:6px;"><%= name %></div>
             <div style="font-size:15px;font-weight:800;color:#191f28;margin-bottom:16px;"><%= target %></div>
             <div style="padding:10px 16px;background:#f8f9fa;border-radius:12px;margin-bottom:8px;">
-              <div style="font-size:11px;font-weight:700;color:#8b95a1;margin-bottom:2px;">초기 개발비 (1회) <span style="background:#ff5252;color:white;font-size:9px;font-weight:800;padding:1px 5px;border-radius:3px;">30%↓</span></div>
+              <div style="font-size:14px;font-weight:700;color:#8b95a1;margin-bottom:2px;">초기 개발비 (1회) <span style="background:#ff5252;color:white;font-size:14px;font-weight:800;padding:1px 5px;border-radius:3px;">30%↓</span></div>
               <div style="font-size:22px;font-weight:900;color:#191f28;"><%= init %></div>
             </div>
             <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:8px;">
               <div style="padding:8px 12px;background:#f0faf5;border-radius:10px;border:1px solid #c8ecd8;">
-                <div style="font-size:10px;font-weight:700;color:#00a859;">세무기장</div>
+                <div style="font-size:14px;font-weight:700;color:#00a859;">세무기장</div>
                 <div style="font-size:14px;font-weight:900;color:#191f28;"><%= tax %></div>
               </div>
               <div style="padding:8px 12px;background:#f0f6ff;border-radius:10px;border:1px solid #d4e5ff;">
-                <div style="font-size:10px;font-weight:700;color:#3182f6;">홈페이지</div>
+                <div style="font-size:14px;font-weight:700;color:#3182f6;">홈페이지</div>
                 <div style="font-size:14px;font-weight:900;color:#191f28;">월 <%= web %></div>
               </div>
             </div>
             <div style="padding:12px 16px;background:#191f28;border-radius:12px;margin-bottom:20px;text-align:center;">
-              <div style="font-size:11px;font-weight:700;color:rgba(255,255,255,0.6);margin-bottom:2px;">매월 유지관리비</div>
+              <div style="font-size:14px;font-weight:700;color:rgba(255,255,255,0.6);margin-bottom:2px;">매월 유지관리비</div>
               <div style="font-size:22px;font-weight:900;color:white;"><%= total %></div>
             </div>
             <ul style="list-style:none;padding:0;margin:0 0 20px;display:flex;flex-direction:column;gap:7px;">
-              <% features.each do |i| %><li style="display:flex;align-items:center;gap:7px;font-size:13px;color:#4e5968;"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#00a859" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg><%= i %></li><% end %>
+              <% features.each do |i| %><li style="display:flex;align-items:center;gap:7px;font-size:14px;color:#4e5968;"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#00a859" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg><%= i %></li><% end %>
             </ul>
             <a href="#contact" style="display:block;background:<%= featured ? '#00a859' : '#f0faf5' %>;color:<%= featured ? 'white' : '#00a859' %>;text-align:center;padding:13px;border-radius:10px;font-size:14px;font-weight:700;text-decoration:none;<%= 'border:1.5px solid #c8ecd8;' unless featured %>">상담 신청</a>
           </div>
@@ -326,7 +326,7 @@
     <!-- 안내 문구 -->
     <div style="margin-top:24px;padding:14px 20px;background:#fff;border-radius:12px;border:1px solid #eaecef;display:flex;align-items:flex-start;gap:10px;">
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#8b95a1" stroke-width="2" style="margin-top:1px;flex-shrink:0;"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
-      <p style="font-size:13px;color:#8b95a1;margin:0;line-height:1.8;">
+      <p style="font-size:14px;color:#8b95a1;margin:0;line-height:1.8;">
         · 세무기장료는 VAT 별도이며, 매출 규모·업종·직원 수에 따라 달라질 수 있습니다.<br>
         · 개인사업자 기장료 월 8만원, 법인 기장료 월 12만원은 기본 기장 기준입니다.<br>
         · 직원 급여 처리·4대보험 신고 등 인건비 대행 업무는 추가 비용이 발생할 수 있습니다.<br>
@@ -375,8 +375,8 @@
       <div class="toss-step-item">
         <div style="text-align:center;">
           <div class="toss-step-dot <%= idx == 0 ? 'current' : 'upcoming' %>"><%= num %></div>
-          <div style="font-size:13px;font-weight:700;color:#191f28;margin-top:6px;white-space:nowrap;"><%= label %></div>
-          <div style="font-size:11px;color:#8b95a1;margin-top:2px;"><%= day %></div>
+          <div style="font-size:14px;font-weight:700;color:#191f28;margin-top:6px;white-space:nowrap;"><%= label %></div>
+          <div style="font-size:14px;color:#8b95a1;margin-top:2px;"><%= day %></div>
         </div>
       </div>
       <% if idx < 3 %>
@@ -426,7 +426,7 @@
           </div>
           <div style="padding:14px;">
             <div style="font-size:14px;font-weight:800;color:#191f28;margin-bottom:3px;"><%= portfolio.title %></div>
-            <div style="font-size:12px;color:#8b95a1;line-height:1.4;word-break:keep-all;"><%= truncate(portfolio.description.to_plain_text, length: 30) %></div>
+            <div style="font-size:14px;color:#8b95a1;line-height:1.4;word-break:keep-all;"><%= truncate(portfolio.description.to_plain_text, length: 30) %></div>
           </div>
         </a>
       <% end %>
@@ -468,18 +468,18 @@
     <!-- 파트너십 근거 -->
     <div class="mxt-card" style="margin-top:16px;padding:28px;display:flex;align-items:center;gap:24px;flex-wrap:wrap;">
       <div style="flex:1;min-width:240px;">
-        <div style="font-size:13px;font-weight:700;color:#00a859;margin-bottom:8px;">파트너십 소개</div>
+        <div style="font-size:14px;font-weight:700;color:#00a859;margin-bottom:8px;">파트너십 소개</div>
         <div style="font-size:16px;font-weight:800;color:#191f28;margin-bottom:8px;line-height:1.4;">메이저텍스 × 디어스<br>공식 파트너십</div>
         <div style="font-size:14px;color:#6b7684;line-height:1.7;word-break:keep-all;">메이저텍스의 세무 전문성과 디어스의 웹 제작 노하우를 결합해, 소상공인이 두 곳을 따로 관리하는 번거로움을 줄이고자 협약을 맺었습니다.</div>
       </div>
       <div style="display:flex;align-items:center;gap:16px;flex-shrink:0;">
         <div style="text-align:center;padding:20px 28px;background:#f8f9fa;border-radius:14px;">
-          <div style="font-size:11px;color:#8b95a1;margin-bottom:4px;">세무 전문</div>
+          <div style="font-size:14px;color:#8b95a1;margin-bottom:4px;">세무 전문</div>
           <div style="font-size:15px;font-weight:900;color:#191f28;">메이저텍스</div>
         </div>
         <div style="font-size:22px;color:#c4c9d0;">+</div>
         <div style="text-align:center;padding:20px 28px;background:#f0faf5;border-radius:14px;border:1px solid #c8ecd8;">
-          <div style="font-size:11px;color:#8b95a1;margin-bottom:4px;">웹 제작 전문</div>
+          <div style="font-size:14px;color:#8b95a1;margin-bottom:4px;">웹 제작 전문</div>
           <div style="font-size:15px;font-weight:900;color:#00a859;">디어스</div>
         </div>
       </div>
@@ -521,15 +521,15 @@
             <label style="display:flex;align-items:center;gap:10px;padding:14px;border:1.5px solid #eaecef;border-radius:10px;cursor:pointer;transition:all 0.2s;" id="label-new-customer">
               <%= f.radio_button :project_type, "세무기장+홈페이지 패키지 (신규)", id: "new_customer", style: "accent-color:#3182f6;width:16px;height:16px;", onchange: "highlightCustomerType('new')" %>
               <div>
-                <div style="font-size:13px;font-weight:700;color:#191f28;">처음 맡겨요</div>
-                <div style="font-size:11px;color:#8b95a1;">신규 고객</div>
+                <div style="font-size:14px;font-weight:700;color:#191f28;">처음 맡겨요</div>
+                <div style="font-size:14px;color:#8b95a1;">신규 고객</div>
               </div>
             </label>
             <label style="display:flex;align-items:center;gap:10px;padding:14px;border:1.5px solid #eaecef;border-radius:10px;cursor:pointer;transition:all 0.2s;" id="label-existing-customer">
               <%= f.radio_button :project_type, "홈페이지 추가 (기존 고객)", id: "existing_customer", style: "accent-color:#00a859;width:16px;height:16px;", onchange: "highlightCustomerType('existing')" %>
               <div>
-                <div style="font-size:13px;font-weight:700;color:#191f28;">기존 고객이에요</div>
-                <div style="font-size:11px;color:#8b95a1;">홈페이지만 추가</div>
+                <div style="font-size:14px;font-weight:700;color:#191f28;">기존 고객이에요</div>
+                <div style="font-size:14px;color:#8b95a1;">홈페이지만 추가</div>
               </div>
             </label>
           </div>
@@ -537,23 +537,23 @@
 
         <div style="display:flex;flex-direction:column;gap:14px;">
           <div>
-            <label style="font-size:13px;font-weight:700;color:#6b7684;display:block;margin-bottom:6px;">이름 *</label>
+            <label style="font-size:14px;font-weight:700;color:#6b7684;display:block;margin-bottom:6px;">이름 *</label>
             <%= f.text_field :contact_name, placeholder: "홍길동", class: "mxt-input", required: true %>
           </div>
           <div>
-            <label style="font-size:13px;font-weight:700;color:#6b7684;display:block;margin-bottom:6px;">연락처 *</label>
+            <label style="font-size:14px;font-weight:700;color:#6b7684;display:block;margin-bottom:6px;">연락처 *</label>
             <%= f.text_field :phone, placeholder: "010-0000-0000", class: "mxt-input", required: true, inputmode: "tel" %>
           </div>
           <div>
-            <label style="font-size:13px;font-weight:700;color:#6b7684;display:block;margin-bottom:6px;">업종</label>
+            <label style="font-size:14px;font-weight:700;color:#6b7684;display:block;margin-bottom:6px;">업종</label>
             <%= f.text_field :company_name, placeholder: "카페, 인테리어, 쇼핑몰 등", class: "mxt-input" %>
           </div>
           <div>
-            <label style="font-size:13px;font-weight:700;color:#6b7684;display:block;margin-bottom:6px;">사업자 구분</label>
+            <label style="font-size:14px;font-weight:700;color:#6b7684;display:block;margin-bottom:6px;">사업자 구분</label>
             <%= f.select :budget, [["선택해주세요", ""], ["개인사업자", "개인사업자"], ["법인사업자", "법인사업자"], ["예비창업자", "예비창업자"]], {}, class: "mxt-input" %>
           </div>
           <div>
-            <label style="font-size:13px;font-weight:700;color:#6b7684;display:block;margin-bottom:6px;">궁금한 점 (선택)</label>
+            <label style="font-size:14px;font-weight:700;color:#6b7684;display:block;margin-bottom:6px;">궁금한 점 (선택)</label>
             <%= f.text_area :message, placeholder: "자유롭게 적어주세요", class: "mxt-input", rows: 3, style: "resize:vertical;" %>
           </div>
         </div>
@@ -564,7 +564,7 @@
           무료 상담 신청하기
         </button>
 
-        <p style="text-align:center;font-size:12px;color:#b0b8c1;margin-top:12px;">
+        <p style="text-align:center;font-size:14px;color:#b0b8c1;margin-top:12px;">
           영업일 기준 24시간 이내 담당자가 연락드립니다
         </p>
       </div>
@@ -572,12 +572,12 @@
 
     <!-- 직접 연락 -->
     <div style="text-align:center;margin-top:24px;padding:20px;background:#f8f9fa;border-radius:12px;">
-      <div style="font-size:13px;color:#8b95a1;margin-bottom:8px;">카카오톡으로 편하게 문의하세요</div>
+      <div style="font-size:14px;color:#8b95a1;margin-bottom:8px;">카카오톡으로 편하게 문의하세요</div>
       <a href="https://pf.kakao.com/_wtCyn/chat" target="_blank" style="display:inline-flex;align-items:center;gap:10px;padding:12px 28px;background:#FEE500;color:#191f28;font-size:16px;font-weight:800;border-radius:12px;text-decoration:none;transition:all 0.2s;" onmouseover="this.style.background='#FDD835'" onmouseout="this.style.background='#FEE500'">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="#191f28"><path d="M12 3C6.48 3 2 6.58 2 10.94c0 2.8 1.86 5.27 4.67 6.67l-1.19 4.39 5.07-3.34c.47.05.96.08 1.45.08 5.52 0 10-3.58 10-7.94S17.52 3 12 3z"/></svg>
         카카오톡 상담
       </a>
-      <div style="font-size:12px;color:#b0b8c1;margin-top:8px;">평일 09:00 – 18:00 · 빠른 응답</div>
+      <div style="font-size:14px;color:#b0b8c1;margin-top:8px;">평일 09:00 – 18:00 · 빠른 응답</div>
     </div>
   </div>
 </section>
@@ -590,11 +590,11 @@
       <span style="color:rgba(255,255,255,0.2);">×</span>
       <span style="font-size:15px;font-weight:800;color:#00a859;">디어스</span>
     </div>
-    <p style="font-size:13px;line-height:1.8;margin:0 0 16px;">
+    <p style="font-size:14px;line-height:1.8;margin:0 0 16px;">
       세무법인 메이저텍스 × 디어스(designd.co.kr) 공식 파트너십<br>
       본 페이지는 양사 협약에 의해 운영됩니다.
     </p>
-    <div style="display:flex;gap:24px;justify-content:center;font-size:13px;">
+    <div style="display:flex;gap:24px;justify-content:center;font-size:14px;">
       <%= link_to "개인정보처리방침", privacy_path, style: "color:rgba(255,255,255,0.4);text-decoration:none;" %>
       <%= link_to "이용약관", terms_path, style: "color:rgba(255,255,255,0.4);text-decoration:none;" %>
       <%= link_to "designd.co.kr", root_path, style: "color:rgba(255,255,255,0.4);text-decoration:none;" %>

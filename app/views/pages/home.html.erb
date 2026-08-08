@@ -259,7 +259,7 @@
             <% elsif portfolio.image_url.present? %>
               <img src="<%= portfolio.image_url %>" alt="<%= portfolio.title %>" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s;" loading="lazy" />
             <% end %>
-            <div style="position: absolute; top: 12px; left: 12px; background: rgba(0, 168, 89, 0.9); padding: 4px 12px; border-radius: 99px; font-size: 11px; font-weight: bold; color: white;">
+            <div style="position: absolute; top: 12px; left: 12px; background: rgba(0, 168, 89, 0.9); padding: 4px 12px; border-radius: 99px; font-size: 14px; font-weight: bold; color: white;">
               운영 중
             </div>
           <% if portfolio.preview_url.present? %>
@@ -276,12 +276,12 @@
             <% end %>
             <div style="display: flex; gap: 8px; flex-wrap: wrap;">
               <% if portfolio.preview_url.present? %>
-                <a href="<%= portfolio.preview_url %>" target="_blank" style="display: inline-flex; align-items: center; gap: 6px; padding: 8px 16px; border: 1px solid #e5e7eb; border-radius: 9999px; font-size: 13px; font-weight: 600; color: #374151; text-decoration: none; transition: all 0.3s;" onmouseover="this.style.borderColor='#00a859'; this.style.color='#00a859'" onmouseout="this.style.borderColor='#e5e7eb'; this.style.color='#374151'">
+                <a href="<%= portfolio.preview_url %>" target="_blank" style="display: inline-flex; align-items: center; gap: 6px; padding: 8px 16px; border: 1px solid #e5e7eb; border-radius: 9999px; font-size: 14px; font-weight: 600; color: #374151; text-decoration: none; transition: all 0.3s;" onmouseover="this.style.borderColor='#00a859'; this.style.color='#00a859'" onmouseout="this.style.borderColor='#e5e7eb'; this.style.color='#374151'">
                   사이트 방문
                   <svg width="12" height="12" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
                 </a>
               <% end %>
-              <%= link_to contact_path(template_title: portfolio.title), style: "display: inline-flex; align-items: center; gap: 6px; padding: 8px 16px; background: #00a859; border-radius: 9999px; font-size: 13px; font-weight: 600; color: white; text-decoration: none; transition: all 0.3s;", onmouseover: "this.style.background='#008a47'", onmouseout: "this.style.background='#00a859'" do %>
+              <%= link_to contact_path(template_title: portfolio.title), style: "display: inline-flex; align-items: center; gap: 6px; padding: 8px 16px; background: #00a859; border-radius: 9999px; font-size: 14px; font-weight: 600; color: white; text-decoration: none; transition: all 0.3s;", onmouseover: "this.style.background='#008a47'", onmouseout: "this.style.background='#00a859'" do %>
                 유사 문의
               <% end %>
             </div>
@@ -299,7 +299,7 @@
 <!-- Partner Logo Strip -->
 <section style="background: #f9fafb; border-top: 1px solid #f0f0f0; border-bottom: 1px solid #f0f0f0; padding: 28px 0; overflow: hidden;">
   <div class="container">
-    <p style="text-align: center; font-size: 12px; font-weight: 600; color: #9ca3af; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 20px;">함께한 파트너사</p>
+    <p style="text-align: center; font-size: 14px; font-weight: 600; color: #9ca3af; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 20px;">함께한 파트너사</p>
     <div style="display: flex; align-items: center; justify-content: center; gap: 12px; flex-wrap: wrap;">
       <% [
         { name: "야화 (YAHWA)", url: "https://yahwabar.com" },
@@ -311,7 +311,7 @@
         { name: "CPR마케팅", url: "https://cprmarketing.co.kr" },
         { name: "비즈온마케팅", url: "https://bizonmarketing.co.kr" },
       ].each do |p| %>
-        <a href="<%= p[:url] %>" target="_blank" style="display: inline-flex; align-items: center; padding: 8px 18px; background: white; border: 1px solid #e5e7eb; border-radius: 9999px; font-size: 13px; font-weight: 600; color: #374151; text-decoration: none; transition: all 0.25s; white-space: nowrap; box-shadow: 0 1px 3px rgba(0,0,0,0.06);" onmouseover="this.style.borderColor='#00a859'; this.style.color='#00a859'; this.style.boxShadow='0 4px 12px rgba(0,168,89,0.15)'" onmouseout="this.style.borderColor='#e5e7eb'; this.style.color='#374151'; this.style.boxShadow='0 1px 3px rgba(0,0,0,0.06)'">
+        <a href="<%= p[:url] %>" target="_blank" style="display: inline-flex; align-items: center; padding: 8px 18px; background: white; border: 1px solid #e5e7eb; border-radius: 9999px; font-size: 14px; font-weight: 600; color: #374151; text-decoration: none; transition: all 0.25s; white-space: nowrap; box-shadow: 0 1px 3px rgba(0,0,0,0.06);" onmouseover="this.style.borderColor='#00a859'; this.style.color='#00a859'; this.style.boxShadow='0 4px 12px rgba(0,168,89,0.15)'" onmouseout="this.style.borderColor='#e5e7eb'; this.style.color='#374151'; this.style.boxShadow='0 1px 3px rgba(0,0,0,0.06)'">
           <%= p[:name] %>
         </a>
       <% end %>
@@ -506,7 +506,7 @@
     <!-- Close Button -->
     <button onclick="closeLiveDemo()" style="background: none; border: none; color: #999; cursor: pointer; padding: 8px;">
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
-      <span style="font-size: 12px; display: block; margin-top: 2px;">ESC</span>
+      <span style="font-size: 14px; display: block; margin-top: 2px;">ESC</span>
     </button>
   </div>
 

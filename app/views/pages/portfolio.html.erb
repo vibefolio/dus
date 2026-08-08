@@ -37,7 +37,7 @@
             <% end %>
             <div>
               <h2 style="font-size: 22px; font-weight: 800; color: #111; line-height: 1.2;"><%= category %></h2>
-              <p style="font-size: 13px; color: #9ca3af; margin-top: 2px;"><%= portfolios.length %>개 프로젝트</p>
+              <p style="font-size: 14px; color: #9ca3af; margin-top: 2px;"><%= portfolios.length %>개 프로젝트</p>
             </div>
             <div style="flex: 1; height: 1px; background: #f3f4f6; margin-left: 8px;"></div>
           </div>
@@ -84,13 +84,13 @@
 
                     <div style="margin-top: 20px; display: flex; justify-content: space-between; align-items: center;">
                       <% if portfolio.project_date.present? %>
-                        <p style="color: #9ca3af; font-size: 13px;">
+                        <p style="color: #9ca3af; font-size: 14px;">
                           <%= portfolio.project_date.strftime("%Y년 %m월") %>
                         </p>
                       <% end %>
 
                       <% if portfolio.preview_url.present? %>
-                        <%= link_to portfolio.preview_url, target: "_blank", style: "display: inline-flex; align-items: center; gap: 6px; padding: 8px 16px; border: 1px solid #e5e7eb; border-radius: 9999px; font-size: 13px; font-weight: 600; color: #374151; text-decoration: none; transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);", class: "portfolio-visit-btn" do %>
+                        <%= link_to portfolio.preview_url, target: "_blank", style: "display: inline-flex; align-items: center; gap: 6px; padding: 8px 16px; border: 1px solid #e5e7eb; border-radius: 9999px; font-size: 14px; font-weight: 600; color: #374151; text-decoration: none; transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);", class: "portfolio-visit-btn" do %>
                           사이트 방문 <svg style="display:inline; width:12px; height:12px;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
                         <% end %>
                       <% end %>
@@ -135,17 +135,17 @@
         </div>
         <div>
           <h2 style="font-size: 22px; font-weight: 800; color: #111; line-height: 1.2;">협업 프로젝트</h2>
-          <p style="font-size: 13px; color: #9ca3af; margin-top: 2px;">브랜드 간 협업으로 완성한 작업물</p>
+          <p style="font-size: 14px; color: #9ca3af; margin-top: 2px;">브랜드 간 협업으로 완성한 작업물</p>
         </div>
         <div style="flex: 1; height: 1px; background: #f3f4f6; margin-left: 8px;"></div>
       </div>
 
       <!-- Sub-category Filter -->
       <div id="collab-filter" style="display: flex; gap: 8px; flex-wrap: wrap;">
-        <button onclick="filterCollab('all')" class="collab-filter-btn active" data-filter="all" style="padding: 8px 18px; border-radius: 9999px; font-size: 13px; font-weight: 600; border: 1px solid #00a859; background: #00a859; color: white; cursor: pointer; transition: all 0.3s;">전체</button>
+        <button onclick="filterCollab('all')" class="collab-filter-btn active" data-filter="all" style="padding: 8px 18px; border-radius: 9999px; font-size: 14px; font-weight: 600; border: 1px solid #00a859; background: #00a859; color: white; cursor: pointer; transition: all 0.3s;">전체</button>
         <% all_sub_categories = @collab_groups.values.flatten.map(&:sub_category).compact.uniq %>
         <% all_sub_categories.each do |sub| %>
-          <button onclick="filterCollab('<%= sub %>')" class="collab-filter-btn" data-filter="<%= sub %>" style="padding: 8px 18px; border-radius: 9999px; font-size: 13px; font-weight: 600; border: 1px solid #e5e7eb; background: white; color: #374151; cursor: pointer; transition: all 0.3s;"><%= sub %></button>
+          <button onclick="filterCollab('<%= sub %>')" class="collab-filter-btn" data-filter="<%= sub %>" style="padding: 8px 18px; border-radius: 9999px; font-size: 14px; font-weight: 600; border: 1px solid #e5e7eb; background: white; color: #374151; cursor: pointer; transition: all 0.3s;"><%= sub %></button>
         <% end %>
       </div>
     </div>
@@ -156,11 +156,11 @@
         <!-- Partner Header Badge -->
         <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 28px;">
           <div style="display: inline-flex; align-items: center; gap: 8px; padding: 8px 16px; background: #fff7ed; border: 1px solid #fed7aa; border-radius: 9999px;">
-            <span style="font-size: 13px; color: #9a3412; font-weight: 400;">디어스</span>
+            <span style="font-size: 14px; color: #9a3412; font-weight: 400;">디어스</span>
             <span style="color: #f97316; font-weight: 700;">×</span>
-            <span style="font-size: 13px; color: #9a3412; font-weight: 700;"><%= partner %></span>
+            <span style="font-size: 14px; color: #9a3412; font-weight: 700;"><%= partner %></span>
           </div>
-          <span style="font-size: 13px; color: #9ca3af;"><%= portfolios.length %>개 프로젝트</span>
+          <span style="font-size: 14px; color: #9ca3af;"><%= portfolios.length %>개 프로젝트</span>
         </div>
 
         <!-- Cards Grid -->
@@ -183,10 +183,10 @@
                 <div style="padding: 24px;">
                   <div style="display: flex; gap: 8px; margin-bottom: 12px; flex-wrap: wrap;">
                     <% if portfolio.sub_category.present? %>
-                      <span style="display: inline-block; padding: 4px 10px; background: #fff7ed; color: #f97316; border-radius: 6px; font-size: 12px; font-weight: 600;"><%= portfolio.sub_category %></span>
+                      <span style="display: inline-block; padding: 4px 10px; background: #fff7ed; color: #f97316; border-radius: 6px; font-size: 14px; font-weight: 600;"><%= portfolio.sub_category %></span>
                     <% end %>
                     <% if portfolio.collab_partner.present? %>
-                      <span style="display: inline-block; padding: 4px 10px; background: #f9fafb; color: #9ca3af; border-radius: 6px; font-size: 12px; font-weight: 500;">via <%= portfolio.collab_partner %></span>
+                      <span style="display: inline-block; padding: 4px 10px; background: #f9fafb; color: #9ca3af; border-radius: 6px; font-size: 14px; font-weight: 500;">via <%= portfolio.collab_partner %></span>
                     <% end %>
                   </div>
 
@@ -204,10 +204,10 @@
 
                   <div style="margin-top: 20px; display: flex; justify-content: space-between; align-items: center;">
                     <% if portfolio.project_date.present? %>
-                      <p style="color: #9ca3af; font-size: 13px;"><%= portfolio.project_date.strftime("%Y년 %m월") %></p>
+                      <p style="color: #9ca3af; font-size: 14px;"><%= portfolio.project_date.strftime("%Y년 %m월") %></p>
                     <% end %>
                     <% if portfolio.preview_url.present? %>
-                      <%= link_to portfolio.preview_url, target: "_blank", style: "display: inline-flex; align-items: center; gap: 6px; padding: 8px 16px; border: 1px solid #e5e7eb; border-radius: 9999px; font-size: 13px; font-weight: 600; color: #374151; text-decoration: none; transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);", class: "portfolio-visit-btn" do %>
+                      <%= link_to portfolio.preview_url, target: "_blank", style: "display: inline-flex; align-items: center; gap: 6px; padding: 8px 16px; border: 1px solid #e5e7eb; border-radius: 9999px; font-size: 14px; font-weight: 600; color: #374151; text-decoration: none; transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);", class: "portfolio-visit-btn" do %>
                         사이트 방문 <svg style="display:inline; width:12px; height:12px;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
                       <% end %>
                     <% end %>
