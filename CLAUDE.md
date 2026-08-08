@@ -161,10 +161,15 @@ dus/
 ## 환경변수 (.env — 서버에만 존재, git 제외)
 ```
 RAILS_ENV=production
-RAILS_MASTER_KEY=fca4828212ca75b0568c2d2c15cb2f53
+RAILS_MASTER_KEY=<서버 /root/projects/dlab-website/.env 참조 — 문서에 값 쓰지 말 것>
 RAILS_LOG_TO_STDOUT=1
 RAILS_SERVE_STATIC_FILES=true
 ```
+
+> ⚠️ **`RAILS_MASTER_KEY` 값을 이 문서에 다시 쓰지 마라.**
+> 이 레포는 public 이고 `config/credentials.yml.enc` 가 같은 저장소에 있다.
+> 키를 문서에 적으면 credentials 가 사실상 평문이 된다 (2026-08-08 실제 노출 발생, 키 교체 완료).
+> 값 확인: `ssh vibers "grep RAILS_MASTER_KEY /root/projects/dlab-website/.env"`
 
 ## 배포 방식
 - `.github/workflows/deploy.yml` (GitHub Actions)
