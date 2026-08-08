@@ -110,6 +110,7 @@
                 <div class="col-span-2">
                   <label class="block text-sm font-bold text-gray-700 mb-2">희망 도메인</label>
                   <%= text_field_tag "quote[preferred_domain]", nil, class: "w-full px-4 py-3.5 rounded-xl bg-gray-50 border border-gray-200 focus:border-emerald-500 focus:ring-2 focus:ring-emerald-100 transition outline-none", placeholder: "example.com (선택사항)" %>
+                </div>
               </div>
 
               <div>
@@ -273,6 +274,8 @@
         <div class="contact-form-col" style="flex: 1; min-width: 0;">
           <div style="background: white; padding: 40px; border-radius: 24px; border: 1px solid #e5e7eb; box-shadow: 0 4px 24px rgba(0,0,0,0.04);">
 
+            <%= render "shared/form_errors", record: @quote %>
+
             <%= form_with model: @quote, url: contact_path, local: true, class: "contact-form", html: { onsubmit: "return submitContactForm(this);", id: "contact-form", data: { controller: "honeypot" } } do |f| %>
               <div style="display:none !important;" aria-hidden="true">
                 <%= f.text_field :nickname, tabindex: "-1", autocomplete: "off", data: { honeypot_target: "field" } %>
@@ -281,33 +284,33 @@
               <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
                 <div>
                   <label style="display: block; font-size: 13px; font-weight: 700; color: #374151; margin-bottom: 6px;">담당자 성함 *</label>
-                  <%= f.text_field :contact_name, style: "width: 100%; padding: 12px 16px; border-radius: 12px; border: 1.5px solid #e5e7eb; background: #f9fafb; font-size: 15px; outline: none; transition: border-color 0.2s;", placeholder: "홍길동", required: true %>
+                  <%= f.text_field :contact_name, style: "width: 100%; padding: 12px 16px; border-radius: 12px; border: 1.5px solid #e5e7eb; background: #f9fafb; font-size: 16px; outline: none; transition: border-color 0.2s;", placeholder: "홍길동", required: true %>
                 </div>
                 <div>
                   <label style="display: block; font-size: 13px; font-weight: 700; color: #374151; margin-bottom: 6px;">연락처 *</label>
-                  <%= f.text_field :phone, style: "width: 100%; padding: 12px 16px; border-radius: 12px; border: 1.5px solid #e5e7eb; background: #f9fafb; font-size: 15px; outline: none;", placeholder: "010-0000-0000", required: true %>
+                  <%= f.text_field :phone, style: "width: 100%; padding: 12px 16px; border-radius: 12px; border: 1.5px solid #e5e7eb; background: #f9fafb; font-size: 16px; outline: none;", placeholder: "010-0000-0000", required: true %>
                 </div>
               </div>
 
               <div style="margin-bottom: 16px;">
                 <label style="display: block; font-size: 13px; font-weight: 700; color: #374151; margin-bottom: 6px;">이메일 *</label>
-                <%= f.email_field :email, style: "width: 100%; padding: 12px 16px; border-radius: 12px; border: 1.5px solid #e5e7eb; background: #f9fafb; font-size: 15px; outline: none;", placeholder: "contact@example.com", required: true %>
+                <%= f.email_field :email, style: "width: 100%; padding: 12px 16px; border-radius: 12px; border: 1.5px solid #e5e7eb; background: #f9fafb; font-size: 16px; outline: none;", placeholder: "contact@example.com", required: true %>
               </div>
 
               <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
                 <div>
                   <label style="display: block; font-size: 13px; font-weight: 700; color: #374151; margin-bottom: 6px;">회사/단체명</label>
-                  <%= f.text_field :company_name, style: "width: 100%; padding: 12px 16px; border-radius: 12px; border: 1.5px solid #e5e7eb; background: #f9fafb; font-size: 15px; outline: none;", placeholder: "(주)디어스" %>
+                  <%= f.text_field :company_name, style: "width: 100%; padding: 12px 16px; border-radius: 12px; border: 1.5px solid #e5e7eb; background: #f9fafb; font-size: 16px; outline: none;", placeholder: "(주)디어스" %>
                 </div>
                 <div>
                   <label style="display: block; font-size: 13px; font-weight: 700; color: #374151; margin-bottom: 6px;">프로젝트 유형 *</label>
-                  <%= f.select :project_type, ["웹사이트 제작", "쇼핑몰 제작", "앱 개발", "유지보수", "기타"], { prompt: "선택" }, style: "width: 100%; padding: 12px 16px; border-radius: 12px; border: 1.5px solid #e5e7eb; background: #f9fafb; font-size: 15px; outline: none; cursor: pointer;", required: true %>
+                  <%= f.select :project_type, ["웹사이트 제작", "쇼핑몰 제작", "앱 개발", "유지보수", "기타"], { prompt: "선택" }, style: "width: 100%; padding: 12px 16px; border-radius: 12px; border: 1.5px solid #e5e7eb; background: #f9fafb; font-size: 16px; outline: none; cursor: pointer;", required: true %>
                 </div>
               </div>
 
               <div style="margin-bottom: 16px;">
                 <label style="display: block; font-size: 13px; font-weight: 700; color: #374151; margin-bottom: 6px;">프로젝트 내용 *</label>
-                <%= f.text_area :message, style: "width: 100%; padding: 12px 16px; border-radius: 12px; border: 1.5px solid #e5e7eb; background: #f9fafb; font-size: 15px; outline: none; resize: vertical; min-height: 100px;", rows: 4, placeholder: "프로젝트의 목적, 주요 기능 등을 자유롭게 적어주세요.", required: true %>
+                <%= f.text_area :message, style: "width: 100%; padding: 12px 16px; border-radius: 12px; border: 1.5px solid #e5e7eb; background: #f9fafb; font-size: 16px; outline: none; resize: vertical; min-height: 100px;", rows: 4, placeholder: "프로젝트의 목적, 주요 기능 등을 자유롭게 적어주세요.", required: true %>
               </div>
 
               <button type="submit" id="submit-btn" style="width: 100%; padding: 16px; background: linear-gradient(135deg, #00a859, #00d670); color: white; font-weight: 800; border: none; border-radius: 14px; cursor: pointer; font-size: 16px; transition: all 0.3s; box-shadow: 0 4px 16px rgba(0,168,89,0.2);" class="contact-submit-btn">
