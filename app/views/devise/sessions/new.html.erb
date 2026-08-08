@@ -30,7 +30,7 @@
           <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
             <%= f.label :password, "비밀번호", style: "font-size: 14px; font-weight: 600; color: #374151;" %>
             <% if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
-              <%= link_to "비밀번호 찾기", new_password_path(resource_name), style: "font-size: 13px; color: var(--color-primary); font-weight: 500; text-decoration: none;" %>
+              <%= link_to "비밀번호 찾기", new_password_path(resource_name), style: "font-size: 14px; color: var(--color-primary); font-weight: 500; text-decoration: none;" %>
             <% end %>
           </div>
           <%= f.password_field :password, autocomplete: "current-password", placeholder: "••••••••", style: "width: 100%; padding: 14px 16px; border: 1px solid #e5e7eb; border-radius: 14px; font-size: 16px; background: #f9fafb; transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); font-family: var(--font-display);", class: "form-input" %>
@@ -54,7 +54,7 @@
       <!-- 소셜 로그인 (form_for 밖에 위치해야 중첩 form 문제 없음) -->
       <div style="display: flex; align-items: center; justify-content: center; gap: 10px; margin-bottom: 24px;">
         <div style="flex: 1; height: 1px; background: #e5e7eb;"></div>
-        <span style="font-size: 13px; color: #9ca3af; padding: 0 10px;">또는</span>
+        <span style="font-size: 14px; color: #9ca3af; padding: 0 10px;">또는</span>
         <div style="flex: 1; height: 1px; background: #e5e7eb;"></div>
       </div>
 

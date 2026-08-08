@@ -35,13 +35,13 @@
       <div style="margin-bottom: var(--space-6);">
         <%= f.label :owner_id, "소유자 (Owner - 홈페이지 주인)", style: "display: block; font-weight: 600; margin-bottom: var(--space-2);" %>
         <%= f.collection_select :owner_id, User.all.order(:email), :id, :email, { prompt: "소유자 선택" }, { class: "w-full p-2 border rounded" } %>
-        <p style="margin-top: 4px; font-size: 12px; color: var(--color-gray-500);">* 이 홈페이지의 소유주입니다. 에이전시와 관련된 모든 권한을 가집니다.</p>
+        <p style="margin-top: 4px; font-size: 14px; color: var(--color-gray-500);">* 이 홈페이지의 소유주입니다. 에이전시와 관련된 모든 권한을 가집니다.</p>
       </div>
 
       <div style="margin-bottom: var(--space-6);">
         <%= f.label :admin_ids, "관리자 (Admin - 운영진)", style: "display: block; font-weight: 600; margin-bottom: var(--space-2);" %>
         <%= f.collection_select :admin_ids, User.all.order(:email), :id, :email, {}, { multiple: true, class: "w-full p-2 border rounded", style: "height: 120px;" } %>
-        <p style="margin-top: 4px; font-size: 12px; color: var(--color-gray-500);">* (다중 선택 가능) 이 홈페이지의 관리자 페이지에 접근할 수 있습니다.</p>
+        <p style="margin-top: 4px; font-size: 14px; color: var(--color-gray-500);">* (다중 선택 가능) 이 홈페이지의 관리자 페이지에 접근할 수 있습니다.</p>
       </div>
 
       <div style="margin-bottom: var(--space-6);">
