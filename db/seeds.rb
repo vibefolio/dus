@@ -484,6 +484,33 @@ portfolios = [
     image_url: "https://oluolu.co.kr/oluolu/og-oluolu-franchise.jpg",
     preview_url: "https://oluolu.co.kr/franchise"
   },
+  {
+    title: "비더라인 (BeTheLine)",
+    category: "비즈니스 서비스",
+    client: "비더라인",
+    project_date: Date.new(2026, 5, 1),
+    description: "팝업스토어·전시·기업행사 프로모터 및 행사인력 공급과 현장 운영부터 자영업자를 위한 네이버 플레이스·SNS 온라인마케팅 교육 및 실행까지 제공하는 전문 에이전시 홈페이지.",
+    image_url: "https://betheline.co.kr/opengraph-image?89f82c27b085badf",
+    preview_url: "https://betheline.co.kr"
+  },
+  {
+    title: "조선돼지국밥 프랜차이즈",
+    category: "프랜차이즈 플랫폼",
+    client: "조선돼지국밥",
+    project_date: Date.new(2026, 4, 1),
+    description: "원가율 20% 이하, 36시간 사골육수. 검증된 수익 구조로 안정적인 창업을 안내하는 프랜차이즈 창업 랜딩페이지.",
+    image_url: "https://xn--3e0bj8jdshwkforkx2b.com/joseon/interior/interior_2.jpg",
+    preview_url: "https://조선돼지국밥.com"
+  },
+  {
+    title: "이가네양꼬치",
+    category: "프랜차이즈 플랫폼",
+    client: "이가네양꼬치",
+    project_date: Date.new(2026, 3, 1),
+    description: "2004년 4개의 테이블에서 시작해 대한민국 최초로 양등심꼬치를 선보인 이가네양꼬치. 양등심꼬치의 시작이자 기준을 담은 프랜차이즈 브랜드 사이트.",
+    image_url: "https://igane.faneasy.kr/igane/gallery-2.png",
+    preview_url: "https://이가네양꼬치.kr"
+  },
 ]
 
 portfolios.each do |p|
