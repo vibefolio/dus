@@ -313,7 +313,7 @@
           <% else %>
             <div style="display: flex; align-items: center; gap: 10px;">
               <%= link_to "로그인", new_user_session_path, class: "navbar-link", style: "font-size: 14px; color: #666;" %>
-              <%= link_to "회원가입", new_user_registration_path, class: "btn btn-sm btn-primary", style: "padding: 6px 16px; font-size: 13px; border-radius: 99px; color: white; background: var(--color-primary);" %>
+              <%= link_to "회원가입", new_user_registration_path, class: "btn btn-sm btn-primary", style: "padding: 6px 16px; font-size: 14px; border-radius: 99px; color: white; background: var(--color-primary);" %>
             </div>
           <% end %>
         </div>
@@ -437,10 +437,10 @@
 
         <!-- Footer Bottom -->
         <div class="footer-bottom" style="display: flex; justify-content: space-between; align-items: center; padding-top: 24px; border-top: 1px solid rgba(255,255,255,0.08); flex-wrap: wrap; gap: 12px;">
-          <p style="color: #6b7280; font-size: 13px;">&copy; <%= Time.current.year %> 디어스(D.US). All rights reserved.</p>
+          <p style="color: #6b7280; font-size: 14px;">&copy; <%= Time.current.year %> 디어스(D.US). All rights reserved.</p>
           <div style="display: flex; gap: 20px;">
-            <%= link_to "서비스 이용약관", terms_path, style: "color: #6b7280; text-decoration: none; font-size: 13px; transition: color 0.3s;", class: "footer-link" %>
-            <%= link_to "개인정보처리방침", privacy_path, style: "color: #6b7280; text-decoration: none; font-size: 13px; font-weight: bold; transition: color 0.3s;", class: "footer-link" %>
+            <%= link_to "서비스 이용약관", terms_path, style: "color: #6b7280; text-decoration: none; font-size: 14px; transition: color 0.3s;", class: "footer-link" %>
+            <%= link_to "개인정보처리방침", privacy_path, style: "color: #6b7280; text-decoration: none; font-size: 14px; font-weight: bold; transition: color 0.3s;", class: "footer-link" %>
           </div>
         </div>
       </div>
