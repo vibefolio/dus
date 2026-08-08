@@ -31,7 +31,7 @@
 
   /* 버튼 */
   .mxt-btn-primary { background: #00a859; color: white; border: none; border-radius: 12px; padding: 18px 40px; font-size: 17px; font-weight: 800; cursor: pointer; width: 100%; transition: all 0.2s; letter-spacing: -0.02em; }
-  .mxt-btn-primary:hover { background: #008f4a; transform: translateY(-1px); box-shadow: 0 8px 24px rgba(0,168,89,0.25); }
+  .mxt-btn-primary:hover { background: #008a47; transform: translateY(-1px); box-shadow: 0 8px 24px rgba(0,168,89,0.25); }
 
   /* 패키지 카드 */
   .pkg-card { background: #fff; border: 1.5px solid #eaecef; border-radius: 20px; padding: 32px; transition: all 0.2s; }
@@ -88,7 +88,7 @@
         공식 파트너십
       </div>
     </div>
-    <a href="#contact" style="background:#00a859;color:white;padding:10px 22px;border-radius:50px;font-size:14px;font-weight:700;text-decoration:none;transition:all 0.2s;" onmouseover="this.style.background='#008f4a'" onmouseout="this.style.background='#00a859'">
+    <a href="#contact" style="background:#00a859;color:white;padding:10px 22px;border-radius:50px;font-size:14px;font-weight:700;text-decoration:none;transition:all 0.2s;" onmouseover="this.style.background='#008a47'" onmouseout="this.style.background='#00a859'">
       무료 상담 신청
     </a>
   </div>
@@ -124,7 +124,7 @@
 
     <!-- CTA -->
     <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
-      <a href="#packages" style="background:#00a859;color:white;padding:16px 40px;border-radius:12px;font-size:16px;font-weight:800;text-decoration:none;box-shadow:0 4px 20px rgba(0,168,89,0.2);transition:all 0.2s;" onmouseover="this.style.background='#008f4a';this.style.transform='translateY(-2px)'" onmouseout="this.style.background='#00a859';this.style.transform='translateY(0)'">
+      <a href="#packages" style="background:#00a859;color:white;padding:16px 40px;border-radius:12px;font-size:16px;font-weight:800;text-decoration:none;box-shadow:0 4px 20px rgba(0,168,89,0.2);transition:all 0.2s;" onmouseover="this.style.background='#008a47';this.style.transform='translateY(-2px)'" onmouseout="this.style.background='#00a859';this.style.transform='translateY(0)'">
         요금제 확인하기
       </a>
       <a href="#contact" style="background:#fff;border:1.5px solid #eaecef;color:#191f28;padding:16px 32px;border-radius:12px;font-size:16px;font-weight:700;text-decoration:none;transition:all 0.2s;" onmouseover="this.style.borderColor='#00a859'" onmouseout="this.style.borderColor='#eaecef'">
@@ -164,7 +164,7 @@
           </li>
         <% end %>
       </ul>
-      <a href="#packages" style="display:block;background:#00a859;color:white;text-align:center;padding:16px;border-radius:12px;font-size:16px;font-weight:800;text-decoration:none;margin-top:24px;transition:all 0.2s;" onmouseover="this.style.background='#008f4a'" onmouseout="this.style.background='#00a859'">
+      <a href="#packages" style="display:block;background:#00a859;color:white;text-align:center;padding:16px;border-radius:12px;font-size:16px;font-weight:800;text-decoration:none;margin-top:24px;transition:all 0.2s;" onmouseover="this.style.background='#008a47'" onmouseout="this.style.background='#00a859'">
         요금제 확인하기 ↓
       </a>
     </div>
@@ -184,15 +184,15 @@
     <!-- 경로 탭 -->
     <div style="display:flex;justify-content:center;margin-bottom:40px;">
       <div style="display:inline-flex;background:#e8eaed;border-radius:16px;padding:6px;gap:6px;flex-wrap:wrap;justify-content:center;">
-        <button onclick="switchPath('dusCustomer')" id="path-tab-dusCustomer" style="padding:14px 28px;border-radius:12px;border:none;font-size:16px;font-weight:800;cursor:pointer;background:#fff;color:#191f28;box-shadow:0 2px 8px rgba(0,0,0,0.08);white-space:nowrap;display:flex;align-items:center;gap:10px;letter-spacing:-0.02em;">
+        <button onclick="switchPath('dusCustomer')" class="mxt-tab" id="path-tab-dusCustomer" style="padding:14px 28px;border-radius:12px;border:none;font-size:16px;font-weight:800;cursor:pointer;background:#fff;color:#191f28;box-shadow:0 2px 8px rgba(0,0,0,0.08);white-space:nowrap;display:flex;align-items:center;gap:10px;letter-spacing:-0.02em;">
           <span style="width:28px;height:28px;border-radius:50%;background:#00a859;color:white;font-size:13px;font-weight:900;display:inline-flex;align-items:center;justify-content:center;">1</span>
           디어스 고객 + 세무
         </button>
-        <button onclick="switchPath('taxCustomer')" id="path-tab-taxCustomer" style="padding:14px 28px;border-radius:12px;border:none;font-size:16px;font-weight:800;cursor:pointer;background:transparent;color:#8b95a1;white-space:nowrap;display:flex;align-items:center;gap:10px;letter-spacing:-0.02em;">
+        <button onclick="switchPath('taxCustomer')" class="mxt-tab" id="path-tab-taxCustomer" style="padding:14px 28px;border-radius:12px;border:none;font-size:16px;font-weight:800;cursor:pointer;background:transparent;color:#8b95a1;white-space:nowrap;display:flex;align-items:center;gap:10px;letter-spacing:-0.02em;">
           <span style="width:28px;height:28px;border-radius:50%;background:#8b95a1;color:white;font-size:13px;font-weight:900;display:inline-flex;align-items:center;justify-content:center;">2</span>
           메이저텍스 고객 + 홈페이지
         </button>
-        <button onclick="switchPath('bothNew')" id="path-tab-bothNew" style="padding:14px 28px;border-radius:12px;border:none;font-size:16px;font-weight:800;cursor:pointer;background:transparent;color:#8b95a1;white-space:nowrap;display:flex;align-items:center;gap:10px;letter-spacing:-0.02em;">
+        <button onclick="switchPath('bothNew')" class="mxt-tab" id="path-tab-bothNew" style="padding:14px 28px;border-radius:12px;border:none;font-size:16px;font-weight:800;cursor:pointer;background:transparent;color:#8b95a1;white-space:nowrap;display:flex;align-items:center;gap:10px;letter-spacing:-0.02em;">
           <span style="width:28px;height:28px;border-radius:50%;background:#8b95a1;color:white;font-size:13px;font-weight:900;display:inline-flex;align-items:center;justify-content:center;">3</span>
           둘 다 처음이에요
         </button>
@@ -239,7 +239,7 @@
 
     <!-- ── 경로 B: 메이저텍스 기존 고객 → 홈페이지 추가 ── -->
     <div id="path-taxCustomer" style="display:none;">
-      <div style="text-align:center;margin-bottom:24px;padding:12px 20px;background:#f0faf5;border:1px solid #c8ecd8;border-radius:10px;font-size:13px;color:#007a3d;font-weight:600;">
+      <div style="text-align:center;margin-bottom:24px;padding:12px 20px;background:#f0faf5;border:1px solid #c8ecd8;border-radius:10px;font-size:13px;color:#008a47;font-weight:600;">
         기존 세무기장료에 월 2~4만원만 더하면, 전문 홈페이지까지 함께합니다
       </div>
       <div class="pkg-grid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px;align-items:start;">
