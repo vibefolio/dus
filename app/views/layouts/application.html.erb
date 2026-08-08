@@ -172,8 +172,10 @@
   </head>
 
   <body>
+    <%# 공동 브랜딩 랜딩(예: majortax)은 자체 nav/footer를 쓰므로 공통 chrome을 숨긴다 %>
+    <% _hide_chrome = content_for?(:hide_chrome) %>
     <!-- Navigation -->
-    <!-- Navigation -->
+    <% unless _hide_chrome %>
     <nav class="navbar" id="navbar">
       <div class="navbar-container">
         <%= link_to root_path, class: "navbar-logo" do %>
@@ -352,7 +354,7 @@
         </div>
       </div>
     </nav>
-    
+
     <script>
       // Mobile Menu Toggle
       const mobileBtn = document.getElementById('mobile-menu-btn');
@@ -364,6 +366,7 @@
         });
       }
     </script>
+    <% end %>
 
     <!-- Flash Messages (Toast) -->
     <div class="fixed top-24 left-1/2 transform -translate-x-1/2 z-50 w-full max-w-lg px-4 space-y-2 pointer-events-none">
@@ -390,6 +393,7 @@
     </main>
 
     <!-- Footer -->
+    <% unless _hide_chrome %>
     <footer style="background: #111; color: #e5e7eb; padding: 80px 0 40px;" id="main-footer">
       <div class="container">
         <!-- 3-Column Layout -->
@@ -447,6 +451,7 @@
         </div>
       </div>
     </footer>
+    <% end %>
 
     <style>
       .footer-link:hover { color: #00a859 !important; }

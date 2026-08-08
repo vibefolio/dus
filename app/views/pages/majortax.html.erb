@@ -1,10 +1,15 @@
 <% content_for :title, "메이저텍스 × 디어스 — 세무기장 + 홈페이지 한 번에" %>
 <% content_for :description, "세무기장을 맡기면 홈페이지 제작이 함께! 메이저텍스와 디어스가 함께하는 소상공인 올인원 패키지." %>
 
+<%# 이 페이지는 자체 nav/footer를 쓴다 — 공통 chrome 숨김 (중복 렌더 방지) %>
+<% content_for :hide_chrome, true %>
+
 <% content_for :head do %>
 <style>
   /* 토스 스타일 라이트 테마 */
   body { background: #f8f9fa !important; color: #191f28; font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif; }
+  /* 공통 chrome을 숨겼으므로 레이아웃 main의 기본 상단 여백(64px)을 제거하고 자체 nav 높이(68px)를 쓴다 */
+  main { padding-top: 0 !important; }
 
   .mxt-chip { display: inline-flex; align-items: center; gap: 6px; padding: 6px 14px; background: #e8f5ee; border-radius: 50px; font-size: 13px; font-weight: 700; color: #00a859; }
   .mxt-section-label { font-size: 13px; font-weight: 700; color: #00a859; letter-spacing: 0.06em; text-transform: uppercase; }
@@ -596,38 +601,6 @@
 </footer>
 
 <script>
-  function selectSegment(type) {
-    const newContent = document.getElementById('content-new');
-    const existingContent = document.getElementById('content-existing');
-    const segNew = document.getElementById('seg-new');
-    const segExisting = document.getElementById('seg-existing');
-
-    // 리셋
-    newContent.style.display = 'none';
-    existingContent.style.display = 'none';
-    segNew.classList.remove('active');
-    segExisting.classList.remove('active');
-
-    if (type === 'new') {
-      newContent.style.display = 'block';
-      segNew.classList.add('active');
-      // 폼 라디오도 선택
-      document.getElementById('new_customer').checked = true;
-      highlightCustomerType('new');
-    } else {
-      existingContent.style.display = 'block';
-      segExisting.classList.add('active');
-      document.getElementById('existing_customer').checked = true;
-      highlightCustomerType('existing');
-    }
-
-    // 부드럽게 스크롤
-    setTimeout(() => {
-      const el = type === 'new' ? newContent : existingContent;
-      el.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-    }, 100);
-  }
-
   function highlightCustomerType(type) {
     const labelNew = document.getElementById('label-new-customer');
     const labelExisting = document.getElementById('label-existing-customer');

@@ -6,6 +6,8 @@ services:
     image: dlab-website-app:latest
     container_name: dlab-website-app
     restart: unless-stopped
+    mem_limit: 512m
+    memswap_limit: 512m
     ports:
       - "4040:80"
     env_file:
