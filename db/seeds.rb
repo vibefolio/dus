@@ -454,7 +454,8 @@ portfolios = [
     client: "계발자들 (Vibers)",
     project_date: Date.new(2025, 11, 1),
     description: "나를 위한 단 하나의 링크 — 개인 프로필·링크·소개를 하나의 URL로 완성하는 단일 페이지 빌더. Next.js 16 + React 19 + Tailwind CSS 4. 동적 OG 이미지 생성, 외부 URL 메타 크롤링, 완전 반응형. Linktree 대체 솔루션.",
-    image_url: "https://monopage.kr/og-image.png",
+    # monopage 는 Next.js 동적 OG 라우트를 쓴다. /og-image.png 는 404 였다 (2026-08-09 수정)
+    image_url: "https://monopage.kr/opengraph-image",
     preview_url: "https://monopage.kr"
   },
   {
