@@ -88,7 +88,7 @@ class PagesController < ApplicationController
     @quote.user = current_user if user_signed_in?
 
     if @quote.save
-      send_quote_emails(@quote)
+      deliver_quote_emails_safely(@quote)
       flash[:notice] = "문의가 접수되었습니다! 영업일 기준 24시간 이내 연락드리겠습니다."
       redirect_to start_path
     else
@@ -115,7 +115,7 @@ class PagesController < ApplicationController
     @quote.user = current_user if user_signed_in?
 
     if @quote.save
-      send_quote_emails(@quote)
+      deliver_quote_emails_safely(@quote)
       flash[:notice] = "상담 신청이 완료되었습니다! 24시간 이내 연락드리겠습니다."
       redirect_to majortax_path
     else
@@ -150,9 +150,11 @@ class PagesController < ApplicationController
       end
 
       if @quote.save
-        # Normal path: DB is alive
-        send_quote_emails(@quote)
-        
+        # 저장이 끝난 뒤의 메일 발송은 "알림"일 뿐이다.
+        # 여기서 예외가 새어나가면 아래 rescue 가 저장 실패로 오인해 고객에게 실패 안내를 하게 된다
+        # (2026-08-10 실제 발생: SMTP 인증 오류인데 "문의 접수에 실패했어요" 노출)
+        deliver_quote_emails_safely(@quote)
+
         if user_signed_in?
           flash[:notice] = "문의가 성공적으로 접수되었습니다. 담당자가 확인 후 연락드리겠습니다."
         else
@@ -225,6 +227,17 @@ class PagesController < ApplicationController
   def send_quote_emails(quote)
     QuoteMailer.new_quote_notification(quote).deliver_now
     QuoteMailer.quote_confirmation(quote).deliver_now
+  end
+
+  # DB 저장이 끝난 뒤 쓰는 발송 헬퍼.
+  # 문의는 이미 DB와 어드민에 남았으므로, 메일이 안 나갔다고 해서 고객에게 실패라고 하면 안 된다.
+  # 대신 관리자가 알아챌 수 있도록 로그에 크게 남긴다.
+  def deliver_quote_emails_safely(quote)
+    send_quote_emails(quote)
+    true
+  rescue => e
+    Rails.logger.error "[MAIL FAILED] 문의 ##{quote.try(:id)} 는 저장됐으나 알림 메일 발송 실패: #{e.class} #{e.message}"
+    false
   end
 
   # 광고 랜딩의 "실제 운영 중" 섹션에 쓸 사이트.

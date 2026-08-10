@@ -46,17 +46,32 @@
   .lp-feature-desc { font-size: 15px; color: #6b7280; line-height: 1.75; word-break: keep-all; }
 
   /* 라이브 사이트 */
-  .lp-live-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+  .lp-live-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
   .lp-live-item {
-    display: flex; align-items: center; justify-content: space-between; gap: 14px;
-    padding: 18px 20px; border: 1px solid #e5e7eb; border-radius: 14px;
-    text-decoration: none; color: inherit; background: #fff; transition: border-color 0.2s, transform 0.2s;
+    display: block; border: 1px solid #e5e7eb; border-radius: 16px; overflow: hidden;
+    text-decoration: none; color: inherit; background: #fff;
+    transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s;
   }
-  .lp-live-item:hover { border-color: #00a859; transform: translateY(-2px); }
-  .lp-live-name { font-size: 16px; font-weight: 800; word-break: keep-all; }
-  .lp-live-meta { font-size: 14px; color: #9ca3af; margin-top: 3px; }
-  .lp-live-badge { display: inline-flex; align-items: center; gap: 6px; font-size: 14px; font-weight: 800; color: #00a859; white-space: nowrap; }
-  .lp-live-dot { width: 7px; height: 7px; border-radius: 50%; background: #00a859; }
+  .lp-live-item:hover { border-color: #00a859; transform: translateY(-4px); box-shadow: 0 12px 28px rgba(0,0,0,0.08); }
+  .lp-live-thumb { position: relative; aspect-ratio: 16 / 10; background: #f3f4f6; overflow: hidden; }
+  .lp-live-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.4s ease; }
+  .lp-live-item:hover .lp-live-thumb img { transform: scale(1.05); }
+  .lp-live-body { padding: 16px 16px 18px; }
+  .lp-live-name { font-size: 16px; font-weight: 800; word-break: keep-all; line-height: 1.4; }
+  .lp-live-meta { font-size: 14px; color: #9ca3af; margin-top: 5px; }
+  .lp-live-badge {
+    position: absolute; top: 10px; left: 10px; z-index: 2;
+    display: inline-flex; align-items: center; gap: 6px;
+    font-size: 14px; font-weight: 800; color: #fff; white-space: nowrap;
+    background: rgba(17,24,39,0.72); backdrop-filter: blur(6px);
+    padding: 5px 11px; border-radius: 999px;
+  }
+  .lp-live-dot { width: 7px; height: 7px; border-radius: 50%; background: #22e07f; box-shadow: 0 0 0 0 rgba(34,224,127,0.7); animation: lpPulse 2s infinite; }
+  @keyframes lpPulse {
+    70% { box-shadow: 0 0 0 7px rgba(34,224,127,0); }
+    100% { box-shadow: 0 0 0 0 rgba(34,224,127,0); }
+  }
+  .lp-live-go { display: inline-flex; align-items: center; gap: 5px; margin-top: 10px; font-size: 14px; font-weight: 800; color: #00a859; }
 
   /* 폼 */
   .lp-form-card { background: #fff; border: 1px solid #e5e7eb; border-radius: 22px; padding: 32px; box-shadow: 0 8px 32px rgba(0,0,0,0.05); }
@@ -71,16 +86,37 @@
   .lp-optional[open] > summary .lp-arrow { transform: rotate(180deg); }
   .lp-arrow { transition: transform 0.2s ease; flex-shrink: 0; }
 
+  /* 히어로 알림톡 목업 */
+  .lp-hero-demo { margin-top: 46px; display: flex; justify-content: center; }
+  .lp-phone {
+    width: 100%; max-width: 360px; background: #b2c7d9; border-radius: 20px;
+    padding: 16px; box-shadow: 0 18px 44px rgba(0,0,0,0.14); text-align: left;
+  }
+  .lp-phone-top { display: flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 800; color: #3c1e1e; margin-bottom: 12px; }
+  .lp-kakao-mark { background: #fee500; color: #3c1e1e; font-size: 14px; font-weight: 900; padding: 3px 8px; border-radius: 6px; letter-spacing: -0.02em; }
+  .lp-talk-bubble { background: #fff; border-radius: 4px 16px 16px 16px; padding: 16px; font-size: 14px; color: #111827; }
+  .lp-talk-row { display: flex; gap: 10px; padding: 5px 0; border-top: 1px solid #f3f4f6; }
+  .lp-talk-row span { color: #9ca3af; min-width: 48px; flex-shrink: 0; }
+  .lp-talk-row b { font-weight: 700; word-break: keep-all; }
+  .lp-talk-cta { margin-top: 12px; background: #f6fdf9; color: #00a859; font-weight: 800; text-align: center; padding: 10px; border-radius: 8px; border: 1px solid #d8f0e4; }
+  .lp-talk-meta { margin-top: 10px; font-size: 14px; color: #4b5563; text-align: center; font-weight: 700; }
+
   .lp-foot { background: #111827; color: #9ca3af; padding: 44px 0; font-size: 14px; }
 
+  @media (max-width: 1024px) {
+    .lp-live-grid { grid-template-columns: repeat(3, 1fr); }
+  }
   @media (max-width: 860px) {
     .lp-flow { grid-template-columns: repeat(2, 1fr); }
+    .lp-live-grid { grid-template-columns: repeat(2, 1fr); }
   }
-  @media (max-width: 640px) {
+  @media (max-width: 560px) {
     .lp-section { padding: 52px 0; }
-    .lp-flow, .lp-grid-2, .lp-live-grid { grid-template-columns: 1fr; }
+    .lp-flow, .lp-grid-2 { grid-template-columns: 1fr; }
+    .lp-live-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+    .lp-live-body { padding: 12px 12px 14px; }
+    .lp-live-name { font-size: 15px; }
     .lp-form-card { padding: 22px; }
-    .lp-live-item { padding: 16px; }
   }
 </style>
 <% end %>
@@ -121,6 +157,25 @@
     <p style="font-size:14px; color:#9ca3af; margin-top:18px;">
       이메일과 원하시는 내용만 남겨주시면 됩니다 · 상담은 무료입니다
     </p>
+
+    <%# 말로 설명하는 대신 "문의가 실제로 도착하는 장면"을 보여준다 %>
+    <div class="lp-hero-demo" aria-label="문의가 들어오면 사장님께 도착하는 알림 예시">
+      <div class="lp-phone">
+        <div class="lp-phone-top">
+          <span class="lp-kakao-mark">TALK</span>
+          <span>알림톡</span>
+          <span style="margin-left:auto; font-size:14px; color:#9ca3af;">지금</span>
+        </div>
+        <div class="lp-talk-bubble">
+          <div style="font-weight:800; margin-bottom:8px;">[새 문의 도착]</div>
+          <div class="lp-talk-row"><span>업체</span><b>○○정육점</b></div>
+          <div class="lp-talk-row"><span>연락처</span><b>010-****-1234</b></div>
+          <div class="lp-talk-row"><span>내용</span><b>주문 상담 원합니다</b></div>
+          <div class="lp-talk-cta">어드민에서 확인하기</div>
+        </div>
+        <div class="lp-talk-meta">이메일로도 같은 내용이 전달됩니다</div>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -201,13 +256,22 @@
       <div class="lp-live-grid">
         <% @live_sites.each do |site| %>
           <a href="<%= site.preview_url %>" target="_blank" rel="noopener" class="lp-live-item">
-            <div>
+            <div class="lp-live-thumb">
+              <span class="lp-live-badge"><span class="lp-live-dot"></span>운영 중</span>
+              <% if site.image_url.present? %>
+                <%= image_tag site.image_url, alt: "#{site.title} 사이트 화면", loading: "lazy", decoding: "async" %>
+              <% end %>
+            </div>
+            <div class="lp-live-body">
               <div class="lp-live-name"><%= site.title %></div>
               <div class="lp-live-meta">
                 <%= site.category %><% if site.project_date.present? %> · <%= site.project_date.strftime("%Y년 %-m월") %> 오픈<% end %>
               </div>
+              <span class="lp-live-go">
+                사이트 방문
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+              </span>
             </div>
-            <span class="lp-live-badge"><span class="lp-live-dot"></span>운영 중</span>
           </a>
         <% end %>
       </div>
