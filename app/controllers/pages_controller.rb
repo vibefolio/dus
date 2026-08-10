@@ -64,6 +64,44 @@ class PagesController < ApplicationController
     @quote = Quote.new
   end
 
+  # 광고 유입 전용 랜딩. 실제 운영 중인 사이트를 근거로 보여주므로 포트폴리오를 함께 넘긴다.
+  def start
+    @quote = Quote.new
+    @live_sites = live_sites_for_landing
+    @live_total = Portfolio.count
+  rescue => e
+    Rails.logger.error "[StartLanding] 포트폴리오 로드 실패: #{e.message}"
+    @live_sites = []
+    @live_total = 0
+  end
+
+  def create_start_quote
+    if params[:quote][:nickname].present?
+      flash[:notice] = "문의가 접수되었습니다."
+      return redirect_to start_path
+    end
+
+    @quote = Quote.new(quote_params)
+    @quote.status = "pending"
+    @quote.source = "ad_landing"
+    @quote.project_type = params[:quote][:project_type].presence || "홈페이지 제작"
+    @quote.user = current_user if user_signed_in?
+
+    if @quote.save
+      send_quote_emails(@quote)
+      flash[:notice] = "문의가 접수되었습니다! 영업일 기준 24시간 이내 연락드리겠습니다."
+      redirect_to start_path
+    else
+      @live_sites = live_sites_for_landing
+      @live_total = Portfolio.count
+      render :start, status: :unprocessable_entity
+    end
+  rescue => e
+    Rails.logger.error "[StartQuote] #{e.message}"
+    flash[:alert] = "일시적인 오류로 문의 접수에 실패했어요. 번거로우시겠지만 duscontactus@gmail.com 으로 보내주시면 바로 확인하겠습니다."
+    redirect_to start_path
+  end
+
   def create_majortax_quote
     if params[:quote][:nickname].present?
       flash[:notice] = "문의가 접수되었습니다."
@@ -187,6 +225,16 @@ class PagesController < ApplicationController
   def send_quote_emails(quote)
     QuoteMailer.new_quote_notification(quote).deliver_now
     QuoteMailer.quote_confirmation(quote).deliver_now
+  end
+
+  # 광고 랜딩의 "실제 운영 중" 섹션에 쓸 사이트.
+  # 자사 서비스(계발자들)가 아니라 실제 고객사 사이트만 골라야 근거로서 힘이 있다.
+  def live_sites_for_landing(limit = 8)
+    Portfolio
+      .where.not(preview_url: [nil, ""])
+      .where.not(client: "계발자들 (Vibers)")
+      .order(project_date: :desc)
+      .limit(limit)
   end
 
   def quote_params

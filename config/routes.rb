@@ -49,6 +49,11 @@ Rails.application.routes.draw do
   # 파트너 랜딩페이지
   get  "majortax", to: "pages#majortax"
   post "majortax", to: "pages#create_majortax_quote", as: :majortax_quote
+
+  # 광고 유입 전용 랜딩 (semologo 등 광고 → 전환 최적화 페이지)
+  # 홈은 브랜드용으로 두고, 광고 트래픽만 여기로 받아 전환을 따로 측정한다.
+  get  "start", to: "pages#start"
+  post "start", to: "pages#create_start_quote", as: :start_quote
   # 템플릿 페이지
   resources :design_templates, only: [:index] do
     post 'toggle_like', to: 'likes#toggle', as: :toggle_like

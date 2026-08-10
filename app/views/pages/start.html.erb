@@ -1,0 +1,357 @@
+<% content_for :title, "문의가 들어오는 홈페이지" %>
+<% content_for :description, "예쁘기만 한 홈페이지는 매출로 이어지지 않습니다. 디어스는 문의 수집 → 알림톡·이메일 발송 → 관리 어드민까지 영업에 필요한 흐름을 통째로 세팅해 드립니다." %>
+
+<%# 광고 유입 전용 페이지 — 공통 nav/footer의 이탈 경로를 없애고 자체 chrome 만 쓴다 %>
+<% content_for :hide_chrome, true %>
+
+<% content_for :head do %>
+<style>
+  body { background: #fff; color: #111827; }
+  main { padding-top: 0 !important; }
+
+  .lp-wrap { max-width: 1080px; margin: 0 auto; padding: 0 20px; }
+  .lp-nav { position: sticky; top: 0; z-index: 50; background: rgba(255,255,255,0.92); backdrop-filter: blur(20px); border-bottom: 1px solid #eef0f3; }
+  .lp-nav-inner { max-width: 1080px; margin: 0 auto; padding: 0 20px; height: 64px; display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+  .lp-cta {
+    display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+    background: #00a859; color: #fff; text-decoration: none; font-weight: 800;
+    padding: 14px 26px; border-radius: 999px; font-size: 16px; border: none; cursor: pointer;
+    transition: background 0.2s, transform 0.2s; white-space: nowrap;
+  }
+  .lp-cta:hover { background: #008a47; transform: translateY(-1px); }
+  .lp-cta-sm { padding: 10px 18px; font-size: 15px; }
+
+  .lp-eyebrow { display: inline-flex; align-items: center; gap: 6px; background: #e8f5ee; color: #00a859; font-weight: 800; font-size: 14px; padding: 7px 14px; border-radius: 999px; }
+  .lp-h1 { font-size: clamp(30px, 5.2vw, 56px); font-weight: 900; line-height: 1.25; letter-spacing: -0.035em; word-break: keep-all; margin: 22px 0 18px; }
+  .lp-h2 { font-size: clamp(24px, 3.6vw, 38px); font-weight: 900; letter-spacing: -0.03em; word-break: keep-all; line-height: 1.35; }
+  .lp-lead { font-size: clamp(16px, 2vw, 19px); color: #4b5563; line-height: 1.75; word-break: keep-all; }
+  .lp-section { padding: 76px 0; }
+  .lp-section-label { font-size: 14px; font-weight: 800; color: #00a859; letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 12px; }
+
+  .lp-card { background: #fff; border: 1px solid #e5e7eb; border-radius: 18px; padding: 26px; }
+
+  /* 파이프라인 */
+  .lp-flow { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+  .lp-flow-step { background: #fff; border: 1.5px solid #e5e7eb; border-radius: 18px; padding: 24px 20px; position: relative; }
+  .lp-flow-step.is-ours { border-color: #00a859; background: #f6fdf9; }
+  .lp-flow-num { width: 30px; height: 30px; border-radius: 50%; background: #111827; color: #fff; font-size: 14px; font-weight: 900; display: inline-flex; align-items: center; justify-content: center; margin-bottom: 12px; }
+  .lp-flow-step.is-ours .lp-flow-num { background: #00a859; }
+  .lp-flow-title { font-size: 17px; font-weight: 800; margin-bottom: 8px; word-break: keep-all; }
+  .lp-flow-desc { font-size: 14px; color: #6b7280; line-height: 1.7; word-break: keep-all; }
+  .lp-flow-tag { display: inline-block; margin-top: 12px; font-size: 14px; font-weight: 800; color: #00a859; background: #e8f5ee; padding: 4px 10px; border-radius: 999px; }
+
+  /* 세팅 항목 */
+  .lp-grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+  .lp-feature-title { font-size: 18px; font-weight: 800; margin-bottom: 8px; }
+  .lp-feature-desc { font-size: 15px; color: #6b7280; line-height: 1.75; word-break: keep-all; }
+
+  /* 라이브 사이트 */
+  .lp-live-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+  .lp-live-item {
+    display: flex; align-items: center; justify-content: space-between; gap: 14px;
+    padding: 18px 20px; border: 1px solid #e5e7eb; border-radius: 14px;
+    text-decoration: none; color: inherit; background: #fff; transition: border-color 0.2s, transform 0.2s;
+  }
+  .lp-live-item:hover { border-color: #00a859; transform: translateY(-2px); }
+  .lp-live-name { font-size: 16px; font-weight: 800; word-break: keep-all; }
+  .lp-live-meta { font-size: 14px; color: #9ca3af; margin-top: 3px; }
+  .lp-live-badge { display: inline-flex; align-items: center; gap: 6px; font-size: 14px; font-weight: 800; color: #00a859; white-space: nowrap; }
+  .lp-live-dot { width: 7px; height: 7px; border-radius: 50%; background: #00a859; }
+
+  /* 폼 */
+  .lp-form-card { background: #fff; border: 1px solid #e5e7eb; border-radius: 22px; padding: 32px; box-shadow: 0 8px 32px rgba(0,0,0,0.05); }
+  .lp-label { display: block; font-size: 14px; font-weight: 800; color: #374151; margin-bottom: 7px; }
+  .lp-input {
+    width: 100%; padding: 14px 16px; border: 1.5px solid #e5e7eb; border-radius: 12px;
+    background: #f9fafb; font-size: 16px; outline: none; transition: border-color 0.2s; font-family: inherit;
+  }
+  .lp-input:focus { border-color: #00a859; background: #fff; }
+  .lp-optional > summary::-webkit-details-marker { display: none; }
+  .lp-optional > summary::marker { content: ""; }
+  .lp-optional[open] > summary .lp-arrow { transform: rotate(180deg); }
+  .lp-arrow { transition: transform 0.2s ease; flex-shrink: 0; }
+
+  .lp-foot { background: #111827; color: #9ca3af; padding: 44px 0; font-size: 14px; }
+
+  @media (max-width: 860px) {
+    .lp-flow { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 640px) {
+    .lp-section { padding: 52px 0; }
+    .lp-flow, .lp-grid-2, .lp-live-grid { grid-template-columns: 1fr; }
+    .lp-form-card { padding: 22px; }
+    .lp-live-item { padding: 16px; }
+  }
+</style>
+<% end %>
+
+<!-- ───────── NAV ───────── -->
+<nav class="lp-nav">
+  <div class="lp-nav-inner">
+    <%= link_to root_path, style: "display:flex; align-items:center; text-decoration:none;" do %>
+      <%= image_tag "logo.png", alt: "디어스", style: "height: 34px; width: auto;" %>
+    <% end %>
+    <a href="#apply" class="lp-cta lp-cta-sm">무료 상담 신청</a>
+  </div>
+</nav>
+
+<!-- ───────── HERO ───────── -->
+<section style="padding: 72px 0 64px; background: linear-gradient(180deg, #f6fdf9 0%, #ffffff 100%);">
+  <div class="lp-wrap" style="text-align: center;">
+    <span class="lp-eyebrow">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#00a859" stroke-width="3" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+      납품한 모든 사이트에 기본 적용
+    </span>
+
+    <h1 class="lp-h1">
+      홈페이지를 만드는 게 아니라<br>
+      <span style="color:#00a859;">문의가 들어오는 영업 채널</span>을 만듭니다
+    </h1>
+
+    <p class="lp-lead" style="max-width: 660px; margin: 0 auto 32px;">
+      방문자가 남긴 문의가 <strong style="color:#111827;">사장님 카카오톡 알림톡과 이메일로 즉시</strong> 도착하고,
+      관리 어드민에 이력까지 쌓입니다. 만들고 끝나는 홈페이지가 아닙니다.
+    </p>
+
+    <div style="display:flex; gap:12px; justify-content:center; flex-wrap:wrap;">
+      <a href="#apply" class="lp-cta">무료로 상담 신청하기</a>
+      <a href="#live" class="lp-cta" style="background:#fff; color:#111827; border:1.5px solid #e5e7eb;">운영 중인 사이트 보기</a>
+    </div>
+
+    <p style="font-size:14px; color:#9ca3af; margin-top:18px;">
+      이메일과 원하시는 내용만 남겨주시면 됩니다 · 상담은 무료입니다
+    </p>
+  </div>
+</section>
+
+<!-- ───────── 문제 제기 ───────── -->
+<section class="lp-section" style="background:#fff;">
+  <div class="lp-wrap">
+    <div class="lp-card" style="background:#fafafa; border-color:#eef0f3; text-align:center; padding:38px 26px;">
+      <p style="font-size:clamp(18px,2.6vw,24px); font-weight:800; line-height:1.6; word-break:keep-all; margin:0;">
+        “홈페이지는 만들었는데,<br>문의가 어디로 오는지 모르겠어요.”
+      </p>
+      <p class="lp-lead" style="max-width:640px; margin:18px auto 0;">
+        디자인만 납품받으면 실제로 이런 일이 생깁니다. 문의 폼은 있는데 메일함을 안 보면 놓치고,
+        누가 언제 문의했는지 기록도 남지 않습니다. <strong style="color:#111827;">받을 준비가 안 된 홈페이지는 매출로 이어지지 않습니다.</strong>
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ───────── 핵심: 돈이 들어오는 경로 ───────── -->
+<section class="lp-section" style="background:#f8f9fa;">
+  <div class="lp-wrap">
+    <div style="text-align:center; margin-bottom:44px;">
+      <div class="lp-section-label">How it works</div>
+      <h2 class="lp-h2">문의가 매출이 되는 4단계</h2>
+      <p class="lp-lead" style="max-width:600px; margin:14px auto 0;">
+        디어스는 이 흐름 전체를 세팅해 드립니다. 사장님은 알림톡만 확인하시면 됩니다.
+      </p>
+    </div>
+
+    <div class="lp-flow">
+      <div class="lp-flow-step">
+        <div class="lp-flow-num">1</div>
+        <div class="lp-flow-title">방문자 유입</div>
+        <div class="lp-flow-desc">검색·SNS·광고로 사이트에 들어옵니다. 검색 노출 세팅과 네이버·구글 등록까지 함께 해드립니다.</div>
+      </div>
+
+      <div class="lp-flow-step is-ours">
+        <div class="lp-flow-num">2</div>
+        <div class="lp-flow-title">문의 수집</div>
+        <div class="lp-flow-desc">이탈하지 않도록 최소 항목만 받는 문의 폼. 스팸 봇은 자동으로 걸러집니다.</div>
+        <span class="lp-flow-tag">디어스가 세팅</span>
+      </div>
+
+      <div class="lp-flow-step is-ours">
+        <div class="lp-flow-num">3</div>
+        <div class="lp-flow-title">알림톡·이메일 발송</div>
+        <div class="lp-flow-desc">문의가 들어오는 즉시 사장님 카카오톡과 이메일로 알려드립니다. 메일함을 안 봐도 놓치지 않습니다.</div>
+        <span class="lp-flow-tag">디어스가 세팅</span>
+      </div>
+
+      <div class="lp-flow-step is-ours">
+        <div class="lp-flow-num">4</div>
+        <div class="lp-flow-title">관리 어드민</div>
+        <div class="lp-flow-desc">누가 언제 무엇을 문의했는지 전부 남습니다. 상담 진행 상태도 여기서 관리하세요.</div>
+        <span class="lp-flow-tag">디어스가 세팅</span>
+      </div>
+    </div>
+
+    <p style="text-align:center; font-size:15px; color:#6b7280; margin-top:26px; word-break:keep-all;">
+      2~4번은 <strong style="color:#111827;">옵션이 아니라 기본</strong>입니다. 디어스가 납품한 모든 사이트에 들어갑니다.
+    </p>
+  </div>
+</section>
+
+<!-- ───────── 실제 운영 중인 사이트 ───────── -->
+<section class="lp-section" id="live" style="background:#fff;">
+  <div class="lp-wrap">
+    <div style="text-align:center; margin-bottom:40px;">
+      <div class="lp-section-label">Live now</div>
+      <h2 class="lp-h2">지금 이 순간 운영되고 있습니다</h2>
+      <p class="lp-lead" style="max-width:620px; margin:14px auto 0;">
+        포트폴리오용으로 만든 시안이 아닙니다. 아래 사이트들은 실제 사업장이 쓰고 있고,
+        지금도 문의를 받고 있습니다. 직접 눌러서 확인해 보세요.
+      </p>
+    </div>
+
+    <% if @live_sites.present? %>
+      <div class="lp-live-grid">
+        <% @live_sites.each do |site| %>
+          <a href="<%= site.preview_url %>" target="_blank" rel="noopener" class="lp-live-item">
+            <div>
+              <div class="lp-live-name"><%= site.title %></div>
+              <div class="lp-live-meta">
+                <%= site.category %><% if site.project_date.present? %> · <%= site.project_date.strftime("%Y년 %-m월") %> 오픈<% end %>
+              </div>
+            </div>
+            <span class="lp-live-badge"><span class="lp-live-dot"></span>운영 중</span>
+          </a>
+        <% end %>
+      </div>
+
+      <div style="text-align:center; margin-top:30px;">
+        <p style="font-size:16px; color:#4b5563; word-break:keep-all;">
+          이 외에도 <strong style="color:#00a859;"><%= @live_total %>개</strong>의 사이트를 만들고 운영을 돕고 있습니다.
+        </p>
+        <%= link_to "전체 포트폴리오 보기 →", portfolio_path, style: "display:inline-block; margin-top:10px; color:#00a859; font-weight:800; text-decoration:none; font-size:16px;" %>
+      </div>
+    <% else %>
+      <p style="text-align:center; color:#6b7280;">
+        운영 중인 사이트 목록을 불러오지 못했습니다.
+        <%= link_to "포트폴리오에서 확인해 주세요", portfolio_path, style: "color:#00a859; font-weight:700;" %>.
+      </p>
+    <% end %>
+  </div>
+</section>
+
+<!-- ───────── 무엇이 다른가 ───────── -->
+<section class="lp-section" style="background:#f8f9fa;">
+  <div class="lp-wrap">
+    <div style="text-align:center; margin-bottom:40px;">
+      <div class="lp-section-label">What you get</div>
+      <h2 class="lp-h2">디자인 말고, 이런 걸 받으십니다</h2>
+    </div>
+
+    <div class="lp-grid-2">
+      <div class="lp-card">
+        <div class="lp-feature-title">📥 문의 폼 + 스팸 차단</div>
+        <div class="lp-feature-desc">
+          입력 항목이 많으면 사람들은 그냥 나갑니다. 꼭 필요한 것만 받도록 설계하고,
+          광고성 스팸은 자동으로 걸러 사장님이 진짜 문의만 보게 합니다.
+        </div>
+      </div>
+
+      <div class="lp-card">
+        <div class="lp-feature-title">💬 카카오 알림톡 연동</div>
+        <div class="lp-feature-desc">
+          문의가 들어오면 사장님 카카오톡으로 바로 알림이 갑니다.
+          현장에 계셔도, 메일함을 안 여셔도 놓치지 않습니다.
+        </div>
+      </div>
+
+      <div class="lp-card">
+        <div class="lp-feature-title">📧 이메일 자동 발송</div>
+        <div class="lp-feature-desc">
+          알림톡과 함께 이메일로도 전문이 전달됩니다. 담당 직원과 나눠 보시거나
+          기록용으로 보관하기 좋습니다.
+        </div>
+      </div>
+
+      <div class="lp-card">
+        <div class="lp-feature-title">🗂 관리 어드민 제공</div>
+        <div class="lp-feature-desc">
+          누가 언제 무엇을 문의했는지 목록으로 남습니다. 상담 중·완료 같은 진행 상태도
+          직접 관리하실 수 있습니다.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ───────── 문의 폼 ───────── -->
+<section class="lp-section" id="apply" style="background:#fff;">
+  <div class="lp-wrap" style="max-width: 660px;">
+    <div style="text-align:center; margin-bottom:30px;">
+      <div class="lp-section-label">Contact</div>
+      <h2 class="lp-h2">어떤 사업을 하고 계신가요?</h2>
+      <p class="lp-lead" style="margin-top:14px;">
+        이메일과 하고 싶은 말씀만 남겨주세요. 나머지는 저희가 여쭤보겠습니다.
+      </p>
+    </div>
+
+    <div class="lp-form-card">
+      <%= render "shared/form_errors", record: @quote %>
+
+      <%= form_with model: @quote, url: start_quote_path, local: true, data: { controller: "honeypot" } do |f| %>
+        <div style="display:none !important;" aria-hidden="true">
+          <%= f.text_field :nickname, tabindex: "-1", autocomplete: "off", data: { honeypot_target: "field" } %>
+        </div>
+
+        <div style="margin-bottom:16px;">
+          <label class="lp-label" for="quote_email">이메일 *</label>
+          <%= f.email_field :email, class: "lp-input", placeholder: "contact@example.com", required: true %>
+        </div>
+
+        <div style="margin-bottom:16px;">
+          <label class="lp-label" for="quote_message">어떤 걸 만들고 싶으신가요? *</label>
+          <%= f.text_area :message, class: "lp-input", rows: 5,
+                placeholder: "예) 정육점을 운영 중인데 온라인 주문 문의를 받고 싶어요. 지금은 전화로만 받고 있습니다.",
+                style: "resize: vertical; min-height: 120px;", required: true %>
+        </div>
+
+        <details class="lp-optional" style="margin-bottom:20px; border:1.5px solid #e5e7eb; border-radius:12px; background:#f9fafb;">
+          <summary style="padding:14px 16px; cursor:pointer; font-size:14px; font-weight:800; color:#374151; list-style:none; display:flex; align-items:center; justify-content:space-between; gap:8px;">
+            <span>연락처·업체 정보 남기기 <span style="font-weight:500; color:#6b7280;">(선택)</span></span>
+            <svg class="lp-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#6b7280" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+          </summary>
+          <div style="padding: 0 16px 16px;">
+            <p style="font-size:14px; color:#6b7280; margin-bottom:14px; line-height:1.6;">
+              남겨주시면 더 빠르게 연락드릴 수 있어요. 안 적으셔도 이메일로 답변드립니다.
+            </p>
+            <div style="margin-bottom:12px;">
+              <label class="lp-label" for="quote_contact_name">성함</label>
+              <%= f.text_field :contact_name, class: "lp-input", style: "background:#fff;", placeholder: "홍길동" %>
+            </div>
+            <div style="margin-bottom:12px;">
+              <label class="lp-label" for="quote_phone">연락처</label>
+              <%= f.text_field :phone, class: "lp-input", style: "background:#fff;", placeholder: "010-0000-0000", inputmode: "tel" %>
+            </div>
+            <div>
+              <label class="lp-label" for="quote_company_name">업체명</label>
+              <%= f.text_field :company_name, class: "lp-input", style: "background:#fff;", placeholder: "(주)디어스" %>
+            </div>
+          </div>
+        </details>
+
+        <button type="submit" class="lp-cta" style="width:100%; padding:17px;">
+          무료 상담 신청하기
+        </button>
+
+        <p style="text-align:center; color:#9ca3af; font-size:14px; margin-top:14px;">
+          🔒 보내주신 정보는 상담 목적으로만 사용합니다.
+        </p>
+      <% end %>
+    </div>
+  </div>
+</section>
+
+<!-- ───────── FOOTER ───────── -->
+<footer class="lp-foot">
+  <div class="lp-wrap" style="text-align:center;">
+    <div style="font-weight:800; color:#e5e7eb; font-size:16px; margin-bottom:10px;">디어스 D-us</div>
+    <p style="margin:0 0 16px; line-height:1.8;">
+      AI 기술과 디자인으로 비즈니스의 성공을 만드는 프리미엄 개발 에이전시<br>
+      duscontactus@gmail.com
+    </p>
+    <div style="display:flex; gap:20px; justify-content:center; flex-wrap:wrap;">
+      <%= link_to "홈", root_path, style: "color:#9ca3af; text-decoration:none;" %>
+      <%= link_to "포트폴리오", portfolio_path, style: "color:#9ca3af; text-decoration:none;" %>
+      <%= link_to "요금제", pricing_path, style: "color:#9ca3af; text-decoration:none;" %>
+      <%= link_to "개인정보처리방침", privacy_path, style: "color:#9ca3af; text-decoration:none;" %>
+    </div>
+    <p style="margin-top:20px; color:#6b7280;">&copy; <%= Time.current.year %> 디어스(D.US). All rights reserved.</p>
+  </div>
+</footer>
