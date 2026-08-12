@@ -236,3 +236,25 @@ docker compose up -d --build
 - 배포 트리거 후 `gh run watch <run-id>`로 완료까지 대기. "N분 후 됩니다"로 끝내지 말 것.
 - 예상 시간을 알려준 경우, 그 시간 후 반드시 다시 확인하고 결과 메시지 전달.
 - 성공 시: 배포 완료 확인 + 접속 테스트. 실패 시: 로그 분석 + 원인 + 수정 방안 + 조치사항 안내.
+---
+
+## 📱 모바일 = 앱다운 (MANDATORY) — 2026-08-12 추가
+
+**모바일 뷰(≤768px)를 손대는 모든 작업에 적용. 별도 요청 없어도 적용한다.**
+데스크톱을 줄인 모바일이 아니라 **네이티브 앱처럼 느껴지는** 모바일을 만든다.
+
+전체 규격 (모바일 UI 작업 전 반드시 읽는다):
+`~/Desktop/macminim4/vibers-design-skill/app-feel-guide.md`
+
+| # | 규칙 | 안 지키면 |
+|---|------|----------|
+| 1 | 좌우 패딩 **20px** 전 화면 통일 | 스크롤 시 왼쪽 정렬선이 흔들림 = 투박함 1순위 |
+| 2 | 본문 **17px** (14px 미만 금지, input 16px↑) | "웹페이지"로 읽힘 / iOS 자동 확대 |
+| 3 | 하단에 **탭바 or 고정 CTA** | 하단이 비면 앱으로 안 느껴짐 |
+| 4 | 모달은 **바텀시트** (중앙 모달 금지) | 상단만 radius 20 / max-height 85dvh / 핸들바 |
+| 5 | 가로 카드는 **다음 장 20% 노출** | `scroll-snap-type: x mandatory` 필수 |
+
+추가 필수: `100dvh`(vh 아님) · `viewport-fit=cover` + `env(safe-area-inset-bottom)` ·
+`word-break: keep-all` · `-webkit-tap-highlight-color: transparent` ·
+`:active { transform: scale(.97) }` · 섹션 구분은 구분선 아닌 여백 44px ·
+주요 CTA는 **검정** 화면당 1개
