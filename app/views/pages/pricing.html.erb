@@ -226,11 +226,7 @@
     <div class="benefits-grid" style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px;">
       <div class="card-premium" style="text-align: center;">
         <div class="card-premium-inner" style="padding: 32px;">
-          <div style="width: 60px; height: 60px; background: linear-gradient(135deg, #00a859, #00d670); border-radius: 9999px; display: flex; align-items: center; justify-content: center; margin: 0 auto 16px;">
-            <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
-              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-            </svg>
-          </div>
+          <div class="icon-tile" style="width: 68px; height: 68px; border-radius: 9999px; margin: 0 auto 16px;"><%= icon_3d "shield", size: 44 %></div>
           <h4 style="font-size: 18px; font-weight: 700; margin-bottom: 8px; color: #111;">보안 업데이트</h4>
           <p style="color: #6b7280; font-size: 14px;">최신 보안 패치 자동 적용</p>
         </div>
@@ -238,12 +234,7 @@
 
       <div class="card-premium" style="text-align: center;">
         <div class="card-premium-inner" style="padding: 32px;">
-          <div style="width: 60px; height: 60px; background: linear-gradient(135deg, #00a859, #00d670); border-radius: 9999px; display: flex; align-items: center; justify-content: center; margin: 0 auto 16px;">
-            <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
-              <circle cx="12" cy="12" r="10"/>
-              <path d="M12 6v6l4 2"/>
-            </svg>
-          </div>
+          <div class="icon-tile" style="width: 68px; height: 68px; border-radius: 9999px; margin: 0 auto 16px;"><%= icon_3d "stopwatch", size: 44 %></div>
           <h4 style="font-size: 18px; font-weight: 700; margin-bottom: 8px; color: #111;">빠른 대응</h4>
           <p style="color: #6b7280; font-size: 14px;">긴급 이슈 신속 처리</p>
         </div>
@@ -251,13 +242,7 @@
 
       <div class="card-premium" style="text-align: center;">
         <div class="card-premium-inner" style="padding: 32px;">
-          <div style="width: 60px; height: 60px; background: linear-gradient(135deg, #00a859, #00d670); border-radius: 9999px; display: flex; align-items: center; justify-content: center; margin: 0 auto 16px;">
-            <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
-              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
-              <polyline points="7 10 12 15 17 10"/>
-              <line x1="12" y1="15" x2="12" y2="3"/>
-            </svg>
-          </div>
+          <div class="icon-tile" style="width: 68px; height: 68px; border-radius: 9999px; margin: 0 auto 16px;"><%= icon_3d "cloud-down", size: 44 %></div>
           <h4 style="font-size: 18px; font-weight: 700; margin-bottom: 8px; color: #111;">백업 서비스</h4>
           <p style="color: #6b7280; font-size: 14px;">정기 데이터 백업</p>
         </div>
@@ -265,12 +250,7 @@
 
       <div class="card-premium" style="text-align: center;">
         <div class="card-premium-inner" style="padding: 32px;">
-          <div style="width: 60px; height: 60px; background: linear-gradient(135deg, #00a859, #00d670); border-radius: 9999px; display: flex; align-items: center; justify-content: center; margin: 0 auto 16px;">
-            <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
-              <line x1="12" y1="1" x2="12" y2="23"/>
-              <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
-            </svg>
-          </div>
+          <div class="icon-tile" style="width: 68px; height: 68px; border-radius: 9999px; margin: 0 auto 16px;"><%= icon_3d "wallet", size: 44 %></div>
           <h4 style="font-size: 18px; font-weight: 700; margin-bottom: 8px; color: #111;">투명한 비용</h4>
           <p style="color: #6b7280; font-size: 14px;">숨겨진 비용 없음</p>
         </div>
@@ -294,7 +274,7 @@
       <!-- 단순 이전 -->
       <div class="card-premium" style="text-align: center;">
         <div class="card-premium-inner" style="padding: 32px;">
-          <div style="font-size: 36px; margin-bottom: 16px;">📦</div>
+          <div style="margin-bottom: 16px;"><%= icon_3d "package", size: 56 %></div>
           <h3 style="font-size: 18px; font-weight: 800; color: #111; margin-bottom: 8px;">단순 이전</h3>
           <p style="color: #6b7280; font-size: 14px; line-height: 1.6; margin-bottom: 20px; word-break: keep-all;">기존 디자인 그대로<br>서버/도메인만 이전</p>
           <div style="font-size: 28px; font-weight: 900; color: var(--color-primary); margin-bottom: 4px;">30만원~</div>
@@ -306,7 +286,7 @@
       <div class="card-premium" style="text-align: center; border: 2px solid var(--color-primary); border-radius: 16px; position: relative;">
         <div style="position: absolute; top: -14px; left: 50%; transform: translateX(-50%); background: var(--color-primary); color: white; padding: 4px 16px; border-radius: 50px; font-size: 14px; font-weight: 800;">추천</div>
         <div class="card-premium-inner" style="padding: 32px;">
-          <div style="font-size: 36px; margin-bottom: 16px;">✨</div>
+          <div style="margin-bottom: 16px;"><%= icon_3d "design", size: 56 %></div>
           <h3 style="font-size: 18px; font-weight: 800; color: #111; margin-bottom: 8px;">리디자인 + 이전</h3>
           <p style="color: #6b7280; font-size: 14px; line-height: 1.6; margin-bottom: 20px; word-break: keep-all;">디자인 새로 하고<br>콘텐츠 마이그레이션</p>
           <div style="font-size: 28px; font-weight: 900; color: var(--color-primary); margin-bottom: 4px;">50만원~</div>
@@ -317,7 +297,7 @@
       <!-- 풀 리빌드 -->
       <div class="card-premium" style="text-align: center;">
         <div class="card-premium-inner" style="padding: 32px;">
-          <div style="font-size: 36px; margin-bottom: 16px;">🚀</div>
+          <div style="margin-bottom: 16px;"><%= icon_3d "rocket", size: 56 %></div>
           <h3 style="font-size: 18px; font-weight: 800; color: #111; margin-bottom: 8px;">풀 리빌드</h3>
           <p style="color: #6b7280; font-size: 14px; line-height: 1.6; margin-bottom: 20px; word-break: keep-all;">기존 사이트 분석 후<br>완전히 새로 제작</p>
           <div style="font-size: 28px; font-weight: 900; color: var(--color-primary); margin-bottom: 4px;">별도 견적</div>

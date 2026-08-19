@@ -25,24 +25,16 @@
         
         <!-- Category Buttons (Top Row) -->
         <div class="flex flex-wrap gap-2">
-          <% 
-            categories = [
-              ['all', '전체'],
-              ['beauty', '뷰티'],
-              ['dining', '다이닝'],
-              ['corporate', '기업 · 스타트업'],
-              ['medical', '병원 · 법률'],
-              ['fitness', '운동 · 헬스'],
-              ['shopping', '쇼핑 · 패션'],
-              ['stay', '숙박 · 여행'],
-              ['space', '공간 · 스튜디오'],
-              ['academy', '교육 · 학원']
-            ] 
-          %>
+          <%# 카테고리 목록의 단일 출처는 config/icons.yml 이다.
+              예전에는 여기에 9개만 하드코딩돼 있어 cafe·portfolio·kinder·law·finance 가
+              필터로 도달 불가였다. %>
+          <% categories = [['all', '전체']] + Icons.category_options.map { |label, key| [key, label] } %>
           <% categories.each do |cat_code, cat_name| %>
             <button type="submit" name="category" value="<%= cat_code %>" 
                     class="px-5 py-2.5 rounded-xl text-sm font-bold transition-all
-                    <%= params[:category] == cat_code || (params[:category].blank? && cat_code == 'all') ? 'bg-slate-900 text-white shadow-md' : 'bg-white text-gray-500 hover:bg-gray-100 border border-gray-100' %>">
+                    <%= params[:category] == cat_code || (params[:category].blank? && cat_code == 'all') ? 'bg-slate-900 text-white shadow-md' : 'bg-white text-gray-500 hover:bg-gray-100 border border-gray-100' %>"
+                    style="display: inline-flex; align-items: center; gap: 6px; min-height: 44px;">
+              <%= category_icon(cat_code, size: 22) unless cat_code == 'all' %>
               <%= cat_name %>
             </button>
           <% end %>
@@ -83,7 +75,7 @@
 
     <% if @design_templates.blank? %>
       <div class="text-center py-20">
-        <div class="text-6xl mb-4">😢</div>
+        <div class="mb-4"><%= icon_3d "browser-search", size: 80 %></div>
         <h3 class="text-xl font-bold text-gray-800">조건에 맞는 템플릿이 없습니다.</h3>
         <p class="text-gray-500 mt-2">다른 카테고리나 검색어를 이용해보세요.</p>
         <a href="<%= design_templates_path %>" class="inline-block mt-6 px-6 py-3 bg-slate-900 text-white rounded-lg font-bold">전체 보기</a>
@@ -100,7 +92,7 @@
               <% thumb_src = template.pc_thumbnail_url %>
               
               <img src="<%= thumb_src %>" 
-                   alt="<%= template.title %> - <%= template.category %> 템플릿" 
+                   alt="<%= template.title %> - <%= category_label(template.category) %> 템플릿" 
                    loading="lazy"
                    decoding="async"
                    class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
@@ -108,8 +100,10 @@
               <!-- Badge -->
               <!-- Badge -->
               <div class="absolute top-4 left-4 flex flex-wrap gap-2">
-                <span class="px-3 py-1 bg-white/90 backdrop-blur text-xs font-bold rounded-full uppercase tracking-wider shadow-sm text-slate-800 border border-slate-100">
-                  <%= template.category %>
+                <span class="px-3 py-1 bg-white/90 backdrop-blur text-xs font-bold rounded-full shadow-sm text-slate-800 border border-slate-100"
+                      style="display: inline-flex; align-items: center; gap: 5px;">
+                  <%= category_icon(template.category, size: 18) %>
+                  <%= category_label(template.category) %>
                 </span>
 
                 <% if template.is_featured %>

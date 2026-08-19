@@ -176,4 +176,16 @@
     opacity: 1;
     transform: translateY(0);
   }
+
+  /* 3D 아이콘 타일 — 아이콘이 주인공이 되도록 배경은 아주 연하게만 깐다.
+     진한 그라디언트 위에 올리면 아이콘 자체 색과 섞여 탁해진다. */
+  .icon-tile {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 168, 89, 0.08);
+    border-radius: var(--radius-lg);
+    flex-shrink: 0;
+  }
+  .icon-tile img { display: block; }
 }

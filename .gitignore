@@ -49,3 +49,6 @@ session-logs/
 
 # 시크릿
 config/master.key
+
+# 3D 아이콘 추출 중간산출물 (원본 시트와 스크립트로 언제든 재생성)
+/marketing/assets/icons-3d/extracted/

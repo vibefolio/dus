@@ -453,12 +453,12 @@
 
     <div class="mxt-benefit-grid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;">
       <% [
-        ["⚡", "빠른 시작", "사업자등록과 동시에 세무기장 + 홈페이지 제작이 병행됩니다. 2주 안에 사업 준비 완료."],
-        ["🤝", "각 분야 전문가가 함께", "세무는 세무사가, 홈페이지는 웹 전문가가. 각자의 전문성으로 최고의 결과를 만듭니다."],
-        ["💰", "합리적인 비용", "파트너십 할인으로 초기 개발비 30% + 유지관리비 최대 3만원 할인. 따로 맡기는 것보다 저렴합니다."]
+        ["rocket", "빠른 시작", "사업자등록과 동시에 세무기장 + 홈페이지 제작이 병행됩니다. 2주 안에 사업 준비 완료."],
+        ["handshake", "각 분야 전문가가 함께", "세무는 세무사가, 홈페이지는 웹 전문가가. 각자의 전문성으로 최고의 결과를 만듭니다."],
+        ["card", "합리적인 비용", "파트너십 할인으로 초기 개발비 30% + 유지관리비 최대 3만원 할인. 따로 맡기는 것보다 저렴합니다."]
       ].each do |icon, title, desc| %>
         <div class="mxt-card" style="padding:28px;">
-          <div style="font-size:32px;margin-bottom:16px;"><%= icon %></div>
+          <div style="margin-bottom:16px;"><%= icon_3d icon, size: 52 %></div>
           <div style="font-size:16px;font-weight:800;color:#191f28;margin-bottom:8px;"><%= title %></div>
           <div style="font-size:14px;color:#6b7684;line-height:1.7;word-break:keep-all;"><%= desc %></div>
         </div>
