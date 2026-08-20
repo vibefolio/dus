@@ -51,7 +51,7 @@ python3 script/curate_icons.py      # 채택본만 app/assets/images/icons/ 로 
 | 항목 | 값 |
 |------|-----|
 | 태스크 | `bin/rails portfolio:sync_og` (`DRY_RUN=1` 로 미리보기) |
-| 주기 | 매주 월 04:10 KST, NCP 서버 cron |
+| 주기 | 매주 월 04:10 KST — NCP 서버 cron `/root/scripts/dus-sync-og.sh` |
 | DB | `portfolios.thumbnail_url` · `thumbnail_captured_at` |
 | 표시 우선순위 | `Portfolio#card_image` — 첨부 > og:image > 손으로 박은 image_url |
 
@@ -68,4 +68,17 @@ python3 script/curate_icons.py      # 채택본만 app/assets/images/icons/ 로 
 - **OG 중복을 경고한다.** 하위도메인이 부모 사이트 OG 를 상속하면 서로 다른 카드가 같은
   그림을 쓰게 된다(예: hstech.premiumpage.kr). 이건 우리가 못 고치고 **고객사 사이트에서**
   OG 를 따로 넣어야 한다 — 그래서 태스크가 매번 목록을 뽑아준다.
-- **OG 미선언 사이트**는 태스크가 이름을 찍어준다. 거기에 OG 를 넣으면 다음 주에 자동 반영된다.
+- **OG 가 깨진 사이트도 이름을 찍어준다.** 예: 젠탑이 `/images/og-image.png` 를 선언하는데
+  실제로는 404 다(HEAD·GET 둘 다). 가드가 기존 이미지를 유지하니 화면은 멀쩡하지만
+  고객사 사이트에서 고쳐야 반영된다.
+- **맥이 아니라 서버에서 돈다.** 캡처가 아니라 HTTP 조회뿐이라 브라우저가 필요 없다.
+  로그: `ssh vibers "tail -30 /tmp/dus-sync-og.log"` (600, 최근 200줄 유지)
+
+### 2026-08-20 첫 동기화 결과
+21건 갱신 / 1건 실패(젠탑 404) / OG 중복 2건.
+크게 좋아진 것: 야화(새 2026 OG) · 보이는마케팅 · 이가네양꼬치(로고 OG) · 프리미엄페이지.
+남은 숙제는 전부 **고객사 사이트 쪽**이다 —
+  · 젠탑: 선언한 og:image 가 404
+  · HS TECH: 하위도메인이 프리미엄페이지 OG 를 상속 → 3번과 그림이 같다
+  · 올루올루: 본점과 프랜차이즈가 같은 OG 를 쓴다
+  · 항성·HS TECH CO.·작당페스타·조선돼지국밥: og:image 가 사이트 사진/포스터라 얼굴이 아니다
