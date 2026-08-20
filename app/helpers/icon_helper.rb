@@ -1,7 +1,7 @@
 # 3D 아이콘 렌더링. 이름 → config/icons.yml → app/assets/images/icons/*.png
 #
 # 20px 안팎의 기능성 글리프(chevron·close·search 등)에는 쓰지 않는다 —
-# 3D 아이콘은 작은 크기에서 뭉개진다. 44px 이상에서만 쓴다.
+# 3D 아이콘은 작은 크기에서 뭉개진다. 크기 기준은 config/icons.yml 머리말 참조.
 module IconHelper
   # 이름 없는 아이콘을 조용히 넘기지 않는다.
   # 개발/테스트에서는 즉시 터뜨리고, 프로덕션에서만 로그를 남기고 화면을 지킨다.

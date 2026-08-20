@@ -4,8 +4,13 @@
 # 원본 시트:  marketing/assets/icons-3d/sheets/
 # 재생성:     python3 script/extract_icons.py && python3 script/curate_icons.py
 #
-# 아이콘은 256px 정사각 투명 PNG다. 화면 표시는 44~80px 사이로 쓴다.
-# 그보다 크게 쓰면 원본 해상도(~170px)가 드러나고, 작게 쓰면 형태가 뭉개진다.
+# 아이콘은 256px 정사각 투명 PNG다 (원본 렌더 ~170px 를 업스케일한 것).
+# 표시 크기 기준:
+#   26~30px  카테고리 배지·필터 pill 등 라벨 옆 보조 표시
+#   44~70px  피처 카드·리스트 행의 주 아이콘
+#   72~104px 메인 페이지 서비스 카드처럼 '아이콘 이상의 의미'를 갖는 자리
+# 상한은 약 110px 이다 — 2x DPI 에서 220 device px 가 되어 원본(~170px)을 넘어서면
+# 부드러워지기 시작한다. 매끈한 3D 렌더라 디테일이 적어 이 정도까지는 버틴다.
 # 20px 안팎의 기능성 글리프(chevron·close·search 등)는 기존 인라인 SVG를 그대로 둔다.
 
 icons:
