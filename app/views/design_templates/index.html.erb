@@ -97,9 +97,9 @@
                    decoding="async"
                    class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
 
-              <!-- Badge -->
-              <!-- Badge -->
-              <div class="absolute top-4 left-4 flex flex-wrap gap-2">
+              <%# 아이콘이 들어가 카테고리 배지가 높아졌다. items-center 가 없으면 flex 기본값
+                  stretch 때문에 BEST 가 늘어난 채 글자만 위로 붙는다. %>
+              <div class="absolute top-4 left-4 flex flex-wrap items-center gap-2">
                 <span class="px-3 py-1.5 bg-white/90 backdrop-blur text-xs font-bold rounded-full shadow-sm text-slate-800 border border-slate-100"
                       style="display: inline-flex; align-items: center; gap: 5px;">
                   <%= category_icon(template.category, size: 26) %>
@@ -107,7 +107,8 @@
                 </span>
 
                 <% if template.is_featured %>
-                  <span class="px-3 py-1 bg-amber-400 text-white text-xs font-bold rounded-full uppercase tracking-wider shadow-sm shadow-amber-200">
+                  <span class="px-3 py-1.5 bg-amber-400 text-white text-xs font-bold rounded-full uppercase tracking-wider shadow-sm shadow-amber-200"
+                        style="display: inline-flex; align-items: center; line-height: 1;">
                     BEST
                   </span>
                 <% end %>
