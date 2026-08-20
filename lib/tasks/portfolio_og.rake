@@ -58,6 +58,9 @@ namespace :portfolio do
     seen_urls = Hash.new { |h, k| h[k] = [] }
 
     Portfolio.where.not(preview_url: [ nil, "" ]).order(:id).each do |p|
+      # 사이트 하나가 예상 못 한 방식으로 죽어도 나머지 21건은 갱신돼야 한다.
+      # (한글 도메인에서 URI.join 이 터져 #19 부터 통째로 안 돌던 적이 있다)
+      begin
       res = fetch.call(p.preview_url)
       unless res.is_a?(Net::HTTPSuccess)
         puts "  #{p.id} #{p.title} — 페이지 응답 없음/오류(#{res&.code || 'timeout'}) → 유지"
@@ -76,7 +79,7 @@ namespace :portfolio do
         next
       end
 
-      og = URI.join(p.preview_url, raw).to_s
+      og = to_ascii.call(URI.join(to_ascii.call(p.preview_url), raw).to_s)
 
       # HEAD 를 거부하는 서버가 있어서 실패하면 GET 으로 한 번 더 확인한다.
       # HEAD 만 믿으면 멀쩡한 이미지를 죽은 것으로 오판한다.
@@ -103,6 +106,10 @@ namespace :portfolio do
       puts "      이후: #{og}"
       p.update_columns(thumbnail_url: og, thumbnail_captured_at: Time.current) unless dry
       changed += 1
+      rescue StandardError => e
+        puts "  #{p.id} #{p.title} — 처리 중 오류(#{e.class}: #{e.message[0, 80]}) → 유지"
+        failed += 1
+      end
     end
 
     # 서로 다른 카드가 같은 그림을 쓰면 화면에서 중복으로 보인다.
