@@ -18,16 +18,25 @@ namespace :portfolio do
   task sync_og: :environment do
     require "net/http"
     require "uri"
+    require "addressable/uri"
 
     dry = ENV["DRY_RUN"].present?
     ua  = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 " \
           "(KHTML, like Gecko) Chrome/124.0 Safari/537.36"
 
-    # 리다이렉트를 따라가며 GET. 실패는 예외 대신 nil 로 돌려주되 사유는 호출부에서 로그로 남긴다.
+    # 한글 도메인(작당페스타.kr 등)은 URI.parse 가 "URI must be ascii only" 로 죽는다.
+    # Addressable 이 호스트를 퓨니코드로 정규화해준다.
+    to_ascii = lambda do |url|
+      Addressable::URI.parse(url).normalize.to_s
+    rescue StandardError
+      url
+    end
+
+    # 리다이렉트를 따라가며 요청. 실패는 예외 대신 nil 로 돌려주되 사유는 호출부에서 로그로 남긴다.
     fetch = lambda do |url, limit: 5, method: Net::HTTP::Get|
       return nil if limit.zero?
 
-      uri = URI.parse(url)
+      uri = URI.parse(to_ascii.call(url))
       return nil unless uri.is_a?(URI::HTTP)
 
       res = Net::HTTP.start(uri.host, uri.port, use_ssl: uri.scheme == "https",
@@ -69,9 +78,14 @@ namespace :portfolio do
 
       og = URI.join(p.preview_url, raw).to_s
 
-      head = fetch.call(og, method: Net::HTTP::Head)
-      unless head.is_a?(Net::HTTPSuccess) && head["content-type"].to_s.start_with?("image/")
-        puts "  #{p.id} #{p.title} — og:image 접근 불가(#{head&.code || 'timeout'} #{head&.[]('content-type')}) → 유지"
+      # HEAD 를 거부하는 서버가 있어서 실패하면 GET 으로 한 번 더 확인한다.
+      # HEAD 만 믿으면 멀쩡한 이미지를 죽은 것으로 오판한다.
+      probe = fetch.call(og, method: Net::HTTP::Head)
+      probe = fetch.call(og) unless probe.is_a?(Net::HTTPSuccess)
+
+      unless probe.is_a?(Net::HTTPSuccess) && probe["content-type"].to_s.start_with?("image/")
+        puts "  #{p.id} #{p.title} — og:image 접근 불가(#{probe&.code || 'timeout'} #{probe&.[]('content-type')}) → 유지"
+        puts "      선언된 값: #{og}"
         failed += 1
         next
       end
